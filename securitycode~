@@ -1,0 +1,25 @@
+Master Data
+Barang Dagang (AB3)
+Pelanggan (AB1)
+Pemasok (AB2)
+Gudang (AB4)
+Tenaga Penjualan (Sales) (AB5)
+Stok Opname (AB6)
+
+Bagian Pembelian
+Pesanan ke Pemasok (AC2)
+Penerimaan Barang dari Pemasok (AC5)
+Pembayaran ke Pemasok (AC7)
+Memo Pembelian (AC6)
+
+Bagian Penjualan
+Pesanan Pembeli (AC1)
+Pengiriman Barang ke Pelanggan 
+Penerimaan Pembayaran dari Pelanggan 
+
+Bagian Gudang
+Terima Kiriman dari Pemasok (AC3)
+Pemasukan Saldo Stok Opname (AC8)
+
+Bagian Keuangan
+Pembayaran Pemasok (AC4)
