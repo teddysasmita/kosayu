@@ -2443,3 +2443,264 @@ Stack trace:
 #34 {main}
 REQUEST_URI=/~teddy/kosayu/
 ---
+2014/10/30 11:10:11 [error] [exception.CException] exception 'CException' with message 'CAssetManager.basePath "/home/teddy/public_html/kosayu/assets" is invalid. Please make sure the directory exists and is writable by the Web server process.' in /home/teddy/public_html/yii/framework/web/CAssetManager.php:138
+Stack trace:
+#0 /home/teddy/public_html/yii/framework/web/CAssetManager.php(123): CAssetManager->setBasePath('/home/teddy/pub...')
+#1 /home/teddy/public_html/yii/framework/web/CAssetManager.php(217): CAssetManager->getBasePath()
+#2 /home/teddy/public_html/yii/framework/web/CClientScript.php(510): CAssetManager->publish('/home/teddy/pub...')
+#3 /home/teddy/public_html/yii/framework/web/CClientScript.php(547): CClientScript->getCoreScriptUrl()
+#4 /home/teddy/public_html/yii/framework/web/CClientScript.php(348): CClientScript->getPackageBaseUrl('jquery')
+#5 /home/teddy/public_html/yii/framework/web/CClientScript.php(208): CClientScript->renderCoreScripts()
+#6 /home/teddy/public_html/yii/framework/web/CController.php(351): CClientScript->render('<!DOCTYPE html ...')
+#7 /home/teddy/public_html/yii/framework/web/CController.php(788): CController->processOutput('<!DOCTYPE html ...')
+#8 /home/teddy/public_html/kosayu/protected/controllers/SiteController.php(98): CController->render('login', Array)
+#9 /home/teddy/public_html/yii/framework/web/actions/CInlineAction.php(49): SiteController->actionLogin()
+#10 /home/teddy/public_html/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#11 /home/teddy/public_html/yii/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#12 /home/teddy/public_html/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#13 /home/teddy/public_html/yii/framework/web/CWebApplication.php(282): CController->run('login')
+#14 /home/teddy/public_html/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('site/login')
+#15 /home/teddy/public_html/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#16 /home/teddy/public_html/kosayu/index.php(13): CApplication->run()
+#17 {main}
+REQUEST_URI=/~teddy/kosayu/index.php?r=site/login
+HTTP_REFERER=http://localhost/~teddy/kosayu/
+---
+2014/10/30 11:20:49 [error] [exception.CException] exception 'CException' with message 'SiteController cannot find the requested view "proses-gsimalang".' in /home/teddy/public_html/yii/framework/web/CController.php:878
+Stack trace:
+#0 /home/teddy/public_html/yii/framework/web/CController.php(782): CController->renderPartial('proses-gsimalan...', NULL, true)
+#1 /home/teddy/public_html/kosayu/protected/controllers/SiteController.php(124): CController->render('proses-gsimalan...')
+#2 /home/teddy/public_html/yii/framework/web/actions/CInlineAction.php(49): SiteController->actionProses()
+#3 /home/teddy/public_html/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#4 /home/teddy/public_html/yii/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#5 /home/teddy/public_html/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 /home/teddy/public_html/yii/framework/web/CWebApplication.php(282): CController->run('proses')
+#7 /home/teddy/public_html/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('site/proses')
+#8 /home/teddy/public_html/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#9 /home/teddy/public_html/kosayu/index.php(13): CApplication->run()
+#10 {main}
+REQUEST_URI=/~teddy/kosayu/index.php?r=site/proses
+HTTP_REFERER=http://localhost/~teddy/kosayu/index.php?r=user/default/view&id=14a30112017538388
+---
+2014/10/30 19:58:14 [error] [php] Undefined variable: loginname (/home/teddy/public_html/kosayu/protected/components/UserIdentity.php:74)
+Stack trace:
+#0 /home/teddy/public_html/yii/framework/validators/CInlineValidator.php(42): LoginForm->authenticate()
+#1 /home/teddy/public_html/yii/framework/validators/CValidator.php(213): CInlineValidator->validateAttribute()
+#2 /home/teddy/public_html/yii/framework/base/CModel.php(159): CInlineValidator->validate()
+#3 /home/teddy/public_html/kosayu/protected/controllers/SiteController.php(94): LoginForm->validate()
+#4 /home/teddy/public_html/yii/framework/web/actions/CInlineAction.php(49): SiteController->actionLogin()
+#5 /home/teddy/public_html/yii/framework/web/CController.php(308): CInlineAction->runWithParams()
+#6 /home/teddy/public_html/yii/framework/web/CController.php(286): SiteController->runAction()
+#7 /home/teddy/public_html/yii/framework/web/CController.php(265): SiteController->runActionWithFilters()
+#8 /home/teddy/public_html/yii/framework/web/CWebApplication.php(282): SiteController->run()
+#9 /home/teddy/public_html/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#10 /home/teddy/public_html/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#11 /home/teddy/public_html/kosayu/index.php(13): CWebApplication->run()
+REQUEST_URI=/~teddy/kosayu/index.php?r=site/login
+in /home/teddy/public_html/kosayu/protected/components/UserIdentity.php (74)
+in /home/teddy/public_html/kosayu/protected/components/UserIdentity.php (42)
+in /home/teddy/public_html/kosayu/protected/models/LoginForm.php (52)
+2014/10/30 21:21:29 [error] [exception.CException] exception 'CException' with message 'Alias "currencies.CurrenciesModule" is invalid. Make sure it points to an existing PHP file and the file is readable.' in /home/teddy/public_html/yii/framework/YiiBase.php:322
+Stack trace:
+#0 /home/teddy/public_html/yii/framework/YiiBase.php(196): YiiBase::import('currencies.Curr...', true)
+#1 /home/teddy/public_html/yii/framework/base/CModule.php(282): YiiBase::createComponent('currencies.Curr...', 'currencies', NULL, Array)
+#2 /home/teddy/public_html/yii/framework/web/CWebApplication.php(337): CModule->getModule('currencies')
+#3 /home/teddy/public_html/yii/framework/web/CWebApplication.php(276): CWebApplication->createController('currencies')
+#4 /home/teddy/public_html/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('currencies')
+#5 /home/teddy/public_html/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#6 /home/teddy/public_html/kosayu/index.php(13): CApplication->run()
+#7 {main}
+REQUEST_URI=/~teddy/kosayu/index.php?r=currencies
+HTTP_REFERER=http://localhost/~teddy/kosayu/index.php?r=site/masterdata
+---
+2014/10/30 21:22:33 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'You have no authorization for this operation.' in /home/teddy/public_html/kosayu/protected/modules/currencies/controllers/DefaultController.php:156
+Stack trace:
+#0 /home/teddy/public_html/yii/framework/web/actions/CInlineAction.php(49): DefaultController->actionIndex()
+#1 /home/teddy/public_html/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#2 /home/teddy/public_html/yii/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#3 /home/teddy/public_html/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#4 /home/teddy/public_html/yii/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#5 /home/teddy/public_html/yii/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#6 /home/teddy/public_html/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#7 /home/teddy/public_html/yii/framework/web/CController.php(291): CFilterChain->run()
+#8 /home/teddy/public_html/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#9 /home/teddy/public_html/yii/framework/web/CWebApplication.php(282): CController->run('')
+#10 /home/teddy/public_html/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('currencies')
+#11 /home/teddy/public_html/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#12 /home/teddy/public_html/kosayu/index.php(13): CApplication->run()
+#13 {main}
+REQUEST_URI=/~teddy/kosayu/index.php?r=currencies
+HTTP_REFERER=http://localhost/~teddy/kosayu/index.php?r=site/masterdata
+---
+2014/10/30 21:23:13 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'You have no authorization for this operation.' in /home/teddy/public_html/kosayu/protected/modules/currencies/controllers/DefaultController.php:156
+Stack trace:
+#0 /home/teddy/public_html/yii/framework/web/actions/CInlineAction.php(49): DefaultController->actionIndex()
+#1 /home/teddy/public_html/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#2 /home/teddy/public_html/yii/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#3 /home/teddy/public_html/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#4 /home/teddy/public_html/yii/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#5 /home/teddy/public_html/yii/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#6 /home/teddy/public_html/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#7 /home/teddy/public_html/yii/framework/web/CController.php(291): CFilterChain->run()
+#8 /home/teddy/public_html/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#9 /home/teddy/public_html/yii/framework/web/CWebApplication.php(282): CController->run('')
+#10 /home/teddy/public_html/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('currencies')
+#11 /home/teddy/public_html/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#12 /home/teddy/public_html/kosayu/index.php(13): CApplication->run()
+#13 {main}
+REQUEST_URI=/~teddy/kosayu/index.php?r=currencies
+HTTP_REFERER=http://localhost/~teddy/kosayu/index.php?r=site/masterdata
+---
+2014/10/30 21:39:39 [error] [php] Undefined variable: loginname (/home/teddy/public_html/kosayu/protected/components/UserIdentity.php:84)
+Stack trace:
+#0 /home/teddy/public_html/yii/framework/validators/CInlineValidator.php(42): LoginForm->authenticate()
+#1 /home/teddy/public_html/yii/framework/validators/CValidator.php(213): CInlineValidator->validateAttribute()
+#2 /home/teddy/public_html/yii/framework/base/CModel.php(159): CInlineValidator->validate()
+#3 /home/teddy/public_html/kosayu/protected/controllers/SiteController.php(94): LoginForm->validate()
+#4 /home/teddy/public_html/yii/framework/web/actions/CInlineAction.php(49): SiteController->actionLogin()
+#5 /home/teddy/public_html/yii/framework/web/CController.php(308): CInlineAction->runWithParams()
+#6 /home/teddy/public_html/yii/framework/web/CController.php(286): SiteController->runAction()
+#7 /home/teddy/public_html/yii/framework/web/CController.php(265): SiteController->runActionWithFilters()
+#8 /home/teddy/public_html/yii/framework/web/CWebApplication.php(282): SiteController->run()
+#9 /home/teddy/public_html/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#10 /home/teddy/public_html/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#11 /home/teddy/public_html/kosayu/index.php(13): CWebApplication->run()
+REQUEST_URI=/~teddy/kosayu/index.php?r=site/login
+in /home/teddy/public_html/kosayu/protected/components/UserIdentity.php (84)
+in /home/teddy/public_html/kosayu/protected/components/UserIdentity.php (46)
+in /home/teddy/public_html/kosayu/protected/models/LoginForm.php (52)
+2014/10/30 21:40:39 [error] [php] include(Currencies.php): failed to open stream: No such file or directory (/home/teddy/public_html/yii/framework/YiiBase.php:427)
+Stack trace:
+#0 /home/teddy/public_html/yii/framework/db/ar/CActiveRecord.php(395): spl_autoload_call()
+#1 /home/teddy/public_html/yii/framework/web/CActiveDataProvider.php(165): model()
+#2 /home/teddy/public_html/yii/framework/web/CActiveDataProvider.php(87): CActiveDataProvider->getModel()
+#3 /home/teddy/public_html/kosayu/protected/modules/currencies/controllers/DefaultController.php(151): CActiveDataProvider->__construct()
+#4 /home/teddy/public_html/yii/framework/web/actions/CInlineAction.php(49): DefaultController->actionIndex()
+#5 /home/teddy/public_html/yii/framework/web/CController.php(308): CInlineAction->runWithParams()
+#6 /home/teddy/public_html/yii/framework/web/filters/CFilterChain.php(133): DefaultController->runAction()
+#7 /home/teddy/public_html/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#8 /home/teddy/public_html/yii/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#9 /home/teddy/public_html/yii/framework/web/filters/CInlineFilter.php(58): DefaultController->filterAccessControl()
+#10 /home/teddy/public_html/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#11 /home/teddy/public_html/yii/framework/web/CController.php(291): CFilterChain->run()
+#12 /home/teddy/public_html/yii/framework/web/CController.php(265): DefaultController->runActionWithFilters()
+#13 /home/teddy/public_html/yii/framework/web/CWebApplication.php(282): DefaultController->run()
+#14 /home/teddy/public_html/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#15 /home/teddy/public_html/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#16 /home/teddy/public_html/kosayu/index.php(13): CWebApplication->run()
+REQUEST_URI=/~teddy/kosayu/index.php?r=currencies
+in /home/teddy/public_html/kosayu/protected/modules/currencies/controllers/DefaultController.php (151)
+in /home/teddy/public_html/kosayu/index.php (13)
+2014/10/30 21:41:48 [error] [exception.CException] exception 'CException' with message 'Alias "currencyrates.CurrencyratesModule" is invalid. Make sure it points to an existing PHP file and the file is readable.' in /home/teddy/public_html/yii/framework/YiiBase.php:322
+Stack trace:
+#0 /home/teddy/public_html/yii/framework/YiiBase.php(196): YiiBase::import('currencyrates.C...', true)
+#1 /home/teddy/public_html/yii/framework/base/CModule.php(282): YiiBase::createComponent('currencyrates.C...', 'currencyrates', NULL, Array)
+#2 /home/teddy/public_html/yii/framework/web/CWebApplication.php(337): CModule->getModule('currencyrates')
+#3 /home/teddy/public_html/yii/framework/web/CWebApplication.php(276): CWebApplication->createController('currencyrates')
+#4 /home/teddy/public_html/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('currencyrates')
+#5 /home/teddy/public_html/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#6 /home/teddy/public_html/kosayu/index.php(13): CApplication->run()
+#7 {main}
+REQUEST_URI=/~teddy/kosayu/index.php?r=currencyrates
+HTTP_REFERER=http://localhost/~teddy/kosayu/index.php?r=site/proses
+---
+2014/10/30 21:42:07 [error] [exception.CException] exception 'CException' with message 'Alias "currencyrates.CurrencyratesModule" is invalid. Make sure it points to an existing PHP file and the file is readable.' in /home/teddy/public_html/yii/framework/YiiBase.php:322
+Stack trace:
+#0 /home/teddy/public_html/yii/framework/YiiBase.php(196): YiiBase::import('currencyrates.C...', true)
+#1 /home/teddy/public_html/yii/framework/base/CModule.php(282): YiiBase::createComponent('currencyrates.C...', 'currencyrates', NULL, Array)
+#2 /home/teddy/public_html/yii/framework/web/CWebApplication.php(337): CModule->getModule('currencyrates')
+#3 /home/teddy/public_html/yii/framework/web/CWebApplication.php(276): CWebApplication->createController('currencyrates')
+#4 /home/teddy/public_html/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('currencyrates')
+#5 /home/teddy/public_html/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#6 /home/teddy/public_html/kosayu/index.php(13): CApplication->run()
+#7 {main}
+REQUEST_URI=/~teddy/kosayu/index.php?r=currencyrates
+HTTP_REFERER=http://localhost/~teddy/kosayu/index.php?r=site/proses
+---
+2014/10/30 21:42:08 [error] [exception.CException] exception 'CException' with message 'Alias "currencyrates.CurrencyratesModule" is invalid. Make sure it points to an existing PHP file and the file is readable.' in /home/teddy/public_html/yii/framework/YiiBase.php:322
+Stack trace:
+#0 /home/teddy/public_html/yii/framework/YiiBase.php(196): YiiBase::import('currencyrates.C...', true)
+#1 /home/teddy/public_html/yii/framework/base/CModule.php(282): YiiBase::createComponent('currencyrates.C...', 'currencyrates', NULL, Array)
+#2 /home/teddy/public_html/yii/framework/web/CWebApplication.php(337): CModule->getModule('currencyrates')
+#3 /home/teddy/public_html/yii/framework/web/CWebApplication.php(276): CWebApplication->createController('currencyrates')
+#4 /home/teddy/public_html/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('currencyrates')
+#5 /home/teddy/public_html/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#6 /home/teddy/public_html/kosayu/index.php(13): CApplication->run()
+#7 {main}
+REQUEST_URI=/~teddy/kosayu/index.php?r=currencyrates
+HTTP_REFERER=http://localhost/~teddy/kosayu/index.php?r=site/proses
+---
+2014/10/30 21:42:11 [error] [exception.CException] exception 'CException' with message 'Alias "currencyrates.CurrencyratesModule" is invalid. Make sure it points to an existing PHP file and the file is readable.' in /home/teddy/public_html/yii/framework/YiiBase.php:322
+Stack trace:
+#0 /home/teddy/public_html/yii/framework/YiiBase.php(196): YiiBase::import('currencyrates.C...', true)
+#1 /home/teddy/public_html/yii/framework/base/CModule.php(282): YiiBase::createComponent('currencyrates.C...', 'currencyrates', NULL, Array)
+#2 /home/teddy/public_html/yii/framework/web/CWebApplication.php(337): CModule->getModule('currencyrates')
+#3 /home/teddy/public_html/yii/framework/web/CWebApplication.php(276): CWebApplication->createController('currencyrates')
+#4 /home/teddy/public_html/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('currencyrates')
+#5 /home/teddy/public_html/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#6 /home/teddy/public_html/kosayu/index.php(13): CApplication->run()
+#7 {main}
+REQUEST_URI=/~teddy/kosayu/index.php?r=currencyrates
+HTTP_REFERER=http://localhost/~teddy/kosayu/index.php?r=site/proses
+---
+2014/10/30 21:42:38 [error] [exception.CException] exception 'CException' with message 'Alias "currencyrates.CurrencyratesModule" is invalid. Make sure it points to an existing PHP file and the file is readable.' in /home/teddy/public_html/yii/framework/YiiBase.php:322
+Stack trace:
+#0 /home/teddy/public_html/yii/framework/YiiBase.php(196): YiiBase::import('currencyrates.C...', true)
+#1 /home/teddy/public_html/yii/framework/base/CModule.php(282): YiiBase::createComponent('currencyrates.C...', 'currencyrates', NULL, Array)
+#2 /home/teddy/public_html/yii/framework/web/CWebApplication.php(337): CModule->getModule('currencyrates')
+#3 /home/teddy/public_html/yii/framework/web/CWebApplication.php(276): CWebApplication->createController('currencyrates')
+#4 /home/teddy/public_html/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('currencyrates')
+#5 /home/teddy/public_html/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#6 /home/teddy/public_html/kosayu/index.php(13): CApplication->run()
+#7 {main}
+REQUEST_URI=/~teddy/kosayu/index.php?r=currencyrates
+HTTP_REFERER=http://localhost/~teddy/kosayu/index.php?r=site/proses
+---
+2014/10/30 21:43:03 [error] [php] Undefined variable: itemScript (/home/teddy/public_html/kosayu/protected/modules/currencyrates/views/default/_form.php:36)
+Stack trace:
+#0 /home/teddy/public_html/yii/framework/web/CController.php(869): DefaultController->renderFile()
+#1 /home/teddy/public_html/kosayu/protected/modules/currencyrates/views/default/create.php(18): DefaultController->renderPartial()
+#2 /home/teddy/public_html/yii/framework/web/CBaseController.php(126): require()
+#3 /home/teddy/public_html/yii/framework/web/CBaseController.php(95): DefaultController->renderInternal()
+#4 /home/teddy/public_html/yii/framework/web/CController.php(869): DefaultController->renderFile()
+#5 /home/teddy/public_html/yii/framework/web/CController.php(782): DefaultController->renderPartial()
+#6 /home/teddy/public_html/kosayu/protected/modules/currencyrates/controllers/DefaultController.php(71): DefaultController->render()
+#7 /home/teddy/public_html/yii/framework/web/actions/CInlineAction.php(49): DefaultController->actionCreate()
+#8 /home/teddy/public_html/yii/framework/web/CController.php(308): CInlineAction->runWithParams()
+#9 /home/teddy/public_html/yii/framework/web/filters/CFilterChain.php(133): DefaultController->runAction()
+#10 /home/teddy/public_html/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#11 /home/teddy/public_html/yii/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#12 /home/teddy/public_html/yii/framework/web/filters/CInlineFilter.php(58): DefaultController->filterAccessControl()
+#13 /home/teddy/public_html/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#14 /home/teddy/public_html/yii/framework/web/CController.php(291): CFilterChain->run()
+#15 /home/teddy/public_html/yii/framework/web/CController.php(265): DefaultController->runActionWithFilters()
+#16 /home/teddy/public_html/yii/framework/web/CWebApplication.php(282): DefaultController->run()
+#17 /home/teddy/public_html/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#18 /home/teddy/public_html/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#19 /home/teddy/public_html/kosayu/index.php(13): CWebApplication->run()
+REQUEST_URI=/~teddy/kosayu/index.php?r=currencyrates/default/create
+in /home/teddy/public_html/kosayu/protected/modules/currencyrates/views/default/_form.php (36)
+in /home/teddy/public_html/kosayu/protected/modules/currencyrates/views/default/create.php (18)
+in /home/teddy/public_html/kosayu/protected/modules/currencyrates/controllers/DefaultController.php (71)
+2014/10/30 21:46:28 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "getCurr".' in /home/teddy/public_html/yii/framework/web/CController.php:483
+Stack trace:
+#0 /home/teddy/public_html/yii/framework/web/CController.php(270): CController->missingAction('getCurr')
+#1 /home/teddy/public_html/yii/framework/web/CWebApplication.php(282): CController->run('getCurr')
+#2 /home/teddy/public_html/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('LookUp/getCurr')
+#3 /home/teddy/public_html/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#4 /home/teddy/public_html/kosayu/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/~teddy/kosayu/index.php?r=LookUp/getCurr&name=Do
+HTTP_REFERER=http://localhost/~teddy/kosayu/index.php?r=currencyrates/default/create
+---
+2014/10/30 21:51:42 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "getCurrID".' in /home/teddy/public_html/yii/framework/web/CController.php:483
+Stack trace:
+#0 /home/teddy/public_html/yii/framework/web/CController.php(270): CController->missingAction('getCurrID')
+#1 /home/teddy/public_html/yii/framework/web/CWebApplication.php(282): CController->run('getCurrID')
+#2 /home/teddy/public_html/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('LookUp/getCurrI...')
+#3 /home/teddy/public_html/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#4 /home/teddy/public_html/kosayu/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/~teddy/kosayu/index.php?r=LookUp/getCurrID&name=US%2520Dollar
+HTTP_REFERER=http://localhost/~teddy/kosayu/index.php?r=currencyrates/default/create
+---

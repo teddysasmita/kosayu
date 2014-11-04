@@ -96,6 +96,27 @@ class LookUpController extends Controller {
 		};
 	}
 	
+	public function actionGetCurrName($term)
+	{
+		if (!Yii::app()->user->isGuest) {
+			$data=Yii::app()->db->createCommand()->selectDistinct('name')->from('currencies')
+			->where('name like :p_name', array(':p_name'=>'%'.$term.'%'))
+			->order('name')
+			->limit(12)
+			->queryColumn();
+			if(count($data)) {
+				foreach($data as $key=>$value) {
+					//$data[$key]=rawurlencode($value);
+					$data[$key]=$value;
+				}
+			} else
+				$data[0]='NA';
+			echo json_encode($data);
+		} else {
+			throw new CHttpException(404,'You have no authorization for this operation.');
+		};
+	}
+	
 	public function actionGetItemName2($id)
 	{
 		if (!Yii::app()->user->isGuest) {
@@ -189,6 +210,27 @@ class LookUpController extends Controller {
 		};
    }
    
+   public function actionGetCurr($name)
+   {
+   	if (!Yii::app()->user->isGuest) {
+   		$data=Yii::app()->db->createCommand()->selectDistinct('name')->from('currencies')
+   		->where('name like :p_name', array(':p_name'=>'%'.$name.'%'))
+   		->order('name')
+   		->queryColumn();
+   		 
+   		if(count($data)) {
+   			foreach($data as $key=>$value) {
+   				$data[$key]=rawurlencode($value);
+   			}
+   		} else {
+   			$data[0]='NA';
+   		}
+   		echo json_encode($data);
+   	} else {
+   		throw new CHttpException(404,'You have no authorization for this operation.');
+   	};
+   }
+   
    public function actionGetItem2($term)
    {
    	if (!Yii::app()->user->isGuest) {
@@ -259,6 +301,21 @@ class LookUpController extends Controller {
 		} else {
 			throw new CHttpException(404,'You have no authorization for this operation.');
 		};
+   }
+   
+   public function actionGetCurrID($name)
+   {
+   	if (!Yii::app()->user->isGuest) {
+   		//print_r($name);
+   		$name=rawurldecode($name);
+   		$data=Yii::app()->db->createCommand()->select('id')->from('currencies')
+   		->where("name = :p_name", array(':p_name'=>$name))
+   		->order('id')
+   		->queryScalar();
+   		echo $data;
+   	} else {
+   		throw new CHttpException(404,'You have no authorization for this operation.');
+   	};
    }
    
    public function actionGetWareHouseID($name)

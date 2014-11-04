@@ -71,7 +71,7 @@ class UserIdentity extends CUserIdentity
       {
          $data=Yii::app()->authdb->createCommand()->select()
 			->from('users')->where("passkey = PASSWORD(:p_passkey) and loginname = :p_loginname",
-				array(':p_passkey'=>$userpass, ':p_loginname'=>$loginname))
+				array(':p_passkey'=>$userpass, ':p_loginname'=>$username))
 			->queryAll();
 			
          return count($data) > 0;
@@ -81,7 +81,7 @@ class UserIdentity extends CUserIdentity
       {
          $data = Yii::app()->authdb->createCommand()->select('id')
 			->from('users')->where("passkey = PASSWORD(:p_passkey) and loginname = :p_loginname",
-				array(':p_passkey'=>$userpass, ':p_loginname'=>$loginname))
+				array(':p_passkey'=>$userpass, ':p_loginname'=>$username))
 			->queryScalar();
 			
          return $data;

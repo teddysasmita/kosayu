@@ -71,7 +71,9 @@ return array(
             'acquisitionnsn',
             'itemmastermods',
             'receiverepair',
-            'deliveryreplaces'
+            'deliveryreplaces',
+			'currencies',
+			'currencyrates'
         ),
 
         
@@ -150,10 +152,10 @@ return array(
 					'levels'=>'error, warning',
 				),
 				// uncomment the following to show log messages on web page
-				array(
+				/*array(
 					'class'=>'CWebLogRoute',
 					'levels'=>'error, warning',
-				),
+				),*/
 			),
 		),
           'session'=>array(

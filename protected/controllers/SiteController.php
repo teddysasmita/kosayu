@@ -121,7 +121,7 @@ class SiteController extends Controller
       
       public function actionProses()
       {
-         $this->render('proses-gsimalang');
+         $this->render('proses-kosayu');
       }
       
       
