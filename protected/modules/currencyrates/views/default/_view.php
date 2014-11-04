@@ -18,7 +18,7 @@
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('rate')); ?>:</b>
-	<?php echo CHtml::encode(number_format($data->normalprice)); ?>
+	<?php echo CHtml::encode(number_format($data->rate)); ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('userlog')); ?>:</b>
