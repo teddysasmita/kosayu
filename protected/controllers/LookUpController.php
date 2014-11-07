@@ -78,11 +78,17 @@ class LookUpController extends Controller {
 	public function actionGetOldSupplier($term)
 	{
 		if (!Yii::app()->user->isGuest) {
-			$data=Yii::app()->olddb->createCommand()->selectDistinct('nmsupplier')->from('t_supplier')
-			->where('nmsupplier like :p_nmsupplier and kosinyasi = :p_kosinyasi', 
+			$dsn = "Dsn=MSSQLServer";
+			$user = "sa";
+			$pass = "";
+			$olddb = new CDbConnection($dsn, $user, $pass);
+			$olddb->active = true;
+			
+			$data=$olddb->createCommand()->selectDistinct('nmsupplier')->from('t_supplier')
+				->where('nmsupplier like :p_nmsupplier and kosinyasi = :p_kosinyasi', 
 					array(':p_supplier'=>'%'.$term.'%', ':p_kosinyasi'=>'1'))
-			->order('nmsupplier')
-			->queryColumn();
+				->order('nmsupplier')
+				->queryColumn();
 			if(count($data)) {
 				foreach($data as $key=>$value) {
 					//$data[$key]=rawurlencode($value);
@@ -91,6 +97,7 @@ class LookUpController extends Controller {
 			} else
 				$data[0]='NA';
 			echo json_encode($data);
+			$olddb->active = false;
 		} else {
 			throw new CHttpException(404,'You have no authorization for this operation.');
 		};
