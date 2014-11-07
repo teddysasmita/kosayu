@@ -2851,3 +2851,24 @@ Stack trace:
 REQUEST_URI=/~teddy/kosayu/index.php?r=LookUp/getOldSupplier&term=f
 HTTP_REFERER=http://localhost/~teddy/kosayu/index.php?r=salespos/consignmentreport/create
 ---
+2014/11/07 09:17:45 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: SQLSTATE[IM002] SQLDriverConnect: 0 [unixODBC][Driver Manager]Data source name not found, and no default driver specified' in /home/teddy/public_html/yii/framework/db/CDbConnection.php:382
+Stack trace:
+#0 /home/teddy/public_html/yii/framework/db/CDbConnection.php(330): CDbConnection->open()
+#1 /home/teddy/public_html/yii/framework/db/CDbConnection.php(308): CDbConnection->setActive(true)
+#2 /home/teddy/public_html/yii/framework/base/CModule.php(387): CDbConnection->init()
+#3 /home/teddy/public_html/yii/framework/base/CModule.php(103): CModule->getComponent('olddb')
+#4 /home/teddy/public_html/kosayu/protected/controllers/LookUpController.php(81): CModule->__get('olddb')
+#5 [internal function]: LookUpController->actionGetOldSupplier('F')
+#6 /home/teddy/public_html/yii/framework/web/actions/CAction.php(108): ReflectionMethod->invokeArgs(Object(LookUpController), Array)
+#7 /home/teddy/public_html/yii/framework/web/actions/CInlineAction.php(47): CAction->runWithParamsInternal(Object(LookUpController), Object(ReflectionMethod), Array)
+#8 /home/teddy/public_html/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#9 /home/teddy/public_html/yii/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#10 /home/teddy/public_html/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 /home/teddy/public_html/yii/framework/web/CWebApplication.php(282): CController->run('getOldSupplier')
+#12 /home/teddy/public_html/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('LookUp/getOldSu...')
+#13 /home/teddy/public_html/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#14 /home/teddy/public_html/kosayu/index.php(13): CApplication->run()
+#15 {main}
+REQUEST_URI=/~teddy/kosayu/index.php?r=LookUp/getOldSupplier&term=F
+HTTP_REFERER=http://localhost/~teddy/kosayu/index.php?r=salespos/consignmentreport/create
+---
