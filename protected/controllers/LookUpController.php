@@ -87,12 +87,11 @@ EOS;
 			if(count($data)) {
 				foreach($data as $key=>$value) {
 					//$data[$key]=rawurlencode($value);
-					$data[$key]=$value;
+					$result[$key]=$value['nmsupplier'];
 				}
 			} else
-				$data[0]='NA';
-			echo json_encode($data);
-			$olddb->active = false;
+				$result[0]='NA';
+			echo json_encode($result);
 		} else {
 			throw new CHttpException(404,'You have no authorization for this operation.');
 		};
