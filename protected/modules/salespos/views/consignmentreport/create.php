@@ -3,9 +3,7 @@
 /* @var $model Salesposreport */
 
 $this->breadcrumbs=array(
-	'Master Data'=>array('/site/masterdata'),
-	'Daftar'=>array('index'),
-	'Laporan',
+	'Proses'=>array('/site/proses-kosayu'),
 );
 
 $this->menu=array(
