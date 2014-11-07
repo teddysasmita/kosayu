@@ -57,7 +57,7 @@ EOS;
 			
 			$sql = <<<EOS
 		select a.kdreturn as id, a.tglreturn as idatetime,
-		b.nmkategori, d.nmsupplier, - (b.jmljual) as qty, b.hargajual, b.hargabeli
+		b.nmkategori, d.nmsupplier, - (b.jmljual) as qty, b.hargajual, c.hargabeli
 		from t_returnpenjualan as a inner join (
 			t_detailreturnpenjualan as b inner join (
 				t_barang as c inner join
