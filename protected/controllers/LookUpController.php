@@ -78,17 +78,12 @@ class LookUpController extends Controller {
 	public function actionGetOldSupplier($term)
 	{
 		if (!Yii::app()->user->isGuest) {
-			$dsn = "Dsn=MSSQLServer";
-			$user = "sa";
-			$pass = "";
-			$olddb = new CDbConnection($dsn, $user, $pass);
-			$olddb->active = true;
 			
-			$data=$olddb->createCommand()->selectDistinct('nmsupplier')->from('t_supplier')
-				->where('nmsupplier like :p_nmsupplier and kosinyasi = :p_kosinyasi', 
-					array(':p_supplier'=>'%'.$term.'%', ':p_kosinyasi'=>'1'))
-				->order('nmsupplier')
-				->queryColumn();
+			$sql = <<<EOS
+	select nmsupplier from t_supplier
+	where nmsupplier like '%$term%' and kosinyasi = '1'			
+EOS;
+			$data=Go_ODBC::openSQL($sql);
 			if(count($data)) {
 				foreach($data as $key=>$value) {
 					//$data[$key]=rawurlencode($value);
