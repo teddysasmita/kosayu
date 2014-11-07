@@ -27,6 +27,25 @@ class ConsignmentreportController extends Controller
 				Yii::app()->user->id))  {
 			$this->trackActivity('v');
 		
+			# connect to a DSN "MSSQLTest" with a user "cheech" and password "chong"
+			$connect = odbc_connect("MSSQLServer", "sa", "");
+			
+			# query the users table for all fields
+			$query = "SELECT * FROM t_barang";
+			
+			# perform the query
+			$result = odbc_exec($connect, $query);
+			
+			# fetch the data from the database
+			while(odbc_fetch_row($result)) {
+				$field1 = odbc_result($result, 1);
+				$field2 = odbc_result($result, 2);
+				print("$field1 $field2\n");
+			}
+			
+			# close the connection
+			odbc_close($connect);
+			
 			$this->render('create');
 		} else {
             throw new CHttpException(404,'You have no authorization for this operation.');
