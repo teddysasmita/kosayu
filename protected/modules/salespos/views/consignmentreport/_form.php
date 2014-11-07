@@ -55,7 +55,7 @@
                //$brands=Yii::app()->db->createCommand()->selectDistinct('brand')->from('items')->queryColumn();
 
 		$this->widget('zii.widgets.jui.CJuiAutoComplete', array(
-			'name'=>'objects',
+			'name'=>'supplier',
 			'sourceUrl'=> Yii::app()->createUrl('LookUp/getOldSupplier'),
 			'htmlOptions'=>array(
 				'style'=>'height:20px;',

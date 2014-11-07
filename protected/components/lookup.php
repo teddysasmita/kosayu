@@ -414,6 +414,14 @@ class lookup extends CComponent {
 		else
 			return false;
 	}
+	
+	public static function GetOldSupplierID($name)
+	{
+		$sql = "select kdsupplier from t_supplier where nmsupplier = '$name'";
+		$data = Go_ODBC::openSQL($sql);
+		
+		return $data['kdsupplier'];
+	}
    
 }
 
