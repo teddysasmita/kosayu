@@ -3,7 +3,7 @@
 /* @var $model Salesposreport */
 
 $this->breadcrumbs=array(
-	'Proses'=>array('/site/proses-kosayu'),
+	'Proses'=>array('/site/proses'),
 );
 
 $this->menu=array(
