@@ -41,7 +41,8 @@ class ConsignmentreportController extends Controller
 				Yii::app()->user->id))  {
 			$this->trackActivity('v');
 			$sql = <<<EOS
-		select a.kdpenjualan, a.tglpenjualan, b.nmkategori, d.nmsupplier, b.jmljual, b.hargajual, b.hargabeli
+		select a.kdpenjualan as id, a.tglpenjualan as idatetime, 
+		b.nmkategori, d.nmsupplier, b.jmljual as qty, b.hargajual, b.hargabeli
 		from t_penjualan as a inner join (
 			t_detailpenjualan as b inner join (
 				t_barang as c inner join 
@@ -52,7 +53,24 @@ class ConsignmentreportController extends Controller
 		where 
 		a.tglpenjualan >= '$startdate' and a.tglpenjualan <= '$enddate' and d.nmsupplier = '$supplier'
 EOS;
-			$data = Go_ODBC::openSQL($sql);
+			$salesdata = Go_ODBC::openSQL($sql);
+			
+			$sql = <<<EOS
+		select a.kdreturn as id, a.tglreturn as idatetime,
+		b.nmkategori, d.nmsupplier, - (b.jmljual) as qty, b.hargajual, b.hargabeli
+		from t_returnpenjualan as a inner join (
+			t_detailreturnpenjualan as b inner join (
+				t_barang as c inner join
+					t_supplier as d
+				on c.kdsupplier = d.kdsupplier
+			) on b.kdkategori = c.kdkategori
+		) on a.kdreturn = b.kdreturn
+		where
+		a.tglreturn >= '$startdate' and a.tglreturn <= '$enddate' and d.nmsupplier = '$supplier'
+EOS;
+			$salesreturdata = Go_ODBC::openSQL($sql);
+			
+			$data = array_merge($salesdata, $salesreturdata);
 			
 			$this->render('view', array('data'=>$data, 'suppliername'=>$supplier, 'startdate'=>$startdate,
 					'enddate'=>$enddate

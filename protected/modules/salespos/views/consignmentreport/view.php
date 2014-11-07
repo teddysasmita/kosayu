@@ -33,12 +33,12 @@ $this->menu=array(
 			'columns'=>array(
 					array(
 						'header'=>'Tanggal',
-						'name'=>'tglpenjualan',
+						'name'=>'idatetime',
 						
 					),
 					array(
 						'header'=>'No Faktur',
-						'name'=>'kdpenjualan',
+						'name'=>'id',
 					),
 					array(
 						'header'=>'Nama Barang',
@@ -47,7 +47,7 @@ $this->menu=array(
 					
 					array(
 						'header'=>'Jual',
-						'name'=>'jmljual',
+						'name'=>'qty',
 					),
 					array(
 						'header'=>'Harga Beli',
@@ -64,7 +64,7 @@ $this->menu=array(
 <?php 
 	$mytotal = 0;
 	foreach($data as $dt) {
-		$mytotal += $dt['jmljual'] * $dt['hargabeli'];
+		$mytotal += $dt['qty'] * $dt['hargabeli'];
 	};
 	
 	echo "Total ".number_format($mytotal); 
