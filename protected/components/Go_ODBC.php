@@ -17,7 +17,7 @@ class Go_ODBC extends CComponent
    
    	public static function openSQL($sql)
    	{
-   		$result = array();
+   		$myresult = array();
    		
    		$dsn = "MSSQLServer";
 		$user = "sa";
