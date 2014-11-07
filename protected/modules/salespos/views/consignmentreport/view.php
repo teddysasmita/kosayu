@@ -51,3 +51,14 @@ $this->menu=array(
 		));
 	};
 	?>
+	
+<h2>
+<?php 
+	$mytotal = 0;
+	foreach($data as $dt) {
+		$mytotal += $dt['jmljual'] * $dt['hargabeli'];
+	};
+	
+	echo "Total ".$mytotal; 
+?>
+</h2>

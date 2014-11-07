@@ -26,9 +26,6 @@ class ConsignmentreportController extends Controller
 		if(Yii::app()->authManager->checkAccess($this->formid.'-Append',
 				Yii::app()->user->id))  {
 			$this->trackActivity('v');
-		
-			$data = Go_ODBC::openSQL("select kdkategori from t_barang");
-			print_r($data);
 			
 			$this->render('create');
 		} else {
@@ -44,7 +41,7 @@ class ConsignmentreportController extends Controller
 				Yii::app()->user->id))  {
 			$this->trackActivity('v');
 			$sql = <<<EOS
-		select a.kdpenjualan, a.tglpenjualan, b.nmkategori, c.nmsupplier, b.jmljual, b.hargajual, b.hargabeli
+		select a.kdpenjualan, a.tglpenjualan, b.nmkategori, d.nmsupplier, b.jmljual, b.hargajual, b.hargabeli
 		from t_penjualan as a inner join (
 			t_detailpenjualan as b inner join (
 				t_barang as c inner join 
@@ -58,7 +55,7 @@ EOS;
 			$data = Go_ODBC::openSQL($sql);
 			
 			$this->render('view', array('data'=>$data, 'suppliername'=>$supplier, 'startdate'=>$startdate,
-					'enddate'=>$enddates
+					'enddate'=>$enddate
 			));
 		} else {
             throw new CHttpException(404,'You have no authorization for this operation.');
