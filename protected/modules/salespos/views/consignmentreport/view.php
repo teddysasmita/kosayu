@@ -13,6 +13,13 @@ $this->menu=array(
 ?>
 
 <h1>Daftar Penjualan Konsinyasi</h1>
+
+<h2>
+<?php	
+	echo $suppliername; 
+?>
+</h2>
+
 <?php 
 	if (isset($data)) {
 		$count=count($data);
@@ -45,6 +52,7 @@ $this->menu=array(
 					array(
 						'header'=>'Harga Beli',
 						'name'=>'hargabeli',
+						'type'=>'number'
 					),			
 					
 		),
@@ -59,6 +67,6 @@ $this->menu=array(
 		$mytotal += $dt['jmljual'] * $dt['hargabeli'];
 	};
 	
-	echo "Total ".$mytotal; 
+	echo "Total ".number_format($mytotal); 
 ?>
 </h2>

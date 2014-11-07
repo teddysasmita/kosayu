@@ -51,6 +51,7 @@ class ConsignmentreportController extends Controller
 		) on a.kdpenjualan = b.kdpenjualan
 		where 
 		a.tglpenjualan >= '$startdate' and a.tglpenjualan <= '$enddate' and d.nmsupplier = '$supplier'
+		order by a.tglpenjualan
 EOS;
 			$data = Go_ODBC::openSQL($sql);
 			
