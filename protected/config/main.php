@@ -133,7 +133,7 @@ return array(
 			'olddb'=>array(
 					//'connectionString' => 'sqlite:'.dirname(__FILE__).'/../data/testdrive.db',
 					'class'=>'CDbConnection',
-					'connectionString' => 'odbc:MSSQLServer;UID=sa',
+					'connectionString' => 'odbc:DSN=MSSQLServer;UID=sa',
 					'emulatePrepare' => true,
 					'username' => 'sa',
 					'charset' => 'utf8',
