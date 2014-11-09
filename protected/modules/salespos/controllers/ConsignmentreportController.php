@@ -65,7 +65,7 @@ class ConsignmentreportController extends Controller
 			) on b.kdkategori = c.kdkategori
 		) on a.kdpenjualan = b.kdpenjualan
 		where 
-		a.tglpenjualan >= '$startdate' and a.tglpenjualan <= '$enddate' and d.nmsupplier like '$supplier'
+		a.tglpenjualan >= '$startdate' and a.tglpenjualan <= '$enddate' and d.nmsupplier like '$msupplier'
 EOS;
 			$salesdata = Go_ODBC::openSQL($sql);
 			
@@ -80,7 +80,7 @@ EOS;
 			) on b.kdkategori = c.kdkategori
 		) on a.kdreturn = b.kdreturn
 		where
-		a.tglreturn >= '$startdate' and a.tglreturn <= '$enddate' and d.nmsupplier like '$supplier'
+		a.tglreturn >= '$startdate' and a.tglreturn <= '$enddate' and d.nmsupplier like '$msupplier'
 EOS;
 			$salesreturdata = Go_ODBC::openSQL($sql);
 			
@@ -99,7 +99,7 @@ EOS;
 		$salesdata = array();
 		$data = array();
 	
-		$supplier = $supplier.'%';
+		$msupplier = $supplier.'%';
 	
 		if(Yii::app()->authManager->checkAccess($this->formid.'-Append',
 				Yii::app()->user->id))  {
@@ -120,7 +120,7 @@ EOS;
 			on c.kdsupplier = d.kdsupplier
 		) on b.kdkategori = c.kdkategori
 		where
-		b.kdpenjualan = '${sd['kdpenjualan']}' and d.nmsupplier like '$supplier'
+		b.kdpenjualan = '${sd['kdpenjualan']}' and d.nmsupplier like '$msupplier'
 EOS;
 				$sddata = Go_ODBC::openSQL($sql);
 				foreach ($sddata as & $sd1) {
@@ -142,7 +142,7 @@ EOS;
 			) on b.kdkategori = c.kdkategori
 		) on a.kdreturn = b.kdreturn
 		where
-		a.tglreturn >= '$startdate' and a.tglreturn <= '$enddate' and d.nmsupplier like '$supplier'
+		a.tglreturn >= '$startdate' and a.tglreturn <= '$enddate' and d.nmsupplier like '$msupplier'
 EOS;
 					$salesreturdata = Go_ODBC::openSQL($sql);
 						
