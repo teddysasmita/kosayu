@@ -33,6 +33,18 @@ class ConsignmentreportController extends Controller
          };
 	}
 	
+	public function actionCreate2()
+	{
+		if(Yii::app()->authManager->checkAccess($this->formid.'-Append',
+				Yii::app()->user->id))  {
+					$this->trackActivity('v');
+						
+					$this->render('create2');
+				} else {
+					throw new CHttpException(404,'You have no authorization for this operation.');
+				};
+	}
+	
 	public function actionGetsales($startdate, $enddate, $supplier )
 	{
 		$data = array();
@@ -82,6 +94,62 @@ EOS;
          };
 	}
 	
+	public function actionGetsales2($startdate, $enddate, $supplier )
+	{
+		$data = array();
+	
+		$supplier = $supplier.'%';
+	
+		if(Yii::app()->authManager->checkAccess($this->formid.'-Append',
+				Yii::app()->user->id))  {
+			$this->trackActivity('v');
+					
+			$sql2 = <<<EOS
+	select a.kdpenjualan, a.tglpenjualan from t_penjualan
+	where a.tglpenjualan >= '$startdate' and a.tglpenjualan <= '$enddate'
+EOS;
+			$sales = Go_ODBC::openSQL($sql2);
+			
+			foreach ($sales as $sd) {
+				$sql = <<<EOS
+		select '${sd['kdpenjualan']}' as id, '${sd['tglpenjualan']}' as idatetime,
+		b.nmkategori, d.nmsupplier, b.jmljual as qty, b.hargajual, b.hargabeli
+		from t_detailpenjualan as b inner join (
+			t_barang as c inner join
+				t_supplier as d
+			on c.kdsupplier = d.kdsupplier
+		) on b.kdkategori = c.kdkategori
+		where
+		b.kdpenjualan = '$sd' and d.nmsupplier like '$supplier'
+EOS;
+				$sddata = Go_ODBC::openSQL($sql);
+				$salesdata = array_merge($salesdata, $sddata); 
+			}
+						
+			$sql = <<<EOS
+		select a.kdreturn as id, a.tglreturn as idatetime,
+		b.nmkategori, d.nmsupplier, - (b.jmljual) as qty, b.hargajual, c.hargabeli
+		from t_returnpenjualan as a inner join (
+			t_detailreturnpenjualan as b inner join (
+				t_barang as c inner join
+					t_supplier as d
+				on c.kdsupplier = d.kdsupplier
+			) on b.kdkategori = c.kdkategori
+		) on a.kdreturn = b.kdreturn
+		where
+		a.tglreturn >= '$startdate' and a.tglreturn <= '$enddate' and d.nmsupplier like '$supplier'
+EOS;
+					$salesreturdata = Go_ODBC::openSQL($sql);
+						
+					$data = array_merge($salesdata, $salesreturdata);
+						
+					$this->render('view', array('data'=>$data, 'suppliername'=>$supplier, 'startdate'=>$startdate,
+							'enddate'=>$enddate
+					));
+				} else {
+					throw new CHttpException(404,'You have no authorization for this operation.');
+				};
+	}
 	/**
 	 * Displays a particular model.
 	 * @param integer $id the ID of the model to be displayed
