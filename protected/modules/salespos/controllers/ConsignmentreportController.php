@@ -96,6 +96,7 @@ EOS;
 	
 	public function actionGetsales2($startdate, $enddate, $supplier )
 	{
+		$salesdata = array();
 		$data = array();
 	
 		$supplier = $supplier.'%';
