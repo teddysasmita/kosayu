@@ -105,7 +105,7 @@ EOS;
 			$this->trackActivity('v');
 					
 			$sql2 = <<<EOS
-	select a.kdpenjualan, a.tglpenjualan from t_penjualan
+	select a.kdpenjualan, a.tglpenjualan from t_penjualan as a
 	where a.tglpenjualan >= '$startdate' and a.tglpenjualan <= '$enddate'
 EOS;
 			$sales = Go_ODBC::openSQL($sql2);
