@@ -144,16 +144,15 @@ EOS;
 		where
 		a.tglreturn >= '$startdate' and a.tglreturn <= '$enddate' and d.nmsupplier like '$msupplier'
 EOS;
-					$salesreturdata = Go_ODBC::openSQL($sql);
+			$salesreturdata = Go_ODBC::openSQL($sql);
+			$data = array_merge($salesdata, $salesreturdata);
 						
-					$data = array_merge($salesdata, $salesreturdata);
-						
-					$this->render('view', array('data'=>$data, 'suppliername'=>$supplier, 'startdate'=>$startdate,
-							'enddate'=>$enddate
-					));
-				} else {
-					throw new CHttpException(404,'You have no authorization for this operation.');
-				};
+			$this->render('view', array('data'=>$data, 'suppliername'=>$supplier, 'startdate'=>$startdate,
+				'enddate'=>$enddate
+			));
+		} else {
+			throw new CHttpException(404,'You have no authorization for this operation.');
+		};
 	}
 	/**
 	 * Displays a particular model.

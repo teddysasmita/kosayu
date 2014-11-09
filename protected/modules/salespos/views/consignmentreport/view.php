@@ -3,7 +3,7 @@
 /* @var $model Salespostransfers */
 
 $this->breadcrumbs=array(
-	'Cari Data'=>array('create'),
+	'Proses'=>array('/site/proses'),
 	'Lihat Data'
 );
 
