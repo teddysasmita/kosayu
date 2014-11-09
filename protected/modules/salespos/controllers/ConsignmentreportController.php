@@ -37,6 +37,8 @@ class ConsignmentreportController extends Controller
 	{
 		$data = array();
 		
+		if ($supplier == '' ) $supplier = '%';
+		
 		if(Yii::app()->authManager->checkAccess($this->formid.'-Append',
 				Yii::app()->user->id))  {
 			$this->trackActivity('v');
