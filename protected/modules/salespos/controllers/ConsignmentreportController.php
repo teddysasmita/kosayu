@@ -37,7 +37,7 @@ class ConsignmentreportController extends Controller
 	{
 		$data = array();
 		
-		if ($supplier == '' ) $supplier = '%';
+		$supplier = $supplier.'%';
 		
 		if(Yii::app()->authManager->checkAccess($this->formid.'-Append',
 				Yii::app()->user->id))  {
@@ -53,7 +53,7 @@ class ConsignmentreportController extends Controller
 			) on b.kdkategori = c.kdkategori
 		) on a.kdpenjualan = b.kdpenjualan
 		where 
-		a.tglpenjualan >= '$startdate' and a.tglpenjualan <= '$enddate' and d.nmsupplier = '$supplier'
+		a.tglpenjualan >= '$startdate' and a.tglpenjualan <= '$enddate' and d.nmsupplier like '$supplier'
 EOS;
 			$salesdata = Go_ODBC::openSQL($sql);
 			
@@ -68,7 +68,7 @@ EOS;
 			) on b.kdkategori = c.kdkategori
 		) on a.kdreturn = b.kdreturn
 		where
-		a.tglreturn >= '$startdate' and a.tglreturn <= '$enddate' and d.nmsupplier = '$supplier'
+		a.tglreturn >= '$startdate' and a.tglreturn <= '$enddate' and d.nmsupplier like '$supplier'
 EOS;
 			$salesreturdata = Go_ODBC::openSQL($sql);
 			
