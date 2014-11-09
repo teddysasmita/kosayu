@@ -112,8 +112,7 @@ EOS;
 			
 			foreach ($sales as $sd) {
 				$sql = <<<EOS
-		select ${sd['kdpenjualan']} as id, ${sd['tglpenjualan']} as idatetime,
-		b.nmkategori, d.nmsupplier, b.jmljual as qty, b.hargajual, b.hargabeli
+		select b.nmkategori, d.nmsupplier, b.jmljual as qty, b.hargajual, b.hargabeli
 		from t_detailpenjualan as b inner join (
 			t_barang as c inner join
 				t_supplier as d
@@ -123,6 +122,11 @@ EOS;
 		b.kdpenjualan = '${sd['kdpenjualan']}' and d.nmsupplier like '$supplier'
 EOS;
 				$sddata = Go_ODBC::openSQL($sql);
+				foreach ($sddata as & $sd1) {
+					$sd1['id'] = $sd['kdpenjualan'];
+					$sd1['idatetime'] = $sd['tglpenjualan'];
+				}
+				
 				$salesdata = array_merge($salesdata, $sddata); 
 			}
 						
