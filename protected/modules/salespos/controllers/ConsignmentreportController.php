@@ -112,7 +112,7 @@ EOS;
 			
 			foreach ($sales as $sd) {
 				$sql = <<<EOS
-		select '${sd['kdpenjualan']}' as id, '${sd['tglpenjualan']}' as idatetime,
+		select ${sd['kdpenjualan']} as id, ${sd['tglpenjualan']} as idatetime,
 		b.nmkategori, d.nmsupplier, b.jmljual as qty, b.hargajual, b.hargabeli
 		from t_detailpenjualan as b inner join (
 			t_barang as c inner join
