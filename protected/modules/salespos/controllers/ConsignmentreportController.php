@@ -120,7 +120,7 @@ EOS;
 			on c.kdsupplier = d.kdsupplier
 		) on b.kdkategori = c.kdkategori
 		where
-		b.kdpenjualan = '$sd' and d.nmsupplier like '$supplier'
+		b.kdpenjualan = '${sd['kdpenjualan']}' and d.nmsupplier like '$supplier'
 EOS;
 				$sddata = Go_ODBC::openSQL($sql);
 				$salesdata = array_merge($salesdata, $sddata); 
