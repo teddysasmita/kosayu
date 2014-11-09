@@ -49,7 +49,7 @@ class ConsignmentreportController extends Controller
 	{
 		$data = array();
 		
-		$supplier = $supplier.'%';
+		$msupplier = $supplier.'%';
 		
 		if(Yii::app()->authManager->checkAccess($this->formid.'-Append',
 				Yii::app()->user->id))  {
