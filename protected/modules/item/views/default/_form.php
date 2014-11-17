@@ -6,29 +6,6 @@
 
 <div class="form">
     
-<?php
-
-
-$namescript=<<<OK
-   function combine(separator, brand, object, model, attribute) {
-      return object + separator + brand + separator + model + separator + attribute;
-   };
-        
-     $('#Items_brand').change(function(event) {
-         $('#Items_name').val(combine( ' ', $('#Items_brand').val(), $('#Items_objects').val(), $('#Items_model').val(), $('#Items_attribute').val() ));
-     });
-     $('#Items_objects').change(function(event) {
-        $('#Items_name').val(combine( ' ', $('#Items_brand').val(), $('#Items_objects').val(), $('#Items_model').val(), $('#Items_attribute').val() ));
-     });
-     $('#Items_model').change(function(event) {
-        $('#Items_name').val(combine( ' ', $('#Items_brand').val(), $('#Items_objects').val(), $('#Items_model').val(), $('#Items_attribute').val() ));       
-     });
-     $('#Items_attribute').change(function(event) {
-        $('#Items_name').val(combine( ' ', $('#Items_brand').val(), $('#Items_objects').val(), $('#Items_model').val(), $('#Items_attribute').val() ));       
-     }); 
-OK;
-Yii::app()->clientScript->registerScript('myscript', $namescript, CClientScript::POS_READY);
-?>
 
 <?php $form=$this->beginWidget('CActiveForm', array(
 	'id'=>'items-form',
@@ -59,8 +36,8 @@ Yii::app()->clientScript->registerScript('myscript', $namescript, CClientScript:
 	<div class="row">
 		<?php echo $form->labelEx($model,'type'); ?>
 		<?php 
-         echo $form->dropDownList($model, 'type', array(1=>'Tunggal', 
-            2=>'Tambahan', 3=>'Jasa'), array('empty'=>'Harap Pilih'));
+         echo $form->dropDownList($model, 'type', array(1=>'Beli-Putus', 
+            2=>'Konsinyasi'), array('empty'=>'Harap Pilih'));
       ?>
 		<?php echo $form->error($model,'type'); ?>
 	</div>
@@ -83,54 +60,6 @@ Yii::app()->clientScript->registerScript('myscript', $namescript, CClientScript:
 		<?php echo $form->error($model,'brand'); ?>
       </div>
 	
-	<div class="row">
-		<?php echo $form->labelEx($model,'objects'); ?>
-            <?php
-               //$objects=Yii::app()->db->createCommand()->selectDistinct('objects')->from('items')->queryColumn();
-
-               $this->widget('zii.widgets.jui.CJuiAutoComplete', array(
-                  'name'=>'Items[objects]',
-                  'sourceUrl'=> Yii::app()->createUrl('LookUp/getObjects'),
-                  'htmlOptions'=>array(
-                     'style'=>'height:20px;',
-                  ),
-                  'value'=>$model->objects,
-               ));
-            ?>
-		<?php //echo $form->textField($model,'objects',array('size'=>50,'maxlength'=>50)); ?>
-		<?php echo $form->error($model,'objects'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'model'); ?>
-            <?php
-               //$models=Yii::app()->db->createCommand()->selectDistinct('model')->from('items')->queryColumn();
-
-               $this->widget('zii.widgets.jui.CJuiAutoComplete', array(
-                  'name'=>'Items[model]',
-                  'sourceUrl'=> Yii::app()->createUrl('LookUp/getModel'),
-                  'htmlOptions'=>array(
-                     'style'=>'height:20px;',
-                  ),
-                  'value'=>$model->model,
-               ));
-            ?>
-		<?php //echo $form->textField($model,'model',array('size'=>50,'maxlength'=>50)); ?>
-		<?php echo $form->error($model,'model'); ?>
-	</div>
-
-      <div class="row">
-		<?php echo $form->labelEx($model,'name'); ?>
-		<?php echo $form->textField($model,'name',array('size'=>50 ,'maxlength'=>255, 'readonly'=>'true')); ?>
-		<?php echo $form->error($model,'name'); ?>
-	</div>
-
-   	<div class="row">
-		<?php echo $form->labelEx($model,'attribute'); ?>
-		<?php echo $form->textField($model,'attribute',array('size'=>50,'maxlength'=>255)); ?>
-		<?php echo $form->error($model,'attribute'); ?>
-	</div>
-
 	<div class="row">
 		<?php echo $form->labelEx($model,'picture'); ?>
 		<?php 

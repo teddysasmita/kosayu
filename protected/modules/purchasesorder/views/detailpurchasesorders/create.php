@@ -19,6 +19,6 @@ else if ($master=='update')
 
 ?>
 
-<h1>Pemesanan pada Pemasok</h1>
+<h1>Pembelian ke Pemasok</h1>
 
 <?php $this->renderPartial('_form', array('model'=>$model, 'mode'=>'Create')); ?>

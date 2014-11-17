@@ -113,18 +113,6 @@ EOS;
 		<?php echo $form->textField($model,'price'); ?>
 		<?php echo $form->error($model,'price'); ?>
 	</div>
-   
-   <div class="row">
-		<?php echo $form->labelEx($model,'cost1'); ?>
-		<?php echo $form->textField($model,'cost1'); ?>
-		<?php echo $form->error($model,'cost1'); ?>
-	</div>
-   
-   <div class="row">
-		<?php echo $form->labelEx($model,'cost2'); ?>
-		<?php echo $form->textField($model,'cost2'); ?>
-		<?php echo $form->error($model,'cost2'); ?>
-	</div>
         
 	<div class="row buttons">
 		<?php echo CHtml::submitButton($mode); ?>

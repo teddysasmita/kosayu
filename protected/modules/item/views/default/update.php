@@ -17,6 +17,6 @@ $this->menu=array(
 );
 ?>
 
-<h1>Item Penjualan</h1>
+<h1>Barang Dagang</h1>
 
 <?php $this->renderPartial('_form', array('model'=>$model)); ?>

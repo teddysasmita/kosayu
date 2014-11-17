@@ -22,7 +22,7 @@ $this->menu=array(
 );
 ?>
 
-<h1>Detil Pemesanan ke Pemasok</h1>
+<h1>Pembelian ke Pemasok</h1>
 
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,
@@ -40,16 +40,6 @@ $this->menu=array(
                'label'=>'Harga',
                'type'=>'number',
                'value'=>$model->price
-            ),
-      array(
-               'label'=>'Biaya 1',
-               'type'=>'number',
-               'value'=>$model->cost1
-            ),
-      array(
-               'label'=>'Biaya 2',
-               'type'=>'number',
-               'value'=>$model->cost2
             ),
 		array(
                'label'=>'Userlog',

@@ -25,19 +25,6 @@
 	<?php echo CHtml::encode($data->brand); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('objects')); ?>:</b>
-	<?php echo CHtml::encode($data->objects); ?>
-	<br />
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('model')); ?>:</b>
-	<?php echo CHtml::encode($data->model); ?>
-	<br />
-
-	<?php /*
-	<b><?php echo CHtml::encode($data->getAttributeLabel('attribute')); ?>:</b>
-	<?php echo CHtml::encode($data->attribute); ?>
-	<br />
-
 	<b><?php echo CHtml::encode($data->getAttributeLabel('picture')); ?>:</b>
 	<?php echo CHtml::encode($data->picture); ?>
 	<br />

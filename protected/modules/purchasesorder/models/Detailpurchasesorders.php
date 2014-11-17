@@ -11,8 +11,6 @@
  * @property double $qty
  * @property double $discount
  * @property double $price
- * @property double $cost1
- * @property double $cost2
  * @property string $userlog
  * @property string $datetimelog
  */
@@ -35,12 +33,12 @@ class Detailpurchasesorders extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('iddetail, id, iditem, qty, userlog, datetimelog', 'required'),
-			array('qty, discount, price, cost1, cost2', 'numerical'),
+			array('qty, discount, price', 'numerical'),
 			array('iddetail, id, iditem, idunit, userlog', 'length', 'max'=>21),
 			array('datetimelog', 'length', 'max'=>19),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('iddetail, id, iditem, qty, discount, price, cost1, cost2, userlog, datetimelog', 'safe', 'on'=>'search'),
+			array('iddetail, id, iditem, qty, discount, price, userlog, datetimelog', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -68,8 +66,6 @@ class Detailpurchasesorders extends CActiveRecord
          'idunit'=> 'Satuan',
          'discount' => 'Discount',
 			'price' => 'Price',
-			'cost1' => 'Biaya 1',
-			'cost2' => 'Biaya 2',
 			'userlog' => 'Userlog',
 			'datetimelog' => 'Datetimelog',
 		);
@@ -100,8 +96,6 @@ class Detailpurchasesorders extends CActiveRecord
 		$criteria->compare('qty',$this->qty);
 		$criteria->compare('discount',$this->discount);
 		$criteria->compare('price',$this->price);
-		$criteria->compare('cost1',$this->cost1);
-		$criteria->compare('cost2',$this->cost2);
 		$criteria->compare('userlog',$this->userlog,true);
 		$criteria->compare('datetimelog',$this->datetimelog,true);
 

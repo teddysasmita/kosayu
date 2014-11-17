@@ -14,7 +14,7 @@ $this->menu=array(
 
 ?>
 
-<h1>Item Penjualan</h1>
+<h1>Barang Dagang</h1>
 
 <?php    $data=Yii::app()->tracker->createCommand()->
        select()->from('items')->where("id='$model->id'")->queryAll();
@@ -30,8 +30,8 @@ $this->menu=array(
 		'type',
 		'name',
 		'brand',
-		'objects',
 		/*
+		'objects',
 		'model',
 		'attribute',
 		'picture',

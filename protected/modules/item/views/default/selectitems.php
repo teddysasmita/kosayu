@@ -13,7 +13,7 @@ $this->menu=array(
 );
 ?>
 
-<h1>Item Penjualan</h1>
+<h1>Barang Dagang</h1>
 
 
 <?php 
@@ -78,19 +78,6 @@ Yii::app()->clientScript->registerScript('itemscript', $itemScript, CClientScrip
 			$this->widget('zii.widgets.jui.CJuiAutoComplete', array(
 				'name'=>'selectitems[brand]',
                 'sourceUrl'=> Yii::app()->createUrl('LookUp/getBrand'),
-                'htmlOptions'=>array(
-					'style'=>'height:20px;',
-				),
-			));
-		?>
-	</div>
-	
-	<div class="row">
-		<?php echo CHtml::label('Model/Tipe', FALSE); ?>
-		<?php
-			$this->widget('zii.widgets.jui.CJuiAutoComplete', array(
-				'name'=>'selectitems[model]',
-                'sourceUrl'=> Yii::app()->createUrl('LookUp/getModel'),
                 'htmlOptions'=>array(
 					'style'=>'height:20px;',
 				),

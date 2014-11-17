@@ -14,7 +14,7 @@ $this->menu=array(
 );
 ?>
 
-<h1>Pemesanan ke Pemasok</h1>
+<h1>Pembelian ke Pemasok</h1>
 
 <?php $this->widget('zii.widgets.CListView', array(
 	'dataProvider'=>$dataProvider,

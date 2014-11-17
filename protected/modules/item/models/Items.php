@@ -9,9 +9,6 @@
  * @property integer $type
  * @property string $name
  * @property string $brand
- * @property string $objects
- * @property string $model
- * @property string $attribute
  * @property string $picture
  * @property string $userlog
  * @property string $datetimelog
@@ -38,13 +35,13 @@ class Items extends CActiveRecord
 			array('type', 'numerical', 'integerOnly'=>true),
 			array('id, userlog', 'length', 'max'=>21),
 			array('code', 'length', 'max'=>50),
-			array('name, attribute', 'length', 'max'=>255),
-			array('brand, objects, model', 'length', 'max'=>50),
+			array('name', 'length', 'max'=>255),
+			array('brand', 'length', 'max'=>50),
 			array('datetimelog', 'length', 'max'=>19),
 			array('picture', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, code, type, name, brand, objects, model, attribute, picture, userlog, datetimelog', 'safe', 'on'=>'search'),
+			array('id, code, type, name, brand, picture, userlog, datetimelog', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -70,9 +67,6 @@ class Items extends CActiveRecord
 			'type' => 'Jenis',
 			'name' => 'Name',
 			'brand' => 'Brand',
-			'objects' => 'Objects',
-			'model' => 'Model',
-			'attribute' => 'Attribute',
 			'picture' => 'Picture',
 			'userlog' => 'Userlog',
 			'datetimelog' => 'Datetimelog',
@@ -102,9 +96,6 @@ class Items extends CActiveRecord
 		$criteria->compare('type',$this->type);
 		$criteria->compare('name',$this->name,true);
 		$criteria->compare('brand',$this->brand,true);
-		$criteria->compare('objects',$this->objects,true);
-		$criteria->compare('model',$this->model,true);
-		$criteria->compare('attribute',$this->attribute,true);
 		$criteria->compare('picture',$this->picture,true);
 		$criteria->compare('userlog',$this->userlog,true);
 		$criteria->compare('datetimelog',$this->datetimelog,true);

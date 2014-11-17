@@ -32,14 +32,6 @@
 	<b><?php echo CHtml::encode($data->getAttributeLabel('price')); ?>:</b>
 	<?php echo CHtml::encode(number_format($data->price)); ?>
 	<br />
-   
-   <b><?php echo CHtml::encode($data->getAttributeLabel('cost1')); ?>:</b>
-	<?php echo CHtml::encode(number_format($data->cost1)); ?>
-	<br />
-   
-   <b><?php echo CHtml::encode($data->getAttributeLabel('cost2')); ?>:</b>
-	<?php echo CHtml::encode(number_format($data->cost2)); ?>
-	<br />
 
 	<?php /*
 	<b><?php echo CHtml::encode($data->getAttributeLabel('userlog')); ?>:</b>

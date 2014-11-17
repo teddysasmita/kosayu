@@ -37,21 +37,6 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'objects'); ?>
-		<?php echo $form->textField($model,'objects',array('size'=>50,'maxlength'=>50)); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->label($model,'model'); ?>
-		<?php echo $form->textField($model,'model',array('size'=>50,'maxlength'=>50)); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->label($model,'attribute'); ?>
-		<?php echo $form->textField($model,'attribute',array('size'=>60,'maxlength'=>255)); ?>
-	</div>
-
-	<div class="row">
 		<?php echo $form->label($model,'picture'); ?>
 		<?php echo $form->textField($model,'picture'); ?>
 	</div>

@@ -14,7 +14,7 @@ $this->menu=array(
 
 ?>
 
-<h1>Item Penjualan</h1>
+<h1>Barang Dagang</h1>
 
 <p>
 You may optionally enter a comparison operator (<b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>&lt;&gt;</b>
@@ -40,8 +40,8 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 		'type',
 		'name',
 		'brand',
-		'objects',
 		/*
+		'objects',
 		'model',
 		'attribute',
 		'picture',

@@ -215,7 +215,8 @@ EOS;
    {
 		if (!Yii::app()->user->isGuest) {
 	   		$data=Yii::app()->db->createCommand()->selectDistinct('name')->from('items')
-	              ->where('name like :itemname', array(':itemname'=>'%'.$name.'%'))
+	              ->where('name like :itemname and type = :p_type', 
+	              	array(':itemname'=>'%'.$name.'%', ':p_type'=>1))
 	              ->order('name')
 	              ->queryColumn();
 	      
@@ -230,6 +231,28 @@ EOS;
 		} else {
 			throw new CHttpException(404,'You have no authorization for this operation.');
 		};
+   }
+   
+   public function actionGetConsignedItem($name)
+   {
+   	if (!Yii::app()->user->isGuest) {
+   		$data=Yii::app()->db->createCommand()->selectDistinct('name')->from('items')
+   		->where('name like :itemname and type = :p_type', 
+   			array(':itemname'=>'%'.$name.'%', ':p_type'=>2))
+   		->order('name')
+   		->queryColumn();
+   		 
+   		if(count($data)) {
+   			foreach($data as $key=>$value) {
+   				$data[$key]=rawurlencode($value);
+   			}
+   		} else {
+   			$data[0]='NA';
+   		}
+   		echo json_encode($data);
+   	} else {
+   		throw new CHttpException(404,'You have no authorization for this operation.');
+   	};
    }
    
    public function actionGetCurr($name)

@@ -19,7 +19,7 @@ $this->menu=array(
 );
 ?>
 
-<h1>Item Penjualan</h1>
+<h1>Barang Dagang</h1>
 
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,
@@ -33,9 +33,6 @@ $this->menu=array(
                 ),   
 		'name',
 		'brand',
-		'objects',
-		'model',
-		'attribute',
 		array(
                    'name'=>'picture',
                    'label'=>'Foto',

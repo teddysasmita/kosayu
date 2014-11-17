@@ -15,7 +15,7 @@ $this->menu=array(
 
 ?>
 
-<h1>Pemesanan ke Pemasok</h1>
+<h1>Pembelian ke Pemasok</h1>
 
 <?php    $data=Yii::app()->tracker->createCommand()->
        select()->from('purchasesorders')->where('id=:id',array(':id'=>$model->id))->queryAll();
