@@ -41,7 +41,6 @@ EOS;
 		echo $form->hiddenField($model, 'id');
 		echo $form->hiddenField($model, 'userlog');
 		echo $form->hiddenField($model, 'datetimelog');
-		echo $form->hiddenField($model, 'idbank');
 	?>
 
 	<div class="row">
