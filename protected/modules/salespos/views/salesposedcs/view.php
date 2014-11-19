@@ -22,7 +22,7 @@ $this->menu=array(
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,
 	'attributes'=>array(
-		'productname',
+		'name',
 		array(
 			'name'=>'userlog',
 			'value'=>lookup::UserNameFromUserID($model->userlog),
