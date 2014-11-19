@@ -1,6 +1,6 @@
 <?php
-/* @var $this SalesposloansController */
-/* @var $model Salesposloans */
+/* @var $this SalesposedcsController */
+/* @var $model Salesposedcs */
 
 $this->breadcrumbs=array(
 	'Master Data'=>array('/site/masterdata'),
@@ -14,15 +14,15 @@ $this->menu=array(
 
 ?>
 
-<h1>Cicilan</h1>
+<h1>Mesin EDC</h1>
 
 <?php    $data=Yii::app()->tracker->createCommand()->
-       select()->from('salesposloans')->where('id=:id',array(':id'=>$model->id))->queryAll();
+       select()->from('salesposedcs')->where('id=:id',array(':id'=>$model->id))->queryAll();
     $ap=new CArrayDataProvider($data);
  ?> 
 
 <?php $this->widget('zii.widgets.grid.CGridView', array(
-	'id'=>'salesposloans-grid',
+	'id'=>'salesposedcs-grid',
 	'dataProvider'=>$ap,
 	'columns'=>array(
 		'id',

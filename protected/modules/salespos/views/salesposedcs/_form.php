@@ -1,13 +1,13 @@
 <?php
-/* @var $this SalesposloansController */
-/* @var $model Salesposloans */
+/* @var $this SalesposedcsController */
+/* @var $model Salesposedcs */
 /* @var $form CActiveForm */
 ?>
 
 <div class="form">
 
 <?php $form=$this->beginWidget('CActiveForm', array(
-	'id'=>'salesposloans-form',
+	'id'=>'salesposedcs-form',
 	// Please note: When you enable ajax validation, make sure the corresponding
 	// controller action is handling ajax validation correctly.
 	// There is a call to performAjaxValidation() commented in generated controller code.
@@ -27,20 +27,20 @@
 	?>
 	
 	<div class="row">
-		<?php echo $form->labelEx($model,'idcompany'); ?>
+		<?php echo $form->labelEx($model,'idbank'); ?>
 		<?php
 			$data=Yii::app()->db->createCommand()->select ('id, name')->from('salesposbanks')
 				->queryAll();
 			$data=CHtml::listdata($data, 'id', 'name'); 
-			echo $form->dropDownList($model,'idcompany', $data, array('empty'=>'Harap Pilih')); 
+			echo $form->dropDownList($model,'idbank', $data, array('empty'=>'Harap Pilih')); 
 		?>
-		<?php echo $form->error($model,'idcompany'); ?>
+		<?php echo $form->error($model,'idbank'); ?>
 	</div>
 	
 	<div class="row">
-		<?php echo $form->labelEx($model,'productname'); ?>
-		<?php echo $form->textField($model,'productname',array('size'=>50,'maxlength'=>100)); ?>
-		<?php echo $form->error($model,'productname'); ?>
+		<?php echo $form->labelEx($model,'name'); ?>
+		<?php echo $form->textField($model,'name',array('size'=>50,'maxlength'=>100)); ?>
+		<?php echo $form->error($model,'name'); ?>
 	</div>
 
 	<div class="row buttons">

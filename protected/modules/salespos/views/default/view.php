@@ -17,21 +17,12 @@ $this->menu=array(
 );
 ?>
 
-<h1>Jenis Kartu</h1>
+<h1>Jaringan Kartu Kredit</h1>
 
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,
 	'attributes'=>array(
 			'name',
-		array(
-			'name'=>'idbank',
-			'value'=>lookup::BankNameFromID($model->idbank)
-		),
-		array(
-			'name'=>'kind',
-			'value'=>lookup::CardType($model->kind)
-		),
-		'company',
 		'surchargeamount',
 		'surchargepct',
 		array(

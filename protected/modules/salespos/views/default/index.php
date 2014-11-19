@@ -14,7 +14,7 @@ $this->menu=array(
 );
 ?>
 
-<h1>Jenis Kartu</h1>
+<h1>Jaringan Kartu Kredit</h1>
 
 <?php $this->widget('zii.widgets.CListView', array(
 	'dataProvider'=>$dataProvider,

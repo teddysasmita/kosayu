@@ -51,38 +51,6 @@ EOS;
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'idbank'); ?>
-		<?php 
-			$this->widget('zii.widgets.jui.CJuiAutoComplete', array(
-				'name'=>'bankname',
-				'sourceUrl'=> Yii::app()->createUrl('LookUp/getBankName'),
-				'htmlOptions'=>array(
-					'style'=>'height:20px;',
-					'id'=>'bankname',
-				),
-				'value'=>lookup::BankNameFromID($model->idbank),
-			));
-		?>
-		<?php echo $form->error($model,'idbank'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'kind'); ?>
-		<?php echo $form->dropDownList($model,'kind',array('KK'=>'Kartu Kredit',
-			'KD'=>'Kartu Debit'), array('empty'=>'Harap Pilih'));
-		?>
-		<?php echo $form->error($model,'kind'); ?>
-	</div>
-	
-	<div class="row">
-		<?php echo $form->labelEx($model,'company'); ?>
-		<?php echo $form->dropDownList($model,'company',array('Visa'=>'Visa',
-			'Master Card'=>'Master Card', 'Alto'=>'Alto'), array('empty'=>'Harap Pilih'));
-		?>
-		<?php echo $form->error($model,'company'); ?>
-	</div>
-
-	<div class="row">
 		<?php echo $form->labelEx($model,'surchargeamount'); ?>
 		<?php echo $form->textField($model,'surchargeamount',array('size'=>50)); ?>
 		<?php echo $form->error($model,'surchargeamount'); ?>

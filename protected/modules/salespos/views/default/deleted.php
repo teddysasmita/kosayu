@@ -14,7 +14,7 @@ $this->menu=array(
 
 ?>
 
-<h1>Jenis Kartu</h1>
+<h1>Jaringan Kartu Kredit</h1>
 
 <p>
 You may optionally enter a comparison operator (<b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>&lt;&gt;</b>

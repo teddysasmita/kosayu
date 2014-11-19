@@ -22,16 +22,6 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'idbank'); ?>
-		<?php echo $form->textField($model,'idbank',array('size'=>21,'maxlength'=>21)); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->label($model,'type'); ?>
-		<?php echo $form->textField($model,'type',array('size'=>60,'maxlength'=>100)); ?>
-	</div>
-
-	<div class="row">
 		<?php echo $form->label($model,'userlog'); ?>
 		<?php echo $form->textField($model,'userlog',array('size'=>21,'maxlength'=>21)); ?>
 	</div>

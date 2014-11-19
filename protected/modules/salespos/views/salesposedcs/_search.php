@@ -17,7 +17,7 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'productname'); ?>
+		<?php echo $form->label($model,'name'); ?>
 		<?php echo $form->textField($model,'productname',array('size'=>60,'maxlength'=>100)); ?>
 	</div>
 

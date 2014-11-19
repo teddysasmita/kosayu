@@ -3028,3 +3028,50 @@ Stack trace:
 #34 {main}
 REQUEST_URI=/~teddy/kosayu/
 ---
+2014/11/17 16:38:45 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'You have no authorization for this operation.' in /home/teddy/public_html/kosayu/protected/modules/item/controllers/DefaultController.php:156
+Stack trace:
+#0 /home/teddy/public_html/yii/framework/web/actions/CInlineAction.php(49): DefaultController->actionIndex()
+#1 /home/teddy/public_html/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#2 /home/teddy/public_html/yii/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#3 /home/teddy/public_html/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#4 /home/teddy/public_html/yii/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#5 /home/teddy/public_html/yii/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#6 /home/teddy/public_html/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#7 /home/teddy/public_html/yii/framework/web/CController.php(291): CFilterChain->run()
+#8 /home/teddy/public_html/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#9 /home/teddy/public_html/yii/framework/web/CWebApplication.php(282): CController->run('')
+#10 /home/teddy/public_html/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('item')
+#11 /home/teddy/public_html/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#12 /home/teddy/public_html/kosayu/index.php(13): CApplication->run()
+#13 {main}
+REQUEST_URI=/~teddy/kosayu/index.php?r=item
+HTTP_REFERER=http://localhost/~teddy/kosayu/index.php?r=site/masterdata
+---
+2014/11/17 16:38:53 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "purchasesorders".' in /home/teddy/public_html/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /home/teddy/public_html/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('purchasesorders')
+#1 /home/teddy/public_html/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /home/teddy/public_html/kosayu/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/~teddy/kosayu/index.php?r=purchasesorders
+HTTP_REFERER=http://localhost/~teddy/kosayu/index.php?r=site/proses
+---
+2014/11/17 16:40:29 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'You have no authorization for this operation.' in /home/teddy/public_html/kosayu/protected/modules/purchasesorder/controllers/DefaultController.php:280
+Stack trace:
+#0 /home/teddy/public_html/yii/framework/web/actions/CInlineAction.php(49): DefaultController->actionIndex()
+#1 /home/teddy/public_html/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#2 /home/teddy/public_html/yii/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#3 /home/teddy/public_html/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#4 /home/teddy/public_html/yii/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#5 /home/teddy/public_html/yii/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#6 /home/teddy/public_html/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#7 /home/teddy/public_html/yii/framework/web/CController.php(291): CFilterChain->run()
+#8 /home/teddy/public_html/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#9 /home/teddy/public_html/yii/framework/web/CWebApplication.php(282): CController->run('')
+#10 /home/teddy/public_html/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('purchasesorder')
+#11 /home/teddy/public_html/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#12 /home/teddy/public_html/kosayu/index.php(13): CApplication->run()
+#13 {main}
+REQUEST_URI=/~teddy/kosayu/index.php?r=purchasesorder
+HTTP_REFERER=http://localhost/~teddy/kosayu/index.php?r=site/proses
+---

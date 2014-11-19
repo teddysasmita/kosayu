@@ -1,5 +1,5 @@
 <?php
-/* @var $this SalesposloansController */
+/* @var $this SalesposedcsController */
 /* @var $dataProvider CActiveDataProvider */
 
 $this->breadcrumbs=array(
@@ -14,7 +14,7 @@ $this->menu=array(
 );
 ?>
 
-<h1>Cicilan</h1>
+<h1>Mesin EDC</h1>
 
 <?php $this->widget('zii.widgets.CListView', array(
 	'dataProvider'=>$dataProvider,

@@ -1,23 +1,23 @@
 <?php
 
 /**
- * This is the model class for table "salesposloans".
+ * This is the model class for table "salesposedcs".
  *
- * The followings are the available columns in table 'salesposloans':
+ * The followings are the available columns in table 'salesposedcs':
  * @property string $id
  * @property string $idcompany
  * @property string $productname
  * @property string $userlog
  * @property string $datetimelog
  */
-class Salesposloans extends CActiveRecord
+class Salesposedcs extends CActiveRecord
 {
 	/**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
 	{
-		return 'salesposloans';
+		return 'salesposedcs';
 	}
 
 	/**
@@ -28,13 +28,13 @@ class Salesposloans extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id, idcompany, productname, userlog, datetimelog', 'required'),
-			array('id, idcompany, userlog', 'length', 'max'=>21),
-			array('productname', 'length', 'max'=>100),
+			array('id, idbank, userlog, datetimelog', 'required'),
+			array('id, idbank, userlog', 'length', 'max'=>21),
+			array('name', 'length', 'max'=>100),
 			array('datetimelog', 'length', 'max'=>19),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, idcompany, productname, userlog, datetimelog', 'safe', 'on'=>'search'),
+			array('id, idbank, name, userlog, datetimelog', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -56,8 +56,8 @@ class Salesposloans extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'idcompany' => 'Idcompany',
-			'productname' => 'Productname',
+			'idbank' => 'Nama Bank',
+			'name' => 'Nama Produk',
 			'userlog' => 'Userlog',
 			'datetimelog' => 'Datetimelog',
 		);
@@ -82,8 +82,8 @@ class Salesposloans extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id,true);
-		$criteria->compare('idcompany',$this->idcompany,true);
-		$criteria->compare('productname',$this->productname,true);
+		$criteria->compare('idbank',$this->idbank,true);
+		$criteria->compare('name',$this->name,true);
 		$criteria->compare('userlog',$this->userlog,true);
 		$criteria->compare('datetimelog',$this->datetimelog,true);
 
@@ -96,7 +96,7 @@ class Salesposloans extends CActiveRecord
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
 	 * @param string $className active record class name.
-	 * @return Salesposloans the static model class
+	 * @return Salesposedcs the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{

@@ -13,6 +13,6 @@ $this->menu=array(
 );
 ?>
 
-<h1>Jenis Kartu</h1>
+<h1>Jaringan Kartu Kredit</h1>
 
 <?php $this->renderPartial('_form', array('model'=>$model)); ?>
