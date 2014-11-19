@@ -1,6 +1,6 @@
 <?php
 
-class SalesposloansController extends Controller
+class SalesposedcsController extends Controller
 {
 	/**
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
@@ -45,14 +45,14 @@ class SalesposloansController extends Controller
             $this->state='c';
             $this->trackActivity('c');    
 
-            $model=new Salesposloans;
+            $model=new Salesposedcs;
             $this->afterInsert($model);
 
             // Uncomment the following line if AJAX validation is needed
             $this->performAjaxValidation($model);
 
-            if(isset($_POST['Salesposloans'])) {
-               $model->attributes=$_POST['Salesposloans'];
+            if(isset($_POST['Salesposedcs'])) {
+               $model->attributes=$_POST['Salesposedcs'];
                $this->beforePost($model);
                if($model->save()) {
                   $this->afterPost($model);
@@ -85,11 +85,11 @@ class SalesposloansController extends Controller
             // Uncomment the following line if AJAX validation is needed
             $this->performAjaxValidation($model);
 
-            if(isset($_POST['Salesposloans'])) {
-               $model->attributes=$_POST['Salesposloans'];
+            if(isset($_POST['Salesposedcs'])) {
+               $model->attributes=$_POST['Salesposedcs'];
 
                $this->beforePost($model);   
-               $this->tracker->modify('salesposloans', $id);
+               $this->tracker->modify('salesposedcs', $id);
                if($model->save()) {
                   $this->afterPost($model);
                   $this->redirect(array('view','id'=>$model->id));
@@ -116,7 +116,7 @@ class SalesposloansController extends Controller
             $model=$this->loadModel($id);
             $this->beforeDelete($model);
             
-            $this->tracker->delete('salesposloans', $id);
+            $this->tracker->delete('salesposedcs', $id);
 
             $model->delete();
             $this->afterDelete();
@@ -138,7 +138,7 @@ class SalesposloansController extends Controller
             Yii::app()->user->id)) {
             $this->trackActivity('l');
 
-            $dataProvider=new CActiveDataProvider('Salesposloans',
+            $dataProvider=new CActiveDataProvider('Salesposedcs',
                array(
                   'criteria'=>array(
                      'order'=>'id desc'
@@ -162,10 +162,10 @@ class SalesposloansController extends Controller
             Yii::app()->user->id)) {
             $this->trackActivity('s');
 
-            $model=new Salesposloans('search');
+            $model=new Salesposedcs('search');
             $model->unsetAttributes();  // clear any default values
-            if(isset($_GET['Salesposloans']))
-               $model->attributes=$_GET['Salesposloans'];
+            if(isset($_GET['Salesposedcs']))
+               $model->attributes=$_GET['Salesposedcs'];
 
             $this->render('admin',array('model'=>$model));
          } else {
@@ -201,9 +201,9 @@ class SalesposloansController extends Controller
          if(Yii::app()->authManager->checkAccess($this->formid.'-Update', 
             Yii::app()->user->id)) {
             $this->trackActivity('r');
-            $this->tracker->restore('salesposloans', $idtrack);
+            $this->tracker->restore('salesposedcs', $idtrack);
 
-            $dataProvider=new CActiveDataProvider('Salesposloans');
+            $dataProvider=new CActiveDataProvider('Salesposedcs');
             $this->render('index',array('dataProvider'=>$dataProvider));
          } else {
             throw new CHttpException(404,'You have no authorization for this operation.');
@@ -215,9 +215,9 @@ class SalesposloansController extends Controller
          if(Yii::app()->authManager->checkAccess($this->formid.'-Update', 
             Yii::app()->user->id)) {
             $this->trackActivity('n');
-            $this->tracker->restoreDeleted('salesposloans', $idtrack);
+            $this->tracker->restoreDeleted('salesposedcs', $idtrack);
 
-            $dataProvider=new CActiveDataProvider('Salesposloans');
+            $dataProvider=new CActiveDataProvider('Salesposedcs');
             $this->render('index',array('dataProvider'=>$dataProvider));
          } else {
             throw new CHttpException(404,'You have no authorization for this operation.');
@@ -228,12 +228,12 @@ class SalesposloansController extends Controller
 	 * Returns the data model based on the primary key given in the GET variable.
 	 * If the data model is not found, an HTTP exception will be raised.
 	 * @param integer $id the ID of the model to be loaded
-	 * @return Salesposloans the loaded model
+	 * @return Salesposedcs the loaded model
 	 * @throws CHttpException
 	 */
 	public function loadModel($id)
 	{
-         $model=Salesposloans::model()->findByPk($id);
+         $model=Salesposedcs::model()->findByPk($id);
          if($model===null)
                throw new CHttpException(404,'The requested page does not exist.');
          return $model;
@@ -241,11 +241,11 @@ class SalesposloansController extends Controller
 
 	/**
 	 * Performs the AJAX validation.
-	 * @param Salesposloans $model the model to be validated
+	 * @param Salesposedcs $model the model to be validated
 	 */
 	protected function performAjaxValidation($model)
 	{
-         if(isset($_POST['ajax']) && $_POST['ajax']==='salesposloans-form')
+         if(isset($_POST['ajax']) && $_POST['ajax']==='salesposedcs-form')
          {
                echo CActiveForm::validate($model);
                Yii::app()->end();
