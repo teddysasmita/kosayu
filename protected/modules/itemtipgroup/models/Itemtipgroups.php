@@ -16,7 +16,7 @@
  * @property string $userlog
  * @property string $datetimelog
  */
-class Barcodeprints extends CActiveRecord
+class Itemtipgroups extends CActiveRecord
 {
 	/**
 	 * @return string the associated database table name
