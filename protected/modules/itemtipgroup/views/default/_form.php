@@ -64,12 +64,9 @@
             'dataProvider'=>$dataProvider,
             'columns'=>array(
                array(
-                  'header'=>'Nama',
-                  'name'=>'name',
-               ),
-               array(
-            		'header'=>'Persentase',
-            		'name'=>'pct',
+                  'header'=>'Nama Barang',
+                  'name'=>'iditem',
+               	  'value'=>"lookup::ItemNameFromItemID(\$data['iditem'])",
                ),
                array(
                   'class'=>'CButtonColumn',
