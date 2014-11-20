@@ -73,7 +73,8 @@ return array(
             'receiverepair',
             'deliveryreplaces',
 			'currencies',
-			'currencyrates'
+			'currencyrates',
+			'itemtipgroup'
         ),
 
         

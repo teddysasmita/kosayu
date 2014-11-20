@@ -306,6 +306,24 @@ class Action extends CComponent {
       return Yii::app()->createUrl('/barcodeprint/detailbarcodeprints/view', array('iddetail'=>$data['iddetail']));
    }
    
+   public static function decodeDeleteDetailItemtipGroupUrl($data)
+   {
+   	//return print_r($data);
+   	return Yii::app()->createUrl('/itemtipgroup/detailitemtipgroups/delete', array('iddetail'=>$data['iddetail']));
+   }
+    
+   public static function decodeUpdateDetailItemtipGroupUrl($data)
+   {
+   	//return print_r($data);
+   	return Yii::app()->createUrl('/itemtipgroup/detailitemtipgroups/update', array('iddetail'=>$data['iddetail']))  ;
+   }
+    
+   public static function decodeViewDetailItemtipGroupUrl($data)
+   {
+   	//return print_r($data);
+   	return Yii::app()->createUrl('/itemtipgroup/detailitemtipgroups/view', array('iddetail'=>$data['iddetail']));
+   }
+   
    public static function decodeDeleteDetailPurchasesReceiptUrl($data)
    {
    	//return print_r($data);
@@ -442,6 +460,18 @@ class Action extends CComponent {
    {
       //return print_r($data);
       return Yii::app()->createUrl('customer/default/restoreDeleted', array('idtrack'=>$data['idtrack']));
+   }
+   
+   public static function decodeRestoreHistoryItemtipGrouprUrl($data)
+   {
+   	//return print_r($data);
+   	return Yii::app()->createUrl('itemtipgroup/default/restore', array('idtrack'=>$data['idtrack']));
+   }
+    
+   public static function decodeRestoreDeletedItemtipGroupUrl($data)
+   {
+   	//return print_r($data);
+   	return Yii::app()->createUrl('itemtipgroup/default/restoreDeleted', array('idtrack'=>$data['idtrack']));
    }
    
    public static function decodeRestoreHistorySupplierUrl($data)
