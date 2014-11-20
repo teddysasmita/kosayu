@@ -233,7 +233,7 @@ EOS;
 		};
    }
    
-   public function actionGetItem2($name)
+   public function actionGetItemAll($name)
    {
    	if (!Yii::app()->user->isGuest) {
    		$data=Yii::app()->db->createCommand()->selectDistinct('name')->from('items')
