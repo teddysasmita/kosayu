@@ -47,8 +47,10 @@ $this->menu=array(
    $this->widget('zii.widgets.grid.CGridView', array(
          'dataProvider'=>$dataProvider,
          'columns'=>array(
-            'name',
-         	'pct',
+            array(
+            	'name'=>'iditem',
+            	'value'=>"lookup::ItemNameFromItemID(\$data['iditem'])",		
+   			),
             array(
                   'class'=>'CButtonColumn',
                   'buttons'=> array(
