@@ -15,7 +15,7 @@ $this->menu=array(
 	//array('label'=>'View Itemtipgroups', 'url'=>array('view', 'id'=>$model->id)),
 	//array('label'=>'Manage Itemtipgroups', 'url'=>array('admin')),
     array('label'=>'Tambah Detil', 'url'=>array('detailitemtipgroups/create', 
-       'id'=>$model->id, 'command'=>'update', 'regnum'=>$model->regnum),
+       'id'=>$model->id, 'command'=>'update'),
           'linkOptions'=>array('id'=>'adddetail')), 
 );
 ?>
