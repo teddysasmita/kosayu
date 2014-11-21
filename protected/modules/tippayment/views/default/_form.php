@@ -137,7 +137,7 @@ EOS;
 	<div class="row">
 		<?php echo $form->labelEx($model,'amount'); ?>
         <?php 
-          echo CHtml::tag('<SPAN>', array('id'=>'amount', 'class'=>'money'),
+          echo CHtml::tag('span', array('id'=>'amount', 'class'=>'money'),
           		number_format($model->amount));
            //echo $form->textField($model, 'amount', array('maxlength'=>8)); 
         ?>
