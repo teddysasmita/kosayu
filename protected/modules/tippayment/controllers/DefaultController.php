@@ -1083,7 +1083,7 @@ EOS;
  	a.id as iddetail, a.regnum as invnum, (a.total - a.tax) as amount, 
     a.discount, sum(b.qty*b.price) as totalnondisc
 EOS;
-   		$this->$salesdata = Yii::app()->db->createCommand()
+   		$this->salesdata = Yii::app()->db->createCommand()
    			->select($select1)->from('salespos a')
    			->join('detailsalespos b', 'b.id = a.id')
    			->where("a.idsticker = :p_idsticker and a.idatetime like :p_datetime and b.discount = 0",
