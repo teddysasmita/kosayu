@@ -190,6 +190,22 @@ EOS;
     		'dataProvider'=>$dataProvider,
     		'columns'=>array(
     				array(
+    					'header'=>'Nomor Faktur',
+						'name'=>'regnum',
+    				),
+    				array(
+    					'header'=>'Harga',
+    					'name'=>'price',
+    				),
+    				array(
+    					'header'=>'Disc',
+    					'name'=>'discount',
+    				),
+    				array(
+    					'header'=>'Qty',
+						'name'=>'qty',
+    				),
+    				array(
     					'header'=>'Kelompok Komisi',
 						'name'=>'tipgroupname',
     				),

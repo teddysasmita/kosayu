@@ -1146,7 +1146,7 @@ EOS;
     		}
     		$ds['amount'] = ($ds['price'] - $ds['discount']) * $ds['qty'] * $ds['pct'] / 100;
     	}
-    	    	
+
     	return $detailsales;
     }
       
