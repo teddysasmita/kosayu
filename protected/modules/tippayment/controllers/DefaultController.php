@@ -1137,7 +1137,7 @@ EOS;
     
     	foreach($detailsales as & $ds) {
     		if ($ds['discount'] == 0) {
-    			$ds['discount'] = $this->getUnSeenDisc($ds['regnum']);
+    			$ds['discount'] = $this->getUnSeenDisc($ds['regnum']) * $ds['price'];
     		}
     		
     		if ( is_null($ds['pct']) ) {

@@ -196,14 +196,17 @@ EOS;
     				array(
     					'header'=>'Harga',
     					'name'=>'price',
+    					'type'=>'number',
     				),
     				array(
     					'header'=>'Disc',
     					'name'=>'discount',
+    					'type'=>'number',
     				),
     				array(
     					'header'=>'Qty',
 						'name'=>'qty',
+    					'type'=>'number',
     				),
     				array(
     					'header'=>'Kelompok Komisi',
