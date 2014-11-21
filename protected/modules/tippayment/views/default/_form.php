@@ -127,6 +127,14 @@ EOS;
 	</div>
 	<?php echo $form->error($model,'idpartner'); ?>
 	
+	<div class="row" id="comp">
+		<?php echo $form->labelEx($model,'idcomp'); ?>
+         <?php 
+         	$data = array();
+         	echo $form->dropDownList($model, 'idcomp', $data);
+         ?>
+	</div>
+	<?php echo $form->error($model,'idcomp'); ?>
 		
 	<div class="row">
 		<?php echo $form->labelEx($model,'receiver'); ?>
