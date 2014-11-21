@@ -169,6 +169,7 @@ EOS;
               array(
                   'header'=>'Total Belanja',
                   'name'=>'amount',
+              		'type'=>'number',
               ),
           ),
     ));
@@ -195,6 +196,7 @@ EOS;
     				array(
 						'header'=>'Jumlah',
 						'name'=>'amount',
+    					'type'=>'number',
     				),
     		),
     ));
