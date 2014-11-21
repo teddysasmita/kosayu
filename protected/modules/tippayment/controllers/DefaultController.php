@@ -1098,6 +1098,7 @@ EOS;
    			->where("a.idsticker = :p_idsticker and a.idatetime like :p_datetime and b.discount = 0",
    				array(':p_idsticker'=>$idsticker, ':p_datetime'=>$ddatetime.'%'))
    			->group('a.regnum')
+   			->order('a.regnum')
    			->queryAll(); 	
    		foreach($this->salesdata as & $sd) {
    			$sd['id'] = $id;	
@@ -1138,6 +1139,7 @@ EOS;
 		JOIN itemtipgroups c ON c.id = d.id
 		) ON d.iditem = b.iditem
     	where a.idsticker = '$idsticker' and a.idatetime like '$ddatetime%' 
+    	order by a.regnum
 EOS;
 		$detailsales = Yii::app()->db->createCommand($sql1)
 			->queryAll();
