@@ -18,7 +18,12 @@
 			$('#command').val('updateDetail');
 			$('#detailcommand').val(this.href);
 			$('#tippayments-form').submit();
-		});   
+		});  
+		$('#process').click(
+		function(evt) {
+			$('#command').val('countTip');
+			$('#tippayments-form').submit();
+		});
 EOS;
    Yii::app()->clientScript->registerScript("transScript", $transScript, CClientscript::POS_READY);
 
@@ -128,6 +133,10 @@ EOS;
 			}
          ?>
 		
+	<div class="row buttons">
+      <?php echo CHtml::button('Proses', array('id'=>'process')); ?>
+   </div>
+   
 	<div class="row">
 		<?php echo $form->labelEx($model,'receiver'); ?>
         <?php 
