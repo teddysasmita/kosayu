@@ -28,7 +28,7 @@ $this->menu=array(
 		'name',
 		'defaulttip',
 		'address',
-		'phone'.	
+		'phone',	
 		array(
 			'label'=>'Userlog',
 			'value'=>lookup::UserNameFromUserID($model->userlog),
