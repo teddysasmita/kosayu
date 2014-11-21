@@ -25,16 +25,10 @@ $this->menu=array(
 		//'id',
 		'regnum',
 		'idatetime',
-		'transid',
-		array(
-			'label'=>'Jenis Transaksi',
-			'value'=>Action::getTransName($model->transname),
-		),
-      	'transinfo',
-		array(
-			'label'=>'Nama Gudang',
-			'value'=>lookup::WarehouseNameFromWarehouseID($model->idwarehouse)
-		),
+		'idsticker',
+		'ddatetime',
+      	'receiver',
+		'amount',
 		array(
 			'label'=>'Userlog',
 			'value'=>lookup::UserNameFromUserID($model->userlog),
