@@ -10,7 +10,7 @@
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('defaulttip')); ?>:</b>
-	<?php echo CHtml::encode($data->pct); ?>
+	<?php echo CHtml::encode($data->defaulttip); ?>
 	<br />
 	
     <b><?php echo CHtml::encode($data->getAttributeLabel('userlog')); ?>:</b>
