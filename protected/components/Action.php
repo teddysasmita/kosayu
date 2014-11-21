@@ -269,10 +269,34 @@ class Action extends CComponent {
    	return Yii::app()->createUrl('/stockentries/default/restorehistory', array('idtrack'=>$data['idtrack']));
    }
    
+   public static function decodeRestoreDeletedStockEntryUrl($data)
+   {
+   	//return print_r($data);
+   	return Yii::app()->createUrl('/stockentries/default/restoreDeleted', array('idtrack'=>$data['idtrack']));
+   }
+    
+   public static function decodeRestoreHistoryStockEntryUrl($data)
+   {
+   	//return print_r($data);
+   	return Yii::app()->createUrl('/stockentries/default/restorehistory', array('idtrack'=>$data['idtrack']));
+   }
+   
    public static function decodeDeleteDetailStockEntryUrl($data)
    {
       //return print_r($data);
       return Yii::app()->createUrl('/stockentries/detailstockentries/delete', array('iddetail'=>$data['iddetail']));
+   }
+   
+   public static function decodeRestoreHistoryTipPaymentUrl($data)
+   {
+   	//return print_r($data);
+   	return Yii::app()->createUrl('/tippayment/default/restorehistory', array('idtrack'=>$data['idtrack']));
+   }
+    
+   public static function decodeDeleteDetailTipPaymentUrl($data)
+   {
+   	//return print_r($data);
+   	return Yii::app()->createUrl('/tippayment/detailtippayment/delete', array('iddetail'=>$data['iddetail']));
    }
    
    public static function decodeUpdateDetailStockEntryUrl($data, $idwh, $transname, $transid)
