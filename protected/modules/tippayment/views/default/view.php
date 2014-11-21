@@ -38,9 +38,9 @@ $this->menu=array(
 )); ?>
 
 <?php 
-   $count=Yii::app()->db->createCommand("select count(*) from detailstockentries where id='$model->id'")
+   $count=Yii::app()->db->createCommand("select count(*) from detailtippayments where id='$model->id'")
       ->queryScalar();
-   $sql="select * from detailstockentries where id='$model->id'";
+   $sql="select * from detailtippayments where id='$model->id'";
 
    $dataProvider=new CSqlDataProvider($sql,array(
           'totalItemCount'=>$count,
@@ -49,27 +49,40 @@ $this->menu=array(
          'dataProvider'=>$dataProvider,
          'columns'=>array(
             array(
-               'header'=>'Item Name',
-               'name'=>'iditem',
-               'value'=>"lookup::ItemNameFromItemID(\$data['iditem'])"
+               'header'=>'Nomor Invoice',
+               'name'=>'invoicenum',
             ),
             array(
-              'header'=>'Serial Number',
-              'name'=>'serialnum ',
-              'value'=>"\$data['serialnum']"
+              'header'=>'Tanggal',
+              'name'=>'idatetime',
+            ),
+         	array(
+         		'header'=>'Total',
+         		'name'=>'amount',
+         	),
+         ),
+   ));
+ ?>
+ 
+ <?php 
+   $count=Yii::app()->db->createCommand("select count(*) from detailtippayments2 where id='$model->id'")
+      ->queryScalar();
+   $sql="select * from detailtippayments2 where id='$model->id'";
+
+   $dataProvider=new CSqlDataProvider($sql,array(
+          'totalItemCount'=>$count,
+          ));
+   $this->widget('zii.widgets.grid.CGridView', array(
+         'dataProvider'=>$dataProvider,
+         'columns'=>array(
+            array(
+               'header'=>'Nama Komisi',
+               'name'=>'idtipgroup',
             ),
             array(
-                  'class'=>'CButtonColumn',
-                  'buttons'=> array(
-                      'delete'=>array(
-                       'visible'=>'false'
-                      ),
-                     'update'=>array(
-                        'visible'=>'false'
-                     )
-                  ),
-                  'viewButtonUrl'=>"Action::decodeViewDetailStockEntryUrl(\$data)",
-              )
+              'header'=>'Jumlah',
+              'name'=>'amount',
+            ),
          ),
    ));
  ?>

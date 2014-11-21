@@ -146,10 +146,15 @@ EOS;
     if (isset(Yii::app()->session['Detailtippayments'])) {
        $rawdata=Yii::app()->session['Detailtippayments'];
        $count=count($rawdata);
-    } 
+    } else {
+       $count=Yii::app()->db->createCommand("select count(*) from detailtippayments where id='$model->id'")->queryScalar();
+       $sql="select * from detailtippayments where id='$model->id'";
+       $rawdata=Yii::app()->db->createCommand($sql)->queryAll ();
+    }
+    
     $dataProvider=new CArrayDataProvider($rawdata, array(
           'totalItemCount'=>$count,
-		  'keyField'=>'id',
+		  'keyField'=>'iddetail',
     ));
     $this->widget('zii.widgets.grid.CGridView', array(
             'dataProvider'=>$dataProvider,
@@ -168,10 +173,14 @@ EOS;
     if (isset(Yii::app()->session['Detailtippayments2'])) {
     	$rawdata=Yii::app()->session['Detailtippayments2'];
     	$count=count($rawdata);
+    } else {
+       $count=Yii::app()->db->createCommand("select count(*) from detailtippayments2 where id='$model->id'")->queryScalar();
+       $sql="select * from detailtippayments2 where id='$model->id'";
+       $rawdata=Yii::app()->db->createCommand($sql)->queryAll ();
     }
     $dataProvider=new CArrayDataProvider($rawdata, array(
     		'totalItemCount'=>$count,
-    		'keyField'=>'id',
+    		'keyField'=>'iddetail',
     ));
     $this->widget('zii.widgets.grid.CGridView', array(
     		'dataProvider'=>$dataProvider,
