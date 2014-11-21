@@ -26,13 +26,13 @@ EOS;
       $form=$this->beginWidget('CActiveForm', array(
 	'id'=>'tippayments-form',
 	'enableAjaxValidation'=>true,
-      'action'=>Yii::app()->createUrl("/tippayments/default/create")
+      'action'=>Yii::app()->createUrl("/tippayment/default/create")
       ));
    else if($command=='update')
       $form=$this->beginWidget('CActiveForm', array(
 	'id'=>'tippayments-form',
 	'enableAjaxValidation'=>true,
-      'action'=>Yii::app()->createUrl("/tippayments/default/update", array('id'=>$model->id))
+      'action'=>Yii::app()->createUrl("/tippayment/default/update", array('id'=>$model->id))
       ));
   ?>
 
