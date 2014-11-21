@@ -48,8 +48,14 @@ $this->menu=array(
    $this->widget('zii.widgets.grid.CGridView', array(
          'dataProvider'=>$dataProvider,
          'columns'=>array(
-         	'comname',
-         	'tip',
+         	array(
+         		'header'=>'Komposisi',
+         		'name'=>'comname',
+         	),
+         	array(
+         		'header'=>'Komisi(%)',
+         		'name'=>'tip',
+         	),
             array(
                   'class'=>'CButtonColumn',
                   'buttons'=> array(
