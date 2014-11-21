@@ -338,6 +338,26 @@ EOS;
    	};
    }
    
+   public function actionGetPartner($term)
+   {
+   	if (!Yii::app()->user->isGuest) {
+   		$data=Yii::app()->db->createCommand()
+   		->select("concat(name, ' - ', id) as label, id as value")
+   		->from('partners')
+   		->where('name like :p_name',
+   				array(':p_name'=>"%$term%"))
+   				->limit(10)
+   				->queryAll();
+   		/*echo Yii::app()->db->createCommand()->select('a.donum, b.id')->from('stockentries a')
+   		 ->leftJoin('purchasesreceipts b','b.donum = a.donum' )
+   		 ->where("a.idsupplier = :idsupplier and b.id = NULL", array(':idsupplier'=>$idsupplier))->text;
+   		*/
+   		echo json_encode($data);
+   	} else {
+   		throw new CHttpException(404,'You have no authorization for this operation.');
+   	};
+   }
+   
 	public function actionGetItemPrice($iditem)
    	{
 		if (!Yii::app()->user->isGuest) {

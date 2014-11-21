@@ -118,7 +118,7 @@ EOS;
          	$this->widget("zii.widgets.jui.CJuiAutoComplete", array(
 				'name'=>'idpartner',
 				'sourceUrl'=>Yii::app()->createUrl('LookUp/getPartner'),
-				'htmlOptions'=>array('size'=>50),
+				'htmlOptions'=>array('size'=>35),
 				'value'=>$model->idpartner
 			));
          ?>
@@ -129,7 +129,7 @@ EOS;
 	<div class="row">
 		<?php echo $form->labelEx($model,'receiver'); ?>
         <?php 
-           echo $form->textField($model, 'receiver', array('maxlength'=>100)); 
+           echo $form->textField($model, 'receiver', array('size'=>50, 'maxlength'=>100)); 
         ?>
         <?php echo $form->error($model,'receiver');?> 
 	</div>
