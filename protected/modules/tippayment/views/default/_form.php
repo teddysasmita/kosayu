@@ -116,9 +116,11 @@ EOS;
 		<?php echo $form->labelEx($model,'idpartner'); ?>
          <?php 
          	$this->widget("zii.widgets.jui.CJuiAutoComplete", array(
-				'name'=>'idpartner',
+				'name'=>'Tippayments[idpartner]',
 				'sourceUrl'=>Yii::app()->createUrl('LookUp/getPartner'),
-				'htmlOptions'=>array('size'=>35),
+				'htmlOptions'=>array('size'=>35, 
+						'id'=>'Tippayments_idpartner'					
+	         	),
 				'value'=>$model->idpartner
 			));
          ?>
