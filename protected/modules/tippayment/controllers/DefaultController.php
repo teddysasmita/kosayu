@@ -52,6 +52,8 @@ class DefaultController extends Controller
 	{
              if(Yii::app()->authManager->checkAccess($this->formid.'-Append', 
                     Yii::app()->user->id))  {   
+                $compositions = array();
+                
                 $this->state='create';
                 $this->trackActivity('c');    
                     
@@ -119,12 +121,16 @@ class DefaultController extends Controller
                       	} else if ($_POST['command']=='updateDetail') {
 							$model->attributes=$_POST['Tippayments'];
                          	Yii::app()->session['Tippayments']=$_POST['Tippayments'];
-                      	}
+                      	} else if ($_POST['command']=='getComp') {
+							$model->attributes=$_POST['Tippayments'];
+                         	Yii::app()->session['Tippayments']=$_POST['Tippayments'];
+                         	$compositions = $this->getCompositions($model->idpartner);
+                      	} 
 					}
 				}
 
 				$this->render('create',array(
-                    'model'=>$model,
+                    'model'=>$model, 'compositions'=>$compositions
                 ));
                 
              } else {
@@ -1049,95 +1055,12 @@ EOS;
             return $respond; 
       }
       
-      public function actionSummary($id)
+      private function getCompositions($idpartner)
       {
-      	$this->trackActivity('v');
-      	$this->render('summary',array(
-      			'model'=>$this->loadModel($id),
-      	));
-      
+      	return Yii::app()->db->createCommand()
+      		->select('iddetail, comname')
+      		->from('detailpartners')
+      		->where("id = :p_id", array(':p_id'=>$idpartner))
+      		->queryAll();   	
       }
-      
-      public function actionPrintsummary($id)
-      {
-      	$this->trackActivity('v');
-      	Yii::import("application.vendors.tcpdf.*");
-      	require_once('tcpdf.php');
-      	$this->render('printsummary',array(
-      			'model'=>$this->loadModel($id),
-      	));
-      }
-      
-      public function actionSerial()
-      {
-      	if(Yii::app()->authManager->checkAccess($this->formid.'-List',
-      			Yii::app()->user->id))  {
-      		$this->trackActivity('v');
-      
-      		$alldata = array();
-      		$whcodeparam = '';
-      		$itemnameparam = '';
-      			
-      		if (isset($_GET['go'])) {
-      			$whcodeparam = $_GET['whcode'];
-      			$itemnameparam = $_GET['itemname'];
-      			$whs = Yii::app()->db->createCommand()
-      			->select("id, code")->from('warehouses')->where('code like :p_code',
-      					array(':p_code'=>'%'.$whcodeparam.'%'))
-      					->queryAll();
-      			foreach($whs as $wh) {
-      				$data = Yii::app()->db->createCommand()
-      				->select("c.iddetail, a.transid, c.iditem, b.name, c.serialnum, concat('${wh['code']}') as code")
-      				->from("tippayments a")
-      				->join("detailtippayments c", "c.id = a.id")
-      				->join('items b', 'b.id = c.iditem')
-      				->where("b.name like :p_name and a.idwarehouse = '${wh['id']}' and c.serialnum <> 'Belum Diterima'", array(':p_name'=>"%$itemnameparam%"))
-      				->order('b.name')
-      				->queryAll();
-      				$alldata = array_merge($alldata, $data);
-		      	}
-		      	usort($alldata, 'cmp');
-		      }
-		      $this->render('serial', array('alldata'=>$alldata, 'whcode'=>$whcodeparam, 'itemname'=>$itemnameparam));
-	      } else {
-	      	throw new CHttpException(404,'You have no authorization for this operation.');
-	      };
-      }
-      
-      public function actionSerialScan()
-      {
-      	if(Yii::app()->authManager->checkAccess($this->formid.'-List',
-      			Yii::app()->user->id))  {
-      		$this->trackActivity('v');
-      
-      		$alldata = array();
-      		$whcodeparam = '';
-      		$itemnameparam = '';
-      		 
-      		if (isset($_GET['go'])) {
-      			$whcodeparam = $_GET['whcode'];
-      			$itemnameparam = $_GET['itemname'];
-      			$whs = Yii::app()->db->createCommand()
-      			->select("id, code")->from('warehouses')->where('code like :p_code',
-      					array(':p_code'=>'%'.$whcodeparam.'%'))
-      					->queryAll();
-      			foreach($whs as $wh) {
-      				$data = Yii::app()->db->createCommand()
-      				->select("c.iddetail, a.regnum, a.idatetime, a.iditem, b.name, c.serialnum, concat('${wh['code']}') as code")
-      				->from("acquisitions a")
-      				->join("detailacquisitions c", "c.id = a.id")
-      				->join('items b', 'b.id = a.iditem')
-      				->where("b.name like :p_name and a.idwarehouse = '${wh['id']}'", 
-      					array(':p_name'=>"%$itemnameparam%"))
-      				->order('b.name')
-      				->queryAll();
-      				$alldata = array_merge($alldata, $data);
-		      	}
-		      	usort($alldata, 'cmp');
-			}
-			$this->render('serialscan', array('alldata'=>$alldata, 'whcode'=>$whcodeparam, 'itemname'=>$itemnameparam));
-		} else {
-	      	throw new CHttpException(404,'You have no authorization for this operation.');
-		};
-	}
 }

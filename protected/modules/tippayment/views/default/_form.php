@@ -8,24 +8,10 @@
 
 <?php
    $transScript=<<<EOS
-		$('#Tippayments_transid').change(
+		$('#Tippayments_idpartner').change(
 		function() {
-			$.getJSON('index.php?r=LookUp/getTrans',{ id: $('#Tippayments_transid').val() },
-            function(data) {
-				if (data[0].id !== 'NA') {
-					$('#Tippayments_transname').val(data[0].transname);
-					$('#transinfo').html(data[0].transinfo);
-            		$('#Tippayments_transinfo').val(data[0].transinfo);
-            		$('#command').val('getPO');
-					$('#Tippayments_transinfo_em_').prop('style', 'display:none')
-					$('#tippayments-form').submit();
-				} else {
-					$('#Tippayments_transname').val();
-					$('#transinfo').html('');
-            		$('#Tippayments_transinfo_em_').html('Data tidak ditemukan');
-					$('#Tippayments_transinfo_em_').prop('style', 'display:block')
-				}
-			})
+			$('#command').val('getComp');
+			$('#tippayments-form').submit();
 		});
 		$('.updateButton').click(
 		function(evt) {
@@ -127,14 +113,17 @@ EOS;
 	</div>
 	<?php echo $form->error($model,'idpartner'); ?>
 	
-	<div class="row" id="comp">
-		<?php echo $form->labelEx($model,'idcomp'); ?>
-         <?php 
-         	$data = array();
-         	echo $form->dropDownList($model, 'idcomp', $data);
+	
+		<?php 
+			if (length($compositions) > 0) {
+				echo "<div class=\"row\" id=\"comp\">";
+				echo $form->labelEx($model,'idcomp'); 
+				$data = CHtml::listData($compositions, 'iddetail', 'comname');
+         		echo $form->dropDownList($model, 'idcomp', $data);	
+         		echo $form->error($model,'idcomp');
+         		echo "</div>";
+			} 
          ?>
-	</div>
-	<?php echo $form->error($model,'idcomp'); ?>
 		
 	<div class="row">
 		<?php echo $form->labelEx($model,'receiver'); ?>
