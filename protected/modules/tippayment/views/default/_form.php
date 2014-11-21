@@ -47,6 +47,7 @@ EOS;
         echo $form->hiddenField($model, 'userlog');
         echo $form->hiddenField($model, 'datetimelog');
         echo $form->hiddenField($model, 'regnum');
+        echo $form->hiddenField($model, 'amount');
       ?>
         
 	<div class="row">
@@ -136,7 +137,9 @@ EOS;
 	<div class="row">
 		<?php echo $form->labelEx($model,'amount'); ?>
         <?php 
-           echo $form->textField($model, 'amount', array('maxlength'=>8)); 
+          echo CHtml::tag('<SPAN>', array('id'=>'amount', 'class'=>'money'),
+          		number_format($model->amount));
+           //echo $form->textField($model, 'amount', array('maxlength'=>8)); 
         ?>
         <?php echo $form->error($model,'amount');?> 
 	</div>
