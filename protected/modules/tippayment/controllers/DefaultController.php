@@ -131,11 +131,17 @@ class DefaultController extends Controller
                          	Yii::app()->session['Tippayments']=$model->attributes;
                       	} else if ($_POST['command']=='countTip') {
 							$model->attributes=$_POST['Tippayments'];
-                         	Yii::app()->session['Tippayments']=$_POST['Tippayments'];
+                         	
                          	$this->getSales($model->id, $model->idsticker, $model->ddatetime);
                          	Yii::app()->session['Detailtippayments'] = $this->salesdata;
-                         	Yii::app()->session['Detailtippayments2'] = $this->getSalesDetail($model->idpartner, $model->idcomp, 
+                         	$temp = $this->getSalesDetail($model->idpartner, $model->idcomp, 
                          		$model->idsticker, $model->ddatetime);
+                         	 Yii::app()->session['Detailtippayments2'] = $temp;
+                         	foreach($temp as $t) {
+                         		$total = $total + $t['amount'];
+                         	}
+                         	$model->amount = $total;
+                         	Yii::app()->session['Tippayments']=$model->attributes;
                       	} 
 					}
 				}
@@ -1146,8 +1152,26 @@ EOS;
     		}
     		$ds['amount'] = ($ds['price'] - $ds['discount']) * $ds['qty'] * $ds['pct'] / 100;
     	}
+    	
+    	$ds2 = array();
+    	$found = FALSE;
+    	foreach($detailsales as $ds) {
+    		foreach($ds2 as & $d) {
+    			if ($d['tipgroupname'] == $ds['tipgroupname'] ) {
+    				$d['amount'] = $d['amount'] + $ds['amount'];
+    				$found = TRUE;
+    				break;
+    			}
+    			$found = FALSE;
+    		};
+    		if (! $found) {
+    			$ds2['tipgroupname'] = $ds['tipgroupname'];
+    			$ds2['amount'] = $ds['amount'];
+    		};
+    	}
 
-    	return $detailsales;
+    	//return $detailsales;
+    	return $ds2;
     }
       
 }
