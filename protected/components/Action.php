@@ -324,6 +324,24 @@ class Action extends CComponent {
    	return Yii::app()->createUrl('/itemtipgroup/detailitemtipgroups/view', array('iddetail'=>$data['iddetail']));
    }
    
+   public static function decodeDeleteDetailPartnerUrl($data)
+   {
+   	//return print_r($data);
+   	return Yii::app()->createUrl('/partner/detailpartners/delete', array('iddetail'=>$data['iddetail']));
+   }
+   
+   public static function decodeUpdateDetailPartnerUrl($data)
+   {
+   	//return print_r($data);
+   	return Yii::app()->createUrl('/partner/detailpartners/update', array('iddetail'=>$data['iddetail']))  ;
+   }
+   
+   public static function decodeViewDetailPartnerUrl($data)
+   {
+   	//return print_r($data);
+   	return Yii::app()->createUrl('/partner/detailpartners/view', array('iddetail'=>$data['iddetail']));
+   }
+   
    public static function decodeDeleteDetailPurchasesReceiptUrl($data)
    {
    	//return print_r($data);
@@ -472,6 +490,18 @@ class Action extends CComponent {
    {
    	//return print_r($data);
    	return Yii::app()->createUrl('itemtipgroup/default/restoreDeleted', array('idtrack'=>$data['idtrack']));
+   }
+   
+   public static function decodeRestoreHistoryPartnerrUrl($data)
+   {
+   	//return print_r($data);
+   	return Yii::app()->createUrl('partner/default/restore', array('idtrack'=>$data['idtrack']));
+   }
+   
+   public static function decodeRestoreDeletedPartnerUrl($data)
+   {
+   	//return print_r($data);
+   	return Yii::app()->createUrl('partner/default/restoreDeleted', array('idtrack'=>$data['idtrack']));
    }
    
    public static function decodeRestoreHistorySupplierUrl($data)

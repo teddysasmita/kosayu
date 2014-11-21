@@ -74,7 +74,8 @@ return array(
             'deliveryreplaces',
 			'currencies',
 			'currencyrates',
-			'itemtipgroup'
+			'itemtipgroup',
+			'partner'
         ),
 
         
