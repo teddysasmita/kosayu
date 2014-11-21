@@ -25,3 +25,5 @@ $this->pageTitle=Yii::app()->name;
 
 <h2>Bagian Keuangan</h2>
 <h3><?php echo CHtml::link('Penentuan Nilai Tukar Mata Uang Asing', Yii::app()->createUrl('currencyrates'))?></h3>
+<h3><?php echo CHtml::link('Pembayaran Komisi Rekanan / Agen', Yii::app()->createUrl('tippayment'))?></h3>
+
