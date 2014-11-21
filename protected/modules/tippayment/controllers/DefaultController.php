@@ -1156,6 +1156,7 @@ EOS;
     	$ds2 = array();
     	$found = FALSE;
     	foreach($detailsales as $ds) {
+    		if (count($ds2) > 0)
     		foreach($ds2 as & $d) {
     			if ($d['tipgroupname'] == $ds['tipgroupname'] ) {
     				$d['amount'] = $d['amount'] + $ds['amount'];
