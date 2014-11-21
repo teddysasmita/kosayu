@@ -137,6 +137,7 @@ class DefaultController extends Controller
                          	$temp = $this->getSalesDetail($model->idpartner, $model->idcomp, 
                          		$model->idsticker, $model->ddatetime);
                          	 Yii::app()->session['Detailtippayments2'] = $temp;
+                         	$total = 0;
                          	foreach($temp as $t) {
                          		$total = $total + $t['amount'];
                          	}
