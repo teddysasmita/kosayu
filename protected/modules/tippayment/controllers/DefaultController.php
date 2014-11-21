@@ -15,6 +15,8 @@ class DefaultController extends Controller
 	public $formid='AC23';
 	public $tracker;
 	public $state;
+	
+	private $salesdata = array();
 
 	/**
 	 * @return array action filters
@@ -123,8 +125,17 @@ class DefaultController extends Controller
                          	Yii::app()->session['Tippayments']=$_POST['Tippayments'];
                       	} else if ($_POST['command']=='getComp') {
 							$model->attributes=$_POST['Tippayments'];
+							$compositions = $this->getCompositions($model->idpartner);
+							if (count($compositions) == 0) 
+								$model->idcomp = '-';
+                         	Yii::app()->session['Tippayments']=$model->attributes;
+                      	} else if ($_POST['command']=='countTip') {
+							$model->attributes=$_POST['Tippayments'];
                          	Yii::app()->session['Tippayments']=$_POST['Tippayments'];
-                         	$compositions = $this->getCompositions($model->idpartner);
+                         	$this->getSales($model->id, $model->idsticker, $model->ddatetime);
+                         	Yii::app()->session['Detailtippayments'] = $this->salesdata;
+                         	Yii::app()->session['Detailtippayments2'] = $this->getSalesDetail($model->idpartner, $model->idcomp, 
+                         		$model->idsticker, $model->ddatetime);
                       	} 
 					}
 				}
@@ -537,6 +548,7 @@ class DefaultController extends Controller
          $model->idatetime=$idmaker->getDateTime();
          $model->regnum=$idmaker->getRegNum($this->formid);
          //$model->idwarehouse=lookup::WarehouseNameFromIpAddr($_SERVER['REMOTE_ADDR']);
+         $model->idcomp = '-';
          $model->userlog=Yii::app()->user->id;
          $model->datetimelog=$idmaker->getDateTime();
      }
@@ -1063,4 +1075,74 @@ EOS;
       		->where("id = :p_id", array(':p_id'=>$idpartner))
       		->queryAll();   	
       }
+      
+    private function getSales($id, $idsticker, $ddatetime)
+    {
+    	$select1 = <<<EOS
+ 	a.id as iddetail, a.regnum as invnum, (a.total - a.tax) as amount, 
+    a.discount, sum(b.qty*b.price) as totalnondisc
+EOS;
+   		$this->$salesdata = Yii::app()->db->createCommand()
+   			->select($select1)->from('salespos a')
+   			->join('detailsalespos b', 'b.id = a.id')
+   			->where("a.idsticker = :p_idsticker and a.idatetime like :p_datetime and b.discount = 0",
+   				array(':p_idsticker'=>$idsticker, ':p_datetime'=>$ddatetime.'%'))
+   			->group('a.regnum')
+   			->queryAll(); 	
+   		foreach($this->salesdata as & $sd) {
+   			$sd['id'] = $id;	
+   		};
+    }
+    
+    private function getUnSeenDisc($regnum)
+    {
+ 		$disc = 0;
+    	foreach($this->salesdata as $sd) {
+    		if ($sd['invnum'] == $regnum) {
+    			$disc = $sd['discount'] / $sd['totalnondisc'];
+    			break;
+    		}	
+    	}
+    	return $disc;
+    }
+    
+    private function getSalesDetail($idpartner, $idcomp, $idsticker, $ddatetime)
+    {
+    	if ($idcomp == '-') {
+    		$tip = Yii::app()->db->createCommand()->select('a.defaulttip')->from('partners a')
+	    		->where("a.id = :p_id ",
+	    			array(':p_id'=>$idpartner))
+	    		->queryScalar();
+    	} else {
+    		$tip = Yii::app()->db->createCommand()->select('a.tip')->from('detailpartners a')
+	    		->where("a.id = :p_id and a.iddetail = :p_iddetail",
+	    			array(':p_id'=>$idpartner, ':p_iddetail'=>$idcomp))
+	    		->queryScalar();
+    	}
+    	$sql1 = <<<EOS
+    	SELECT b.iddetail, a.regnum, b.iditem, b.qty, b.price, b.discount, c.pct
+		FROM detailsalespos b
+		JOIN salespos a ON a.id = b.id
+		LEFT JOIN (
+		detailitemtipgroups d 
+		JOIN itemtipgroups c ON c.id = d.id
+		) ON d.iditem = b.iditem
+    	where a.idsticker = '$idsticker' and a.idatetime like '$ddatetime%' 
+EOS;
+		$detailsales = Yii::app()->db->createCommand($sql1)
+			->queryAll();
+    
+    	foreach($detailsales as & $ds) {
+    		if ($ds['discount'] == 0) {
+    			$ds['discount'] = $this->getUnSeenDisc($ds['regnum']);
+    		}
+    		
+    		if ( is_null($ds['pct']) )
+    			$ds['pct'] = $tip;
+    		$ds['amount'] = ($ds['price'] - $ds['discount']) * $ds['qty'] * $ds['pct'] / 100;
+    	}
+    	
+    	return $detailsales;
+    }
+      
 }

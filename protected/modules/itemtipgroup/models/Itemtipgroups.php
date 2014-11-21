@@ -5,14 +5,8 @@
  *
  * The followings are the available columns in table 'itemtipgroups':
  * @property string $id
- * @property string $idatetime
- * @property string $regnum
- * @property string $papersize
- * @property integer $paperwidth
- * @property integer $paperheight
- * @property integer $labelwidth
- * @property integer $labelheight
- * @property string $barcodetype
+ * @property string $name
+ * @property double $pct
  * @property string $userlog
  * @property string $datetimelog
  */

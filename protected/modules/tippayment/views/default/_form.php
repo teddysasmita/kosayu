@@ -123,7 +123,9 @@ EOS;
          		echo $form->dropDownList($model, 'idcomp', $data);	
          		echo $form->error($model,'idcomp');
          		echo "</div>";
-			} 
+			} else {
+				echo $form->hiddenField($model, 'idcomp');
+			}
          ?>
 		
 	<div class="row">
@@ -132,16 +134,6 @@ EOS;
            echo $form->textField($model, 'receiver', array('size'=>50, 'maxlength'=>100)); 
         ?>
         <?php echo $form->error($model,'receiver');?> 
-	</div>
-	
-	<div class="row">
-		<?php echo $form->labelEx($model,'amount'); ?>
-        <?php 
-          echo CHtml::tag('span', array('id'=>'amount', 'class'=>'money'),
-          		number_format($model->amount));
-           //echo $form->textField($model, 'amount', array('maxlength'=>8)); 
-        ?>
-        <?php echo $form->error($model,'amount');?> 
 	</div>
 	
 <?php 
@@ -198,6 +190,16 @@ EOS;
     		),
     ));
 ?>
+	
+	<div class="row">
+		<?php echo $form->labelEx($model,'amount'); ?>
+        <?php 
+          echo CHtml::tag('span', array('id'=>'amount', 'class'=>'money'),
+          		number_format($model->amount));
+           //echo $form->textField($model, 'amount', array('maxlength'=>8)); 
+        ?>
+        <?php echo $form->error($model,'amount');?> 
+	</div>
 
    <div class="row buttons">
       <?php echo CHtml::submitButton(ucfirst($command)); ?>
