@@ -285,6 +285,8 @@ class DefaultController extends Controller
                Yii::app()->session->remove('Tippayments');
                Yii::app()->session->remove('Detailtippayments');
                Yii::app()->session->remove('Deletedetailtippayments');
+               Yii::app()->session->remove('Detailtippayments2');
+               Yii::app()->session->remove('Deletedetailtippayments2');
                $dataProvider=new CActiveDataProvider('Tippayments',
                   array(
                      'criteria'=>array(
