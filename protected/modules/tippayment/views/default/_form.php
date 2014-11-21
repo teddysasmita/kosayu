@@ -190,7 +190,7 @@ EOS;
 						'name'=>'tipgroupname',
     				),
     				array(
-						'header'=>'Total Belanja',
+						'header'=>'Jumlah',
 						'name'=>'amount',
     				),
     		),
