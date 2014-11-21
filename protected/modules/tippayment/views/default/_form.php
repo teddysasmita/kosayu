@@ -115,7 +115,7 @@ EOS;
 	
 	
 		<?php 
-			if (length($compositions) > 0) {
+			if (count($compositions) > 0) {
 				echo "<div class=\"row\" id=\"comp\">";
 				echo $form->labelEx($model,'idcomp'); 
 				$data = CHtml::listData($compositions, 'iddetail', 'comname');
