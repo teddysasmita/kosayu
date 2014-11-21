@@ -55,6 +55,7 @@ $this->menu=array(
          	array(
          		'header'=>'Komisi(%)',
          		'name'=>'tip',
+         		'type'=>'number'
          	),
             array(
                   'class'=>'CButtonColumn',
