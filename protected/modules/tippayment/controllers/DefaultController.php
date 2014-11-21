@@ -1153,6 +1153,7 @@ EOS;
     		$ds['amount'] = ($ds['price'] - $ds['discount']) * $ds['qty'] * $ds['pct'] / 100;
     	}
     	
+    	/*
     	$ds2 = array();
     	$found = FALSE;
     	foreach($detailsales as $ds) {
@@ -1170,9 +1171,9 @@ EOS;
     			$ds2['amount'] = $ds['amount'];
     		};
     	}
-
-    	//return $detailsales;
-    	return $ds2;
+		*/
+    	return $detailsales;
+    	//return $ds2;
     }
       
 }
