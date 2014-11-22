@@ -121,7 +121,7 @@ EOS;
 	
 	
 		<?php 
-			if ($model->idcomp <> '-' ) {
+			if ($model->idcomp !== '-' ) {
 				echo "<div class=\"row\" id=\"comp\">";
 				echo $form->labelEx($model,'idcomp'); 
 				$data = CHtml::listData($compositions, 'iddetail', 'comname');
