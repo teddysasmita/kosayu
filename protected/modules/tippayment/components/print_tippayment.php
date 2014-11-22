@@ -26,7 +26,7 @@ class MYPDF extends TCPDF {
 		$this->detaildata2 = $detaildata2;
 		
 		$this->headernames1 = array('No. Struk', 'Total', 'Potongan' );
-		$this->headerwidths1 = array(30, 30, 30);
+		$this->headerwidths1 = array(26, 26, 26);
 	}
 
 	// Colored table
@@ -43,7 +43,7 @@ class MYPDF extends TCPDF {
 		$counter=0;
 		$total=0;
 		$iditem='';
-		$this->SetXY(1, 39);
+		$this->SetXY(1, 30);
 		/*
 		if (count($this->detaildata) <= 12)
 			$maxrows = 12;
