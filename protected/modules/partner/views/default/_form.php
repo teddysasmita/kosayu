@@ -89,12 +89,12 @@
             		'header'=>'Komisi(%)',
             		'name'=>'tip',
 				),
-               /*array(
+               array(
                   'class'=>'CButtonColumn',
                   'updateButtonUrl'=>"Action::decodeUpdateDetailPartnerUrl(\$data)",
                		'deleteButtonUrl'=>"Action::decodeDeleteDetailPartnerUrl(\$data)",
-               		'viewButtonUrl'=>"Action::decodeDeleteDetailPartnerUrl(\$data)",
-               )*/
+               		//'viewButtonUrl'=>"Action::decodeDeleteDetailPartnerUrl(\$data)",
+               )
           ),
     ));
     
