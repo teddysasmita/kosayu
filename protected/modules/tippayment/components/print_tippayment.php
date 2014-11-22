@@ -159,7 +159,7 @@ function execute($model, $detailmodel) {
 	// ---------------------------------------------------------
 	
 	// set font
-	$pdf->SetFont('Arial', '', 9);
+	$pdf->SetFont('helvetica', '', 9);
 	
 	// add a page
 	$pdf->LoadData($model, $detailmodel);
