@@ -725,7 +725,7 @@ class DefaultController extends Controller
     {
     	$select1 = <<<EOS
  	a.id as iddetail, a.regnum as invoicenum, (a.total - a.tax) as amount, a.totaldiscount,
-    a.idatetime,
+    a.idatetime, a.userlog as idcashier, a.datetimelog as cashierlog,
     a.discount, sum(b.qty*b.price) as totalnondisc
 EOS;
    		$this->salesdata = Yii::app()->db->createCommand()

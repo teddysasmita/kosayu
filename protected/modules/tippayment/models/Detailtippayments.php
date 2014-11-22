@@ -10,6 +10,8 @@
  * @property string $idatetime
  * @property double $amount
  * @property double $totaldiscount
+ * @property string idcashier
+ * @property string cashierlog
  */
 class Detailtippayments extends CActiveRecord
 {
@@ -29,11 +31,11 @@ class Detailtippayments extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('iddetail, id, invoicenum, idatetime, amount, totaldiscount', 'required'),
+			array('iddetail, id, invoicenum, idatetime, amount, totaldiscount, idcashier, cashierlog', 'required'),
 			array('amount, totaldiscount', 'numerical'),
-			array('iddetail, id', 'length', 'max'=>21),
+			array('iddetail, id, idcashier', 'length', 'max'=>21),
 			array('invoicenum', 'length', 'max'=>12),
-			array('idatetime', 'length', 'max'=>19),
+			array('idatetime, cashierlog', 'length', 'max'=>19),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('iddetail, id, invoicenum, idatetime, amount, totaldiscount', 'safe', 'on'=>'search'),
@@ -63,6 +65,8 @@ class Detailtippayments extends CActiveRecord
 			'idatetime' => 'Tanggal',
 			'amount' => 'Jumlah',
 			'totaldiscount' => 'Potongan',
+			'cashierlog'=>'Waktu',
+			'idcashier'=>'Kasir'
 		);
 	}
 
@@ -90,6 +94,8 @@ class Detailtippayments extends CActiveRecord
 		$criteria->compare('idatetime',$this->idatetime,true);
 		$criteria->compare('amount',$this->amount);
 		$criteria->compare('totaldiscount',$this->totaldiscount);
+		$criteria->compare('idcashier',$this->idcashier);
+		$criteria->compare('cashierlog',$this->cashierlog);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

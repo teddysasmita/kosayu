@@ -86,6 +86,15 @@ $this->menu=array(
          		'name'=>'totaldiscount',
          		'type'=>'number',
          	),
+         	array(
+         		'header'=>'Waktu',
+         		'name'=>'cashierlog',
+         	),
+         	array(
+         		'header'=>'Kasir',
+         		'name'=>'idcashier',
+         	),
+         		 
          ),
    ));
  ?>
