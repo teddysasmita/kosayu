@@ -1134,7 +1134,7 @@ EOS;
     	foreach($this->salesdata as $sd) {
     		if ($sd['invnum'] == $regnum) {
     	// Because voucher or/and retur deduction take place after total
-    			$disc = $this->getVoucherNRetur($regnum) / $sd['amount'];
+    			$disc = $this->getVoucherNRetur($id) / $sd['amount'];
     			break;
     		}
     	}
