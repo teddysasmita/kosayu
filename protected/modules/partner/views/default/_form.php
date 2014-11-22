@@ -91,8 +91,20 @@
 				),
                array(
                   'class'=>'CButtonColumn',
-                  'updateButtonUrl'=>"Action::decodeUpdateDetailPartnerUrl(\$data)",
-               		'deleteButtonUrl'=>"Action::decodeDeleteDetailPartnerUrl(\$data)",
+               		'buttons'=>array(
+	               		'view'=>array(
+	               			'visible'=>'false'
+	               		),
+               			/*'update'=>array(
+               				'visible'=>'false'
+               			),*/
+          				'delete'=>array(
+               				'visible'=>'false'
+               			)
+               		),
+               		'updateButtonUrl'=>"Action::decodeUpdateDetailPartnerUrl(\$data)",
+               		//'deleteButtonUrl'=>"Action::decodeDeleteDetailPartnerUrl(\$data)",
+               	
                		//'viewButtonUrl'=>"Action::decodeDeleteDetailPartnerUrl(\$data)",
                )
           ),

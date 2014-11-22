@@ -269,18 +269,6 @@ class Action extends CComponent {
    	return Yii::app()->createUrl('/stockentries/default/restorehistory', array('idtrack'=>$data['idtrack']));
    }
    
-   public static function decodeRestoreDeletedStockEntryUrl($data)
-   {
-   	//return print_r($data);
-   	return Yii::app()->createUrl('/stockentries/default/restoreDeleted', array('idtrack'=>$data['idtrack']));
-   }
-    
-   public static function decodeRestoreHistoryStockEntryUrl($data)
-   {
-   	//return print_r($data);
-   	return Yii::app()->createUrl('/stockentries/default/restorehistory', array('idtrack'=>$data['idtrack']));
-   }
-   
    public static function decodeDeleteDetailStockEntryUrl($data)
    {
       //return print_r($data);
@@ -362,8 +350,8 @@ class Action extends CComponent {
    
    public static function decodeViewDetailPartnerUrl($data)
    {
-   		return Yii::app()->createUrl('/partner/detailpartners/view', array('iddetail'=>'boom'));
-   	  //return Yii::app()->createUrl('/partner/detailpartners/view', array('iddetail'=>$data['iddetail']));
+   	//return Yii::app()->createUrl('/partner/detailpartners/view', array('iddetail'=>'boom'));
+   	  return Yii::app()->createUrl('/partner/detailpartners/view', array('iddetail'=>$data['iddetail']));
    }
    
    public static function decodeDeleteDetailPurchasesReceiptUrl($data)

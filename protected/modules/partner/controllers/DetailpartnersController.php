@@ -7,7 +7,7 @@ class DetailpartnersController extends Controller
 	 * using two-column layout. See 'protected/views/layouts/column2.php'.
 	 */
 	public $layout='//layouts/column2';
-	public $formid='AB13a';
+	public $formid='AB14a';
 	public $tracker;
 	public $state;
 
