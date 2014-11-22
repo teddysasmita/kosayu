@@ -54,11 +54,12 @@ $this->menu=array(
             ),
             array(
               'header'=>'Tanggal',
-              'name'=>'idatetime',
+              'name'=>'ddatetime',
             ),
          	array(
          		'header'=>'Total',
          		'name'=>'amount',
+         		'type'=>'number',
          	),
          ),
    ));
@@ -78,6 +79,7 @@ $this->menu=array(
             array(
                'header'=>'Nama Komisi',
                'name'=>'idtipgroup',
+            	'value'=>"lookup::ItemTipGroupNameFromID(\$data['idtipgroup'])",
             ),
             array(
               'header'=>'Jumlah',
