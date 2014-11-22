@@ -859,19 +859,6 @@ EOS;
     	return $ds2;
     }
     
-    private function getVRDisc($regnum, $id)
-    {
-    	$disc = 0;
-    	foreach($this->salesdata as $sd) {
-    		if ($sd['invoicenum'] == $regnum) {
-    			// Because voucher or/and retur deduction take place after total
-    			$disc = $this->getVoucherNRetur($id) / $sd['amount'];
-    			break;
-    		}
-    	}
-    	return $disc;
-    }
-    
     private function getSalesDetail2($id, $idpartner, $idcomp, $idsticker, $ddatetime)
     {
     	if ($idcomp == '-') {
