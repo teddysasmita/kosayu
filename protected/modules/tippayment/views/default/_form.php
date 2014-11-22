@@ -121,6 +121,7 @@ EOS;
 	
 	
 		<?php 
+			print_r($model->idcomp);
 			if ($model->idcomp !== '-' ) {
 				echo "<div class=\"row\" id=\"comp\">";
 				echo $form->labelEx($model,'idcomp'); 
