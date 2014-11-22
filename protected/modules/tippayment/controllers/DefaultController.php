@@ -95,12 +95,12 @@ class DefaultController extends Controller
 	
 						if(isset(Yii::app()->session['Detailtippayments']) ) {
 							$details=Yii::app()->session['Detailtippayments'];
-							$respond=$respond&&$this->saveNewDetails($details, $model->idwarehouse	);
+							$respond=$respond&&$this->saveNewDetails($details);
 						} 
 						
 						if(isset(Yii::app()->session['Detailtippayments2']) ) {
 							$details=Yii::app()->session['Detailtippayments2'];
-							$respond=$respond&&$this->saveNewDetails($details, $model->idwarehouse	);
+							$respond=$respond&&$this->saveNewDetails($details);
 						}
 	
 						$this->afterPost($model);
