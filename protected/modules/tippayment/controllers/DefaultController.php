@@ -390,8 +390,9 @@ class DefaultController extends Controller
                Yii::app()->user->id)) {
                 $this->trackActivity('n');
                 $id = Yii::app()->tracker->createCommand()->select('id')->from('tippayments')
-                ->where('idtrack = :p_idtrack', array(':p_idtrack'=>$idtrack))
-                ->queryScalar();
+                	->where('idtrack = :p_idtrack', array(':p_idtrack'=>$idtrack))
+                	->queryScalar();
+                
                 $this->tracker->restoreDeleted('detailtippayments', "id", $id );
                 $this->tracker->restoreDeleted('tippayments', "idtrack", $idtrack);
                 
@@ -493,7 +494,7 @@ class DefaultController extends Controller
       
 	public function actionShowDetail($id)
 	{
-		if(Yii::app()->authManager->checkAccess($this->formid.'-Update',
+		if(Yii::app()->authManager->checkAccess($this->formid.'-View',
 				Yii::app()->user->id))  {
 						
 			$model=new Tippayments;
