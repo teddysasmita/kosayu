@@ -758,6 +758,7 @@ EOS;
    			->queryAll(); 	
    		foreach($this->salesdata as & $sd) {
    			$sd['id'] = $id;	
+   			$sd['iddetail'] = idmaker::getCurrentID2();
    			$sd['totaldiscount'] = $sd['totaldiscount'] + $this->getVRDisc($sd['invoicenum'], $sd['id']);
    		};
     }
