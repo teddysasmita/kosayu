@@ -362,8 +362,8 @@ class Action extends CComponent {
    
    public static function decodeViewDetailPartnerUrl($data)
    {
-   	return print_r($data);
-   	//return Yii::app()->createUrl('/partner/detailpartners/view', array('iddetail'=>$data['iddetail']));
+   	//return print_r($data);
+   	return Yii::app()->createUrl('/partner/detailpartners/view', array('iddetail'=>$data['iddetail']));
    }
    
    public static function decodeDeleteDetailPurchasesReceiptUrl($data)

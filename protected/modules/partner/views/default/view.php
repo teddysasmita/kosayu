@@ -61,10 +61,10 @@ $this->menu=array(
                   'class'=>'CButtonColumn',
                   'buttons'=> array(
                       'delete'=>array(
-                       'visible'=>'false'
+                       'visible'=>false
                       ),
                      'update'=>array(
-                        'visible'=>'false'
+                        'visible'=>false
                      )
                   ),
                   'viewButtonUrl'=>"Action::decodeViewDetailPartnerUrl(\$data)",
