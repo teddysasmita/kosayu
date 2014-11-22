@@ -142,7 +142,7 @@ class DefaultController extends Controller
                          		$model->totaldiscount = $model->totaldiscount + $sd['totaldiscount'];
                          	}
                          	Yii::app()->session['Detailtippayments'] = $this->salesdata;
-                         	$temp = $this->getSalesDetail($model->idpartner, $model->idcomp, 
+                         	$temp = $this->getSalesDetail($model->id, $model->idpartner, $model->idcomp, 
                          		$model->idsticker, $model->ddatetime);
                          	 Yii::app()->session['Detailtippayments2'] = $temp;
                          	$total = 0;
@@ -767,7 +767,7 @@ EOS;
     	return $disc;
     }
     
-    private function getSalesDetail($idpartner, $idcomp, $idsticker, $ddatetime)
+    private function getSalesDetail($id, $idpartner, $idcomp, $idsticker, $ddatetime)
     {
     	if ($idcomp == '-') {
     		$tip = Yii::app()->db->createCommand()->select('a.defaulttip')->from('partners a')
@@ -827,6 +827,7 @@ EOS;
     			$found = FALSE;
     		};
     		if (! $found) {
+    			$temp['id'] = $id;
     			$temp['iddetail'] = idmaker::getCurrentID2();
     			$temp['idtipgroup'] = $ds['idtipgroup'];
     			$temp['amount'] = $ds['amount'];
