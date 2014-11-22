@@ -142,7 +142,7 @@ class DefaultController extends Controller
                          	
                          	$this->getSales($model->id, $model->idsticker, $model->ddatetime);
                          	foreach($this->salesdata as $sd) {
-                         		$model->totalsales = $model->totalsales + $sd['total'];
+                         		$model->totalsales = $model->totalsales + $sd['amount'];
                          		$model->totaldiscount = $model->totaldiscount + $sd['totaldiscount'];
                          	}
                          	Yii::app()->session['Detailtippayments'] = $this->salesdata;
