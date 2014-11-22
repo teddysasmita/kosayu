@@ -43,7 +43,7 @@ class MYPDF extends TCPDF {
 		$counter=0;
 		$total=0;
 		$iditem='';
-		$this->SetXY(1, 30);
+		$this->SetXY(1, 35);
 		/*
 		if (count($this->detaildata) <= 12)
 			$maxrows = 12;
@@ -105,10 +105,10 @@ class MYPDF extends TCPDF {
 		
 		$this->setXY(10, 10);
 		$this->Ln();
-		$this->Cell(10, 5, 'Tanggal:'); $this->Cell(10,5, $this->data->idatetime);
-		$this->Cell(10, 5, 'Sticker:'); $this->Cell(10,5, $this->data->idsticker, 0, 1);
-		$this->Cell(10, 5, 'Mitra:'); $this->Cell(10,5, $this->data->idpartner);
-		$this->Cell(10, 5, 'Posisi:'); $this->Cell(10, 5, $this->data->idcomp, 0, 1);
+		$this->Cell(15, 5, 'Tanggal:'); $this->Cell(20,5, $this->data->idatetime);
+		$this->Cell(15, 5, 'Sticker:'); $this->Cell(20,5, $this->data->idsticker, 0, 1);
+		$this->Cell(15, 5, 'Mitra:'); $this->Cell(20,5, $this->data->idpartner);
+		$this->Cell(15, 5, 'Posisi:'); $this->Cell(20, 5, $this->data->idcomp, 0, 1);
 		
 		$this->setX(2);
 		for($i = 0; $i < count($this->headernames1); ++$i) {
