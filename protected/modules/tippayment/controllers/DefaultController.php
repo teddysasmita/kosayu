@@ -1128,7 +1128,7 @@ EOS;
     	return $disc;
     }
     
-    private function getVRDisc($regnum)
+    private function getVRDisc($regnum, $id)
     {
     	$disc = 0;
     	foreach($this->salesdata as $sd) {
@@ -1173,7 +1173,7 @@ EOS;
     			$ds['discount'] = $this->getUnSeenDisc($ds['regnum']) * $ds['price'];
     		}
     		
-    		$ds['discount'] = $this->getVRDisc($ds['id']) * ($ds['price'] - $ds['discount']);
+    		$ds['discount'] = $this->getVRDisc($ds['regnum'], $ds['id']) * ($ds['price'] - $ds['discount']);
     		if ( is_null($ds['pct']) ) {
     			$ds['pct'] = $tip;
     			$ds['tipgroupname'] = 'Komisi Standar';
