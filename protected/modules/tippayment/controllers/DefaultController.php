@@ -1092,7 +1092,8 @@ EOS;
     	$voucheramount = Yii::app()->db->createCommand()
     		->select('sum(amount) as vamount')
     		->from('posreceipts')
-    		->where("idpos = :p_idpos and (method = 'V' or method = 'R')")	
+    		->where("idpos = :p_idpos and (method = 'V' or method = 'R')",
+    			array(':p_idpos'=>$idsales))	
     		->queryScalar();
     }
     
