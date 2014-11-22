@@ -129,6 +129,8 @@ class DefaultController extends Controller
 							$compositions = $this->getCompositions($model->idpartner);
 							if (count($compositions) == 0) 
 								$model->idcomp = '-';
+							else
+								$model->idcomp = '';
                          	Yii::app()->session['Tippayments']=$model->attributes;
                       	} else if ($_POST['command']=='countTip') {
 							$model->attributes=$_POST['Tippayments'];
