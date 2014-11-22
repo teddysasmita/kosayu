@@ -1101,7 +1101,7 @@ EOS;
     private function getSales($id, $idsticker, $ddatetime)
     {
     	$select1 = <<<EOS
- 	a.id as iddetail, a.regnum as invnum, (a.total - a.tax) as amount, 
+ 	a.id as iddetail, a.regnum as invnum, (a.total - a.tax) as amount, a.totaldiscount,
     a.discount, sum(b.qty*b.price) as totalnondisc
 EOS;
    		$this->salesdata = Yii::app()->db->createCommand()
@@ -1114,6 +1114,7 @@ EOS;
    			->queryAll(); 	
    		foreach($this->salesdata as & $sd) {
    			$sd['id'] = $id;	
+   			$sd['totaldiscount'] = $sd['totaldiscount'] + $this->getVRDisc($sd['regnum'], $sd['id']);
    		};
     }
     

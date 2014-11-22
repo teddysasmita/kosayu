@@ -171,6 +171,11 @@ EOS;
                   'name'=>'amount',
               		'type'=>'number',
               ),
+            array(
+            	'header'=>'Total Potongan',
+            	'name'=>'totaldiscount',
+            	'type'=>'number',
+            ),
           ),
     ));
 
