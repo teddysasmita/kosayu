@@ -1155,7 +1155,7 @@ EOS;
 	    		->queryScalar();
     	}
     	$sql1 = <<<EOS
-    	SELECT b.iddetail, a.regnum, b.iditem, b.qty, b.price, b.discount, c.pct, c.name
+    	SELECT a.id, b.iddetail, a.regnum, b.iditem, b.qty, b.price, b.discount, c.pct, c.name
 		FROM detailsalespos b
 		JOIN salespos a ON a.id = b.id
 		LEFT JOIN (
@@ -1173,7 +1173,7 @@ EOS;
     			$ds['discount'] = $this->getUnSeenDisc($ds['regnum']) * $ds['price'];
     		}
     		
-    		$ds['discount'] = $this->getVRDisc($ds['regnum']) * ($ds['price'] - $ds['discount']);
+    		$ds['discount'] = $this->getVRDisc($ds['id']) * ($ds['price'] - $ds['discount']);
     		if ( is_null($ds['pct']) ) {
     			$ds['pct'] = $tip;
     			$ds['tipgroupname'] = 'Komisi Standar';
