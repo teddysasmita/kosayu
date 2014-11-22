@@ -1160,7 +1160,7 @@ EOS;
     		$tip2 = $tiptemp['tip'] / $tiptemp['defaulttip'];
     	}
     	$sql1 = <<<EOS
-    	SELECT a.id, b.iddetail, a.regnum, b.iditem, b.qty, b.price, b.discount, c.pct, c.name as tipgroupname
+    	SELECT a.id, b.iddetail, a.regnum, b.iditem, b.qty, b.price, b.discount, c.pct, c.id as idtipgroup
 		FROM detailsalespos b
 		JOIN salespos a ON a.id = b.id
 		LEFT JOIN (
