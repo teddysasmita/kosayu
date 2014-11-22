@@ -1149,11 +1149,14 @@ EOS;
 	    		->where("a.id = :p_id ",
 	    			array(':p_id'=>$idpartner))
 	    		->queryScalar();
+    		$tip2 = 1;
     	} else {
-    		$tip = Yii::app()->db->createCommand()->select('a.tip')->from('detailpartners a')
+    		$tiptemp = Yii::app()->db->createCommand()->select('a.tip, b.defaulttip')->from('detailpartners a')
 	    		->where("a.id = :p_id and a.iddetail = :p_iddetail",
 	    			array(':p_id'=>$idpartner, ':p_iddetail'=>$idcomp))
-	    		->queryScalar();
+	    		->queryRow();
+    		$tip = $tiptemp['tip'];
+    		$tip2 = $tiptemp['tip'] / $tiptemp['defaulttip'];
     	}
     	$sql1 = <<<EOS
     	SELECT a.id, b.iddetail, a.regnum, b.iditem, b.qty, b.price, b.discount, c.pct, c.name as tipgroupname
@@ -1178,7 +1181,9 @@ EOS;
     		if ( is_null($ds['pct']) ) {
     			$ds['pct'] = $tip;
     			$ds['tipgroupname'] = 'Komisi Standar';
-    		}
+    		} 
+    		
+    		$ds['pct'] = $ds['pct'] * $tip2;
     		$ds['amount'] = ($ds['price'] - $ds['discount']) * $ds['qty'] * $ds['pct'] / 100;
     	}
     	
