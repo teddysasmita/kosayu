@@ -491,6 +491,26 @@ class DefaultController extends Controller
          }
       }
       
+	public function actionShowDetail($id)
+	{
+		if(Yii::app()->authManager->checkAccess($this->formid.'-Update',
+				Yii::app()->user->id))  {
+						
+			$model=new Tippayments;
+			$model->attributes=Yii::app()->session['Tippayments'];
+		
+			$this->getSales($model->id, $model->idsticker, $model->ddatetime);
+	
+			$temp = $this->getSalesDetail2($model->id, $model->idpartner, $model->idcomp,
+					$model->idsticker, $model->ddatetime);
+			
+			$this->render('showdetail',array(
+				'model'=>$model, 'detail'=>$temp
+			));
+		} else {
+			throw new CHttpException(404,'You have no authorization for this operation.');
+		}
+	}
 
      protected function saveNewDetails(array $details)
      {                  
@@ -838,6 +858,68 @@ EOS;
     	return $ds2;
     }
     
+    private function getVRDisc($regnum, $id)
+    {
+    	$disc = 0;
+    	foreach($this->salesdata as $sd) {
+    		if ($sd['invoicenum'] == $regnum) {
+    			// Because voucher or/and retur deduction take place after total
+    			$disc = $this->getVoucherNRetur($id) / $sd['amount'];
+    			break;
+    		}
+    	}
+    	return $disc;
+    }
+    
+    private function getSalesDetail2($id, $idpartner, $idcomp, $idsticker, $ddatetime)
+    {
+    	if ($idcomp == '-') {
+    		$tip = Yii::app()->db->createCommand()->select('a.defaulttip')->from('partners a')
+    		->where("a.id = :p_id ",
+    				array(':p_id'=>$idpartner))
+    				->queryScalar();
+    		$tip2 = 1;
+    	} else {
+    		$tiptemp = Yii::app()->db->createCommand()->select('a.tip, b.defaulttip')->from('detailpartners a')
+    		->join('partners b', 'b.id = a.id')
+    		->where("a.id = :p_id and a.iddetail = :p_iddetail",
+    				array(':p_id'=>$idpartner, ':p_iddetail'=>$idcomp))
+    				->queryRow();
+    		$tip = $tiptemp['tip'];
+    		$tip2 = $tiptemp['tip'] / $tiptemp['defaulttip'];
+    	}
+    	$sql1 = <<<EOS
+    	SELECT a.id, b.iddetail, a.regnum, b.iditem, b.qty, b.price, b.discount, c.pct, c.id as idtipgroup
+		FROM detailsalespos b
+		JOIN salespos a ON a.id = b.id
+		LEFT JOIN (
+		detailitemtipgroups d
+		JOIN itemtipgroups c ON c.id = d.id
+		) ON d.iditem = b.iditem
+    	where a.idsticker = '$idsticker' and a.idatetime like '$ddatetime%'
+    	order by a.regnum
+EOS;
+    	$detailsales = Yii::app()->db->createCommand($sql1)
+    	->queryAll();
+    
+    	foreach($detailsales as & $ds) {
+    		if ($ds['discount'] == 0) {
+    			$ds['discount'] = $this->getUnSeenDisc($ds['regnum']) * $ds['price'];
+    		}
+    
+    		$ds['discount'] = $this->getVRDisc($ds['regnum'], $ds['id']) * ($ds['price'] - $ds['discount']);
+    		if ( is_null($ds['pct']) ) {
+    			$ds['pct'] = $tip;
+    			$ds['idtipgroup'] = '0';
+    		}
+    
+    		$ds['pct'] = $ds['pct'] * $tip2;
+			$ds['amount'] = ($ds['price'] - $ds['discount']) * $ds['qty'] * $ds['pct'] / 100;
+    	}
+        
+    	return $detailsales;
+    }
+
     public function actionPrint($id)
     {
     	if(Yii::app()->authManager->checkAccess($this->formid.'-Append',
