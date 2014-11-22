@@ -90,6 +90,16 @@ class lookup extends CComponent {
       return Yii::app()->db->createCommand($sql)->queryScalar();
    }
    
+   public static function ItemTipGroupNameFromID($id)
+   {
+   		if ($id == '0')
+   			return 'Komisi Standar';
+   		else {
+   			$sql="select name from itemtipgroups where id='$id'";
+   			return Yii::app()->db->createCommand($sql)->queryScalar();
+   		}
+   	}
+   
    public static function CurrNameFromID($id)
    {
    	$sql="select name from currencies where id='$id'";

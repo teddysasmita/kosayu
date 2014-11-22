@@ -1181,7 +1181,7 @@ EOS;
     		$ds['discount'] = $this->getVRDisc($ds['regnum'], $ds['id']) * ($ds['price'] - $ds['discount']);
     		if ( is_null($ds['pct']) ) {
     			$ds['pct'] = $tip;
-    			$ds['tipgroupname'] = 'Komisi Standar';
+    			$ds['idtipgroup'] = '0';
     		} 
     		
     		$ds['pct'] = $ds['pct'] * $tip2;
@@ -1193,8 +1193,8 @@ EOS;
     	$found = FALSE;
     	foreach($detailsales as $ds) {
     		foreach($ds2 as & $d) {
-    			if (isset($d['tipgroupname']))
-    			if ($d['tipgroupname'] == $ds['tipgroupname'] ) {
+    			if (isset($d['idtipgroup']))
+    			if ($d['idtipgroup'] == $ds['idtipgroup'] ) {
     				$d['amount'] = $d['amount'] + $ds['amount'];
     				$found = TRUE;
     				break;
@@ -1202,7 +1202,8 @@ EOS;
     			$found = FALSE;
     		};
     		if (! $found) {
-    			$temp['tipgroupname'] = $ds['tipgroupname'];
+    			$temp['iddetail'] = idmaker::getCurrentID2();
+    			$temp['idtipgroup'] = $ds['idtipgroup'];
     			$temp['amount'] = $ds['amount'];
     			$ds2[] = $temp;
     		};
