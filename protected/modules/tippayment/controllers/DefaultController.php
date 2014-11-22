@@ -17,6 +17,7 @@ class DefaultController extends Controller
 	public $state;
 	
 	private $salesdata = array();
+	private $grosssales = array();
 
 	/**
 	 * @return array action filters
@@ -1086,6 +1087,15 @@ EOS;
       		->queryAll();   	
       }
       
+    private function getVoucherNRetur($idsales)
+    {
+    	$voucheramount = Yii::app()->db->createCommand()
+    		->select('sum(amount) as vamount')
+    		->from('posreceipts')
+    		->where("idpos = :p_idpos and (method = 'V' or method = 'R')")	
+    		->queryScalar();
+    }
+    
     private function getSales($id, $idsticker, $ddatetime)
     {
     	$select1 = <<<EOS
@@ -1113,6 +1123,19 @@ EOS;
     			$disc = $sd['discount'] / $sd['totalnondisc'];
     			break;
     		}	
+    	}
+    	return $disc;
+    }
+    
+    private function getVRDisc($regnum)
+    {
+    	$disc = 0;
+    	foreach($this->salesdata as $sd) {
+    		if ($sd['invnum'] == $regnum) {
+    	// Because voucher or/and retur deduction take place after total
+    			$disc = $this->getVoucherNRetur($regnum) / $sd['amount'];
+    			break;
+    		}
     	}
     	return $disc;
     }
@@ -1149,6 +1172,7 @@ EOS;
     			$ds['discount'] = $this->getUnSeenDisc($ds['regnum']) * $ds['price'];
     		}
     		
+    		$ds['discount'] = $this->getVRDisc($ds['regnum']) * ($ds['price'] - $ds['discount']);
     		if ( is_null($ds['pct']) ) {
     			$ds['pct'] = $tip;
     			$ds['tipgroupname'] = 'Komisi Standar';
