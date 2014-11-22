@@ -136,10 +136,6 @@ EOS;
 				echo $form->hiddenField($model, 'idcomp');
 			}
          ?>
-		
-	<div class="row buttons">
-      <?php echo CHtml::button('Proses', array('id'=>'process')); ?>
-   </div>
    
 	<div class="row">
 		<?php echo $form->labelEx($model,'receiver'); ?>
@@ -148,6 +144,10 @@ EOS;
         ?>
         <?php echo $form->error($model,'receiver');?> 
 	</div>
+	
+	<div class="row buttons">
+      <?php echo CHtml::button('Proses', array('id'=>'process')); ?>
+   </div>
 	
 <?php 
     if (isset(Yii::app()->session['Detailtippayments'])) {
