@@ -83,13 +83,7 @@ class DefaultController extends Controller
 						$model->attributes=$_POST['Tippayments'];
                       //The user pressed the button;
 						$this->beforePost($model);
-						$respond=$this->checkWarehouse($model->idwarehouse);
-						if (!$respond)
-	                      	throw new CHttpException(5000,'Lokasi anda tidak terdaftar');
-						$respond = $this->checkSerialNum(Yii::app()->session['Detailtippayments'], $model->idwarehouse);
-	                    if (!$respond)
-	                      	throw new CHttpException(5001,'Nomor Seri yg anda daftarkan ada yg sdh terdaftar: '. $respond);
-	                      
+						
 						$respond=$model->save();
 						if(!$respond) {
 							if (count($model->error) > 0 )
