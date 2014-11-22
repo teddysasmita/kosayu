@@ -14,6 +14,7 @@ $this->menu=array(
 	array('label'=>'Hapus Data', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'Are you sure you want to delete this item?')),
 	array('label'=>'Pencarian Data', 'url'=>array('admin')),
 	array('label'=>'Sejarah', 'url'=>array('history', 'id'=>$model->id)),
+	array('label'=>'Print', 'url'=>array('print', 'id'=>$model->id)),
 );
 ?>
 
