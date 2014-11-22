@@ -1202,8 +1202,9 @@ EOS;
     			$found = FALSE;
     		};
     		if (! $found) {
-    			$ds2['tipgroupname'] = $ds['tipgroupname'];
-    			$ds2['amount'] = $ds['amount'];
+    			$temp['tipgroupname'] = $ds['tipgroupname'];
+    			$temp['amount'] = $ds['amount'];
+    			$ds2[] = $temp;
     		};
     	}
 		print_r($ds2);
