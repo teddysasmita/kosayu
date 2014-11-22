@@ -90,8 +90,8 @@
                array(
                   'class'=>'CButtonColumn',
                   'updateButtonUrl'=>"Action::decodeUpdateDetailPartnerUrl(\$data)",
-               		'deleteButtonUrl'=>"Action::decodeUpdateDetailPartnerUrl(\$data)",
-               		'viewButtonUrl'=>"Action::decodeUpdateDetailPartnerUrl(\$data)",
+               		'deleteButtonUrl'=>"Action::decodeDeleteDetailPartnerUrl(\$data)",
+               		'viewButtonUrl'=>"Action::decodeDeleteDetailPartnerUrl(\$data)",
                )
           ),
     ));
