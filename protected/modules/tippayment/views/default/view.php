@@ -93,6 +93,7 @@ $this->menu=array(
          	array(
          		'header'=>'Kasir',
          		'name'=>'idcashier',
+         		'value'=>"lookup::UserNameFromUserID(\$data['idcashier'])",
          	),
          		 
          ),
