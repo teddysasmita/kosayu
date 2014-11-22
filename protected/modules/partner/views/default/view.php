@@ -70,7 +70,7 @@ $this->menu=array(
                   		'visible'=>'false'
                   	)
                   ),
-                  //'viewButtonUrl'=>"Action::decodeViewDetailPartnerUrl(\$data)",
+                  'viewButtonUrl'=>"Action::decodeViewDetailPartnerUrl(\$data)",
               )
          ),
    ));
