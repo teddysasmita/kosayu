@@ -151,6 +151,14 @@ class idmaker extends CComponent
                break;
        }
    }
+   
+   public static function cashRound($amount, $threshold)
+   {
+   		$temp = $amount / $threshold;
+   		$temp = round($temp);
+   		
+   		return $temp * $threshold;
+   }
       
    public static function decodeUpdateUserAuthUrl($iduser, $id)
    {

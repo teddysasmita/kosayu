@@ -142,7 +142,7 @@ class DefaultController extends Controller
                          	foreach($temp as $t) {
                          		$total = $total + $t['amount'];
                          	}
-                         	$model->amount = $total;
+                         	$model->amount = idmaker::cashRound($total, 500);
                          	Yii::app()->session['Tippayments']=$model->attributes;
                       	} 
 					}
