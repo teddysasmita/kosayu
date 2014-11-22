@@ -54,11 +54,16 @@ $this->menu=array(
             ),
             array(
               'header'=>'Tanggal',
-              'name'=>'ddatetime',
+              'name'=>'idatetime',
             ),
          	array(
-         		'header'=>'Total',
+         		'header'=>'Total Penjualan',
          		'name'=>'amount',
+         		'type'=>'number',
+         	),
+         	array(
+         		'header'=>'Total Potongan',
+         		'name'=>'totaldiscount',
          		'type'=>'number',
          	),
          ),
