@@ -102,7 +102,7 @@ class lookup extends CComponent {
    	
    	public static function DetailPartnerNameFromID($id)
    	{
-		$sql="select name from detailpartners where iddetail='$id'";
+		$sql="select comname from detailpartners where iddetail='$id'";
    		return Yii::app()->db->createCommand($sql)->queryScalar();
    	}
    	
