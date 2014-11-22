@@ -25,8 +25,10 @@ $this->menu=array(
 	$this->widget('zii.widgets.grid.CGridView', array(
 		'dataProvider'=>$dataProvider,
 		'columns'=>array(
-            'invoicenum',
-			
+            array(
+				'header'=>'No Faktur',
+				'name'=>'regnum',
+			),
 			array(
 				'header'=>'Nama Barang',
 				'name'=>'iditem',
