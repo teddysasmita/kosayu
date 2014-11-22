@@ -97,10 +97,7 @@ class MYPDF extends TCPDF {
 		$this->SetDrawColor(0, 0, 0);
 		$this->SetLineWidth(0.3);
 		$this->SetCellPadding(0.8);
-	
-		$this->SetFont('', 'IB');
-		$this->setFontSize();
-		
+			
 		$this->setXY(10, 5);
 		$this->Cell(90, 5, 'KOSAYU - Pusat Oleh-oleh BALI', 0, 1);
 		$this->Cell(90, 5, 'Jl Sunset Road no. 88x Kuta, Badung - Bali', 0, 1);
