@@ -106,8 +106,8 @@ class MYPDF extends TCPDF {
 		$this->Ln();
 		$this->Cell(15, 5, 'Tanggal:'); $this->Cell(40,5, $this->data->idatetime);
 		$this->Cell(15, 5, 'Sticker:'); $this->Cell(20,5, $this->data->idsticker, 0, 1);
-		$this->Cell(15, 5, 'Mitra:'); $this->Cell(40,5, $this->data->idpartner);
-		$this->Cell(15, 5, 'Posisi:'); $this->Cell(20, 5, $this->data->idcomp, 0, 1);
+		$this->Cell(15, 5, 'Mitra:'); $this->Cell(40,5, lookup::PartnerNameFromID($this->data->idpartner));
+		$this->Cell(15, 5, 'Posisi:'); $this->Cell(20, 5, lookup::DetailPartnerNameFromID($this->data->idcomp), 0, 1);
 		
 		$this->setX(2);
 		for($i = 0; $i < count($this->headernames1); ++$i) {
