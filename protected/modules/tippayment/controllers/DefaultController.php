@@ -898,9 +898,8 @@ EOS;
     		if ( is_null($ds['pct']) ) {
     			$ds['pct'] = $tip;
     			$ds['idtipgroup'] = '0';
-    		}
-    
-    		$ds['pct'] = $ds['pct'] * $tip2;
+    		} else
+    	 		$ds['pct'] = $ds['pct'] * $tip2;
 			$ds['amount'] = ($ds['price'] - $ds['discount']) * $ds['qty'] * $ds['pct'] / 100;
     	}
         
