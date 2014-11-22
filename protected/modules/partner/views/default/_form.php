@@ -69,7 +69,9 @@
        $rawdata=Yii::app()->session['Detailpartners'];
        $count=count($rawdata);
     } else {
-       $count=Yii::app()->db->createCommand("select count(*) from detailpartners where id='$model->id'")->queryScalar();
+       $count=Yii::app()->db
+       	->createCommand("select count(*) from detailpartners where id='$model->id'")
+       	->queryScalar();
        $sql="select * from detailpartners where id='$model->id'";
        $rawdata=Yii::app()->db->createCommand($sql)->queryAll ();
     }
