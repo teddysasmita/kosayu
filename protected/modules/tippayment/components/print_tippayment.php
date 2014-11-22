@@ -117,7 +117,7 @@ class MYPDF extends TCPDF {
 	} 	
 }
 
-function execute($model, $detailmodel) {
+function execute($model, $detailmodel, $detailmodel2) {
 
 	// create new PDF document
 	
@@ -162,7 +162,7 @@ function execute($model, $detailmodel) {
 	$pdf->SetFont('helvetica', '', 9);
 	
 	// add a page
-	$pdf->LoadData($model, $detailmodel);
+	$pdf->LoadData($model, $detailmodel, $detailmodel2);
 	
 	$pdf->AddPage($pdf->pageorientation, $pdf->pagesize);
 	//$pdf->AddPage();
