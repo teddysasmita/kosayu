@@ -1206,7 +1206,8 @@ EOS;
     			$ds2['amount'] = $ds['amount'];
     		};
     	}
-
+		print_r($ds2);
+		die;
     	//return $detailsales;
     	return $ds2;
     }
