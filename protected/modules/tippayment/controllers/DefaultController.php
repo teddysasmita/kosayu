@@ -1156,7 +1156,7 @@ EOS;
 	    		->queryScalar();
     	}
     	$sql1 = <<<EOS
-    	SELECT a.id, b.iddetail, a.regnum, b.iditem, b.qty, b.price, b.discount, c.pct, c.name
+    	SELECT a.id, b.iddetail, a.regnum, b.iditem, b.qty, b.price, b.discount, c.pct, c.name as tipgroupname
 		FROM detailsalespos b
 		JOIN salespos a ON a.id = b.id
 		LEFT JOIN (
