@@ -124,6 +124,10 @@ EOS;
 			if ($model->idcomp !== '-' ) {
 				echo "<div class=\"row\" id=\"comp\">";
 				echo $form->labelEx($model,'idcomp'); 
+				$compositions = Yii::app()->db->createCommand()
+					->select('comname, iddetail')->from('detailpartners')
+					->where('id = :p_id', array(':p_id'=>$model->idpartner))
+					->queryAll();
 				$data = CHtml::listData($compositions, 'iddetail', 'comname');
          		echo $form->dropDownList($model, 'idcomp', $data);	
          		echo $form->error($model,'idcomp');

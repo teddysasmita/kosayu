@@ -33,5 +33,5 @@ Yii::app()->clientScript->registerScript('myscript', $jq, CClientScript::POS_REA
 
 <h1>Pembayaran Komisi Agen</h1>
 
-<?php $this->renderPartial('_form', array('model'=>$model, 'compositions'=>$compositions, 
+<?php $this->renderPartial('_form', array('model'=>$model,  
 		'id'=>$model->id, 'command'=>'create')); ?>

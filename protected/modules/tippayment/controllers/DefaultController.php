@@ -127,7 +127,7 @@ class DefaultController extends Controller
                       	} else if ($_POST['command']=='getComp') {
 							$model->attributes=$_POST['Tippayments'];
 							$compositions = $this->getCompositions($model->idpartner);
-							if (count($compositions) == 0) 
+							if ($compositions == 0) 
 								$model->idcomp = '-';
 							else
 								$model->idcomp = '';
@@ -151,7 +151,7 @@ class DefaultController extends Controller
 				}
 
 				$this->render('create',array(
-                    'model'=>$model, 'compositions'=>$compositions
+                    'model'=>$model, 
                 ));
                 
              } else {
@@ -1083,10 +1083,10 @@ EOS;
       private function getCompositions($idpartner)
       {
       	return Yii::app()->db->createCommand()
-      		->select('iddetail, comname')
+      		->select('count(*)')
       		->from('detailpartners')
       		->where("id = :p_id", array(':p_id'=>$idpartner))
-      		->queryAll();   	
+      		->queryScalar();   	
       }
       
     private function getVoucherNRetur($idsales)
