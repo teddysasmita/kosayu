@@ -28,6 +28,14 @@ $this->menu=array(
 		'idatetime',
 		'idsticker',
 		'ddatetime',
+		array(
+			'name'=>'idpartner',
+			'value'=>lookup::PartnerNameFromID($model->idpartner),
+		),
+		array(
+			'name'=>'idcomp',
+			'value'=>lookup::DetailPartnerNameFromID($model->idcomp),
+		),
       	'receiver',
 		array(
 			'name'=>'totaldiscount',
