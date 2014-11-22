@@ -28,7 +28,10 @@ $this->menu=array(
 		'idsticker',
 		'ddatetime',
       	'receiver',
-		'amount',
+		array(
+			'label'=>'amount',
+			'type'=>'number'
+		),
 		array(
 			'label'=>'Userlog',
 			'value'=>lookup::UserNameFromUserID($model->userlog),
@@ -89,6 +92,7 @@ $this->menu=array(
             array(
               'header'=>'Jumlah',
               'name'=>'amount',
+              'type'=>'number',
             ),
          ),
    ));
