@@ -57,7 +57,7 @@ $this->menu=array(
          		'name'=>'tip',
          		'type'=>'number'
          	),
-            /*array(
+            array(
                   'class'=>'CButtonColumn',
                   'buttons'=> array(
                       'delete'=>array(
@@ -68,7 +68,7 @@ $this->menu=array(
                      )
                   ),
                   'viewButtonUrl'=>"Action::decodeViewDetailPartnerUrl(\$data)",
-              )*/
+              )
          ),
    ));
  ?>
