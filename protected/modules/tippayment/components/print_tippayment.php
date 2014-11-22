@@ -105,9 +105,9 @@ class MYPDF extends TCPDF {
 		
 		$this->setXY(10, 10);
 		$this->Ln();
-		$this->Cell(15, 5, 'Tanggal:'); $this->Cell(30,5, $this->data->idatetime);
+		$this->Cell(15, 5, 'Tanggal:'); $this->Cell(35,5, $this->data->idatetime);
 		$this->Cell(15, 5, 'Sticker:'); $this->Cell(20,5, $this->data->idsticker, 0, 1);
-		$this->Cell(15, 5, 'Mitra:'); $this->Cell(30,5, $this->data->idpartner);
+		$this->Cell(15, 5, 'Mitra:'); $this->Cell(35,5, $this->data->idpartner);
 		$this->Cell(15, 5, 'Posisi:'); $this->Cell(20, 5, $this->data->idcomp, 0, 1);
 		
 		$this->setX(2);
@@ -148,7 +148,7 @@ function execute($model, $detailmodel, $detailmodel2) {
 	$pdf->SetFooterMargin(0);
 	
 	//set auto page breaks
-	$pdf->SetAutoPageBreak(TRUE, 30);
+	$pdf->SetAutoPageBreak(TRUE, 10);
 	
 	//set image scale factor
 	$pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
