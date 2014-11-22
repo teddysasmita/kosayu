@@ -846,7 +846,7 @@ EOS;
     
     		$model=$this->loadModel($id);
     		$detailmodel=$this->loadDetails($id);
-    		$detailmodel=$this->loadDetails2($id);
+    		$detailmodel2=$this->loadDetails2($id);
 			Yii::import('application.vendors.tcpdf.*');
 			require_once ('tcpdf.php');
 			Yii::import('application.modules.tippayment.components.*');
