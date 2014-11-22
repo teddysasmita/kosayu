@@ -25,8 +25,8 @@ class MYPDF extends TCPDF {
 		$this->detaildata = $detaildata;
 		$this->detaildata2 = $detaildata2;
 		
-		$this->headernames1 = array('No. Struk', 'Total', 'Potongan' );
-		$this->headerwidths1 = array(26, 26, 26);
+		$this->headernames1 = array('No. Struk', 'Total', 'Potongan', 'Waktu', 'Kasir' );
+		$this->headerwidths1 = array(16, 16, 16, 16, 16);
 	}
 
 	// Colored table
@@ -59,6 +59,8 @@ class MYPDF extends TCPDF {
 			$this->Cell($this->headerwidths1[0], $ih, $row['invoicenum'], 0, 0, 'C');
 			$this->Cell($this->headerwidths1[1], $ih, number_format($row['amount']), 0, 0, 'R');
 			$this->Cell($this->headerwidths1[2], $ih, number_format($row['totaldiscount']), 0, 0, 'R');
+			$this->Cell($this->headerwidths1[3], $ih, $row['cashierlog'], 0, 0, 'R');
+			$this->Cell($this->headerwidths1[4], $ih, lookup::UserNameFromUserID($row['idcashier']), 0, 0, 'R');
 			$this->ln($ih);
 		}
 	}
