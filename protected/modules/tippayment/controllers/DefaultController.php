@@ -1152,6 +1152,7 @@ EOS;
     		$tip2 = 1;
     	} else {
     		$tiptemp = Yii::app()->db->createCommand()->select('a.tip, b.defaulttip')->from('detailpartners a')
+    			->join('partners b', 'b.id = a.id')
 	    		->where("a.id = :p_id and a.iddetail = :p_iddetail",
 	    			array(':p_id'=>$idpartner, ':p_iddetail'=>$idcomp))
 	    		->queryRow();
