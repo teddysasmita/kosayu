@@ -29,7 +29,15 @@ $this->menu=array(
 		'ddatetime',
       	'receiver',
 		array(
-			'label'=>'amount',
+			'name'=>'totaldiscount',
+			'type'=>'number'
+		),
+		array(
+			'name'=>'totalsales',
+			'type'=>'number'
+		),
+		array(
+			'name'=>'amount',
 			'type'=>'number'
 		),
 		array(
