@@ -168,7 +168,7 @@ EOS;
             'columns'=>array(
                array(
                    'header'=>'Nomor Invoice',
-                   'name'=>'invnum',
+                   'name'=>'invoicenum',
                ),
               array(
                   'header'=>'Total Belanja',
