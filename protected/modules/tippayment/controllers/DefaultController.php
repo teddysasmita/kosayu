@@ -1114,7 +1114,7 @@ EOS;
    			->queryAll(); 	
    		foreach($this->salesdata as & $sd) {
    			$sd['id'] = $id;	
-   			$sd['totaldiscount'] = $sd['totaldiscount'] + $this->getVRDisc($sd['regnum'], $sd['id']);
+   			$sd['totaldiscount'] = $sd['totaldiscount'] + $this->getVRDisc($sd['invnum'], $sd['id']);
    		};
     }
     
