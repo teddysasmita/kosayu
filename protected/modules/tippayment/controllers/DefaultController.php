@@ -106,7 +106,9 @@ class DefaultController extends Controller
 						$this->afterPost($model);
 						Yii::app()->session->remove('Tippayments');
 						Yii::app()->session->remove('Detailtippayments');
+						Yii::app()->session->remove('Detailtippayments2');
 						Yii::app()->session->remove('Deletedetailtippayments');
+						Yii::app()->session->remove('Deletedetailtippayments2');
 						$this->redirect(array('view','id'=>$model->id));
 
 					} else if (isset($_POST['command'])){
