@@ -189,7 +189,7 @@ EOS;
     $this->widget('zii.widgets.grid.CGridView', array(
     		'dataProvider'=>$dataProvider,
     		'columns'=>array(
-    				array(
+    				/*array(
     					'header'=>'Nomor Faktur',
 						'name'=>'regnum',
     				),
@@ -208,6 +208,7 @@ EOS;
 						'name'=>'qty',
     					'type'=>'number',
     				),
+    				*/
     				array(
     					'header'=>'Kelompok Komisi',
 						'name'=>'idtipgroup',
