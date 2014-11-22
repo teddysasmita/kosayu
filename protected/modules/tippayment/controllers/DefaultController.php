@@ -497,8 +497,7 @@ class DefaultController extends Controller
 		if(Yii::app()->authManager->checkAccess($this->formid.'-List',
 				Yii::app()->user->id))  {
 						
-			$model=new Tippayments;
-			$model->attributes=Yii::app()->session['Tippayments'];
+			$model= $this->loadModel($id);
 		
 			$this->getSales($model->id, $model->idsticker, $model->ddatetime);
 	
