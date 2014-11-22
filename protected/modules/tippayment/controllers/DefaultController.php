@@ -494,7 +494,7 @@ class DefaultController extends Controller
       
 	public function actionShowDetail($id)
 	{
-		if(Yii::app()->authManager->checkAccess($this->formid.'-View',
+		if(Yii::app()->authManager->checkAccess($this->formid.'-List',
 				Yii::app()->user->id))  {
 						
 			$model=new Tippayments;
