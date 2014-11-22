@@ -71,7 +71,7 @@ class MYPDF extends TCPDF {
 	
 	public function footer()
 	{
-		$this->SetFillColor(224, 235, 255);
+		/*$this->SetFillColor(224, 235, 255);
 		$this->SetTextColor(0);
 		$this->SetDrawColor(0, 0, 0);
 		$this->SetLineWidth(0.3);
@@ -88,6 +88,7 @@ class MYPDF extends TCPDF {
 		$this->Cell(43, 5, lookup::UserNameFromUserID($this->data->userlog), 'LRB', 0, 'C', false,'', 0, false, 'T', 'T');
 		$this->setX(173);
 		$this->Cell(23, 5, 'total '.trim($this->getAliasNbPages()), 'LRB', 1, 'C', false,'', 0, false, 'T', 'T');
+		*/
 	}
 	
 	public function master()
@@ -102,14 +103,16 @@ class MYPDF extends TCPDF {
 		$this->Cell(90, 5, 'KOSAYU - Pusat Oleh-oleh BALI', 0, 1);
 		$this->Cell(90, 5, 'Jl Sunset Road no. 88x Kuta, Badung - Bali', 0, 1);
 		
-		$this->setXY(10, 20);
+		$this->setXY(10, 10);
+		$this->Ln();
 		$this->Cell(10, 5, 'Tanggal:'); $this->Cell(10,5, $this->data->idatetime);
 		$this->Cell(10, 5, 'Sticker:'); $this->Cell(10,5, $this->data->idsticker, 0, 1);
 		$this->Cell(10, 5, 'Mitra:'); $this->Cell(10,5, $this->data->idpartner);
-		$this->Cell(10, 5, 'Posisi:'); $this->Cell(10, 5, $this->data->idcomp);
+		$this->Cell(10, 5, 'Posisi:'); $this->Cell(10, 5, $this->data->idcomp, 0, 1);
 		
+		$this->setX(2);
 		for($i = 0; $i < count($this->headernames1); ++$i) {
-			$this->Cell($this->headerwidths1[$i], 7, $this->headernames1[$i], 1, 0, 'C');
+			$this->Cell($this->headerwidths1[$i], 7, $this->headernames1[$i], 0, 0, 'C');
 		}
 	} 	
 }
