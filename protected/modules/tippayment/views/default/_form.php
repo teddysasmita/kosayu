@@ -211,7 +211,7 @@ EOS;
     				array(
     					'header'=>'Kelompok Komisi',
 						'name'=>'idtipgroup',
-    					'value'=>lookup::ItemTipGroupNameFromID($data['idtipgroup']),
+    					'value'=>"lookup::ItemTipGroupNameFromID(\$data['idtipgroup'])",
     				),
     				array(
 						'header'=>'Jumlah',
