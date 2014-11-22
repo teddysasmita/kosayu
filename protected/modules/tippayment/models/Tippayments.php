@@ -13,6 +13,8 @@
  * @property string $idcomp
  * @property string $receiver
  * @property double $amount
+ * @property double $totaldiscount
+ * @property double $totalsales
  * @property string $userlog
  * @property string $datetimelog
  */
@@ -34,12 +36,12 @@ class Tippayments extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id, regnum, idatetime, idsticker, ddatetime, idpartner, receiver, amount, userlog, datetimelog', 'required'),
+			array('id, regnum, idatetime, idsticker, ddatetime, idpartner, receiver, amount, totalsales, totaldiscount, userlog, datetimelog', 'required'),
 			array('id, idpartner, idcomp, userlog', 'length', 'max'=>21),
 			array('idsticker', 'length', 'max'=>20),
 			array('receiver', 'length', 'max'=>100),
 			array('regnum', 'length', 'max'=>12),
-			array('amount', 'numerical'),
+			array('amount, totalsales, totaldiscount', 'numerical'),
 			array('idatetime, ddatetime, datetimelog', 'length', 'max'=>19),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
@@ -73,6 +75,8 @@ class Tippayments extends CActiveRecord
 			'idcomp' => 'Komposisi',
 			'receiver' => 'Penerima',
 			'amount' => 'Jumlah',
+			'totaldiscount' => 'Total Potongan',
+			'totalsales' => 'Total Penjualan',
 			'userlog' => 'Userlog',
 			'datetimelog' => 'Datetimelog',
 		);
@@ -105,6 +109,8 @@ class Tippayments extends CActiveRecord
 		$criteria->compare('idcomp',$this->idcomp,true);
 		$criteria->compare('receiver',$this->receiver,true);
 		$criteria->compare('amount',$this->amount,true);
+		$criteria->compare('totalsales',$this->totalsales,true);
+		$criteria->compare('totaldiscount',$this->totaldiscount,true);
 		$criteria->compare('userlog',$this->userlog,true);
 		$criteria->compare('datetimelog',$this->datetimelog,true);
 

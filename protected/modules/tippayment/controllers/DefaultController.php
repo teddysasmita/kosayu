@@ -103,6 +103,11 @@ class DefaultController extends Controller
 							$details=Yii::app()->session['Detailtippayments'];
 							$respond=$respond&&$this->saveNewDetails($details, $model->idwarehouse	);
 						} 
+						
+						if(isset(Yii::app()->session['Detailtippayments2']) ) {
+							$details=Yii::app()->session['Detailtippayments2'];
+							$respond=$respond&&$this->saveNewDetails($details, $model->idwarehouse	);
+						}
 	
 						$this->afterPost($model);
 						Yii::app()->session->remove('Tippayments');
@@ -136,6 +141,10 @@ class DefaultController extends Controller
 							$model->attributes=$_POST['Tippayments'];
                          	
                          	$this->getSales($model->id, $model->idsticker, $model->ddatetime);
+                         	foreach($this->salesdata as $sd) {
+                         		$model->totalsales = $model->totalsales + $sd['total'];
+                         		$model->totaldiscount = $model->totaldiscount + $sd['totaldiscount'];
+                         	}
                          	Yii::app()->session['Detailtippayments'] = $this->salesdata;
                          	$temp = $this->getSalesDetail($model->idpartner, $model->idcomp, 
                          		$model->idsticker, $model->ddatetime);
@@ -184,6 +193,8 @@ class DefaultController extends Controller
 
 			if(!isset(Yii::app()->session['Detailtippayments'])) 
 				Yii::app()->session['Detailtippayments']=$this->loadDetails($id);
+			if(!isset(Yii::app()->session['Detailtippayments2']))
+				Yii::app()->session['Detailtippayments2']=$this->loadDetails2($id);
              
              // Uncomment the following line if AJAX validation is needed
 			$this->performAjaxValidation($model);
@@ -485,7 +496,7 @@ class DefaultController extends Controller
       }
       
 
-     protected function saveNewDetails(array $details, $idwh)
+     protected function saveNewDetails(array $details)
      {                  
          foreach ($details as $row) {
              $detailmodel=new Detailtippayments;
@@ -498,6 +509,18 @@ class DefaultController extends Controller
          return $respond;
      }
      
+     protected function saveNewDetails2(array $details)
+     {
+     	foreach ($details as $row) {
+     		$detailmodel=new Detailtippayments2;
+     		$detailmodel->attributes=$row;
+     		$respond=$detailmodel->insert();
+     		if (!$respond) {
+     			break;
+     		}
+     	}
+     	return $respond;
+     }
 
      protected function saveDetails(array $details)
      {
@@ -524,6 +547,32 @@ class DefaultController extends Controller
           }
           return $respond;
      }
+     
+     protected function saveDetails2(array $details)
+     {
+     	$idmaker=new idmaker();
+     
+     	$respond=true;
+     	foreach ($details as $row) {
+     		$detailmodel=Detailtippayments2::model()->findByPk($row['iddetail']);
+     		if($detailmodel==NULL) {
+     			$detailmodel=new Detailtippayments2;
+     		} else {
+     			if(count(array_diff($detailmodel->attributes,$row))) {
+     				$this->tracker->init();
+     				$this->tracker->modify('detailtippayments', array('iddetail'=>$detailmodel->iddetail));
+     			}
+     		}
+     		$detailmodel->attributes=$row;
+     		$detailmodel->userlog=Yii::app()->user->id;
+     		$detailmodel->datetimelog=$idmaker->getDateTime();
+     		$respond=$detailmodel->save();
+     		if (!$respond) {
+     			break;
+     		}
+     	}
+     	return $respond;
+     }
       
      protected function deleteDetails(array $details)
      {
@@ -542,6 +591,24 @@ class DefaultController extends Controller
          }
          return $respond;
      }
+     
+     protected function deleteDetails2(array $details)
+     {
+     	$respond=true;
+     	foreach ($details as $row) {
+     		$detailmodel=Detailtippayments2::model()->findByPk($row['iddetail']);
+     		if($detailmodel) {
+     			$this->tracker->init();
+     			$this->trackActivity('d', $this->__DETAILFORMID);
+     			$this->tracker->delete('detailtippayments', $detailmodel->iddetail);
+     			$respond=$detailmodel->delete();
+     			if (!$respond) {
+     				break;
+     			}
+     		}
+     	}
+     	return $respond;
+     }
 
 
      protected function loadDetails($id)
@@ -550,6 +617,14 @@ class DefaultController extends Controller
       $details=Yii::app()->db->createCommand($sql)->queryAll();
 
       return $details;
+     }
+     
+     protected function loadDetails2($id)
+     {
+     	$sql="select * from detailtippayments2 where id='$id'";
+     	$details=Yii::app()->db->createCommand($sql)->queryAll();
+     
+     	return $details;
      }
 
 
@@ -562,6 +637,8 @@ class DefaultController extends Controller
          //$model->idwarehouse=lookup::WarehouseNameFromIpAddr($_SERVER['REMOTE_ADDR']);
          $model->idcomp = '-';
          $model->amount = 0;
+         $model->totaldiscount = 0;
+         $model->totalsales = 0;
          $model->userlog=Yii::app()->user->id;
          $model->datetimelog=$idmaker->getDateTime();
      }
@@ -572,25 +649,6 @@ class DefaultController extends Controller
          if ($this->state == 'create') {
          	$idmaker->saveRegNum($this->formid, $model->regnum);
          } 
-         $details = $this->loadDetails($model->id);
-         foreach($details as $detail) {
-         	if ($detail['serialnum'] !==  'Belum Diterima') {
-         		$exist = Action::checkItemToWarehouse($model->idwarehouse, $detail['iditem'], 
-	         		$detail['serialnum'], '%') > 0;
-	         	if (!$exist)	
-	         		Action::addItemToWarehouse($model->idwarehouse, $detail['iddetail'], 
-	         			$detail['iditem'], $detail['serialnum'], $detail['status']);
-	         	else {
-	         		Action::setItemAvailinWarehouse($model->idwarehouse, $detail['serialnum'], '1');
-	         		Action::setItemStatusinWarehouse($model->idwarehouse, $detail['serialnum'], $detail['status']);
-	         	}
-	         	if ($model->transname == 'AC33')
-	         		Action::receiveRepairOut($model->transid, $detail['serialnum']);
-	         }
-         };
-          
-         $this->setStatusPO($model->transid,
-            Yii::app()->session['Detailtippayments']);
      }
 
      protected function beforePost(& $model)
@@ -602,26 +660,13 @@ class DefaultController extends Controller
          if ($this->state == 'create')
          	$model->regnum=$idmaker->getRegNum($this->formid);
          else if ($this->state == 'update') {
-         	$details = $this->loadDetails($model->id);
-         	foreach($details as $detail) {
-         		if ($detail['serialnum'] !==  'Belum Diterima') {
-         			if ($model->transname == 'AC12')
-         				Action::deleteItemFromWarehouse($model->idwarehouse, $detail['serialnum']);
-         			else
-         				Action::setItemAvailinWarehouse($model->idwarehouse, $detail['serialnum'], '0');
-         		}
-         	};
+       
          }
      }
 
      protected function beforeDelete(& $model)
      {
-     	$details = $this->loadDetails($model->id);
-     	foreach($details as $detail) {
-     		if ($detail['serialnum'] !==  'Belum Diterima') {
-     			Action::deleteItemFromWarehouse($model->idwarehouse, $detail['serialnum']);
-     		}
-     	};
+     	
      }
 
      protected function afterDelete(& $model)

@@ -182,7 +182,26 @@ EOS;
             ),
           ),
     ));
-
+?>
+	<div class="row">
+    		<?php echo $form->labelEx($model,'totalsales'); ?>
+            <?php 
+              echo CHtml::tag('span', array('id'=>'totalsales', 'class'=>'money'),
+              		number_format($model->totalsales));
+               //echo $form->textField($model, 'amount', array('maxlength'=>8)); 
+            ?>
+    </div>
+    
+    <div class="row">
+    		<?php echo $form->labelEx($model,'totaldiscount'); ?>
+            <?php 
+              echo CHtml::tag('span', array('id'=>'totaldiscount', 'class'=>'money'),
+              		number_format($model->totaldiscount));
+               //echo $form->textField($model, 'amount', array('maxlength'=>8)); 
+            ?>
+    </div>
+	
+<?php     
     if (isset(Yii::app()->session['Detailtippayments2'])) {
     	$rawdata=Yii::app()->session['Detailtippayments2'];
     	$count=count($rawdata);
