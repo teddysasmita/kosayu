@@ -36,7 +36,6 @@ class MYPDF extends TCPDF {
 		$this->SetTextColor(0);
 		$this->SetDrawColor(0, 0, 0);
 		$this->SetLineWidth(0.3);
-		$this->SetFontSize(8);
 		
 		// Data
 		$fill = 0;
@@ -101,7 +100,7 @@ class MYPDF extends TCPDF {
 			
 		$this->setXY(10, 5);
 		$this->Cell(90, 5, 'KOSAYU - Pusat Oleh-oleh BALI', 0, 1);
-		$this->Cell(90, 5, 'Jl Sunset Road no. 88x Kuta, Badung - Bali', 0, 1);
+		$this->Cell(90, 5, 'Jl Sunset Road no. 88x Kuta, Badung - Bali', 'B', 1);
 		
 		$this->setXY(10, 10);
 		$this->Ln();
@@ -112,7 +111,7 @@ class MYPDF extends TCPDF {
 		
 		$this->setX(2);
 		for($i = 0; $i < count($this->headernames1); ++$i) {
-			$this->Cell($this->headerwidths1[$i], 7, $this->headernames1[$i], 0, 0, 'C');
+			$this->Cell($this->headerwidths1[$i], 7, $this->headernames1[$i], 'B', 0, 'C');
 		}
 	} 	
 }
@@ -159,7 +158,7 @@ function execute($model, $detailmodel, $detailmodel2) {
 	// ---------------------------------------------------------
 	
 	// set font
-	$pdf->SetFont('helvetica', '', 9);
+	$pdf->SetFont('helvetica', '', 8);
 	
 	// add a page
 	$pdf->LoadData($model, $detailmodel, $detailmodel2);
