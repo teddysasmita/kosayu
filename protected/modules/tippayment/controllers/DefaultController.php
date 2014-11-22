@@ -1095,6 +1095,7 @@ EOS;
     		->where("idpos = :p_idpos and (method = 'V' or method = 'R')",
     			array(':p_idpos'=>$idsales))	
     		->queryScalar();
+    	return $voucheramount;
     }
     
     private function getSales($id, $idsticker, $ddatetime)
