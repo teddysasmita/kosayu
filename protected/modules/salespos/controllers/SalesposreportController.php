@@ -39,9 +39,9 @@ class SalesposreportController extends Controller
 				Yii::app()->user->id))  {
 			$this->trackActivity('v');
 			
-			if ($cashier = '') 
-				$cashier = '%';
-			
+			if ($idcashier = '') 
+				$idcashier = '%';
+
 			$sql1 =<<<EOS
 	select a.userlog, a.method, sum(a.amount) as total from posreceipts a
 	where a.userlog like '$idcashier' 
