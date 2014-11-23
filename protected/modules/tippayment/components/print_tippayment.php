@@ -17,6 +17,7 @@ class MYPDF extends TCPDF {
 	
 	public $pageorientation;
 	public $pagesize;
+	public $leftmargin;
 	
 	// Load table data from file
 	public function LoadData($data, array $detaildata, array $detaildata2) {
@@ -41,7 +42,7 @@ class MYPDF extends TCPDF {
 		$this->SetLineWidth(0.3);
 		$this->setfontsize(9);
 
-		$this->SetXY(0, 35);
+		$this->SetXY($this->leftmargin, 35);
 		for($i = 0; $i < count($this->headernames1); ++$i) {
 			$this->Cell($this->headerwidths1[$i], 5, $this->headernames1[$i], 'TB', 0, 'C');
 		}
@@ -63,7 +64,7 @@ class MYPDF extends TCPDF {
 			//if ($i<count($this->detaildata)) {
 			$row=$this->detaildata[$i];
 			$counter+=1;
-			$this->setX(0);
+			$this->setX($this->leftmargin);
 			$ih = $this->getStringHeight($this->headerwidths1[1],$row['invoicenum'], false, true, 2);
 			$this->Cell($this->headerwidths1[0], $ih, $row['invoicenum'], 0, 0, 'C');
 			$this->Cell($this->headerwidths1[1], $ih, number_format($row['amount']), 0, 0, 'R');
@@ -75,7 +76,7 @@ class MYPDF extends TCPDF {
 		
 		$this->ln(5);
 		
-		$this->setX(0);		
+		$this->setX($this->leftmargin);		
 		
 		for($i = 0; $i < count($this->headernames2); ++$i) {
 			$this->Cell($this->headerwidths2[$i], 5, $this->headernames2[$i], 'TB', 0, 'C');
@@ -88,15 +89,15 @@ class MYPDF extends TCPDF {
 			$counter+=1;
 		
 			$ih = $this->getStringHeight($this->headerwidths2[1],$row['amount'], false, true, 2);
-			$this->setX(0);
+			$this->setX($this->leftmargin);
 			$this->Cell($this->headerwidths2[0], $ih, lookup::ItemTipGroupNameFromID($row['idtipgroup']), 0, 0, 'L');
 			$this->Cell($this->headerwidths2[1], $ih, number_format($row['amount']), 0, 0, 'R');
 			$this->ln($ih);
 		}
-		$this->setX(0);
+		$this->setX($this->leftmargin);
 		$this->Cell(90,1,'','B',1);
 		
-		$this->setX(0);
+		$this->setX($this->leftmargin);
 		$this->SetFontSize(10);
 		$this->Cell(45, 5, 'Total :', 0, 0, 'R'); 
 		$this->Cell(45, 5, number_format($this->data->amount), 0, 1, 'R');
@@ -137,15 +138,15 @@ class MYPDF extends TCPDF {
 		$this->SetLineWidth(0.3);
 		$this->SetCellPadding(0.8);
 			
-		$this->setXY(0, 5);
+		$this->setXY($this->leftmargin, 5);
 		$this->Cell(90, 5, 'KOSAYU - Pusat Oleh-oleh BALI', 0, 1, 'C');
-		$this->setX(0);
+		$this->setX($this->leftmargin);
 		$this->Cell(90, 5, 'Jl Sunset Road no. 88x Kuta, Badung - Bali', 'B', 1, 'C');
 		$this->Ln(2);
-		$this->setX(0);
+		$this->setX($this->leftmargin);
 		$this->Cell(15, 5, 'Tanggal:'); $this->Cell(40,5, $this->data->idatetime);
 		$this->Cell(15, 5, 'Sticker:'); $this->Cell(20,5, $this->data->idsticker, 0, 1);
-		$this->setX(0);
+		$this->setX($this->leftmargin);
 		$this->Cell(15, 5, 'Mitra:'); $this->Cell(40,5, lookup::PartnerNameFromID($this->data->idpartner));
 		$this->Cell(15, 5, 'Posisi:'); $this->Cell(20, 5, lookup::DetailPartnerNameFromID($this->data->idcomp), 0, 1);
 		$this->Ln();
@@ -159,6 +160,7 @@ function execute($model, $detailmodel, $detailmodel2) {
 	$pdf = new MYPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, array(140, 90), true, 'UTF-8', false);
 	$pdf->pagesize = array(90, 140);
 	$pdf->pageorientation = 'P';
+	$pdf->leftmargin = 5;
 	$pdf->setPageOrientation($pdf->pageorientation, TRUE);	
 	
 	// set document information
