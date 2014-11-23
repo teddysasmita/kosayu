@@ -43,6 +43,12 @@
 	</div>
 
 	<div class="row">
+		<?php echo $form->labelEx($model,'name'); ?>
+		<?php echo $form->textField($model,'name',array('size'=>40,'maxlength'=>255)); ?>
+		<?php echo $form->error($model,'name'); ?>
+	</div>
+	
+	<div class="row">
 		<?php echo $form->labelEx($model,'brand'); ?>
             <?php
                //$brands=Yii::app()->db->createCommand()->selectDistinct('brand')->from('items')->queryColumn();
