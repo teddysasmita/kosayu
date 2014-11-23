@@ -25,7 +25,7 @@ class MYPDF extends TCPDF {
 		$this->detaildata = $detaildata;
 		$this->detaildata2 = $detaildata2;
 		
-		$this->headernames1 = array('No.Struk', 'Total', 'Potongan', 'Waktu', 'Kasir' );
+		$this->headernames1 = array('Struk', 'Total', 'Disc', 'Waktu', 'Kasir' );
 		$this->headerwidths1 = array(10, 12, 16, 26, 16);
 		
 		$this->headernames2 = array('Jenis Komisi', 'Jumlah' );
@@ -43,7 +43,7 @@ class MYPDF extends TCPDF {
 
 		$this->SetXY(5, 35);
 		for($i = 0; $i < count($this->headernames1); ++$i) {
-			$this->Cell($this->headerwidths1[$i], 7, $this->headernames1[$i], 'B', 0, 'C');
+			$this->Cell($this->headerwidths1[$i], 7, $this->headernames1[$i], 'TB', 0, 'C');
 		}
 		$this->ln();
 		// Data
@@ -78,7 +78,7 @@ class MYPDF extends TCPDF {
 		$this->setX(5);		
 		
 		for($i = 0; $i < count($this->headernames2); ++$i) {
-			$this->Cell($this->headerwidths2[$i], 5, $this->headernames2[$i], 'B', 0, 'C');
+			$this->Cell($this->headerwidths2[$i], 5, $this->headernames2[$i], 'TB', 0, 'C');
 		}
 		$this->Ln();
 		
@@ -98,7 +98,8 @@ class MYPDF extends TCPDF {
 		
 		$this->setX(5);
 		$this->SetFontSize(10);
-		$this->Cell(30, 5, 'Total :'); $this->Cell(30, 5, number_format($this->data->amount), 0, 1);
+		$this->Cell(40, 5, 'Total :', 0, 0, 'R'); 
+		$this->Cell(40, 5, number_format($this->data->amount), 0, 1, 'R');
 	}
 	
 	public function header()
@@ -136,13 +137,15 @@ class MYPDF extends TCPDF {
 		$this->SetLineWidth(0.3);
 		$this->SetCellPadding(0.8);
 			
-		$this->setXY(10, 5);
+		$this->setXY(15, 5);
 		$this->Cell(90, 5, 'KOSAYU - Pusat Oleh-oleh BALI', 0, 1);
+		$this->setX(10);
 		$this->Cell(90, 5, 'Jl Sunset Road no. 88x Kuta, Badung - Bali', 'B', 1);
-		$this->Ln();
-		
+		$this->Ln(2);
+		$this->setX(5);
 		$this->Cell(15, 5, 'Tanggal:'); $this->Cell(40,5, $this->data->idatetime);
 		$this->Cell(15, 5, 'Sticker:'); $this->Cell(20,5, $this->data->idsticker, 0, 1);
+		$this->setX(5);
 		$this->Cell(15, 5, 'Mitra:'); $this->Cell(40,5, lookup::PartnerNameFromID($this->data->idpartner));
 		$this->Cell(15, 5, 'Posisi:'); $this->Cell(20, 5, lookup::DetailPartnerNameFromID($this->data->idcomp), 0, 1);
 		$this->Ln();
