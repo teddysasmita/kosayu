@@ -17,6 +17,7 @@ $this->pageTitle=Yii::app()->name;
 <h3><?php echo CHtml::link('Retur Barang ke Pemasok', Yii::app()->createUrl('purchasesreturs'))?></h3>
 
 <h2>Bagian Penjualan</h2>
+<h3><?php echo CHtml::link('Penentuan Harga Jual', Yii::app()->createUrl('sellingprice'))?></h3>
 <h3><?php echo CHtml::link('Perhitungan Konsinyasi', Yii::app()->createUrl('salespos/consignmentreport/create'))?></h3>
 <h3><?php echo CHtml::link('Perhitungan Konsinyasi 2', Yii::app()->createUrl('salespos/consignmentreport/create2'))?></h3>
 
