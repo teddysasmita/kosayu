@@ -66,7 +66,7 @@ EOS;
 				if ( ($sd['method'] == 'C')) {
 					foreach($datacashreturn as $dc) {
 						if ($dc['idcashier'] == $sd['idcashier']) {
-							$sd['total'] = $sd['total'] - $sd['totalreturn'];
+							$sd['total'] = $sd['total'] - $dc['totalreturn'];
 							break;
 						}
 					}
