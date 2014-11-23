@@ -38,7 +38,7 @@ $this->menu=array(
 				),
 				array(
 						'header'=>'Jumlah',
-						'name'=>'amount',
+						'name'=>'total',
 						'type'=>'number',
 				),
 		),
