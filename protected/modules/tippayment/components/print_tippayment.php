@@ -69,7 +69,7 @@ class MYPDF extends TCPDF {
 			$this->Cell($this->headerwidths1[0], $ih, $row['invoicenum'], 0, 0, 'C');
 			$this->Cell($this->headerwidths1[1], $ih, number_format($row['amount']), 0, 0, 'R');
 			$this->Cell($this->headerwidths1[2], $ih, number_format($row['totaldiscount']), 0, 0, 'R');
-			$this->Cell($this->headerwidths1[3], $ih, $row['cashierlog'], 0, 0, 'R');
+			$this->Cell($this->headerwidths1[3], $ih, $row['cashierlog'], 0, 0, 'C');
 			$this->Cell($this->headerwidths1[4], $ih, lookup::UserNameFromUserID($row['idcashier']), 0, 0, 'C');
 			$this->ln($ih);
 		}
@@ -95,11 +95,11 @@ class MYPDF extends TCPDF {
 			$this->ln($ih);
 		}
 		$this->setX($this->leftmargin);
-		$this->Cell(80,1,'','B',1);
+		$this->Cell(85,1,'','B',1);
 		
 		$this->setX($this->leftmargin);
 		$this->SetFontSize(10);
-		$this->Cell(40, 5, 'Total :', 0, 0, 'R'); 
+		$this->Cell(45, 5, 'Total :', 0, 0, 'R'); 
 		$this->Cell(40, 5, number_format($this->data->amount), 0, 1, 'R');
 	}
 	
@@ -196,7 +196,7 @@ function execute($model, $detailmodel, $detailmodel2) {
 	// ---------------------------------------------------------
 	
 	// set font
-	$pdf->SetFont('helvetica', '', 10);
+	$pdf->SetFont('helvetica', '', 11);
 	
 	// add a page
 	$pdf->LoadData($model, $detailmodel, $detailmodel2);
