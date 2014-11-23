@@ -16,7 +16,33 @@ $this->menu=array(
 <h1>Daftar Aktivitas Penjualan</h1>
 
 <?php 
+	
+	$dataProvider=new CArrayDataProvider($data,array(
+		'totalItemCount'=>$count,
+	));
+	$this->widget('zii.widgets.grid.CGridView', array(
+		'dataProvider'=>$dataProvider,
+		'columns'=>array(
+				array(
+						'header'=>'Kasir',
+						'name'=>'idcashier',
+						'value'=>"lookup::UserNameFromUserID(\$data['idcashier'])",
+				),
+				array(
+						'header'=>'Tanggal',
+						'name'=>'idatetime',
+				),
+				array(
+						'header'=>'Metode',
+						'name'=>'method',
+				),
+				array(
+						'header'=>'Jumlah',
+						'name'=>'amount',
+						'type'=>'number',
+				),
+		),
+));
 
-print_r($data);
 
 ?>
