@@ -73,7 +73,7 @@ EOS;
 				}
 			}
 			
-			$this->render('viewsales', array('data'=>$data));
+			$this->render('viewsales', array('data'=>$datareceipt));
 		} else {
 			throw new CHttpException(404,'You have no authorization for this operation.');
 		};
