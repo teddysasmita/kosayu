@@ -41,11 +41,11 @@ class MYPDF extends TCPDF {
 		$this->SetLineWidth(0.3);
 		$this->setfontsize(8);
 
-		$this->SetXY(1, 35);
+		$this->SetXY(5, 35);
 		for($i = 0; $i < count($this->headernames1); ++$i) {
 			$this->Cell($this->headerwidths1[$i], 7, $this->headernames1[$i], 'B', 0, 'C');
 		}
-		
+		$this->ln();
 		// Data
 		$fill = 0;
 		$counter=0;
@@ -88,6 +88,7 @@ class MYPDF extends TCPDF {
 			$counter+=1;
 		
 			$ih = $this->getStringHeight($this->headerwidths2[1],$row['amount'], false, true, 2);
+			$this->setX(5);
 			$this->Cell($this->headerwidths2[0], $ih, lookup::ItemTipGroupNameFromID($row['idtipgroup']), 0, 0, 'L');
 			$this->Cell($this->headerwidths2[1], $ih, number_format($row['amount']), 0, 0, 'R');
 			$this->ln($ih);
@@ -95,6 +96,7 @@ class MYPDF extends TCPDF {
 		$this->setX(5);
 		$this->Cell(80,5,'','B',1);
 		
+		$this->setX(5);
 		$this->SetFontSize(10);
 		$this->Cell(30, 5, 'Total :'); $this->Cell(30, 5, number_format($this->data->amount), 0, 1);
 	}
