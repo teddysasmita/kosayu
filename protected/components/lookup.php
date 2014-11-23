@@ -35,8 +35,8 @@ class lookup extends CComponent {
    				return 'Tunai';
    			case 'KD':
    				return 'Kartu Debit';
-   			case 'KC':
-   				return 'Kartu Credit';
+   			case 'KK':
+   				return 'Kartu Kredit';
    			case 'V':
    				return 'Voucher';
    			case 'R':

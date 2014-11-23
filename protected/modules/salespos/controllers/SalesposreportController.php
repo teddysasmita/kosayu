@@ -54,8 +54,8 @@ class SalesposreportController extends Controller
 EOS;
 			$data = Yii::app()->db->createCommand($sql1)->queryAll();
 			foreach($data as & $sd) {
-				if ($sd['method'] == 'C')
-				$sd['total'] = $sd['total'] - $sd['cashreturn'];
+				if ( ($sd['method'] == 'C') || ($sd['method'] == 'KD'))
+					$sd['total'] = $sd['total'] - $sd['cashreturn'];
 			}
 			
 			$this->render('viewsales', array('data'=>$data));
