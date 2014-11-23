@@ -99,7 +99,7 @@ class MYPDF extends TCPDF {
 		$this->setX(0);
 		$this->SetFontSize(10);
 		$this->Cell(40, 5, 'Total :', 0, 0, 'R'); 
-		$this->Cell(40, 5, number_format($this->data->amount), 0, 1, 'R');
+		$this->Cell(45, 5, number_format($this->data->amount), 0, 1, 'R');
 	}
 	
 	public function header()
@@ -138,9 +138,9 @@ class MYPDF extends TCPDF {
 		$this->SetCellPadding(0.8);
 			
 		$this->setXY(0, 5);
-		$this->Cell(80, 5, 'KOSAYU - Pusat Oleh-oleh BALI', 0, 1, 'C');
+		$this->Cell(90, 5, 'KOSAYU - Pusat Oleh-oleh BALI', 0, 1, 'C');
 		$this->setX(0);
-		$this->Cell(80, 5, 'Jl Sunset Road no. 88x Kuta, Badung - Bali', 'B', 1, 'C');
+		$this->Cell(90, 5, 'Jl Sunset Road no. 88x Kuta, Badung - Bali', 'B', 1, 'C');
 		$this->Ln(2);
 		$this->setX(0);
 		$this->Cell(15, 5, 'Tanggal:'); $this->Cell(40,5, $this->data->idatetime);
