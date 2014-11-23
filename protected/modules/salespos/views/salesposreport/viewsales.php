@@ -4,7 +4,7 @@
 
 $this->breadcrumbs=array(
 	'Proses'=>array('/site/masterdata'),
-	'Laporan Penjualan'=>array('salespos/salesposreport/create'),
+	'Laporan Penjualan'=>array('salesposreport/create'),
 	'Lihat Data'
 );
 
