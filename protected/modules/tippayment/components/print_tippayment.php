@@ -27,10 +27,10 @@ class MYPDF extends TCPDF {
 		$this->detaildata2 = $detaildata2;
 		
 		$this->headernames1 = array('Struk', 'Total', 'Disc', 'Waktu', 'Kasir' );
-		$this->headerwidths1 = array(9, 16, 12, 37, 16);
+		$this->headerwidths1 = array(9, 16, 11, 37, 12);
 		
 		$this->headernames2 = array('Jenis Komisi', 'Jumlah' );
-		$this->headerwidths2 = array(45, 45);
+		$this->headerwidths2 = array(40, 40);
 	}
 
 	// Colored table
@@ -95,12 +95,12 @@ class MYPDF extends TCPDF {
 			$this->ln($ih);
 		}
 		$this->setX($this->leftmargin);
-		$this->Cell(90,1,'','B',1);
+		$this->Cell(80,1,'','B',1);
 		
 		$this->setX($this->leftmargin);
 		$this->SetFontSize(10);
-		$this->Cell(45, 5, 'Total :', 0, 0, 'R'); 
-		$this->Cell(45, 5, number_format($this->data->amount), 0, 1, 'R');
+		$this->Cell(40, 5, 'Total :', 0, 0, 'R'); 
+		$this->Cell(40, 5, number_format($this->data->amount), 0, 1, 'R');
 	}
 	
 	public function header()
@@ -139,9 +139,9 @@ class MYPDF extends TCPDF {
 		$this->SetCellPadding(0.8);
 			
 		$this->setXY($this->leftmargin, 5);
-		$this->Cell(90, 5, 'KOSAYU - Pusat Oleh-oleh BALI', 0, 1, 'C');
+		$this->Cell(80, 5, 'KOSAYU - Pusat Oleh-oleh BALI', 0, 1, 'C');
 		$this->setX($this->leftmargin);
-		$this->Cell(90, 5, 'Jl Sunset Road no. 88x Kuta, Badung - Bali', 'B', 1, 'C');
+		$this->Cell(80, 5, 'Jl Sunset Road no. 88x Kuta, Badung - Bali', 'B', 1, 'C');
 		$this->Ln(2);
 		$this->setX($this->leftmargin);
 		$this->Cell(15, 5, 'Tanggal:'); $this->Cell(40,5, $this->data->idatetime);
@@ -196,7 +196,7 @@ function execute($model, $detailmodel, $detailmodel2) {
 	// ---------------------------------------------------------
 	
 	// set font
-	$pdf->SetFont('helveticaB', '', 9);
+	$pdf->SetFont('helvetica', '', 10);
 	
 	// add a page
 	$pdf->LoadData($model, $detailmodel, $detailmodel2);
