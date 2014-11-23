@@ -43,13 +43,19 @@ class SalesposreportController extends Controller
 				$idcashier = '%';
 
 			$sql1 =<<<EOS
-	select a.id, a.idatetime, a.userlog as idcashier, a.method, sum(a.amount) as total from posreceipts a
+	select a.id, a.idatetime, a.userlog as idcashier, a.method, sum(a.amount) as total, 
+	b.cashreturn 
+	from posreceipts a
 	where a.userlog like '$idcashier' 
 	and a.idatetime >= '$startdate' and a.idatetime <= '$enddate'
 	group by a.userlog, a.method
 	order by a.userlog
 EOS;
 			$data = Yii::app()->db->createCommand($sql1)->queryAll();
+			foreach($data as & $sd) {
+				if ($sd['method'] == 'C')
+				$sd['total'] = $sd['total'] - $sd['cashreturn'];
+			}
 			
 			$this->render('viewsales', array('data'=>$data));
 		} else {
