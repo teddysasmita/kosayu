@@ -73,7 +73,7 @@ class MYPDF extends TCPDF {
 			$this->ln($ih);
 		}
 		
-		$this->ln();
+		$this->ln(5);
 		
 		$this->setX(5);		
 		
