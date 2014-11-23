@@ -25,8 +25,11 @@ class MYPDF extends TCPDF {
 		$this->detaildata = $detaildata;
 		$this->detaildata2 = $detaildata2;
 		
-		$this->headernames1 = array('No. Struk', 'Total', 'Potongan', 'Waktu', 'Kasir' );
+		$this->headernames1 = array('No.Struk', 'Total', 'Potongan', 'Waktu', 'Kasir' );
 		$this->headerwidths1 = array(10, 12, 16, 26, 16);
+		
+		$this->headernames1 = array('Jenis Komisi', 'Jumlah' );
+		$this->headerwidths1 = array(40, 30);
 	}
 
 	// Colored table
@@ -36,6 +39,17 @@ class MYPDF extends TCPDF {
 		$this->SetTextColor(0);
 		$this->SetDrawColor(0, 0, 0);
 		$this->SetLineWidth(0.3);
+		$this->setfontsize(8);
+		
+		$this->Cell(15, 5, 'Tanggal:'); $this->Cell(40,5, $this->data->idatetime);
+		$this->Cell(15, 5, 'Sticker:'); $this->Cell(20,5, $this->data->idsticker, 0, 1);
+		$this->Cell(15, 5, 'Mitra:'); $this->Cell(40,5, lookup::PartnerNameFromID($this->data->idpartner));
+		$this->Cell(15, 5, 'Posisi:'); $this->Cell(20, 5, lookup::DetailPartnerNameFromID($this->data->idcomp), 0, 1);
+		
+		$this->setX(2);
+		for($i = 0; $i < count($this->headernames1); ++$i) {
+			$this->Cell($this->headerwidths1[$i], 7, $this->headernames1[$i], 'B', 0, 'C');
+		}
 		
 		// Data
 		$fill = 0;
@@ -61,6 +75,23 @@ class MYPDF extends TCPDF {
 			$this->Cell($this->headerwidths1[2], $ih, number_format($row['totaldiscount']), 0, 0, 'R');
 			$this->Cell($this->headerwidths1[3], $ih, $row['cashierlog'], 0, 0, 'R');
 			$this->Cell($this->headerwidths1[4], $ih, lookup::UserNameFromUserID($row['idcashier']), 0, 0, 'R');
+			$this->ln($ih);
+		}
+		
+		$this->ln();
+		$this->setX(2);
+		for($i = 0; $i < count($this->headernames2); ++$i) {
+			$this->Cell($this->headerwidths2[$i], 7, $this->headernames2[$i], 'B', 0, 'C');
+		}
+		
+		for ($i=0; $i<count($this->detaildata2); $i++) {
+			//if ($i<count($this->detaildata)) {
+			$row=$this->detaildata2[$i];
+			$counter+=1;
+		
+			$ih = $this->getStringHeight($this->headerwidths2[1],$row['invoicenum'], false, true, 2);
+			$this->Cell($this->headerwidths2[0], $ih, lookup::ItemTipGroupNameFromID($row['idtipgroup']), 0, 0, 'C');
+			$this->Cell($this->headerwidths2[1], $ih, number_format($row['amount']), 0, 0, 'R');
 			$this->ln($ih);
 		}
 	}
@@ -106,15 +137,6 @@ class MYPDF extends TCPDF {
 		
 		$this->setXY(10, 10);
 		$this->Ln();
-		$this->Cell(15, 5, 'Tanggal:'); $this->Cell(40,5, $this->data->idatetime);
-		$this->Cell(15, 5, 'Sticker:'); $this->Cell(20,5, $this->data->idsticker, 0, 1);
-		$this->Cell(15, 5, 'Mitra:'); $this->Cell(40,5, lookup::PartnerNameFromID($this->data->idpartner));
-		$this->Cell(15, 5, 'Posisi:'); $this->Cell(20, 5, lookup::DetailPartnerNameFromID($this->data->idcomp), 0, 1);
-		
-		$this->setX(2);
-		for($i = 0; $i < count($this->headernames1); ++$i) {
-			$this->Cell($this->headerwidths1[$i], 7, $this->headernames1[$i], 'B', 0, 'C');
-		}
 	} 	
 }
 
@@ -149,7 +171,7 @@ function execute($model, $detailmodel, $detailmodel2) {
 	$pdf->SetFooterMargin(0);
 	
 	//set auto page breaks
-	$pdf->SetAutoPageBreak(TRUE, 10);
+	$pdf->SetAutoPageBreak(FALSE, 0);
 	
 	//set image scale factor
 	$pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
