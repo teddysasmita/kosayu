@@ -94,11 +94,11 @@ class MYPDF extends TCPDF {
 			$this->ln($ih);
 		}
 		$this->setX(0);
-		$this->Cell(80,2,'','B',1);
+		$this->Cell(90,1,'','B',1);
 		
 		$this->setX(0);
 		$this->SetFontSize(10);
-		$this->Cell(40, 5, 'Total :', 0, 0, 'R'); 
+		$this->Cell(45, 5, 'Total :', 0, 0, 'R'); 
 		$this->Cell(45, 5, number_format($this->data->amount), 0, 1, 'R');
 	}
 	
