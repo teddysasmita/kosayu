@@ -26,7 +26,7 @@ class MYPDF extends TCPDF {
 		$this->detaildata2 = $detaildata2;
 		
 		$this->headernames1 = array('Struk', 'Total', 'Disc', 'Waktu', 'Kasir' );
-		$this->headerwidths1 = array(9, 16, 12, 30, 13);
+		$this->headerwidths1 = array(9, 16, 12, 31, 12);
 		
 		$this->headernames2 = array('Jenis Komisi', 'Jumlah' );
 		$this->headerwidths2 = array(40, 40);
@@ -69,7 +69,7 @@ class MYPDF extends TCPDF {
 			$this->Cell($this->headerwidths1[1], $ih, number_format($row['amount']), 0, 0, 'R');
 			$this->Cell($this->headerwidths1[2], $ih, number_format($row['totaldiscount']), 0, 0, 'R');
 			$this->Cell($this->headerwidths1[3], $ih, $row['cashierlog'], 0, 0, 'R');
-			$this->Cell($this->headerwidths1[4], $ih, lookup::UserNameFromUserID($row['idcashier']), 0, 0, 'R');
+			$this->Cell($this->headerwidths1[4], $ih, lookup::UserNameFromUserID($row['idcashier']), 0, 0, 'C');
 			$this->ln($ih);
 		}
 		
