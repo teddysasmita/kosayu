@@ -46,6 +46,7 @@ class SalesposreportController extends Controller
 	select a.id, a.idatetime, a.userlog as idcashier, a.method, sum(a.amount) as total, 
 	b.cashreturn 
 	from posreceipts a
+	join salespos b on b.id = a.idpos
 	where a.userlog like '$idcashier' 
 	and a.idatetime >= '$startdate' and a.idatetime <= '$enddate'
 	group by a.userlog, a.method
