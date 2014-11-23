@@ -89,7 +89,7 @@ class MYPDF extends TCPDF {
 			$row=$this->detaildata2[$i];
 			$counter+=1;
 		
-			$ih = $this->getStringHeight($this->headerwidths2[1],$row['invoicenum'], false, true, 2);
+			$ih = $this->getStringHeight($this->headerwidths2[1],$row['amount'], false, true, 2);
 			$this->Cell($this->headerwidths2[0], $ih, lookup::ItemTipGroupNameFromID($row['idtipgroup']), 0, 0, 'C');
 			$this->Cell($this->headerwidths2[1], $ih, number_format($row['amount']), 0, 0, 'R');
 			$this->ln($ih);
