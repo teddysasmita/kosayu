@@ -18,7 +18,7 @@ $this->menu=array(
 <?php 
 	
 	$dataProvider=new CArrayDataProvider($data,array(
-		'totalItemCount'=>$count,
+		'totalItemCount'=>count($data),
 	));
 	$this->widget('zii.widgets.grid.CGridView', array(
 		'dataProvider'=>$dataProvider,
