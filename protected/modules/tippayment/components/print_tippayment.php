@@ -29,7 +29,7 @@ class MYPDF extends TCPDF {
 		$this->headerwidths1 = array(10, 12, 16, 26, 16);
 		
 		$this->headernames2 = array('Jenis Komisi', 'Jumlah' );
-		$this->headerwidths2 = array(40, 30);
+		$this->headerwidths2 = array(40, 40);
 	}
 
 	// Colored table
@@ -42,7 +42,6 @@ class MYPDF extends TCPDF {
 		$this->setfontsize(8);
 
 		$this->SetXY(1, 35);
-		$this->setX(2);
 		for($i = 0; $i < count($this->headernames1); ++$i) {
 			$this->Cell($this->headerwidths1[$i], 7, $this->headernames1[$i], 'B', 0, 'C');
 		}
@@ -89,7 +88,7 @@ class MYPDF extends TCPDF {
 			$counter+=1;
 		
 			$ih = $this->getStringHeight($this->headerwidths2[1],$row['amount'], false, true, 2);
-			$this->Cell($this->headerwidths2[0], $ih, lookup::ItemTipGroupNameFromID($row['idtipgroup']), 0, 0, 'C');
+			$this->Cell($this->headerwidths2[0], $ih, lookup::ItemTipGroupNameFromID($row['idtipgroup']), 0, 0, 'L');
 			$this->Cell($this->headerwidths2[1], $ih, number_format($row['amount']), 0, 0, 'R');
 			$this->ln($ih);
 		}
