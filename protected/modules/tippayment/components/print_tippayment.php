@@ -26,10 +26,10 @@ class MYPDF extends TCPDF {
 		$this->detaildata2 = $detaildata2;
 		
 		$this->headernames1 = array('Struk', 'Total', 'Disc', 'Waktu', 'Kasir' );
-		$this->headerwidths1 = array(9, 16, 12, 31, 12);
+		$this->headerwidths1 = array(9, 16, 12, 37, 16);
 		
 		$this->headernames2 = array('Jenis Komisi', 'Jumlah' );
-		$this->headerwidths2 = array(40, 40);
+		$this->headerwidths2 = array(45, 45);
 	}
 
 	// Colored table
@@ -39,9 +39,9 @@ class MYPDF extends TCPDF {
 		$this->SetTextColor(0);
 		$this->SetDrawColor(0, 0, 0);
 		$this->SetLineWidth(0.3);
-		$this->setfontsize(8);
+		$this->setfontsize(9);
 
-		$this->SetXY(5, 35);
+		$this->SetXY(0, 35);
 		for($i = 0; $i < count($this->headernames1); ++$i) {
 			$this->Cell($this->headerwidths1[$i], 5, $this->headernames1[$i], 'TB', 0, 'C');
 		}
@@ -75,7 +75,7 @@ class MYPDF extends TCPDF {
 		
 		$this->ln(5);
 		
-		$this->setX(5);		
+		$this->setX(0);		
 		
 		for($i = 0; $i < count($this->headernames2); ++$i) {
 			$this->Cell($this->headerwidths2[$i], 5, $this->headernames2[$i], 'TB', 0, 'C');
@@ -93,10 +93,10 @@ class MYPDF extends TCPDF {
 			$this->Cell($this->headerwidths2[1], $ih, number_format($row['amount']), 0, 0, 'R');
 			$this->ln($ih);
 		}
-		$this->setX(5);
+		$this->setX(0);
 		$this->Cell(80,2,'','B',1);
 		
-		$this->setX(5);
+		$this->setX(0);
 		$this->SetFontSize(10);
 		$this->Cell(40, 5, 'Total :', 0, 0, 'R'); 
 		$this->Cell(40, 5, number_format($this->data->amount), 0, 1, 'R');
@@ -137,15 +137,15 @@ class MYPDF extends TCPDF {
 		$this->SetLineWidth(0.3);
 		$this->SetCellPadding(0.8);
 			
-		$this->setXY(5, 5);
+		$this->setXY(0, 5);
 		$this->Cell(80, 5, 'KOSAYU - Pusat Oleh-oleh BALI', 0, 1, 'C');
-		$this->setX(5);
+		$this->setX(0);
 		$this->Cell(80, 5, 'Jl Sunset Road no. 88x Kuta, Badung - Bali', 'B', 1, 'C');
 		$this->Ln(2);
-		$this->setX(5);
+		$this->setX(0);
 		$this->Cell(15, 5, 'Tanggal:'); $this->Cell(40,5, $this->data->idatetime);
 		$this->Cell(15, 5, 'Sticker:'); $this->Cell(20,5, $this->data->idsticker, 0, 1);
-		$this->setX(5);
+		$this->setX(0);
 		$this->Cell(15, 5, 'Mitra:'); $this->Cell(40,5, lookup::PartnerNameFromID($this->data->idpartner));
 		$this->Cell(15, 5, 'Posisi:'); $this->Cell(20, 5, lookup::DetailPartnerNameFromID($this->data->idcomp), 0, 1);
 		$this->Ln();
@@ -194,7 +194,7 @@ function execute($model, $detailmodel, $detailmodel2) {
 	// ---------------------------------------------------------
 	
 	// set font
-	$pdf->SetFont('helvetica', '', 8);
+	$pdf->SetFont('helvetica', '', 9);
 	
 	// add a page
 	$pdf->LoadData($model, $detailmodel, $detailmodel2);
