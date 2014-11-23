@@ -16,10 +16,12 @@ $this->menu=array(
 <h1>Pembayaran Komisi Agen</h1>
 
 <?php 
-   
 	$dataProvider=new CArrayDataProvider($detail,
    		array(
 			'totalItemCount'=>count($detail),
+   			'pagination'=>array(
+   				'pageSize'=>20,	
+   			),
 		));
 	
 	$this->widget('zii.widgets.grid.CGridView', array(
