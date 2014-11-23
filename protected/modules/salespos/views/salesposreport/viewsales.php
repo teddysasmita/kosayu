@@ -3,8 +3,8 @@
 /* @var $model Salespostransfers */
 
 $this->breadcrumbs=array(
-	'Master Data'=>array('/site/masterdata'),
-	'Daftar'=>array('index'),
+	'Proses'=>array('/site/masterdata'),
+	'Laporan Penjualan'=>array('salespos/salesposreport/create'),
 	'Lihat Data'
 );
 
