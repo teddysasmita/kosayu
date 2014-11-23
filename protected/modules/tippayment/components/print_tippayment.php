@@ -40,7 +40,8 @@ class MYPDF extends TCPDF {
 		$this->SetDrawColor(0, 0, 0);
 		$this->SetLineWidth(0.3);
 		$this->setfontsize(8);
-				
+
+		$this->SetXY(1, 35);
 		$this->setX(2);
 		for($i = 0; $i < count($this->headernames1); ++$i) {
 			$this->Cell($this->headerwidths1[$i], 7, $this->headernames1[$i], 'B', 0, 'C');
@@ -51,7 +52,7 @@ class MYPDF extends TCPDF {
 		$counter=0;
 		$total=0;
 		$iditem='';
-		$this->SetXY(1, 35);
+		
 		/*
 		if (count($this->detaildata) <= 12)
 			$maxrows = 12;
@@ -74,7 +75,9 @@ class MYPDF extends TCPDF {
 		}
 		
 		$this->ln();
-		$this->setX(2);
+		
+		$this->setX(5);
+		
 		for($i = 0; $i < count($this->headernames2); ++$i) {
 			$this->Cell($this->headerwidths2[$i], 5, $this->headernames2[$i], 'B', 0, 'C');
 		}
@@ -90,6 +93,8 @@ class MYPDF extends TCPDF {
 			$this->Cell($this->headerwidths2[1], $ih, number_format($row['amount']), 0, 0, 'R');
 			$this->ln($ih);
 		}
+		$this->setX(5);
+		$this->Cell(80,5,'','B',1);
 	}
 	
 	public function header()
