@@ -390,6 +390,17 @@ EOS;
 		};
    }
    
+   public function actionGetItemCode($codename)
+   {
+   	if (!Yii::app()->user->isGuest) {
+   		//print_r($name);
+   		$data = substr($codename, 0, strpos($codename,'-'));
+   		echo $data;
+   	} else {
+   		throw new CHttpException(404,'You have no authorization for this operation.');
+   	};
+   }
+   
    public function actionGetCurrID($name)
    {
    	if (!Yii::app()->user->isGuest) {

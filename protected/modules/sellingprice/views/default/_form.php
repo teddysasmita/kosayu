@@ -94,7 +94,7 @@ Yii::app()->clientScript->registerScript('itemscript', $itemScript, CClientScrip
                       'buttons'=>array(
                           array('text'=>'Ok', 'click'=>'js:function(){
                              $(\'#Sellingprices_itemname\').val($(\'#dialog-item-name\').val());
-                             $.get(\'index.php?r=LookUp/getItemID\',{ name: encodeURI($(\'#dialog-item-name\').val()) },
+                             $.get(\'index.php?r=LookUp/getItemCode\',{ codename: encodeURI($(\'#dialog-item-name\').val()) },
                                  function(data) {
                                     $(\'#Sellingprices_iditem\').val(data);
                                  })
