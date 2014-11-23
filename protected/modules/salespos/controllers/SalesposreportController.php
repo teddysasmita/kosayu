@@ -39,7 +39,7 @@ class SalesposreportController extends Controller
 				Yii::app()->user->id))  {
 			$this->trackActivity('v');
 			
-			if ($idcashier = '') 
+			if (!isset($idcashier)) 
 				$idcashier = '%';
 
 			$sql1 =<<<EOS
