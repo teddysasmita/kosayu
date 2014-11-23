@@ -14,7 +14,7 @@ $itemScript=<<<EOS
       });
       $('#dialog-item-name').change(
          function(){
-            $.getJSON('index.php?r=LookUp/getItem',{ name: $('#dialog-item-name').val() },
+            $.getJSON('index.php?r=LookUp/getItemAll',{ name: $('#dialog-item-name').val() },
                function(data) {
                   $('#dialog-item-select').html('');
                   var ct=0;
@@ -82,7 +82,7 @@ Yii::app()->clientScript->registerScript('itemscript', $itemScript, CClientScrip
 	<div class="row">
 		<?php echo $form->labelEx($model,'iditem'); ?>
 		<?php 
-               echo CHtml::textField('Sellingprices_itemname', lookup::ItemNameFromItemID($model->iditem) , array('size'=>50));   
+               echo CHtml::textField('Sellingprices_itemname', lookup::ItemNameFromItemID2($model->iditem) , array('size'=>50));   
                $this->beginWidget('zii.widgets.jui.CJuiDialog', array(
                   'id'=>'ItemDialog',
                   'options'=>array(
@@ -140,8 +140,7 @@ EOS;
 	<div class="row">
 		<?php echo $form->labelEx($model,'approvalby'); ?>
 		<?php 
-         echo $form->dropDownList($model, 'approvalby', array('Ibu Linda T'=>'Ibu Linda T', 
-			'Bp Welly T'=>'Bp Welly T', 'Bp Sandy T'=>'Bp Sandy T', 'Ibu Vera T'=>'Ibu Vera T'),
+         echo $form->dropDownList($model, 'approvalby', array('Pak Made'=>'Pak Made'),
 			array('empty'=>'Harap Pilih') );
      	?>
 		<?php echo $form->error($model,'approvalby'); ?>

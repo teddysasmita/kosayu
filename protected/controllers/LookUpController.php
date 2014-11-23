@@ -236,7 +236,7 @@ EOS;
    public function actionGetItemAll($name)
    {
    	if (!Yii::app()->user->isGuest) {
-   		$data=Yii::app()->db->createCommand()->selectDistinct('name')->from('items')
+   		$data=Yii::app()->db->createCommand()->selectDistinct('concat(name, \'-\', code)')->from('items')
    		->where('name like :itemname',
    				array(':itemname'=>'%'.$name.'%'))
    				->order('name')
