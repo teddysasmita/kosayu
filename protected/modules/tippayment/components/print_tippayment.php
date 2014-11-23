@@ -43,7 +43,7 @@ class MYPDF extends TCPDF {
 
 		$this->SetXY(5, 35);
 		for($i = 0; $i < count($this->headernames1); ++$i) {
-			$this->Cell($this->headerwidths1[$i], 7, $this->headernames1[$i], 'TB', 0, 'C');
+			$this->Cell($this->headerwidths1[$i], 5, $this->headernames1[$i], 'TB', 0, 'C');
 		}
 		$this->ln();
 		// Data
@@ -94,7 +94,7 @@ class MYPDF extends TCPDF {
 			$this->ln($ih);
 		}
 		$this->setX(5);
-		$this->Cell(80,5,'','B',1);
+		$this->Cell(80,2,'','B',1);
 		
 		$this->setX(5);
 		$this->SetFontSize(10);
