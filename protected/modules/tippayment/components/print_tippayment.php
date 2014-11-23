@@ -95,6 +95,9 @@ class MYPDF extends TCPDF {
 		}
 		$this->setX(5);
 		$this->Cell(80,5,'','B',1);
+		
+		$this->SetFontSize(10);
+		$this->Cell(30, 5, 'Total :'); $this->Cell(30, 5, number_format($this->data->amount), 0, 1);
 	}
 	
 	public function header()
