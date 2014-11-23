@@ -22,7 +22,6 @@ $this->menu=array(
 		'pagination'=>array(
 				'pageSize'=>20,
 			),
-	)
 	));
 	$this->widget('zii.widgets.grid.CGridView', array(
 		'dataProvider'=>$dataProvider,
