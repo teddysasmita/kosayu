@@ -14,7 +14,7 @@
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('iditem')); ?>:</b>
-	<?php echo CHtml::encode(lookup::ItemNameFromItemID($data->iditem)); ?>
+	<?php echo CHtml::encode(lookup::ItemNameFromItemID2($data->iditem)); ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('normalprice')); ?>:</b>
