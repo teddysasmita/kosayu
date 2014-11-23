@@ -29,10 +29,6 @@
 	<?php echo CHtml::encode($data->picture); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('rowdeleted')); ?>:</b>
-	<?php echo CHtml::encode($data->rowdeleted); ?>
-	<br />
-
 	<b><?php echo CHtml::encode($data->getAttributeLabel('userlog')); ?>:</b>
 	<?php echo CHtml::encode($data->userlog); ?>
 	<br />
