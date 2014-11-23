@@ -63,7 +63,7 @@ class MYPDF extends TCPDF {
 			//if ($i<count($this->detaildata)) {
 			$row=$this->detaildata[$i];
 			$counter+=1;
-			setX(5);
+			$this->setX(5);
 			$ih = $this->getStringHeight($this->headerwidths1[1],$row['invoicenum'], false, true, 2);
 			$this->Cell($this->headerwidths1[0], $ih, $row['invoicenum'], 0, 0, 'C');
 			$this->Cell($this->headerwidths1[1], $ih, number_format($row['amount']), 0, 0, 'R');
