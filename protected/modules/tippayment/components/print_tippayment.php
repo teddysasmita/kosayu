@@ -76,7 +76,7 @@ class MYPDF extends TCPDF {
 		
 		$this->ln();
 		
-		$this->setX(5);
+		$this->setX(5);		
 		
 		for($i = 0; $i < count($this->headernames2); ++$i) {
 			$this->Cell($this->headerwidths2[$i], 5, $this->headernames2[$i], 'B', 0, 'C');

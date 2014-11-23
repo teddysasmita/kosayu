@@ -22,10 +22,10 @@
 	<?php echo $form->errorSummary($model); ?>
 
 	<?php
-             echo $form->hiddenField($model, 'id');
-             echo $form->hiddenField($model, 'userlog');
-             echo $form->hiddenField($model, 'datetimelog');
-          ?>
+		echo $form->hiddenField($model, 'id');
+		echo $form->hiddenField($model, 'userlog');
+		echo $form->hiddenField($model, 'datetimelog');
+    ?>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'code'); ?>
