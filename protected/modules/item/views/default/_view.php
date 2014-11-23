@@ -37,6 +37,4 @@
 	<?php echo CHtml::encode($data->datetimelog); ?>
 	<br />
 
-	*/ ?>
-
 </div>
