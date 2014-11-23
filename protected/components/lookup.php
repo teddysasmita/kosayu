@@ -26,6 +26,24 @@ class lookup extends CComponent {
       }
    }
    
+   public static function getMethod($code)
+   {
+		switch ($code) {
+   			case 'T':
+   				return 'Transfer';
+   			case 'C':
+   				return 'Tunai';
+   			case 'KD':
+   				return 'Kartu Debit';
+   			case 'KC':
+   				return 'Kartu Credit';
+   			case 'V':
+   				return 'Voucher';
+   			case 'R':
+   				return 'Retur';	
+   		}
+   }
+   
    public static function reverseOrderStatus($wstat)
    {
       switch ($wstat) {
