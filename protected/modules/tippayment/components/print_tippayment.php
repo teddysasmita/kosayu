@@ -28,8 +28,8 @@ class MYPDF extends TCPDF {
 		$this->headernames1 = array('No.Struk', 'Total', 'Potongan', 'Waktu', 'Kasir' );
 		$this->headerwidths1 = array(10, 12, 16, 26, 16);
 		
-		$this->headernames1 = array('Jenis Komisi', 'Jumlah' );
-		$this->headerwidths1 = array(40, 30);
+		$this->headernames2 = array('Jenis Komisi', 'Jumlah' );
+		$this->headerwidths2 = array(40, 30);
 	}
 
 	// Colored table
