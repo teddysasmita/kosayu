@@ -7,7 +7,7 @@
 <div class="form">
 
 <?php  
-	echo CHtml::beginForm(Yii::app()->createUrl('/salespos/salesposreport/getexcel'), 'get');
+	echo CHtml::beginForm(Yii::app()->createUrl('/salespos/salesposreport/getsales'), 'get');
 ?>
 
 	<p class="note">Fields with <span class="required">*</span> are required.</p>
@@ -50,13 +50,11 @@
 	</div>
 	
 	<div class="row">
-	<?php echo CHtml::label('Jenis Barang', FALSE); ?>
+	<?php echo CHtml::label('Nama Kasir', FALSE); ?>
 	<?php
-               //$brands=Yii::app()->db->createCommand()->selectDistinct('brand')->from('items')->queryColumn();
-
 		$this->widget('zii.widgets.jui.CJuiAutoComplete', array(
-			'name'=>'objects',
-			'sourceUrl'=> Yii::app()->createUrl('LookUp/getObjects'),
+			'name'=>'idcashier',
+			'sourceUrl'=> Yii::app()->createUrl('LookUp/getUser'),
 			'htmlOptions'=>array(
 				'style'=>'height:20px;',
 			),
@@ -64,18 +62,6 @@
 	?>
 	</div>
 	
-	<?php echo CHtml::label('Merk Barang', FALSE); ?>
-	<?php
-               //$brands=Yii::app()->db->createCommand()->selectDistinct('brand')->from('items')->queryColumn();
-
-		$this->widget('zii.widgets.jui.CJuiAutoComplete', array(
-			'name'=>'brand',
-			'sourceUrl'=> Yii::app()->createUrl('LookUp/getBrand'),
-			'htmlOptions'=>array(
-				'style'=>'height:20px;',
-			),
-		));
-	?>
 	
 	<div class="row buttons">
 		<?php echo CHtml::submitButton('Proses'); ?>
@@ -84,3 +70,5 @@
 <?php CHtml::endForm(); ?>
 
 </div><!-- form -->
+	
+	

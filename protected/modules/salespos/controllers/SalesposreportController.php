@@ -33,6 +33,26 @@ class SalesposreportController extends Controller
          };
 	}
 	
+	public function actionGetsales($startdate, $enddate, $idcashier )
+	{
+		if(Yii::app()->authManager->checkAccess($this->formid.'-Append',
+				Yii::app()->user->id))  {
+			$this->trackActivity('v');
+			
+			$sql1 =<<<EOS
+	select a.userlog, a.method, sum(a.amount) as total from posreceipts a
+	where a.userlog like '$idcashier' 
+	and a.idatetime >= '$startdate' and a.idatetime <= '$enddate'
+	group by a.userlog, a.method
+EOS;
+			$data = Yii::app()->db->createCommand($sql1)->queryAll();
+			
+			$this->render('viewsales', array('data'=>$data));
+		} else {
+			throw new CHttpException(404,'You have no authorization for this operation.');
+		};
+	}
+	
 	public function actionGetexcel($startdate, $enddate, $brand, $objects)
 	{
 		$datacancels = array();

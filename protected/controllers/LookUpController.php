@@ -528,6 +528,21 @@ EOS;
 		};
 	}
 	
+	public function actionGetUser($term)
+	{
+		if (!Yii::app()->user->isGuest) {
+			$data=Yii::app()->authdb->createCommand()
+				->select('loginname as label, id as value')
+				->from('users')
+				->where('loginname like :p_loginname',
+					array(':p_loginname'=>"%$term%"))
+				->queryAll();
+			echo json_encode($data);
+		} else {
+			throw new CHttpException(404,'You have no authorization for this operation.');
+		};
+	}
+	
 	public function actionGetTrans($id)
 	{
 		if (!Yii::app()->user->isGuest) {

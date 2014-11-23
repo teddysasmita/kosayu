@@ -20,6 +20,7 @@ $this->pageTitle=Yii::app()->name;
 <h3><?php echo CHtml::link('Penentuan Harga Jual', Yii::app()->createUrl('sellingprice'))?></h3>
 <h3><?php echo CHtml::link('Perhitungan Konsinyasi', Yii::app()->createUrl('salespos/consignmentreport/create'))?></h3>
 <h3><?php echo CHtml::link('Perhitungan Konsinyasi 2', Yii::app()->createUrl('salespos/consignmentreport/create2'))?></h3>
+<h3><?php echo CHtml::link('Laporan Penjualan', Yii::app()->createUrl('salespos/salesposreport/create'))?></h3>
 
 <h2>Bagian Gudang</h2>
 
