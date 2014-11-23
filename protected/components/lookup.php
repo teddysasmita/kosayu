@@ -96,6 +96,12 @@ class lookup extends CComponent {
    		return Yii::app()->db->createCommand($sql)->queryScalar();
    }
    
+   public static function ItemNameFromItemCode($code)
+   {
+   	$sql="select name from items where code='$code'";
+   	return Yii::app()->db->createCommand($sql)->queryScalar();
+   }
+   
    public static function ItemTipGroupNameFromID($id)
    {
    		if ($id == '0')
