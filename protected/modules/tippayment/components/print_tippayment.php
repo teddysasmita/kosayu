@@ -137,9 +137,9 @@ class MYPDF extends TCPDF {
 		$this->SetLineWidth(0.3);
 		$this->SetCellPadding(0.8);
 			
-		$this->setXY(10, 5);
+		$this->setXY(5, 5);
 		$this->Cell(80, 5, 'KOSAYU - Pusat Oleh-oleh BALI', 0, 1, 'C');
-		$this->setX(10);
+		$this->setX(5);
 		$this->Cell(80, 5, 'Jl Sunset Road no. 88x Kuta, Badung - Bali', 'B', 1, 'C');
 		$this->Ln(2);
 		$this->setX(5);
