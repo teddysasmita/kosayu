@@ -5,6 +5,7 @@
  *
  * The followings are the available columns in table 'suppliers':
  * @property string $id
+ * @property string $code
  * @property string $firstname
  * @property string $lastname
  * @property string $address
@@ -31,14 +32,15 @@ class Suppliers extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id, firstname, lastname, address, userlog, datetimelog', 'required'),
+			array('id, code, firstname, lastname, address, userlog, datetimelog', 'required'),
 			array('id, userlog', 'length', 'max'=>21),
 			array('firstname, lastname, phone, email', 'length', 'max'=>100),
 			array('address', 'length', 'max'=>255),
+			array('code', 'length', 'max'=>50),
 			array('datetimelog', 'length', 'max'=>19),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, firstname, lastname, address, phone, email, userlog, datetimelog', 'safe', 'on'=>'search'),
+			array('id, firstname, lastname, code, address, phone, email, userlog, datetimelog', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -60,6 +62,7 @@ class Suppliers extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
+			'code' => 'Kode',
 			'firstname' => 'Nama Awal',
 			'lastname' => 'Nama Akhir',
 			'address' => 'Alamat',
@@ -89,6 +92,7 @@ class Suppliers extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id,true);
+		$criteria->compare('code',$this->code,true);
 		$criteria->compare('firstname',$this->firstname,true);
 		$criteria->compare('lastname',$this->lastname,true);
 		$criteria->compare('address',$this->address,true);

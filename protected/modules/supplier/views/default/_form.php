@@ -25,6 +25,12 @@
             echo $form->hiddenfield($model, 'datetimelog');
         ?>
         
+    <div class="row">
+		<?php echo $form->labelEx($model,'code'); ?>
+		<?php echo $form->textField($modem, array('size'=>60,'maxlength'=>100)); ?>
+		<?php echo $form->error($model,'cde'); ?>
+	</div>
+	
 	<div class="row">
 		<?php echo $form->labelEx($model,'firstname'); ?>
 		<?php echo $form->textField($model,'firstname',array('size'=>60,'maxlength'=>100)); ?>
