@@ -108,7 +108,7 @@ class lookup extends CComponent {
       return Yii::app()->db->createCommand($sql)->queryScalar();
    }
    
-   public static function CurrencySymbolFromID($id)
+   public static function CurrSymbolFromID($id)
    {
    		$symbol = Yii::app()->db->createCommand()
    			->select('symbol')->from('currencies')
@@ -118,6 +118,18 @@ class lookup extends CComponent {
 			return 'Rp';
 		else
 			return $symbol;
+   }
+   
+   public static function CurrRateFromID(id)
+   {
+   		$rate = Yii::app()->db->createCommand()
+   			->select('rate')->from('currencyrates')
+   			->where('id = :p_id', array(':p_id'=>$id))
+   			->queryScalar();
+   		if (!$symbol)
+   			return '-';
+   		else
+   			return $rate;
    }
    
    public static function ItemNameFromItemID2($id)

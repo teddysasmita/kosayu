@@ -43,7 +43,12 @@ $this->menu=array(
 				array(
 						'header'=>'Kurs',
 						'name'=>'idcurr',
-						'value'=>"lookup::CurrencySymbolFromID(\$data['idcurr'])",
+						'value'=>"lookup::CurrSymbolFromID(\$data['idcurr'])",
+				),
+				array(
+						'header'=>'Nilai Tukar',
+						'name'=>'idrate',
+						'value'=>"lookup::CurrRateFromID(\$data['idrate'])",
 				),
 				array(
 						'header'=>'Jumlah',
@@ -58,7 +63,11 @@ $this->menu=array(
 Total : <?php
 	$total = 0; 
 	foreach($data as $d) {
-		$total = $total + $d['total'];
+		if ($d['idrate'] !== 'NA') 
+			$amount = $d['total'] * lookup::CurrRateFromID($d['idrate']);
+		else
+			$amount = $d['total'];
+		$total = $total + $amount;
 	};
 	echo number_format($total);
 ?>
