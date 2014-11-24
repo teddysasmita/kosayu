@@ -64,7 +64,7 @@ EOS;
 			$datacashreturn = Yii::app()->db->createCommand($sql2)->queryAll();
 			
 			foreach($datareceipt as & $sd) {
-				if ( ($sd['method'] == 'C') && is_null($sd['name'])) {
+				if ( ($sd['method'] == 'C') && ($sd['idcurr'] == '-')) {
 					foreach($datacashreturn as $dc) {
 						if ($dc['idcashier'] == $sd['idcashier']) {
 							$sd['total'] = $sd['total'] - $dc['totalreturn'];
