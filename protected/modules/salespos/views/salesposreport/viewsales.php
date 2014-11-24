@@ -33,7 +33,7 @@ $this->menu=array(
 				),
 				array(
 						'header'=>'Tanggal',
-						'name'=>'idatetime',
+						'name'=>'idate',
 				),
 				array(
 						'header'=>'Metode',
