@@ -27,13 +27,13 @@ $this->menu=array(
 		'dataProvider'=>$dataProvider,
 		'columns'=>array(
 				array(
+						'header'=>'Tanggal',
+						'name'=>'idate',
+				),
+				array(
 						'header'=>'Kasir',
 						'name'=>'idcashier',
 						'value'=>"lookup::UserNameFromUserID(\$data['idcashier'])",
-				),
-				array(
-						'header'=>'Tanggal',
-						'name'=>'idate',
 				),
 				array(
 						'header'=>'Metode',
