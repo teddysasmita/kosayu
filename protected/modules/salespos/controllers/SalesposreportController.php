@@ -47,8 +47,8 @@ class SalesposreportController extends Controller
 	from posreceipts a
 	where a.userlog like '$idcashier' 
 	and a.idatetime >= '$startdate' and a.idatetime <= '$enddate'
-	group by a.userlog, idate, a.method
-	order by a.userlog
+	group by idate, a.userlog, a.method
+	order by idate, a.userlog, a.method
 EOS;
 			$datareceipt = Yii::app()->db->createCommand($sql1)->queryAll();
 			
