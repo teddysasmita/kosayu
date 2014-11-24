@@ -43,11 +43,11 @@ class SalesposreportController extends Controller
 				$idcashier = '%';
 
 			$sql1 =<<<EOS
-	select a.id, a.idatetime, a.userlog as idcashier, a.method, sum(a.amount) as total
+	select a.id, left(a.idatetime, 10) as idate, a.userlog as idcashier, a.method, sum(a.amount) as total
 	from posreceipts a
 	where a.userlog like '$idcashier' 
 	and a.idatetime >= '$startdate' and a.idatetime <= '$enddate'
-	group by a.userlog, a.method
+	group by a.userlog, a.idate, a.method
 	order by a.userlog
 EOS;
 			$datareceipt = Yii::app()->db->createCommand($sql1)->queryAll();
