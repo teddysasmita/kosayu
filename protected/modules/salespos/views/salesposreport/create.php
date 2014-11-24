@@ -12,6 +12,6 @@ $this->menu=array(
 );
 ?>
 
-<h1>Laporan Penjualan</h1>
+<h1>Laporan Pendapatan Kasir</h1>
 
 <?php $this->renderPartial('_form'); ?>

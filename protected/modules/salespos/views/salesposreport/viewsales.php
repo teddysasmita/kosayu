@@ -13,7 +13,7 @@ $this->menu=array(
 );
 ?>
 
-<h1>Daftar Aktivitas Penjualan</h1>
+<h1>Laporan Pendapatan Kasir</h1>
 
 <?php 
 	
