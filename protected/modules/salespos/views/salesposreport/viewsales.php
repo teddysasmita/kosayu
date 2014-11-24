@@ -55,7 +55,7 @@ Total : <?php
 	foreach($data as $d) {
 		$total = $total + $d['total'];
 	};
-	echo $total;
+	echo number_format($total);
 ?>
 
 </H1>
