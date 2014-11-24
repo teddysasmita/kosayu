@@ -41,6 +41,11 @@ $this->menu=array(
 						'value'=>"lookup::getMethod(\$data['method'])",
 				),
 				array(
+						'header'=>'Kurs',
+						'name'=>'idcurr',
+						'value'=>"lookup::CurrencySymbolFromID(\$data['idcurr'])",
+				),
+				array(
 						'header'=>'Jumlah',
 						'name'=>'total',
 						'type'=>'number',

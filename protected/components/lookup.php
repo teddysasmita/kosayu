@@ -108,6 +108,18 @@ class lookup extends CComponent {
       return Yii::app()->db->createCommand($sql)->queryScalar();
    }
    
+   public static function CurrencySymbolFromID($id)
+   {
+   		$symbol = Yii::app()->db->createCommand()
+   			->select('symbol')->from('currencies')
+   			->where('id = :p_id', array(':p_id'=>$id))
+   			->queryScalar();
+		if (!$symbol) 
+			return 'Rp';
+		else
+			return $symbol;
+   }
+   
    public static function ItemNameFromItemID2($id)
    {
 		$sql="select concat(name, '-', code) from items where id='$id'";
