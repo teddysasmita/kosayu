@@ -60,7 +60,7 @@ $this->menu=array(
 	
 ?>
 <H1>
-Total : <?php
+Total: <?php
 	$total = 0; 
 	foreach($data as $d) {
 		if ($d['idrate'] !== 'NA') 
@@ -69,7 +69,7 @@ Total : <?php
 			$amount = $d['total'];
 		$total = $total + $amount;
 	};
-	echo 'Rp '.number_format($total);
+	echo ' Rp '.number_format($total);
 ?>
 
 </H1>
