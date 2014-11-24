@@ -69,7 +69,7 @@ Total : <?php
 			$amount = $d['total'];
 		$total = $total + $amount;
 	};
-	echo number_format($total);
+	echo 'Rp '.number_format($total);
 ?>
 
 </H1>
