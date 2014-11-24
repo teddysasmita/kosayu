@@ -47,6 +47,15 @@ $this->menu=array(
 				),
 		),
 ));
-
-
+	
 ?>
+<H1>
+Total : <?php
+	$total = 0; 
+	foreach($data as $d) {
+		$total = $total + $d['total'];
+	};
+	echo $total;
+?>
+
+</H1>
