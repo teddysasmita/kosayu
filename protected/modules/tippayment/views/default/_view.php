@@ -22,7 +22,7 @@
 	<br />
 	
 	<b><?php echo CHtml::encode($data->getAttributeLabel('amount')); ?>:</b>
-	<?php echo CHtml::encode($data->amount); ?>
+	<?php echo CHtml::encode(number_format($data->amount)); ?>
 	<br />
 	  
       <b><?php echo CHtml::encode($data->getAttributeLabel('receiver')); ?>:</b>

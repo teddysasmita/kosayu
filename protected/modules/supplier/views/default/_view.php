@@ -13,10 +13,6 @@
 	<?php echo CHtml::encode($data->firstname); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('lastname')); ?>:</b>
-	<?php echo CHtml::encode($data->lastname); ?>
-	<br />
-
 	<b><?php echo CHtml::encode($data->getAttributeLabel('address')); ?>:</b>
 	<?php echo CHtml::encode($data->address); ?>
 	<br />
@@ -30,7 +26,7 @@
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('userlog')); ?>:</b>
-	<?php echo CHtml::encode($data->userlog); ?>
+	<?php echo CHtml::encode(lookup::UserNameFromUserID($data->userlog)); ?>
 	<br />
 
 	<?php /*
