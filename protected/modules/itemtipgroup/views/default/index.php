@@ -3,7 +3,7 @@
 /* @var $dataProvider CActiveDataProvider */
 
 $this->breadcrumbs=array(
-   'Proses'=>array('/site/proses'),
+   'Master Data'=>array('/site/masterdata'),
 	'Daftar',
 );
 
