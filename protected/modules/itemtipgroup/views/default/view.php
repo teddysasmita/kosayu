@@ -49,7 +49,7 @@ $this->menu=array(
          'columns'=>array(
             array(
             	'name'=>'iditem',
-            	'value'=>"lookup::ItemNameFromItemID(\$data['iditem'])",		
+            	'value'=>"lookup::ItemNameFromItemID2(\$data['iditem'])",		
    			),
             array(
                   'class'=>'CButtonColumn',
