@@ -835,18 +835,15 @@ EOS;
     	
     	
     	$ds2 = array();
-    	$found = FALSE;
     	foreach($detailsales as $ds) {
-    		foreach($ds2 as & $d) {
-    			if (array_key_exists('idtipgroup', $d)) {
+    		$found = FALSE;
+    		if (count($ds2) > 0) {
+    			foreach($ds2 as & $d) {
     				if ($d['idtipgroup'] == $ds['idtipgroup'] ) {
     					$d['amount'] = $d['amount'] + $ds['amount'];
     					$found = TRUE;
     					break;
     				} 
-    			} else {
-    				$found = FALSE;
-    				break;
     			}
     		};
     		if (! $found) {
