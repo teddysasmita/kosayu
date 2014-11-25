@@ -835,11 +835,11 @@ EOS;
     	}
     	print_r($detailsales);
     	echo "<br>";
-    	$ds2 = array();
+    	$detailcommission = array();
     	foreach($detailsales as $ds) {
     		$found = FALSE;
     		if (count($ds2) > 0) {
-    			foreach($ds2 as & $d) {
+    			foreach($detailcommission as & $d) {
     				if ($d['idtipgroup'] == $ds['idtipgroup'] ) {
     					echo $d['amount'] . ' + '. $ds['amount'] . "<br>";
     					$d['amount'] = $d['amount'] + $ds['amount'];	
@@ -854,7 +854,7 @@ EOS;
     			$temp['iddetail'] = idmaker::getCurrentID2();
     			$temp['idtipgroup'] = $ds['idtipgroup'];
     			$temp['amount'] = $ds['amount'];
-    			$ds2[] = $temp;
+    			$detailcommission[] = $temp;
     		};
     	}
     	print_r($ds2);
