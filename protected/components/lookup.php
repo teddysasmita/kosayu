@@ -126,7 +126,7 @@ class lookup extends CComponent {
    			->select('rate')->from('currencyrates')
    			->where('id = :p_id', array(':p_id'=>$id))
    			->queryScalar();
-   		if (!$symbol)
+   		if (!$rate)
    			return '-';
    		else
    			return $rate;
