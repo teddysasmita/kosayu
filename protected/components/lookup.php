@@ -120,7 +120,7 @@ class lookup extends CComponent {
 			return $symbol;
    }
    
-   public static function CurrRateFromID(id)
+   public static function CurrRateFromID($id)
    {
    		$rate = Yii::app()->db->createCommand()
    			->select('rate')->from('currencyrates')
