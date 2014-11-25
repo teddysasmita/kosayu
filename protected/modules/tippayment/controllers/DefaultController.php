@@ -857,7 +857,7 @@ EOS;
     			$detailcommission[] = $temp;
     		};
     	}
-    	print_r($ds2);
+    	print_r($detailcommission);
     	die();
     	//return $detailsales;
     	return $ds2;
