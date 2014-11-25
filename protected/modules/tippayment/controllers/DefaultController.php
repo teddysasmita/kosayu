@@ -841,8 +841,8 @@ EOS;
     		if (count($ds2) > 0) {
     			foreach($ds2 as & $d) {
     				if ($d['idtipgroup'] == $ds['idtipgroup'] ) {
-    					$d['amount'] = $d['amount'] + $ds['amount'];
-    					echo $d['amount'] . ' - '. $ds['amount'] . "\n";
+    					echo $d['amount'] . ' + '. $ds['amount'] . "\n";
+    					$d['amount'] = $d['amount'] + $ds['amount'];	
     					$found = TRUE;
     					break;
     				} 
