@@ -834,14 +834,14 @@ EOS;
     		$ds['amount'] = ($ds['price'] - $ds['discount']) * $ds['qty'] * $ds['pct'] / 100;
     	}
     	print_r($detailsales);
-    	echo "\n";
+    	echo "<br>";
     	$ds2 = array();
     	foreach($detailsales as $ds) {
     		$found = FALSE;
     		if (count($ds2) > 0) {
     			foreach($ds2 as & $d) {
     				if ($d['idtipgroup'] == $ds['idtipgroup'] ) {
-    					echo $d['amount'] . ' + '. $ds['amount'] . "\n";
+    					echo $d['amount'] . ' + '. $ds['amount'] . "<br>";
     					$d['amount'] = $d['amount'] + $ds['amount'];	
     					$found = TRUE;
     					break;
