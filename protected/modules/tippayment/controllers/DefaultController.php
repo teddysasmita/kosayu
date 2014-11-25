@@ -816,6 +816,7 @@ EOS;
     	where a.idsticker = '$idsticker' and a.idatetime like '$ddatetime%' 
     	order by a.regnum
 EOS;
+    	$detailsales = array();
 		$detailsales = Yii::app()->db->createCommand($sql1)
 			->queryAll();
     
