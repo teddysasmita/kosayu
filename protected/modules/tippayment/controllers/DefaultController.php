@@ -858,9 +858,9 @@ EOS;
     		};
     	}
     	print_r($detailcommission);
-    	die();
+    	die;
     	//return $detailsales;
-    	return $ds2;
+    	return $detailcommission;
     }
     
     private function getSalesDetail2($id, $idpartner, $idcomp, $idsticker, $ddatetime)
