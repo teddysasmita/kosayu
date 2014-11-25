@@ -838,7 +838,7 @@ EOS;
     	$detailcommission = array();
     	foreach($detailsales as $ds) {
     		$found = FALSE;
-    		if (count($ds2) > 0) {
+    		if (count($detailcommission) > 0) {
     			foreach($detailcommission as & $d) {
     				if ($d['idtipgroup'] == $ds['idtipgroup'] ) {
     					echo $d['amount'] . ' + '. $ds['amount'] . "<br>";
