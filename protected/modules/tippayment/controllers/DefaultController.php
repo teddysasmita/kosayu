@@ -846,7 +846,7 @@ EOS;
     				} 
     			}
     		};
-    		if (! $found) {
+    		if ($found === FALSE) {
     			$temp['id'] = $id;
     			$temp['iddetail'] = idmaker::getCurrentID2();
     			$temp['idtipgroup'] = $ds['idtipgroup'];
