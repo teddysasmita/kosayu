@@ -819,8 +819,7 @@ EOS;
 		$detailsales = Yii::app()->db->createCommand($sql1)
 			->queryAll();
     
-    	print_r($detailsales);
-    	die;
+    	
     	foreach($detailsales as & $ds) {
     		if ($ds['discount'] == 0) {
     			$ds['discount'] = $this->getUnSeenDisc($ds['regnum']) * $ds['price'];
@@ -835,7 +834,8 @@ EOS;
     		$ds['amount'] = ($ds['price'] - $ds['discount']) * $ds['qty'] * $ds['pct'] / 100;
     	}
     	
-    	
+    	print_r($detailsales);
+    	die;
     	$ds2 = array();
     	foreach($detailsales as $ds) {
     		$found = FALSE;
