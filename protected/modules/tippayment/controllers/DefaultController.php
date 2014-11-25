@@ -838,13 +838,16 @@ EOS;
     	$found = FALSE;
     	foreach($detailsales as $ds) {
     		foreach($ds2 as & $d) {
-    			if (isset($d['idtipgroup']))
-    			if ($d['idtipgroup'] == $ds['idtipgroup'] ) {
-    				$d['amount'] = $d['amount'] + $ds['amount'];
-    				$found = TRUE;
+    			if (array_key_exists('idtipgroup', $d)) {
+    				if ($d['idtipgroup'] == $ds['idtipgroup'] ) {
+    					$d['amount'] = $d['amount'] + $ds['amount'];
+    					$found = TRUE;
+    					break;
+    				} 
+    			} else {
+    				$found = FALSE;
     				break;
     			}
-    			$found = FALSE;
     		};
     		if (! $found) {
     			$temp['id'] = $id;
