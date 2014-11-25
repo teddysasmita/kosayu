@@ -819,6 +819,8 @@ EOS;
 		$detailsales = Yii::app()->db->createCommand($sql1)
 			->queryAll();
     
+    	print_r($detailsales);
+    	die;
     	foreach($detailsales as & $ds) {
     		if ($ds['discount'] == 0) {
     			$ds['discount'] = $this->getUnSeenDisc($ds['regnum']) * $ds['price'];
