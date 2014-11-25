@@ -833,7 +833,8 @@ EOS;
     		} else
     			$ds['pct'] = $ds['pct'] * $tip2;
     		$ds['amount'] = ($ds['price'] - $ds['discount']) * $ds['qty'] * $ds['pct'] / 100;
-    	}
+    	};
+    	unset($ds);
     	//print_r($detailsales);
     	//echo "<br>";
     	$detailcommission = array();
