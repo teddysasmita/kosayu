@@ -855,6 +855,8 @@ EOS;
     			$ds2[] = $temp;
     		};
     	}
+    	print_r($ds2);
+    	die();
     	//return $detailsales;
     	return $ds2;
     }
