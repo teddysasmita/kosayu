@@ -21,3 +21,4 @@ $this->pageTitle=Yii::app()->name;
 <h3><?php echo CHtml::link('Mata Uang Asing', Yii::app()->createUrl('currencies'))?></h3>
 <h3><?php echo CHtml::link('Kelompok Komisi Barang', Yii::app()->createUrl('itemtipgroup'))?></h3>
 <h3><?php echo CHtml::link('Rekanan / Agen', Yii::app()->createUrl('partner'))?></h3>
+<h3><?php echo CHtml::link('Voucher / Kupon', Yii::app()->createUrl('salesvouchers'))?></h3>
