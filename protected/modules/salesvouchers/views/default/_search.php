@@ -12,33 +12,18 @@
 )); ?>
 
 	<div class="row">
-		<?php echo $form->label($model,'id'); ?>
-		<?php echo $form->textField($model,'id',array('size'=>21,'maxlength'=>21)); ?>
+		<?php echo $form->label($model,'regnum'); ?>
+		<?php echo $form->textField($model,'regnum',array('size'=>30,'maxlength'=>30)); ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'code'); ?>
-		<?php echo $form->textField($model,'code',array('size'=>12,'maxlength'=>12)); ?>
+		<?php echo $form->label($model,'amount'); ?>
+		<?php echo $form->textField($model,'amount'); ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'type'); ?>
-		<?php echo $form->textField($model,'type'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->label($model,'name'); ?>
-		<?php echo $form->textField($model,'name',array('size'=>60,'maxlength'=>255)); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->label($model,'brand'); ?>
-		<?php echo $form->textField($model,'brand',array('size'=>50,'maxlength'=>50)); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->label($model,'picture'); ?>
-		<?php echo $form->textField($model,'picture'); ?>
+		<?php echo $form->label($model,'idatetime'); ?>
+		<?php echo $form->textField($model,'idatetime'); ?>
 	</div>
 
 	<div class="row">

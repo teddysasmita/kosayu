@@ -1,6 +1,6 @@
 <?php
-/* @var $this ItemsController */
-/* @var $model Items */
+/* @var $this SalesvouchersController */
+/* @var $model Salesvouchers */
 
 $this->breadcrumbs=array(
    'Proses'=>array('/site/proses'),
@@ -10,13 +10,13 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	/*array('label'=>'List Items', 'url'=>array('index')),
-	array('label'=>'Create Items', 'url'=>array('create')),
-	array('label'=>'View Items', 'url'=>array('view', 'id'=>$model->id)),
-	array('label'=>'Manage Items', 'url'=>array('admin')),*/
+	/*array('label'=>'List Salesvouchers', 'url'=>array('index')),
+	array('label'=>'Create Salesvouchers', 'url'=>array('create')),
+	array('label'=>'View Salesvouchers', 'url'=>array('view', 'id'=>$model->id)),
+	array('label'=>'Manage Salesvouchers', 'url'=>array('admin')),*/
 );
 ?>
 
-<h1>Barang Dagang</h1>
+<h1>Voucher / Kupon</h1>
 
 <?php $this->renderPartial('_form', array('model'=>$model)); ?>

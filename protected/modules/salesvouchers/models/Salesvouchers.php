@@ -62,10 +62,10 @@ class Salesvouchers extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'idatetime' => 'Idatetime',
-			'regnum' => 'Regnum',
-			'amount' => 'Amount',
-			'remark' => 'Remark',
+			'idatetime' => 'Tanggal Kadaluarsa',
+			'regnum' => 'Nomor Voucher',
+			'amount' => 'Nilai',
+			'remark' => 'Catatan',
 			'status' => 'Status',
 			'userlog' => 'Userlog',
 			'datetimelog' => 'Datetimelog',

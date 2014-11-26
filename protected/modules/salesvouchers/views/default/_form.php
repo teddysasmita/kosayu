@@ -1,6 +1,6 @@
 <?php
-/* @var $this ItemsController */
-/* @var $model Items */
+/* @var $this SalesvouchersController */
+/* @var $model Salesvouchers */
 /* @var $form CActiveForm */
 ?>
 
@@ -8,7 +8,7 @@
     
 
 <?php $form=$this->beginWidget('CActiveForm', array(
-	'id'=>'items-form',
+	'id'=>'salesvouchers-form',
 	// Please note: When you enable ajax validation, make sure the corresponding
 	// controller action is handling ajax validation correctly.
 	// There is a call to performAjaxValidation() commented in generated controller code.
@@ -28,55 +28,38 @@
     ?>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'code'); ?>
-		<?php echo $form->textField($model,'code',array('size'=>30,'maxlength'=>50)); ?>
-		<?php echo $form->error($model,'code'); ?>
+		<?php echo $form->labelEx($model,'regnum'); ?>
+		<?php echo $form->textField($model,'regnum',array('size'=>30,'maxlength'=>30)); ?>
+		<?php echo $form->error($model,'regnum'); ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'type'); ?>
+		<?php echo $form->labelEx($model,'amount'); ?>
+		<?php echo $form->textField($model,'amount'); ?>
+		<?php echo $form->error($model,'amount'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->labelEx($model,'idatetime'); ?>
 		<?php 
-         echo $form->dropDownList($model, 'type', array(1=>'Beli-Putus', 
-            2=>'Konsinyasi'), array('empty'=>'Harap Pilih'));
-      ?>
-		<?php echo $form->error($model,'type'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'name'); ?>
-		<?php echo $form->textField($model,'name',array('size'=>40,'maxlength'=>255)); ?>
-		<?php echo $form->error($model,'name'); ?>
+            //echo $form->dateField($model,'idatetime',array('size'=>19,'maxlength'=>19)); 
+            $this->widget('zii.widgets.jui.CJuiDatePicker',array(
+               'name'=>'Salesvouchers[idatetime]',
+                  // additional javascript options for the date picker plugin
+               'options'=>array(
+                  'showAnim'=>'fold',
+                  'dateFormat'=>'yy/mm/dd',
+                  'defaultdate'=>$model->idatetime
+               ),
+               'htmlOptions'=>array(
+                  'style'=>'height:20px;',
+               ),
+               'value'=>$model->idatetime,
+            ));
+            ?> 
+		<?php echo $form->error($model,'idatetime'); ?>
 	</div>
 	
-	<div class="row">
-		<?php echo $form->labelEx($model,'brand'); ?>
-            <?php
-               //$brands=Yii::app()->db->createCommand()->selectDistinct('brand')->from('items')->queryColumn();
-
-               $this->widget('zii.widgets.jui.CJuiAutoComplete', array(
-                  'name'=>'Items[brand]',
-                  'sourceUrl'=> Yii::app()->createUrl('LookUp/getBrand'),
-                  'htmlOptions'=>array(
-                     'style'=>'height:20px;',
-                  ),
-                  'value'=>$model->brand,
-               ));
-            ?>
-		<?php //echo $form->textField($model,'brand',array('size'=>50,'maxlength'=>50)); ?>
-		<?php echo $form->error($model,'brand'); ?>
-      </div>
-	
-	<div class="row">
-		<?php echo $form->labelEx($model,'picture'); ?>
-		<?php 
-                    //echo CHtml::hiddenField('MAX_FILE_SIZE', 100000);
-                    echo $form->fileField($model,'picture', array()); 
-                ?>
-		<?php echo $form->error($model,'picture'); ?>
-	</div>
-
-	
-
 	<div class="row buttons">
 		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
 	</div>

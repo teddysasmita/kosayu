@@ -1,6 +1,6 @@
 <?php
-/* @var $this ItemsController */
-/* @var $model Items */
+/* @var $this SalesvouchersController */
+/* @var $model Salesvouchers */
 
 $this->breadcrumbs=array(
    'Proses'=>array('/site/proses'),
@@ -14,32 +14,22 @@ $this->menu=array(
 	array('label'=>'Hapus Data', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'Are you sure you want to delete this item?')),
 	array('label'=>'Pencarian Data', 'url'=>array('admin')),
 	array('label'=>'Sejarah', 'url'=>array('history', 'id'=>$model->id)),
-	array('label'=>'Cetak Kartu Stok', 'url'=>array('printstockcard', 'id'=>$model->id)),
-	array('label'=>'Cetak Kartu Stok Kosong', 'url'=>array('printblankstockcard', 'id'=>$model->id)),
 );
 ?>
 
-<h1>Barang Dagang</h1>
+<h1>Voucher / Kupon</h1>
 
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,
 	'attributes'=>array(
 		'id',
-		'code',
+		'regnum',
 		array(
-                   'name'=>'type',
-                   'label'=>'Jenis',
-                   'value'=>lookup::TypeToName($model['type']),
+                   'name'=>'amount',
+                   'label'=>'Nilai',
+					'type'=> number
                 ),   
-		'name',
-		'brand',
-		array(
-                   'name'=>'picture',
-                   'label'=>'Foto',
-                   'type'=>'raw',
-                   //'value'=>  html_entity_decode(CHtml::image(Yii::app()->basePath.'/images/'.$model['picture'])),
-                   'value'=>  html_entity_decode(CHtml::image(YIi::app()->baseUrl.'/images/'.$model['picture'],'Not Available')),
-                ),
+		'idatetime',
 		array(
                    'name'=>'userlog',
                    'value'=>lookup::UserNameFromUserID($model->userlog)

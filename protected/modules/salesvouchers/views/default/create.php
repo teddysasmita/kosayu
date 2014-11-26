@@ -1,6 +1,6 @@
 <?php
-/* @var $this ItemsController */
-/* @var $model Items */
+/* @var $this SalesvouchersController */
+/* @var $model Salesvouchers */
 
 $this->breadcrumbs=array(
    'Proses'=>array('/site/proses'),
@@ -13,6 +13,6 @@ $this->menu=array(
 );
 ?>
 
-<h1>Barang Dagang</h1>
+<h1>Voucher / Kupon</h1>
 
 <?php $this->renderPartial('_form', array('model'=>$model)); ?>

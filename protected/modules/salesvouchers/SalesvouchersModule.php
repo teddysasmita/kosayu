@@ -1,6 +1,6 @@
 <?php
 
-class ItemModule extends CWebModule
+class SalesvouchersModule extends CWebModule
 {
 	public function init()
 	{
@@ -9,8 +9,8 @@ class ItemModule extends CWebModule
 
 		// import the module-level models and components
 		$this->setImport(array(
-			'item.models.*',
-			'item.components.*',
+			'salesvouchers.models.*',
+			'salesvouchers.components.*',
 		));
 	}
 

@@ -1,6 +1,6 @@
 <?php
-/* @var $this ItemsController */
-/* @var $model Items */
+/* @var $this SalesvouchersController */
+/* @var $model Salesvouchers */
 
 $this->breadcrumbs=array(
    'Proses'=>array('/site/proses'),
@@ -14,7 +14,7 @@ $this->menu=array(
 
 ?>
 
-<h1>Barang Dagang</h1>
+<h1>Voucher / Kupon</h1>
 
 <p>
 You may optionally enter a comparison operator (<b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>&lt;&gt;</b>
@@ -24,7 +24,7 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 <?php
     
     $data=Yii::app()->tracker->createCommand()->
-       select('a.*')->from('items a')->join('userjournal b', 'b.id=a.idtrack')
+       select('a.*')->from('salesvouchers a')->join('userjournal b', 'b.id=a.idtrack')
        ->where('b.action=:action', array(':action'=>'d'))->queryAll();
     $ap=new CArrayDataProvider($data);
 ?>
@@ -32,14 +32,13 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 
 <?php
  $this->widget('zii.widgets.grid.CGridView', array(
-	'id'=>'items-grid',
+	'id'=>'salesvouchers-grid',
 	'dataProvider'=>$ap,
 	'columns'=>array(
 		'id',
-		'code',
-		'type',
-		'name',
-		'brand',
+		'regnum',
+		'amount',
+		'idatetime',
 		/*
 		'objects',
 		'model',

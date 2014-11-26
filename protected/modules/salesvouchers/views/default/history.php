@@ -1,6 +1,6 @@
 <?php
-/* @var $this ItemsController */
-/* @var $model Items */
+/* @var $this SalesvouchersController */
+/* @var $model Salesvouchers */
 
 $this->breadcrumbs=array(
 	'Proses'=>array('/site/proses'),
@@ -14,22 +14,21 @@ $this->menu=array(
 
 ?>
 
-<h1>Barang Dagang</h1>
+<h1>Voucher / Kupon</h1>
 
 <?php    $data=Yii::app()->tracker->createCommand()->
-       select()->from('items')->where("id='$model->id'")->queryAll();
+       select()->from('salesvouchers')->where("id='$model->id'")->queryAll();
     $ap=new CArrayDataProvider($data);
  ?> 
 
 <?php $this->widget('zii.widgets.grid.CGridView', array(
-	'id'=>'items-grid',
+	'id'=>'salesvouchers-grid',
 	'dataProvider'=>$ap,
 	'columns'=>array(
 		'id',
-		'code',
-		'type',
-		'name',
-		'brand',
+		'regnum',
+		'amount',
+		'idatetime',
 		/*
 		'objects',
 		'model',

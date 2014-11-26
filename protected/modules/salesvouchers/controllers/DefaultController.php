@@ -50,15 +50,15 @@ class DefaultController extends Controller
                 $this->state='c';
                 $this->trackActivity('c');    
                     
-                $model=new Items;
+                $model=new Salesvouchers;
                 $this->afterInsert($model);
                 
 		// Uncomment the following line if AJAX validation is needed
 		$this->performAjaxValidation($model);
 
-		if(isset($_POST['Items']))
+		if(isset($_POST['Salesvouchers']))
 		{
-			$model->attributes=$_POST['Items'];
+			$model->attributes=$_POST['Salesvouchers'];
                         $this->beforePost($model);
 			if($model->save()) {
                             $this->afterPost($model);
@@ -93,12 +93,12 @@ class DefaultController extends Controller
 		// Uncomment the following line if AJAX validation is needed
 			$this->performAjaxValidation($model);
 
-			if(isset($_POST['Items']))
+			if(isset($_POST['Salesvouchers']))
 			{
-				$model->attributes=$_POST['Items'];
+				$model->attributes=$_POST['Salesvouchers'];
                          
 				$this->beforePost($model);   
-				$this->tracker->modify('items', $id);
+				$this->tracker->modify('salesvouchers', $id);
 				if($model->save()) {
 					$this->afterPost($model);
 					$this->redirect(array('view','id'=>$model->id));
@@ -126,7 +126,7 @@ class DefaultController extends Controller
                     $this->trackActivity('d');
                 $model=$this->loadModel($id);
                 $this->beforeDelete($model);
-                $this->tracker->delete('items', $id);
+                $this->tracker->delete('salesvouchers', $id);
                 
                 $model->delete();
                 $this->afterDelete();
@@ -148,7 +148,7 @@ class DefaultController extends Controller
                 Yii::app()->user->id)) {
                 $this->trackActivity('l');
                 
-                $dataProvider=new CActiveDataProvider('Items');
+                $dataProvider=new CActiveDataProvider('Salesvouchers');
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));
@@ -166,10 +166,10 @@ class DefaultController extends Controller
                 Yii::app()->user->id)) {
                 $this->trackActivity('s');
                
-                $model=new Items('search');
+                $model=new Salesvouchers('search');
 		$model->unsetAttributes();  // clear any default values
-		if(isset($_GET['Items']))
-			$model->attributes=$_GET['Items'];
+		if(isset($_GET['Salesvouchers']))
+			$model->attributes=$_GET['Salesvouchers'];
 
 		$this->render('admin',array(
 			'model'=>$model,
@@ -211,9 +211,9 @@ class DefaultController extends Controller
             if(Yii::app()->authManager->checkAccess($this->formid.'-Update', 
                Yii::app()->user->id)) {
                 $this->trackActivity('r');
-                $this->tracker->restore('items', $idtrack);
+                $this->tracker->restore('salesvouchers', $idtrack);
                 
-                $dataProvider=new CActiveDataProvider('Items');
+                $dataProvider=new CActiveDataProvider('Salesvouchers');
                 $this->render('index',array(
                     'dataProvider'=>$dataProvider,
                 ));
@@ -227,9 +227,9 @@ class DefaultController extends Controller
             if(Yii::app()->authManager->checkAccess($this->formid.'-Update', 
                Yii::app()->user->id)) {
                 $this->trackActivity('n');
-                $this->tracker->restoreDeleted('items', $idtrack);
+                $this->tracker->restoreDeleted('salesvouchers', $idtrack);
                 
-                $dataProvider=new CActiveDataProvider('Items');
+                $dataProvider=new CActiveDataProvider('Salesvouchers');
                 $this->render('index',array(
                     'dataProvider'=>$dataProvider,
                 ));
@@ -242,12 +242,12 @@ class DefaultController extends Controller
 	 * Returns the data model based on the primary key given in the GET variable.
 	 * If the data model is not found, an HTTP exception will be raised.
 	 * @param integer $id the ID of the model to be loaded
-	 * @return Items the loaded model
+	 * @return Salesvouchers the loaded model
 	 * @throws CHttpException
 	 */
 	public function loadModel($id)
 	{
-		$model=Items::model()->findByPk($id);
+		$model=Salesvouchers::model()->findByPk($id);
 		if($model===null)
 			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;
@@ -255,11 +255,11 @@ class DefaultController extends Controller
 
 	/**
 	 * Performs the AJAX validation.
-	 * @param Items $model the model to be validated
+	 * @param Salesvouchers $model the model to be validated
 	 */
 	protected function performAjaxValidation($model)
 	{
-		if(isset($_POST['ajax']) && $_POST['ajax']==='items-form')
+		if(isset($_POST['ajax']) && $_POST['ajax']==='salesvouchers-form')
 		{
 			echo CActiveForm::validate($model);
 			Yii::app()->end();
@@ -283,11 +283,11 @@ class DefaultController extends Controller
             
             $model->userlog=Yii::app()->user->id;
             $model->datetimelog=$idmaker->getDateTime();
-            if($_FILES['Items']['size']['picture']>0) {
-                $tmpfile=$_FILES['Items']['tmp_name']['picture'];
-                $newfile='/home/teddy/public_html/gsi/images/'.$_FILES['Items']['name']['picture'];
+            if($_FILES['Salesvouchers']['size']['picture']>0) {
+                $tmpfile=$_FILES['Salesvouchers']['tmp_name']['picture'];
+                $newfile='/home/teddy/public_html/gsi/images/'.$_FILES['Salesvouchers']['name']['picture'];
                 move_uploaded_file($tmpfile, $newfile);
-                $model->picture=$_FILES['Items']['name']['picture'];
+                $model->picture=$_FILES['Salesvouchers']['name']['picture'];
             }
             /*print_r($_FILES);
             die();*/
@@ -315,133 +315,4 @@ class DefaultController extends Controller
             $this->tracker->logActivity($this->formid, $action);
         }
         
-       	public function actionPrintstockcard($id)
-       	{
-       		if(Yii::app()->authManager->checkAccess($this->formid.'-List',
-				Yii::app()->user->id))  {
-	            $this->trackActivity('v');
-	            
-	            if (isset($_POST['idwarehouse'])) {
-	          		if (strlen($_POST['idwarehouse'])) {
-	            		$sql1=<<<EOS
-	select a.idatetime, sum(b.qty) as qty, 'Stok Opname' as message, c.operationlabel, b.userlog from inputinventorytakings a 
-	join detailinputinventorytakings b on b.id = a.id
-	join inventorytakings c on c.id = a.idinventorytaking
-	where b.iditem = :iditem and b.idwarehouse = :idwarehouse
-	group by b.userlog   		
-EOS;
-	            		$command=Yii::app()->db->createCommand($sql1);
-	          			$command->bindParam(':iditem', $_POST['id'], PDO::PARAM_STR);
-	          			$command->bindParam(':idwarehouse', $_POST['idwarehouse'], PDO::PARAM_STR);
-	            		$detailData=$command->queryAll();
-	            		Yii::import('application.vendors.tcpdf.*');
-						require_once ('tcpdf.php');
-						Yii::import('application.modules.item.views.default.*');
-						require_once ('print_stockcard.php');
-						ob_clean();
-						execute(lookup::ItemNameFromItemID($_POST['id']), 
-                			lookup::WarehouseNameFromWarehouseID($_POST['idwarehouse']),
-                			$detailData
-                		);
-	          		}
-	            } 
-	            //else {
-	            	$warehouses=Yii::app()->db->createCommand()
-	            		->select('id, code')->from('warehouses')->queryAll();
-		            $this->render('stockcard',array(
-						'warehouses'=>$warehouses, 'id'=>$id
-					));
-	            //};
-       		} else {
-        		throw new CHttpException(404,'You have no authorization for this operation.');
-        	};
-       	}
-       	
-       	public function actionPrintblankstockcard($id)
-       	{
-       		if(Yii::app()->authManager->checkAccess($this->formid.'-List',
-       				Yii::app()->user->id))  {
-       			$this->trackActivity('v');
-       			 
-       			if (isset($_POST['idwarehouse'])) {
-       				if (strlen($_POST['idwarehouse'])) {
-       					Yii::import('application.vendors.tcpdf.*');
-       					require_once ('tcpdf.php');
-       					Yii::import('application.modules.item.views.default.*');
-       					require_once ('print_stockcard.php');
-       					ob_clean();
-       					execute(lookup::ItemNameFromItemID($_POST['id']), 
-       						lookup::WarehouseNameFromWarehouseID($_POST['idwarehouse']),
-		            		array());
-       				}
-       			}
-       									//else {
-       			$warehouses=Yii::app()->db->createCommand()
-       				->select('id, code')->from('warehouses')->queryAll();
-       			$this->render('stockcard',array( 'warehouses'=>$warehouses, 
-       				'id'=>$id));
-       		} else {
-       			throw new CHttpException(404,'You have no authorization for this operation.');
-       		};
-       	}
-       	
-       	public function actionExport2xcl()
-       	{
-       		if(Yii::app()->authManager->checkAccess($this->formid.'-List',
-       				Yii::app()->user->id))  {
-       			$this->trackActivity('v');
-				
-       			if (isset($_POST['selectitems'])) {
-       				//print_r($_POST);
-       				$query = 'select id,code,name from items';
-       				if ($_POST['selectitems']['brand'] !== '')
-       					$where[] = 'brand = \''.$_POST['selectitems']['brand'].'\'';
-       				if ($_POST['selectitems']['object'] !== '')
-       					$where[] = 'objects = \''.$_POST['selectitems']['object'].'\'';
-       				if ($_POST['selectitems']['model'] !== '')
-       					$where[] = 'model = \''.$_POST['selectitems']['model'].'\'';
-       				if (isset($where)) {
-       					$query .= ' where ';
-       					$query = $query . implode(' and ', $where);
-       				};
-       				$xl = new PHPExcel();
-       				$xl->getProperties()->setCreator("Program GSI Malang")
-	       				->setLastModifiedBy("Program GSI Malang")
-	       				->setTitle("Daftar Barang")
-	       				->setSubject("Daftar Barang")
-	       				->setDescription("Daftar Barang")
-	       				->setKeywords("Nama Barang")
-	       				->setCategory("Daftar");
-       				$data = Yii::app()->db->createCommand($query)->queryAll();
-       				$headersfield = array( 'id', 'code', 'name');
-       				$headersname = array('ID', 'Kode', 'Nama Barang');
-       				for( $i=0;$i<count($headersname); $i++ ) {
-       					$xl->setActiveSheetIndex(0)
-       					->setCellValueByColumnAndRow($i,1, $headersname[$i]);
-       				}
-       				for( $i=0; $i<count($data); $i++){
-       					for( $j=0; $j<count($headersfield); $j++ ) {
-       						$cellvalue = $data[$i][$headersfield[$j]];
-       						if ($headersfield[$j] == 'idsales')
-       							$cellvalue = lookup::SalesPersonNameFromID($data[$i]['idsales']);
-       						else if ($headersfield[$j] == 'iditem')
-       							$cellvalue = lookup::ItemNameFromItemID($data[$i]['iditem']);
-       						$xl->setActiveSheetindex(0)
-       						->setCellValueByColumnAndRow($j,$i+2, $cellvalue);
-       					}
-       				}
-       					
-       				$xl->getActiveSheet()->setTitle('Laporan Penjualan');
-       				$xl->setActiveSheetIndex(0);
-       				header('Content-Type: application/pdf');
-       				header('Content-Disposition: attachment;filename="nama_barang.xlsx"');
-       				header('Cache-Control: max-age=0');
-       				$xlWriter = PHPExcel_IOFactory::createWriter($xl, 'Excel2007');
-       				$xlWriter->save('php://output');
-       			} else 
-       				$this->render('selectitems');
-       		} else {
-       			throw new CHttpException(404,'You have no authorization for this operation.');
-       		};
-       	}
 }
