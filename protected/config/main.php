@@ -76,7 +76,8 @@ return array(
 			'currencyrates',
 			'itemtipgroup',
 			'partner', 
-			'tippayment'
+			'tippayment',
+			'salesvouchers'
         ),
 
         
