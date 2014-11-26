@@ -283,14 +283,6 @@ class DefaultController extends Controller
             
             $model->userlog=Yii::app()->user->id;
             $model->datetimelog=$idmaker->getDateTime();
-            if($_FILES['Salesvouchers']['size']['picture']>0) {
-                $tmpfile=$_FILES['Salesvouchers']['tmp_name']['picture'];
-                $newfile='/home/teddy/public_html/gsi/images/'.$_FILES['Salesvouchers']['name']['picture'];
-                move_uploaded_file($tmpfile, $newfile);
-                $model->picture=$_FILES['Salesvouchers']['name']['picture'];
-            }
-            /*print_r($_FILES);
-            die();*/
         }
         
         protected function beforeDelete(& $model)
