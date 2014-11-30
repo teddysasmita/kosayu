@@ -33,13 +33,13 @@ EOS;
       $form=$this->beginWidget('CActiveForm', array(
 	'id'=>'purchases-form',
 	'enableAjaxValidation'=>true,
-      'action'=>Yii::app()->createUrl("/purchasesorder/default/create")
+      'action'=>Yii::app()->createUrl("/purchases/default/create")
       ));
    else if($command=='update')
       $form=$this->beginWidget('CActiveForm', array(
 	'id'=>'purchases-form',
 	'enableAjaxValidation'=>true,
-      'action'=>Yii::app()->createUrl("/purchasesorder/default/update", array('id'=>$model->id))
+      'action'=>Yii::app()->createUrl("/purchases/default/update", array('id'=>$model->id))
       ));
   ?>
 
