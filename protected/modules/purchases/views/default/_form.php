@@ -26,6 +26,11 @@
          $('#Purchases_idsupplier').val(
             supplierids[suppliernames.indexOf(activename)]);
       });
+   
+		$('#Purchases_idorder').change(function() {
+         	$('#command').val('setPO');
+   			$('#purchases-form').submit();
+      	});
 EOS;
    Yii::app()->clientScript->registerScript("supplierScript", $supplierScript, CClientscript::POS_READY);
 

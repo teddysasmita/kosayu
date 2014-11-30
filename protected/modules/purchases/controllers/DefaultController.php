@@ -91,13 +91,17 @@ class DefaultController extends Controller
 
                    } else if (isset($_POST['command'])){
                       // save the current master data before going to the detail page
-                      if($_POST['command']=='adddetail') {
+                      if ($_POST['command']=='adddetail') {
                          $model->attributes=$_POST['Purchases'];
                          Yii::app()->session['Purchases']=$_POST['Purchases'];
                          $this->redirect(array('detailpurchases/create',
                             'id'=>$model->id, 'regnum'=>$model->regnum));
+                      } else if($_POST['command']=='setPO') {
+                         $model->attributes=$_POST['Purchases'];
+                         $data = $this->setPO($model->id, $model->idorder, $model->idsupplier);
+                         Yii::app()->session['Detailpurchases'] = $data;
+                         Yii::app()->session['Purchases']=$model->attributes;
                       }
-                      
                    }
                 }
 
@@ -552,4 +556,39 @@ class DefaultController extends Controller
         	$model->total=$total;
         	$model->discount=$totaldisc;
         }
+        
+        private function setPO($id, $idorder, & $idsupplier)
+        {
+        	$salesorders = Yii::app()->db->createCommand()
+        		->select('b.idsupplier, a.*')->from('detailpurchasesorders a')
+        		->join('purchasesorders b', 'b.id = a.id')
+        		->where('b.regnum = :p_regnum', array(':p_regnum'=>$idorder))
+        		->queryAll();	
+        	
+        	$received = Yii::app()->db->createCommand()
+        		->select('a.*')->from('detailpurchases a')
+        		->join('purchases b', 'b.id = a.id')
+        		->where('b.idorder = :p_idorder', array(':p_idorder'=>$idorder))
+        		->queryAll();
+        	
+        	foreach($salesorders as $so) {
+        		foreach($received as $rd) {
+        			if ($rd['iditem'] == $so['iditem'])	{
+        				if ($so['qty'] - $rd['qty'] > 0) {
+        					$temp['id'] = $id;
+        					$temp['iddetail'] = idmaker::getCurrentID2();
+        					$temp['iditem'] = $so['iditem'];
+        					$temp['qty'] = $so['qty'] - $rd['qty'];
+        					$temp['price'] = $so['price'];
+        					$temp['userlog'] = Yii::app()->user->id;
+        					$temp['datetimelog'] = idmaker::getDateTime();
+        					$data[] = $temp;
+        				};
+        				break;
+        			}
+        		}
+        	}
+        	return $temp;
+        }
+
 }
