@@ -113,8 +113,25 @@ EOS;
 		<?php echo $form->textField($model,'price'); ?>
 		<?php echo $form->error($model,'price'); ?>
 	</div>
-        
-    
+        <div class="row">
+		<?php echo $form->labelEx($model,'expirydate'); ?>
+            <?php
+               $this->widget('zii.widgets.jui.CJuiDatePicker',array(
+                  'name'=>'Detailconsignpurchases[expirydate]',
+                     // additional javascript options for the date picker plugin
+                  'options'=>array(
+                     'showAnim'=>'fold',
+                     'dateFormat'=>'yy/mm/dd',
+                     'defaultdate'=>$model->expirydate
+                  ),
+                  'htmlOptions'=>array(
+                     'style'=>'height:20px;',
+                  ),
+                  'value'=>$model->expirydate,
+               ));
+            ?>
+		<?php echo $form->error($model,'expirydate'); ?>
+	</div>
 	
 	<div class="row buttons">
 		<?php echo CHtml::submitButton($mode); ?>
