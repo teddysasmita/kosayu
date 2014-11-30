@@ -13,7 +13,7 @@ $this->pageTitle=Yii::app()->name;
 <h2>Bagian Pembelian</h2>
 <h3><?php echo CHtml::link('Pemesanan ke Pemasok', Yii::app()->createUrl('purchasesorder'))?></h3>
 <h3><?php echo CHtml::link('Pembelian dari Pemasok', Yii::app()->createUrl('purchases'))?></h3>
-<h3><?php echo CHtml::link('Pembelian Konsinyasi ke Pemasok', Yii::app()->createUrl('consignedorders'))?></h3>
+<h3><?php echo CHtml::link('Pembelian Konsinyasi ke Pemasok', Yii::app()->createUrl('consignpurchases'))?></h3>
 <h3><?php echo CHtml::link('Retur Barang ke Pemasok', Yii::app()->createUrl('purchasesreturs'))?></h3>
 
 <h2>Bagian Penjualan</h2>
