@@ -576,8 +576,10 @@ class DefaultController extends Controller
         	$data = array();
         	
         	foreach($salesorders as $so) {
+        		$found = FALSE;
         		foreach($received as $rd) {
         			if ($rd['iditem'] == $so['iditem'])	{
+        				$found = TRUE;
         				if ($so['qty'] - $rd['qty'] > 0) {
         					$temp['id'] = $id;
         					$temp['iddetail'] = idmaker::getCurrentID2();
@@ -589,16 +591,17 @@ class DefaultController extends Controller
         					$data[] = $temp;
         				};
         				break;
-        			} else {
-        				$temp['id'] = $id;
-        				$temp['iddetail'] = idmaker::getCurrentID2();
-        				$temp['iditem'] = $so['iditem'];
-        				$temp['qty'] = $so['qty'];
-        				$temp['price'] = $so['price'];
-        				$temp['userlog'] = Yii::app()->user->id;
-        				$temp['datetimelog'] = idmaker::getDateTime();
-        				$data[] = $temp;
         			}
+        		};
+        		if (! $found ) {
+        			$temp['id'] = $id;
+        			$temp['iddetail'] = idmaker::getCurrentID2();
+        			$temp['iditem'] = $so['iditem'];
+					$temp['qty'] = $so['qty'];
+        			$temp['price'] = $so['price'];
+        			$temp['userlog'] = Yii::app()->user->id;
+					$temp['datetimelog'] = idmaker::getDateTime();
+        			$data[] = $temp;
         		}
         	}
         	return $data;
