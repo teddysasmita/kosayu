@@ -101,6 +101,7 @@ class DefaultController extends Controller
                          $idsupplier = '';
                          $data = $this->setPO($model->id, $model->idorder, $idsupplier);
                          $model->idsupplier = $idsupplier;
+                         $this->sumDetail($model, $data);
                          Yii::app()->session['Detailpurchases'] = $data;
                          Yii::app()->session['Purchases']=$model->attributes;
                       }
