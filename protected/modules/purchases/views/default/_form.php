@@ -94,6 +94,7 @@ EOS;
 	<div class="row">
 		<?php echo $form->labelEx($model,'idsupplier'); ?>
 		<?php 
+			print_r($model->idsupplier);
                $suppliers=Yii::app()->db->createCommand()
                   ->select("id,firstname,lastname")
                   ->from("suppliers")
