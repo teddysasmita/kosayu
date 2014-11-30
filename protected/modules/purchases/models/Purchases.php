@@ -39,12 +39,12 @@ class Purchases extends CActiveRecord
 			array('total, discount', 'numerical'),
 			array('id, idsupplier, idorder, userlog', 'length', 'max'=>21),
 			array('regnum', 'length', 'max'=>12),
-			array('idatetime, rdatetime, datetimelog', 'length', 'max'=>19),
+			array('idatetime, datetimelog', 'length', 'max'=>19),
 			array('status', 'length', 'max'=>10),
 			array('remark, paystatus', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, regnum, idatetime, rdatetime, idsupplier, total, discount, status, remark, userlog, datetimelog', 'safe', 'on'=>'search'),
+			array('id, regnum, idatetime, idsupplier, total, discount, status, remark, userlog, datetimelog', 'safe', 'on'=>'search'),
 		);
 	}
 
