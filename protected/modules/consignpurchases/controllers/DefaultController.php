@@ -50,16 +50,16 @@ class DefaultController extends Controller
                 $this->state='c';
                 $this->trackActivity('c');    
                     
-                $model=new Consignconsignpurchases;
+                $model=new Consignpurchases;
                 $this->afterInsert($model);
                 
                 Yii::app()->session['master']='create';
                 //as the operator enter for the first time, we load the default value to the session
-                if (!isset(Yii::app()->session['Consignconsignpurchases'])) {
-                   Yii::app()->session['Consignconsignpurchases']=$model->attributes;
+                if (!isset(Yii::app()->session['Consignpurchases'])) {
+                   Yii::app()->session['Consignpurchases']=$model->attributes;
                 } else {
                 // use the session to fill the model
-                    $model->attributes=Yii::app()->session['Consignconsignpurchases'];
+                    $model->attributes=Yii::app()->session['Consignpurchases'];
                 }
                 
                // Uncomment the following line if AJAX validation is needed
@@ -68,7 +68,7 @@ class DefaultController extends Controller
                 if (isset($_POST)){
                    if(isset($_POST['yt0'])) {
                       //The user pressed the button;
-                      $model->attributes=$_POST['Consignconsignpurchases'];
+                      $model->attributes=$_POST['Consignpurchases'];
                       
                       $this->beforePost($model);
                       $respond=$model->save();
@@ -84,7 +84,7 @@ class DefaultController extends Controller
                       } 
                       
                       if($respond) {
-                         Yii::app()->session->remove('Consignconsignpurchases');
+                         Yii::app()->session->remove('Consignpurchases');
                          Yii::app()->session->remove('Detailconsignpurchases');
                          $this->redirect(array('view','id'=>$model->id));
                       }
@@ -92,18 +92,18 @@ class DefaultController extends Controller
                    } else if (isset($_POST['command'])){
                       // save the current master data before going to the detail page
                       if ($_POST['command']=='adddetail') {
-                         $model->attributes=$_POST['Consignconsignpurchases'];
-                         Yii::app()->session['Consignconsignpurchases']=$_POST['Consignconsignpurchases'];
+                         $model->attributes=$_POST['Consignpurchases'];
+                         Yii::app()->session['Consignpurchases']=$_POST['Consignpurchases'];
                          $this->redirect(array('detailconsignpurchases/create',
                             'id'=>$model->id, 'regnum'=>$model->regnum));
                       } else if($_POST['command']=='setPO') {
-                         $model->attributes=$_POST['Consignconsignpurchases'];
+                         $model->attributes=$_POST['Consignpurchases'];
                          $idsupplier = '';
                          $data = $this->setPO($model->id, $model->idorder, $idsupplier);
                          $model->idsupplier = $idsupplier;
                          $this->sumDetail($model, $data);
                          Yii::app()->session['Detailconsignpurchases'] = $data;
-                         Yii::app()->session['Consignconsignpurchases']=$model->attributes;
+                         Yii::app()->session['Consignpurchases']=$model->attributes;
                       }
                    }
                 }
@@ -135,10 +135,10 @@ class DefaultController extends Controller
              
              Yii::app()->session['master']='update';
 
-             if(!isset(Yii::app()->session['Consignconsignpurchases']))
-                Yii::app()->session['Consignconsignpurchases']=$model->attributes;
+             if(!isset(Yii::app()->session['Consignpurchases']))
+                Yii::app()->session['Consignpurchases']=$model->attributes;
              else
-                $model->attributes=Yii::app()->session['Consignconsignpurchases'];
+                $model->attributes=Yii::app()->session['Consignpurchases'];
 
              if(!isset(Yii::app()->session['Detailconsignpurchases'])) 
                Yii::app()->session['Detailconsignpurchases']=$this->loadDetails($id);
@@ -148,7 +148,7 @@ class DefaultController extends Controller
 
              if(isset($_POST)) {
                  if(isset($_POST['yt0'])) {
-                     $model->attributes=$_POST['Consignconsignpurchases'];
+                     $model->attributes=$_POST['Consignpurchases'];
                      $this->beforePost($model);
                      $this->tracker->modify('consignpurchases', $id);
                      $respond=$model->save();
@@ -176,7 +176,7 @@ class DefaultController extends Controller
                      };
                      
                      if($respond) {
-                         Yii::app()->session->remove('Consignconsignpurchases');
+                         Yii::app()->session->remove('Consignpurchases');
                          Yii::app()->session->remove('Detailconsignpurchases');
                          Yii::app()->session->remove('DeleteDetailconsignpurchases');
                          $this->redirect(array('view','id'=>$model->id));
@@ -234,10 +234,10 @@ class DefaultController extends Controller
                 Yii::app()->user->id)) {
                $this->trackActivity('l');
 
-               Yii::app()->session->remove('Consignconsignpurchases');
+               Yii::app()->session->remove('Consignpurchases');
                Yii::app()->session->remove('Detailconsignpurchases');
                Yii::app()->session->remove('DeleteDetailconsignpurchases');
-               $dataProvider=new CActiveDataProvider('Consignconsignpurchases',
+               $dataProvider=new CActiveDataProvider('Consignpurchases',
                   array(
                      'criteria'=>array(
                         'order'=>'id desc'
@@ -261,10 +261,10 @@ class DefaultController extends Controller
                 Yii::app()->user->id)) {
                 $this->trackActivity('s');
                
-                $model=new Consignconsignpurchases('search');
+                $model=new Consignpurchases('search');
 		$model->unsetAttributes();  // clear any default values
-		if(isset($_GET['Consignconsignpurchases']))
-			$model->attributes=$_GET['Consignconsignpurchases'];
+		if(isset($_GET['Consignpurchases']))
+			$model->attributes=$_GET['Consignpurchases'];
 
 		$this->render('admin',array(
 			'model'=>$model,
@@ -308,7 +308,7 @@ class DefaultController extends Controller
                 $this->trackActivity('r');
                 $this->tracker->restore('consignpurchases', $idtrack);
                 
-                $dataProvider=new CActiveDataProvider('Consignconsignpurchases');
+                $dataProvider=new CActiveDataProvider('Consignpurchases');
                 $this->render('index',array(
                     'dataProvider'=>$dataProvider,
                 ));
@@ -324,7 +324,7 @@ class DefaultController extends Controller
                 $this->trackActivity('n');
                 $this->tracker->restoreDeleted('consignpurchases', $idtrack);
                 
-                $dataProvider=new CActiveDataProvider('Consignconsignpurchases');
+                $dataProvider=new CActiveDataProvider('Consignpurchases');
                 $this->render('index',array(
                     'dataProvider'=>$dataProvider,
                 ));
@@ -337,12 +337,12 @@ class DefaultController extends Controller
 	 * Returns the data model based on the primary key given in the GET variable.
 	 * If the data model is not found, an HTTP exception will be raised.
 	 * @param integer $id the ID of the model to be loaded
-	 * @return Consignconsignpurchases the loaded model
+	 * @return Consignpurchases the loaded model
 	 * @throws CHttpException
 	 */
 	public function loadModel($id)
 	{
-		$model=Consignconsignpurchases::model()->findByPk($id);
+		$model=Consignpurchases::model()->findByPk($id);
 		if($model===null)
 			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;
@@ -350,7 +350,7 @@ class DefaultController extends Controller
 
 	/**
 	 * Performs the AJAX validation.
-	 * @param Consignconsignpurchases $model the model to be validated
+	 * @param Consignpurchases $model the model to be validated
 	 */
 	protected function performAjaxValidation($model)
 	{
@@ -366,8 +366,8 @@ class DefaultController extends Controller
       //this action continues the process from the detail page
          if(Yii::app()->authManager->checkAccess($this->formid.'-Append', 
                  Yii::app()->user->id))  {
-             $model=new Consignconsignpurchases;
-             $model->attributes=Yii::app()->session['Consignconsignpurchases'];
+             $model=new Consignpurchases;
+             $model->attributes=Yii::app()->session['Consignpurchases'];
 
              $details=Yii::app()->session['Detailconsignpurchases'];
              $this->afterInsertDetail($model, $details);
@@ -385,8 +385,8 @@ class DefaultController extends Controller
          if(Yii::app()->authManager->checkAccess($this->formid.'-Update', 
                  Yii::app()->user->id))  {
 
-             $model=new Consignconsignpurchases;
-             $model->attributes=Yii::app()->session['Consignconsignpurchases'];
+             $model=new Consignpurchases;
+             $model->attributes=Yii::app()->session['Consignpurchases'];
 
              $details=Yii::app()->session['Detailconsignpurchases'];
              $this->afterUpdateDetail($model, $details);
@@ -405,8 +405,8 @@ class DefaultController extends Controller
                  Yii::app()->user->id))  {
 
 
-             $model=new Consignconsignpurchases;
-             $model->attributes=Yii::app()->session['Consignconsignpurchases'];
+             $model=new Consignpurchases;
+             $model->attributes=Yii::app()->session['Consignpurchases'];
 
              $details=Yii::app()->session['Detailconsignpurchases'];
              $this->afterDeleteDetail($model, $details);
