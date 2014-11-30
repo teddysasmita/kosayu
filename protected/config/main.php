@@ -77,7 +77,8 @@ return array(
 			'itemtipgroup',
 			'partner', 
 			'tippayment',
-			'salesvouchers'
+			'salesvouchers',
+			'purchases',
         ),
 
         
