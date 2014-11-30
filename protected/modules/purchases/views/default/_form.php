@@ -128,7 +128,7 @@ EOS;
     }
     $dataProvider=new CArrayDataProvider($rawdata, array(
           'totalItemCount'=>$count,
-    	'keyfield'=>'iddetail'
+    	'keyField'=>'iddetail'
     ));
     $this->widget('zii.widgets.grid.CGridView', array(
             'dataProvider'=>$dataProvider,
