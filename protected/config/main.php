@@ -79,6 +79,7 @@ return array(
 			'tippayment',
 			'salesvouchers',
 			'purchases',
+			'consignpurchases',
         ),
 
         
