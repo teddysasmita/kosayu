@@ -555,7 +555,6 @@ class DefaultController extends Controller
         		$total=$total+(($row['price'])*$row['qty']);
         		$totaldisc=$totaldisc+$row['discount']*$row['qty'];
         	}
-        	$model->attributes=Yii::app()->session['Purchases'];
         	$model->total=$total;
         	$model->discount=$totaldisc;
         }
