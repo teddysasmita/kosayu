@@ -16,8 +16,6 @@ $this->menu=array(
       array('label'=>'Sejarah', 'url'=>array('history', 'id'=>$model->id)),
       array('label'=>'Data Detil yang dihapus', 
          'url'=>array('/purchasesorder/detailpurchasesorders/deleted', 'id'=>$model->id)),
-      array('label'=>'Data Detil Voucher yang dihapus', 
-         'url'=>array('/purchasesorder/detailpurchasesorders2/deleted', 'id'=>$model->id)),
 );
 ?>
 
@@ -108,28 +106,6 @@ $this->menu=array(
                ),
                'viewButtonUrl'=>"Action::decodeViewDetailPurchasesOrderUrl(\$data, $model->regnum)",
             )
-         ),
-   ));
-   
-   $count=Yii::app()->db->createCommand("select count(*) from detailpurchasesorders2 where id='$model->id'")
-      ->queryScalar();
-   $sql="select * from detailpurchasesorders2 where id='$model->id'";
-
-   $dataProvider=new CSqlDataProvider($sql,array(
-          'totalItemCount'=>$count,
-          ));
-   $this->widget('zii.widgets.grid.CGridView', array(
-         'dataProvider'=>$dataProvider,
-         'columns'=>array(
-              array(
-                  'header'=>'Nama Voucher',
-                  'name'=>'vouchername',
-              ),
-             array(
-                 'header'=>'Nilai',
-                 'name'=>'vouchervalue',
-                'type'=>'number',
-             ),
          ),
    ));
  ?>
