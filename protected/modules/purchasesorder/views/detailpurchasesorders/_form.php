@@ -69,7 +69,7 @@ EOS;
                       'buttons'=>array(
                           array('text'=>'Ok', 'click'=>'js:function(){
                              $(\'#Detailpurchasesorders_itemname\').val($(\'#dialog-item-name\').val());
-                             $.get(\'index.php?r=LookUp/getItemID\',{ name: encodeURI($(\'#dialog-item-name\').val()) },
+                             $.get(\'index.php?r=LookUp/getItemID2\',{ name: encodeURI($(\'#dialog-item-name\').val()) },
                                  function(data) {
                                     $(\'#Detailpurchasesorders_iditem\').val(data);
                                  })
