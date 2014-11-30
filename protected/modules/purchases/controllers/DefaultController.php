@@ -567,6 +567,8 @@ class DefaultController extends Controller
         		->where('b.regnum = :p_regnum', array(':p_regnum'=>$idorder))
         		->queryAll();	
         	
+        	$idsupplier = $salesorders[0]['idsupplier'];
+        	
         	$received = Yii::app()->db->createCommand()
         		->select('a.*')->from('detailpurchases a')
         		->join('purchases b', 'b.id = a.id')
