@@ -590,7 +590,7 @@ class DefaultController extends Controller
         			}
         		}
         	}
-        	return $temp;
+        	return $data;
         }
 
 }
