@@ -1,6 +1,6 @@
 <?php
 
-class DetailpurchasesController extends Controller
+class DetailconsignpurchasesController extends Controller
 {
 	/**
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
@@ -32,8 +32,8 @@ class DetailpurchasesController extends Controller
 				Yii::app()->user->id))  {
             $this->trackActivity('v');
             $model=$this->loadModel($iddetail);
-            if(($model==NULL)&&isset(Yii::app()->session['Detailpurchases'])) {
-                $model=new Detailpurchases;
+            if(($model==NULL)&&isset(Yii::app()->session['Detailconsignpurchases'])) {
+                $model=new Detailconsignpurchases;
                 $model->attributes=$this->loadSession($iddetail);
             }  
             $this->render('view',array(
@@ -55,7 +55,7 @@ class DetailpurchasesController extends Controller
                 $this->state='c';
                 $this->trackActivity('c');    
                     
-                $model=new Detailpurchases;
+                $model=new Detailconsignpurchases;
                 $this->afterInsert($id, $model);
                 
                 $master=Yii::app()->session['master'];
@@ -63,14 +63,14 @@ class DetailpurchasesController extends Controller
 				// Uncomment the following line if AJAX validation is needed
 				$this->performAjaxValidation($model);
                 
-                if(isset($_POST['Detailpurchases'])) {
-                    $temp=Yii::app()->session['Detailpurchases'];
-                    $model->attributes=$_POST['Detailpurchases'];
+                if(isset($_POST['Detailconsignpurchases'])) {
+                    $temp=Yii::app()->session['Detailconsignpurchases'];
+                    $model->attributes=$_POST['Detailconsignpurchases'];
                     //posting into session
-                    $temp[]=$_POST['Detailpurchases'];
+                    $temp[]=$_POST['Detailconsignpurchases'];
                     
                     if ($model->validate()) {
-                        Yii::app()->session['Detailpurchases']=$temp;
+                        Yii::app()->session['Detailconsignpurchases']=$temp;
                         if ($master=='create')
                             $this->redirect(array('default/createdetail'));
                         else if($master=='update')
@@ -103,8 +103,8 @@ class DetailpurchasesController extends Controller
                 $master=Yii::app()->session['master'];
                 
                 $model=$this->loadModel($iddetail);
-                if(isset(Yii::app()->session['Detailpurchases'])) {
-                    $model=new Detailpurchases;
+                if(isset(Yii::app()->session['Detailconsignpurchases'])) {
+                    $model=new Detailconsignpurchases;
                     $model->attributes=$this->loadSession($iddetail);
                 }
                 $this->afterEdit($model);
@@ -112,19 +112,19 @@ class DetailpurchasesController extends Controller
                 // Uncomment the following line if AJAX validation is needed
                 $this->performAjaxValidation($model);
                 
-                if(isset($_POST['Detailpurchases']))
+                if(isset($_POST['Detailconsignpurchases']))
 		{
-                    $temp=Yii::app()->session['Detailpurchases'];
-                    $model->attributes=$_POST['Detailpurchases'];
+                    $temp=Yii::app()->session['Detailconsignpurchases'];
+                    $model->attributes=$_POST['Detailconsignpurchases'];
                     foreach ($temp as $tk=>$tv) {
-                        if($tv['iddetail']==$_POST['Detailpurchases']['iddetail']) {
-                            $temp[$tk]=$_POST['Detailpurchases'];
+                        if($tv['iddetail']==$_POST['Detailconsignpurchases']['iddetail']) {
+                            $temp[$tk]=$_POST['Detailconsignpurchases'];
                             break;
                         }
                     }
                     //posting into session
 		    if($model->validate()) {
-                    	Yii::app()->session['Detailpurchases']=$temp;
+                    	Yii::app()->session['Detailconsignpurchases']=$temp;
 			
                     	if ($master=='create')
                         	$this->redirect(array('default/createdetail'));
@@ -153,20 +153,20 @@ class DetailpurchasesController extends Controller
                 
                 $this->trackActivity('d');
                 
-                $details=Yii::app()->session['Detailpurchases'];
+                $details=Yii::app()->session['Detailconsignpurchases'];
                 foreach ($details as $ik => $iv) {
                    if($iv['iddetail']==$iddetail) {
-                      if(isset(Yii::app()->session['Deletedetailpurchases']))
-                         $deletelist=Yii::app()->session['Deletedetailpurchases'];
+                      if(isset(Yii::app()->session['Deletedetailconsignpurchases']))
+                         $deletelist=Yii::app()->session['Deletedetailconsignpurchases'];
                       $deletelist[]=$iv;
-                      Yii::app()->session['Deletedetailpurchases']=$deletelist;
+                      Yii::app()->session['Deletedetailconsignpurchases']=$deletelist;
                       unset($details[$ik]);
                       break;
                    }
                 }
                 
                             
-                Yii::app()->session['Detailpurchases']=$details;
+                Yii::app()->session['Detailconsignpurchases']=$details;
 
 		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
 		if(!isset($_GET['ajax']))
@@ -206,9 +206,9 @@ class DetailpurchasesController extends Controller
             if(Yii::app()->authManager->checkAccess($this->formid.'-Update', 
                Yii::app()->user->id)) {
                 $this->trackActivity('r');
-                $this->tracker->restore('detailpurchases', $idtrack);
+                $this->tracker->restore('detailconsignpurchases', $idtrack);
                 
-                $dataProvider=new CActiveDataProvider('Detailpurchases');
+                $dataProvider=new CActiveDataProvider('Detailconsignpurchases');
                 $this->render('index',array(
                     'dataProvider'=>$dataProvider,
                 ));
@@ -222,9 +222,9 @@ class DetailpurchasesController extends Controller
             if(Yii::app()->authManager->checkAccess($this->formid.'-Update', 
                Yii::app()->user->id)) {
                 $this->trackActivity('n');
-                $this->tracker->restoreDeleted('detailpurchases', $idtrack);
+                $this->tracker->restoreDeleted('detailconsignpurchases', $idtrack);
                 
-                $dataProvider=new CActiveDataProvider('Detailpurchases');
+                $dataProvider=new CActiveDataProvider('Detailconsignpurchases');
                 $this->render('index',array(
                     'dataProvider'=>$dataProvider,
                 ));
@@ -237,12 +237,12 @@ class DetailpurchasesController extends Controller
 	 * Returns the data model based on the primary key given in the GET variable.
 	 * If the data model is not found, an HTTP exception will be raised.
 	 * @param integer $id the ID of the model to be loaded
-	 * @return Detailpurchases the loaded model
+	 * @return Detailconsignpurchases the loaded model
 	 * @throws CHttpException
 	 */
 	public function loadModel($id)
 	{
-		$model=Detailpurchases::model()->findByPk($id);
+		$model=Detailconsignpurchases::model()->findByPk($id);
 		/*if($model===null)
 			throw new CHttpException(404,'The requested page does not exist.');
 		*/
@@ -251,11 +251,11 @@ class DetailpurchasesController extends Controller
 
 	/**
 	 * Performs the AJAX validation.
-	 * @param Detailpurchases $model the model to be validated
+	 * @param Detailconsignpurchases $model the model to be validated
 	 */
 	protected function performAjaxValidation($model)
 	{
-		if(isset($_POST['ajax']) && $_POST['ajax']==='detailpurchases-form')
+		if(isset($_POST['ajax']) && $_POST['ajax']==='detailconsignpurchases-form')
 		{
 			echo CActiveForm::validate($model);
 			Yii::app()->end();
@@ -264,7 +264,7 @@ class DetailpurchasesController extends Controller
         
         protected function loadSession($iddetail)
         {
-            $details=Yii::app()->session['Detailpurchases'];
+            $details=Yii::app()->session['Detailconsignpurchases'];
             foreach ($details as $row) {
                 if($row['iddetail']==$iddetail)
                     return $row;

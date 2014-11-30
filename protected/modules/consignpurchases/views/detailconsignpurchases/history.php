@@ -1,33 +1,33 @@
 <?php
-/* @var $this DetailpurchasesController */
-/* @var $model Detailpurchasesorders */
+/* @var $this DetailconsignpurchasesController */
+/* @var $model Detailconsignpurchasesorders */
 
 $this->breadcrumbs=array(
    'Proses'=>array('/site/proses'),
    'Daftar'=>array('default/index'),
    'Lihat Data'=>array('default/view', 'id'=>$model->id),
    'Ubah Data'=>array('default/update', 'id'=>$model->id),
-   'Lihat Detil'=>array('/purchasesorder/detailpurchasesorders/view',
+   'Lihat Detil'=>array('/consignpurchasesorder/detailconsignpurchasesorders/view',
          'iddetail'=>$model->iddetail),
    'Sejarah'
 );
 
 $this->menu=array(
-	//array('label'=>'List Detailpurchasesorders', 'url'=>array('index')),
-	//array('label'=>'Create Detailpurchasesorders', 'url'=>array('create')),
+	//array('label'=>'List Detailconsignpurchasesorders', 'url'=>array('index')),
+	//array('label'=>'Create Detailconsignpurchasesorders', 'url'=>array('create')),
 );
 
 ?>
 
-<h1>Pembelian dari Pemasok</h1>
+<h1>Pembelian Konsinyasi dari Pemasok</h1>
 
 <?php    $data=Yii::app()->tracker->createCommand()->
-       select()->from('detailpurchasesorders')->where('id=:id',array(':id'=>$model->iddetail))->queryAll();
+       select()->from('detailconsignpurchasesorders')->where('id=:id',array(':id'=>$model->iddetail))->queryAll();
     $ap=new CArrayDataProvider($data);
  ?> 
 
 <?php $this->widget('zii.widgets.grid.CGridView', array(
-	'id'=>'detailpurchasesorders-grid',
+	'id'=>'detailconsignpurchasesorders-grid',
 	'dataProvider'=>$ap,
 	'columns'=>array(
 		'iddetail',

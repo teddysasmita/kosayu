@@ -1,6 +1,6 @@
 <?php
-/* @var $this PurchasesController */
-/* @var $model Purchases */
+/* @var $this ConsignpurchasesController */
+/* @var $model Consignpurchases */
 /* @var $form CActiveForm */
 ?>
 
@@ -21,30 +21,30 @@
    $supplierScript=<<<EOS
       var supplierids=$supplierids;
       var suppliernames=$suppliernames;
-      $('#Purchases_suppliername').change(function() {
-         var activename=$('#Purchases_suppliername').val();
-         $('#Purchases_idsupplier').val(
+      $('#Consignconsignpurchases_suppliername').change(function() {
+         var activename=$('#Consignconsignpurchases_suppliername').val();
+         $('#Consignconsignpurchases_idsupplier').val(
             supplierids[suppliernames.indexOf(activename)]);
       });
    
-		$('#Purchases_idorder').change(function() {
+		$('#Consignconsignpurchases_idorder').change(function() {
          	$('#command').val('setPO');
-   			$('#purchases-form').submit();
+   			$('#consignpurchases-form').submit();
       	});
 EOS;
    Yii::app()->clientScript->registerScript("supplierScript", $supplierScript, CClientscript::POS_READY);
 
    if($command=='create') 
       $form=$this->beginWidget('CActiveForm', array(
-	'id'=>'purchases-form',
+	'id'=>'consignpurchases-form',
 	'enableAjaxValidation'=>true,
-      'action'=>Yii::app()->createUrl("/purchases/default/create")
+      'action'=>Yii::app()->createUrl("/consignpurchases/default/create")
       ));
    else if($command=='update')
       $form=$this->beginWidget('CActiveForm', array(
-	'id'=>'purchases-form',
+	'id'=>'consignpurchases-form',
 	'enableAjaxValidation'=>true,
-      'action'=>Yii::app()->createUrl("/purchases/default/update", array('id'=>$model->id))
+      'action'=>Yii::app()->createUrl("/consignpurchases/default/update", array('id'=>$model->id))
       ));
   ?>
 
@@ -67,7 +67,7 @@ EOS;
 		<?php echo $form->labelEx($model,'idatetime'); ?>
             <?php
                $this->widget('zii.widgets.jui.CJuiDatePicker',array(
-                  'name'=>'Purchases[idatetime]',
+                  'name'=>'Detailconsignpurchases[idatetime]',
                      // additional javascript options for the date picker plugin
                   'options'=>array(
                      'showAnim'=>'fold',
@@ -103,7 +103,7 @@ EOS;
                   $suppliername[]=$row['firstname'].' '.$row['lastname'];
                }
                $this->widget("zii.widgets.jui.CJuiAutoComplete", array(
-                   'name'=>'Purchases_suppliername',
+                   'name'=>'Consignpurchases_suppliername',
                    'source'=>$suppliername,
                  'value'=>lookup::SupplierNameFromSupplierID($model->idsupplier)
                ));
@@ -118,12 +118,12 @@ EOS;
 	</div>
 
 <?php 
-    if (isset(Yii::app()->session['Detailpurchases'])) {
-       $rawdata=Yii::app()->session['Detailpurchases'];
+    if (isset(Yii::app()->session['Detailconsignpurchases'])) {
+       $rawdata=Yii::app()->session['Detailconsignpurchases'];
        $count=count($rawdata);
     } else {
-       $count=Yii::app()->db->createCommand("select count(*) from detailpurchases where id='$model->id'")->queryScalar();
-       $sql="select * from detailpurchases where id='$model->id'";
+       $count=Yii::app()->db->createCommand("select count(*) from detailconsignpurchases where id='$model->id'")->queryScalar();
+       $sql="select * from detailconsignpurchases where id='$model->id'";
        $rawdata=Yii::app()->db->createCommand($sql)->queryAll ();
     }
     $dataProvider=new CArrayDataProvider($rawdata, array(
@@ -159,8 +159,8 @@ EOS;
                      'visible'=>'false'
                   )
                ),
-            	'deleteButtonUrl'=>"Action::decodeDeleteDetailPurchasesUrl(\$data, $model->regnum)",
-               'updateButtonUrl'=>"Action::decodeUpdateDetailPurchasesUrl(\$data, $model->regnum)",
+            	'deleteButtonUrl'=>"Action::decodeDeleteDetailConsignpurchasesUrl(\$data, $model->regnum)",
+               'updateButtonUrl'=>"Action::decodeUpdateDetailConsignpurchasesUrl(\$data, $model->regnum)",
             )
           ),
     ));

@@ -50,16 +50,16 @@ class DefaultController extends Controller
                 $this->state='c';
                 $this->trackActivity('c');    
                     
-                $model=new Purchases;
+                $model=new Consignconsignpurchases;
                 $this->afterInsert($model);
                 
                 Yii::app()->session['master']='create';
                 //as the operator enter for the first time, we load the default value to the session
-                if (!isset(Yii::app()->session['Purchases'])) {
-                   Yii::app()->session['Purchases']=$model->attributes;
+                if (!isset(Yii::app()->session['Consignconsignpurchases'])) {
+                   Yii::app()->session['Consignconsignpurchases']=$model->attributes;
                 } else {
                 // use the session to fill the model
-                    $model->attributes=Yii::app()->session['Purchases'];
+                    $model->attributes=Yii::app()->session['Consignconsignpurchases'];
                 }
                 
                // Uncomment the following line if AJAX validation is needed
@@ -68,7 +68,7 @@ class DefaultController extends Controller
                 if (isset($_POST)){
                    if(isset($_POST['yt0'])) {
                       //The user pressed the button;
-                      $model->attributes=$_POST['Purchases'];
+                      $model->attributes=$_POST['Consignconsignpurchases'];
                       
                       $this->beforePost($model);
                       $respond=$model->save();
@@ -78,32 +78,32 @@ class DefaultController extends Controller
                           throw new CHttpException(404,'There is an error in master posting');
                       }
                       
-                      if(isset(Yii::app()->session['Detailpurchases']) ) {
-                        $details=Yii::app()->session['Detailpurchases'];
+                      if(isset(Yii::app()->session['Detailconsignpurchases']) ) {
+                        $details=Yii::app()->session['Detailconsignpurchases'];
                         $respond=$respond&&$this->saveNewDetails($details);
                       } 
                       
                       if($respond) {
-                         Yii::app()->session->remove('Purchases');
-                         Yii::app()->session->remove('Detailpurchases');
+                         Yii::app()->session->remove('Consignconsignpurchases');
+                         Yii::app()->session->remove('Detailconsignpurchases');
                          $this->redirect(array('view','id'=>$model->id));
                       }
 
                    } else if (isset($_POST['command'])){
                       // save the current master data before going to the detail page
                       if ($_POST['command']=='adddetail') {
-                         $model->attributes=$_POST['Purchases'];
-                         Yii::app()->session['Purchases']=$_POST['Purchases'];
-                         $this->redirect(array('detailpurchases/create',
+                         $model->attributes=$_POST['Consignconsignpurchases'];
+                         Yii::app()->session['Consignconsignpurchases']=$_POST['Consignconsignpurchases'];
+                         $this->redirect(array('detailconsignpurchases/create',
                             'id'=>$model->id, 'regnum'=>$model->regnum));
                       } else if($_POST['command']=='setPO') {
-                         $model->attributes=$_POST['Purchases'];
+                         $model->attributes=$_POST['Consignconsignpurchases'];
                          $idsupplier = '';
                          $data = $this->setPO($model->id, $model->idorder, $idsupplier);
                          $model->idsupplier = $idsupplier;
                          $this->sumDetail($model, $data);
-                         Yii::app()->session['Detailpurchases'] = $data;
-                         Yii::app()->session['Purchases']=$model->attributes;
+                         Yii::app()->session['Detailconsignpurchases'] = $data;
+                         Yii::app()->session['Consignconsignpurchases']=$model->attributes;
                       }
                    }
                 }
@@ -135,22 +135,22 @@ class DefaultController extends Controller
              
              Yii::app()->session['master']='update';
 
-             if(!isset(Yii::app()->session['Purchases']))
-                Yii::app()->session['Purchases']=$model->attributes;
+             if(!isset(Yii::app()->session['Consignconsignpurchases']))
+                Yii::app()->session['Consignconsignpurchases']=$model->attributes;
              else
-                $model->attributes=Yii::app()->session['Purchases'];
+                $model->attributes=Yii::app()->session['Consignconsignpurchases'];
 
-             if(!isset(Yii::app()->session['Detailpurchases'])) 
-               Yii::app()->session['Detailpurchases']=$this->loadDetails($id);
+             if(!isset(Yii::app()->session['Detailconsignpurchases'])) 
+               Yii::app()->session['Detailconsignpurchases']=$this->loadDetails($id);
              
              // Uncomment the following line if AJAX validation is needed
              $this->performAjaxValidation($model);
 
              if(isset($_POST)) {
                  if(isset($_POST['yt0'])) {
-                     $model->attributes=$_POST['Purchases'];
+                     $model->attributes=$_POST['Consignconsignpurchases'];
                      $this->beforePost($model);
-                     $this->tracker->modify('purchases', $id);
+                     $this->tracker->modify('consignpurchases', $id);
                      $respond=$model->save();
                      if($respond) {
                        $this->afterPost($model);
@@ -158,8 +158,8 @@ class DefaultController extends Controller
                        throw new CHttpException(404,'There is an error in master posting');
                      }
 
-                     if(isset(Yii::app()->session['Detailpurchases'])) {
-                         $details=Yii::app()->session['Detailpurchases'];
+                     if(isset(Yii::app()->session['Detailconsignpurchases'])) {
+                         $details=Yii::app()->session['Detailconsignpurchases'];
                          $respond=$respond&&$this->saveDetails($details);
                          if(!$respond) {
                            throw new CHttpException(404,'There is an error in detail posting');
@@ -167,8 +167,8 @@ class DefaultController extends Controller
                      };
                      
 
-                     if(isset(Yii::app()->session['DeleteDetailpurchases'])) {
-                         $deletedetails=Yii::app()->session['DeleteDetailpurchases'];
+                     if(isset(Yii::app()->session['DeleteDetailconsignpurchases'])) {
+                         $deletedetails=Yii::app()->session['DeleteDetailconsignpurchases'];
                          $respond=$respond&&$this->deleteDetails($deletedetails);
                          if(!$respond) {
                            throw new CHttpException(404,'There is an error in detail deletion');
@@ -176,9 +176,9 @@ class DefaultController extends Controller
                      };
                      
                      if($respond) {
-                         Yii::app()->session->remove('Purchases');
-                         Yii::app()->session->remove('Detailpurchases');
-                         Yii::app()->session->remove('DeleteDetailpurchases');
+                         Yii::app()->session->remove('Consignconsignpurchases');
+                         Yii::app()->session->remove('Detailconsignpurchases');
+                         Yii::app()->session->remove('DeleteDetailconsignpurchases');
                          $this->redirect(array('view','id'=>$model->id));
                      }
                  }
@@ -205,12 +205,12 @@ class DefaultController extends Controller
             $this->trackActivity('d');
             $model=$this->loadModel($id);    
             $this->beforeDelete($model);
-            $this->tracker->delete('purchases', $id);
+            $this->tracker->delete('consignpurchases', $id);
 
-            $detailmodels=Detailpurchases::model()->findAll('id=:id',array(':id'=>$id));
+            $detailmodels=Detailconsignpurchases::model()->findAll('id=:id',array(':id'=>$id));
             foreach($detailmodels as $dm) {
                $this->tracker->init();
-               $this->tracker->delete('detailpurchases', array('iddetail'=>$dm->iddetail));
+               $this->tracker->delete('detailconsignpurchases', array('iddetail'=>$dm->iddetail));
                $dm->delete();
             }
 
@@ -234,10 +234,10 @@ class DefaultController extends Controller
                 Yii::app()->user->id)) {
                $this->trackActivity('l');
 
-               Yii::app()->session->remove('Purchases');
-               Yii::app()->session->remove('Detailpurchases');
-               Yii::app()->session->remove('DeleteDetailpurchases');
-               $dataProvider=new CActiveDataProvider('Purchases',
+               Yii::app()->session->remove('Consignconsignpurchases');
+               Yii::app()->session->remove('Detailconsignpurchases');
+               Yii::app()->session->remove('DeleteDetailconsignpurchases');
+               $dataProvider=new CActiveDataProvider('Consignconsignpurchases',
                   array(
                      'criteria'=>array(
                         'order'=>'id desc'
@@ -261,10 +261,10 @@ class DefaultController extends Controller
                 Yii::app()->user->id)) {
                 $this->trackActivity('s');
                
-                $model=new Purchases('search');
+                $model=new Consignconsignpurchases('search');
 		$model->unsetAttributes();  // clear any default values
-		if(isset($_GET['Purchases']))
-			$model->attributes=$_GET['Purchases'];
+		if(isset($_GET['Consignconsignpurchases']))
+			$model->attributes=$_GET['Consignconsignpurchases'];
 
 		$this->render('admin',array(
 			'model'=>$model,
@@ -306,9 +306,9 @@ class DefaultController extends Controller
             if(Yii::app()->authManager->checkAccess($this->formid.'-Update', 
                Yii::app()->user->id)) {
                 $this->trackActivity('r');
-                $this->tracker->restore('purchases', $idtrack);
+                $this->tracker->restore('consignpurchases', $idtrack);
                 
-                $dataProvider=new CActiveDataProvider('Purchases');
+                $dataProvider=new CActiveDataProvider('Consignconsignpurchases');
                 $this->render('index',array(
                     'dataProvider'=>$dataProvider,
                 ));
@@ -322,9 +322,9 @@ class DefaultController extends Controller
             if(Yii::app()->authManager->checkAccess($this->formid.'-Update', 
                Yii::app()->user->id)) {
                 $this->trackActivity('n');
-                $this->tracker->restoreDeleted('purchases', $idtrack);
+                $this->tracker->restoreDeleted('consignpurchases', $idtrack);
                 
-                $dataProvider=new CActiveDataProvider('Purchases');
+                $dataProvider=new CActiveDataProvider('Consignconsignpurchases');
                 $this->render('index',array(
                     'dataProvider'=>$dataProvider,
                 ));
@@ -337,12 +337,12 @@ class DefaultController extends Controller
 	 * Returns the data model based on the primary key given in the GET variable.
 	 * If the data model is not found, an HTTP exception will be raised.
 	 * @param integer $id the ID of the model to be loaded
-	 * @return Purchases the loaded model
+	 * @return Consignconsignpurchases the loaded model
 	 * @throws CHttpException
 	 */
 	public function loadModel($id)
 	{
-		$model=Purchases::model()->findByPk($id);
+		$model=Consignconsignpurchases::model()->findByPk($id);
 		if($model===null)
 			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;
@@ -350,11 +350,11 @@ class DefaultController extends Controller
 
 	/**
 	 * Performs the AJAX validation.
-	 * @param Purchases $model the model to be validated
+	 * @param Consignconsignpurchases $model the model to be validated
 	 */
 	protected function performAjaxValidation($model)
 	{
-		if(isset($_POST['ajax']) && $_POST['ajax']==='purchases-form')
+		if(isset($_POST['ajax']) && $_POST['ajax']==='consignpurchases-form')
 		{
 			echo CActiveForm::validate($model);
 			Yii::app()->end();
@@ -366,10 +366,10 @@ class DefaultController extends Controller
       //this action continues the process from the detail page
          if(Yii::app()->authManager->checkAccess($this->formid.'-Append', 
                  Yii::app()->user->id))  {
-             $model=new Purchases;
-             $model->attributes=Yii::app()->session['Purchases'];
+             $model=new Consignconsignpurchases;
+             $model->attributes=Yii::app()->session['Consignconsignpurchases'];
 
-             $details=Yii::app()->session['Detailpurchases'];
+             $details=Yii::app()->session['Detailconsignpurchases'];
              $this->afterInsertDetail($model, $details);
 
              $this->render('create',array(
@@ -385,10 +385,10 @@ class DefaultController extends Controller
          if(Yii::app()->authManager->checkAccess($this->formid.'-Update', 
                  Yii::app()->user->id))  {
 
-             $model=new Purchases;
-             $model->attributes=Yii::app()->session['Purchases'];
+             $model=new Consignconsignpurchases;
+             $model->attributes=Yii::app()->session['Consignconsignpurchases'];
 
-             $details=Yii::app()->session['Detailpurchases'];
+             $details=Yii::app()->session['Detailconsignpurchases'];
              $this->afterUpdateDetail($model, $details);
 
              $this->render('update',array(
@@ -405,10 +405,10 @@ class DefaultController extends Controller
                  Yii::app()->user->id))  {
 
 
-             $model=new Purchases;
-             $model->attributes=Yii::app()->session['Purchases'];
+             $model=new Consignconsignpurchases;
+             $model->attributes=Yii::app()->session['Consignconsignpurchases'];
 
-             $details=Yii::app()->session['Detailpurchases'];
+             $details=Yii::app()->session['Detailconsignpurchases'];
              $this->afterDeleteDetail($model, $details);
 
              $this->render('update',array(
@@ -422,7 +422,7 @@ class DefaultController extends Controller
      protected function saveNewDetails(array $details)
      {                  
          foreach ($details as $row) {
-             $detailmodel=new Detailpurchases;
+             $detailmodel=new Detailconsignpurchases;
              $detailmodel->attributes=$row;
              $respond=$detailmodel->insert();
              if (!$respond) {
@@ -438,13 +438,13 @@ class DefaultController extends Controller
             
             $respond=true;
             foreach ($details as $row) {
-                $detailmodel=Detailpurchases::model()->findByPk($row['iddetail']);
+                $detailmodel=Detailconsignpurchases::model()->findByPk($row['iddetail']);
                 if($detailmodel==NULL) {
-                    $detailmodel=new Detailpurchases;
+                    $detailmodel=new Detailconsignpurchases;
                 } else {
                     if(count(array_diff($detailmodel->attributes,$row))) {
                         $this->tracker->init();
-                        $this->tracker->modify('detailpurchases', array('iddetail'=>$detailmodel->iddetail));
+                        $this->tracker->modify('detailconsignpurchases', array('iddetail'=>$detailmodel->iddetail));
                     }    
                 }
                 $detailmodel->attributes=$row;
@@ -462,11 +462,11 @@ class DefaultController extends Controller
         {
             $respond=true;
             foreach ($details as $row) {
-                $detailmodel=Detailpurchases::model()->findByPk($row['iddetail']);
+                $detailmodel=Detailconsignpurchases::model()->findByPk($row['iddetail']);
                 if($detailmodel) {
                     $this->tracker->init();
                     $this->trackActivity('d', $this->__DETAILFORMID);
-                    $this->tracker->delete('detailpurchases', $detailmodel->id);
+                    $this->tracker->delete('detailconsignpurchases', $detailmodel->id);
                     $respond=$detailmodel->delete();
                     if (!$respond) {
                       break;
@@ -478,7 +478,7 @@ class DefaultController extends Controller
 
         protected function loadDetails($id)
         {
-         $sql="select * from detailpurchases where id='$id'";
+         $sql="select * from detailconsignpurchases where id='$id'";
          $details=Yii::app()->db->createCommand($sql)->queryAll();
 
          return $details;
@@ -562,8 +562,8 @@ class DefaultController extends Controller
         private function setPO($id, $idorder, & $idsupplier)
         {
         	$salesorders = Yii::app()->db->createCommand()
-        		->select('b.idsupplier, a.*')->from('detailpurchasesorders a')
-        		->join('purchasesorders b', 'b.id = a.id')
+        		->select('b.idsupplier, a.*')->from('detailconsignpurchasesorders a')
+        		->join('consignpurchasesorders b', 'b.id = a.id')
         		->join('items c', 'c.id = a.iditem')
         		->where('b.regnum = :p_regnum and c.type = :p_type', 
         			array(':p_regnum'=>$idorder, ':p_type'=>'1'))
@@ -572,8 +572,8 @@ class DefaultController extends Controller
         	$idsupplier = $salesorders[0]['idsupplier'];
         	
         	$received = Yii::app()->db->createCommand()
-        		->select('a.*')->from('detailpurchases a')
-        		->join('purchases b', 'b.id = a.id')
+        		->select('a.*')->from('detailconsignpurchases a')
+        		->join('consignpurchases b', 'b.id = a.id')
         		->where('b.idorder = :p_idorder', array(':p_idorder'=>$idorder))
         		->queryAll();
         	

@@ -1,6 +1,6 @@
 <?php
-/* @var $this PurchasesController */
-/* @var $model Purchases */
+/* @var $this ConsignpurchasesController */
+/* @var $model Consignpurchases */
 
 $this->breadcrumbs=array(
       'Proses'=>array('/site/proses'),
@@ -29,6 +29,6 @@ EOH;
 Yii::app()->clientScript->registerScript('myscript', $jq, CClientScript::POS_READY);
 ?>
 
-<h1>Pembelian dari Pemasok</h1>
+<h1>Pembelian Konsinyasi dari Pemasok</h1>
 
 <?php $this->renderPartial('_form', array('model'=>$model, 'id'=>$model->id, 'command'=>'create')); ?>

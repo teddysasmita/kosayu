@@ -1,30 +1,28 @@
 <?php
 
 /**
- * This is the model class for table "purchasesorders".
+ * This is the model class for table "detailconsignpurchasesorders".
  *
- * The followings are the available columns in table 'purchasesorders':
+ * The followings are the available columns in table 'detailconsignpurchasesorders':
+ * @property string $iddetail
  * @property string $id
- * @property string $regnum
- * @property string $idatetime
- * @property string $idorder
- * @property string $idsupplier
- * @property double $total
+ * @property string $iditem
+ * @property string $idunit
+ * @property double $qty
  * @property double $discount
- * @property string $status
- * @property string $paystatus
- * @property string $remark
+ * @property double $price
+ * @property string $expirydate
  * @property string $userlog
  * @property string $datetimelog
  */
-class Purchases extends CActiveRecord
+class Detailconsignpurchases extends CActiveRecord
 {
 	/**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
 	{
-		return 'purchases';
+		return 'detailconsignpurchases';
 	}
 
 	/**
@@ -35,16 +33,13 @@ class Purchases extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id, regnum, idatetime, idsupplier, status, userlog, datetimelog', 'required'),
-			array('total, discount', 'numerical'),
-			array('id, idsupplier, idorder, userlog', 'length', 'max'=>21),
-			array('regnum', 'length', 'max'=>12),
-			array('idatetime, datetimelog', 'length', 'max'=>19),
-			array('status', 'length', 'max'=>10),
-			array('remark, paystatus', 'safe'),
+			array('iddetail, id, iditem, qty, userlog, datetimelog', 'required'),
+			array('qty, discount, price', 'numerical'),
+			array('iddetail, id, iditem, idunit, userlog', 'length', 'max'=>21),
+			array('expirydate, datetimelog', 'length', 'max'=>19),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, regnum, idatetime, idsupplier, total, discount, status, remark, userlog, datetimelog', 'safe', 'on'=>'search'),
+			array('iddetail, id, iditem, qty, expirydate, discount, price, userlog, datetimelog', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -65,16 +60,14 @@ class Purchases extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
+			'iddetail' => 'Iddetail',
 			'id' => 'ID',
-			'regnum' => 'Nomor Urut',
-			'idatetime' => 'Tanggal',
-			'idorder' => 'Nomor Pesan',
-			'idsupplier' => 'Nama Pemasok',
-			'total' => 'Total',
-			'discount' => 'Discount',
-			'status' => 'Status',
-			'paystatus' => 'Status Pembayaran',
-			'remark' => 'Catatan',
+			'iditem' => 'Nama Barang',
+			'qty' => 'Qty',
+         'idunit'=> 'Satuan',
+         'discount' => 'Discount',
+			'price' => 'Harga',
+			'expirydate' => 'Tgl Kdl',
 			'userlog' => 'Userlog',
 			'datetimelog' => 'Datetimelog',
 		);
@@ -98,16 +91,14 @@ class Purchases extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
+		$criteria->compare('iddetail',$this->iddetail,true);
 		$criteria->compare('id',$this->id,true);
-		$criteria->compare('regnum',$this->regnum,true);
-		$criteria->compare('idatetime',$this->idatetime,true);
-		$criteria->compare('idorder',$this->idorder,true);
-		$criteria->compare('idsupplier',$this->idsupplier,true);
-		$criteria->compare('total',$this->total);
+		$criteria->compare('iditem',$this->iditem,true);
+		//$criteria->compare('idunit',$this->idunit,true);
+		$criteria->compare('qty',$this->qty);
 		$criteria->compare('discount',$this->discount);
-		$criteria->compare('status',$this->status,true);
-		$criteria->compare('paystatus',$this->paystatus,true);
-		$criteria->compare('remark',$this->remark,true);
+		$criteria->compare('price',$this->price);
+		$criteria->compare('expirydate',$this->expirydate,true);
 		$criteria->compare('userlog',$this->userlog,true);
 		$criteria->compare('datetimelog',$this->datetimelog,true);
 
@@ -120,7 +111,7 @@ class Purchases extends CActiveRecord
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
 	 * @param string $className active record class name.
-	 * @return Purchasesorders the static model class
+	 * @return Detailconsignpurchasesorders the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{

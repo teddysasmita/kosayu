@@ -1,6 +1,6 @@
 <?php
-/* @var $this PurchasesController */
-/* @var $data Purchases */
+/* @var $this ConsignpurchasesController */
+/* @var $data Consignpurchases */
 ?>
 
 <div class="view">

@@ -1,6 +1,6 @@
 <?php
-/* @var $this PurchasesController */
-/* @var $model Purchases */
+/* @var $this ConsignconsignpurchasesController */
+/* @var $model Consignconsignpurchases */
 
 $this->breadcrumbs=array(
    'Proses'=>array('/site/proses'),
@@ -15,15 +15,15 @@ $this->menu=array(
 
 ?>
 
-<h1>Pembelian dari Pemasok</h1>
+<h1>Pembelian Konsinyasi dari Pemasok</h1>
 
 <?php    $data=Yii::app()->tracker->createCommand()->
-       select()->from('purchases')->where('id=:id',array(':id'=>$model->id))->queryAll();
+       select()->from('consignpurchases')->where('id=:id',array(':id'=>$model->id))->queryAll();
     $ap=new CArrayDataProvider($data);
  ?> 
 
 <?php $this->widget('zii.widgets.grid.CGridView', array(
-	'id'=>'purchases-grid',
+	'id'=>'consignpurchases-grid',
 	'dataProvider'=>$ap,
 	'columns'=>array(
 		'id',

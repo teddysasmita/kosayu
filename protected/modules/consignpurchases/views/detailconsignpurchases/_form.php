@@ -1,6 +1,6 @@
 <?php
-/* @var $this DetailpurchasesController */
-/* @var $model Detailpurchases */
+/* @var $this DetailconsignpurchasesController */
+/* @var $model Detailconsignpurchases */
 /* @var $form CActiveForm */
 ?> 
 
@@ -9,7 +9,7 @@
 <?php
  
     $itemScript=<<<EOS
-      $('#Detailpurchases_itemname').focus(function(){
+      $('#Detailconsignpurchases_itemname').focus(function(){
          $('#ItemDialog').dialog('open');
       });
       $('#dialog-item-name').change(
@@ -36,7 +36,7 @@ EOS;
    Yii::app()->clientScript->registerScript('itemscript', $itemScript, CClientScript::POS_READY);
    
    $form=$this->beginWidget('CActiveForm', array(
-	'id'=>'detailpurchases-form',
+	'id'=>'detailconsignpurchases-form',
 	'enableAjaxValidation'=>true,
    ));
  ?>
@@ -57,7 +57,7 @@ EOS;
 	<div class="row">
 		<?php echo $form->labelEx($model,'iditem'); ?>
 		<?php 
-               echo CHtml::textField('Detailpurchases_itemname', lookup::ItemNameFromItemID2($model->iditem) , array('size'=>50));   
+               echo CHtml::textField('Detailconsignpurchases_itemname', lookup::ItemNameFromItemID2($model->iditem) , array('size'=>50));   
                $this->beginWidget('zii.widgets.jui.CJuiDialog', array(
                   'id'=>'ItemDialog',
                   'options'=>array(
@@ -68,10 +68,10 @@ EOS;
                       'modal'=>true,
                       'buttons'=>array(
                           array('text'=>'Ok', 'click'=>'js:function(){
-                             $(\'#Detailpurchases_itemname\').val($(\'#dialog-item-name\').val());
+                             $(\'#Detailconsignpurchases_itemname\').val($(\'#dialog-item-name\').val());
                              $.get(\'index.php?r=LookUp/getItemID2\',{ name: encodeURI($(\'#dialog-item-name\').val()) },
                                  function(data) {
-                                    $(\'#Detailpurchases_iditem\').val(data);
+                                    $(\'#Detailconsignpurchases_iditem\').val(data);
                                  })
                              $(this).dialog("close");
                            }'),

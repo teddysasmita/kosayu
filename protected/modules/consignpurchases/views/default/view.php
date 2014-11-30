@@ -1,6 +1,6 @@
 <?php
-/* @var $this PurchasesController */
-/* @var $model Purchases */
+/* @var $this ConsignconsignpurchasesController */
+/* @var $model Consignconsignpurchases */
 
 $this->breadcrumbs=array(
    'Proses'=>array('/site/proses'),
@@ -15,11 +15,11 @@ $this->menu=array(
 	array('label'=>'Pencarian Data', 'url'=>array('admin')),
       array('label'=>'Sejarah', 'url'=>array('history', 'id'=>$model->id)),
       array('label'=>'Data Detil yang dihapus', 
-         'url'=>array('/purchasesorder/detailpurchases/deleted', 'id'=>$model->id)),
+         'url'=>array('/consignpurchases/detailconsignpurchases/deleted', 'id'=>$model->id)),
 );
 ?>
 
-<h1>Pembelian dari Pemasok</h1>
+<h1>Pembelian Konsinyasi dari Pemasok</h1>
 
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,
@@ -55,9 +55,9 @@ $this->menu=array(
 )); ?>
 
 <?php 
-   $count=Yii::app()->db->createCommand("select count(*) from detailpurchases where id='$model->id'")
+   $count=Yii::app()->db->createCommand("select count(*) from detailconsignpurchases where id='$model->id'")
       ->queryScalar();
-   $sql="select * from detailpurchases where id='$model->id'";
+   $sql="select * from detailconsignpurchases where id='$model->id'";
 
    $dataProvider=new CSqlDataProvider($sql,array(
           'totalItemCount'=>$count,
@@ -104,7 +104,7 @@ $this->menu=array(
                      'visible'=>'false'
                   )
                ),
-               'viewButtonUrl'=>"Action::decodeViewDetailPurchasesOrderUrl(\$data, $model->regnum)",
+               'viewButtonUrl'=>"Action::decodeViewDetailConsignPurchasesUrl(\$data, $model->regnum)",
             )
          ),
    ));

@@ -1,6 +1,6 @@
 <?php
-/* @var $this PurchasesController */
-/* @var $model Purchases */
+/* @var $this ConsignpurchasesController */
+/* @var $model Consignpurchases */
 /* @var $form CActiveForm */
 ?>
 

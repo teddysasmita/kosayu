@@ -1,6 +1,6 @@
 <?php
-/* @var $this DetailpurchasesController */
-/* @var $model Detailpurchases */
+/* @var $this DetailconsignpurchasesController */
+/* @var $model Detailconsignpurchases */
 
 $master=Yii::app()->session['master'];
 if($master=='create')
@@ -18,13 +18,13 @@ else if ($master=='update')
       'Ubah Detil');
 
 $this->menu=array(
-	//array('label'=>'List Detailpurchases', 'url'=>array('index')),
-	//array('label'=>'Create Detailpurchases', 'url'=>array('create')),
-	//array('label'=>'View Detailpurchases', 'url'=>array('view', 'id'=>$model->iddetail)),
-	//array('label'=>'Manage Detailpurchases', 'url'=>array('admin')), 
+	//array('label'=>'List Detailconsignpurchases', 'url'=>array('index')),
+	//array('label'=>'Create Detailconsignpurchases', 'url'=>array('create')),
+	//array('label'=>'View Detailconsignpurchases', 'url'=>array('view', 'id'=>$model->iddetail)),
+	//array('label'=>'Manage Detailconsignpurchases', 'url'=>array('admin')), 
 );
 ?>
 
-<h1>Pembelian dari Pemasok</h1>
+<h1>Pembelian Konsinyasi dari Pemasok</h1>
 
 <?php $this->renderPartial('_form', array('model'=>$model, 'mode'=>'Update')); ?>
