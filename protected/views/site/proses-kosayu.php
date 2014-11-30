@@ -11,6 +11,7 @@ $this->pageTitle=Yii::app()->name;
 <h1>Proses</h1>
 
 <h2>Bagian Pembelian</h2>
+<h3><?php echo CHtml::link('Pemesanan ke Pemasok', Yii::app()->createUrl('purchasesorder'))?></h3>
 <h3><?php echo CHtml::link('Pembelian ke Pemasok', Yii::app()->createUrl('purchasesorder'))?></h3>
 <h3><?php echo CHtml::link('Pembelian Konsinyasi ke Pemasok', Yii::app()->createUrl('consignedorders'))?></h3>
 <h3><?php echo CHtml::link('Penerimaan Barang dari Pemasok', Yii::app()->createUrl('purchasesorders'))?></h3>
