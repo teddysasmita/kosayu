@@ -98,7 +98,9 @@ class DefaultController extends Controller
                             'id'=>$model->id, 'regnum'=>$model->regnum));
                       } else if($_POST['command']=='setPO') {
                          $model->attributes=$_POST['Purchases'];
-                         $data = $this->setPO($model->id, $model->idorder, $model->idsupplier);
+                         $idsupplier = '';
+                         $data = $this->setPO($model->id, $model->idorder, $idsupplier);
+                         $model->idsupplier = $idsupplier;
                          Yii::app()->session['Detailpurchases'] = $data;
                          Yii::app()->session['Purchases']=$model->attributes;
                       }
