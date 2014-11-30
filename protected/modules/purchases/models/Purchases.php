@@ -12,6 +12,7 @@
  * @property double $total
  * @property double $discount
  * @property string $status
+ * @property string $paystatus
  * @property string $remark
  * @property string $userlog
  * @property string $datetimelog
@@ -40,7 +41,7 @@ class Purchases extends CActiveRecord
 			array('regnum', 'length', 'max'=>12),
 			array('idatetime, rdatetime, datetimelog', 'length', 'max'=>19),
 			array('status', 'length', 'max'=>10),
-			array('remark', 'safe'),
+			array('remark, paystatus', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id, regnum, idatetime, rdatetime, idsupplier, total, discount, status, remark, userlog, datetimelog', 'safe', 'on'=>'search'),
@@ -72,6 +73,7 @@ class Purchases extends CActiveRecord
 			'total' => 'Total',
 			'discount' => 'Discount',
 			'status' => 'Status',
+			'paystatus' => 'Status Pembayaran',
 			'remark' => 'Catatan',
 			'userlog' => 'Userlog',
 			'datetimelog' => 'Datetimelog',
@@ -104,6 +106,7 @@ class Purchases extends CActiveRecord
 		$criteria->compare('total',$this->total);
 		$criteria->compare('discount',$this->discount);
 		$criteria->compare('status',$this->status,true);
+		$criteria->compare('paystatus',$this->paystatus,true);
 		$criteria->compare('remark',$this->remark,true);
 		$criteria->compare('userlog',$this->userlog,true);
 		$criteria->compare('datetimelog',$this->datetimelog,true);

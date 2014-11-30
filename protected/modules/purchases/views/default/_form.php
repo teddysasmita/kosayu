@@ -54,6 +54,7 @@ EOS;
         echo $form->hiddenField($model, 'userlog');
         echo $form->hiddenField($model, 'datetimelog');
         echo $form->hiddenField($model, 'status');
+        echo $form->hiddenField($model, 'paystatus');
         echo $form->hiddenField($model, 'regnum');
       ?>
         
