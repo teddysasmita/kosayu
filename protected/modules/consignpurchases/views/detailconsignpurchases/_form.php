@@ -14,7 +14,7 @@
       });
       $('#dialog-item-name').change(
          function(){
-            $.getJSON('index.php?r=LookUp/getItem',{ name: $('#dialog-item-name').val() },
+            $.getJSON('index.php?r=LookUp/getCItem',{ name: $('#dialog-item-name').val() },
                function(data) {
                   $('#dialog-item-select').html('');
                   var ct=0;
