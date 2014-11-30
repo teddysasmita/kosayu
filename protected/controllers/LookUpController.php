@@ -216,7 +216,7 @@ EOS;
 		if (!Yii::app()->user->isGuest) {
 	   		$data=Yii::app()->db->createCommand()->selectDistinct('concat(code, \'-\', name)')->from('items')
 	              ->where('name like :itemname and type = :p_type', 
-	              	array(':itemname'=>'%'.$name.'%', ':p_type'=>0))
+	              	array(':itemname'=>'%'.$name.'%', ':p_type'=>1))
 	              ->order('name')
 	              ->queryColumn();
 	      
@@ -238,7 +238,7 @@ EOS;
    	if (!Yii::app()->user->isGuest) {
    		$data=Yii::app()->db->createCommand()->selectDistinct('concat(code, \'-\', name)')->from('items')
    		->where('name like :itemname and type = :p_type',
-   				array(':itemname'=>'%'.$name.'%', ':p_type'=>1))
+   				array(':itemname'=>'%'.$name.'%', ':p_type'=>2))
    				->order('name')
    				->queryColumn();
    		 
