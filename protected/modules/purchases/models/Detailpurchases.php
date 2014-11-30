@@ -33,7 +33,7 @@ class Detailpurchases extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('iddetail, id, iditem, qty, userlog, datetimelog', 'required'),
+			array('iddetail, id, iditem, qty, price, discount, userlog, datetimelog', 'required'),
 			array('qty, discount, price', 'numerical'),
 			array('iddetail, id, iditem, idunit, userlog', 'length', 'max'=>21),
 			array('datetimelog, expirydate', 'length', 'max'=>19),
