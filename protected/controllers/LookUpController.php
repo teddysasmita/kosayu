@@ -233,7 +233,7 @@ EOS;
 		};
    }
    
-   public function actionGetConsignedItem($name)
+   public function actionGetCItem($name)
    {
    	if (!Yii::app()->user->isGuest) {
    		$data=Yii::app()->db->createCommand()->selectDistinct('concat(code, \'-\', name)')->from('items')
