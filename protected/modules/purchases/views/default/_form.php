@@ -155,14 +155,12 @@ EOS;
             array(
                'class'=>'CButtonColumn',
                'buttons'=> array(
-                   'delete'=>array(
-                    'visible'=>'false'
-                   ),
                   'view'=>array(
                      'visible'=>'false'
                   )
                ),
-               'updateButtonUrl'=>"Action::decodeUpdateDetailPurchasesOrderUrl(\$data, $model->regnum)",
+            	'deleteButtonUrl'=>"Action::decodeDeleteDetailPurchasesUrl(\$data, $model->regnum)",
+               'updateButtonUrl'=>"Action::decodeUpdateDetailPurchasesUrl(\$data, $model->regnum)",
             )
           ),
     ));

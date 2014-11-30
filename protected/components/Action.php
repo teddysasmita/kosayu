@@ -198,6 +198,26 @@ class Action extends CComponent {
       return Yii::app()->createUrl('detailpurchasesinvoices/view', array('iddetail'=>$data['iddetail']));
    }
       
+   public static function decodeDeleteDetailPurchasesUrl($data)
+   {
+   	//return print_r($data);
+   	return Yii::app()->createUrl('purchases/detailpurchases/delete', array('iddetail'=>$data['iddetail']));
+   }
+    
+   public static function decodeUpdateDetailPurchasesUrl($data, $regnum)
+   {
+   	//return print_r($data);
+   	return Yii::app()->createUrl('purchases/detailpurchases/update',
+   			array('iddetail'=>$data['iddetail'], 'regnum'=>$regnum ));
+   }
+    
+   public static function decodeViewDetailPurchasesUrl($data, $regnum)
+   {
+   	//return print_r($data);
+   	return Yii::app()->createUrl('purchases/detailpurchases/view',
+   			array('iddetail'=>$data['iddetail'], 'regnum'=>$regnum));
+   }
+   
    public static function decodeDeleteDetailPurchasesOrderUrl($data)
    {
       //return print_r($data);
