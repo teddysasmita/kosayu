@@ -14,7 +14,7 @@
       });
       $('#dialog-item-name').change(
          function(){
-            $.getJSON('index.php?r=LookUp/getItem',{ name: $('#dialog-item-name').val() },
+            $.getJSON('index.php?r=LookUp/getItemAll',{ name: $('#dialog-item-name').val() },
                function(data) {
                   $('#dialog-item-select').html('');
                   var ct=0;
@@ -57,7 +57,7 @@ EOS;
 	<div class="row">
 		<?php echo $form->labelEx($model,'iditem'); ?>
 		<?php 
-               echo CHtml::textField('Detailpurchasesorders_itemname', lookup::ItemNameFromItemID($model->iditem) , array('size'=>50));   
+               echo CHtml::textField('Detailpurchasesorders_itemname', lookup::ItemNameFromItemID2($model->iditem) , array('size'=>50));   
                $this->beginWidget('zii.widgets.jui.CJuiDialog', array(
                   'id'=>'ItemDialog',
                   'options'=>array(

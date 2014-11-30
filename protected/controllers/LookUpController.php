@@ -390,6 +390,22 @@ EOS;
 		};
    }
    
+   public function actionGetItemID2($name)
+   {
+   	if (!Yii::app()->user->isGuest) {
+   		//print_r($name);
+   		$name=rawurldecode($name);
+   		$data = substr($name, 0, strpos($name,'-'));
+   		$data=Yii::app()->db->createCommand()->select('id')->from('items')
+   		->where("code = :p_code", array(':p_code'=>$data))
+   		->order('id')
+   		->queryScalar();
+   		echo $data;
+   	} else {
+   		throw new CHttpException(404,'You have no authorization for this operation.');
+   	};
+   }
+   
    public function actionGetItemCode($codename)
    {
    	if (!Yii::app()->user->isGuest) {
