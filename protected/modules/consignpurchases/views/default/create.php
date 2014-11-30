@@ -11,7 +11,7 @@ $this->breadcrumbs=array(
 $this->menu=array(
 	//array('label'=>'Daftar', 'url'=>array('index')),
 	//array('label'=>'Pengaturan', 'url'=>array('admin')),
-      array('label'=>'Tambah Detil', 'url'=>array('detailpurchases/create', 
+      array('label'=>'Tambah Detil', 'url'=>array('detailconsignpurchases/create', 
          'id'=>$model->id),
           'linkOptions'=>array('id'=>'adddetail')), 
 );
