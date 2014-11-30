@@ -81,7 +81,7 @@ EOS;
 	<div class="row">
 		<?php echo $form->labelEx($model,'idorder'); ?>
 		 <?php
-		 	echo $form->textField($model,'idorder',array('maxlength'=>20); 
+		 	echo $form->textField($model,'idorder',array('maxlength'=>20)); 
             ?>
 		<?php echo $form->error($model,'idorder'); ?>
 	</div>
