@@ -78,23 +78,11 @@ EOS;
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'rdatetime'); ?>
+		<?php echo $form->labelEx($model,'idorder'); ?>
 		 <?php
-               $this->widget('zii.widgets.jui.CJuiDatePicker',array(
-                  'name'=>'Purchases[rdatetime]',
-                     // additional javascript options for the date picker plugin
-                  'options'=>array(
-                     'showAnim'=>'fold',
-                     'dateFormat'=>'yy/mm/dd',
-                     'defaultdate'=>$model->rdatetime
-                  ),
-                  'htmlOptions'=>array(
-                     'style'=>'height:20px;',
-                  ),
-                  'value'=>$model->idatetime,
-               ));
+		 	echo $form->textField($model,'idorder',array('maxlength'=>20); 
             ?>
-		<?php echo $form->error($model,'rdatetime'); ?>
+		<?php echo $form->error($model,'idorder'); ?>
 	</div>
 
 	<div class="row">
