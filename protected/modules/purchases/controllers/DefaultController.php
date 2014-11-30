@@ -599,6 +599,7 @@ class DefaultController extends Controller
         			$temp['iditem'] = $so['iditem'];
 					$temp['qty'] = $so['qty'];
         			$temp['price'] = $so['price'];
+        			$temp['discount'] = 0;
         			$temp['userlog'] = Yii::app()->user->id;
 					$temp['datetimelog'] = idmaker::getDateTime();
         			$data[] = $temp;
