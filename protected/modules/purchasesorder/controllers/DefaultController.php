@@ -718,7 +718,7 @@ class DefaultController extends Controller
         	$total=0;
         	$totaldisc=0;
         	foreach ($details as $row) {
-        		$total=$total+(($row['price']+$row['cost1']+$row['cost2'])*$row['qty']);
+        		$total=$total+(($row['price'])*$row['qty']);
         		$totaldisc=$totaldisc+$row['discount']*$row['qty'];
         	}
         	$model->attributes=Yii::app()->session['Purchasesorders'];
