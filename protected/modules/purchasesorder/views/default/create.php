@@ -14,9 +14,6 @@ $this->menu=array(
       array('label'=>'Tambah Detil', 'url'=>array('detailpurchasesorders/create', 
          'id'=>$model->id),
           'linkOptions'=>array('id'=>'adddetail')), 
-      array('label'=>'Tambah Detil2', 'url'=>array('detailpurchasesorders2/create', 
-         'id'=>$model->id),
-          'linkOptions'=>array('id'=>'adddetail2')) 
 );
 
 $jq=<<<EOH
@@ -25,14 +22,6 @@ $jq=<<<EOH
      var hiddenvar;
      mainform=$('#purchasesorders-form');
      $('#command').val('adddetail');
-     mainform.submit();
-     event.preventDefault();
-   });
-   $('#adddetail2').click(function(event){
-     var mainform;
-     var hiddenvar;
-     mainform=$('#purchasesorders-form');
-     $('#command').val('adddetail2');
      mainform.submit();
      event.preventDefault();
    });
