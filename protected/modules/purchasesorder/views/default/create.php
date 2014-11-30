@@ -40,6 +40,6 @@ EOH;
 Yii::app()->clientScript->registerScript('myscript', $jq, CClientScript::POS_READY);
 ?>
 
-<h1>Pembelian ke Pemasok</h1>
+<h1>Pemesanan ke Pemasok</h1>
 
 <?php $this->renderPartial('_form', array('model'=>$model, 'id'=>$model->id, 'command'=>'create')); ?>

@@ -19,7 +19,7 @@ $this->menu=array(
 
 ?>
 
-<h1>Pembelian ke Pemasok</h1>
+<h1>Pemesanan ke Pemasok</h1>
 
 <?php    $data=Yii::app()->tracker->createCommand()->
        select()->from('detailpurchasesorders')->where('id=:id',array(':id'=>$model->iddetail))->queryAll();
@@ -35,8 +35,6 @@ $this->menu=array(
 		'iditem',
 		'idunit',
       'price',
-      'cost1',
-      'cost2',
 		'discount',
       'qty',
 		/*

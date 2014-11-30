@@ -153,16 +153,6 @@ EOS;
                'type'=>'number'
             ),
             array(
-               'header'=>'Biaya 1 @',
-               'name'=>'cost1',
-               'type'=>'number'
-            ),
-            array(
-               'header'=>'Biaya 2 @',
-               'name'=>'cost2',
-               'type'=>'number'
-            ),
-            array(
                'header'=>'Disc',
                'name'=>'discount',
                'type'=>'number'
@@ -182,44 +172,7 @@ EOS;
           ),
     ));
     
-    if (isset(Yii::app()->session['Detailpurchasesorders2'])) {
-       $rawdata=Yii::app()->session['Detailpurchasesorders2'];
-       $count=count($rawdata);
-    } else {
-       $count=Yii::app()->db->createCommand("select count(*) from detailpurchasesorders2 where id='$model->id'")->queryScalar();
-       $sql="select * from detailpurchasesorders2 where id='$model->id'";
-       $rawdata=Yii::app()->db->createCommand($sql)->queryAll ();
-    }
-    $dataProvider=new CArrayDataProvider($rawdata, array(
-          'totalItemCount'=>$count,
-    ));
-    $this->widget('zii.widgets.grid.CGridView', array(
-            'dataProvider'=>$dataProvider,
-            'columns'=>array(
-               array(
-                   'header'=>'Voucher',
-                   'name'=>'vouchername',
-               ),
-              array(
-                  'header'=>'Nilai',
-                  'name'=>'vouchervalue',
-                 'type'=>'number'
-              ),
-              array(
-                  'class'=>'CButtonColumn',
-                  'buttons'=> array(
-                      'delete'=>array(
-                          'visible'=>'false'
-                      ),
-                     'update'=>array(
-                        'visible'=>'false'
-                     )
-                  ),
-                  'viewButtonUrl'=>"Action::decodeViewDetailPurchasesOrder2Url(\$data, $model->regnum)",
-              )
-          ),
-    ));
-?>
+   
       
    <div class="row">
       <?php echo $form->labelEx($model,'total'); ?>

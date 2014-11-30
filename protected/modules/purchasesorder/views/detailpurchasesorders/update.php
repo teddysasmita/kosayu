@@ -25,6 +25,6 @@ $this->menu=array(
 );
 ?>
 
-<h1>Pembelian ke Pemasok</h1>
+<h1>Pemesanan ke Pemasok</h1>
 
 <?php $this->renderPartial('_form', array('model'=>$model, 'mode'=>'Update')); ?>
