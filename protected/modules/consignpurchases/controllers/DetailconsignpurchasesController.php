@@ -280,6 +280,9 @@ class DetailconsignpurchasesController extends Controller
             $model->iddetail=$idmaker->getCurrentID2();
             $model->userlog=Yii::app()->user->id;
             $model->datetimelog=$idmaker->getDateTime();
+            $model->sellprice = 0;
+            $model->buyprice = 0;
+            $model->marginpct = 0;
         }
         
         protected function afterPost(& $model)
