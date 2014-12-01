@@ -493,6 +493,9 @@ class DefaultController extends Controller
             $model->regnum=$idmaker->getRegNum($this->formid);
             $lookup=new lookup();
             $model->status=$lookup->reverseOrderStatus('Belum Diproses');
+            $model->paystatus='0';
+            $model->discount=0;
+            $model->total=0;
         }
         
         protected function afterPost(& $model)
