@@ -81,13 +81,15 @@ class DefaultController extends Controller
                       if(isset(Yii::app()->session['Detailconsignpurchases']) ) {
                         $details=Yii::app()->session['Detailconsignpurchases'];
                         $respond=$respond&&$this->saveNewDetails($details);
-                      } 
+                      } else {
+                          throw new CHttpException(404,'There is an error in detail posting');
+                      }
                       
                       if($respond) {
                          Yii::app()->session->remove('Consignpurchases');
                          Yii::app()->session->remove('Detailconsignpurchases');
                          $this->redirect(array('view','id'=>$model->id));
-                      }
+                      } 
 
                    } else if (isset($_POST['command'])){
                       // save the current master data before going to the detail page
