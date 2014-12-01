@@ -499,22 +499,25 @@ class DefaultController extends Controller
         {
             $idmaker=new idmaker();
             $idmaker->saveRegNum($this->formid, $model->regnum);    
+ 
             Yii::import('application.modules.sellingprice.models.*');
             $details = $this->loadDetails($model->id);
             foreach($details as $d) {
-            	$sellprice = new Sellingprices();
-            	$sellprice->id = $model->id;
-            	$sellprice->regnum = idmaker::getRegNum('AC11');
-            	$sellprice->idatetime = $model->idatetime;
-            	$sellprice->iditem = $d['iditem'];
-            	$sellprice->normalprice = $d['sellprice'];
-            	$sellprice->minprice = $d['sellprice'];
-            	$sellprice->approvalby = 'Pak Made';
-            	$sellprice->datetimelog = $d['datetimelog'];
-            	$sellprice->userlog = $d['userlog'];
-            	
-            	$sellprice->save();
-            	idmaker::saveRegNum('AC11', $sellprice->regnum);
+            	if ($d['sellprice'] > 0) {
+	            	$sellprice = new Sellingprices();
+	            	$sellprice->id = $model->id;
+	            	$sellprice->regnum = idmaker::getRegNum('AC11');
+	            	$sellprice->idatetime = $model->idatetime;
+	            	$sellprice->iditem = $d['iditem'];
+	            	$sellprice->normalprice = $d['sellprice'];
+	            	$sellprice->minprice = $d['sellprice'];
+	            	$sellprice->approvalby = 'Pak Made';
+	            	$sellprice->datetimelog = $d['datetimelog'];
+	            	$sellprice->userlog = $d['userlog'];
+	            	
+	            	$sellprice->save();
+	            	idmaker::saveRegNum('AC11', $sellprice->regnum);
+            	}
             }
         }
         
