@@ -21,13 +21,13 @@
    $supplierScript=<<<EOS
       var supplierids=$supplierids;
       var suppliernames=$suppliernames;
-      $('#Consignconsignpurchases_suppliername').change(function() {
+      $('#Consignpurchases_suppliername').change(function() {
          var activename=$('#Consignconsignpurchases_suppliername').val();
          $('#Consignconsignpurchases_idsupplier').val(
             supplierids[suppliernames.indexOf(activename)]);
       });
    
-		$('#Consignconsignpurchases_idorder').change(function() {
+		$('#Consignpurchases_idorder').change(function() {
          	$('#command').val('setPO');
    			$('#consignpurchases-form').submit();
       	});
