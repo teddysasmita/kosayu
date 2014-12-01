@@ -9,8 +9,8 @@
  * @property string $iditem
  * @property string $idunit
  * @property double $qty
- * @property double $discount
- * @property double $price
+ * @property double $marginpct
+ * @property double $sellprice
  * @property string $expirydate
  * @property string $userlog
  * @property string $datetimelog
@@ -34,12 +34,12 @@ class Detailconsignpurchases extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('iddetail, id, iditem, qty, userlog, datetimelog', 'required'),
-			array('qty, discount, price', 'numerical'),
+			array('qty, marginpct, sellprice', 'numerical'),
 			array('iddetail, id, iditem, idunit, userlog', 'length', 'max'=>21),
 			array('expirydate, datetimelog', 'length', 'max'=>19),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('iddetail, id, iditem, qty, expirydate, discount, price, userlog, datetimelog', 'safe', 'on'=>'search'),
+			array('iddetail, id, iditem, qty, expirydate, marginpct, sellprice, userlog, datetimelog', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -65,8 +65,8 @@ class Detailconsignpurchases extends CActiveRecord
 			'iditem' => 'Nama Barang',
 			'qty' => 'Qty',
          'idunit'=> 'Satuan',
-         'discount' => 'Discount',
-			'price' => 'Harga',
+         'marginpct' => 'Margin(%)',
+			'sellprice' => 'Harga Jual',
 			'expirydate' => 'Tgl Kdl',
 			'userlog' => 'Userlog',
 			'datetimelog' => 'Datetimelog',
@@ -96,8 +96,8 @@ class Detailconsignpurchases extends CActiveRecord
 		$criteria->compare('iditem',$this->iditem,true);
 		//$criteria->compare('idunit',$this->idunit,true);
 		$criteria->compare('qty',$this->qty);
-		$criteria->compare('discount',$this->discount);
-		$criteria->compare('price',$this->price);
+		$criteria->compare('marginpct',$this->marginpct);
+		$criteria->compare('sellprice',$this->sellprice);
 		$criteria->compare('expirydate',$this->expirydate,true);
 		$criteria->compare('userlog',$this->userlog,true);
 		$criteria->compare('datetimelog',$this->datetimelog,true);
