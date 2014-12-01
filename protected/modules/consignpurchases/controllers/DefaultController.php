@@ -505,7 +505,7 @@ class DefaultController extends Controller
             foreach($details as $d) {
             	if ($d['sellprice'] > 0) {
 	            	$sellprice = new Sellingprices();
-	            	$sellprice->id = $model->id;
+	            	$sellprice->id = $d['iddetail'];
 	            	$sellprice->regnum = idmaker::getRegNum('AC11');
 	            	$sellprice->idatetime = $model->idatetime;
 	            	$sellprice->iditem = $d['iditem'];
