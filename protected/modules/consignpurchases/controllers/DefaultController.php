@@ -510,6 +510,7 @@ class DefaultController extends Controller
             
             echo "<div>";
             print_r($details);
+            die();
             echo "</div>";
             foreach($details as $d) {
             	if ($d['sellprice'] > 0) {
