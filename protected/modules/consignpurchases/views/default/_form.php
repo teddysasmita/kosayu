@@ -143,13 +143,13 @@ EOS;
                'name'=>'qty',
             ),
             array(
-               'header'=>'Harga @',
-               'name'=>'price',
+               'header'=>'Harga Jual @',
+               'name'=>'sellprice',
                'type'=>'number'
             ),
             array(
-               'header'=>'Disc',
-               'name'=>'discount',
+               'header'=>'Margin (%)',
+               'name'=>'marginpct',
                'type'=>'number'
             ),
             array(
