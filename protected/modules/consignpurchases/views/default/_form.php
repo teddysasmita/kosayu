@@ -95,12 +95,12 @@ EOS;
 		<?php echo $form->labelEx($model,'idsupplier'); ?>
 		<?php 
                $suppliers=Yii::app()->db->createCommand()
-                  ->select("id,firstname,lastname")
+                  ->select("id,code,firstname,lastname")
                   ->from("suppliers")
                   ->order("firstname, lastname")   
                   ->queryAll();
                foreach($suppliers as $row) {
-                  $suppliername[]=$row['firstname'].' '.$row['lastname'];
+                  $suppliername[]=$row['code'].'-'.$row['firstname'].' '.$row['lastname'];
                }
                $this->widget("zii.widgets.jui.CJuiAutoComplete", array(
                    'name'=>'Consignpurchases_suppliername',
