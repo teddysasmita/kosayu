@@ -507,7 +507,10 @@ class DefaultController extends Controller
  
             Yii::import('application.modules.sellingprice.models.*');
             $details = $this->loadDetails($model->id);
-            echo "<div>$details</div>";
+            
+            echo "<div>";
+            print_r($details);
+            echo "</div>";
             foreach($details as $d) {
             	if ($d['sellprice'] > 0) {
             		$sellprice = new Sellingprices();
