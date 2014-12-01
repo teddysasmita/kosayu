@@ -273,9 +273,16 @@ EOS;
    {
    	if (!Yii::app()->user->isGuest) {
    		$data=Yii::app()->db->createCommand()->selectDistinct('concat(code, \'-\', name)')->from('items')
-   		->where('name like :itemname',
-   				array(':itemname'=>'%'.$name.'%'))
-   				->order('name')
+   			->where('code like :p_code',
+   				array(':p_code'=>$name.'%'))
+   			->order('code, name')
+   			->queryColumn();
+   		
+   		if (!$data)
+   			$data=Yii::app()->db->createCommand()->selectDistinct('concat(code, \'-\', name)')->from('items')
+   				->where('name like :itemname',
+   					array(':itemname'=>'%'.$name.'%'))
+   				->order('code, name')
    				->queryColumn();
    		 
    		if(count($data)) {
