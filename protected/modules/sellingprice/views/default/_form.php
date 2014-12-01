@@ -140,7 +140,9 @@ EOS;
 	<div class="row">
 		<?php echo $form->labelEx($model,'approvalby'); ?>
 		<?php 
-         echo $form->dropDownList($model, 'approvalby', array('Pak Made'=>'Pak Made'),
+         echo $form->dropDownList($model, 'approvalby', array('Pak Made'=>'Pak Made', 'Bu Anita'=>'Bu Anita',
+         		'Pak Herry'=>'Pak Herry', 'Cik San'=>'Cik San'
+         ),
 			array('empty'=>'Harap Pilih') );
      	?>
 		<?php echo $form->error($model,'approvalby'); ?>
