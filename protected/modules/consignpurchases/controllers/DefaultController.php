@@ -503,7 +503,7 @@ class DefaultController extends Controller
             $details = $this->loadDetails($model->id);
             foreach($details as $d) {
             	$sellprice = new Sellingprices();
-            	$sellprice->id = idmaker::getCurrentID2();
+            	$sellprice->id = $model->id;
             	$sellprice->regnum = idmaker::getRegNum('AC11');
             	$sellprice->idatetime = $model->idatetime;
             	$sellprice->iditem = $d['iditem'];
