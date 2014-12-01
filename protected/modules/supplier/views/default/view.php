@@ -22,14 +22,17 @@ $this->menu=array(
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,
 	'attributes'=>array(
-		'id',
+		//'id',
 		'code'.
 		'firstname',
 		'lastname',
 		'address',
 		'phone',
 		'email',
-		'userlog',
+		array(
+			'name'=>'userlog',
+			'value'=>lookup::UserNameFromUserID($model->userlog),
+		),
 		'datetimelog',
 	),
 )); ?>
