@@ -80,7 +80,7 @@ $this->menu=array(
                  'type'=>'number',
              ),
             array(
-                 'header'=>'Margin Pct(%) @',
+                 'header'=>'Margin (%) @',
                  'name'=>'marginpct',
                  'type'=>'number',
              ),
