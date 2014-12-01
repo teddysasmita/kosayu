@@ -518,7 +518,10 @@ class DefaultController extends Controller
 	            	$sellprice->datetimelog = $d['datetimelog'];
 	            	$sellprice->userlog = $d['userlog'];
 	            	
-	            	$sellprice->save();
+	            	$resp = $sellprice->save();
+	            	if (!$resp) {
+	            		throw new CHttpException(100,'There is an error in after post');
+	            	}
 	            	idmaker::saveRegNum('AC11', $sellprice->regnum);
             	}
             }
