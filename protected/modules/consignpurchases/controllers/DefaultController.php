@@ -580,8 +580,8 @@ class DefaultController extends Controller
         private function setPO($id, $idorder, & $idsupplier)
         {
         	$salesorders = Yii::app()->db->createCommand()
-        		->select('b.idsupplier, a.*')->from('detailconsignpurchasesorders a')
-        		->join('consignpurchasesorders b', 'b.id = a.id')
+        		->select('b.idsupplier, a.*')->from('detailpurchasesorders a')
+        		->join('purchasesorders b', 'b.id = a.id')
         		->join('items c', 'c.id = a.iditem')
         		->where('b.regnum = :p_regnum and c.type = :p_type', 
         			array(':p_regnum'=>$idorder, ':p_type'=>'1'))
