@@ -508,6 +508,7 @@ class DefaultController extends Controller
             	$sellprice->iditem = $d['iditem'];
             	$sellprice->normalprice = $d['sellprice'];
             	$sellprice->minprice = $d['sellprice'];
+            	$sellprice->approvalby = 'Pak Made';
             	$sellprice->datetimelog = $d['datetimelog'];
             	$sellprice->userlog = $d['userlog'];
             	
