@@ -218,6 +218,26 @@ class Action extends CComponent {
    			array('iddetail'=>$data['iddetail'], 'regnum'=>$regnum));
    }
    
+   public static function decodeDeleteDetailConsignPurchasesUrl($data)
+   {
+   	//return print_r($data);
+   	return Yii::app()->createUrl('consignpurchases/detailconsignpurchases/delete', array('iddetail'=>$data['iddetail']));
+   }
+   
+   public static function decodeUpdateDetailConsignPurchasesUrl($data, $regnum)
+   {
+   	//return print_r($data);
+   	return Yii::app()->createUrl('consignpurchases/detailconsignpurchases/update',
+   			array('iddetail'=>$data['iddetail'], 'regnum'=>$regnum ));
+   }
+   
+   public static function decodeViewDetailConsignPurchasesUrl($data, $regnum)
+   {
+   	//return print_r($data);
+   	return Yii::app()->createUrl('consignpurchases/detailconsignpurchases/view',
+   			array('iddetail'=>$data['iddetail'], 'regnum'=>$regnum));
+   }
+   
    public static function decodeDeleteDetailPurchasesOrderUrl($data)
    {
       //return print_r($data);
