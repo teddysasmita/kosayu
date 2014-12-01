@@ -11,6 +11,7 @@
  * @property double $qty
  * @property double $marginpct
  * @property double $sellprice
+ * @property double $buyprice
  * @property string $expirydate
  * @property string $userlog
  * @property string $datetimelog
@@ -33,13 +34,13 @@ class Detailconsignpurchases extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('iddetail, id, iditem, qty, sellprice, marginpct, userlog, datetimelog', 'required'),
-			array('qty, marginpct, sellprice', 'numerical'),
+			array('iddetail, id, iditem, qty, userlog, datetimelog', 'required'),
+			array('qty, marginpct, sellprice, buyprice', 'numerical'),
 			array('iddetail, id, iditem, idunit, userlog', 'length', 'max'=>21),
 			array('expirydate, datetimelog', 'length', 'max'=>19),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('iddetail, id, iditem, qty, expirydate, marginpct, sellprice, userlog, datetimelog', 'safe', 'on'=>'search'),
+			array('iddetail, id, iditem, qty, expirydate, marginpct, buyprice, sellprice, userlog, datetimelog', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -67,6 +68,7 @@ class Detailconsignpurchases extends CActiveRecord
          'idunit'=> 'Satuan',
          'marginpct' => 'Margin(%)',
 			'sellprice' => 'Harga Jual',
+			'buyprice' => 'Harga Beli',
 			'expirydate' => 'Tgl Kdl',
 			'userlog' => 'Userlog',
 			'datetimelog' => 'Datetimelog',

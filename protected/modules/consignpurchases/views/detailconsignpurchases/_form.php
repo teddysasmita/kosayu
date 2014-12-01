@@ -113,6 +113,13 @@ EOS;
 		<?php echo $form->textField($model,'sellprice'); ?>
 		<?php echo $form->error($model,'sellprice'); ?>
 	</div>
+	
+	<div class="row">
+		<?php echo $form->labelEx($model,'buyprice'); ?>
+		<?php echo $form->textField($model,'buyprice'); ?>
+		<?php echo $form->error($model,'buyprice'); ?>
+	</div>
+    
         <div class="row">
 		<?php echo $form->labelEx($model,'expirydate'); ?>
             <?php

@@ -152,6 +152,11 @@ EOS;
                'name'=>'marginpct',
                'type'=>'number'
             ),
+			array(
+				'header'=>'Harga Beli@',
+				'name'=>'buyprice',
+				'type'=>'number'
+			),
             array(
                'class'=>'CButtonColumn',
                'buttons'=> array(
