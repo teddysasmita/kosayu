@@ -543,7 +543,8 @@ class DefaultController extends Controller
         	foreach($details as $d) {
         		if ($d['sellprice'] > 0) {
         			$sellprice = Sellingprices::model()->findByPk($d['iddetail']);
-        			$sellprice->delete();
+        			if (is_null($sellprice))
+        				$sellprice->delete();
         		}
         	}
         }
