@@ -22,8 +22,8 @@
       var supplierids=$supplierids;
       var suppliernames=$suppliernames;
       $('#Consignpurchases_suppliername').change(function() {
-         var activename=$('#Consignconsignpurchases_suppliername').val();
-         $('#Consignconsignpurchases_idsupplier').val(
+         var activename=$('#Consignpurchases_suppliername').val();
+         $('#Consignpurchases_idsupplier').val(
             supplierids[suppliernames.indexOf(activename)]);
       });
    
