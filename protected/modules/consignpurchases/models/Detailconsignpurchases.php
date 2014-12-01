@@ -100,6 +100,7 @@ class Detailconsignpurchases extends CActiveRecord
 		$criteria->compare('qty',$this->qty);
 		$criteria->compare('marginpct',$this->marginpct);
 		$criteria->compare('sellprice',$this->sellprice);
+		$criteria->compare('buyprice',$this->buyprice);
 		$criteria->compare('expirydate',$this->expirydate,true);
 		$criteria->compare('userlog',$this->userlog,true);
 		$criteria->compare('datetimelog',$this->datetimelog,true);

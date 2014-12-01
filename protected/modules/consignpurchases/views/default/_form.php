@@ -130,6 +130,7 @@ EOS;
           'totalItemCount'=>$count,
     	'keyField'=>'iddetail'
     ));
+    print_r($rawdata);
     $this->widget('zii.widgets.grid.CGridView', array(
             'dataProvider'=>$dataProvider,
             'columns'=>array(
