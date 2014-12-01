@@ -27,7 +27,7 @@
         
     <div class="row">
 		<?php echo $form->labelEx($model,'code'); ?>
-		<?php echo $form->textField($model, array('size'=>60,'maxlength'=>100)); ?>
+		<?php echo $form->textField($model, 'code', array('size'=>60,'maxlength'=>100)); ?>
 		<?php echo $form->error($model,'cde'); ?>
 	</div>
 	
