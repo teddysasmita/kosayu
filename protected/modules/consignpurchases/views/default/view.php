@@ -75,24 +75,14 @@ $this->menu=array(
                  'name'=>'qty',
              ),
              array(
-                 'header'=>'Harga @',
-                 'name'=>'price',
+                 'header'=>'Harga Jual @',
+                 'name'=>'sellprice',
                  'type'=>'number',
              ),
             array(
-                 'header'=>'Biaya 1 @',
-                 'name'=>'cost1',
+                 'header'=>'Margin Pct(%) @',
+                 'name'=>'marginpct',
                  'type'=>'number',
-             ),
-            array(
-                 'header'=>'Biaya 2 @',
-                 'name'=>'cost2',
-                 'type'=>'number',
-             ),
-             array(
-                 'header'=>'Disc',
-                 'name'=>'discount',
-                 'type'=>'number'
              ),
             array(
                'class'=>'CButtonColumn',
