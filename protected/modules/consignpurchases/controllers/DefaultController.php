@@ -538,18 +538,18 @@ class DefaultController extends Controller
         
         protected function beforeDelete(& $model)
         {
-        	/*
+        	
         	Yii::import('application.modules.sellingprice.models.*');
         	$details = $this->loadDetails($model->id);
         	
         	foreach($details as $d) {
         		if ($d['sellprice'] > 0) {
         			$sellprice = Sellingprices::model()->findByPk($d['iddetail']);
-        			if (is_null($sellprice))
+        			if (!is_null($sellprice))
         				$sellprice->delete();
         		}
         	}
-        	*/
+        
         }
         
         protected function afterDelete()
