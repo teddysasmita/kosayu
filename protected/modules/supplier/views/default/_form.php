@@ -27,37 +27,37 @@
         
     <div class="row">
 		<?php echo $form->labelEx($model,'code'); ?>
-		<?php echo $form->textField($model, 'code', array('size'=>60,'maxlength'=>100)); ?>
+		<?php echo $form->textField($model, 'code', array('size'=>40,'maxlength'=>100)); ?>
 		<?php echo $form->error($model,'cde'); ?>
 	</div>
 	
 	<div class="row">
 		<?php echo $form->labelEx($model,'firstname'); ?>
-		<?php echo $form->textField($model,'firstname',array('size'=>60,'maxlength'=>100)); ?>
+		<?php echo $form->textField($model,'firstname',array('size'=>50,'maxlength'=>100)); ?>
 		<?php echo $form->error($model,'firstname'); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'lastname'); ?>
-		<?php echo $form->textField($model,'lastname',array('size'=>60,'maxlength'=>100)); ?>
+		<?php echo $form->textField($model,'lastname',array('size'=>50,'maxlength'=>100)); ?>
 		<?php echo $form->error($model,'lastname'); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'address'); ?>
-		<?php echo $form->textField($model,'address',array('size'=>60,'maxlength'=>255)); ?>
+		<?php echo $form->textField($model,'address',array('size'=>50,'maxlength'=>255)); ?>
 		<?php echo $form->error($model,'address'); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'phone'); ?>
-		<?php echo $form->textField($model,'phone',array('size'=>60,'maxlength'=>100)); ?>
+		<?php echo $form->textField($model,'phone',array('size'=>40,'maxlength'=>100)); ?>
 		<?php echo $form->error($model,'phone'); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'email'); ?>
-		<?php echo $form->textField($model,'email',array('size'=>60,'maxlength'=>100)); ?>
+		<?php echo $form->textField($model,'email',array('size'=>50,'maxlength'=>100)); ?>
 		<?php echo $form->error($model,'email'); ?>
 	</div>
 
