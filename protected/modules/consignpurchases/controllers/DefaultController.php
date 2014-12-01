@@ -513,7 +513,7 @@ class DefaultController extends Controller
 	            	$sellprice->id = $d['iddetail'];
 	            	$sellprice->regnum = idmaker::getRegNum('AC11');
 	            	$sellprice->idatetime = $model->idatetime;
-	            	$sellprice->iditem = $d['iditem'];
+	            	$sellprice->iditem = lookup::ItemCodeFromItemID($d['iditem']);
 	            	$sellprice->normalprice = $d['sellprice'];
 	            	$sellprice->minprice = $d['sellprice'];
 	            	$sellprice->approvalby = 'Pak Made';
