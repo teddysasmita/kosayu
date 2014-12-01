@@ -72,9 +72,7 @@ class DefaultController extends Controller
                       
                       $this->beforePost($model);
                       $respond=$model->save();
-                      if($respond) {
-                          $this->afterPost($model);
-                      } else {
+                      if(!$respond) {
                           throw new CHttpException(404,'There is an error in master posting');
                       }
                       
@@ -86,6 +84,7 @@ class DefaultController extends Controller
                       }
                       
                       if($respond) {
+                      	 $this->afterPost($model);
                          Yii::app()->session->remove('Consignpurchases');
                          Yii::app()->session->remove('Detailconsignpurchases');
                          $this->redirect(array('view','id'=>$model->id));
@@ -508,10 +507,6 @@ class DefaultController extends Controller
             Yii::import('application.modules.sellingprice.models.*');
             $details = $this->loadDetails($model->id);
             
-            echo "<div>";
-            print_r($details);
-            die();
-            echo "</div>";
             foreach($details as $d) {
             	if ($d['sellprice'] > 0) {
             		$sellprice = new Sellingprices();
