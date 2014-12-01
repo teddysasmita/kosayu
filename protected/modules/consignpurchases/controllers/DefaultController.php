@@ -93,7 +93,7 @@ class DefaultController extends Controller
                       // save the current master data before going to the detail page
                       if ($_POST['command']=='adddetail') {
                          $model->attributes=$_POST['Consignpurchases'];
-                         Yii::app()->session['Consignpurchases']=$_POST['Consignpurchases'];
+                         Yii::app()->session['Consignpurchases']=$model->attributes;
                          $this->redirect(array('detailconsignpurchases/create',
                             'id'=>$model->id, 'regnum'=>$model->regnum));
                       } else if($_POST['command']=='setPO') {
