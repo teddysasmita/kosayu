@@ -103,15 +103,15 @@ EOS;
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'discount'); ?>
-		<?php echo $form->textField($model,'discount'); ?>
-		<?php echo $form->error($model,'discount'); ?>
+		<?php echo $form->labelEx($model,'marginpct'); ?>
+		<?php echo $form->textField($model,'marginpct'); ?>
+		<?php echo $form->error($model,'marginpct'); ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'price'); ?>
-		<?php echo $form->textField($model,'price'); ?>
-		<?php echo $form->error($model,'price'); ?>
+		<?php echo $form->labelEx($model,'sellprice'); ?>
+		<?php echo $form->textField($model,'sellprice'); ?>
+		<?php echo $form->error($model,'sellprice'); ?>
 	</div>
         <div class="row">
 		<?php echo $form->labelEx($model,'expirydate'); ?>
