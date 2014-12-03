@@ -88,8 +88,6 @@ class DefaultController extends Controller
 						if(!$respond) {
 							if (count($model->errors) > 0 )
 								$error = implode(',', $model->errors);
-							else
-								$error = $model->errors;
 							throw new CHttpException(5002,'There is an error in master posting: '.$error);
 	                    }
 	
@@ -101,6 +99,10 @@ class DefaultController extends Controller
 						if(isset(Yii::app()->session['Detailtippayments2']) ) {
 							$details=Yii::app()->session['Detailtippayments2'];
 							$respond=$respond&&$this->saveNewDetails2($details);
+						}
+						
+						if(!$respond) {
+							throw new CHttpException(5002,'There is an error in detail posting: ');
 						}
 	
 						$this->afterPost($model);
@@ -909,6 +911,7 @@ EOS;
     	 		$ds['pct'] = $ds['pct'] * $tip2;
 			$ds['amount'] = ($ds['price'] - $ds['discount']) * $ds['qty'] * $ds['pct'] / 100;
     	}
+        unset($ds);
         
     	return $detailsales;
     }
