@@ -828,7 +828,7 @@ EOS;
     			$ds['discount'] = $this->getUnSeenDisc($ds['regnum']) * $ds['price'];
     		}
     		
-    		$ds['discount'] = $this->getVRDisc($ds['regnum'], $ds['id']) * ($ds['price'] - $ds['discount']);
+    		$ds['discount'] += $this->getVRDisc($ds['regnum'], $ds['id']) * ($ds['price'] - $ds['discount']);
     		if ( is_null($ds['pct']) ) {
     			$ds['pct'] = $tip;
     			$ds['idtipgroup'] = '0';
@@ -903,7 +903,7 @@ EOS;
     			$ds['discount'] = $this->getUnSeenDisc($ds['regnum']) * $ds['price'];
     		}
     
-    		$ds['discount'] = $this->getVRDisc($ds['regnum'], $ds['id']) * ($ds['price'] - $ds['discount']);
+    		$ds['discount'] += $this->getVRDisc($ds['regnum'], $ds['id']) * ($ds['price'] - $ds['discount']);
     		if ( is_null($ds['pct']) ) {
     			$ds['pct'] = $tip;
     			$ds['idtipgroup'] = '0';
