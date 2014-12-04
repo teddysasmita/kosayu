@@ -196,7 +196,7 @@ function execute($model, $detailmodel, $detailmodel2) {
 	// ---------------------------------------------------------
 	
 	// set font
-	$pdf->SetFont('helvetica', '', 11);
+	$pdf->SetFont('8pm', '', 11);
 	
 	// add a page
 	$pdf->LoadData($model, $detailmodel, $detailmodel2);
