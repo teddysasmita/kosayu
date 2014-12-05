@@ -68,6 +68,7 @@ EOS;
 			$sql2 =<<<EOS
 	select a.userlog as idcashier, sum(a.cashreturn) as totalreturn
 	from salespos a
+	join posreceipts b on b.idpos = a.id
 	where a.userlog like '$idcashier'
 	and a.idatetime >= '$startdate' and a.idatetime <= '$enddate'
 	group by a.userlog
