@@ -10,7 +10,7 @@
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('amount')); ?>:</b>
-	<?php echo CHtml::encode(lookup::TypeToName($data->type)); ?>
+	<?php echo CHtml::encode($data->amount); ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('idatetime')); ?>:</b>
