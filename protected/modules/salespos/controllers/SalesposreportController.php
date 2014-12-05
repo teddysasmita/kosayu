@@ -155,7 +155,7 @@ EOS;
 					$realdata[] = $temp;						
 				}
 			}
-			$this->render('viewsales2', array('data'=>$realdata));
+			$this->render('viewsales2', array('data'=>$realdata, 'idcashier'=>$idcashier));
 		
 		} else {
 			throw new CHttpException(404,'You have no authorization for this operation.');

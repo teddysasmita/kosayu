@@ -15,6 +15,14 @@ $this->menu=array(
 
 <h1>Laporan Detil Pendapatan Kasir</h1>
 
+?>
+<h2>
+<?php
+	echo lookup::UserNameFromUserID($idcashier);
+?>
+
+</h2>
+
 <?php 
 	
 	$dataProvider=new CArrayDataProvider($data,array(
