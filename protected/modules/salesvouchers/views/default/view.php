@@ -27,7 +27,7 @@ $this->menu=array(
 		array(
                    'name'=>'amount',
                    'label'=>'Nilai',
-					'type'=> number
+					'type'=> 'number'
                 ),   
 		'idatetime',
 		array(
