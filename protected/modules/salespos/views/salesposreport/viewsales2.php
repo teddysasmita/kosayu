@@ -82,4 +82,71 @@ $this->menu=array(
 		),
 ));
 	
+$total = array();
+$temp[['id'] = 1;
+$temp['totaljual'] = 0;
+$temp['totalkembali'] = 0;
+$temp['tunai'] = 0;
+$temp['kartukredit'] = 0;
+$temp['kartudebit'] = 0;
+$temp['retur'] = 0;
+$temp['voucher'] = 0;
+$total[] = $temp;
+
+foreach($data as $d) {
+	$total[0]['tunai'] += $d['cash'];	
+	$total[0]['kartudebit'] += $d['debitcard'];
+	$total[0]['kartukredit'] += $d['creditcard'];
+	$total[0]['retur'] += $sd['retur'];
+	$total[0]['voucher'] += $sd['voucher'];
+	$total[0]['totaljual'] += $sd['totalsales'];
+	$total[0]['totalkembali'] += $sd['cashreturn'];
+}
+
+
+$dataProvider2=new CArrayDataProvider($total,array(
+		'totalItemCount'=>count($total),
+));
+
+$this->widget('zii.widgets.grid.CGridView', array(
+		'dataProvider'=>$dataProvider2,
+		'columns'=>array(
+				array(
+						'header'=>'Total Nota',
+						'name'=>'totaljual',
+						'type'=>'number',
+				),
+				array(
+						'header'=>'Total Kembalian',
+						'name'=>'totalkembali',
+						'type'=>'number',
+				),
+				array(
+						'header'=>'Tunai',
+						'name'=>'tunai',
+						'type'=>'number',
+				),
+				array(
+						'header'=>'Kartu Debit',
+						'name'=>'kartudebit',
+						'type'=>'number',
+				),
+				array(
+						'header'=>'Kartu Kredit',
+						'name'=>'kartukredit',
+						'type'=>'number',
+				),
+				array(
+						'header'=>'Voucher',
+						'name'=>'voucher',
+						'type'=>'number',
+				),
+				array(
+						'header'=>'Retur',
+						'name'=>'retur',
+						'type'=>'number',
+				),
+		),
+));
+
 ?>
