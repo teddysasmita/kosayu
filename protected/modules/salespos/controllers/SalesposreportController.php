@@ -105,11 +105,10 @@ EOS;
 	join salespos b on b.id = a.idpos
 	where a.userlog = '$idcashier'
 	and a.idatetime >= '$startdate' and a.idatetime <= '$enddate'
-	order by idate, a.userlog, a.method, a.idcurr
+	order by idate, a.userlog, b.regnum. a.method, a.idcurr
 EOS;
 			$datareceipt = Yii::app()->db->createCommand($sql1)->queryAll();
 			
-			print_r($datareceipt);
 			$realdata = array();
 			foreach($datareceipt as $dr) {
 				$found = FALSE;
