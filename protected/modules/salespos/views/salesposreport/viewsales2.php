@@ -46,6 +46,7 @@ $this->menu=array(
 				array(
 						'header'=>'Kembalian',
 						'name'=>'cashreturn',
+						'type'=>'number',
 				),
 				array(
 						'header'=>'Tunai',

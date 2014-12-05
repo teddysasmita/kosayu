@@ -130,7 +130,7 @@ EOS;
 				if (!$found) {
 					$temp['id'] = $dr['idpos'];
 					$temp['idsticker'] = $dr['idsticker'];
-					$temp['idatetime'] = $dr['idatetime'];
+					$temp['idate'] = $dr['idate'];
 					$temp['regnum'] = $dr['regnum'];
 					$temp['totalsales'] = $dr['total'];
 					$temp['cashreturn'] = $dr['cashreturn'];
