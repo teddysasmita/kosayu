@@ -15,12 +15,10 @@ $this->menu=array(
 
 <h1>Laporan Detil Pendapatan Kasir</h1>
 
-?>
 <h2>
 <?php
-	echo lookup::UserNameFromUserID($idcashier);
+	echo "Kasir: ".lookup::UserNameFromUserID($idcashier);
 ?>
-
 </h2>
 
 <?php 
