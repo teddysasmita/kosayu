@@ -97,10 +97,10 @@ foreach($data as $d) {
 	$total[0]['tunai'] += $d['cash'];	
 	$total[0]['kartudebit'] += $d['debitcard'];
 	$total[0]['kartukredit'] += $d['creditcard'];
-	$total[0]['retur'] += $sd['retur'];
-	$total[0]['voucher'] += $sd['voucher'];
-	$total[0]['totaljual'] += $sd['totalsales'];
-	$total[0]['totalkembali'] += $sd['cashreturn'];
+	$total[0]['retur'] += $d['retur'];
+	$total[0]['voucher'] += $d['voucher'];
+	$total[0]['totaljual'] += $d['totalsales'];
+	$total[0]['totalkembali'] += $d['cashreturn'];
 }
 
 
