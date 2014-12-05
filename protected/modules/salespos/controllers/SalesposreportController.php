@@ -98,12 +98,13 @@ EOS;
 				Yii::app()->user->id))  {
 			$this->trackActivity('v');
 			
+			$idcashier = lookup::UserIDFromName($name);
 			$sql1 =<<<EOS
 	select a.id, a.idatetime, left(a.idatetime, 10) as idate, a.userlog as idcashier, a.method,
 	a.idcurr, a.idrate, a.amount, a.idpos, b.total, b.cashreturn, b.regnum, b.idsticker
 	from posreceipts a
 	join salespos b on b.id = a.idpos
-	where a.userlog like '$idcashier'
+	where a.userlog = '$idcashier'
 	and a.idatetime >= '$startdate' and a.idatetime <= '$enddate'
 	order by idate, a.userlog, a.method, a.idcurr
 EOS;
