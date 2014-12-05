@@ -71,17 +71,3 @@ $this->menu=array(
 ));
 	
 ?>
-<H1>
-Total: <?php
-	$total = 0; 
-	foreach($data as $d) {
-		if ($d['idrate'] !== 'NA') 
-			$amount = $d['total'] * lookup::CurrRateFromID($d['idrate']);
-		else
-			$amount = $d['total'];
-		$total = $total + $amount;
-	};
-	echo ' Rp '.number_format($total);
-?>
-
-</H1>
