@@ -118,9 +118,12 @@ EOS;
 						$found = true;
 						if ($dr['method'] == 'V')
 							$r['voucher'] += $dr['amount'];
-						else if ($dr['method'] == 'C')
-							$r['cash'] += $dr['amount'] * lookup::CurrRateFromID($dr['idrate']);
-						else if ($dr['method'] == 'KK')
+						else if ($dr['method'] == 'C') {
+							if (is_null($dr['idrate']))
+								$r['cash'] += $dr['amount'];
+							else
+								$r['cash'] += $dr['amount'] * lookup::CurrRateFromID($dr['idrate']);
+						} else if ($dr['method'] == 'KK')
 							$r['creditcard'] += $dr['amount'];
 						else if ($dr['method'] == 'KD')
 							$r['debitcard'] += $dr['amount'];
