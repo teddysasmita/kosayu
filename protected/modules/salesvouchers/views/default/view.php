@@ -26,7 +26,7 @@ $this->menu=array(
 		'regnum',
 		array(
                    'name'=>'amount',
-                   'label'=>'Nilai',
+                   'label'=>'Nilai (Rp)',
 					'type'=> 'number'
                 ),   
 		'idatetime',
