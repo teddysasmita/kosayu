@@ -270,11 +270,11 @@ class DefaultController extends Controller
         {
             $idmaker=new idmaker();
             $model->id=$idmaker->getcurrentID2();  
+            $model->status = '0';
         }
         
         protected function afterPost(& $model)
         {
-            
         }
         
         protected function beforePost(& $model)
