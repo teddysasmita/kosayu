@@ -3,7 +3,7 @@
 /* @var $model Salespostransfers */
 
 $this->breadcrumbs=array(
-	'Proses'=>array('/site/masterdata'),
+	'Proses'=>array('/site/proses'),
 	'Laporan Pendapatan Kasir'=>array('salesposreport/create'),
 	'Lihat Data'
 );
