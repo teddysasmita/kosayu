@@ -115,13 +115,13 @@ EOS;
 				foreach($realdata as &$r) {
 					if ($r['id'] == $dr['idpos']) {
 						$found = true;
-						if ($dr['method'] == 'v')
+						if ($dr['method'] == 'V')
 							$r['voucher'] += $dr['amount'];
-						else if ($dr['method'] == 'c')
+						else if ($dr['method'] == 'C')
 							$r['cash'] += $dr['amount'] * lookup::CurrRateFromID($dr['idrate']);
-						else if ($dr['method'] == 'kk')
+						else if ($dr['method'] == 'KK')
 							$r['creditcard'] += $dr['amount'];
-						else if ($dr['method'] == 'kd')
+						else if ($dr['method'] == 'KD')
 							$r['debitcard'] += $dr['amount'];
 						break;
 					}						
