@@ -119,7 +119,7 @@ EOS;
 						if ($dr['method'] == 'V')
 							$r['voucher'] += $dr['amount'];
 						else if ($dr['method'] == 'C') {
-							if ($dr['idrate'] == '')
+							if ($dr['idrate'] == 'NA')
 								$r['cash'] += $dr['amount'];
 							else
 								$r['cash'] += $dr['amount'] * lookup::CurrRateFromID($dr['idrate']);
@@ -145,7 +145,7 @@ EOS;
 					if ($dr['method'] == 'V')
 						$temp['voucher'] += $dr['amount'];
 					else if ($dr['method'] == 'C') {
-						if ($dr['idrate'] == '')
+						if ($dr['idrate'] == 'NA')
 							$temp['cash'] += $dr['amount'];
 						else
 							$temp['cash'] += $dr['amount'] * lookup::CurrRateFromID($dr['idrate']);
