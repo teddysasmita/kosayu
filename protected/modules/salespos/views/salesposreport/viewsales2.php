@@ -83,7 +83,7 @@ $this->menu=array(
 ));
 	
 $total = array();
-$temp[['id'] = 1;
+$temp['id'] = 1;
 $temp['totaljual'] = 0;
 $temp['totalkembali'] = 0;
 $temp['tunai'] = 0;
