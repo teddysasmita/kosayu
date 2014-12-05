@@ -80,6 +80,54 @@ EOS;
 		};
 	}
 	
+	public function actionGetSales2($startdate, $enddate, $idcashier )
+	{
+		if(Yii::app()->authManager->checkAccess($this->formid.'-Append',
+				Yii::app()->user->id))  {
+			$this->trackActivity('v');
+			
+			if (!isset($idcashier) || ($idcashier == ''))
+				$idcashier = '%';
+			
+			$sql1 =<<<EOS
+	select a.id, a.idatetime, left(a.idatetime, 10) as idate, a.userlog as idcashier, a.method,
+	a.idcurr, a.idrate, sum(a.amount) as total
+	from posreceipts a
+	where a.userlog like '$idcashier'
+	and a.idatetime >= '$startdate' and a.idatetime <= '$enddate'
+	group by idate, a.userlog, a.method, a.idcurr
+	order by idate, a.userlog, a.method, a.idcurr
+EOS;
+			$datareceipt = Yii::app()->db->createCommand($sql1)->queryAll();
+				
+			$sql2 =<<<EOS
+			select a.userlog as idcashier, sum(a.cashreturn) as totalreturn
+	from salespos a
+	where a.userlog like '$idcashier'
+	and a.idatetime >= '$startdate' and a.idatetime <= '$enddate'
+	group by a.userlog
+	order by a.userlog
+EOS;
+			$datacashreturn = Yii::app()->db->createCommand($sql2)->queryAll();
+							
+						foreach($datareceipt as & $sd) {
+						if ( ($sd['method'] == 'C') && ($sd['idcurr'] == '-')) {
+								foreach($datacashreturn as $dc) {
+								if ($dc['idcashier'] == $sd['idcashier']) {
+										$sd['total'] = $sd['total'] - $dc['totalreturn'];
+												break;
+										}
+										}
+								}
+								}
+			
+		
+		} else {
+			throw new CHttpException(404,'You have no authorization for this operation.');
+		};
+		
+	}
+	
 	public function actionGetexcel($startdate, $enddate, $brand, $objects)
 	{
 		$datacancels = array();

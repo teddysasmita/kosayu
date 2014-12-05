@@ -748,17 +748,36 @@ class DefaultController extends Controller
     	$select1 = <<<EOS
  	a.id as iddetail, a.regnum as invoicenum, (a.total - a.tax) as amount, a.totaldiscount,
     a.idatetime, a.userlog as idcashier, a.datetimelog as cashierlog,
-    a.discount, sum(b.qty*b.price) as totalnondisc
+    a.discount
 EOS;
    		$this->salesdata = Yii::app()->db->createCommand()
    			->select($select1)->from('salespos a')
    			->join('detailsalespos b', 'b.id = a.id')
-   			->where("a.idsticker = :p_idsticker and a.idatetime like :p_datetime and b.discount = 0",
+   			->where("a.idsticker = :p_idsticker and a.idatetime like :p_datetime",
    				array(':p_idsticker'=>$idsticker, ':p_datetime'=>$ddatetime.'%'))
-   			->group('a.regnum')
    			->order('a.regnum')
    			->queryAll(); 	
+    	
+    	$select2 = <<<EOS
+    	select sum(b.qty*b.price) as totalnondisc from 	
+EOS;
+    	$tempdata = Yii::app()->db->createCommand()
+    		->select('a.regnum as invoicenum, sum(b.qty*b.price) as totalnondisc') 
+    		->from('salespos a')
+    		->join('detailsalespos b', 'b.id = a.id')
+    		->where("a.idsticker = :p_idsticker and a.idatetime like :p_datetime",
+    				array(':p_idsticker'=>$idsticker, ':p_datetime'=>$ddatetime.'%'))
+			->group('a.regnum')
+    		->order('a.regnum')
+    		->queryAll();
+   		
    		foreach($this->salesdata as & $sd) {
+   			foreach($tempdata as $t) {
+   				if ($t['invoicenum'] == $sd['invoicenum']) {
+   					$sd['totalnondisc'] = $t['totalnondisc']; 
+   					break;
+   				}	
+   			}
    			$sd['id'] = $id;	
    			$sd['iddetail'] = idmaker::getCurrentID2();
    			$sd['totaldiscount'] = $sd['totaldiscount'] + $this->getVRDisc($sd['invoicenum'], $sd['id']);
