@@ -73,7 +73,12 @@ $this->menu=array(
 						'header'=>'Voucher',
 						'name'=>'voucher',
 						'type'=>'number',
-				),				
+				),	
+				array(
+						'header'=>'Retur',
+						'name'=>'retur',
+						'type'=>'number',
+				),
 		),
 ));
 	

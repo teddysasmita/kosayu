@@ -126,6 +126,8 @@ EOS;
 							$r['creditcard'] += $dr['amount'];
 						else if ($dr['method'] == 'KD')
 							$r['debitcard'] += $dr['amount'];
+						else if ($dr['method'] == 'R')
+							$r['retur'] += $dr['amount'];
 						break;
 					}						
 				}	
@@ -141,6 +143,7 @@ EOS;
 					$temp['cash'] = 0;
 					$temp['creditcard'] = 0;
 					$temp['debitcard'] = 0;
+					$temp['retur'] = 0;
 					if ($dr['method'] == 'V')
 						$temp['voucher'] += $dr['amount'];
 					else if ($dr['method'] == 'C') {
@@ -152,6 +155,8 @@ EOS;
 						$temp['creditcard'] += $dr['amount'];
 					else if ($dr['method'] == 'KD')
 						$temp['debitcard'] += $dr['amount'];
+					else if ($dr['method'] == 'R')
+						$temp['retur'] += $dr['amount'];
 					$realdata[] = $temp;						
 				}
 			}
