@@ -33,6 +33,18 @@ class SalesposreportController extends Controller
          };
 	}
 	
+	public function actionCreate2()
+	{
+		if(Yii::app()->authManager->checkAccess($this->formid.'-Append',
+				Yii::app()->user->id))  {
+					$this->trackActivity('v');
+	
+					$this->render('create2');
+				} else {
+					throw new CHttpException(404,'You have no authorization for this operation.');
+				};
+	}
+	
 	public function actionGetsales($startdate, $enddate, $idcashier )
 	{
 		if(Yii::app()->authManager->checkAccess($this->formid.'-Append',
@@ -86,41 +98,50 @@ EOS;
 				Yii::app()->user->id))  {
 			$this->trackActivity('v');
 			
-			if (!isset($idcashier) || ($idcashier == ''))
-				$idcashier = '%';
-			
 			$sql1 =<<<EOS
 	select a.id, a.idatetime, left(a.idatetime, 10) as idate, a.userlog as idcashier, a.method,
-	a.idcurr, a.idrate, sum(a.amount) as total
+	a.idcurr, a.idrate, a.amount, a.idpos, b.total, b.cashreturn, b.regnum. b.idsticker
 	from posreceipts a
+	join salespos b on b.id = a.idpos
 	where a.userlog like '$idcashier'
 	and a.idatetime >= '$startdate' and a.idatetime <= '$enddate'
-	group by idate, a.userlog, a.method, a.idcurr
 	order by idate, a.userlog, a.method, a.idcurr
 EOS;
 			$datareceipt = Yii::app()->db->createCommand($sql1)->queryAll();
-				
-			$sql2 =<<<EOS
-			select a.userlog as idcashier, sum(a.cashreturn) as totalreturn
-	from salespos a
-	where a.userlog like '$idcashier'
-	and a.idatetime >= '$startdate' and a.idatetime <= '$enddate'
-	group by a.userlog
-	order by a.userlog
-EOS;
-			$datacashreturn = Yii::app()->db->createCommand($sql2)->queryAll();
-							
-						foreach($datareceipt as & $sd) {
-						if ( ($sd['method'] == 'C') && ($sd['idcurr'] == '-')) {
-								foreach($datacashreturn as $dc) {
-								if ($dc['idcashier'] == $sd['idcashier']) {
-										$sd['total'] = $sd['total'] - $dc['totalreturn'];
-												break;
-										}
-										}
-								}
-								}
 			
+			$realdata = array();
+			foreach($datareceipt as $dr) {
+				$found = FALSE;
+				foreach($realdata as &$r) {
+					if ($r['id'] == $dr['idpos']) {
+						$found = true;
+						if ($dr['method'] == 'v')
+							$r['voucher'] += $dr['amount'];
+						else if ($dr['method'] == 'c')
+							$r['cash'] += $dr['amount'] * lookup::CurrRateFromID($dr['idrate']);
+						else if ($dr['method'] == 'kk')
+							$r['creditcard'] += $dr['amount'];
+						else if ($dr['method'] == 'kd')
+							$r['debitcard'] += $dr['amount'];
+						break;
+					}						
+				}	
+				unset($r);
+				if (!$found) {
+					$temp['id'] = $dr['idpos'];
+					$temp['idsticker'] = $dr['idsticker'];
+					$temp['idatetime'] = $dr['idatetime'];
+					$temp['regnum'] = $dr['regnum'];
+					$temp['totalsales'] = $dr['total'];
+					$temp['cashreturn'] = $dr['cashreturn'];
+					$temp['voucher'] = 0;
+					$temp['cash'] = 0;
+					$temp['creditcard'] = 0;
+					$temp['debitcard'] = 0;
+					$realdata[] = $temp;						
+				}
+			}
+			$this->render('viewsales2', array('data'=>$realdata));
 		
 		} else {
 			throw new CHttpException(404,'You have no authorization for this operation.');
