@@ -109,6 +109,7 @@ EOS;
 EOS;
 			$datareceipt = Yii::app()->db->createCommand($sql1)->queryAll();
 			
+			print_r($datarceipt);
 			$realdata = array();
 			foreach($datareceipt as $dr) {
 				$found = FALSE;
