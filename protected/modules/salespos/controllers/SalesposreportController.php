@@ -191,23 +191,31 @@ EOS;
 				$idcashier = '%';
 	
 			$sql1 =<<<EOS
-	select left(c.code, 3) as scode, d.firstname as name, sum(a.qty) as totalqty, sum(a.price*a.qty) as totalprice,
+	select left(c.code, 3) as scode, sum(a.qty) as totalqty, sum(a.price*a.qty) as totalprice,
 		sum(a.discount*a.qty) as totaldiscount
 	from detailsalespos a
 	join salespos b on b.id = a.id
 	join items c on c.id = a.iditem
-	join suppliers d on d.code = scode
 	where 
 	b.idatetime >= '$startdate' and b.idatetime <= '$enddate'
 	group by scode
 	order by scode
 EOS;
 			$datasales = Yii::app()->db->createCommand($sql1)->queryAll();
-			$id = 1;	
+			$id = 1;
+			$supplierscode = Yii::app()->db->createCommand()
+				->select('code, firstname')->from('suppliers')
+				->queryAll();	
 			foreach($datasales as & $ds) {
 				$ds['id'] = $id;
 				$id += 1; 
 				$ds['nettotal'] = $ds['totalprice'] - $ds['totaldiscount'];
+				foreach($supplierscode as $sc) {
+					if ($sc['code'] == $ds['scode']) {
+						$ds['name'] = $sc['firstname'];
+						break;
+					}
+				}
 			}
 						
 			$this->render('viewsales3', array('data'=>$datasales, 'startdate'=>$startdate, 'enddate'=>$enddate));
