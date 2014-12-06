@@ -312,7 +312,7 @@ EOS;
 			header('Content-Type: application/pdf');
 			header('Content-Disposition: attachment;filename="sales-report-'.idmaker::getDateTime().'.xlsx"');
 			header('Cache-Control: max-age=0');
-			$xlWriter = PHPExcel_IOFactory::createWriter($xl, 'Excel2007');
+			$xlWriter = PHPExcel_IOFactory::createWriter($xl, 'Excel5');
 			$xlWriter->save('php://output');
 		} else {
 			throw new CHttpException(404,'You have no authorization for this operation.');
