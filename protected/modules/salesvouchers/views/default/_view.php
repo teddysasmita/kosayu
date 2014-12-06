@@ -18,7 +18,7 @@
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('status')); ?>:</b>
-	<?php echo CHtml::encode($data->status); ?>
+	<?php echo CHtml::encode(lookup::voucherStatus($data->status)); ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('userlog')); ?>:</b>
