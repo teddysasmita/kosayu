@@ -230,7 +230,7 @@ EOS;
 			foreach($datapurchases as &$dp) {
 				foreach($dataconsign as $ds) {
 					if ($ds['scode'] == $dp['scode']) {
-						echo $ds['code'].'<br>';						
+						echo $ds['scode'].'<br>';						
 						$dp['totalbuyprice'] += $ds['totalbuyprice2'];
 					}	
 				}	
