@@ -9,8 +9,9 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	
+		array('label'=>'Export ke XL', 'url'=>array('getexcel3')),
 );
+
 ?>
 
 <h1>Laporan Penjualan Tiap Pemasok</h1>
