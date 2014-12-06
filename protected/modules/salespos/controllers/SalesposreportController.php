@@ -202,8 +202,10 @@ EOS;
 	order by scode
 EOS;
 			$datasales = Yii::app()->db->createCommand($sql1)->queryAll();
-						
+			$id = 1;	
 			foreach($datasales as & $ds) {
+				$ds['id'] = $id;
+				$id += 1; 
 				$ds['nettotal'] = $ds['totalprice'] - $ds['totaldiscount'];
 			}
 						
