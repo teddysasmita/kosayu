@@ -51,7 +51,7 @@ class SalesposreportController extends Controller
 				Yii::app()->user->id))  {
 			$this->trackActivity('v');
 	
-			unset(Yii::app()->session['datasales3']);
+			Yii::app()->session->remove('datasales3');
 			$this->render('create3');
 		} else {
 			throw new CHttpException(404,'You have no authorization for this operation.');
