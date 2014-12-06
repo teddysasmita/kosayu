@@ -259,7 +259,8 @@ EOS;
 				$ds['profit'] = $ds['nettotal'] - $ds['totalbuyprice'];
 				$ds['margin'] = $ds['profit'] / $ds['totalbuyprice'] * 100;
 			}
-						
+			unset($ds);
+			
 			$this->render('viewsales3', array('data'=>$datasales, 'startdate'=>$startdate, 'enddate'=>$enddate));
 		} else {
 			throw new CHttpException(404,'You have no authorization for this operation.');
