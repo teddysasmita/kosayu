@@ -457,7 +457,7 @@ EOS;
 				->where('b.iditem = :p_iditem', array(':p_iditem'=>$id))
 				->queryAll();
 			
-			$this->render('viewsales', array('data'=> $datasales));
+			$this->render('viewsales', array('id'=>$id, 'data'=> $datasales));
 		} else {
 			throw new CHttpException(404,'You have no authorization for this operation.');
 		};
