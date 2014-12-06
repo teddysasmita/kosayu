@@ -45,6 +45,18 @@ class SalesposreportController extends Controller
 				};
 	}
 	
+	public function actionCreate3()
+	{
+		if(Yii::app()->authManager->checkAccess($this->formid.'-Append',
+				Yii::app()->user->id))  {
+					$this->trackActivity('v');
+	
+					$this->render('create3');
+				} else {
+					throw new CHttpException(404,'You have no authorization for this operation.');
+				};
+	}
+	
 	public function actionGetsales($startdate, $enddate, $idcashier )
 	{
 		if(Yii::app()->authManager->checkAccess($this->formid.'-Append',
@@ -167,6 +179,38 @@ EOS;
 			throw new CHttpException(404,'You have no authorization for this operation.');
 		};
 		
+	}
+	
+	public function actionGetsales3($startdate, $enddate )
+	{
+		if(Yii::app()->authManager->checkAccess($this->formid.'-Append',
+			Yii::app()->user->id))  {
+			$this->trackActivity('v');
+						
+			if (!isset($idcashier) || ($idcashier == ''))
+				$idcashier = '%';
+	
+			$sql1 =<<<EOS
+	select left(c.code, 3) as scode, sum(a.qty) as totalqty, sum(a.price*a.qty) as totalprice,
+		sum(a.discount*a.qty) as totaldiscount
+	from detailsalespos a
+	join salespos b on b.id = a.id
+	join items c on c.id = a.iditem
+	where 
+	b.idatetime >= '$startdate' and b.idatetime <= '$enddate'
+	group by scode
+	order by scode
+EOS;
+			$datasales = Yii::app()->db->createCommand($sql1)->queryAll();
+						
+			foreach($datasales as & $ds) {
+				$ds['nettotal'] = $ds['totalprice'] - $ds['totaldiscount']l
+			}
+						
+			$this->render('viewsales3', array('data'=>$datasales, 'startdate'=>$startdate, 'enddate'=>$enddate));
+		} else {
+			throw new CHttpException(404,'You have no authorization for this operation.');
+		};
 	}
 	
 	public function actionGetexcel($startdate, $enddate, $brand, $objects)
