@@ -285,8 +285,6 @@ EOS;
 				->setDescription("Laporan Penjualan Periodik")
 				->setKeywords("Laporan Penjualan")
 				->setCategory("Laporan");
-			print_r(Yii::app()->session);
-			/*
 			$data = Yii::app()->session['datasales3'];
 			$headersfield = array(
 				'scode', 'name', 'totalprice', 'totaldiscount', 'nettotal', 'totalbuyprice',
@@ -316,7 +314,6 @@ EOS;
 			header('Cache-Control: max-age=0');
 			$xlWriter = PHPExcel_IOFactory::createWriter($xl, 'Excel2007');
 			$xlWriter->save('php://output');
-			*/
 		} else {
 			throw new CHttpException(404,'You have no authorization for this operation.');
 		};
