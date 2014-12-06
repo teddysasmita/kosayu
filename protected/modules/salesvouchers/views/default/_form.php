@@ -60,6 +60,12 @@
 		<?php echo $form->error($model,'idatetime'); ?>
 	</div>
 	
+	<div class="row">
+		<?php echo $form->labelEx($model,'status'); ?>
+		<?php echo $form->dropDownList($model, 'status', array('0'=>'Berlaku', '1'=>'Telah Digunakan', '2'=>'Tidak Berlaku')); ?>
+		<?php echo $form->error($model,'status'); ?>
+	</div>
+	
 	<div class="row buttons">
 		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
 	</div>
