@@ -287,6 +287,7 @@ EOS;
 				->setCategory("Laporan");
 			
 			$data = Yii::app()->session['datasales3'];
+			print_r($data);
 			$headersfield = array(
 				'scode', 'name', 'totalprice', 'totaldiscount', 'nettotal', 'totalbuyprice',
 				'profit', 'margin'
@@ -302,7 +303,6 @@ EOS;
 						
 			for( $i=0; $i<count($data); $i++){
 				for( $j=0; $j<count($headersfield); $j++ ) {
-					$cellvalue = $data[$i][$headersfield[$j]];
 					$cellvalue = $data[$i][$headersfield[$j]];
 					$xl->setActiveSheetindex(0)
 						->setCellValueByColumnAndRow($j,$i+2, $cellvalue);
