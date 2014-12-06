@@ -4,7 +4,7 @@
 
 $this->breadcrumbs=array(
 	'Master Data'=>array('/site/masterdata'),
-	'Barang Dagang'=>array('item'),
+	'Barang Dagang'=>array('index'),
 	'Lihat Data'=>array('view','id'=>$id),
 	'Penjualan'
 );
