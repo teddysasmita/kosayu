@@ -453,7 +453,7 @@ EOS;
 			
 			$datasales = Yii::app()->db->createCommand()
 				->select("a.id, a.idatetime, a.regnum, a.userlog, b.iddetail, b.price, b.discount, b.qty, ((b.price-b.discount)*b.qty) as totalprice")
-				->from('salespos a')->join('detailsales b', 'b.id = a.id')
+				->from('salespos a')->join('detailsalespos b', 'b.id = a.id')
 				->where('b.iditem = :p_iditem', array(':p_iditem'=>$id))
 				->queryAll();
 			
