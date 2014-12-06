@@ -216,7 +216,7 @@ EOS;
 			$datapurchases = Yii::app()->db->createCommand($sql1)->queryAll();
 			
 			$sql3 =<<<EOS
-	select left(c.code, 3) as scode, sum(a.qty) as totalqty, sum(a.buyprice*a.qty) as totalbuyprice
+	select left(c.code, 3) as scode, sum(a.qty) as totalqty, sum(a.buyprice*a.qty) as totalbuyprice2
 	from detailconsignpurchases a
 	join consignpurchases b on b.id = a.id
 	join items c on c.id = a.iditem
@@ -230,7 +230,7 @@ EOS;
 			foreach($datapurchases as &$dp) {
 				foreach($dataconsign as $ds) {
 					if ($ds['scode'] == $dp['scode']) {
-						$dp['totalbuyprice'] += $ds['totalbuyprice'];
+						$dp['totalbuyprice'] += $ds['totalbuyprice2'];
 					}	
 				}	
 			}
