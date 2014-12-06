@@ -257,7 +257,10 @@ EOS;
 				if (key_exists('totalbuyprice',$ds))
 					$ds['totalbuyprice'] = 0;
 				$ds['profit'] = $ds['nettotal'] - $ds['totalbuyprice'];
-				$ds['margin'] = $ds['profit'] / $ds['totalbuyprice'] * 100;
+				if ( $ds['totalbuyprice'] > 0)
+					$ds['margin'] = $ds['profit'] / $ds['totalbuyprice'] * 100;
+				else
+					$ds['margin'] = 100;
 			}
 			unset($ds);
 			
