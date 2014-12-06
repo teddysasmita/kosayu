@@ -8,7 +8,7 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	//array('label'=>'Pencarian Data', 'url'=>array('admin')),
+	array('label'=>'Export ke XL', 'url'=>array('getsales3')),
 );
 ?>
 
