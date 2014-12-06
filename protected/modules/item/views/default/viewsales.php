@@ -34,7 +34,7 @@ $this->menu=array(
 				array(
 						'header'=>'Kasir',
 						'name'=>'userlog',
-						'value'=>"lookup::UserNameFromUserID(\$data['idcashier'])",
+						'value'=>"lookup::UserNameFromUserID(\$data['userlog'])",
 				),
 				array(
 						'header'=>'Jumlah',
