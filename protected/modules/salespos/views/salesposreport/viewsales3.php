@@ -55,6 +55,21 @@ $this->menu=array(
 						'name'=>'nettotal',
 						'type'=>'number',
 				),
+				array(
+						'header'=>'Harga Beli',
+						'name'=>'totalbuyprice',
+						'type'=>'number',
+				),
+				array(
+						'header'=>'Laba',
+						'name'=>'profit',
+						'type'=>'number',
+				),
+				array(
+						'header'=>'Margin',
+						'name'=>'margin',
+						'type'=>'number',
+				),
 		),
 ));
 	
