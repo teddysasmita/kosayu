@@ -191,7 +191,7 @@ EOS;
 				$idcashier = '%';
 	
 			$sql1 =<<<EOS
-	select left(c.code, 3) as scode, d.name, sum(a.qty) as totalqty, sum(a.price*a.qty) as totalprice,
+	select left(c.code, 3) as scode, d.firstname as name, sum(a.qty) as totalqty, sum(a.price*a.qty) as totalprice,
 		sum(a.discount*a.qty) as totaldiscount
 	from detailsalespos a
 	join salespos b on b.id = a.id
