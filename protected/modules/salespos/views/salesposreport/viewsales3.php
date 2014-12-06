@@ -78,12 +78,16 @@ $temp['id'] = 1;
 $temp['totalsales'] = 0;
 $temp['totaldisc'] = 0;
 $temp['totalnet'] = 0;
+$temp['totalbuy'] = 0;
+$temp['totalprofit'] = 0;
 $total[] = $temp;
 
 foreach($data as $d) {
 	$total[0]['totalsales'] += $d['totalprice'];	
 	$total[0]['totaldisc'] += $d['totaldiscount'];
 	$total[0]['totalnet'] += $d['nettotal'];
+	$total[0]['totalbuy'] += $d['totalbuyprice'];
+	$total[0]['totalprofit'] += $d['profit'];
 }
 
 
@@ -107,6 +111,16 @@ $this->widget('zii.widgets.grid.CGridView', array(
 				array(
 						'header'=>'Total Netto',
 						'name'=>'totalnet',
+						'type'=>'number',
+				),
+				array(
+						'header'=>'Total Beli',
+						'name'=>'totalbuy',
+						'type'=>'number',
+				),
+				array(
+						'header'=>'Total Profit',
+						'name'=>'totalprofit',
 						'type'=>'number',
 				),
 		),
