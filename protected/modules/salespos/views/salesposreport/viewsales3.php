@@ -132,4 +132,5 @@ $this->widget('zii.widgets.grid.CGridView', array(
 		),
 ));
 
+echo sizeof($data);
 ?>
