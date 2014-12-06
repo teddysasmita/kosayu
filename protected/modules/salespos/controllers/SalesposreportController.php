@@ -265,7 +265,7 @@ EOS;
 			}
 			unset($ds);
 			
-			Yii::app()->session('datasales3') = $datasales;
+			Yii::app()->session['datasales3'] = $datasales;
 			$this->render('viewsales3', array('data'=>$datasales, 'startdate'=>$startdate, 'enddate'=>$enddate));
 		} else {
 			throw new CHttpException(404,'You have no authorization for this operation.');
