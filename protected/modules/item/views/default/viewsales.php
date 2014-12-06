@@ -52,6 +52,11 @@ $this->menu=array(
 						'type'=>'number'
 				),
 				array(
+						'header'=>'Total Disc',
+						'name'=>'totaldisc',
+						'type'=>'number'
+				),
+				array(
 						'header'=>'Total Harga',
 						'name'=>'totalprice',
 						'type'=>'number'
@@ -69,7 +74,7 @@ $this->menu=array(
 	foreach($data as $d) {
 		$total[0]['totalqty'] += $d['qty'];
 		$total[0]['totalprice'] += $d['totalprice'];
-		$total[0]['totaldisc'] += $d['discount'];
+		$total[0]['totaldisc'] += $d['totaldisc'];
 	}
 	
 	

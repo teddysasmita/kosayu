@@ -452,7 +452,7 @@ EOS;
 			$this->trackActivity('v');
 			
 			$datasales = Yii::app()->db->createCommand()
-				->select("a.id, a.idatetime, a.regnum, a.userlog, b.iddetail, b.price, b.discount, b.qty, ((b.price-b.discount)*b.qty) as totalprice")
+				->select("a.id, a.idatetime, a.regnum, a.userlog, b.iddetail, b.price, b.discount, b.qty, (b.discount*b.qty) as totaldisc, ((b.price-b.discount)*b.qty) as totalprice")
 				->from('salespos a')->join('detailsalespos b', 'b.id = a.id')
 				->where('b.iditem = :p_iditem', array(':p_iditem'=>$id))
 				->queryAll();
