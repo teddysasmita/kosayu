@@ -254,7 +254,7 @@ EOS;
 						$ds['totalbuyprice'] = $dp['totalbuyprice'];
 					}
 				}
-				if (key_exists('totalbuyprice',$ds))
+				if (!key_exists('totalbuyprice',$ds))
 					$ds['totalbuyprice'] = 0;
 				$ds['profit'] = $ds['nettotal'] - $ds['totalbuyprice'];
 				if ( $ds['totalbuyprice'] > 0)
