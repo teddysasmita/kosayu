@@ -444,4 +444,24 @@ EOS;
        			throw new CHttpException(404,'You have no authorization for this operation.');
        		};
        	}
+	
+	public function actionShowSales($id) 
+	{
+		if(Yii::app()->authManager->checkAccess($this->formid.'-List',
+				Yii::app()->user->id))  {
+			$this->trackActivity('v');
+			
+			$datasales = Yii::app()->db->createCommand()
+				->select("a.id, a.idatetime, a.regnum, a.userlog, b.iddetail, b.price, b.discount, b.qty, ((b.price-b.discount)*b.qty) as totalprice")
+				->from('salespos a')->join('detailsales b', 'b.id = a.id')
+				->where('b.iditem = :p_iditem', array(':p_iditem'=>$id))
+				->queryAll();
+			
+			$this->render('viewsales', array('data'=> $datasales));
+		} else {
+			throw new CHttpException(404,'You have no authorization for this operation.');
+		};
+		
+	
+	}
 }
