@@ -132,5 +132,5 @@ $this->widget('zii.widgets.grid.CGridView', array(
 		),
 ));
 
-echo sizeof($data);
+echo count($data, COUNT_RECURSIVE);
 ?>
