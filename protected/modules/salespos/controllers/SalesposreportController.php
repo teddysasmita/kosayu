@@ -285,9 +285,7 @@ EOS;
 				->setDescription("Laporan Penjualan Periodik")
 				->setKeywords("Laporan Penjualan")
 				->setCategory("Laporan");
-			echo 'boom';
 			$data = Yii::app()->session['datasales3'];
-			print_r($data);
 			$headersfield = array(
 				'scode', 'name', 'totalprice', 'totaldiscount', 'nettotal', 'totalbuyprice',
 				'profit', 'margin'
