@@ -309,13 +309,13 @@ EOS;
 				}
 			}
 						
-			$xl->getActiveSheet()->setTitle('Laporan Penjualan');
+			/*$xl->getActiveSheet()->setTitle('Laporan Penjualan');
 			$xl->setActiveSheetIndex(0);
 			header('Content-Type: application/pdf');
 			header('Content-Disposition: attachment;filename="sales-report-'.idmaker::getDateTime().'.xlsx"');
 			header('Cache-Control: max-age=0');
 			$xlWriter = PHPExcel_IOFactory::createWriter($xl, 'Excel2007');
-			$xlWriter->save('php://output');
+			$xlWriter->save('php://output');*/
 		} else {
 			throw new CHttpException(404,'You have no authorization for this operation.');
 		};
