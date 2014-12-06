@@ -287,11 +287,11 @@ EOS;
 				->setCategory("Laporan");
 			$data = Yii::app()->session['datasales3'];
 			$headersfield = array(
-				'scode', 'name', 'totalprice', 'totaldiscount', 'nettotal', 'totalbuyprice',
+				'scode', 'name', 'qty', 'totalprice', 'totaldiscount', 'nettotal', 'totalbuyprice',
 				'profit', 'margin'
 			);
 			$headersname = array(
-				'Kode', 'Nama Pemasok', 'Bruto', 'Potongan', 'Netto', 'Harga Beli',
+				'Kode', 'Nama Pemasok', 'Qty', 'Bruto', 'Potongan', 'Netto', 'Harga Beli',
 				'Laba', 'Margin'				
 			);
 			for( $i=0;$i<count($headersname); $i++ ) {
