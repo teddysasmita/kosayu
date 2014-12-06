@@ -254,7 +254,7 @@ EOS;
 						$ds['totalbuyprice'] = $dp['totalbuyprice'];
 					}
 				}
-				if (is_null($ds['totalbuyprice']))
+				if (key_exists('totalbuyprice',$ds))
 					$ds['totalbuyprice'] = 0;
 				$ds['profit'] = $ds['nettotal'] - $ds['totalbuyprice'];
 				$ds['margin'] = $ds['profit'] / $ds['totalbuyprice'] * 100;
