@@ -132,5 +132,5 @@ $this->widget('zii.widgets.grid.CGridView', array(
 		),
 ));
 
-echo count(Yii::app()->session['datasales3'], COUNT_RECURSIVE);
+//echo count(Yii::app()->session['datasales3'], COUNT_RECURSIVE);
 ?>
