@@ -42,6 +42,11 @@ $this->menu=array(
 						'name'=>'name',
 				),
 				array(
+						'header'=>'Qty',
+						'name'=>'totalqty',
+						'type'=>'number',
+				),
+				array(
 						'header'=>'Bruto',
 						'name'=>'totalprice',
 						'type'=>'number',
