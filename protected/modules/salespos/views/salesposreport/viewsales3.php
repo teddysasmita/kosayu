@@ -127,5 +127,4 @@ $this->widget('zii.widgets.grid.CGridView', array(
 		),
 ));
 
-print_r(Yii::app()->session['datasales3']);
 ?>
