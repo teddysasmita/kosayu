@@ -204,7 +204,7 @@ EOS;
 			$datasales = Yii::app()->db->createCommand($sql1)->queryAll();
 						
 			foreach($datasales as & $ds) {
-				$ds['nettotal'] = $ds['totalprice'] - $ds['totaldiscount']l
+				$ds['nettotal'] = $ds['totalprice'] - $ds['totaldiscount'];
 			}
 						
 			$this->render('viewsales3', array('data'=>$datasales, 'startdate'=>$startdate, 'enddate'=>$enddate));

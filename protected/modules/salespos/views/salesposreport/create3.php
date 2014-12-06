@@ -14,4 +14,4 @@ $this->menu=array(
 
 <h1>Laporan Penjualan Tiap Pemasokr</h1>
 
-<?php $this->renderPartial('_form2'); ?>
+<?php $this->renderPartial('_form3'); ?>
