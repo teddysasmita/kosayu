@@ -39,10 +39,12 @@ $this->menu=array(
 				array(
 						'header'=>'Bruto',
 						'name'=>'totalprice',
+						'type'=>'number',
 				),
 				array(
 						'header'=>'Potongan',
 						'name'=>'totaldiscount',
+						'type'=>'number',
 				),
 				array(
 						'header'=>'Netto',
@@ -80,12 +82,12 @@ $this->widget('zii.widgets.grid.CGridView', array(
 				),
 				array(
 						'header'=>'Total Potongan',
-						'name'=>'totaldiscount',
+						'name'=>'totaldisc',
 						'type'=>'number',
 				),
 				array(
 						'header'=>'Total Netto',
-						'name'=>'nettotal',
+						'name'=>'totalnet',
 						'type'=>'number',
 				),
 		),
