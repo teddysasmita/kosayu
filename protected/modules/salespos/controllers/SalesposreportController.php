@@ -213,7 +213,7 @@ EOS;
 	group by scode
 	order by scode
 EOS;
-			$datapurchases = Yii::app()->db->createCommand($sql1)->queryAll();
+			$datapurchases = Yii::app()->db->createCommand($sql2)->queryAll();
 			
 			$sql3 =<<<EOS
 	select left(c.code, 3) as scode, sum(a.qty) as totalqty, sum(a.buyprice*a.qty) as totalbuyprice2
@@ -225,12 +225,11 @@ EOS;
 	group by scode
 	order by scode
 EOS;
-			$dataconsign = Yii::app()->db->createCommand($sql1)->queryAll();
+			$dataconsign = Yii::app()->db->createCommand($sql3)->queryAll();
 			
 			foreach($datapurchases as &$dp) {
 				foreach($dataconsign as $ds) {
 					if ($ds['scode'] == $dp['scode']) {
-						echo $ds['scode'].'<br>';						
 						$dp['totalbuyprice'] += $ds['totalbuyprice2'];
 					}	
 				}	
