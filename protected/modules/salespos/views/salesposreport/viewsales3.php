@@ -33,8 +33,12 @@ $this->menu=array(
 		'dataProvider'=>$dataProvider,
 		'columns'=>array(
 				array(
-						'header'=>'Supplier',
+						'header'=>'Kode',
 						'name'=>'scode',
+				),
+				array(
+						'header'=>'Pemasok',
+						'name'=>'name',
 				),
 				array(
 						'header'=>'Bruto',

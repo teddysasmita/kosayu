@@ -191,11 +191,12 @@ EOS;
 				$idcashier = '%';
 	
 			$sql1 =<<<EOS
-	select left(c.code, 3) as scode, sum(a.qty) as totalqty, sum(a.price*a.qty) as totalprice,
+	select left(c.code, 3) as scode, d.name, sum(a.qty) as totalqty, sum(a.price*a.qty) as totalprice,
 		sum(a.discount*a.qty) as totaldiscount
 	from detailsalespos a
 	join salespos b on b.id = a.id
 	join items c on c.id = a.iditem
+	join suppliers d on d.code = scode
 	where 
 	b.idatetime >= '$startdate' and b.idatetime <= '$enddate'
 	group by scode
