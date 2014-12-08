@@ -7,6 +7,7 @@
  * @property string $iddetail
  * @property string $id
  * @property string $iditem
+ * @property string $batchcode
  * @property string $idunit
  * @property double $qty
  * @property double $marginpct
@@ -34,9 +35,9 @@ class Detailconsignpurchases extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('iddetail, id, iditem, qty, userlog, datetimelog', 'required'),
+			array('iddetail, id, iditem, batchcode, qty, userlog, datetimelog', 'required'),
 			array('qty, marginpct, sellprice, buyprice', 'numerical'),
-			array('iddetail, id, iditem, idunit, userlog', 'length', 'max'=>21),
+			array('iddetail, id, iditem, batchcode, idunit, userlog', 'length', 'max'=>21),
 			array('expirydate, datetimelog', 'length', 'max'=>19),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
@@ -64,9 +65,10 @@ class Detailconsignpurchases extends CActiveRecord
 			'iddetail' => 'Iddetail',
 			'id' => 'ID',
 			'iditem' => 'Nama Barang',
+			'batchcode' => 'Nomor Batch',
 			'qty' => 'Qty',
-         'idunit'=> 'Satuan',
-         'marginpct' => 'Margin(%)',
+         	'idunit'=> 'Satuan',
+         	'marginpct' => 'Margin(%)',
 			'sellprice' => 'Harga Jual',
 			'buyprice' => 'Harga Beli',
 			'expirydate' => 'Tgl Kdl',

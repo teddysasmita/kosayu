@@ -7,6 +7,7 @@
  * @property string $iddetail
  * @property string $id
  * @property string $iditem
+ * @property string $batchcode
  * @property string $idunit
  * @property double $qty
  * @property double $discount
@@ -33,13 +34,13 @@ class Detailpurchases extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('iddetail, id, iditem, qty, price, discount, userlog, datetimelog', 'required'),
+			array('iddetail, id, iditem, batchcode, qty, price, discount, userlog, datetimelog', 'required'),
 			array('qty, discount, price', 'numerical'),
-			array('iddetail, id, iditem, idunit, userlog', 'length', 'max'=>21),
+			array('iddetail, id, iditem, batchcode, idunit, userlog', 'length', 'max'=>21),
 			array('datetimelog, expirydate', 'length', 'max'=>19),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('iddetail, id, iditem, qty, discount, price, expirydate, userlog, datetimelog', 'safe', 'on'=>'search'),
+			array('iddetail, id, iditem, batchcode, qty, discount, price, expirydate, userlog, datetimelog', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -63,9 +64,10 @@ class Detailpurchases extends CActiveRecord
 			'iddetail' => 'Iddetail',
 			'id' => 'ID',
 			'iditem' => 'Nama Barang',
+			'batchcode' => 'Nomor Batch',
 			'qty' => 'Qty',
-         'idunit'=> 'Satuan',
-         'discount' => 'Discount',
+			'idunit'=> 'Satuan',
+         	'discount' => 'Discount',
 			'price' => 'Harga',
 			'expirydate' => 'Tgl Kdl',
 			'userlog' => 'Userlog',

@@ -97,6 +97,12 @@ EOS;
 	</div>
 
 	<div class="row">
+		<?php echo $form->labelEx($model,'batchcode'); ?>
+		<?php echo $form->textField($model,'batchcode'); ?>
+		<?php echo $form->error($model,'batchcode'); ?>
+	</div>
+	
+	<div class="row">
 		<?php echo $form->labelEx($model,'qty'); ?>
 		<?php echo $form->textField($model,'qty'); ?>
 		<?php echo $form->error($model,'qty'); ?>
