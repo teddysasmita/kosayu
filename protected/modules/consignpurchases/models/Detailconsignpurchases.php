@@ -68,7 +68,7 @@ class Detailconsignpurchases extends CActiveRecord
 			'batchcode' => 'Nomor Batch',
 			'qty' => 'Qty',
          	'idunit'=> 'Satuan',
-         	'marginpct' => 'Margin(%)',
+         	'baseprice' => 'Harga Pokok',
 			'sellprice' => 'Harga Jual',
 			'buyprice' => 'Harga Beli',
 			'expirydate' => 'Tgl Kdl',
