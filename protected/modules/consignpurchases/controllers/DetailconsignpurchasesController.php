@@ -282,7 +282,7 @@ class DetailconsignpurchasesController extends Controller
             $model->datetimelog=$idmaker->getDateTime();
             $model->sellprice = 0;
             $model->buyprice = 0;
-            $model->marginpct = 0;
+            $model->baseprice = 0;
         }
         
         protected function afterPost(& $model)
