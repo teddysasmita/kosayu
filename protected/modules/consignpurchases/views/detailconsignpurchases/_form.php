@@ -109,9 +109,9 @@ EOS;
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'marginpct'); ?>
-		<?php echo $form->textField($model,'marginpct'); ?>
-		<?php echo $form->error($model,'marginpct'); ?>
+		<?php echo $form->labelEx($model,'baseprice'); ?>
+		<?php echo $form->textField($model,'baseprice'); ?>
+		<?php echo $form->error($model,'baseprice'); ?>
 	</div>
 
 	<div class="row">
