@@ -7,6 +7,7 @@
  * @property string $id
  * @property string $regnum
  * @property string $idatetime
+ * @property string $pdatetime
  * @property string $idorder
  * @property string $idsupplier
  * @property double $total
@@ -35,16 +36,16 @@ class Consignpurchases extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id, regnum, idatetime, idsupplier, status, userlog, datetimelog', 'required'),
+			array('id, regnum, idatetime, pdatetime, idsupplier, status, userlog, datetimelog', 'required'),
 			array('total, discount', 'numerical'),
 			array('id, idsupplier, idorder, userlog', 'length', 'max'=>21),
 			array('regnum', 'length', 'max'=>12),
-			array('idatetime, datetimelog', 'length', 'max'=>19),
+			array('idatetime, pdatetime, datetimelog', 'length', 'max'=>19),
 			array('status', 'length', 'max'=>10),
 			array('remark, paystatus', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, regnum, idatetime, idsupplier, total, discount, status, remark, userlog, datetimelog', 'safe', 'on'=>'search'),
+			array('id, regnum, idatetime, pdatetime, idsupplier, total, discount, status, remark, userlog, datetimelog', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -68,6 +69,7 @@ class Consignpurchases extends CActiveRecord
 			'id' => 'ID',
 			'regnum' => 'Nomor Urut',
 			'idatetime' => 'Tanggal',
+			'pdatetime' => 'Tanggal Bayar',
 			'idorder' => 'Nomor Pesan',
 			'idsupplier' => 'Nama Pemasok',
 			'total' => 'Total',
@@ -101,6 +103,7 @@ class Consignpurchases extends CActiveRecord
 		$criteria->compare('id',$this->id,true);
 		$criteria->compare('regnum',$this->regnum,true);
 		$criteria->compare('idatetime',$this->idatetime,true);
+		$criteria->compare('pdatetime',$this->pdatetime,true);
 		$criteria->compare('idorder',$this->idorder,true);
 		$criteria->compare('idsupplier',$this->idsupplier,true);
 		$criteria->compare('total',$this->total);

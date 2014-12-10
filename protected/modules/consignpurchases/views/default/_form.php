@@ -82,6 +82,26 @@ EOS;
             ?>
 		<?php echo $form->error($model,'idatetime'); ?>
 	</div>
+	
+	<div class="row">
+		<?php echo $form->labelEx($model,'pdatetime'); ?>
+            <?php
+               $this->widget('zii.widgets.jui.CJuiDatePicker',array(
+                  'name'=>'Detailconsignpurchases[pdatetime]',
+                     // additional javascript options for the date picker plugin
+                  'options'=>array(
+                     'showAnim'=>'fold',
+                     'dateFormat'=>'yy/mm/dd',
+                     'defaultdate'=>$model->pdatetime
+                  ),
+                  'htmlOptions'=>array(
+                     'style'=>'height:20px;',
+                  ),
+                  'value'=>$model->pdatetime,
+               ));
+            ?>
+		<?php echo $form->error($model,'pdatetime'); ?>
+	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'idorder'); ?>
