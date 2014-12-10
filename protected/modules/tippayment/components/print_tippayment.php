@@ -188,7 +188,7 @@ function execute($model, $detailmodel, $detailmodel2) {
 	$pdf->SetAutoPageBreak(TRUE, 5);
 	
 	//set image scale factor
-	$pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
+	$pdf->setImageScale(2.8);
 	
 	//set some language-dependent strings
 	//$pdf->setLanguageArray($l);
