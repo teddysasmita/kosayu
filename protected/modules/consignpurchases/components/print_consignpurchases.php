@@ -15,22 +15,14 @@ class MYPDF extends TCPDF {
 	private $headernames;
 	private $headerwidths;
 	
-	public $pageorientation;
-	public $pagesize;
-	public $leftmargin;
-	
 	// Load table data from file
-	public function LoadData($data, array $detaildata, array $detaildata2) {
+	public function LoadData($data, array $detaildata) {
 		// Read file lines
 		$this->data = $data;
 		$this->detaildata = $detaildata;
-		$this->detaildata2 = $detaildata2;
 		
 		$this->headernames1 = array('Struk', 'Total', 'Disc', 'Waktu', 'Kasir' );
-		$this->headerwidths1 = array(9, 16, 11, 37, 12);
-		
-		$this->headernames2 = array('Jenis Komisi', 'Jumlah' );
-		$this->headerwidths2 = array(40, 40);
+		$this->headerwidths1 = array(9, 16, 11, 37, 12);		
 	}
 
 	// Colored table
@@ -157,18 +149,15 @@ function execute($model, $detailmodel, $detailmodel2) {
 
 	// create new PDF document
 	
-	$pdf = new MYPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, array(140, 90), true, 'UTF-8', false);
-	$pdf->pagesize = array(90, 140);
-	$pdf->pageorientation = 'P';
-	$pdf->leftmargin = 5;
-	$pdf->setPageOrientation($pdf->pageorientation, TRUE);	
+	$pdf = new MYPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, 'A4', true, 'UTF-8', false);
+	$pdf->setPageOrientation(PDF_PAGE_ORIENTATION, TRUE);	
 	
 	// set document information
 	$pdf->SetCreator(PDF_CREATOR);
 	$pdf->SetAuthor(lookup::UserNameFromUserID(Yii::app()->user->id));
-	$pdf->SetTitle('Print Pembayaran Komisi');
-	$pdf->SetSubject('Bayar Komisi Agen');
-	$pdf->SetKeywords('Bayar Komisi Agen');
+	$pdf->SetTitle('Print Pembelian Konsinyasi');
+	$pdf->SetSubject('Beli Konsinyasi');
+	$pdf->SetKeywords('Beli konsinyasi');
 	
 	//$pdf->setPrintHeader(false);
 	//$pdf->setPrintFooter(false);
@@ -180,15 +169,20 @@ function execute($model, $detailmodel, $detailmodel2) {
 	$pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
 	
 	//set margins
-	$pdf->SetMargins(1, 40, PDF_MARGIN_RIGHT);
+	$topmargin = 40;
+	$leftmargin = 5;
+	$rightmargin = 5;
+	$bottommargin = 5;
+	$pdf->SetMargins($leftmargin, $topmargin, $rightmargin);
 	$pdf->SetHeaderMargin(0);
 	$pdf->SetFooterMargin(0);
 	
 	//set auto page breaks
-	$pdf->SetAutoPageBreak(TRUE, 5);
+	$pdf->SetAutoPageBreak(TRUE, $bottommargin);
 	
 	//set image scale factor
-	$pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
+	$imagescaleratio = 2.8;
+	$pdf->setImageScale($imagescaleratio);
 	
 	//set some language-dependent strings
 	//$pdf->setLanguageArray($l);
@@ -199,9 +193,9 @@ function execute($model, $detailmodel, $detailmodel2) {
 	//$pdf->SetFont('helvetica', '', 11);
 	
 	// add a page
-	$pdf->LoadData($model, $detailmodel, $detailmodel2);
+	$pdf->LoadData($model, $detailmodel);
 	
-	$pdf->AddPage($pdf->pageorientation, $pdf->pagesize);
+	$pdf->AddPage(PDF_PAGE_ORIENTATION, PDF_PAGE_SIZE);
 	//$pdf->AddPage();
 	
 	$pdf->ColoredTable();
@@ -211,7 +205,7 @@ function execute($model, $detailmodel, $detailmodel2) {
 	// ---------------------------------------------------------
 	
 	//Close and output PDF document
-	$pdf->Output('Print Komisi Agen-'.$model->regnum.'.pdf', 'D');
+	$pdf->Output('Print Pembelian Konsinyasi -'.$model->regnum.'.pdf', 'D');
 }
 //============================================================+
 // END OF FILE                                                
