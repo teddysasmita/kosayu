@@ -59,17 +59,63 @@ $this->menu=array(
 ));
 	
 ?>
-<H1>
-Total: <?php
-	$total = 0; 
-	foreach($data as $d) {
-		if ($d['idrate'] !== 'NA') 
-			$amount = $d['total'] * lookup::CurrRateFromID($d['idrate']);
-		else
-			$amount = $d['total'];
-		$total = $total + $amount;
-	};
-	echo ' Rp '.number_format($total);
-?>
 
-</H1>
+<?php
+	$total = array();
+	$temp['id'] = 1;
+	$temp['tunai'] = 0;
+	$temp['kartukredit'] = 0;
+	$temp['kartudebit'] = 0;
+	$temp['voucher'] = 0;
+	$temp['retur'] = 0;
+	$total[] = $temp;
+	
+	foreach($data as $d) {
+		if ($d['method'] == 'KK') {
+			$total[0]['kartukredit'] += $d['total'];
+		} else if ($d['method'] == 'KD') {
+			$total[0]['kartudebit'] += $d['total'];
+		} else if ($d['method'] == 'V') {
+			$total[0]['voucher'] += $d['total'];
+		} else if ($d['method'] == 'R') {
+			$total[0]['retur'] += $d['total'];
+		} else if ($d['method'] == 'C') {
+			$total[0]['tunai'] += $d['total'] * lookup::CurrRateFromID($d['idrate']);;
+		} 
+	}
+	
+	$dataProvider2=new CArrayDataProvider($total,array(
+			'totalItemCount'=>count($total),
+	));
+	
+	$this->widget('zii.widgets.grid.CGridView', array(
+			'dataProvider'=>$dataProvider2,
+			'columns'=>array(
+					array(
+							'header'=>'Total Tunai',
+							'name'=>'tunai',
+							'type'=>'number',
+					),
+					array(
+							'header'=>'Total Kartu Kredit',
+							'name'=>'kartukredit',
+							'type'=>'number',
+					),
+					array(
+							'header'=>'Total Kartu Debit',
+							'name'=>'kartudebit',
+							'type'=>'number',
+					),
+					array(
+							'header'=>'Total Voucher',
+							'name'=>'voucher',
+							'type'=>'number',
+					),
+					array(
+							'header'=>'Total Retur',
+							'name'=>'retur',
+							'type'=>'number',
+					),
+			),
+	));
+?>
