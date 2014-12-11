@@ -79,20 +79,21 @@ EOS;
 			$datareceipt = Yii::app()->db->createCommand($sql1)->queryAll();
 			
 			$sql2 =<<<EOS
-	select a.userlog as idcashier, sum(a.cashreturn) as totalreturn
+	select left(a.idatetime, 10) as idate, a.userlog as idcashier, sum(a.cashreturn) as totalreturn
 	from salespos a
 	join posreceipts b on b.idpos = a.id
 	where a.userlog like '$idcashier'
 	and a.idatetime >= '$startdate' and a.idatetime <= '$enddate'
-	group by a.userlog
-	order by a.userlog
+	group by idate, a.userlog
+	order by idate, a.userlog
 EOS;
 			$datacashreturn = Yii::app()->db->createCommand($sql2)->queryAll();
 			
 			foreach($datareceipt as & $sd) {
 				if ( ($sd['method'] == 'C') && ($sd['idcurr'] == '-')) {
 					foreach($datacashreturn as $dc) {
-						if ($dc['idcashier'] == $sd['idcashier']) {
+						if (($dc['idcashier'] == $sd['idcashier']) && 
+							($dc['idate'] == $sd['idate'])) {
 							$sd['total'] = $sd['total'] - $dc['totalreturn'];
 							break;
 						}
