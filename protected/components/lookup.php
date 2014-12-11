@@ -140,7 +140,7 @@ class lookup extends CComponent {
    			->where('id = :p_id', array(':p_id'=>$id))
    			->queryScalar();
    		if (!$rate)
-   			return 1;
+   			return '-';
    		else
    			return $rate;
    }
