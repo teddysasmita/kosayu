@@ -17,7 +17,7 @@ $this->menu=array(
 
 <h2>
 <?php
-	echo "Kasir: ".lookup::UserNameFromUserID($idcashier);
+	echo "Periode ".$startdate." hingga ".$enddate;
 ?>
 </h2>
 

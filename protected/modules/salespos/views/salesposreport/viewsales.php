@@ -15,6 +15,12 @@ $this->menu=array(
 
 <h1>Laporan Pendapatan Kasir</h1>
 
+<h2>
+<?php
+	echo "Periode ".$startdate." hingga ".$enddate;
+?>
+</h2>
+
 <?php 
 	
 	$dataProvider=new CArrayDataProvider($data,array(
