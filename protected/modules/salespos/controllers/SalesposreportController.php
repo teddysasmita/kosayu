@@ -81,7 +81,7 @@ EOS;
 			$sql2 =<<<EOS
 	select left(a.idatetime, 10) as idate, a.userlog as idcashier, sum(a.cashreturn) as totalreturn
 	from posreceipts b
-	left join salespos a on a.id = b.idpos
+	join salespos a on a.id = b.idpos
 	where a.userlog like '$idcashier'
 	and a.idatetime >= '$startdate' and a.idatetime <= '$enddate'
 	and (b.method = 'C' or b.method = 'R')
