@@ -95,11 +95,13 @@ EOS;
 					foreach($datacashreturn as $dc) {
 						if (($dc['idcashier'] == $sd['idcashier']) && 
 							($dc['idate'] == $sd['idate'])) {
-							$sd['total'] = $sd['total'] - $dc['totalreturn'];
+							//$sd['total'] = $sd['total'] - $dc['totalreturn'];
+							$sd['cashreturn'] = $dc['totalreturn'];
 							break;
 						} 
 					} 
-				} 
+				} else
+					$sd['cashreturn'] = 0;
 			}
 			unset($sd);
 			$this->render('viewsales', array('data'=>$datareceipt,'startdate'=>$startdate, 'enddate'=>$enddate));
