@@ -152,6 +152,7 @@ EOS;
 				unset($r);
 				if (!$found) {
 					$temp['id'] = $dr['idpos'];
+					$temp['idcashier'] = $dr['idcashier'];
 					$temp['idsticker'] = $dr['idsticker'];
 					$temp['idate'] = $dr['idate'];
 					$temp['regnum'] = $dr['regnum'];

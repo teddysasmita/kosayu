@@ -41,6 +41,11 @@ $this->menu=array(
 						'name'=>'regnum',
 				),
 				array(
+						'header'=>'Kasir',
+						'name'=>'idcashier',
+						'value'=>"lookup::UserNameFromUserID(\$data['idcashier'])",
+				),
+				array(
 						'header'=>'Nomor Sticker',
 						'name'=>'idsticker',
 				),
