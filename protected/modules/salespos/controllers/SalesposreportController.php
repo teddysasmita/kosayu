@@ -206,6 +206,7 @@ EOS;
 		sum(a.discount*a.qty) as totaldiscount
 	from detailsalespos a
 	join salespos b on b.id = a.id
+	join posreceipts d on d.idpos = b.id
 	join items c on c.id = a.iditem
 	where 
 	b.idatetime >= '$startdate' and b.idatetime <= '$enddate'
