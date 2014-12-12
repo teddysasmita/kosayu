@@ -64,6 +64,7 @@ $this->menu=array(
 	$total = array();
 	$temp['id'] = 1;
 	$temp['tunai'] = 0;
+	$temp['net'] = 0;
 	$temp['kartukredit'] = 0;
 	$temp['kartudebit'] = 0;
 	$temp['voucher'] = 0;
@@ -84,6 +85,7 @@ $this->menu=array(
 				$rate = 1;
 			else $rate = lookup::CurrRateFromID($d['idrate']);
 			$total[0]['tunai'] += $d['total'] * $rate;
+			$total[0]['net'] += $d['total'] * $rate;	
 		} 
 	}
 	
@@ -97,6 +99,11 @@ $this->menu=array(
 					array(
 							'header'=>'Total Tunai',
 							'name'=>'tunai',
+							'type'=>'number',
+					),
+					array(
+							'header'=>'Total Net',
+							'name'=>'net',
 							'type'=>'number',
 					),
 					array(

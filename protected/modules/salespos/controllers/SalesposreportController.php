@@ -94,7 +94,7 @@ EOS;
 					foreach($datacashreturn as $dc) {
 						if (($dc['idcashier'] == $sd['idcashier']) && 
 							($dc['idate'] == $sd['idate'])) {
-							$sd['total'] = $sd['total'] - $dc['totalreturn'];
+							$sd['nettotal'] = $sd['total'] - $dc['totalreturn'];
 							break;
 						}
 					}
