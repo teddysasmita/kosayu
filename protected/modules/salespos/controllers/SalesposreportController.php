@@ -84,7 +84,7 @@ EOS;
 	left join posreceipts b on b.idpos = a.id
 	where a.userlog like '$idcashier'
 	and a.idatetime >= '$startdate' and a.idatetime <= '$enddate'
-	and not b.method is null
+	and not (b.method is null)
 	group by idate, a.userlog
 	order by idate, a.userlog
 EOS;
