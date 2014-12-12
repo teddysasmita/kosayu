@@ -55,11 +55,6 @@ $this->menu=array(
 						'name'=>'total',
 						'type'=>'number',
 				),
-				array(
-						'header'=>'Kembalian',
-						'name'=>'cashreturn',
-						'type'=>'number',
-				),
 		),
 ));
 	
@@ -70,7 +65,6 @@ $this->menu=array(
 	$temp['id'] = 1;
 	$temp['tunai'] = 0;
 	$temp['net'] = 0;
-	$temp['kembalian'] = 0;
 	$temp['kartukredit'] = 0;
 	$temp['kartudebit'] = 0;
 	$temp['voucher'] = 0;
@@ -91,8 +85,6 @@ $this->menu=array(
 				$rate = 1;
 			else $rate = lookup::CurrRateFromID($d['idrate']);
 			$total[0]['tunai'] += $d['total'] * $rate;
-			$total[0]['net'] += $d['nettotal'] * $rate;	
-			$total[0]['kembalian'] += $d['cashreturn'];
 		} 
 	}
 	
@@ -107,16 +99,6 @@ $this->menu=array(
 							'header'=>'Total Tunai',
 							'name'=>'tunai',
 							'type'=>'number',
-					),
-					array(
-							'header'=>'Total Net',
-							'name'=>'net',
-							'type'=>'number',
-					),
-					array(
-					'header'=>'Total Kembalian',
-					'name'=>'kembalian',
-					'type'=>'number',
 					),
 					array(
 							'header'=>'Total Kartu Kredit',
