@@ -205,8 +205,9 @@ EOS;
 	select left(c.code, 3) as scode, sum(a.qty) as totalqty, sum(a.price*a.qty) as totalprice,
 		sum(a.discount*a.qty) as totaldiscount
 	from detailsalespos a
-	join salespos b on b.id = a.id
+	join (salespos b 
 	join posreceipts d on d.idpos = b.id
+	) on b.id = a.id
 	join items c on c.id = a.iditem
 	where 
 	b.idatetime >= '$startdate' and b.idatetime <= '$enddate'
