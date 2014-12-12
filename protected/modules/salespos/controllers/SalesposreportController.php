@@ -100,7 +100,7 @@ EOS;
 				} 
 			}
 			unset($sd);
-			$this->render('viewsales', array('data'=>$datareceipt));
+			$this->render('viewsales', array('data'=>$datareceipt,'startdate'=>$startdate, 'enddate'=>$enddate));
 		} else {
 			throw new CHttpException(404,'You have no authorization for this operation.');
 		};
@@ -178,7 +178,9 @@ EOS;
 					$realdata[] = $temp;						
 				}
 			}
-			$this->render('viewsales2', array('data'=>$realdata, 'idcashier'=>$idcashier));
+			$this->render('viewsales2', array('data'=>$realdata, 'idcashier'=>$idcashier,
+					'startdate'=>$startdate, 'enddate'=>$enddate
+			));
 		
 		} else {
 			throw new CHttpException(404,'You have no authorization for this operation.');
