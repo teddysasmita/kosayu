@@ -95,9 +95,12 @@ EOS;
 						if (($dc['idcashier'] == $sd['idcashier']) && 
 							($dc['idate'] == $sd['idate'])) {
 							$sd['nettotal'] = $sd['total'] - $dc['totalreturn'];
+							$sd['cashreturn'] = $dc['totalreturn'];
 							break;
-						}
-					}
+						} 
+					} 
+				} else {
+					$sd['cashreturn'] = 0;
 				}
 			}
 			unset($sd);
