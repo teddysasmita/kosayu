@@ -85,7 +85,7 @@ $this->menu=array(
 				$rate = 1;
 			else $rate = lookup::CurrRateFromID($d['idrate']);
 			$total[0]['tunai'] += $d['total'] * $rate;
-			$total[0]['net'] += $d['total'] * $rate;	
+			$total[0]['net'] += $d['nettotal'] * $rate;	
 		} 
 	}
 	
