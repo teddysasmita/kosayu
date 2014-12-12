@@ -121,4 +121,9 @@ $this->menu=array(
 					),
 			),
 	));
+	
+	$grandtotal = $total['tunai'] + $total['kartukredit'] + $total['kartudebit'] +
+		$total['voucher'] + $total['retur'];
+	
+	echo CHtml::tag('h1', false, number_format($grandtotal));
 ?>
