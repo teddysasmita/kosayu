@@ -154,7 +154,7 @@ EOS;
 					$temp['id'] = $dr['idpos'];
 					$temp['idcashier'] = $dr['idcashier'];
 					$temp['idsticker'] = $dr['idsticker'];
-					$temp['idate'] = $dr['idate'];
+					$temp['idatetime'] = $dr['idatetime'];
 					$temp['regnum'] = $dr['regnum'];
 					$temp['totalsales'] = $dr['total'];
 					$temp['cashreturn'] = $dr['cashreturn'];

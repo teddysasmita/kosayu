@@ -34,7 +34,7 @@ $this->menu=array(
 		'columns'=>array(
 				array(
 						'header'=>'Tanggal',
-						'name'=>'idate',
+						'name'=>'idatetime',
 				),
 				array(
 						'header'=>'Nomor Nota',
