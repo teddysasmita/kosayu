@@ -96,6 +96,7 @@ $temp['kartukredit'] = 0;
 $temp['kartudebit'] = 0;
 $temp['retur'] = 0;
 $temp['voucher'] = 0;
+$temp['totalmasuk'] = 0;
 $total[] = $temp;
 
 foreach($data as $d) {
@@ -106,6 +107,8 @@ foreach($data as $d) {
 	$total[0]['voucher'] += $d['voucher'];
 	$total[0]['totaljual'] += $d['totalsales'];
 	$total[0]['totalkembali'] += $d['cashreturn'];
+	$total[0]['totalmasuk'] += ($d['cash'] + $d['debitcard'] + $d['creditcard'] 
+			+ $d['retur'] + $d['voucher'] - $d['cashreturn']);
 }
 
 
@@ -119,6 +122,11 @@ $this->widget('zii.widgets.grid.CGridView', array(
 				array(
 						'header'=>'Total Nota',
 						'name'=>'totaljual',
+						'type'=>'number',
+				),
+				array(
+						'header'=>'Total Terima',
+						'name'=>'totalmasuk',
 						'type'=>'number',
 				),
 				array(
