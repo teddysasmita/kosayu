@@ -80,18 +80,18 @@ EOS;
 			
 			$sql2 =<<<EOS
 	select left(a.idatetime, 10) as idate, a.userlog as idcashier, sum(a.cashreturn) as totalreturn
-	from salespos a
-	left join posreceipts b on b.idpos = a.id
+	from posreceipts b
+	left join salespos a on a.id = b.idpos
 	where a.userlog like '$idcashier'
 	and a.idatetime >= '$startdate' and a.idatetime <= '$enddate'
-	and not (b.method is null)
+	and (b.method = 'C' or b.method = 'R')
 	group by idate, a.userlog
 	order by idate, a.userlog
 EOS;
 			$datacashreturn = Yii::app()->db->createCommand($sql2)->queryAll();
 			
 			foreach($datareceipt as & $sd) {
-				if ( (($sd['method'] == 'KD') || ($sd['method'] == 'C') || ($sd['method'] == 'R')) && ($sd['idrate'] == 'NA')) {
+				if ( ($sd['method'] == 'C' && $sd['idrate'] == 'NA') {
 					foreach($datacashreturn as $dc) {
 						if (($dc['idcashier'] == $sd['idcashier']) && 
 							($dc['idate'] == $sd['idate'])) {
