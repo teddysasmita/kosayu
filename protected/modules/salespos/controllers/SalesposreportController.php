@@ -123,7 +123,7 @@ EOS;
 	join salespos b on b.id = a.idpos
 	where a.userlog like '$idcashier'
 	and a.idatetime >= '$startdate' and a.idatetime <= '$enddate'
-	order by idate, a.userlog, a.idatetime, a.method, a.idcurr
+	order a.idatetime
 EOS;
 			$datareceipt = Yii::app()->db->createCommand($sql1)->queryAll();
 			
