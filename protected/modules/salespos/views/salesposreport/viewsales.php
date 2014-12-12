@@ -80,9 +80,9 @@ $this->menu=array(
 		} else if ($d['method'] == 'R') {
 			$total[0]['retur'] += $d['total'];
 		} else if ($d['method'] == 'C') {
-			$rate = lookup::CurrRateFromID($d['idrate']);
-			if ($rate == '-')
+			if ($d['idrate'] == 'NA')
 				$rate = 1;
+			else $rate = lookup::CurrRateFromID($d['idrate']);
 			$total[0]['tunai'] += $d['total'] * $rate;
 		} 
 	}
