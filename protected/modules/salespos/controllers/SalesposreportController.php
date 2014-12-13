@@ -256,13 +256,9 @@ EOS;
 					$temp['qty'] = $ds['qty'];
 					$temp['totalsold'] = $ds['qty'] * $ds['price'];
 					$temp['totaldisc'] = $ds['qty'] * $ds['discount'];
-					$temp['idsupplier'] = $ds['idsupplier'];
+					$temp['suppliername'] = $ds['firstname'];
 					$summarysales[] = $temp;
 				}
-			}
-			
-			foreach( $summarysales as & $ss) {
-				$ss['suppliername'] = lookup::SupplierNameFromSupplierID($ss['idsupplier']);
 			}
 			
 			Yii::app()->session['datasales3'] = $datasales;
