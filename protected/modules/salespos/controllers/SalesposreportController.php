@@ -236,7 +236,7 @@ EOS;
 				}	
 				$ds['itemcog'] = $this->getbuyprice($ds['code']);
 			}
-			
+			unset($ds);
 			$summarysales = array();
 			foreach($datasales as & $ds) {
 				$scode = $ds['scode'];
@@ -265,7 +265,7 @@ EOS;
 					$summarysales[] = $temp;
 				}
 			}
-			
+			unset($ds);
 			
 			
 			Yii::app()->session['datasales3'] = $summarysales;
@@ -616,10 +616,10 @@ EOS;
 			->where('batchcode = :p_batchcode', array(':p_batchcode'=>$code))
 			->order('id desc')
 			->queryRow();
-		if (!$price['baseprice'])
-			return $price['buyprice'];
-		else
+		if (!$price['buyprice'])
 			return $price['baseprice'];
+		else
+			return $price['buyprice'];
 	}	
 
 }
