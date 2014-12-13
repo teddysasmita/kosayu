@@ -202,13 +202,13 @@ EOS;
 				$idcashier = '%';
 	
 			$sql1 =<<<EOS
-	select b.id, d.firstname, a.iddetail, c.code, a.qty, a.price, a.discount
+	select b.id, e.firstname, a.iddetail, c.code, a.qty, a.price, a.discount
 	from detailsalespos a
 	join (salespos b 
 		join posreceipts d on d.idpos = b.id
 	) on b.id = a.id
 	join (items c 
-		join suppliers d on d.code = left(c.code, 3)
+		join suppliers e on e.code = left(c.code, 3)
 	) on c.id = a.iditem
 	where 
 	b.idatetime >= '$startdate' and b.idatetime <= '$enddate'
