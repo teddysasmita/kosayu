@@ -14,7 +14,7 @@ $itemScript=<<<EOS
 			$.getJSON('index.php?r=LookUp/getItemFromBatchcode',{ batchcode: $('#Sellingprices_batchcode').val() },
                	function(data) {
 				 	$('#itemname').html(data.name);
-                  $('#Sellingprices-iditem').val(data.iditem);
+                  $('#Sellingprices_iditem').val(data.iditem);
                })
 	});
 EOS;
