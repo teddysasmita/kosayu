@@ -153,12 +153,15 @@ class lookup extends CComponent {
    
    public static function ItemNameFromItemCode($code)
    {
-		return Yii::app()->db->createCommand()
-			->select('b.name')->from('itembatch a')
-			->join('items b', 'b.id = a.iditem')
-			->where('a.batchcode = :p_batchcode', 
-				array(':p_batchcode'=>$code))
-			->queryScalar();
+   		if ($code == '-')
+   			return '-';
+   		else
+			return Yii::app()->db->createCommand()
+				->select('b.name')->from('itembatch a')
+				->join('items b', 'b.id = a.iditem')
+				->where('a.batchcode = :p_batchcode', 
+					array(':p_batchcode'=>$code))
+				->queryScalar();
    }
    
    public static function ItemCodeFromItemID($id)
