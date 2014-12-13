@@ -208,7 +208,7 @@ EOS;
 		join posreceipts d on d.idpos = b.id
 	) on b.id = a.id
 	join (items c 
-		join suppliers e on e.code = scode
+		join suppliers e on e.code = left(c.code, 3)
 	) on c.id = a.iditem
 	where 
 	b.idatetime >= '$startdate' and b.idatetime <= '$enddate'
