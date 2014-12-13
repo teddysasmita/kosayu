@@ -69,7 +69,7 @@ Yii::app()->clientScript->registerScript('itemscript', $itemScript, CClientScrip
 		<?php echo $form->labelEx($model,'batchcode'); ?>
 		<?php 
 			$this->widget('zii.widgets.jui.CJuiAutoComplete', array(
-				'name'=>'idcashier',
+				'name'=>'Sellingprices[batchcode]',
 				'sourceUrl'=> Yii::app()->createUrl('LookUp/getBatchcode'),
 				'htmlOptions'=>array(
 						'style'=>'height:20px;',
