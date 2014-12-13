@@ -91,8 +91,8 @@ $temp['totalprofit'] = 0;
 $total[] = $temp;
 
 foreach($data as $d) {
-	$total[0]['totalsales'] += $d['totalprice'];	
-	$total[0]['totaldisc'] += $d['totaldiscount'];
+	$total[0]['totalsales'] += $d['totalsold'];	
+	$total[0]['totaldisc'] += $d['totaldisc'];
 	/*$total[0]['totalnet'] += $d['nettotal'];
 	$total[0]['totalbuy'] += $d['totalbuyprice'];
 	$total[0]['totalprofit'] += $d['profit'];*/
