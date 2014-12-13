@@ -202,16 +202,17 @@ EOS;
 				$idcashier = '%';
 	
 			$sql1 =<<<EOS
-	select b.id, e.firstname, a.iddetail, c.code, a.qty, a.price, a.discount
+	select b.id, left(c.code, 3) as scode, e.firstname, a.iddetail, c.code, a.qty, a.price, a.discount
 	from detailsalespos a
 	join (salespos b 
 		join posreceipts d on d.idpos = b.id
 	) on b.id = a.id
 	join (items c 
-		join suppliers e on e.code = left(c.code, 3)
+		join suppliers e on e.code = scode
 	) on c.id = a.iditem
 	where 
 	b.idatetime >= '$startdate' and b.idatetime <= '$enddate'
+	order by scode
 EOS;
 			$datasales = Yii::app()->db->createCommand($sql1)->queryAll();
 			
@@ -238,7 +239,7 @@ EOS;
 			
 			$summarysales = array();
 			foreach($datasales as & $ds) {
-				$scode = substr($ds['code'], 0, 3);
+				$scode = $ds['scode'];
 				$found = FALSE;
 				foreach($summarysales as &$ss) {
 					if ($ss['scode'] == $scode) {
