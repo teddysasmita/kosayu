@@ -202,8 +202,7 @@ EOS;
 				$idcashier = '%';
 	
 			$sql1 =<<<EOS
-	select left(c.code, 3) as scode, sum(a.qty) as totalqty, sum(a.price*a.qty) as totalprice,
-		sum(a.discount*a.qty) as totaldiscount
+	select b.id, b.idsupplier, a.iddetail, c.code, a.qty. a.price, a.discount
 	from detailsalespos a
 	join (salespos b 
 	join posreceipts d on d.idpos = b.id
@@ -211,71 +210,58 @@ EOS;
 	join items c on c.id = a.iditem
 	where 
 	b.idatetime >= '$startdate' and b.idatetime <= '$enddate'
-	group by scode
-	order by scode
 EOS;
 			$datasales = Yii::app()->db->createCommand($sql1)->queryAll();
 			
-			$sql2 =<<<EOS
-	select left(c.code, 3) as scode, sum(a.qty) as totalqty, sum(a.price*a.qty) as totalbuyprice
-	from detailpurchases a
-	join purchases b on b.id = a.id
-	join items c on c.id = a.iditem
+			$sql4 =<<<EOS
+	select b.id, b.total, b.discount, sum((a.price-a.discount)*a.qty) as itemtotal
+	from detailsalespos a
+	join (salespos b
+	join posreceipts d on d.idpos = b.id
+	) on b.id = a.id
 	where
 	b.idatetime >= '$startdate' and b.idatetime <= '$enddate'
-	group by scode
-	order by scode
+	group by b.id
 EOS;
-			$datapurchases = Yii::app()->db->createCommand($sql2)->queryAll();
+			$infosales = Yii::app()->db->createCommand($sql4)->queryAll();
 			
-			$sql3 =<<<EOS
-	select left(c.code, 3) as scode, sum(a.qty) as totalqty, sum(a.buyprice*a.qty) as totalbuyprice2
-	from detailconsignpurchases a
-	join consignpurchases b on b.id = a.id
-	join items c on c.id = a.iditem
-	where
-	b.idatetime >= '$startdate' and b.idatetime <= '$enddate'
-	group by scode
-	order by scode
-EOS;
-			$dataconsign = Yii::app()->db->createCommand($sql3)->queryAll();
-			
-			foreach($datapurchases as &$dp) {
-				foreach($dataconsign as $ds) {
-					if ($ds['scode'] == $dp['scode']) {
-						$dp['totalbuyprice'] += $ds['totalbuyprice2'];
-					}	
-				}	
-			}
-			unset($dp);
-			$id = 1;
-			$supplierscode = Yii::app()->db->createCommand()
-				->select('code, firstname')->from('suppliers')
-				->queryAll();	
-			foreach($datasales as & $ds) {
-				$ds['id'] = $id;
-				$id += 1; 
-				$ds['nettotal'] = $ds['totalprice'] - $ds['totaldiscount'];
-				foreach($supplierscode as $sc) {
-					if ($sc['code'] == $ds['scode']) {
-						$ds['name'] = $sc['firstname'];
+			foreach($datasales as &$ds) {
+				foreach($infosales as $is) {
+					if ($is['id'] == $ds['id']) {
+						$ds['discount']	+= ($is['discount'] / $is['total'] * $is['itemtotal']);
 						break;
 					}
-				}
-				foreach($datapurchases as $dp) {
-					if ($ds['scode'] == $dp['scode']) {
-						$ds['totalbuyprice'] = $dp['totalbuyprice'];
+				}	
+			}
+			
+			$summarysales = array();
+			foreach($datasales as & $ds) {
+				$scode = substr($ds['code'], 0, 3);
+				$found = FALSE;
+				foreach($summarysales as &$ss) {
+					if ($ss['scode'] == $scode) {
+						$ss['qty'] += $ds['qty'];
+						$ss['totalsold'] += $ds['qty'] * $ds['price'];
+						$ss['totaldisc'] += $ds['qty'] * $ds['discount']; 
+						$found = TRUE;
+						break;	
 					}
 				}
-				if (!key_exists('totalbuyprice',$ds))
-					$ds['totalbuyprice'] = 0;
-				$ds['profit'] = $ds['nettotal'] - $ds['totalbuyprice'];
-				if ( $ds['totalbuyprice'] > 0)
-					$ds['margin'] = $ds['profit'] / $ds['totalbuyprice'] * 100;
-				else
-					$ds['margin'] = 100;
+				unset($ss);
+				if (!$found) {
+					$temp['iddetail'] = $ds['iddetail'];
+					$temp['scode'] = $scode;
+					$temp['qty'] = $ds['qty'];
+					$temp['totalsold'] = $ds['qty'] * $ds['price'];
+					$temp['totaldisc'] = $ds['qty'] * $ds['discount'];
+					$temp['idsupplier'] = $ds['idsupplier'];
+					$summarysales[] = $temp;
+				}
 			}
-			unset($ds);
+			
+			foreach( $summarysales as & $ss) {
+				$ss['suppliername'] = lookup::SupplierNameFromSupplierID($ss['idsupplier']);
+			}
 			
 			Yii::app()->session['datasales3'] = $datasales;
 			$this->render('viewsales3', array('data'=>$datasales, 'startdate'=>$startdate, 'enddate'=>$enddate));

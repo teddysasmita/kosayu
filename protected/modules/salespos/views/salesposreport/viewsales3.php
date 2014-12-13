@@ -26,6 +26,7 @@ $this->menu=array(
 	
 	$dataProvider=new CArrayDataProvider($data,array(
 		'totalItemCount'=>count($data),
+		'keyField'=>'iddetail',
 		'pagination'=>array(
 				'pageSize'=>25,
 			),
@@ -39,21 +40,21 @@ $this->menu=array(
 				),
 				array(
 						'header'=>'Pemasok',
-						'name'=>'name',
+						'name'=>'suppliername',
 				),
 				array(
 						'header'=>'Qty',
-						'name'=>'totalqty',
+						'name'=>'qty',
 						'type'=>'number',
 				),
 				array(
 						'header'=>'Bruto',
-						'name'=>'totalprice',
+						'name'=>'totalsold',
 						'type'=>'number',
 				),
 				array(
 						'header'=>'Potongan',
-						'name'=>'totaldiscount',
+						'name'=>'totaldisc',
 						'type'=>'number',
 				),
 				array(
@@ -61,7 +62,7 @@ $this->menu=array(
 						'name'=>'nettotal',
 						'type'=>'number',
 				),
-				array(
+				/*array(
 						'header'=>'Harga Beli',
 						'name'=>'totalbuyprice',
 						'type'=>'number',
@@ -75,7 +76,7 @@ $this->menu=array(
 						'header'=>'Margin',
 						'name'=>'margin',
 						'type'=>'number',
-				),
+				),*/
 		),
 ));
 	
