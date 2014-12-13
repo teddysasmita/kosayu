@@ -202,7 +202,7 @@ EOS;
 				$idcashier = '%';
 	
 			$sql1 =<<<EOS
-	select b.id, b.idsupplier, a.iddetail, c.code, a.qty. a.price, a.discount
+	select b.id, b.idsupplier, a.iddetail, c.code, a.qty, a.price, a.discount
 	from detailsalespos a
 	join (salespos b 
 	join posreceipts d on d.idpos = b.id
