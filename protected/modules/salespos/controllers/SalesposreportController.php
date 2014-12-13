@@ -247,6 +247,7 @@ EOS;
 						$ss['totalsold'] += $ds['qty'] * $ds['price'];
 						$ss['totaldisc'] += $ds['qty'] * $ds['discount'];
 						$ss['totalcog'] += $ds['qty'] * $ds['itemcog'];
+						$ss['totalgain'] += ($ds['qty'] * ($ds['price'] - $ds['discount'] - $ds['itemcog']));
 						$found = TRUE;
 						break;	
 					}
@@ -259,6 +260,7 @@ EOS;
 					$temp['totalsold'] = $ds['qty'] * $ds['price'];
 					$temp['totaldisc'] = $ds['qty'] * $ds['discount'];
 					$temp['totalcog'] = $ds['qty'] * $ds['itemcog'];
+					$temp['totalgain'] = $temp['totalsold'] - $temp['totalcog'];
 					$temp['suppliername'] = $ds['firstname'];
 					$summarysales[] = $temp;
 				}
