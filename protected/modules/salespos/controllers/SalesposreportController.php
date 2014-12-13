@@ -610,8 +610,9 @@ EOS;
 	private function getbuyprice($code)
 	{
 		$price =  Yii::app()->db->createCommand()
-			->select('buyprice, baseprice')->from('itembatch')
+			->select('id, buyprice, baseprice')->from('itembatch')
 			->where('batchcode = :p_batchcode', array(':p_batchcode'=>$code))
+			->order('id desc')
 			->queryRow();
 		if (!$price['baseprice'])
 			return $price['buyprice'];
