@@ -7,6 +7,7 @@
  * @property string $id
  * @property string $idatetime
  * @property string $iditem
+ * @property string $batchcode
  * @property double $normalprice
  * @property double $minprice
  * @property string $approvalby
@@ -31,14 +32,14 @@ class Sellingprices extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id, idatetime, iditem, approvalby, normalprice, minprice, userlog, datetimelog', 'required'),
+			array('id, idatetime, iditem, batchcode, approvalby, normalprice, minprice, userlog, datetimelog', 'required'),
 			array('normalprice, minprice', 'numerical'),
-			array('id, iditem, userlog', 'length', 'max'=>21),
+			array('id, iditem, batchcode, userlog', 'length', 'max'=>21),
 			array('idatetime, datetimelog', 'length', 'max'=>19),
 			array('approvalby', 'length', 'max'=>50),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, idatetime, iditem, approvalby, normalprice, minprice, userlog, datetimelog', 'safe', 'on'=>'search'),
+			array('id, idatetime, iditem, batchcode, approvalby, normalprice, minprice, userlog, datetimelog', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -62,6 +63,7 @@ class Sellingprices extends CActiveRecord
 			'id' => 'ID',
 			'idatetime' => 'Tanggal',
 			'iditem' => 'Nama Barang',
+			'batchcode' => 'Kode Batch',		
 			'normalprice' => 'Harga Jual',
 			'minprice' => 'Harga Jual Minimum',
 			'approvalby'=> 'Disetujui oleh',
@@ -91,6 +93,7 @@ class Sellingprices extends CActiveRecord
 		$criteria->compare('id',$this->id,true);
 		$criteria->compare('idatetime',$this->idatetime,true);
 		$criteria->compare('iditem',$this->iditem,true);
+		$criteria->compare('batchcode',$this->iditem,true);
 		$criteria->compare('normalprice',$this->normalprice);
 		$criteria->compare('minprice',$this->minprice);
 		$criteria->compare('approvalby',$this->approvalby);

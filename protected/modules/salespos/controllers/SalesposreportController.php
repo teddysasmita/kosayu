@@ -103,7 +103,7 @@ EOS;
 				} else
 					$sd['cashreturn'] = 0;
 			}
-			//unset($sd);
+			unset($sd);
 			$this->render('viewsales', array('data'=>$datareceipt,'startdate'=>$startdate, 'enddate'=>$enddate));
 		} else {
 			throw new CHttpException(404,'You have no authorization for this operation.');

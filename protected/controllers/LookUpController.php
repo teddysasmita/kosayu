@@ -55,6 +55,26 @@ class LookUpController extends Controller {
 		};	
 	}
 	
+	public function actionGetBatchcode($term)
+	{
+		if (!Yii::app()->user->isGuest) {
+			$data=Yii::app()->db->createCommand()->selectDistinct('batchcode')->from('itembatch')
+			->where('batchcode like :p_brand', array(':p_brand'=>'%'.$term.'%'))
+			->order('batchcode')
+			->queryColumn();
+			if(count($data)) {
+				foreach($data as $key=>$value) {
+					//$data[$key]=rawurlencode($value);
+					$data[$key]=$value;
+				}
+			} else
+				$data[0]='NA';
+			echo json_encode($data);
+		} else {
+			throw new CHttpException(404,'You have no authorization for this operation.');
+		};
+	}
+	
 	public function actionGetObjects($term)
 	{
 		if (!Yii::app()->user->isGuest) {
@@ -145,6 +165,21 @@ EOS;
 			$data=Yii::app()->db->createCommand()->selectDistinct('name')->from('items')
 			->where('id = :p_id', array(':p_id'=>$id))
 			->queryScalar();
+			echo json_encode($data);
+		} else {
+			throw new CHttpException(404,'You have no authorization for this operation.');
+		};
+	}
+	
+	public function actionGetItemFromBatchcode($batchcode)
+	{
+		if (!Yii::app()->user->isGuest) {
+			$data=Yii::app()->db->createCommand()
+				->selectDistinct('a.iditem, b.name')
+				->from('itembatch a')
+				->join('items b', 'b.id = a.iditem')
+				->where('a.batchcode = :p_batchcode', array(':p_batchcode'=>$batchcode))
+				->queryRow();
 			echo json_encode($data);
 		} else {
 			throw new CHttpException(404,'You have no authorization for this operation.');

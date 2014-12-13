@@ -9,29 +9,14 @@
 <?php
 
 $itemScript=<<<EOS
-      $('#Sellingprices_itemname').focus(function(){
-         $('#ItemDialog').dialog('open');
-      });
-      $('#dialog-item-name').change(
-         function(){
-            $.getJSON('index.php?r=LookUp/getItemAll',{ name: $('#dialog-item-name').val() },
-               function(data) {
-                  $('#dialog-item-select').html('');
-                  var ct=0;
-                  while(ct < data.length) {
-                     $('#dialog-item-select').append(
-                        '<option value='+data[ct]+'>'+unescape(data[ct])+'</option>'
-                     );
-                     ct++;
-                  }
+	$('#Sellingprices-batchcode').change(
+		function() {
+			$.getJSON('index.php?r=LookUp/getItemFromBatchcode',{ batchcode: $('#dialog-item-name').val() },
+               	function(data) {
+				 	$('#itemname').html(data.name);
+                  $('#Sellingprices-iditem').val(data.iditem);
                })
-         }
-      );
-      $('#dialog-item-select').click(
-         function(){
-           $('#dialog-item-name').val(unescape($('#dialog-item-select').val()));
-         }
-      );
+	});
 EOS;
 Yii::app()->clientScript->registerScript('itemscript', $itemScript, CClientScript::POS_READY);
 
@@ -79,46 +64,26 @@ Yii::app()->clientScript->registerScript('itemscript', $itemScript, CClientScrip
 		<?php echo $form->error($model,'idatetime'); ?>
 	</div>
 	
+	
+	<div class="row">
+		<?php echo $form->labelEx($model,'batchcode'); ?>
+		<?php 
+			$this->widget('zii.widgets.jui.CJuiAutoComplete', array(
+				'name'=>'idcashier',
+				'sourceUrl'=> Yii::app()->createUrl('LookUp/getBatchcode'),
+				'htmlOptions'=>array(
+						'style'=>'height:20px;',
+				),
+			));
+		?>
+		<?php echo $form->error($model,'batchcode'); ?>
+	</div>
+	
 	<div class="row">
 		<?php echo $form->labelEx($model,'iditem'); ?>
 		<?php 
-               echo CHtml::textField('Sellingprices_itemname', lookup::ItemNameFromItemID2($model->iditem) , array('size'=>50));   
-               $this->beginWidget('zii.widgets.jui.CJuiDialog', array(
-                  'id'=>'ItemDialog',
-                  'options'=>array(
-                      'title'=>'Pilih Barang',
-                      'autoOpen'=>false,
-                      'height'=>300,
-                      'width'=>600,
-                      'modal'=>true,
-                      'buttons'=>array(
-                          array('text'=>'Ok', 'click'=>'js:function(){
-                             $(\'#Sellingprices_itemname\').val($(\'#dialog-item-name\').val());
-                             $.get(\'index.php?r=LookUp/getItemCode\',{ codename: encodeURI($(\'#dialog-item-name\').val()) },
-                                 function(data) {
-                                    $(\'#Sellingprices_iditem\').val(data);
-                                 })
-                             $(this).dialog("close");
-                           }'),
-                          array('text'=>'Close', 'click'=>'js:function(){
-                              $(this).dialog("close");
-                          }'),
-                      ),
-                  ),
-               ));
-               $myd=<<<EOS
-         
-            <div><input type="text" name="itemname" id="dialog-item-name" size='50'/></div>
-            <div><select size='8' width='100' id='dialog-item-select'>   
-                <option>Harap Pilih</option>
-            </select>           
-            </div>
-            </select>           
-EOS;
-               echo $myd;
-               $this->endWidget('zii.widgets.jui.CJuiDialog');
-            ?>
-		<?php echo $form->error($model,'iditem'); ?>
+         	echo CHtml::tag('span', array('id'=>'itemname', 'class'=>'money'), '-' );
+     	?>
 	</div>
 	
 	<div class="row">
