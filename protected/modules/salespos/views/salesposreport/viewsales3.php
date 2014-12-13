@@ -99,7 +99,7 @@ foreach($data as $d) {
 	$total[0]['totalsales'] += $d['totalsold'];	
 	$total[0]['totaldisc'] += $d['totaldisc'];
 	$total[0]['totalcog'] += $d['totalcog'];
-	$total[0]['totalgain'] += $d['totalgain']
+	$total[0]['totalgain'] += $d['totalgain'];
 	/*$total[0]['totalnet'] += $d['nettotal'];
 	;*/
 }
