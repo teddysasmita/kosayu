@@ -143,5 +143,5 @@ $this->menu=array(
 	$grandtotal = $total[0]['tunai'] + $total[0]['kartukredit'] + $total[0]['kartudebit'] +
 		$total[0]['voucher'] + $total[0]['retur'] - $total[0]['kembalian'];
 	
-	echo CHtml::tag('h1', array(), number_format($grandtotal));
+	echo CHtml::tag('h1', array(), "Total: ".number_format($grandtotal));
 ?>
