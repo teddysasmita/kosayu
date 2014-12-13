@@ -93,7 +93,7 @@ class Sellingprices extends CActiveRecord
 		$criteria->compare('id',$this->id,true);
 		$criteria->compare('idatetime',$this->idatetime,true);
 		$criteria->compare('iditem',$this->iditem,true);
-		$criteria->compare('batchcode',$this->iditem,true);
+		$criteria->compare('batchcode',$this->batchcode,true);
 		$criteria->compare('normalprice',$this->normalprice);
 		$criteria->compare('minprice',$this->minprice);
 		$criteria->compare('approvalby',$this->approvalby);
