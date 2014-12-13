@@ -96,8 +96,8 @@ $this->menu=array(
 				$rate = 1;
 			else $rate = lookup::CurrRateFromID($d['idrate']);
 			$total[0]['tunai'] += $d['total'] * $rate;
-			//$total[0]['kembalian'] += $d['cashreturn'];
-			$total[0]['kembalian'] += 0;
+			$total[0]['kembalian'] += $d['cashreturn'];
+			//$total[0]['kembalian'] += 0;
 		} 
 	}
 	
