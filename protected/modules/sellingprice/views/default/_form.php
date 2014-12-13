@@ -82,7 +82,8 @@ Yii::app()->clientScript->registerScript('itemscript', $itemScript, CClientScrip
 	<div class="row">
 		<?php echo $form->labelEx($model,'iditem'); ?>
 		<?php 
-         	echo CHtml::tag('span', array('id'=>'itemname', 'class'=>'money'), '-' );
+         	echo CHtml::tag('span', array('id'=>'itemname', 'class'=>'money'), 
+         		lookup::ItemNameFromItemCode($model->batchcode) );
      	?>
 	</div>
 	
