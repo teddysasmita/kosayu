@@ -204,9 +204,8 @@ EOS;
 			$sql1 =<<<EOS
 	select b.id, left(c.code, 3) as scode, e.firstname, a.iddetail, c.code, a.qty, a.price, a.discount
 	from detailsalespos a
-	join (salespos b 
-		join posreceipts d on d.idpos = b.id
-	) on b.id = a.id
+	join salespos b 
+	on b.id = a.id
 	join (items c 
 		join suppliers e on e.code = left(c.code, 3)
 	) on c.id = a.iditem
