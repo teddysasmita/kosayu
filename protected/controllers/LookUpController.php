@@ -59,7 +59,7 @@ class LookUpController extends Controller {
 	{
 		if (!Yii::app()->user->isGuest) {
 			$data=Yii::app()->db->createCommand()->selectDistinct('batchcode')->from('itembatch')
-			->where('batchcode like :p_brand', array(':p_brand'=>'%'.$term.'%'))
+			->where('batchcode like :p_brand', array(':p_brand'=>$term.'%'))
 			->order('batchcode')
 			->queryColumn();
 			if(count($data)) {
