@@ -108,13 +108,13 @@ $this->menu=array(
 			'dataProvider'=>$dataProvider2,
 			'columns'=>array(
 					array(
-							'header'=>'Total Tunai',
-							'name'=>'tunai',
+							'header'=>'Total Kembalian',
+							'name'=>'kembalian',
 							'type'=>'number',
 					),
 					array(
-							'header'=>'Total Kembalian',
-							'name'=>'kembalian',
+							'header'=>'Total Tunai',
+							'name'=>'tunai',
 							'type'=>'number',
 					),
 					array(
