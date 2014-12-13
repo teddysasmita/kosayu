@@ -207,7 +207,7 @@ EOS;
 	join (salespos b 
 		join posreceipts d on d.idpos = b.id
 	) on b.id = a.id
-	join items c (
+	join (items c 
 		join suppliers d on d.code = left(c.code, 3)
 	) on c.id = a.iditem
 	where 
