@@ -118,13 +118,13 @@ $this->menu=array(
 							'type'=>'number',
 					),
 					array(
-							'header'=>'Total Kartu Kredit',
-							'name'=>'kartukredit',
+							'header'=>'Total Kartu Debit',
+							'name'=>'kartudebit',
 							'type'=>'number',
 					),
 					array(
-							'header'=>'Total Kartu Debit',
-							'name'=>'kartudebit',
+							'header'=>'Total Kartu Kredit',
+							'name'=>'kartukredit',
 							'type'=>'number',
 					),
 					array(

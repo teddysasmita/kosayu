@@ -135,27 +135,27 @@ $this->widget('zii.widgets.grid.CGridView', array(
 						'type'=>'number',
 				),
 				array(
-						'header'=>'Tunai',
+						'header'=>'Total Tunai',
 						'name'=>'tunai',
 						'type'=>'number',
 				),
 				array(
-						'header'=>'Kartu Debit',
+						'header'=>'Total Kartu Debit',
 						'name'=>'kartudebit',
 						'type'=>'number',
 				),
 				array(
-						'header'=>'Kartu Kredit',
+						'header'=>'Total Kartu Kredit',
 						'name'=>'kartukredit',
 						'type'=>'number',
 				),
 				array(
-						'header'=>'Voucher',
+						'header'=>'Total Voucher',
 						'name'=>'voucher',
 						'type'=>'number',
 				),
 				array(
-						'header'=>'Retur',
+						'header'=>'Total Retur',
 						'name'=>'retur',
 						'type'=>'number',
 				),
