@@ -26,7 +26,10 @@ $this->menu=array(
 		array(
                    'name'=>'iditem',
                    'value'=>lookup::ItemNameFromItemCode($model['iditem']),
-                ),   
+		),   
+		array(
+				'name'=>'iditem'
+		),
 		array(
 			'name'=>'normalprice',
 			'value'=>number_format($model['normalprice'])
