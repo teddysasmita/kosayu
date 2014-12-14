@@ -59,7 +59,7 @@ class LookUpController extends Controller {
 	{
 		if (!Yii::app()->user->isGuest) {
 			$data=Yii::app()->db->createCommand()
-				->selectDistinct('concat(a.batchcode,\'-\', b.name) as label, a.batchcode as id')
+				->selectDistinct('concat(a.batchcode,\'-\', b.name) as label, a.batchcode as value')
 				->from('itembatch a')
 				->join('items b', 'b.id = a.iditem')
 				->where('a.batchcode like :p_batchcode', array(':p_batchcode'=>$term.'%'))
@@ -67,7 +67,7 @@ class LookUpController extends Controller {
 				->queryAll();
 			if( !$data ) {
 				$data=Yii::app()->db->createCommand()
-					->selectDistinct('concat(a.batchcode,\'-\', b.name) as label, a.batchcode as id')
+					->selectDistinct('concat(a.batchcode,\'-\', b.name) as label, a.batchcode as value')
 					->from('itembatch a')
 					->join('items b', 'b.id = a.iditem')
 					->where('b.name like :p_name', array(':p_name'=>$term.'%'))
