@@ -268,6 +268,7 @@ EOS;
 				unset($ss);
 				if (!$found) {
 					$temp['iddetail'] = $ds['iddetail'];
+					$temp['name'] = $ds['firstname'];
 					$temp['scode'] = $scode;
 					$temp['qty'] = $ds['qty'];
 					$temp['totalsold'] = $ds['qty'] * $ds['price'];
