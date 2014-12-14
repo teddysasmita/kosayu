@@ -13,8 +13,8 @@ $itemScript=<<<EOS
 		function() {
 			$.getJSON('index.php?r=LookUp/getItemFromBatchcode',{ batchcode: $('#Sellingprices_batchcode').val() },
                	function(data) {
-				 	$('#itemname').html(data.name);
-                  $('#Sellingprices_iditem').val(data.iditem);
+				 	$('#batchcode').html(data.name);
+                  $('#Sellingprices_batchcode').val(data.iditem);
                })
 	});
 EOS;
@@ -66,23 +66,23 @@ Yii::app()->clientScript->registerScript('itemscript', $itemScript, CClientScrip
 	
 	
 	<div class="row">
-		<?php echo $form->labelEx($model,'batchcode'); ?>
+		<?php echo $form->labelEx($model,'iditem'); ?>
 		<?php 
 			$this->widget('zii.widgets.jui.CJuiAutoComplete', array(
-				'name'=>'Sellingprices[batchcode]',
+				'name'=>'Sellingprices[iditem]',
 				'sourceUrl'=> Yii::app()->createUrl('LookUp/getBatchcode'),
 				'htmlOptions'=>array(
 						'style'=>'height:20px;',
 				),
 			));
 		?>
-		<?php echo $form->error($model,'batchcode'); ?>
+		<?php echo $form->error($model,'iditem'); ?>
 	</div>
 	
 	<div class="row">
-		<?php echo $form->labelEx($model,'iditem'); ?>
+		<?php echo $form->labelEx($model,'batchcode'); ?>
 		<?php 
-         	echo CHtml::tag('span', array('id'=>'itemname', 'class'=>'money'), 
+         	echo CHtml::tag('span', array('id'=>'batchcode', 'class'=>'money'), 
          		lookup::ItemNameFromItemCode($model->batchcode) );
      	?>
 	</div>
