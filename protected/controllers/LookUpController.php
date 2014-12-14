@@ -58,17 +58,22 @@ class LookUpController extends Controller {
 	public function actionGetBatchcode($term)
 	{
 		if (!Yii::app()->user->isGuest) {
-			$data=Yii::app()->db->createCommand()->selectDistinct('batchcode')->from('itembatch')
-			->where('batchcode like :p_brand', array(':p_brand'=>$term.'%'))
-			->order('batchcode')
-			->queryColumn();
-			if(count($data)) {
-				foreach($data as $key=>$value) {
-					//$data[$key]=rawurlencode($value);
-					$data[$key]=$value;
-				}
-			} else
-				$data[0]='NA';
+			$data=Yii::app()->db->createCommand()
+				->selectDistinct('concat(a.batchcode,\'-\', b.name) as label, a.batchcode as id')
+				->from('itembatch a')
+				->join('items b', 'b.id = a.iditem')
+				->where('a.batchcode like :p_batchcode', array(':p_batchcode'=>$term.'%'))
+				->order('a.batchcode')
+				->queryColumn();
+			if( !$data ) {
+				$data=Yii::app()->db->createCommand()
+					->selectDistinct('concat(a.batchcode,\'-\', b.name) as label, a.batchcode as id')
+					->from('itembatch a')
+					->join('items b', 'b.id = a.iditem')
+					->where('b.name like :p_name', array(':p_name'=>$term.'%'))
+					->order('a.batchcode')
+					->queryColumn();
+			}
 			echo json_encode($data);
 		} else {
 			throw new CHttpException(404,'You have no authorization for this operation.');
