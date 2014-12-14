@@ -74,6 +74,7 @@ Yii::app()->clientScript->registerScript('itemscript', $itemScript, CClientScrip
 				'htmlOptions'=>array(
 						'style'=>'height:20px;',
 				),
+				'value'=>$model->iditem,
 			));
 		?>
 		<?php echo $form->error($model,'iditem'); ?>
