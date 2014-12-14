@@ -4,7 +4,7 @@
 
 $this->breadcrumbs=array(
 	'Proses'=>array('/site/proses'),
-	'Laporan Penjualan Global Berdasar Pemasok',
+	'Laporan Penjualan Tiap Pemasok',
 );
 
 $this->menu=array(
@@ -12,6 +12,6 @@ $this->menu=array(
 );
 ?>
 
-<h1>Laporan Penjualan Global Berdasar Pemasok</h1>
+<h1>Laporan Penjualan Tiap Pemasok</h1>
 
-<?php $this->renderPartial('_form3'); ?>
+<?php $this->renderPartial('_form4'); ?>

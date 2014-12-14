@@ -58,6 +58,19 @@ class SalesposreportController extends Controller
 		};
 	}
 	
+	public function actionCreate4()
+	{
+		if(Yii::app()->authManager->checkAccess($this->formid.'-Append',
+				Yii::app()->user->id))  {
+					$this->trackActivity('v');
+	
+					Yii::app()->session->remove('datasales4');
+					$this->render('create4');
+				} else {
+					throw new CHttpException(404,'You have no authorization for this operation.');
+				};
+	}
+	
 	public function actionGetsales($startdate, $enddate, $idcashier )
 	{
 		if(Yii::app()->authManager->checkAccess($this->formid.'-Append',
@@ -273,6 +286,88 @@ EOS;
 		} else {
 			throw new CHttpException(404,'You have no authorization for this operation.');
 		};
+	}
+	
+	
+	public function actionGetsales4($startdate, $enddate, $suppliercode )
+	{
+		if(Yii::app()->authManager->checkAccess($this->formid.'-Append',
+				Yii::app()->user->id))  {
+					$this->trackActivity('v');
+	
+					$sql1 =<<<EOS
+	select b.id, left(c.code, 3) as scode, e.firstname, a.iddetail, a.iditem, c.code, a.qty, a.price, a.discount
+	from detailsalespos a
+	join salespos b
+	on b.id = a.id
+	join (items c
+		join suppliers e on e.code = left(c.code, 3)
+	) on c.id = a.iditem
+	where
+	c.code like '$suppliercode%' and b.idatetime >= '$startdate' and b.idatetime <= '$enddate'
+	order by scode
+EOS;
+					$datasales = Yii::app()->db->createCommand($sql1)->queryAll();
+						
+					$sql4 =<<<EOS
+	select b.id, b.total, b.discount, sum((a.price-a.discount)*a.qty) as itemtotal
+	from detailsalespos a
+	join (salespos b
+	join posreceipts d on d.idpos = b.id
+	) on b.id = a.id
+	where
+	b.idatetime >= '$startdate' and b.idatetime <= '$enddate'
+	group by b.id
+EOS;
+					$infosales = Yii::app()->db->createCommand($sql4)->queryAll();
+						
+					foreach($datasales as &$ds) {
+						foreach($infosales as $is) {
+							if ($is['id'] == $ds['id']) {
+								$ds['discount']	+= ($is['discount'] / $is['total'] * $is['itemtotal']);
+								break;
+							}
+						}
+						$ds['itemcog'] = $this->getbuyprice($ds['code']);
+					}
+					unset($ds);
+					
+					$summarysales = array();
+					foreach($datasales as & $ds) {
+						$batchcode = $ds['code'];
+						$found = FALSE;
+						foreach($summarysales as &$ss) {
+							if ($ss['batchcode'] == $batchcode) {
+								$ss['qty'] += $ds['qty'];
+								$ss['totalsold'] += $ds['qty'] * $ds['price'];
+								$ss['totaldisc'] += $ds['qty'] * $ds['discount'];
+								$ss['totalcog'] += $ds['qty'] * $ds['itemcog'];
+								$ss['totalgain'] += ($ds['qty'] * ($ds['price'] - $ds['discount'] - $ds['itemcog']));
+								$found = TRUE;
+								break;
+							}
+						}
+						unset($ss);
+						if (!$found) {
+							$temp['iddetail'] = $ds['iddetail'];
+							$temp['iditem'] = $ds['iditem'];
+							$temp['batchcode'] = $batchcode;
+							$temp['qty'] = $ds['qty'];
+							$temp['totalsold'] = $ds['qty'] * $ds['price'];
+							$temp['totaldisc'] = $ds['qty'] * $ds['discount'];
+							$temp['totalcog'] = $ds['qty'] * $ds['itemcog'];
+							$temp['totalgain'] = $temp['totalsold'] - $temp['totalcog'];
+							$temp['suppliername'] = $ds['firstname'];
+							$summarysales[] = $temp;
+						}
+					}
+					unset($ds);
+						
+					Yii::app()->session['datasales4'] = $summarysales;
+					$this->render('viewsales4', array('data'=>$summarysales, 'startdate'=>$startdate, 'enddate'=>$enddate));
+				} else {
+					throw new CHttpException(404,'You have no authorization for this operation.');
+				};
 	}
 	
 	public function actionGetexcel3()

@@ -4,7 +4,7 @@
 
 $this->breadcrumbs=array(
 	'Proses'=>array('/site/proses'),
-	'Laporan Penjualan Global Berdasar Pemasok'=>array('salesposreport/create3'),
+	'Laporan Penjualan Tiap Pemasok'=>array('salesposreport/create3'),
 	'Lihat Data'
 );
 
@@ -14,7 +14,7 @@ $this->menu=array(
 
 ?>
 
-<h1>Laporan Penjualan Global Berdasar Pemasok</h1>
+<h1>Laporan Penjualan Tiap Pemasok</h1>
 
 <h2>
 <?php
@@ -36,11 +36,12 @@ $this->menu=array(
 		'columns'=>array(
 				array(
 						'header'=>'Kode',
-						'name'=>'scode',
+						'name'=>'code',
 				),
 				array(
-						'header'=>'Pemasok',
-						'name'=>'suppliername',
+						'header'=>'Nama Barang',
+						'name'=>'iditem',
+						'value'=>"lookup::ItemNameFromItemID(\$data['iditem'])"
 				),
 				array(
 						'header'=>'Qty',
