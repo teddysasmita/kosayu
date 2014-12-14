@@ -53,7 +53,7 @@
 	<?php echo CHtml::label('Nama Pemasok', FALSE); ?>
 	<?php
 		$this->widget('zii.widgets.jui.CJuiAutoComplete', array(
-			'name'=>'idsupplier',
+			'name'=>'suppliercode',
 			'sourceUrl'=> Yii::app()->createUrl('LookUp/getSupplier'),
 			'htmlOptions'=>array(
 				'style'=>'height:20px;',
