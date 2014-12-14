@@ -28,6 +28,7 @@ $this->menu=array(
                    'value'=>lookup::ItemNameFromItemCode($model['iditem']),
 		),   
 		array(
+				'label'=>'Kode Batch',
 				'name'=>'iditem'
 		),
 		array(
