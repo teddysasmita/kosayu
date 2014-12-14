@@ -9,7 +9,7 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-		array('label'=>'Export ke XL', 'url'=>array('getexcel3')),
+		array('label'=>'Export ke XL', 'url'=>array('getexcel4')),
 );
 
 ?>

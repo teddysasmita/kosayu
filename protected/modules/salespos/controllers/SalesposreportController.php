@@ -247,7 +247,7 @@ EOS;
 						break;
 					}
 				}	
-				$ds['itemcog'] = $this->getbuyprice($ds['code']);
+				$ds['itemcog'] = lookup::getbuyprice($ds['code']);
 			}
 			unset($ds);
 			$summarysales = array();
@@ -328,7 +328,7 @@ EOS;
 								break;
 							}
 						}
-						$ds['itemcog'] = $this->getbuyprice($ds['code']);
+						$ds['itemcog'] = lookup::getbuyprice($ds['code']);
 					}
 					unset($ds);
 					
@@ -378,19 +378,17 @@ EOS;
 			$xl = new PHPExcel();
 			$xl->getProperties()->setCreator("Program KOSAYU")
 				->setLastModifiedBy("Program KOSAYU")
-				->setTitle("Laporan Penjualan")
+				->setTitle("Laporan Penjualan Global Berdasar Pemasok")
 				->setSubject("Laporan Penjualan")
-				->setDescription("Laporan Penjualan Periodik")
-				->setKeywords("Laporan Penjualan")
+				->setDescription("Laporan Penjualan Global Berdasar Pemasok")
+				->setKeywords("Laporan Penjualan Global")
 				->setCategory("Laporan");
 			$data = Yii::app()->session['datasales3'];
 			$headersfield = array(
-				'scode', 'name', 'qty', 'totalprice', 'totaldiscount', 'nettotal', 'totalbuyprice',
-				'profit', 'margin'
+				'scode', 'name', 'qty', 'totalsold', 'totaldisc', 'totalcog', 'totalgain'
 			);
 			$headersname = array(
-				'Kode', 'Nama Pemasok', 'Qty', 'Bruto', 'Potongan', 'Netto', 'Harga Beli',
-				'Laba', 'Margin'				
+				'Kode', 'Nama Pemasok', 'Qty', 'Bruto', 'Potongan', 'Harga Beli', 'Margin'				
 			);
 			for( $i=0;$i<count($headersname); $i++ ) {
 				$xl->setActiveSheetIndex(0)
@@ -405,7 +403,7 @@ EOS;
 				}
 			}
 						
-			$xl->getActiveSheet()->setTitle('Laporan Penjualan');
+			$xl->getActiveSheet()->setTitle('Laporan Penjualan Global Berdasar Pemasok');
 			$xl->setActiveSheetIndex(0);
 			header('Content-Type: application/pdf');
 			header('Content-Disposition: attachment;filename="sales-report-'.idmaker::getDateTime().'.xls"');
@@ -415,6 +413,51 @@ EOS;
 		} else {
 			throw new CHttpException(404,'You have no authorization for this operation.');
 		};
+	}
+	
+	public function actionGetexcel4()
+	{
+		if(Yii::app()->authManager->checkAccess($this->formid.'-Append',
+				Yii::app()->user->id))  {
+					$this->trackActivity('v');
+					$xl = new PHPExcel();
+					$xl->getProperties()->setCreator("Program KOSAYU")
+					->setLastModifiedBy("Program KOSAYU")
+					->setTitle("Laporan Penjualan Tiap Pemasok")
+					->setSubject("Laporan Penjuala Tiap Pemasokn")
+					->setDescription("Laporan Penjualan Tiap Pemasok")
+					->setKeywords("Laporan Penjualan Tiap Pemasok")
+					->setCategory("Laporan");
+					$data = Yii::app()->session['datasales3'];
+					$headersfield = array(
+							'code', 'name', 'qty', 'totalsold', 'totaldisc', 'totalcog', 'totalgain'
+					);
+					$headersname = array(
+							'Kode Batch', 'Nama Barang', 'Qty', 'Bruto', 'Potongan', 'Harga Beli', 'Margin'
+					);
+					for( $i=0;$i<count($headersname); $i++ ) {
+						$xl->setActiveSheetIndex(0)
+						->setCellValueByColumnAndRow($i,1, $headersname[$i]);
+					}
+	
+					for( $i=0; $i<count($data); $i++){
+						for( $j=0; $j<count($headersfield); $j++ ) {
+							$cellvalue = $data[$i][$headersfield[$j]];
+							$xl->setActiveSheetindex(0)
+							->setCellValueByColumnAndRow($j,$i+2, $cellvalue);
+						}
+					}
+	
+					$xl->getActiveSheet()->setTitle('Laporan Penjualan Tiap Pemasok');
+					$xl->setActiveSheetIndex(0);
+					header('Content-Type: application/pdf');
+					header('Content-Disposition: attachment;filename="sales-report-'.idmaker::getDateTime().'.xls"');
+					header('Cache-Control: max-age=0');
+					$xlWriter = PHPExcel_IOFactory::createWriter($xl, 'Excel5');
+					$xlWriter->save('php://output');
+				} else {
+					throw new CHttpException(404,'You have no authorization for this operation.');
+				};
 	}
 	
 	public function actionGetexcel($startdate, $enddate, $brand, $objects)

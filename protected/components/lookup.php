@@ -534,6 +534,18 @@ class lookup extends CComponent {
 		return $data['kdsupplier'];
 	}
    
+	public static function getbuyprice($code)
+	{
+		$price =  Yii::app()->db->createCommand()
+			->select('id, buyprice, baseprice')->from('itembatch')
+			->where('batchcode = :p_batchcode', array(':p_batchcode'=>$code))
+			->order('id desc')
+			->queryRow();
+		if (!$price['buyprice'])
+			return $price['baseprice'];
+		else
+			return $price['buyprice'];
+	}
 }
 
 
