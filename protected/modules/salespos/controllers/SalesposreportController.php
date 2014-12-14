@@ -404,7 +404,7 @@ EOS;
 				}
 			}
 						
-			$xl->getActiveSheet()->setTitle('Laporan Penjualan Global Berdasar Pemasok');
+			$xl->getActiveSheet()->setTitle('Laporan Penjualan');
 			$xl->setActiveSheetIndex(0);
 			header('Content-Type: application/pdf');
 			header('Content-Disposition: attachment;filename="sales-report-'.idmaker::getDateTime().'.xls"');
