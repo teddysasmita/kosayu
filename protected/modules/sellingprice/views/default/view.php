@@ -25,7 +25,7 @@ $this->menu=array(
 		'regnum',
 		array(
                    'name'=>'iditem',
-                   'value'=>lookup::ItemNameFromItemID($model['iditem']),
+                   'value'=>lookup::ItemNameFromItemCode($model['iditem']),
                 ),   
 		array(
 			'name'=>'normalprice',
