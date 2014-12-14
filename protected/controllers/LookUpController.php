@@ -74,6 +74,24 @@ class LookUpController extends Controller {
 					->order('a.batchcode')
 					->queryAll();
 			}
+			if( !$data ) {
+				$data=Yii::app()->db->createCommand()
+				->selectDistinct('concat(a.code,\'-\', a.name) as label, a.code as value')
+				->from('items a')
+				->where('a.code like :p_code', array(':p_code'=>$term.'%'))
+				->order('a.code')
+				->queryAll();
+			}
+			if( !$data ) {
+				$data=Yii::app()->db->createCommand()
+				->selectDistinct('concat(a.code,\'-\', a.name) as label, a.code as value')
+				->from('items a')
+				->where('a.name like :p_name', array(':p_name'=>$term.'%'))
+				->order('a.code')
+				->queryAll();
+			}
+			
+			
 			echo json_encode($data);
 		} else {
 			throw new CHttpException(404,'You have no authorization for this operation.');
