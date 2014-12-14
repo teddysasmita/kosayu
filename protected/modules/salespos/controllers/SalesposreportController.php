@@ -359,14 +359,17 @@ EOS;
 							$temp['totaldisc'] = $ds['qty'] * $ds['discount'];
 							$temp['totalcog'] = $ds['qty'] * $ds['itemcog'];
 							$temp['totalgain'] = $temp['totalsold'] - $temp['totalcog'];
-							$temp['suppliername'] = $ds['firstname'];
+							//$temp['suppliername'] = $ds['firstname'];
 							$summarysales[] = $temp;
 						}
 					}
 					unset($ds);
 						
 					Yii::app()->session['datasales4'] = $summarysales;
-					$this->render('viewsales4', array('data'=>$summarysales, 'startdate'=>$startdate, 'enddate'=>$enddate));
+					$this->render('viewsales4', array('data'=>$summarysales, 
+							'startdate'=>$startdate, 'enddate'=>$enddate,
+							'suppliercode'=>$suppliercode
+					));
 				} else {
 					throw new CHttpException(404,'You have no authorization for this operation.');
 				};

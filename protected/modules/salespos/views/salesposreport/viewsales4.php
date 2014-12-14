@@ -18,6 +18,7 @@ $this->menu=array(
 
 <h2>
 <?php
+	echo $suppliercode."<BR>";
 	echo "Periode ".$startdate." hingga ".$enddate;
 ?>
 </h2>
