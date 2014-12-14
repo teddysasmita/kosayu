@@ -36,7 +36,7 @@ $this->menu=array(
 		'columns'=>array(
 				array(
 						'header'=>'Kode',
-						'name'=>'code',
+						'name'=>'batchcode',
 				),
 				array(
 						'header'=>'Nama Barang',
