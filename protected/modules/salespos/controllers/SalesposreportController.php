@@ -306,7 +306,7 @@ EOS;
 	) on c.id = a.iditem
 	where
 	c.code like '$suppliercode%' and b.idatetime >= '$startdate' and b.idatetime <= '$enddate'
-	order by scode
+	order by scode, c.code
 EOS;
 					$datasales = Yii::app()->db->createCommand($sql1)->queryAll();
 						
