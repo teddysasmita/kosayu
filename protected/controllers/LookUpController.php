@@ -59,12 +59,28 @@ class LookUpController extends Controller {
 	{
 		if (!Yii::app()->user->isGuest) {
 			$data=Yii::app()->db->createCommand()
+				->selectDistinct('concat(a.code,\'-\', a.name) as label, a.code as value')
+				->from('items a')
+				->where('a.code like :p_code', array(':p_code'=>$term.'%'))
+				->order('a.code')
+				->queryAll();
+			if( !$data ) {
+				$data=Yii::app()->db->createCommand()
+				->selectDistinct('concat(a.code,\'-\', a.name) as label, a.code as value')
+				->from('items a')
+				->where('a.name like :p_name', array(':p_name'=>$term.'%'))
+				->order('a.code')
+				->queryAll();
+			}
+			if( !$data ) {
+				$data=Yii::app()->db->createCommand()
 				->selectDistinct('concat(a.batchcode,\'-\', b.name) as label, a.batchcode as value')
 				->from('itembatch a')
 				->join('items b', 'b.id = a.iditem')
 				->where('a.batchcode like :p_batchcode', array(':p_batchcode'=>$term.'%'))
 				->order('a.batchcode')
 				->queryAll();
+			}
 			if( !$data ) {
 				$data=Yii::app()->db->createCommand()
 					->selectDistinct('concat(a.batchcode,\'-\', b.name) as label, a.batchcode as value')
@@ -74,22 +90,7 @@ class LookUpController extends Controller {
 					->order('a.batchcode')
 					->queryAll();
 			}
-			if( !$data ) {
-				$data=Yii::app()->db->createCommand()
-				->selectDistinct('concat(a.code,\'-\', a.name) as label, a.code as value')
-				->from('items a')
-				->where('a.code like :p_code', array(':p_code'=>$term.'%'))
-				->order('a.code')
-				->queryAll();
-			}
-			if( !$data ) {
-				$data=Yii::app()->db->createCommand()
-				->selectDistinct('concat(a.code,\'-\', a.name) as label, a.code as value')
-				->from('items a')
-				->where('a.name like :p_name', array(':p_name'=>$term.'%'))
-				->order('a.code')
-				->queryAll();
-			}
+			
 			
 			
 			echo json_encode($data);
