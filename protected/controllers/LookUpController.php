@@ -422,7 +422,7 @@ EOS;
    		$data=Yii::app()->db->createCommand()
    		->select("concat(code, ' - ', firstname) as label, id as value")
    		->from('suppliers')
-   		->where('name like :p_name',
+   		->where('firstname like :p_name',
    				array(':p_name'=>"%$term%"))
    				->limit(10)
    				->queryAll();
