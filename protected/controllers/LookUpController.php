@@ -420,7 +420,7 @@ EOS;
    {
    	if (!Yii::app()->user->isGuest) {
    		$data=Yii::app()->db->createCommand()
-   		->select("concat(code, ' - ', firstname) as label, id as value")
+   		->select("concat(code, ' - ', firstname) as label, code as value")
    		->from('suppliers')
    		->where('firstname like :p_name',
    				array(':p_name'=>"%$term%"))
