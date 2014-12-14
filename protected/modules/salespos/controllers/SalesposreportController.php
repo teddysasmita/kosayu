@@ -297,7 +297,7 @@ EOS;
 					$this->trackActivity('v');
 	
 					$sql1 =<<<EOS
-	select b.id, left(c.code, 3) as scode, e.firstname, a.iddetail, a.iditem, c.code, a.qty, a.price, a.discount
+	select b.id, left(c.code, 3) as scode, c.name, a.iddetail, a.iditem, c.code, a.qty, a.price, a.discount
 	from detailsalespos a
 	join salespos b
 	on b.id = a.id
@@ -352,6 +352,7 @@ EOS;
 						if (!$found) {
 							$temp['iddetail'] = $ds['iddetail'];
 							$temp['iditem'] = $ds['iditem'];
+							$temp['name'] = $ds['name'];
 							$temp['batchcode'] = $batchcode;
 							$temp['qty'] = $ds['qty'];
 							$temp['totalsold'] = $ds['qty'] * $ds['price'];
