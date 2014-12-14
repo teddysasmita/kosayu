@@ -429,7 +429,7 @@ EOS;
 					->setDescription("Laporan Penjualan Tiap Pemasok")
 					->setKeywords("Laporan Penjualan Tiap Pemasok")
 					->setCategory("Laporan");
-					$data = Yii::app()->session['datasales3'];
+					$data = Yii::app()->session['datasales4'];
 					$headersfield = array(
 							'batchcode', 'name', 'qty', 'totalsold', 'totaldisc', 'totalcog', 'totalgain'
 					);
