@@ -40,7 +40,7 @@ Yii::app()->clientScript->registerScript('itemscript', $itemScript, CClientScrip
              echo $form->hiddenField($model, 'id');
              echo $form->hiddenField($model, 'userlog');
              echo $form->hiddenField($model, 'datetimelog');
-             echo $form->hiddenField($model, 'iditem');
+             //echo $form->hiddenField($model, 'iditem');
               
           ?>
 
