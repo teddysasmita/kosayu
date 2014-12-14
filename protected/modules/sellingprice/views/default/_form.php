@@ -9,7 +9,7 @@
 <?php
 
 $itemScript=<<<EOS
-	$('#Sellingprices_batchcode').change(
+	$('#Sellingprices_iditem').change(
 		function() {
 			$.getJSON('index.php?r=LookUp/getItemFromBatchcode',{ batchcode: $('#Sellingprices_batchcode').val() },
                	function(data) {
