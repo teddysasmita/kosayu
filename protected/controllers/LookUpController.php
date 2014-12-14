@@ -64,7 +64,7 @@ class LookUpController extends Controller {
 				->join('items b', 'b.id = a.iditem')
 				->where('a.batchcode like :p_batchcode', array(':p_batchcode'=>$term.'%'))
 				->order('a.batchcode')
-				->queryColumn();
+				->queryAll();
 			if( !$data ) {
 				$data=Yii::app()->db->createCommand()
 					->selectDistinct('concat(a.batchcode,\'-\', b.name) as label, a.batchcode as id')
@@ -72,7 +72,7 @@ class LookUpController extends Controller {
 					->join('items b', 'b.id = a.iditem')
 					->where('b.name like :p_name', array(':p_name'=>$term.'%'))
 					->order('a.batchcode')
-					->queryColumn();
+					->queryAll();
 			}
 			echo json_encode($data);
 		} else {
