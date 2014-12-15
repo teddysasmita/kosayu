@@ -297,7 +297,8 @@ EOS;
 					$this->trackActivity('v');
 	
 					$sql1 =<<<EOS
-	select b.id, left(c.code, 3) as scode, c.name, a.iddetail, a.iditem, c.code, a.qty, a.price, a.discount
+	select b.id, left(c.code, 3) as scode, c.name, a.iddetail, a.iditem, a.itemcode as code, a.qty, 
+	a.price, a.discount
 	from detailsalespos a
 	join salespos b
 	on b.id = a.id
