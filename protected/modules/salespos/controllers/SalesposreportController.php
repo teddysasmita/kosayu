@@ -294,9 +294,10 @@ EOS;
 	{
 		if(Yii::app()->authManager->checkAccess($this->formid.'-Append',
 				Yii::app()->user->id))  {
-					$this->trackActivity('v');
+			$this->trackActivity('v');
 	
-					$sql1 =<<<EOS
+			if (is_null(Yii::app()->session['datasales4'])) {
+				$sql1 =<<<EOS
 	select b.id, left(c.code, 3) as scode, c.name, a.iddetail, a.iditem, a.itemcode as code, a.qty, 
 	a.price, a.discount
 	from detailsalespos a
@@ -309,9 +310,9 @@ EOS;
 	c.code like '$suppliercode%' and b.idatetime >= '$startdate' and b.idatetime <= '$enddate'
 	order by scode, c.code
 EOS;
-					$datasales = Yii::app()->db->createCommand($sql1)->queryAll();
+				$datasales = Yii::app()->db->createCommand($sql1)->queryAll();
 						
-					$sql4 =<<<EOS
+				$sql4 =<<<EOS
 	select b.id, b.total, b.discount, sum((a.price-a.discount)*a.qty) as itemtotal
 	from detailsalespos a
 	join (salespos b
@@ -321,59 +322,62 @@ EOS;
 	b.idatetime >= '$startdate' and b.idatetime <= '$enddate'
 	group by b.id
 EOS;
-					$infosales = Yii::app()->db->createCommand($sql4)->queryAll();
+				$infosales = Yii::app()->db->createCommand($sql4)->queryAll();
 						
-					foreach($datasales as &$ds) {
-						foreach($infosales as $is) {
-							if ($is['id'] == $ds['id']) {
-								$ds['discount']	+= ($is['discount'] / $is['total'] * $is['itemtotal']);
-								break;
-							}
+				foreach($datasales as &$ds) {
+					foreach($infosales as $is) {
+						if ($is['id'] == $ds['id']) {
+							$ds['discount']	+= ($is['discount'] / $is['total'] * $is['itemtotal']);
+							break;
 						}
-						$ds['itemcog'] = lookup::getbuyprice($ds['code']);
 					}
-					unset($ds);
+					$ds['itemcog'] = lookup::getbuyprice($ds['code']);
+				}
+				unset($ds);
+				
+				$summarysales = array();
+				foreach($datasales as & $ds) {
+					$batchcode = $ds['code'];
+					$found = FALSE;
+					foreach($summarysales as &$ss) {
+						if ($ss['batchcode'] == $batchcode) {
+							$ss['qty'] += $ds['qty'];
+							$ss['totalsold'] += $ds['qty'] * $ds['price'];
+							$ss['totaldisc'] += $ds['qty'] * $ds['discount'];
+							$ss['totalcog'] += $ds['qty'] * $ds['itemcog'];
+							$ss['totalgain'] += ($ds['qty'] * ($ds['price'] - $ds['discount'] - $ds['itemcog']));
+							$found = TRUE;
+							break;
+						}
+					}
+					unset($ss);
+					if (!$found) {
+						$temp['iddetail'] = $ds['iddetail'];
+						$temp['iditem'] = $ds['iditem'];
+						$temp['name'] = $ds['name'];
+						$temp['batchcode'] = $batchcode;
+						$temp['qty'] = $ds['qty'];
+						$temp['totalsold'] = $ds['qty'] * $ds['price'];
+						$temp['totaldisc'] = $ds['qty'] * $ds['discount'];
+						$temp['totalcog'] = $ds['qty'] * $ds['itemcog'];
+						$temp['totalgain'] = $temp['totalsold'] - $temp['totalcog'];
+						//$temp['suppliername'] = $ds['firstname'];
+						$summarysales[] = $temp;
+					}
+				}
+				unset($ds);
 					
-					$summarysales = array();
-					foreach($datasales as & $ds) {
-						$batchcode = $ds['code'];
-						$found = FALSE;
-						foreach($summarysales as &$ss) {
-							if ($ss['batchcode'] == $batchcode) {
-								$ss['qty'] += $ds['qty'];
-								$ss['totalsold'] += $ds['qty'] * $ds['price'];
-								$ss['totaldisc'] += $ds['qty'] * $ds['discount'];
-								$ss['totalcog'] += $ds['qty'] * $ds['itemcog'];
-								$ss['totalgain'] += ($ds['qty'] * ($ds['price'] - $ds['discount'] - $ds['itemcog']));
-								$found = TRUE;
-								break;
-							}
-						}
-						unset($ss);
-						if (!$found) {
-							$temp['iddetail'] = $ds['iddetail'];
-							$temp['iditem'] = $ds['iditem'];
-							$temp['name'] = $ds['name'];
-							$temp['batchcode'] = $batchcode;
-							$temp['qty'] = $ds['qty'];
-							$temp['totalsold'] = $ds['qty'] * $ds['price'];
-							$temp['totaldisc'] = $ds['qty'] * $ds['discount'];
-							$temp['totalcog'] = $ds['qty'] * $ds['itemcog'];
-							$temp['totalgain'] = $temp['totalsold'] - $temp['totalcog'];
-							//$temp['suppliername'] = $ds['firstname'];
-							$summarysales[] = $temp;
-						}
-					}
-					unset($ds);
-						
-					Yii::app()->session['datasales4'] = $summarysales;
-					$this->render('viewsales4', array('data'=>$summarysales, 
-							'startdate'=>$startdate, 'enddate'=>$enddate,
-							'suppliercode'=>$suppliercode
-					));
-				} else {
-					throw new CHttpException(404,'You have no authorization for this operation.');
-				};
+				Yii::app()->session['datasales4'] = $summarysales;
+			} else {
+				$summarysales = Yii::app()->session['datasales4'];
+			}
+			$this->render('viewsales4', array('data'=>$summarysales, 
+					'startdate'=>$startdate, 'enddate'=>$enddate,
+					'suppliercode'=>$suppliercode
+			));
+		} else {
+			throw new CHttpException(404,'You have no authorization for this operation.');
+		};
 	}
 	
 	public function actionGetexcel3()
