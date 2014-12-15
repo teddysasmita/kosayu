@@ -26,7 +26,8 @@ class SalesposreportController extends Controller
 		if(Yii::app()->authManager->checkAccess($this->formid.'-Append',
 				Yii::app()->user->id))  {
 			$this->trackActivity('v');
-		
+			
+			Yii::app()->session->remove('datasales');
 			$this->render('create');
 		} else {
             throw new CHttpException(404,'You have no authorization for this operation.');
@@ -37,12 +38,13 @@ class SalesposreportController extends Controller
 	{
 		if(Yii::app()->authManager->checkAccess($this->formid.'-Append',
 				Yii::app()->user->id))  {
-					$this->trackActivity('v');
-	
-					$this->render('create2');
-				} else {
-					throw new CHttpException(404,'You have no authorization for this operation.');
-				};
+			$this->trackActivity('v');
+
+			Yii::app()->session->remove('datasales2');
+			$this->render('create2');
+		} else {
+			throw new CHttpException(404,'You have no authorization for this operation.');
+		};
 	}
 	
 	public function actionCreate3()
@@ -77,46 +79,50 @@ class SalesposreportController extends Controller
 				Yii::app()->user->id))  {
 			$this->trackActivity('v');
 			
-			if (!isset($idcashier) || ($idcashier == '')) 
-				$idcashier = '%';
-
-			$sql1 =<<<EOS
-	select a.id, a.idatetime, left(a.idatetime, 10) as idate, a.userlog as idcashier, a.method, 
-	a.idcurr, a.idrate, sum(a.amount) as total
-	from posreceipts a
-	where a.userlog like '$idcashier' 
-	and a.idatetime >= '$startdate' and a.idatetime <= '$enddate'
-	group by idate, a.userlog, a.method, a.idcurr
-	order by idate, a.userlog, a.method, a.idcurr
+			if (is_null(Yii::app()->session['datasales'])) {
+				if (!isset($idcashier) || ($idcashier == '')) 
+					$idcashier = '%';
+	
+				$sql1 =<<<EOS
+		select a.id, a.idatetime, left(a.idatetime, 10) as idate, a.userlog as idcashier, a.method, 
+		a.idcurr, a.idrate, sum(a.amount) as total
+		from posreceipts a
+		where a.userlog like '$idcashier' 
+		and a.idatetime >= '$startdate' and a.idatetime <= '$enddate'
+		group by idate, a.userlog, a.method, a.idcurr
+		order by idate, a.userlog, a.method, a.idcurr
 EOS;
-			$datareceipt = Yii::app()->db->createCommand($sql1)->queryAll();
-			
-			$sql2 =<<<EOS
-	select left(a.idatetime, 10) as idate, a.userlog as idcashier, sum(a.cashreturn) as totalreturn
-	from posreceipts b
-	join salespos a on a.id = b.idpos
-	where a.userlog like '$idcashier'
-	and a.idatetime >= '$startdate' and a.idatetime <= '$enddate'
-	and (b.method = 'C' or b.method = 'R')
-	group by idate, a.userlog
-	order by idate, a.userlog
+				$datareceipt = Yii::app()->db->createCommand($sql1)->queryAll();
+				
+				$sql2 =<<<EOS
+		select left(a.idatetime, 10) as idate, a.userlog as idcashier, sum(a.cashreturn) as totalreturn
+		from posreceipts b
+		join salespos a on a.id = b.idpos
+		where a.userlog like '$idcashier'
+		and a.idatetime >= '$startdate' and a.idatetime <= '$enddate'
+		and (b.method = 'C' or b.method = 'R')
+		group by idate, a.userlog
+		order by idate, a.userlog
 EOS;
-			$datacashreturn = Yii::app()->db->createCommand($sql2)->queryAll();
-			
-			foreach($datareceipt as & $sd) {
-				if ( $sd['method'] == 'C' && $sd['idrate'] == 'NA') {
-					foreach($datacashreturn as $dc) {
-						if (($dc['idcashier'] == $sd['idcashier']) && 
-							($dc['idate'] == $sd['idate'])) {
-							//$sd['total'] = $sd['total'] - $dc['totalreturn'];
-							$sd['cashreturn'] = $dc['totalreturn'];
-							break;
+				$datacashreturn = Yii::app()->db->createCommand($sql2)->queryAll();
+				
+				foreach($datareceipt as & $sd) {
+					if ( $sd['method'] == 'C' && $sd['idrate'] == 'NA') {
+						foreach($datacashreturn as $dc) {
+							if (($dc['idcashier'] == $sd['idcashier']) && 
+								($dc['idate'] == $sd['idate'])) {
+								//$sd['total'] = $sd['total'] - $dc['totalreturn'];
+								$sd['cashreturn'] = $dc['totalreturn'];
+								break;
+							} 
 						} 
-					} 
-				} else
-					$sd['cashreturn'] = 0;
+					} else
+						$sd['cashreturn'] = 0;
+				}
+				unset($sd);
+			} else {
+				$datareceipt = Yii::app()->session['datasales'];
 			}
-			unset($sd);
 			$this->render('viewsales', array('data'=>$datareceipt,'startdate'=>$startdate, 'enddate'=>$enddate));
 		} else {
 			throw new CHttpException(404,'You have no authorization for this operation.');
@@ -129,71 +135,75 @@ EOS;
 				Yii::app()->user->id))  {
 			$this->trackActivity('v');
 			
-			if (!isset($idcashier) || ($idcashier == ''))
-				$idcashier = '%';
-			
-			$sql1 =<<<EOS
-	select a.id, a.idatetime, left(a.idatetime, 10) as idate, a.userlog as idcashier, a.method,
-	a.idcurr, a.idrate, a.amount, a.idpos, b.total, b.cashreturn, b.regnum, b.idsticker
-	from posreceipts a
-	join salespos b on b.id = a.idpos
-	where a.userlog like '$idcashier'
-	and a.idatetime >= '$startdate' and a.idatetime <= '$enddate'
-	order by a.idatetime
+			if (is_null(Yii::app()->session['datasales2'])) {
+				if (!isset($idcashier) || ($idcashier == ''))
+					$idcashier = '%';
+				
+				$sql1 =<<<EOS
+		select a.id, a.idatetime, left(a.idatetime, 10) as idate, a.userlog as idcashier, a.method,
+		a.idcurr, a.idrate, a.amount, a.idpos, b.total, b.cashreturn, b.regnum, b.idsticker
+		from posreceipts a
+		join salespos b on b.id = a.idpos
+		where a.userlog like '$idcashier'
+		and a.idatetime >= '$startdate' and a.idatetime <= '$enddate'
+		order by a.idatetime
 EOS;
-			$datareceipt = Yii::app()->db->createCommand($sql1)->queryAll();
-			
-			$realdata = array();
-			foreach($datareceipt as $dr) {
-				$found = FALSE;
-				foreach($realdata as &$r) {
-					if ($r['id'] == $dr['idpos']) {
-						$found = true;
+				$datareceipt = Yii::app()->db->createCommand($sql1)->queryAll();
+				
+				$realdata = array();
+				foreach($datareceipt as $dr) {
+					$found = FALSE;
+					foreach($realdata as &$r) {
+						if ($r['id'] == $dr['idpos']) {
+							$found = true;
+							if ($dr['method'] == 'V')
+								$r['voucher'] += $dr['amount'];
+							else if ($dr['method'] == 'C') {
+								if ($dr['idrate'] == 'NA')
+									$r['cash'] += $dr['amount'];
+								else
+									$r['cash'] += $dr['amount'] * lookup::CurrRateFromID($dr['idrate']);
+							} else if ($dr['method'] == 'KK')
+								$r['creditcard'] += $dr['amount'];
+							else if ($dr['method'] == 'KD')
+								$r['debitcard'] += $dr['amount'];
+							else if ($dr['method'] == 'R')
+								$r['retur'] += $dr['amount'];
+							break;
+						}						
+					}	
+					unset($r);
+					if (!$found) {
+						$temp['id'] = $dr['idpos'];
+						$temp['idcashier'] = $dr['idcashier'];
+						$temp['idsticker'] = $dr['idsticker'];
+						$temp['idatetime'] = $dr['idatetime'];
+						$temp['regnum'] = $dr['regnum'];
+						$temp['totalsales'] = $dr['total'];
+						$temp['cashreturn'] = $dr['cashreturn'];
+						$temp['voucher'] = 0;
+						$temp['cash'] = 0;
+						$temp['creditcard'] = 0;
+						$temp['debitcard'] = 0;
+						$temp['retur'] = 0;
 						if ($dr['method'] == 'V')
-							$r['voucher'] += $dr['amount'];
+							$temp['voucher'] += $dr['amount'];
 						else if ($dr['method'] == 'C') {
 							if ($dr['idrate'] == 'NA')
-								$r['cash'] += $dr['amount'];
+								$temp['cash'] += $dr['amount'];
 							else
-								$r['cash'] += $dr['amount'] * lookup::CurrRateFromID($dr['idrate']);
+								$temp['cash'] += $dr['amount'] * lookup::CurrRateFromID($dr['idrate']);
 						} else if ($dr['method'] == 'KK')
-							$r['creditcard'] += $dr['amount'];
+							$temp['creditcard'] += $dr['amount'];
 						else if ($dr['method'] == 'KD')
-							$r['debitcard'] += $dr['amount'];
+							$temp['debitcard'] += $dr['amount'];
 						else if ($dr['method'] == 'R')
-							$r['retur'] += $dr['amount'];
-						break;
-					}						
-				}	
-				unset($r);
-				if (!$found) {
-					$temp['id'] = $dr['idpos'];
-					$temp['idcashier'] = $dr['idcashier'];
-					$temp['idsticker'] = $dr['idsticker'];
-					$temp['idatetime'] = $dr['idatetime'];
-					$temp['regnum'] = $dr['regnum'];
-					$temp['totalsales'] = $dr['total'];
-					$temp['cashreturn'] = $dr['cashreturn'];
-					$temp['voucher'] = 0;
-					$temp['cash'] = 0;
-					$temp['creditcard'] = 0;
-					$temp['debitcard'] = 0;
-					$temp['retur'] = 0;
-					if ($dr['method'] == 'V')
-						$temp['voucher'] += $dr['amount'];
-					else if ($dr['method'] == 'C') {
-						if ($dr['idrate'] == 'NA')
-							$temp['cash'] += $dr['amount'];
-						else
-							$temp['cash'] += $dr['amount'] * lookup::CurrRateFromID($dr['idrate']);
-					} else if ($dr['method'] == 'KK')
-						$temp['creditcard'] += $dr['amount'];
-					else if ($dr['method'] == 'KD')
-						$temp['debitcard'] += $dr['amount'];
-					else if ($dr['method'] == 'R')
-						$temp['retur'] += $dr['amount'];
-					$realdata[] = $temp;						
+							$temp['retur'] += $dr['amount'];
+						$realdata[] = $temp;						
+					}
 				}
+			} else {
+				$realdata = Yii::app()->session['datasales2'];						
 			}
 			$this->render('viewsales2', array('data'=>$realdata, 'idcashier'=>$idcashier,
 					'startdate'=>$startdate, 'enddate'=>$enddate
