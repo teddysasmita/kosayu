@@ -25,6 +25,10 @@ $this->menu=array(
 		//'id',
 		'name',
 		'accountnum',
+		array(
+			'name'=>'remark',
+			'type'=>'ntext',		
+		),
 		//'userlog',
 		//'datetimelog',
 	),
