@@ -80,6 +80,7 @@ return array(
 			'salesvouchers',
 			'purchases',
 			'consignpurchases',
+			'expenses'
         ),
 
         
