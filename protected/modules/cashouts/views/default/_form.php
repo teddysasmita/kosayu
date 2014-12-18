@@ -8,7 +8,7 @@
     
 <?php
 
-$itemScript=<<<EOS
+$cashoutScript=<<<EOS
 	$('#Cashouts_idexpense').change(
 		function() {
 			$.getJSON('index.php?r=LookUp/getExpenseName',{ id: $('#Cashouts_idexpense').val() },
@@ -17,7 +17,7 @@ $itemScript=<<<EOS
                })
 	});
 EOS;
-//Yii::app()->clientScript->registerScript('cashoutscript', $itemScript, CClientScript::POS_READY);
+Yii::app()->clientScript->registerScript('cashoutscript', $cashScript, CClientScript::POS_READY);
 
 ?>
 
