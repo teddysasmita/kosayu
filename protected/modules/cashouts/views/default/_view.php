@@ -14,7 +14,7 @@
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('idacctcredit')); ?>:</b>
-	<?php echo CHtml::encode(lookup::CashCreditName($data->idacctcredit)); ?>
+	<?php echo CHtml::encode($data->idacctcredit); ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('idexpense')); ?>:</b>
