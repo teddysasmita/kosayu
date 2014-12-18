@@ -909,7 +909,7 @@ EOS;
 	
 	public function actionGetExpenseName($id)
 	{
-		$name=rawurldecode($name);
+		$name=rawurldecode($id);
 	
 		if (!Yii::app()->user->isGuest) {
 			$data=Yii::app()->db->createCommand()
