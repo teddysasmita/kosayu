@@ -50,7 +50,7 @@ class DefaultController extends Controller
                 $this->state='create';
                 $this->trackActivity('c');    
                     
-                $model=new Cashoutss;
+                $model=new Cashouts;
                 $this->afterInsert($model);
                 
 		// Uncomment the following line if AJAX validation is needed
@@ -58,7 +58,7 @@ class DefaultController extends Controller
 
 		if(isset($_POST['yt0']))
 		{
-			$model->attributes=$_POST['Cashoutss'];
+			$model->attributes=$_POST['Cashouts'];
                         $this->beforePost($model);
 			if($model->save()) {
                             $this->afterPost($model);
@@ -93,12 +93,12 @@ class DefaultController extends Controller
 		// Uncomment the following line if AJAX validation is needed
 			$this->performAjaxValidation($model);
 
-			if(isset($_POST['Cashoutss']))
+			if(isset($_POST['Cashouts']))
 			{
-				$model->attributes=$_POST['Cashoutss'];
+				$model->attributes=$_POST['Cashouts'];
                          
 				$this->beforePost($model);   
-				$this->tracker->modify('cashoutss', $id);
+				$this->tracker->modify('cashouts', $id);
 				if($model->save()) {
 					$this->afterPost($model);
 					$this->redirect(array('view','id'=>$model->id));
@@ -126,7 +126,7 @@ class DefaultController extends Controller
                     $this->trackActivity('d');
                 $model=$this->loadModel($id);
                 $this->beforeDelete($model);
-                $this->tracker->delete('cashoutss', $id);
+                $this->tracker->delete('cashouts', $id);
                 
                 $model->delete();
                 $this->afterDelete();
@@ -148,7 +148,7 @@ class DefaultController extends Controller
                 Yii::app()->user->id)) {
                 $this->trackActivity('l');
                 
-                $dataProvider=new CActiveDataProvider('Cashoutss', array(
+                $dataProvider=new CActiveDataProvider('Cashouts', array(
 					'criteria'=>array(
                 		'order'=>'idatetime desc, regnum desc'
                 )));
@@ -169,11 +169,11 @@ class DefaultController extends Controller
 			Yii::app()->user->id)) {
 			
 			$this->trackActivity('s');
-			$model=new Cashoutss('search');
+			$model=new Cashouts('search');
 			$model->unsetAttributes();  // clear any default values
 			
-			if(isset($_GET['Cashoutss']))
-				$model->attributes=$_GET['Cashoutss'];
+			if(isset($_GET['Cashouts']))
+				$model->attributes=$_GET['Cashouts'];
 
 			$this->render('admin',array(
 				'model'=>$model,
@@ -215,9 +215,9 @@ class DefaultController extends Controller
             if(Yii::app()->authManager->checkAccess($this->formid.'-Update', 
                Yii::app()->user->id)) {
                 $this->trackActivity('r');
-                $this->tracker->restore('cashoutss', $idtrack);
+                $this->tracker->restore('cashouts', $idtrack);
                 
-                $dataProvider=new CActiveDataProvider('Cashoutss');
+                $dataProvider=new CActiveDataProvider('Cashouts');
                 $this->render('index',array(
                     'dataProvider'=>$dataProvider,
                 ));
@@ -231,9 +231,9 @@ class DefaultController extends Controller
             if(Yii::app()->authManager->checkAccess($this->formid.'-Update', 
                Yii::app()->user->id)) {
                 $this->trackActivity('n');
-                $this->tracker->restoreDeleted('cashoutss', $idtrack);
+                $this->tracker->restoreDeleted('cashouts', $idtrack);
                 
-                $dataProvider=new CActiveDataProvider('Cashoutss');
+                $dataProvider=new CActiveDataProvider('Cashouts');
                 $this->render('index',array(
                     'dataProvider'=>$dataProvider,
                 ));
@@ -246,12 +246,12 @@ class DefaultController extends Controller
 	 * Returns the data model based on the primary key given in the GET variable.
 	 * If the data model is not found, an HTTP exception will be raised.
 	 * @param integer $id the ID of the model to be loaded
-	 * @return Cashoutss the loaded model
+	 * @return Cashouts the loaded model
 	 * @throws CHttpException
 	 */
 	public function loadModel($id)
 	{
-		$model=Cashoutss::model()->findByPk($id);
+		$model=Cashouts::model()->findByPk($id);
 		if($model===null)
 			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;
@@ -259,11 +259,11 @@ class DefaultController extends Controller
 
 	/**
 	 * Performs the AJAX validation.
-	 * @param Cashoutss $model the model to be validated
+	 * @param Cashouts $model the model to be validated
 	 */
 	protected function performAjaxValidation($model)
 	{
-		if(isset($_POST['ajax']) && $_POST['ajax']==='cashoutss-form')
+		if(isset($_POST['ajax']) && $_POST['ajax']==='cashouts-form')
 		{
 			echo CActiveForm::validate($model);
 			Yii::app()->end();
@@ -323,7 +323,7 @@ class DefaultController extends Controller
         			Yii::app()->user->id))  {
         		$this->trackActivity('v');
         			$data = Yii::app()->db->createCommand()
-        				->select('a.*, b.name')->from('cashoutss a')
+        				->select('a.*, b.name')->from('cashouts a')
 						->join('items b', 'b.id = a.iditem')
 						->where('b.name like :p_name', array(':p_name'=>'%'.$itemname.'%'))
 						->order('b.name, a.idatetime desc')
