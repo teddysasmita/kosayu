@@ -82,14 +82,6 @@ EOS;
 	</div>
 	
 	<div class="row">
-		<?php echo $form->labelEx($model,'batchcode'); ?>
-		<?php 
-         	echo CHtml::tag('span', array('id'=>'batchcode', 'class'=>'money'), 
-         		lookup::ItemNameFromItemCode($model->iditem) );
-     	?>
-	</div>
-	
-	<div class="row">
 		<?php echo $form->labelEx($model,'amount'); ?>
 		<?php 
          	echo $form->textField($model, 'amount' );
