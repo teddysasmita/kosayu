@@ -1,7 +1,7 @@
 <?php
 
 /**
- * This is the model class for table "cashoutss".
+ * This is the model class for table "cashouts".
  *
  * The followings are the available columns in table 'cashoutss':
  * @property string $id
@@ -14,7 +14,7 @@
  * @property string $userlog
  * @property string $datetimelog
  */
-class Cashoutss extends CActiveRecord
+class Cashouts extends CActiveRecord
 {
 	/**
 	 * @return string the associated database table name
