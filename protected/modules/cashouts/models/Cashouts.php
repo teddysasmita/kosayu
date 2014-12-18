@@ -36,6 +36,7 @@ class Cashouts extends CActiveRecord
 			array('amount', 'numerical'),
 			array('id, idexpense, idacctcredit, userlog', 'length', 'max'=>21),
 			array('idatetime, datetimelog', 'length', 'max'=>19),
+			array('remark','safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id, idatetime, regnum, idexpense, idacctcredit, amount, userlog, datetimelog', 'safe', 'on'=>'search'),
