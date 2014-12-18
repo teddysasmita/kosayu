@@ -82,8 +82,9 @@ EOS;
 	</div>
 	
 	<div class="row">
-		<?php echo CHtml::tag('span', array('id'=>'expensename', 'class'=>'money'), 
-			lookup::ExpenseNameFromID($model->idexpense)); 
+		<?php echo CHtml::label('', false);
+			echo CHtml::tag('span', array('id'=>'expensename', 'class'=>'money'), 
+				lookup::ExpenseNameFromID($model->idexpense)); 
 		?>
 	</div>
 	
