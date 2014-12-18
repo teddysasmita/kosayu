@@ -44,7 +44,7 @@ Barang Keluar (AC15)
 Pemasukan Saldo Stok Opname (AC8)
 Pemindahan Barang (AC18)
 Barang Rusak/Kadaluarsa (AC26)
-Administrasi Persediaan (AC51)
+Administrasi Persediaan (AC31)
 
 Bagian Keuangan
 Pembayaran Pemasok (AC4)
@@ -52,3 +52,4 @@ Pembayaran Konsinyasi (AC25)
 Penentuan Harga Pokok Opname(AC9)
 Penentuan Nilai Kurs Mata Uang Asing(AC24)
 Pembayaran Komisi Guide (AC23)
+Pencatatan Kas Keluar (AC27)

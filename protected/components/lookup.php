@@ -546,6 +546,19 @@ class lookup extends CComponent {
 		else
 			return $price['buyprice'];
 	}
+	
+	public static function ExpenseNameFromID($id)
+	{
+		$name = Yii::app()->db->createCommand()
+			->select('name')->from('expenses')
+			->where('id = :p_id', array(':p_id'=>$id))
+			->queryScalar();
+		
+		if(!$name)
+			return 'Belum Terdaftar';
+		else
+			return $name;
+	}
 }
 
 

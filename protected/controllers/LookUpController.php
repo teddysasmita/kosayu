@@ -99,6 +99,22 @@ class LookUpController extends Controller {
 		};
 	}
 	
+	public function actionGetExpenses($term)
+	{
+		if (!Yii::app()->user->isGuest) {
+			$data=Yii::app()->db->createCommand()
+				->selectDistinct('a.name as label, a.id as value')
+				->from('expenses a')
+				->where('a.name like :p_name', array(':p_name'=>$term.'%'))
+				->order('a.name')
+				->queryAll();
+				
+			echo json_encode($data);
+		} else {
+			throw new CHttpException(404,'You have no authorization for this operation.');
+		};
+	}
+	
 	public function actionGetObjects($term)
 	{
 		if (!Yii::app()->user->isGuest) {

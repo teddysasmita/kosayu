@@ -28,4 +28,5 @@ $this->pageTitle=Yii::app()->name;
 <h3><?php echo CHtml::link('Pembayaran Komisi Rekanan / Agen', Yii::app()->createUrl('tippayment'))?></h3>
 <h3><?php echo CHtml::link('Laporan Pendapatan Kasir', Yii::app()->createUrl('salespos/salesposreport/create'))?></h3>
 <h3><?php echo CHtml::link('Laporan Detil Pendapatan Kasir', Yii::app()->createUrl('salespos/salesposreport/create2'))?></h3>
+<h3><?php echo CHtml::link('Pencatatan Kas Keluar', Yii::app()->createUrl('cashouts'))?></h3>
 
