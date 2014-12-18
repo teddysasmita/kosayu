@@ -9,7 +9,7 @@
 <?php
 
 $itemScript=<<<EOS
-	$('#Sellingprices_iditem').change(
+	$('#Cashouts_idexpense').change(
 		function() {
 			$.getJSON('index.php?r=LookUp/getItemFromBatchcode',{ batchcode: $('#Sellingprices_iditem').val() },
                	function(data) {
@@ -49,7 +49,7 @@ EOS;
 		<?php echo $form->labelEx($model,'idatetime'); ?>
             <?php
                $this->widget('zii.widgets.jui.CJuiDatePicker',array(
-                  'name'=>'Sellingprices[idatetime]',
+                  'name'=>'Cashouts[idatetime]',
                      // additional javascript options for the date picker plugin
                   'options'=>array(
                      'showAnim'=>'fold',
