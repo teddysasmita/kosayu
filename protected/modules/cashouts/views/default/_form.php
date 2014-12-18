@@ -11,10 +11,9 @@
 $itemScript=<<<EOS
 	$('#Cashouts_idexpense').change(
 		function() {
-			$.getJSON('index.php?r=LookUp/getItemFromBatchcode',{ batchcode: $('#Sellingprices_iditem').val() },
+			$.getJSON('index.php?r=LookUp/getExpenseName',{ id: $('#Cashouts_idexpense').val() },
                	function(data) {
-				 	$('#batchcode').html(data.name);
-                  $('#Sellingprices_batchcode').val(data.iditem);
+				 	$('#expensename').html(data);
                })
 	});
 EOS;
