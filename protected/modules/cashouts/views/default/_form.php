@@ -82,6 +82,12 @@ EOS;
 	</div>
 	
 	<div class="row">
+		<?php echo CHtml::tag('span', array('id'=>'expensename', 'class'=>'money'), 
+			lookup::ExpenseNameFromID($model->idexpense)); 
+		?>
+	</div>
+	
+	<div class="row">
 		<?php echo $form->labelEx($model,'amount'); ?>
 		<?php 
          	echo $form->textField($model, 'amount' );
