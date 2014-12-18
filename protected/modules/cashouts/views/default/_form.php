@@ -17,7 +17,7 @@ $cashoutScript=<<<EOS
                })
 	});
 EOS;
-Yii::app()->clientScript->registerScript('cashoutscript', $cashScript, CClientScript::POS_READY);
+Yii::app()->clientScript->registerScript('cashoutscript', $cashoutScript, CClientScript::POS_READY);
 
 ?>
 
