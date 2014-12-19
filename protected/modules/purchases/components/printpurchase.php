@@ -92,8 +92,8 @@ class MYPDF extends TCPDF {
 		$this->SetFont('Courier', 'B');
 		$this->SetFontSize(10);
 		$this->setXY(10, 115);
-		$this->Cell(120, 5, 'Total:', 'LTB', 0, 'R');
-		$this->Cell(75, 5, number_format($this->total), 'LTBR', 1, 'R');
+		$this->Cell(130, 5, 'Total', 'LTB', 0, 'R');
+		$this->Cell(65, 5, number_format($this->total), 'LTBR', 1, 'R');
 		$this->setX(10);
 		$this->Cell(43, 15, 'Pembelian', 'LTRB', 0, 'C', false,'', 0, false, 'T', 'T');
 		$this->Cell(43, 15, 'Pemeriksa', 'LTRB', 0, 'C', false,'', 0, false, 'T', 'T');
@@ -117,18 +117,20 @@ class MYPDF extends TCPDF {
 	
 		$this->setFontSize(15);
 		$this->setXY(10, 10);
-		$this->Cell(100, 10, 'Nota Pembelian Putus', 'LTR', 1, 'C');
+		$this->Cell(195, 10, 'Nota Pembelian Putus', 'LTR', 1, 'C');
 		$this->SetFontSize(10);
 		$this->SetFont('Courier', 'B');
 		$this->setXY(10, 20);
-		$this->Cell(15, 5, 'Tgl', 'LT', 0, 'C');
+		$this->Cell(20, 5, 'Tgl', 'LT', 0, 'C');
 		$this->Cell(40, 5, substr($this->data->idatetime, 0, 10), 'LTR', 0, 'C');
-		$this->Cell(15, 5, 'No', 'LTR', 0, 'C');
-		$this->Cell(45, 5, $this->data->regnum, 'LTRB', 0, 'C');
-		
+		$this->Cell(20, 5, 'Nomor', 'LTR', 0, 'C');
+		$this->Cell(40, 5, $this->data->regnum, 'LTRB', 0, 'C');
+		//space
+		$this->Cell(75, 5, '', 'LTRB', 0, 'C');
+
 		$this->setXY(10, 26);
 		$this->Cell(20, 5, 'Pemasok', 'LT', 0, 'C');
-		$this->Cell(100, 5, lookup::SupplierNameFromSupplierID($this->data->idsupplier), 
+		$this->Cell(175, 5, lookup::SupplierNameFromSupplierID($this->data->idsupplier), 
 			'LTRB', 1, 'C');
 		$this->setXY(10, 27);
 		
