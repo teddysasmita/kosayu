@@ -14,6 +14,7 @@ class MYPDF extends TCPDF {
 	private $headernames;
 	private $headerwidths;
 	private $maxrows = 12;
+	private $total = 0;
 	
 	public $pageorientation;
 	public $pagesize;
@@ -59,6 +60,7 @@ class MYPDF extends TCPDF {
 				$this->Cell($this->headerwidths[3], 6, number_format($row['price']), 
 						'LR', 0, 'R', $fill);
 				$total = $row['qty'] * $row['price'];
+				$this->total += $total;
 				$this->Cell($this->headerwidths[4], 6, number_format($total), 'LR', 1, 'R', $fill);
 			} else {
 				$this->Cell($this->headerwidths[0], 6, ' ', 'LR', 0, 'C', $fill);
@@ -90,6 +92,8 @@ class MYPDF extends TCPDF {
 		$this->SetFont('Courier', 'B');
 		$this->SetFontSize(10);
 		$this->setXY(10, 115);
+		$this->Cell(120, 5, 'Total:', 'LTB', 0, 'R');
+		$this->Cell(70, 5, number_format($this->total), 'LTB', 0, 'R');
 		$this->Cell(43, 15, 'Pembelian', 'LTRB', 0, 'C', false,'', 0, false, 'T', 'T');
 		$this->Cell(43, 15, 'Pemeriksa', 'LTRB', 0, 'C', false,'', 0, false, 'T', 'T');
 		$this->Cell(43, 15, 'Admin', 'LTRB', 0, 'C', false,'', 0, false, 'T', 'T');
