@@ -22,7 +22,7 @@ class MYPDF extends TCPDF {
 		// Read file lines
 		$this->data = $data;
 		$this->detaildata = $detaildata;
-		$this->headernames = array('Batch Code', 'Nama Barang', 'Jmlh', 'Harga@', 'Total');
+		$this->headernames = array('Kode', 'Nama Barang', 'Jmlh', 'Harga@', 'Total');
 		$this->headerwidths = array(10, 100, 15, 20, 20);
 	}
 
@@ -105,18 +105,18 @@ class MYPDF extends TCPDF {
 		$this->SetFont('', 'B');
 		$this->SetCellPadding(0.8);
 	
-		$this->setFontSize(20);
-		$this->setXY(91, 10);
-		$this->Cell(105, 10, 'Surat Jalan', 'LTR', 1, 'C');
+		$this->setFontSize(15);
+		$this->setXY(10, 10);
+		$this->Cell(13, 10, 'Nota Pembelian Putus', 'LTR', 1, 'C');
 		$this->SetFontSize(10);
 		$this->SetFont('Courier', 'B');
-		$this->setXY(91, 20);
+		$this->setXY(13, 20);
 		$this->Cell(20, 5, 'Tgl', 'LT', 0, 'C');
 		$this->Cell(45, 5, $this->data->idatetime, 'LTR', 0, 'C');
 		$this->Cell(15, 5, 'No', 'LTR', 0, 'C');
 		$this->Cell(25, 5, $this->data->regnum, 'LTR', 1, 'C');
 		
-		$this->setXY(91, 26);
+		$this->setXY(13, 26);
 		$this->Cell(20, 5, 'Pemasok', 'LT', 0, 'C');
 		$this->Cell(45, 5, lookup::SupplierNameFromSupplierID($this->data->idsupplier), 'LTR', 0, 'C');
 		$this->Cell(15, 5, 'Status', 'LTR', 0, 'C');
