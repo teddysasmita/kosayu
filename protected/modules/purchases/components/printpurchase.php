@@ -132,7 +132,7 @@ class MYPDF extends TCPDF {
 		$this->Cell(20, 5, 'Pemasok', 'LT', 0, 'C');
 		$this->Cell(175, 5, lookup::SupplierNameFromSupplierID($this->data->idsupplier), 
 			'LTRB', 1, 'C');
-		$this->setXY(10, 27);
+		$this->setXY(10, 31);
 		
 		
 		
