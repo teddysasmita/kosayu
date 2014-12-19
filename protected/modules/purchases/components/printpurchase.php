@@ -23,7 +23,7 @@ class MYPDF extends TCPDF {
 		$this->data = $data;
 		$this->detaildata = $detaildata;
 		$this->headernames = array('Kode', 'Nama Barang', 'Jmlh', 'Harga@', 'Total');
-		$this->headerwidths = array(10, 100, 15, 20, 20);
+		$this->headerwidths = array(20, 100, 15, 20, 20);
 	}
 
 	// Colored table
@@ -49,7 +49,7 @@ class MYPDF extends TCPDF {
 			if ($i<count($this->detaildata)) {
 				$row=$this->detaildata[$i];
 				$counter+=1;
-				$this->Cell($this->headerwidths[0], 6, $counter, 'LR', 0, 'C', $fill);
+				$this->Cell($this->headerwidths[0], 6, $row['batchcode'], 'LR', 0, 'C', $fill);
 				$this->Cell($this->headerwidths[1], 6, lookup::ItemNameFromItemID($row['iditem']), 
 						'LR', 0, 'L', $fill);
 				$this->Cell($this->headerwidths[2], 6, $row['qty'], 'LR', 0, 'R', $fill);
@@ -120,7 +120,7 @@ class MYPDF extends TCPDF {
 		$this->Cell(20, 5, 'Pemasok', 'LT', 0, 'C');
 		$this->Cell(45, 5, lookup::SupplierNameFromSupplierID($this->data->idsupplier), 'LTR', 0, 'C');
 		$this->Cell(15, 5, 'Status', 'LTR', 0, 'C');
-		//$this->setXY(100, 27);
+		$this->setXY(10, 27);
 		
 		
 		
