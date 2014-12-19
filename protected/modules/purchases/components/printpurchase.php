@@ -199,7 +199,7 @@ function execute($model, $detailmodel) {
 	$pdf->SetFont('helvetica', '', 12);
 	
 	// add a page
-	$pdf->LoadData($model, $detailmodel, $receivable);
+	$pdf->LoadData($data, $detaildata);
 	
 	$pdf->AddPage($pdf->pageorientation, $pdf->pagesize);
 	//$pdf->AddPage();
