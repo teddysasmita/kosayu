@@ -46,9 +46,10 @@ class MYPDF extends TCPDF {
 		else
 			$maxrows = count($this->detaildata);		
 		for($i=0;$i<$maxrows;$i++) {
+			$this->setX(10);
 			if ($i<count($this->detaildata)) {
 				$row=$this->detaildata[$i];
-				$this->setX(10);
+				
 				$counter+=1;
 				$this->Cell($this->headerwidths[0], 6, $row['batchcode'], 'LR', 0, 'C', $fill);
 				$this->Cell($this->headerwidths[1], 6, lookup::ItemNameFromItemID($row['iditem']), 
