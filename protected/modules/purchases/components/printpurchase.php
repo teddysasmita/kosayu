@@ -13,7 +13,7 @@ class MYPDF extends TCPDF {
 	private $receivable;
 	private $headernames;
 	private $headerwidths;
-	private $maxrows = 12;
+	private $maxrows = 10;
 	private $total = 0;
 	
 	public $pageorientation;
@@ -42,8 +42,8 @@ class MYPDF extends TCPDF {
 		$fill = 0;
 		$counter=0;
 		$iditem='';
-		$this->SetXY(10, 39);
-		if (count($this->detaildata) <= 14)
+		$this->SetXY(10, 42);
+		if (count($this->detaildata) <= $this->maxrows)
 			$maxrows = $this->maxrows;
 		else
 			$maxrows = count($this->detaildata);		
@@ -129,7 +129,7 @@ class MYPDF extends TCPDF {
 		$this->Cell(75, 5, '', 'LTRB', 0, 'C');
 
 		$this->setXY(10, 26);
-		$this->Cell(20, 5, 'Pemasok', 'LT', 0, 'C');
+		$this->Cell(20, 5, 'Pemasok', 'LTB', 0, 'C');
 		$this->Cell(175, 5, lookup::SupplierNameFromSupplierID($this->data->idsupplier), 
 			'LTRB', 1, 'C');
 		$this->setXY(10, 31);
