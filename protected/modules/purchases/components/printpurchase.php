@@ -166,9 +166,9 @@ function execute($model, $detailmodel) {
 	// set document information
 	$pdf->SetCreator(PDF_CREATOR);
 	$pdf->SetAuthor(lookup::UserNameFromUserID(Yii::app()->user->id));
-	$pdf->SetTitle('Surat Jalan Manual');
-	$pdf->SetSubject('SJM');
-	$pdf->SetKeywords('SJM');
+	$pdf->SetTitle('Beli Putus');
+	$pdf->SetSubject('BP');
+	$pdf->SetKeywords('BP');
 	
 	//$pdf->setPrintHeader(false);
 	//$pdf->setPrintFooter(false);
@@ -199,7 +199,7 @@ function execute($model, $detailmodel) {
 	$pdf->SetFont('helvetica', '', 12);
 	
 	// add a page
-	$pdf->LoadData($data, $detaildata);
+	$pdf->LoadData($model, $detailmodel);
 	
 	$pdf->AddPage($pdf->pageorientation, $pdf->pagesize);
 	//$pdf->AddPage();
