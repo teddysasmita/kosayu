@@ -81,16 +81,6 @@ $this->menu=array(
                  'name'=>'price',
                  'type'=>'number',
              ),
-            array(
-                 'header'=>'Biaya 1 @',
-                 'name'=>'cost1',
-                 'type'=>'number',
-             ),
-            array(
-                 'header'=>'Biaya 2 @',
-                 'name'=>'cost2',
-                 'type'=>'number',
-             ),
              array(
                  'header'=>'Disc',
                  'name'=>'discount',
