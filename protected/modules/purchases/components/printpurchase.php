@@ -13,6 +13,7 @@ class MYPDF extends TCPDF {
 	private $receivable;
 	private $headernames;
 	private $headerwidths;
+	private $maxrows = 12;
 	
 	public $pageorientation;
 	public $pagesize;
@@ -42,7 +43,7 @@ class MYPDF extends TCPDF {
 		$iditem='';
 		$this->SetXY(10, 39);
 		if (count($this->detaildata) <= 14)
-			$maxrows = 14;
+			$maxrows = $this->maxrows;
 		else
 			$maxrows = count($this->detaildata);		
 		for($i=0;$i<$maxrows;$i++) {
@@ -68,7 +69,7 @@ class MYPDF extends TCPDF {
 				//$this->ln();
 			}
 			$this->setX(10);
-			if (($i > 0) && ($i % 12 == 0))
+			if (($i > 0) && ($i % $this->maxrows == 0))
 				//$this->checkPageBreak(6, '');
 				$this->Cell(array_sum($this->headerwidths), 0, '', 'T', 1);
 		}
@@ -95,9 +96,9 @@ class MYPDF extends TCPDF {
 		$this->Cell(43, 15, 'Penerima', 'LTRB', 0, 'C', false,'', 0, false, 'T', 'T');
 		$this->Cell(23, 5, 'Halaman', 'LTR', 1, 'C', false,'', 0, false, 'T', 'T');
 		$this->setX(173);
-		$this->Cell(43, 5, $this->PageNo().' dari ', 'LR', 1, 'C', false,'', 0, false, 'T', 'T');
+		$this->Cell(23, 5, $this->PageNo().' dari ', 'LR', 1, 'C', false,'', 0, false, 'T', 'T');
 		$this->setX(173);
-		$this->Cell(43, 5, 'total '.trim($this->getAliasNbPages()), 'LRB', 1, 'C', false,'', 0, false, 'T', 'T');
+		$this->Cell(23, 5, 'total '.trim($this->getAliasNbPages()), 'LRB', 1, 'C', false,'', 0, false, 'T', 'T');
 	}
 	
 	public function master()
