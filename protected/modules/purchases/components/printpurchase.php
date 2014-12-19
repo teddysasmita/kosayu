@@ -71,9 +71,12 @@ class MYPDF extends TCPDF {
 				//$this->ln();
 			}
 			$this->setX(10);
-			if (($i > 0) && ($i % ($this->maxrows-1) == 0))
+			if (($i > 0) && ($i % ($this->maxrows-1) == 0)) {
 				//$this->checkPageBreak(6, '');
 				$this->Cell(array_sum($this->headerwidths), 0, '', 'T', 1);
+				$this->Cell(130, 5, 'Total', 'LTB', 0, 'R');
+				$this->Cell(65, 5, number_format($this->total), 'LTBR', 1, 'R');
+			}
 		}
 		//$this->Cell(array_sum($this->headerwidths), 0, '', 'T');
 	}
@@ -92,9 +95,7 @@ class MYPDF extends TCPDF {
 		$this->SetFont('Courier', 'B');
 		$this->SetFontSize(10);
 		$this->setXY(10, 115);
-		$this->Cell(130, 5, 'Total', 'LTB', 0, 'R');
-		$this->Cell(65, 5, number_format($this->total), 'LTBR', 1, 'R');
-		$this->setX(10);
+		
 		$this->Cell(43, 15, 'Pembelian', 'LTRB', 0, 'C', false,'', 0, false, 'T', 'T');
 		$this->Cell(43, 15, 'Pemeriksa', 'LTRB', 0, 'C', false,'', 0, false, 'T', 'T');
 		$this->Cell(43, 15, 'Admin', 'LTRB', 0, 'C', false,'', 0, false, 'T', 'T');
