@@ -421,7 +421,7 @@ class DefaultController extends Controller
       
 	public function actionPrint($id) 
 	{
-		if(Yii::app()->authManager->checkAccess($this->formid.'-Update',
+		if(Yii::app()->authManager->checkAccess($this->formid.'-List',
 				Yii::app()->user->id))  {
 			
 			$masterdata = $this->loadModel($id);
