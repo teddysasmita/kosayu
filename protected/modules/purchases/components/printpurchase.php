@@ -40,7 +40,7 @@ class MYPDF extends TCPDF {
 		$fill = 0;
 		$counter=0;
 		$iditem='';
-		$this->SetXY(1, 62);
+		$this->SetXY(10, 40);
 		if (count($this->detaildata) <= 8)
 			$maxrows = 8;
 		else
@@ -55,7 +55,8 @@ class MYPDF extends TCPDF {
 				$this->Cell($this->headerwidths[2], 6, number_format($row['qty']), 'LR', 0, 'R', $fill);
 				$this->Cell($this->headerwidths[3], 6, number_format($row['price']), 
 						'LR', 0, 'R', $fill);
-				$this->Cell($this->headerwidths[4], 6, '', 'LR', 1, 'R', $fill);
+				$total = $row['qty'] * $row['price'];
+				$this->Cell($this->headerwidths[4], 6, number_format($total), 'LR', 1, 'R', $fill);
 			} else {
 				$this->Cell($this->headerwidths[0], 6, ' ', 'LR', 0, 'C', $fill);
 				$this->Cell($this->headerwidths[1], 6, ' ', 'LR', 0, 'L', $fill);
@@ -84,7 +85,7 @@ class MYPDF extends TCPDF {
 		$this->SetLineWidth(0.3);
 		$this->SetFont('Courier', 'B');
 		$this->SetFontSize(10);
-		$this->setXY(1, 115);
+		$this->setXY(10, 115);
 		$this->Cell(43, 15, 'Supir', 'LTRB', 0, 'C', false,'', 0, false, 'T', 'T');
 		$this->Cell(43, 15, 'CS', 'LTRB', 0, 'C', false,'', 0, false, 'T', 'T');
 		$this->Cell(43, 15, 'Pemeriksa', 'LTRB', 0, 'C', false,'', 0, false, 'T', 'T');
