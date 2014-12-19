@@ -116,10 +116,10 @@ class MYPDF extends TCPDF {
 		$this->SetFontSize(10);
 		$this->SetFont('Courier', 'B');
 		$this->setXY(10, 20);
-		$this->Cell(20, 5, 'Tgl', 'LT', 0, 'C');
-		$this->Cell(55, 5, $this->data->idatetime, 'LTR', 0, 'C');
+		$this->Cell(15, 5, 'Tgl', 'LT', 0, 'C');
+		$this->Cell(40, 5, substr($this->data->idatetime, 0, 10), 'LTR', 0, 'C');
 		$this->Cell(15, 5, 'No', 'LTR', 0, 'C');
-		$this->Cell(45, 5, $this->data->regnum, 'LTRB', 1, 'C');
+		$this->Cell(45, 5, $this->data->regnum, 'LTRB', 0, 'C');
 		
 		$this->setXY(10, 26);
 		$this->Cell(20, 5, 'Pemasok', 'LT', 0, 'C');
