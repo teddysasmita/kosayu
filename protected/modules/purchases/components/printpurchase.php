@@ -23,7 +23,7 @@ class MYPDF extends TCPDF {
 		$this->data = $data;
 		$this->detaildata = $detaildata;
 		$this->headernames = array('Kode', 'Nama Barang', 'Jmlh', 'Harga@', 'Total');
-		$this->headerwidths = array(30, 100, 15, 20, 35);
+		$this->headerwidths = array(30, 100, 15, 20, 30);
 	}
 
 	// Colored table
@@ -41,8 +41,8 @@ class MYPDF extends TCPDF {
 		$counter=0;
 		$iditem='';
 		$this->SetXY(10, 39);
-		if (count($this->detaildata) <= 8)
-			$maxrows = 8;
+		if (count($this->detaildata) <= 14)
+			$maxrows = 14;
 		else
 			$maxrows = count($this->detaildata);		
 		for($i=0;$i<$maxrows;$i++) {
@@ -67,6 +67,7 @@ class MYPDF extends TCPDF {
 				$this->Cell($this->headerwidths[4], 6, ' ', 'LR', 1, 'R', $fill);
 				//$this->ln();
 			}
+			$this->setX(10);
 			if (($i > 0) && ($i % 7 == 0))
 				//$this->checkPageBreak(6, '');
 				$this->Cell(array_sum($this->headerwidths), 0, '', 'T', 1);
