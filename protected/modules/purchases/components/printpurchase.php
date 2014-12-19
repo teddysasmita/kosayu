@@ -23,7 +23,7 @@ class MYPDF extends TCPDF {
 		$this->data = $data;
 		$this->detaildata = $detaildata;
 		$this->headernames = array('Kode', 'Nama Barang', 'Jmlh', 'Harga@', 'Total');
-		$this->headerwidths = array(20, 100, 15, 20, 20);
+		$this->headerwidths = array(30, 100, 15, 20, 20);
 	}
 
 	// Colored table
@@ -52,8 +52,8 @@ class MYPDF extends TCPDF {
 				$this->Cell($this->headerwidths[0], 6, $row['batchcode'], 'LR', 0, 'C', $fill);
 				$this->Cell($this->headerwidths[1], 6, lookup::ItemNameFromItemID($row['iditem']), 
 						'LR', 0, 'L', $fill);
-				$this->Cell($this->headerwidths[2], 6, $row['qty'], 'LR', 0, 'R', $fill);
-				$this->Cell($this->headerwidths[3], 6, $row['price'], 
+				$this->Cell($this->headerwidths[2], 6, number_format($row['qty']), 'LR', 0, 'R', $fill);
+				$this->Cell($this->headerwidths[3], 6, number_format($row['price']), 
 						'LR', 0, 'R', $fill);
 				$this->Cell($this->headerwidths[4], 6, '', 'LR', 1, 'R', $fill);
 			} else {
@@ -107,19 +107,19 @@ class MYPDF extends TCPDF {
 	
 		$this->setFontSize(15);
 		$this->setXY(10, 10);
-		$this->Cell(13, 10, 'Nota Pembelian Putus', 'LTR', 1, 'C');
+		$this->Cell(100, 10, 'Nota Pembelian Putus', 'LTR', 1, 'C');
 		$this->SetFontSize(10);
 		$this->SetFont('Courier', 'B');
-		$this->setXY(13, 20);
+		$this->setXY(10, 20);
 		$this->Cell(20, 5, 'Tgl', 'LT', 0, 'C');
 		$this->Cell(55, 5, $this->data->idatetime, 'LTR', 0, 'C');
 		$this->Cell(15, 5, 'No', 'LTR', 0, 'C');
-		$this->Cell(45, 5, $this->data->regnum, 'LTR', 1, 'C');
+		$this->Cell(45, 5, $this->data->regnum, 'LTRB', 1, 'C');
 		
-		$this->setXY(13, 26);
+		$this->setXY(10, 26);
 		$this->Cell(20, 5, 'Pemasok', 'LT', 0, 'C');
-		$this->Cell(55, 5, substr(lookup::SupplierNameFromSupplierID($this->data->idsupplier), 0, 15), 
-			'LTR', 1, 'C');
+		$this->Cell(100, 5, lookup::SupplierNameFromSupplierID($this->data->idsupplier), 
+			'LTRB', 1, 'C');
 		$this->setXY(10, 27);
 		
 		
@@ -140,6 +140,7 @@ class MYPDF extends TCPDF {
 		*/
 		
 		$this->ln(5);
+		$this->setX(10);
 		$this->setFontSize(12);
 		$this->SetFont('Courier', 'B');
 		
