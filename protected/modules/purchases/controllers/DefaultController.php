@@ -419,6 +419,27 @@ class DefaultController extends Controller
          }
       }
       
+	public function actionPrint($id) 
+	{
+		if(Yii::app()->authManager->checkAccess($this->formid.'-Update',
+				Yii::app()->user->id))  {
+			
+			$masterdata = $this->loadModel($id);
+			if ($masterdata) {
+				$detaildata = $this->loadDetails($id);	
+			};
+			Yii::import('application.vendors.tcpdf.*');
+			require_once ('tcpdf.php');
+			Yii::import('application.modules.purchases.components.*');
+			require_once('printpurchase.php');
+			ob_clean();
+			
+			execute($masterdata, $detaildata);
+		} else {
+			throw new CHttpException(404,'You have no authorization for this operation.');
+		}
+	}
+      
      protected function saveNewDetails(array $details)
      {                  
          foreach ($details as $row) {
