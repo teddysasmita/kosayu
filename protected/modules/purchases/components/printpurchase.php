@@ -93,7 +93,7 @@ class MYPDF extends TCPDF {
 		$this->SetFontSize(10);
 		$this->setXY(10, 115);
 		$this->Cell(120, 5, 'Total:', 'LTB', 0, 'R');
-		$this->Cell(70, 5, number_format($this->total), 'LTB', 0, 'R');
+		$this->Cell(70, 5, number_format($this->total), 'LTB', 1, 'R');
 		$this->Cell(43, 15, 'Pembelian', 'LTRB', 0, 'C', false,'', 0, false, 'T', 'T');
 		$this->Cell(43, 15, 'Pemeriksa', 'LTRB', 0, 'C', false,'', 0, false, 'T', 'T');
 		$this->Cell(43, 15, 'Admin', 'LTRB', 0, 'C', false,'', 0, false, 'T', 'T');
