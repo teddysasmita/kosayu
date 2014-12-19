@@ -23,7 +23,7 @@ class MYPDF extends TCPDF {
 		$this->data = $data;
 		$this->detaildata = $detaildata;
 		$this->headernames = array('Kode', 'Nama Barang', 'Jmlh', 'Harga@', 'Total');
-		$this->headerwidths = array(30, 100, 15, 20, 20);
+		$this->headerwidths = array(30, 100, 15, 20, 35);
 	}
 
 	// Colored table
@@ -40,7 +40,7 @@ class MYPDF extends TCPDF {
 		$fill = 0;
 		$counter=0;
 		$iditem='';
-		$this->SetXY(10, 40);
+		$this->SetXY(10, 39);
 		if (count($this->detaildata) <= 8)
 			$maxrows = 8;
 		else
@@ -48,6 +48,7 @@ class MYPDF extends TCPDF {
 		for($i=0;$i<$maxrows;$i++) {
 			if ($i<count($this->detaildata)) {
 				$row=$this->detaildata[$i];
+				$this->setX(10);
 				$counter+=1;
 				$this->Cell($this->headerwidths[0], 6, $row['batchcode'], 'LR', 0, 'C', $fill);
 				$this->Cell($this->headerwidths[1], 6, lookup::ItemNameFromItemID($row['iditem']), 
