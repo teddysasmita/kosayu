@@ -26,7 +26,7 @@ $this->menu=array(
 		'idatetime',
 		array(
 			'name'=>'idexpense',
-			'value'=>lookup::ExpenseNameFromID($model['idexpense']),
+			'value'=>lookup::ExpenseNameFromNum($model['idexpense']),
 		),   
 		'idacctcredit',
 		array(

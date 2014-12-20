@@ -83,7 +83,7 @@ Yii::app()->clientScript->registerScript('cashoutscript', $cashoutScript, CClien
 	<div class="row">
 		<?php echo CHtml::label('', false);
 			echo CHtml::tag('span', array('id'=>'expensename', 'class'=>'money'), 
-				lookup::ExpenseNameFromID($model->idexpense)); 
+				lookup::ExpenseNameFromNum($model->idexpense)); 
 		?>
 	</div>
 	

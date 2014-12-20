@@ -559,6 +559,19 @@ class lookup extends CComponent {
 		else
 			return $name;
 	}
+	
+	public static function ExpenseNameFromNum($num)
+	{
+		$name = Yii::app()->db->createCommand()
+		->select('name')->from('expenses')
+		->where('accountnum = :p_num', array(':p_num'=>$num))
+		->queryScalar();
+	
+		if(!$name)
+			return 'Belum Terdaftar';
+		else
+			return $name;
+	}
 }
 
 

@@ -18,7 +18,7 @@
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('idexpense')); ?>:</b>
-	<?php echo CHtml::encode(lookup::ExpenseNameFromID($data->idexpense)); ?>
+	<?php echo CHtml::encode(lookup::ExpenseNameFromNum($data->idexpense)); ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('amount')); ?>:</b>
