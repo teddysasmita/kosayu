@@ -81,7 +81,8 @@ return array(
 			'purchases',
 			'consignpurchases',
 			'expenses',
-			'cashouts'
+			'cashouts',
+			'cashboxes',
         ),
 
         
