@@ -16,6 +16,14 @@ $cashoutScript=<<<EOS
 				 	$('#expensename').html(data);
                })
 	});
+
+	$('#Cashouts_idacctcredit').change(
+		function() {
+			$.getJSON('index.php?r=LookUp/getCashboxName',{ id: $('#Cashouts_idacctcredit').val() },
+               	function(data) {
+				 	$('#acctcreditname').html(data);
+               })
+	});
 EOS;
 Yii::app()->clientScript->registerScript('cashoutscript', $cashoutScript, CClientScript::POS_READY);
 
