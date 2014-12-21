@@ -572,6 +572,32 @@ class lookup extends CComponent {
 		else
 			return $name;
 	}
+	
+	public static function CashboxNameFromID($id)
+	{
+		$name = Yii::app()->db->createCommand()
+		->select('name')->from('cashboxes')
+		->where('id = :p_id', array(':p_id'=>$id))
+		->queryScalar();
+	
+		if(!$name)
+			return 'Belum Terdaftar';
+		else
+			return $name;
+	}
+	
+	public static function CashboxNameFromNum($num)
+	{
+		$name = Yii::app()->db->createCommand()
+		->select('name')->from('cashboxes')
+		->where('accountnum = :p_num', array(':p_num'=>$num))
+		->queryScalar();
+	
+		if(!$name)
+			return 'Belum Terdaftar';
+		else
+			return $name;
+	}
 }
 
 

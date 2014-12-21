@@ -27,8 +27,11 @@ $this->menu=array(
 		array(
 			'name'=>'idexpense',
 			'value'=>lookup::ExpenseNameFromNum($model['idexpense']),
-		),   
-		'idacctcredit',
+		),
+		array(
+			'name'=>'idacctcredit',
+			'value'=>lookup::CashboxNameFromNum($model['idacctcredit']),
+		),
 		array(
 			'name'=>'amount',
 			'value'=>number_format($model['amount'])

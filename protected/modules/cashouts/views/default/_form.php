@@ -98,6 +98,28 @@ Yii::app()->clientScript->registerScript('cashoutscript', $cashoutScript, CClien
 	<div class="row">
 		<?php echo $form->labelEx($model,'idacctcredit'); ?>
 		<?php 
+			$this->widget('zii.widgets.jui.CJuiAutoComplete', array(
+				'name'=>'Cashouts[idacctcredit]',
+				'sourceUrl'=> Yii::app()->createUrl('LookUp/getCashboxes'),
+				'htmlOptions'=>array(
+						'style'=>'height:20px;',
+				),
+				'value'=>$model->idacctcredit,
+			));
+		?>
+		<?php echo $form->error($model,'idacctcredit'); ?>
+	</div>
+	
+	<div class="row">
+		<?php echo CHtml::label('', false);
+			echo CHtml::tag('span', array('id'=>'acctcreditname', 'class'=>'money'), 
+				lookup::CashboxNameFromNum($model->idacctcredit)); 
+		?>
+	</div>
+	
+	<div class="row">
+		<?php echo $form->labelEx($model,'idacctcredit'); ?>
+		<?php 
 			$cash = Yii::app()->db->createCommand()
 				->select('id, name')
 				->from('salesposedcs')
