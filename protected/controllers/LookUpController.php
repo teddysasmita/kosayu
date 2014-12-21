@@ -103,7 +103,7 @@ class LookUpController extends Controller {
 	{
 		if (!Yii::app()->user->isGuest) {
 			$data=Yii::app()->db->createCommand()
-				->selectDistinct('a.name as label, a.id as value')
+				->selectDistinct("concat(a.accountnum, ' -> ', a.name) as label, a.id as value")
 				->from('expenses a')
 				->where('a.name like :p_name', array(':p_name'=>$term.'%'))
 				->order('a.name')
@@ -119,7 +119,7 @@ class LookUpController extends Controller {
 	{
 		if (!Yii::app()->user->isGuest) {
 			$data=Yii::app()->db->createCommand()
-			->selectDistinct('a.name as label, a.id as value')
+			->selectDistinct("concat(a.accountnum, ' -> ', a.name) as label, a.id as value")
 			->from('cashboxes a')
 			->where('a.name like :p_name', array(':p_name'=>$term.'%'))
 			->order('a.name')
@@ -929,7 +929,7 @@ EOS;
 	
 		if (!Yii::app()->user->isGuest) {
 			$data=Yii::app()->db->createCommand()
-				->select('name')
+				->select("concat(accountnum, ' -> ', name)")
 				->from('expenses')
 				->where('id = :p_id',
 					array(':p_id'=>$id))
@@ -947,7 +947,7 @@ EOS;
 	
 		if (!Yii::app()->user->isGuest) {
 			$data=Yii::app()->db->createCommand()
-			->select('name')
+			->select("concat(accountnum, ' -> ', name)")
 			->from('cashboxes')
 			->where('id = :p_id',
 					array(':p_id'=>$id))
