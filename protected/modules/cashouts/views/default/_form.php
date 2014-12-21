@@ -112,26 +112,10 @@ Yii::app()->clientScript->registerScript('cashoutscript', $cashoutScript, CClien
 	
 	<div class="row">
 		<?php echo CHtml::label('', false);
-			echo CHtml::tag('span', array('id'=>'acctcreditname', 'class'=>'money'), 
+			echo CHtml::tag('span', array('id'=>'acctcreditname', 'class'=>'error'), 
 				lookup::CashboxNameFromNum($model->idacctcredit)); 
 		?>
 	</div>
-	
-	<div class="row">
-		<?php echo $form->labelEx($model,'idacctcredit'); ?>
-		<?php 
-			$cash = Yii::app()->db->createCommand()
-				->select('id, name')
-				->from('salesposedcs')
-				->queryAll();
-			$cash = CHtml::listData($cash, 'id', 'name');
-			$cash['Petty'] = 'Kas Kecil';
-			$cash['COH'] = 'Kas Besar'; 
-         	echo $form->dropDownList($model, 'idacctcredit', $cash,
-         		array('empty'=>'Harap Pilih'));
-     	?>
-		<?php echo $form->error($model,'idacctcredit'); ?>
-	</div>	
 	
 	<div class="row">
 		<?php echo $form->labelEx($model,'remark'); ?>
