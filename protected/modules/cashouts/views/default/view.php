@@ -26,11 +26,11 @@ $this->menu=array(
 		'idatetime',
 		array(
 			'name'=>'idexpense',
-			'value'=>lookup::ExpenseNameFromNum($model['idexpense']),
+			'value'=>lookup::ExpenseNameFromID($model['idexpense']),
 		),
 		array(
 			'name'=>'idacctcredit',
-			'value'=>lookup::CashboxNameFromNum($model['idacctcredit']),
+			'value'=>lookup::CashboxNameFromID($model['idacctcredit']),
 		),
 		array(
 			'name'=>'amount',

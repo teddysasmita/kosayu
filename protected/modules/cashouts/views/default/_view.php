@@ -14,11 +14,11 @@
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('idacctcredit')); ?>:</b>
-	<?php echo CHtml::encode(lookup::CashboxNameFromNum($data->idacctcredit)); ?>
+	<?php echo CHtml::encode(lookup::CashboxNameFromID($data->idacctcredit)); ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('idexpense')); ?>:</b>
-	<?php echo CHtml::encode(lookup::ExpenseNameFromNum($data->idexpense)); ?>
+	<?php echo CHtml::encode(lookup::ExpenseNameFromID($data->idexpense)); ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('amount')); ?>:</b>
