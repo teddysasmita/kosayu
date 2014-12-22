@@ -315,7 +315,7 @@ EOS;
 	) join salespos b on b.id = a.id
 	join items c on c.id = a.iditem
 	where
-	c.code like '$suppliercode%' and b.idatetime >= '$startdate' and b.idatetime <= '$enddate'
+	a.itemcode like '$suppliercode%' and b.idatetime >= '$startdate' and b.idatetime <= '$enddate'
 	order by scode, code
 EOS;
 				$datasales = Yii::app()->db->createCommand($sql1)->queryAll();
