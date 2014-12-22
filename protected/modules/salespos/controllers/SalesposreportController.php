@@ -223,16 +223,15 @@ EOS;
 
 			if (is_null(Yii::app()->session['datasales3'])) {
 				$sql1 =<<<EOS
-		select b.id, left(c.code, 3) as scode, e.firstname, a.iddetail, a.itemcode as code, a.qty, a.price, a.discount
-		from detailsalespos a
-		join salespos b 
-		on b.id = a.id
-		join (items c 
-			join suppliers e on e.code = left(c.code, 3)
-		) on c.id = a.iditem
-		where 
-		b.idatetime >= '$startdate' and b.idatetime <= '$enddate'
-		order by scode
+		select b.id, left(a.itemcode, 3) as scode, c.name, a.iddetail, a.iditem, a.itemcode as code, a.qty, 
+	a.price, a.discount
+	from (detailsalespos a
+	join suppliers e on e.code = left(a.itemcode, 3)
+	) join salespos b on b.id = a.id
+	join items c on c.id = a.iditem
+	where
+	a.itemcode like '$suppliercode%' and b.idatetime >= '$startdate' and b.idatetime <= '$enddate'
+	order by scode, code
 EOS;
 				$datasales = Yii::app()->db->createCommand($sql1)->queryAll();
 				
