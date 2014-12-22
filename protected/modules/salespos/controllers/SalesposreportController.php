@@ -224,7 +224,7 @@ EOS;
 			if (is_null(Yii::app()->session['datasales3'])) {
 				$sql1 =<<<EOS
 		select b.id, left(a.itemcode, 3) as scode, c.name, a.iddetail, a.iditem, a.itemcode as code, a.qty, 
-	a.price, a.discount
+	a.price, a.discount, e.firstname
 	from (detailsalespos a
 	join suppliers e on e.code = left(a.itemcode, 3)
 	) join salespos b on b.id = a.id
