@@ -314,7 +314,7 @@ EOS;
 	join salespos b
 	on b.id = a.id
 	join (items c
-		join suppliers e on e.code = left(a.itemcode, 3)
+		join suppliers e on e.code = left(code, 3)
 	) on c.id = a.iditem
 	where
 	c.code like '$suppliercode%' and b.idatetime >= '$startdate' and b.idatetime <= '$enddate'
