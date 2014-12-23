@@ -9,6 +9,11 @@
 <?php
  
     $itemScript=<<<EOS
+    
+	$('#Detailpurchasesorders_batchcode').change(function(){
+		$('#command').val('setCode');
+		$('#detailconsignpurchases-form').submit();
+	});
       $('#Detailpurchasesorders_itemname').focus(function(){
          $('#ItemDialog').dialog('open');
       });

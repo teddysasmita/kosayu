@@ -954,6 +954,21 @@ class Action extends CComponent {
    		Yii::app()->db->createCommand()->update('salespos', array('status'=>$status ), 
    			'regnum = :p_regnum', array(':p_regnum'=>$invnum));
    	}
+   	
+   	public static function saveItemBatch($id, $iditem, $batchcode, $iditem, $buyprice, $baseprice = 0)
+   	{
+   		Yii::app()->db->createCommand()
+   			->insert('itembatch', 
+   				array('id'=>$id, 'iditem'=>$iditem, 'batchcode'=>$batchcode, 
+   					'iditem'=>$iditem, 'buyprice'=>$buyprice, 'baseprice'=>$baseprice));
+   	}
+   	
+   	public static function deleteItemBatch($id)
+   	{
+   		Yii::app()->db->createCommand()
+   			->delete('itembatch', 'id = :p_id',
+   				array('id'=>$id));
+   	}
 }
 
 ?>

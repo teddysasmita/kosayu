@@ -508,12 +508,16 @@ class DefaultController extends Controller
             
             foreach($details as $d) {
             	if ($d['sellprice'] > 0) {
-            		$sellprice = new Sellingprices();
-	            	$sellprice->id = $d['iddetail'];
-	            	$sellprice->regnum = idmaker::getRegNum('AC11');
-	            	$sellprice->idatetime = $model->idatetime;
-	            	$sellprice->iditem = lookup::ItemCodeFromItemID($d['iditem']);
-	            	$sellprice->normalprice = $d['sellprice'];
+            		$sellprice = Sellingprices::model()->findByPk($d['iddetail']);
+            		if (is_null($sellprice)) {
+            			$sellprice = new Sellingprices();
+	            		$sellprice->id = $d['iddetail'];
+            			$sellprice->regnum = idmaker::getRegNum('AC11');
+            		}
+            		$sellprice->idatetime = $model->idatetime;
+	            	//$sellprice->iditem = lookup::ItemCodeFromItemID($d['iditem']);
+            		$sellprice->iditem = $d['batchcode'];
+            		$sellprice->normalprice = $d['sellprice'];
 	            	$sellprice->minprice = $d['sellprice'];
 	            	$sellprice->approvalby = 'Pak Made';
 	            	$sellprice->datetimelog = $d['datetimelog'];
@@ -525,6 +529,8 @@ class DefaultController extends Controller
 	            	}
 	            	idmaker::saveRegNum('AC11', $sellprice->regnum);
             	}
+            	Action::saveItemBatch($d['iddetail'], $d['iditem'], $d['batchcode'], 
+            		$d['iditem'], $d['buyprice'], $d['baseprice']);
             }
         }
         
@@ -549,8 +555,8 @@ class DefaultController extends Controller
         			if (!is_null($sellprice))
         				$sellprice->delete();
         		}
+        		Action::deleteItemBatch($d['iddetail']);
         	}
-        
         }
         
         protected function afterDelete()

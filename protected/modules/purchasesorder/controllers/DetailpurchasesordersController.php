@@ -69,13 +69,17 @@ class DetailpurchasesordersController extends Controller
                     //posting into session
                     $temp[]=$_POST['Detailpurchasesorders'];
                     
-                    if ($model->validate()) {
-                        Yii::app()->session['Detailpurchasesorders']=$temp;
-                        if ($master=='create')
-                            $this->redirect(array('default/createdetail'));
-                        else if($master=='update')
-                            $this->redirect(array('default/updatedetail'));
-                    }    
+                    if (isset($_POST['yt0'])) {
+	                    if ($model->validate()) {
+	                        Yii::app()->session['Detailpurchasesorders']=$temp;
+	                        if ($master=='create')
+	                            $this->redirect(array('default/createdetail'));
+	                        else if($master=='update')
+	                            $this->redirect(array('default/updatedetail'));
+	                    }    
+                    } else if ($_POST['command'] == 'setCode') {
+                    	$this->getBatchCodeInfo($model);	
+                    }
                 }                
 
                 $this->render('create',array(
@@ -316,4 +320,27 @@ class DetailpurchasesordersController extends Controller
             $this->tracker->init();
             $this->tracker->logActivity($this->formid, $action);
         }
+	
+	protected function getBatchCodeInfo(& $model)
+	{
+		$databuy = Yii::app()->db->createCommand()
+        	->select()->from("itembatch")
+        	->where("batchcode = :p_batchcode", array(':p_batchcode'=>$model->batchcode))
+        	->order("id desc")
+        	->queryRow();
+        
+		if ($databuy) {
+			$datasell = Yii::app()->db->createCommand()
+        		->select('normalprice')->from("sellingprices")
+        		->where("iditem = :p_batchcode", array(':p_batchcode'=>$model->batchcode))
+        		->order("id desc")
+        		->queryScalar();
+        
+			$model->iditem = $databuy['iditem'];
+			$model->buyprice = $databuy['buyprice'];
+			if ($datasell) {
+				$model->sellprice = $datasell;
+			}
+		}
+	}
 }
