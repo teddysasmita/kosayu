@@ -74,11 +74,12 @@ class MYPDF extends TCPDF {
 			if (($i > 0) && ($i % ($this->maxrows-1) == 0)) {
 				//$this->checkPageBreak(6, '');
 				//$this->Cell(array_sum($this->headerwidths), 0, '', 'T', 1);
-				$this->setX(10);
-				$this->Cell(130, 5, 'Total', 'LTB', 0, 'R');
-				$this->Cell(65, 5, number_format($this->total), 'LTBR', 1, 'R');
+				
 			}
 		}
+		$this->setX(10);
+		$this->Cell(130, 5, 'Total', 'LTB', 0, 'R');
+		$this->Cell(65, 5, number_format($this->total), 'LTBR', 1, 'R');
 		//$this->Cell(array_sum($this->headerwidths), 0, '', 'T');
 	}
 	

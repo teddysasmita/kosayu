@@ -70,7 +70,7 @@ class MYPDF extends TCPDF {
 				$this->Cell($this->headerwidths[2], 6, ' ', 'LR', 0, 'R', $fill);
 				$this->Cell($this->headerwidths[3], 6, ' ', 'LR', 0, 'R', $fill);
 				$this->Cell($this->headerwidths[4], 6, ' ', 'LR', 0, 'R', $fill);
-				$this->Cell($this->headerwidths[4], 6, ' ', 'LR', 1, 'R', $fill);
+				$this->Cell($this->headerwidths[5], 6, ' ', 'LR', 1, 'R', $fill);
 				//$this->ln();
 			}
 			$this->setX(10);
@@ -128,11 +128,12 @@ class MYPDF extends TCPDF {
 		$this->SetFont('Courier', 'B');
 		$this->setXY(10, 20);
 		$this->Cell(20, 5, 'Tgl', 'LT', 0, 'C');
-		$this->Cell(40, 5, substr($this->data->idatetime, 0, 10), 'LTR', 0, 'C');
+		$this->Cell(35, 5, substr($this->data->idatetime, 0, 10), 'LTR', 0, 'C');
 		$this->Cell(20, 5, 'Nomor', 'LTR', 0, 'C');
-		$this->Cell(40, 5, $this->data->regnum, 'LTRB', 0, 'C');
+		$this->Cell(35, 5, $this->data->regnum, 'LTRB', 0, 'C');
+		$this->Cell(20, 5, 'Tgl Bayar', 'LTR', 0, 'C');
+		$this->Cell(35, 5, substr($this->data->pdatetime, 0, 10), 'LTRB', 0, 'C');
 		//space
-		$this->Cell(75, 5, '', 'LTRB', 0, 'C');
 
 		$this->setXY(10, 26);
 		$this->Cell(20, 5, 'Pemasok', 'LTB', 0, 'C');
