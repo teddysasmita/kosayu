@@ -660,14 +660,13 @@ class DefaultController extends Controller
         
         	$model=$this->loadModel($id);
 			$detailmodel=$this->loadDetails($id);
-        	$detailmodel2=$this->loadDetails2($id);
 			Yii::import('application.vendors.tcpdf.*');
 			require_once ('tcpdf.php');
 			Yii::import('application.modules.consignpurchases.components.*');
 			require_once('print_consignpurchases.php');
 			ob_clean();
         
-			execute($model, $detailmodel, $detailmodel2);
+			execute($model, $detailmodel);
 		} else {
 			throw new CHttpException(404,'You have no authorization for this operation.');
 		}
