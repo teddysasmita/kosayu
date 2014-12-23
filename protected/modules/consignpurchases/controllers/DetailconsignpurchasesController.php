@@ -342,7 +342,7 @@ class DetailconsignpurchasesController extends Controller
 			$model->iditem = $databuy['iditem'];
 			$model->buyprice = $databuy['buyprice'];
 			if ($datasell) {
-				$model->sellprice = $datasell['normalprice'];
+				$model->sellprice = $datasell;
 			}			
 		}
 	}
