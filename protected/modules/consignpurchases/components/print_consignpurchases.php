@@ -231,7 +231,7 @@ function execute($model, $detailmodel) {
 	// ---------------------------------------------------------
 	
 	//Close and output PDF document
-	$pdf->Output('Beli Putus'.idmaker::getDateTime().'.pdf', 'D');
+	$pdf->Output('Beli Konsinyasi'.idmaker::getDateTime().'.pdf', 'D');
 }
 //============================================================+
 // END OF FILE                                                
