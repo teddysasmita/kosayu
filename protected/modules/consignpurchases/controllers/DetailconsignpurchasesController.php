@@ -69,13 +69,17 @@ class DetailconsignpurchasesController extends Controller
                     //posting into session
                     $temp[]=$_POST['Detailconsignpurchases'];
                     
-                    if ($model->validate()) {
-                        Yii::app()->session['Detailconsignpurchases']=$temp;
-                        if ($master=='create')
-                            $this->redirect(array('default/createdetail'));
-                        else if($master=='update')
-                            $this->redirect(array('default/updatedetail'));
-                    }    
+                    if ($_POST['yw0']) {
+	                    if ($model->validate()) {
+	                        Yii::app()->session['Detailconsignpurchases']=$temp;
+	                        if ($master=='create')
+	                            $this->redirect(array('default/createdetail'));
+	                        else if($master=='update')
+	                            $this->redirect(array('default/updatedetail'));
+	                    }
+                    } else if ($_POST['command'] == 'setCode') {
+                    	$this->getBatchCodeInfo($model);	
+                    }
                 }                
 
                 $this->render('create',array(
@@ -319,4 +323,18 @@ class DetailconsignpurchasesController extends Controller
             $this->tracker->init();
             $this->tracker->logActivity($this->formid, $action);
         }
+        
+	protected function getBatchInfo(& $model) 
+	{
+		$data = Yii::app()->db->createCommand()
+			->select()->from("itembatch")
+			->where("batchcode = :p_batchcode", array(':p_batchcode'=>$model->batchcode))
+			->order("id desc")
+			->queryRow();
+
+		if ($data) {
+			$model->iditem = $data['iditem'];
+			$model->buyprice = $data['buyprice'];	
+		}
+	}
 }

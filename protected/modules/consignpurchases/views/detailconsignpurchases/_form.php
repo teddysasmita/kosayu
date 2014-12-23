@@ -9,6 +9,10 @@
 <?php
  
     $itemScript=<<<EOS
+	$('#Detailconsignpurchases_batchcode').change(function(){
+		$('#command').val('setCode');
+		$('#detailconsignpurchases-form').submit();
+	});
       $('#Detailconsignpurchases_itemname').focus(function(){
          $('#ItemDialog').dialog('open');
       });
@@ -52,6 +56,7 @@ EOS;
          echo $form->hiddenField($model,'datetimelog');
          echo $form->hiddenField($model,'iditem');
          echo $form->hiddenField($model, 'idunit');
+         echo CHtml::hiddenField('command');
         ?>
 
 	<div class="row">
