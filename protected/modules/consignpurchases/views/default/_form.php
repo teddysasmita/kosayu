@@ -67,7 +67,7 @@ EOS;
 		<?php echo $form->labelEx($model,'idatetime'); ?>
             <?php
                $this->widget('zii.widgets.jui.CJuiDatePicker',array(
-                  'name'=>'Detailconsignpurchases[idatetime]',
+                  'name'=>'consignpurchases[idatetime]',
                      // additional javascript options for the date picker plugin
                   'options'=>array(
                      'showAnim'=>'fold',
@@ -87,7 +87,7 @@ EOS;
 		<?php echo $form->labelEx($model,'pdatetime'); ?>
             <?php
                $this->widget('zii.widgets.jui.CJuiDatePicker',array(
-                  'name'=>'Detailconsignpurchases[pdatetime]',
+                  'name'=>'consignpurchases[pdatetime]',
                      // additional javascript options for the date picker plugin
                   'options'=>array(
                      'showAnim'=>'fold',

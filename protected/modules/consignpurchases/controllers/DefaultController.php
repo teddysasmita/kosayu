@@ -492,8 +492,7 @@ class DefaultController extends Controller
             $model->id=$idmaker->getCurrentID2();
             $model->idatetime=$idmaker->getDateTime();
             $model->regnum=$idmaker->getRegNum($this->formid);
-            $lookup=new lookup();
-            $model->status=$lookup->reverseOrderStatus('Belum Diproses');
+            $model->status='0';
             $model->paystatus='0';
             $model->discount=0;
             $model->total=0;
