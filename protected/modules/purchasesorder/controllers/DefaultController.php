@@ -623,10 +623,10 @@ class DefaultController extends Controller
 
         protected function loadDetails($id)
         {
-         $sql="select * from detailpurchasesorders where id='$id'";
-         $details=Yii::app()->db->createCommand($sql)->queryAll();
+         	$sql="select * from detailpurchasesorders where id='$id'";
+         	$details=Yii::app()->db->createCommand($sql)->queryAll();
 
-         return $details;
+         	return $details;
         }
         
         protected function loadDetails2($id)
