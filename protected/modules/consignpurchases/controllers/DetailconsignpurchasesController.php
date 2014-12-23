@@ -69,7 +69,7 @@ class DetailconsignpurchasesController extends Controller
                     //posting into session
                     $temp[]=$_POST['Detailconsignpurchases'];
                     
-                    if ($_POST['yw0']) {
+                    if ($_POST['yt0']) {
 	                    if ($model->validate()) {
 	                        Yii::app()->session['Detailconsignpurchases']=$temp;
 	                        if ($master=='create')
