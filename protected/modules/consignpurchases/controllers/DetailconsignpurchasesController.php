@@ -324,7 +324,7 @@ class DetailconsignpurchasesController extends Controller
             $this->tracker->logActivity($this->formid, $action);
         }
         
-	protected function getBatchInfo(& $model) 
+	protected function getBatchCodeInfo(& $model) 
 	{
 		$data = Yii::app()->db->createCommand()
 			->select()->from("itembatch")
