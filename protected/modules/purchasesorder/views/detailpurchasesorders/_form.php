@@ -57,6 +57,7 @@ EOS;
          echo $form->hiddenField($model,'datetimelog');
          echo $form->hiddenField($model,'iditem');
          echo $form->hiddenField($model, 'idunit');
+         echo CHtml::hiddenField('command');
         ?>
         
     <div class="row">
