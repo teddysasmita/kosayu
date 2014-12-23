@@ -55,12 +55,16 @@ EOS;
       <?php 
         echo CHtml::hiddenField('command', '', array('id'=>'command'));
         echo $form->hiddenField($model, 'id');
+        echo $form->hiddenField($model, 'regnum');
         echo $form->hiddenField($model, 'idsupplier');
-        echo $form->hiddenField($model, 'userlog');
-        echo $form->hiddenField($model, 'datetimelog');
+        echo $form->hiddenField($model, 'total');
+        echo $form->hiddenField($model, 'discount');
         echo $form->hiddenField($model, 'status');
         echo $form->hiddenField($model, 'paystatus');
-        echo $form->hiddenField($model, 'regnum');
+        echo $form->hiddenField($model, 'userlog');
+        echo $form->hiddenField($model, 'datetimelog');
+        
+        
       ?>
         
 	<div class="row">
