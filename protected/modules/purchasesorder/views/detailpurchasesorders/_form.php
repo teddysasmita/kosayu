@@ -12,7 +12,7 @@
     
 	$('#Detailpurchasesorders_batchcode').change(function(){
 		$('#command').val('setCode');
-		$('#detailconsignpurchases-form').submit();
+		$('#detailpurchasesorders-form').submit();
 	});
       $('#Detailpurchasesorders_itemname').focus(function(){
          $('#ItemDialog').dialog('open');
