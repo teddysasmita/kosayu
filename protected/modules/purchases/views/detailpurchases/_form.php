@@ -9,6 +9,10 @@
 <?php
  
     $itemScript=<<<EOS
+	$('#Detailpurchases_batchcode').change(function(){
+		$('#command').val('setCode');
+		$('#detailpurchases-form').submit();
+	});
       $('#Detailpurchases_itemname').focus(function(){
          $('#ItemDialog').dialog('open');
       });
@@ -52,8 +56,15 @@ EOS;
          echo $form->hiddenField($model,'datetimelog');
          echo $form->hiddenField($model,'iditem');
          echo $form->hiddenField($model, 'idunit');
+         echo CHtml::hiddenField('command');
         ?>
 
+	<div class="row">
+		<?php echo $form->labelEx($model,'batchcode'); ?>
+		<?php echo $form->textField($model,'batchcode'); ?>
+		<?php echo $form->error($model,'batchcode'); ?>
+	</div>
+	
 	<div class="row">
 		<?php echo $form->labelEx($model,'iditem'); ?>
 		<?php 
@@ -97,11 +108,7 @@ EOS;
 	</div>
 
 	
-	<div class="row">
-		<?php echo $form->labelEx($model,'batchcode'); ?>
-		<?php echo $form->textField($model,'batchcode'); ?>
-		<?php echo $form->error($model,'batchcode'); ?>
-	</div>
+	
 	
 	<div class="row">
 		<?php echo $form->labelEx($model,'qty'); ?>
