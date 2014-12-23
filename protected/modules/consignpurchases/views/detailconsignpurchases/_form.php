@@ -59,6 +59,12 @@ EOS;
          echo CHtml::hiddenField('command');
         ?>
 
+    <div class="row">
+		<?php echo $form->labelEx($model,'batchcode'); ?>
+		<?php echo $form->textField($model,'batchcode'); ?>
+		<?php echo $form->error($model,'batchcode'); ?>
+	</div>
+	    
 	<div class="row">
 		<?php echo $form->labelEx($model,'iditem'); ?>
 		<?php 
@@ -101,12 +107,6 @@ EOS;
 		<?php echo $form->error($model,'iditem'); ?>
 	</div>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'batchcode'); ?>
-		<?php echo $form->textField($model,'batchcode'); ?>
-		<?php echo $form->error($model,'batchcode'); ?>
-	</div>
-	
 	<div class="row">
 		<?php echo $form->labelEx($model,'qty'); ?>
 		<?php echo $form->textField($model,'qty'); ?>
