@@ -665,7 +665,11 @@ class DefaultController extends Controller
         
         protected function beforeDelete(& $model)
         {
-            
+        	$details = $this->loadDetails($model->id);
+        	 
+        	foreach($details as $d) {
+        		Action::deleteItemBatch($d['iddetail']);
+        	}
         }
         
         protected function afterDelete()
