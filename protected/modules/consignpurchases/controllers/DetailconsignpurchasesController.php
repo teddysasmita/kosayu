@@ -339,10 +339,10 @@ class DetailconsignpurchasesController extends Controller
 				->order("id desc")
 				->queryScalar();
 
-			$model->iditem = $data['iditem'];
-			$model->buyprice = $data['buyprice'];
+			$model->iditem = $databuy['iditem'];
+			$model->buyprice = $databuy['buyprice'];
 			if ($datasell) {
-				$model->sellprice = $data['normalprice'];
+				$model->sellprice = $datasell['normalprice'];
 			}			
 		}
 	}
