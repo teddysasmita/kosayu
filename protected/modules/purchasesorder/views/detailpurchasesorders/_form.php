@@ -58,6 +58,12 @@ EOS;
          echo $form->hiddenField($model,'iditem');
          echo $form->hiddenField($model, 'idunit');
         ?>
+        
+    <div class="row">
+		<?php echo $form->labelEx($model,'batchcode'); ?>
+		<?php echo $form->textField($model,'batchcode'); ?>
+		<?php echo $form->error($model,'batchcode'); ?>
+	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'iditem'); ?>

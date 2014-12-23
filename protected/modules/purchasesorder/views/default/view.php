@@ -70,7 +70,11 @@ $this->menu=array(
                   'name'=>'iditem',
                   'value'=>"lookup::ItemNameFromItemID(\$data['iditem'])"
               ),
-             array(
+         	array(
+				'header'=>'Kode Batch',
+				'name'=>'batchcode',
+         	),
+         	array(
                  'header'=>'Qty',
                  'name'=>'qty',
              ),
