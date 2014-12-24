@@ -133,6 +133,10 @@ EOS;
     $this->widget('zii.widgets.grid.CGridView', array(
             'dataProvider'=>$dataProvider,
             'columns'=>array(
+			array(
+            	'header'=>'Kode Batch',
+            	'name'=>'batchcode',
+            ),
             array(
                'header'=>'Item Name',
                'name'=>'iditem',
