@@ -25,7 +25,7 @@ class MYPDF extends TCPDF {
 		$this->data = $data;
 		$this->detaildata = $detaildata;
 		$this->headernames = array('Kode', 'Nama Barang', 'Jmlh', 'Harga@', 'Total');
-		$this->headerwidths = array(30, 90, 15, 25, 30);
+		$this->headerwidths = array(30, 90, 15, 30, 30);
 	}
 
 	// Colored table
