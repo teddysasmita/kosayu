@@ -21,7 +21,7 @@ $jq=<<<EOH
    $('#adddetail').click(function(event){
      var mainform;
      var hiddenvar;
-     mainform=$('#stockentries-form');
+     mainform=$('#purchasesreturs-form');
      $('#command').val('adddetail');
      mainform.submit();
      event.preventDefault();
