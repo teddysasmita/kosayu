@@ -159,6 +159,10 @@ EOS;
             'dataProvider'=>$dataProvider,
             'columns'=>array(
             array(
+            	'header'=>'Kode Batch',
+            	'name'=>'batchcode',
+            ),
+            array(
                'header'=>'Item Name',
                'name'=>'iditem',
                'value'=>"lookup::ItemNameFromItemID(\$data['iditem'])"
