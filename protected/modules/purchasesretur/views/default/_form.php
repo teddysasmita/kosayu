@@ -26,22 +26,6 @@
          var activename=$('#Purchasesreturs_suppliername').val();
          $('#Purchasesreturs_idsupplier').val(
             supplierids[suppliernames.indexOf(activename)]);
-         $.getJSON('index.php?r=LookUp/getUnsettledPO',{ idsupplier: $('#Purchasesreturs_idsupplier').val() },
-            function(data) {
-               $('#Purchasesreturs_idpurchaseorder').html('');
-               var ct=0;
-               $('#Purchasesreturs_idpurchaseorder').append(
-                  "<option value=''>Harap Pilih</option>"
-               );
-               while(ct < data.length) {
-                  if (data[ct].id !== '') {
-                     $('#Purchasesreturs_idpurchaseorder').append(
-                        '<option value='+data[ct].id+'>'+unescape(data[ct].regnum)+'</option>'
-                     );
-                  };
-                  ct++;
-               };
-            });
       });
       
       $('#Purchasesreturs_idpurchaseorder').change(
