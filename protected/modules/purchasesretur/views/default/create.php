@@ -11,10 +11,10 @@ $this->breadcrumbs=array(
 $this->menu=array(
 	/*array('label'=>'Daftar', 'url'=>array('index')),
 	array('label'=>'Pengaturan', 'url'=>array('admin')),
-   array('label'=>'Tambah Detil', 'url'=>array('detailstockentries/create', 
+   */array('label'=>'Tambah Detil', 'url'=>array('detailpurchasesreturs/create', 
       'id'=>$model->id),
       'linkOptions'=>array('id'=>'adddetail')),  
-    */
+    
 );
 
 $jq=<<<EOH
