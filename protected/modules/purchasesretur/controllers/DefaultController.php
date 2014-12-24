@@ -329,6 +329,26 @@ class DefaultController extends Controller
             }
         }
         
+        public function actionPrint($id)
+        {
+        	if(Yii::app()->authManager->checkAccess($this->formid.'-List',
+        			Yii::app()->user->id))  {
+        					
+				$masterdata = $this->loadModel($id);
+        		if ($masterdata) {
+        			$detaildata = $this->loadDetails($id);
+        		};
+        		Yii::import('application.vendors.tcpdf.*');
+        		require_once ('tcpdf.php');
+        		Yii::import('application.modules.purchasesretur.components.*');
+        		require_once('print_purchasesretur.php');
+        		ob_clean();
+        					
+        		execute($masterdata, $detaildata);
+        	} else {
+        		throw new CHttpException(404,'You have no authorization for this operation.');
+        	}
+        }
 	/**
 	 * Returns the data model based on the primary key given in the GET variable.
 	 * If the data model is not found, an HTTP exception will be raised.
@@ -575,48 +595,7 @@ class DefaultController extends Controller
          $this->tracker->logActivity($this->formid, $action);
      }
      
-      private function loadPO($idpo, $id)
-      {
-        $details=array();
-
-        $dataMemo=Yii::app()->db->createCommand()
-           ->select()
-           ->from('purchasesmemos')
-           ->where('idpurchaseorder=:idpo', array('idpo'=>$idpo))
-           ->order(array('id desc'))
-           ->queryAll();
-        if(count($dataMemo)) {
-           $lastMemoID=$dataMemo[0]['id'];
-           $dataPO=Yii::app()->db->createCommand()
-              ->select()
-              ->from('detailpurchasesmemos')
-              ->where('id = :p_id', array(':p_id'=>$lastMemoID))
-              ->queryAll();
-        } else {
-           $dataPO=Yii::app()->db->createCommand()
-              ->select()
-              ->from('detailpurchasesorders')
-              ->where('id = :p_id', array(':p_id'=>$idpo))
-              ->queryAll();
-        }
-        Yii::app()->session->remove('Detailpurchasesreturs');
-         foreach($dataPO as $row) {
-            $detail['iddetail']=idmaker::getCurrentID2();
-            $detail['id']=$id;
-            $detail['iditem']=$row['iditem'];
-            $detail['userlog']=Yii::app()->user->id;
-            $detail['datetimelog']=idmaker::getDateTime();
-            $detail['receivedqty']=$row['qty'];
-            $detail['prevprice']=$row['price'];
-            $detail['price']=$row['price'];
-            $detail['discount']=$row['discount'];
-            $detail['cost1']=$row['cost1'];
-            $detail['cost2']=$row['cost2'];
-            $detail['qty']=$row['qty'];
-            $details[]=$detail; 
-        }
-        Yii::app()->session['Detailpurchasesreturs']=$details;
-      }
+      
      
       
 }
