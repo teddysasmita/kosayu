@@ -161,7 +161,7 @@ EOS;
                         'visible'=>'false'
                      )
                   ),
-                  'updateButtonUrl'=>"Action::decodeUpdateDetailPurchaseMemoUrl(\$data)",
+                  'updateButtonUrl'=>"Action::decodeUpdateDetailPurchasesReturUrl(\$data)",
                )
           ),
     ));
