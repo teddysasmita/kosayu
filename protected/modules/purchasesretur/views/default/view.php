@@ -31,10 +31,6 @@ $this->menu=array(
         'label'=>'Nama Pemasok',
         'value'=>lookup::SupplierNameFromSupplierID($model->idsupplier)
       ),
-      array(
-         'label'=>'Nomor PO',
-         'value'=>lookup::PurchasesOrderNumFromID($model->idpurchaseorder),
-      ),
 		array(
                'label'=>'Userlog',
                'value'=>lookup::UserNameFromUserID($model->userlog),
