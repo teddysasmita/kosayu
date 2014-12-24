@@ -15,7 +15,7 @@ $this->menu=array(
 
 ?>
 
-<h1>Retur Pembelian</h1>
+<h1>Retur Barang ke Pemasok</h1>
 
 <?php    $data=Yii::app()->tracker->createCommand()->
        select()->from('purchasesreturs')->where('id=:id',array(':id'=>$model->id))->queryAll();

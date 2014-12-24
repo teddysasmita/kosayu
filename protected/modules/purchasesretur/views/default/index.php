@@ -14,7 +14,7 @@ $this->menu=array(
 );
 ?>
 
-<h1>Retur Pembelian</h1>
+<h1>Retur Barang ke Pemasok</h1>
 
 <?php $this->widget('zii.widgets.CListView', array(
 	'dataProvider'=>$dataProvider,
