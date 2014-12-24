@@ -305,17 +305,18 @@ EOS;
    public function actionGetItem($name)
    {
 		if (!Yii::app()->user->isGuest) {
-	   		$data=Yii::app()->db->createCommand()->selectDistinct('concat(code, \'-\', name)')->from('items')
+	   		/*
+	   			$data=Yii::app()->db->createCommand()->selectDistinct('concat(code, \'-\', name)')->from('items')
 	              ->where('code like :p_code and type = :p_type', 
 	              	array(':p_code'=>$name.'%',':p_type'=>1))
 	              ->order('code, name')
 	              ->queryColumn();
-	   		
-	   		if (!$data) 
-	   			$data=Yii::app()->db->createCommand()->selectDistinct('concat(code, \'-\', name)')->from('items')
+	   		*/
+	   		//if (!$data) 
+	   			$data=Yii::app()->db->createCommand()->selectDistinct('name')->from('items')
 	   				->where('name like :itemname and type = :p_type',
 	   					array(':itemname'=>'%'.$name.'%',':p_type'=>1))
-	   				->order('code, name')
+	   				->order('name')
 	   				->queryColumn();
 	      
 	      	if(count($data)) { 
@@ -334,17 +335,17 @@ EOS;
    public function actionGetCItem($name)
    {
    	if (!Yii::app()->user->isGuest) {
-   		$data=Yii::app()->db->createCommand()->selectDistinct('concat(code, \'-\', name)')->from('items')
+   		/*$data=Yii::app()->db->createCommand()->selectDistinct('concat(code, \'-\', name)')->from('items')
    			->where('code like :p_code and type = :p_type',
    				array(':p_code'=>$name.'%', ':p_type'=>2))
    			->order('code, name')
    			->queryColumn();
-
-   		if (!$data) 
-	   		$data=Yii::app()->db->createCommand()->selectDistinct('concat(code, \'-\', name)')->from('items')
+		*/
+   		//if (!$data) 
+	   		$data=Yii::app()->db->createCommand()->selectDistinct('name')->from('items')
    				->where('name like :itemname and type = :p_type',
    					array(':itemname'=>'%'.$name.'%', ':p_type'=>2))
-   				->order('code, name')
+   				->order('name')
    				->queryColumn();
    		 
    		if(count($data)) {
