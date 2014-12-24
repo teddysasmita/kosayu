@@ -60,11 +60,6 @@ $this->menu=array(
              'value'=>"lookup::ItemNameFromItemID(\$data['iditem'])"
          ),
       array(
-         'header'=>'Diterima',
-         'type'=>'number',
-         'name'=>'receivedqty',
-      ),
-      array(
          'header'=>'Harga',
          'type'=>'number',
          'name'=>'price',
