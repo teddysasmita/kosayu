@@ -8,7 +8,6 @@
  * @property string $regnum
  * @property string $idatetime
  * @property string $idsupplier
- * @property string $idpurchaseorder
  * @property double $total
  * @property double $discount
  * @property string $remark
@@ -33,15 +32,15 @@ class Purchasesreturs extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id, regnum, idatetime, idsupplier, idpurchaseorder, total, discount, userlog, datetimelog', 'required'),
+			array('id, regnum, idatetime, idsupplier, total, discount, userlog, datetimelog', 'required'),
 			array('total, discount', 'numerical'),
-			array('id, idsupplier, idpurchaseorder, userlog', 'length', 'max'=>21),
+			array('id, idsupplier, userlog', 'length', 'max'=>21),
 			array('regnum', 'length', 'max'=>12),
 			array('idatetime, datetimelog', 'length', 'max'=>19),
 			array('remark', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, regnum, idatetime, idsupplier, idpurchaseorder, total, discount, remark, userlog, datetimelog', 'safe', 'on'=>'search'),
+			array('id, regnum, idatetime, idsupplier, total, discount, remark, userlog, datetimelog', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -66,7 +65,6 @@ class Purchasesreturs extends CActiveRecord
 			'regnum' => 'Nomor Urut',
 			'idatetime' => 'Tanggal',
 			'idsupplier' => 'Pemasok',
-			'idpurchaseorder' => 'Nomor PO',
 			'total' => 'Total',
 			'discount' => 'Diskon',
 			'remark' => 'Catatan',
@@ -97,7 +95,6 @@ class Purchasesreturs extends CActiveRecord
 		$criteria->compare('regnum',$this->regnum,true);
 		$criteria->compare('idatetime',$this->idatetime,true);
 		$criteria->compare('idsupplier',$this->idsupplier,true);
-		$criteria->compare('idpurchaseorder',$this->idpurchaseorder,true);
 		$criteria->compare('total',$this->total);
 		$criteria->compare('discount',$this->discount);
 		$criteria->compare('remark',$this->remark,true);

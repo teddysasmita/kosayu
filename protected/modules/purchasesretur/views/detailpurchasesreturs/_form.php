@@ -7,7 +7,14 @@
 <div class="form">
 
 <?php
-   
+$itemScript=<<<EOS
+	$('#Detailpurchasesreturs_batchcode').change(function(){
+		$('#command').val('setCode');
+		$('#detailpurchasesreturs-form').submit();
+	});
+EOS;
+Yii::app()->clientScript->registerScript('itemscript', $itemScript, CClientScript::POS_READY);
+
    $form=$this->beginWidget('CActiveForm', array(
 	'id'=>'detailpurchasesreturs-form',
 	'enableAjaxValidation'=>true,
@@ -24,14 +31,20 @@
          echo $form->hiddenField($model,'userlog');
          echo $form->hiddenField($model,'datetimelog');
          echo $form->hiddenField($model,'iditem');
-         echo $form->hiddenField($model, 'prevprice');
-         echo $form->hiddenField($model, 'prevcost1');
-         echo $form->hiddenField($model, 'prevcost2');
+         echo $form->hiddenField($model,'price');
+         echo $form->hiddenField($model,'discount');
+         echo CHtml::hiddenField('command');
         ?>
+    <div class="row">
+		<?php echo $form->labelEx($model,'batchcode'); ?>
+		<?php echo $form->textField($model,'batchcode'); ?>
+		<?php echo $form->error($model,'batchcode'); ?>
+	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'iditem'); ?>
-		<?php echo CHtml::label(lookup::ItemNameFromItemID($model->iditem), false); ?>
+		<?php echo CHtml::tag('span', array('id'=>"itemname"),
+				lookup::ItemNameFromItemID($model->iditem)); ?>
 		<?php echo $form->error($model,'iditem'); ?>
 	</div>
       
@@ -41,48 +54,20 @@
 		<?php echo $form->error($model,'qty'); ?>
 	</div>
       
-   <div class="row">
-		<?php echo $form->labelEx($model,'prevprice'); ?>
-		<?php echo CHtml::label(number_format($model->prevprice), false); ?>
-		<?php echo $form->error($model,'prevprice'); ?>
-	</div>
-
 	<div class="row">
 		<?php echo $form->labelEx($model,'price'); ?>
-		<?php echo $form->textField($model,'price'); ?>
+		<?php echo CHtml::tag('span', array('id'=>"price"),
+				$model->price); ?>
 		<?php echo $form->error($model,'price'); ?>
 	</div>
 	
 	<div class="row">
 		<?php echo $form->labelEx($model,'discount'); ?>
-		<?php echo $form->textField($model,'discount'); ?>
+		<?php echo CHtml::tag('span', array('id'=>"discount"),
+				$model->discount); ?>
 		<?php echo $form->error($model,'discount'); ?>
 	</div>
    
-   <div class="row">
-		<?php echo $form->labelEx($model,'prevcost1'); ?>
-		<?php echo CHtml::label(number_format($model->prevcost1), false); ?>
-		<?php echo $form->error($model,'prevcost1'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'cost1'); ?>
-		<?php echo $form->textField($model,'cost1'); ?>
-		<?php echo $form->error($model,'cost1'); ?>
-	</div>
-   
-   <div class="row">
-		<?php echo $form->labelEx($model,'prevcost2'); ?>
-		<?php echo CHtml::label(number_format($model->prevcost2), false); ?>
-		<?php echo $form->error($model,'prevcost2'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'cost2'); ?>
-		<?php echo $form->textField($model,'cost2'); ?>
-		<?php echo $form->error($model,'cost2'); ?>
-	</div>
-        
 	<div class="row buttons">
 		<?php echo CHtml::submitButton($mode); ?>
 	</div>

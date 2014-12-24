@@ -54,6 +54,10 @@ $this->menu=array(
    $this->widget('zii.widgets.grid.CGridView', array(
    'dataProvider'=>$dataProvider,
    'columns'=>array(
+   		array(
+   			'header'=>'Kode Batch',
+   			'name'=>'batchcode',   		
+   		),
       array(
              'header'=>'Item Name',
              'name'=>'iditem',
@@ -65,25 +69,10 @@ $this->menu=array(
          'name'=>'receivedqty',
       ),
       array(
-         'header'=>'Harga Awal',
-         'type'=>'number',
-         'name'=>'prevprice',
-      ), 
-      array(
-         'header'=>'Harga Baru',
+         'header'=>'Harga',
          'type'=>'number',
          'name'=>'price',
       ),  
-      array(
-         'header'=>'Biaya 1',
-         'type'=>'number',
-         'name'=>'cost1',
-      ),  
-      array(
-         'header'=>'Biaya 2',
-         'type'=>'number',
-         'name'=>'cost2',
-      ),
 		array(
 			'header'=>'Dikembalikan',
 			'type'=>'number',

@@ -118,21 +118,10 @@ EOS;
              'source'=>$suppliername,
            'value'=>lookup::SupplierNameFromSupplierID($model->idsupplier)
          ));
-         echo CHtml::Button('Cari PO', array( 'id'=>'searchUnsettledPO'));   
       ?>
 		<?php echo $form->error($model,'idsupplier'); ?>
 	</div>
 
-   <div class="row">
-		<?php echo $form->labelEx($model,'idpurchaseorder'); ?>
-		<?php    
-         echo $form->dropDownList($model,'idpurchaseorder',
-            array($model->idpurchaseorder=>lookup::PurchasesOrderNumFromID($model->idpurchaseorder)), 
-            array('empty'=>'Harap Pilih')
-         );
-      ?>
-		<?php echo $form->error($model,'idpurchaseorder'); ?>
-      </div>
    
    <div class="row">
 		<?php echo $form->labelEx($model,'remark'); ?>
@@ -158,37 +147,21 @@ EOS;
     $this->widget('zii.widgets.grid.CGridView', array(
             'dataProvider'=>$dataProvider,
             'columns'=>array(
-               array(
+				array(
+            		'header'=>'Kode Batch',
+            		'name'=>'batchcode',
+            	),
+				array(
                    'header'=>'Item Name',
                    'name'=>'iditem',
                    'value'=>"lookup::ItemNameFromItemID(\$data['iditem'])"
                ),
                array(
-                  'header'=>'Diterima',
-                  'type'=>'number',
-                  'name'=>'receivedqty',
-               ),
-               array(
-                  'header'=>'Harga Akhir',
-                  'type'=>'number',
-                  'name'=>'prevprice',
-               ), 
-               array(
-                  'header'=>'Harga Baru',
+                  'header'=>'Harga',
                   'type'=>'number',
                   'name'=>'price',
                ), 
-               array(
-                  'header'=>'Biaya 1',
-                  'type'=>'number',
-                  'name'=>'cost1',
-               ),
-				array(
-					'header'=>'Biaya 2',
-					'type'=>'number',
-					'name'=>'cost2',
-				), 
-               	array(
+            	array(
 					'header'=>'Dikembalikan',
 					'type'=>'number',
 					'name'=>'qty',

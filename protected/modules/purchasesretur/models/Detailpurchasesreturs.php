@@ -7,12 +7,9 @@
  * @property string $iddetail
  * @property string $id
  * @property string $iditem
- * @property double $acceptedqty
- * @property double $prevprice
+ * @property string $batchcode
  * @property double $price
  * @property double $discount
- * @property double $cost1
- * @property double $cost2
  * @property double $qty
  * @property string $userlog
  * @property string $datetimelog
@@ -35,13 +32,13 @@ class Detailpurchasesreturs extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('iddetail, id, iditem, acceptedqty, prevprice, price, discount, qty, userlog, datetimelog', 'required'),
-			array('acceptedqty, prevprice, price, discount, cost1, cost2, qty', 'numerical'),
+			array('iddetail, id, iditem, batchcode, price, discount, qty, userlog, datetimelog', 'required'),
+			array('price, discount, qty', 'numerical'),
 			array('iddetail, id, iditem, userlog', 'length', 'max'=>21),
 			array('datetimelog', 'length', 'max'=>19),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('iddetail, id, iditem, acceptedqty, prevprice, price, discount, cost1, cost2, qty, userlog, datetimelog', 'safe', 'on'=>'search'),
+			array('iddetail, id, iditem, batchcode, price, discount, qty, userlog, datetimelog', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -64,13 +61,10 @@ class Detailpurchasesreturs extends CActiveRecord
 		return array(
 			'iddetail' => 'Iddetail',
 			'id' => 'ID',
-			'iditem' => 'Iditem',
-			'acceptedqty' => 'Acceptedqty',
-			'prevprice' => 'Prevprice',
-			'price' => 'Price',
-			'discount' => 'Discount',
-			'cost1' => 'Cost1',
-			'cost2' => 'Cost2',
+			'iditem' => 'Nama Barang',
+			'batchcode' => 'Kode Batch',
+			'price' => 'Harga',
+			'discount' => 'Diskon',
 			'qty' => 'Qty',
 			'userlog' => 'Userlog',
 			'datetimelog' => 'Datetimelog',
@@ -98,12 +92,9 @@ class Detailpurchasesreturs extends CActiveRecord
 		$criteria->compare('iddetail',$this->iddetail,true);
 		$criteria->compare('id',$this->id,true);
 		$criteria->compare('iditem',$this->iditem,true);
-		$criteria->compare('acceptedqty',$this->acceptedqty);
-		$criteria->compare('prevprice',$this->prevprice);
+		$criteria->compare('batchcode',$this->batchcode);
 		$criteria->compare('price',$this->price);
 		$criteria->compare('discount',$this->discount);
-		$criteria->compare('cost1',$this->cost1);
-		$criteria->compare('cost2',$this->cost2);
 		$criteria->compare('qty',$this->qty);
 		$criteria->compare('userlog',$this->userlog,true);
 		$criteria->compare('datetimelog',$this->datetimelog,true);

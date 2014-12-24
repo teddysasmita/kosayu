@@ -330,7 +330,6 @@ class DetailpurchasesController extends Controller
         	->queryRow();
         
         	if ($databuy) {
-        
         		$model->iditem = $databuy['iditem'];
         		$model->price = $databuy['buyprice'];
         	}

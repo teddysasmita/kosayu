@@ -69,13 +69,17 @@ class DetailpurchasesretursController extends Controller
                     //posting into session
                     $temp[]=$_POST['Detailpurchasesreturs'];
                     
-                    if ($model->validate()) {
-                        Yii::app()->session['Detailpurchasesreturs']=$temp;
-                        if ($master=='create')
-                            $this->redirect(array('default/createdetail'));
-                        else if($master=='update')
-                            $this->redirect(array('default/updatedetail'));
-                    }    
+                    if (isset($_POST['yt0'])) {
+	                   if ($model->validate()) {
+	                        Yii::app()->session['Detailpurchasesreturs']=$temp;
+	                        if ($master=='create')
+	                            $this->redirect(array('default/createdetail'));
+	                        else if($master=='update')
+	                            $this->redirect(array('default/updatedetail'));
+	                    } 
+                    } else if ($_POST['command'] == 'setCode') {
+                    	$this->getBatchCodeInfo($model);	
+                    }  
                 }                
 
                 $this->render('create',array(
@@ -279,6 +283,7 @@ class DetailpurchasesretursController extends Controller
             $model->iddetail=$idmaker->getCurrentID2();
             $model->userlog=Yii::app()->user->id;
             $model->datetimelog=$idmaker->getDateTime();
+            $model->discount = 0;
         }
         
         protected function afterPost(& $model)
@@ -314,5 +319,20 @@ class DetailpurchasesretursController extends Controller
             $this->tracker=new Tracker();
             $this->tracker->init();
             $this->tracker->logActivity($this->formid, $action);
+        }
+        
+        protected function getBatchCodeInfo(& $model)
+        {
+        	$databuy = Yii::app()->db->createCommand()
+        	->select()->from("itembatch")
+        	->where("batchcode = :p_batchcode", array(':p_batchcode'=>$model->batchcode))
+        	->order("id desc")
+        	->queryRow();
+        
+        	if ($databuy) {
+        
+        		$model->iditem = $databuy['iditem'];
+        		$model->price = $databuy['buyprice'];
+        	}
         }
 }
