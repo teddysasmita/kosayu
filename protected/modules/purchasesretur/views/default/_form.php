@@ -22,7 +22,7 @@
       var supplierids=$supplierids;
       var suppliernames=$suppliernames;
       
-      $('#searchUnsettledPO').click(function() {
+      $('#Purchasesreturs_suppliername').change(function() {
          var activename=$('#Purchasesreturs_suppliername').val();
          $('#Purchasesreturs_idsupplier').val(
             supplierids[suppliernames.indexOf(activename)]);
