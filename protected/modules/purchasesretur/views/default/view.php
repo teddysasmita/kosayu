@@ -84,7 +84,7 @@ $this->menu=array(
                'visible'=>'false'
             )
          ),
-         'viewButtonUrl'=>"Action::decodeViewDetailPurchaseReturUrl(\$data)",
+         'viewButtonUrl'=>"Action::decodeViewDetailPurchasesReturUrl(\$data)",
       )      
    )));
  ?>
