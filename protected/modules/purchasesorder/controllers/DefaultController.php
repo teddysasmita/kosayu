@@ -729,4 +729,24 @@ class DefaultController extends Controller
         	$model->total=$total;
         	$model->discount=$totaldisc;
         }
+        
+        public function actionPrint($id)
+        {
+        	if(Yii::app()->authManager->checkAccess($this->formid.'-Append',
+        			Yii::app()->user->id)) {
+        		$this->trackActivity('p');
+        
+				$model=$this->loadModel($id);
+        		$detailmodel=$this->loadDetails($id);
+        		Yii::import('application.vendors.tcpdf.*');
+        		require_once ('tcpdf.php');	
+        		Yii::import('application.modules.purchasesorder.components.*');
+        		require_once('print_purchasesorder.php');
+        		ob_clean();
+        
+        		execute($model, $detailmodel);
+        	} else {
+        		throw new CHttpException(404,'You have no authorization for this operation.');
+        	}
+        }
 }
