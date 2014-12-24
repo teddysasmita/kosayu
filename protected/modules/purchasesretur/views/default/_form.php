@@ -161,7 +161,7 @@ EOS;
                         'visible'=>'false'
                      )
                   ),
-                  'updateButtonUrl'=>"Action::decodeUpdateDetailPurchasesReturUrl(\$data)",
+                  'updateButtonUrl'=>"Action::decodeUpdateDetailPurchasesReturUrl(\$data, $model->regnum)",
                )
           ),
     ));
