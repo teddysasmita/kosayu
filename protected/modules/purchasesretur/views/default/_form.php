@@ -114,7 +114,7 @@ EOS;
             $suppliername[]=$row['firstname'].' '.$row['lastname'];
          }
          $this->widget("zii.widgets.jui.CJuiAutoComplete", array(
-             'name'=>'Purchasesreturs_suppliername',
+             'name'=>'Purchasesreturs[suppliername]',
              'source'=>$suppliername,
            'value'=>lookup::SupplierNameFromSupplierID($model->idsupplier)
          ));
