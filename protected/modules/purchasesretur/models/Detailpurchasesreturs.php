@@ -34,7 +34,7 @@ class Detailpurchasesreturs extends CActiveRecord
 		return array(
 			array('iddetail, id, iditem, batchcode, price, discount, qty, userlog, datetimelog', 'required'),
 			array('price, discount, qty', 'numerical'),
-			array('iddetail, id, iditem, userlog', 'length', 'max'=>21),
+			array('iddetail, id, batchcode, iditem, userlog', 'length', 'max'=>21),
 			array('datetimelog', 'length', 'max'=>19),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
