@@ -981,6 +981,8 @@ class Action extends CComponent {
    			->insert('itembatch', 
    				array('id'=>$id, 'iditem'=>$iditem, 'batchcode'=>$batchcode, 
    					 'buyprice'=>$buyprice, 'baseprice'=>$baseprice));
+   		echo "<DIV>Here</DIV>";
+   		die;
    	}
    	
    	public static function deleteItemBatch($id)
