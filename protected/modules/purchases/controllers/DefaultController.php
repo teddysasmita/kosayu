@@ -540,11 +540,8 @@ class DefaultController extends Controller
         
         protected function beforeDelete(& $model)
         {
-        	Yii::import('application.modules.sellingprice.models.*');
         	$details = $this->loadDetails($model->id);
         	 
-        	print_r($details);
-        	die;
         	foreach($details as $d) {
         		Action::deleteItemBatch($d['iddetail']);
         	}
