@@ -66,14 +66,14 @@ $this->menu=array(
    $this->widget('zii.widgets.grid.CGridView', array(
          'dataProvider'=>$dataProvider,
          'columns'=>array(
-              array(
-                  'header'=>'Item Name',
-                  'name'=>'iditem',
-                  'value'=>"lookup::ItemNameFromItemID(\$data['iditem'])"
-              ),
          	array(
 				'header'=>'Kode Batch',
 				'name'=>'batchcode',
+         	),
+         	array(
+         		'header'=>'Item Name',
+         		'name'=>'iditem',
+         		'value'=>"lookup::ItemNameFromItemID(\$data['iditem'])"
          	),
          	array(
                  'header'=>'Qty',
