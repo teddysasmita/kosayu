@@ -209,6 +209,8 @@ class DefaultController extends Controller
 
             $detailmodels=Detailpurchases::model()->findAll('id=:p_id',array(':p_id'=>$id));
         
+            echo "Here";
+            die;
             foreach($detailmodels as $dm) {
                $this->tracker->init();
                $this->tracker->delete('detailpurchases', array('iddetail'=>$dm->iddetail));
@@ -216,8 +218,7 @@ class DefaultController extends Controller
             }
 			
             $model->delete();
-            echo "Here";
-            die;
+            
             $this->afterDelete();
 
          // if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
