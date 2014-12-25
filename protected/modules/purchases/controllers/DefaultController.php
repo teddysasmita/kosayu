@@ -522,8 +522,6 @@ class DefaultController extends Controller
             Yii::import('application.modules.sellingprice.models.*');
             $details = $this->loadDetails($model->id);
             
-            print_r($details);
-            die;
             foreach($details as $d) {
             	Action::saveItemBatch($d['iddetail'], $d['iditem'], $d['batchcode'],
             		$d['price']);
