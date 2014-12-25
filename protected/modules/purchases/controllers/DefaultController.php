@@ -207,7 +207,9 @@ class DefaultController extends Controller
             $this->beforeDelete($model);
             $this->tracker->delete('purchases', $id);
 
-            $detailmodels=Detailpurchases::model()->findAll('id=:id',array(':id'=>$id));
+            $detailmodels=Detailpurchases::model()->findAll('id=:p_id',array(':p_id'=>$id));
+            print_r($detailmodels);
+            die;
             foreach($detailmodels as $dm) {
                $this->tracker->init();
                $this->tracker->delete('detailpurchases', array('iddetail'=>$dm->iddetail));
@@ -542,9 +544,9 @@ class DefaultController extends Controller
         {
         	$details = $this->loadDetails($model->id);
         	 
-        	/*foreach($details as $d) {
+        	foreach($details as $d) {
         		Action::deleteItemBatch($d['iddetail']);
-        	}*/
+        	}
         }
         
         protected function afterDelete()
