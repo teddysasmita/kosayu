@@ -214,8 +214,10 @@ class DefaultController extends Controller
                $this->tracker->delete('detailpurchases', array('iddetail'=>$dm->iddetail));
                $dm->delete();
             }
-
+			
             $model->delete();
+            echo "Here";
+            die;
             $this->afterDelete();
 
          // if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
