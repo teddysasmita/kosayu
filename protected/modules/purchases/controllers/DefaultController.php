@@ -72,11 +72,7 @@ class DefaultController extends Controller
                       
                       $this->beforePost($model);
                       $respond=$model->save();
-                      if($respond) {
-                          $this->afterPost($model);
-                      } else {
-                          throw new CHttpException(404,'There is an error in master posting');
-                      }
+                      
                       
                       if(isset(Yii::app()->session['Detailpurchases']) ) {
                         $details=Yii::app()->session['Detailpurchases'];
@@ -84,11 +80,11 @@ class DefaultController extends Controller
                       } 
                       
                       if($respond) {
+                      	$this->afterPost($model);
                          Yii::app()->session->remove('Purchases');
                          Yii::app()->session->remove('Detailpurchases');
                          $this->redirect(array('view','id'=>$model->id));
-                      }
-
+                      }                      
                    } else if (isset($_POST['command'])){
                       // save the current master data before going to the detail page
                       if ($_POST['command']=='adddetail') {
