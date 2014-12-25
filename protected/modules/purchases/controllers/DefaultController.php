@@ -209,11 +209,12 @@ class DefaultController extends Controller
 
             $detailmodels=Detailpurchases::model()->findAll('id=:p_id',array(':p_id'=>$id));
         
-            echo "<DIV>Here</DIV>";
-            die;
+            
             foreach($detailmodels as $dm) {
                $this->tracker->init();
                $this->tracker->delete('detailpurchases', array('iddetail'=>$dm->iddetail));
+               echo "<DIV>Here</DIV>";
+               die;
                $dm->delete();
             }
 			
