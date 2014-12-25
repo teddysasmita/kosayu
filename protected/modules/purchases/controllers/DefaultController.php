@@ -544,11 +544,6 @@ class DefaultController extends Controller
         	$details = $this->loadDetails($model->id);
         	 
         	foreach($details as $d) {
-        		if ($d['sellprice'] > 0) {
-        			$sellprice = Sellingprices::model()->findByPk($d['iddetail']);
-        			if (!is_null($sellprice))
-        				$sellprice->delete();
-        		}
         		Action::deleteItemBatch($d['iddetail']);
         	}
         }
