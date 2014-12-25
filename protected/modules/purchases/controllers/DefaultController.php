@@ -542,9 +542,9 @@ class DefaultController extends Controller
         {
         	$details = $this->loadDetails($model->id);
         	 
-        	foreach($details as $d) {
+        	/*foreach($details as $d) {
         		Action::deleteItemBatch($d['iddetail']);
-        	}
+        	}*/
         }
         
         protected function afterDelete()
