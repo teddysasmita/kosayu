@@ -209,7 +209,7 @@ class DefaultController extends Controller
 
             $detailmodels=Detailpurchases::model()->findAll('id=:p_id',array(':p_id'=>$id));
         
-            echo "Here";
+            echo "<DIV>Here</DIV>";
             die;
             foreach($detailmodels as $dm) {
                $this->tracker->init();
