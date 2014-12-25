@@ -128,8 +128,8 @@ class MYPDF extends TCPDF {
 		$this->Cell(40, 5, substr($this->data->idatetime, 0, 10), 'LTR', 0, 'C');
 		$this->Cell(20, 5, 'Nomor', 'LTR', 0, 'C');
 		$this->Cell(40, 5, $this->data->regnum, 'LTRB', 0, 'C');
-		//space
-		$this->Cell(75, 5, '', 'LTRB', 0, 'C');
+		$this->Cell(25, 5, 'Tgl Bayar', 'LTR', 0, 'C');
+		$this->Cell(50, 5, $this->data->pdatetime, 'LTRB', 0, 'C');
 
 		$this->setXY(10, 26);
 		$this->Cell(20, 5, 'Pemasok', 'LTB', 0, 'C');
