@@ -38,10 +38,11 @@ $this->menu=array(
                 'label'=>'Total',
                 'value'=>number_format($model->total)
             ),
-            array(
-                'label'=>'Diskon',
-                'value'=>number_format($model->discount)
-            ),
+        array(
+            'label'=>'Diskon',
+             'value'=>number_format($model->discount)
+         ),
+		'pdatetime',
 		array(
                 'label'=>'Status',
                 'value'=>lookup::orderStatus($model->status)

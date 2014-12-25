@@ -28,6 +28,11 @@
 	<b><?php echo CHtml::encode($data->getAttributeLabel('discount')); ?>:</b>
 	<?php echo CHtml::encode(number_format($data->discount)); ?>
 	<br />
+	
+	<b><?php echo CHtml::encode($data->getAttributeLabel('pdatetime')); ?>:</b>
+	<?php echo CHtml::encode($data->pdatetime); ?>
+	<br />
+	
 
       <b><?php echo CHtml::encode($data->getAttributeLabel('userlog')); ?>:</b>
 	<?php echo CHtml::encode(lookup::UserNameFromUserID($data->userlog)); ?>
