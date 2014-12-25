@@ -21,8 +21,8 @@
    $supplierScript=<<<EOS
       var supplierids=$supplierids;
       var suppliernames=$suppliernames;
-      $('#Purchases_suppliername').change(function() {
-         var activename=$('#Purchases_suppliername').val();
+      $('#suppliername').change(function() {
+         var activename=$('#suppliername').val();
          $('#Purchases_idsupplier').val(
             supplierids[suppliernames.indexOf(activename)]);
       });
@@ -103,7 +103,7 @@ EOS;
                   $suppliername[]=$row['code'].'-'.$row['firstname'].' '.$row['lastname'];
                }
                $this->widget("zii.widgets.jui.CJuiAutoComplete", array(
-                   'name'=>'Purchases[suppliername]',
+                   'name'=>'suppliername',
                    'source'=>$suppliername,
                  'value'=>lookup::SupplierNameFromSupplierID($model->idsupplier)
                ));
