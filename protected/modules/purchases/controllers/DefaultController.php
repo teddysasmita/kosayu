@@ -208,8 +208,7 @@ class DefaultController extends Controller
             $this->tracker->delete('purchases', $id);
 
             $detailmodels=Detailpurchases::model()->findAll('id=:p_id',array(':p_id'=>$id));
-            print_r($detailmodels);
-            die;
+        
             foreach($detailmodels as $dm) {
                $this->tracker->init();
                $this->tracker->delete('detailpurchases', array('iddetail'=>$dm->iddetail));
