@@ -213,8 +213,6 @@ class DefaultController extends Controller
             foreach($detailmodels as $dm) {
                $this->tracker->init();
                $this->tracker->delete('detailpurchases', array('iddetail'=>$dm->iddetail));
-               echo "<DIV>Here</DIV>";
-               die;
                $dm->delete();
             }
 			
