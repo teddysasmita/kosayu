@@ -987,7 +987,7 @@ class Action extends CComponent {
    	{
    		Yii::app()->db->createCommand()
    			->delete('itembatch', 'id = :p_id',
-   				array('id'=>$id));
+   				array(':p_id'=>$id));
    	}
 }
 
