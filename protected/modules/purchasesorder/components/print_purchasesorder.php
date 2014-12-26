@@ -35,7 +35,7 @@ class MYPDF extends TCPDF {
 		$this->SetTextColor(0);
 		$this->SetDrawColor(0, 0, 0);
 		$this->SetLineWidth(0.3);
-		$this->SetFont('Arial', 'B');
+		$this->SetFont('Helvetica', 'B');
 		$this->SetFontSize(10);
 		
 		// Data
@@ -94,7 +94,7 @@ class MYPDF extends TCPDF {
 		$this->SetTextColor(0);
 		$this->SetDrawColor(0, 0, 0);
 		$this->SetLineWidth(0.3);
-		$this->SetFont('Arial', 'B');
+		$this->SetFont('Helvetica', 'B');
 		$this->SetFontSize(10);
 		$this->setXY(10, 115);
 		
@@ -122,7 +122,7 @@ class MYPDF extends TCPDF {
 		$this->setXY(10, 10);
 		$this->Cell(195, 10, 'Nota Pemesanan Barang', 'LTR', 1, 'C');
 		$this->SetFontSize(10);
-		$this->SetFont('Arial', 'B');
+		$this->SetFont('Helvetica', 'B');
 		$this->setXY(10, 20);
 		$this->Cell(20, 5, 'Tgl', 'LT', 0, 'C');
 		$this->Cell(35, 5, substr($this->data->idatetime, 0, 10), 'LTR', 0, 'C');
@@ -140,17 +140,17 @@ class MYPDF extends TCPDF {
 		
 		
 		
-		/*$this->SetFont('Arial', 'B');
+		/*$this->SetFont('Helvetica', 'B');
 		$this->Cell(35, 5, 'Nama Penerima', 'LTR', 0,'C');
 		$this->Cell(80, 5, $this->data->receivername, 'LTR');
-		$this->SetFont('Arial', 'B');
+		$this->SetFont('Helvetica', 'B');
 		$this->Cell(30, 5, 'Telp Penerima', 'LTR', 0,'C');
 		$this->Cell(50, 5, $this->data->receiverphone, 'LTR', 1);
 		
-		$this->SetFont('Arial', 'B');
+		$this->SetFont('Helvetica', 'B');
 		$this->Cell(35, 5, 'Alamat Penerima', 'LTR', 0,'C');
 		$this->Cell(160, 5, $this->data->receiveraddress, 'LTR', 1);
-		$this->SetFont('Arial', 'B');
+		$this->SetFont('Helvetica', 'B');
 		$this->Cell(35, 5, 'Info Kendaraan', 'LTRB', 0,'C');
 		$this->Cell(160, 5, $this->data->vehicleinfo, 'LTRB', 1);
 		*/
@@ -158,7 +158,7 @@ class MYPDF extends TCPDF {
 		$this->ln(5);
 		$this->setX(10);
 		$this->setFontSize(12);
-		$this->SetFont('Arial', 'B');
+		$this->SetFont('Helvetica', 'B');
 		
 		for($i = 0; $i < count($this->headernames); ++$i) {
 			$this->Cell($this->headerwidths[$i], 7, $this->headernames[$i], 1, 0, 'C');
