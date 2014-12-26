@@ -584,7 +584,7 @@ class DefaultController extends Controller
         	$total=0;
         	$totaldisc=0;
         	foreach ($details as $row) {
-        		$total=$total+(($row['price'])*$row['qty']);
+        		$total=$total+(($row['price']-$row['discount'])*$row['qty']);
         		$totaldisc=$totaldisc+$row['discount']*$row['qty'];
         	}
         	$model->total=$total;

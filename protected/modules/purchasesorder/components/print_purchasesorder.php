@@ -25,7 +25,7 @@ class MYPDF extends TCPDF {
 		$this->data = $data;
 		$this->detaildata = $detaildata;
 		$this->headernames = array('Kode', 'Nama Barang', 'Jmlh', 'Harga@', 'Total');
-		$this->headerwidths = array(30, 90, 15, 30, 30);
+		$this->headerwidths = array(30, 80, 15, 30, 30);
 	}
 
 	// Colored table
@@ -98,10 +98,10 @@ class MYPDF extends TCPDF {
 		$this->SetFontSize(10);
 		$this->setXY(10, 115);
 		
-		$this->Cell(43, 15, 'Pembelian', 'LTRB', 0, 'C', false,'', 0, false, 'T', 'T');
-		$this->Cell(43, 15, 'Pemeriksa', 'LTRB', 0, 'C', false,'', 0, false, 'T', 'T');
-		$this->Cell(43, 15, 'Admin', 'LTRB', 0, 'C', false,'', 0, false, 'T', 'T');
-		$this->Cell(43, 15, 'a.n Pemasok', 'LTRB', 0, 'C', false,'', 0, false, 'T', 'T');
+		$this->Cell(42, 15, 'Pembelian', 'LTRB', 0, 'C', false,'', 0, false, 'T', 'T');
+		$this->Cell(40, 15, 'Pemeriksa', 'LTRB', 0, 'C', false,'', 0, false, 'T', 'T');
+		$this->Cell(40, 15, 'Admin', 'LTRB', 0, 'C', false,'', 0, false, 'T', 'T');
+		$this->Cell(40, 15, 'a.n Pemasok', 'LTRB', 0, 'C', false,'', 0, false, 'T', 'T');
 		$this->Cell(23, 5, 'Halaman', 'LTR', 1, 'C', false,'', 0, false, 'T', 'T');
 		$this->setX(182);
 		$this->Cell(23, 5, $this->PageNo().' dari ', 'LR', 1, 'C', false,'', 0, false, 'T', 'T');
@@ -129,12 +129,12 @@ class MYPDF extends TCPDF {
 		$this->Cell(20, 5, 'Nomor', 'LTR', 0, 'C');
 		$this->Cell(40, 5, $this->data->regnum, 'LTRB', 0, 'C');
 		$this->Cell(30, 5, 'Tgl Akhir', 'LTR', 0, 'C');
-		$this->Cell(50, 5, substr($this->data->rdatetime, 0, 10), 'LTRB', 0, 'C');
+		$this->Cell(40, 5, substr($this->data->rdatetime, 0, 10), 'LTRB', 0, 'C');
 		//space
 
 		$this->setXY(10, 26);
 		$this->Cell(20, 5, 'Pemasok', 'LTB', 0, 'C');
-		$this->Cell(175, 5, lookup::SupplierNameFromSupplierID($this->data->idsupplier), 
+		$this->Cell(165, 5, lookup::SupplierNameFromSupplierID($this->data->idsupplier), 
 			'LTRB', 1, 'C');
 		$this->setXY(10, 31);
 		
