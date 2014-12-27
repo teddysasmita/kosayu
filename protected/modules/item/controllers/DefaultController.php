@@ -148,10 +148,15 @@ class DefaultController extends Controller
                 Yii::app()->user->id)) {
                 $this->trackActivity('l');
                 
-                $dataProvider=new CActiveDataProvider('Items');
-		$this->render('index',array(
-			'dataProvider'=>$dataProvider,
-		));
+	            $dataProvider=new CActiveDataProvider('Items',
+	            	array(
+                     'criteria'=>array(
+                        'order'=>'id desc'
+                     )
+                  ));
+			$this->render('index',array(
+				'dataProvider'=>$dataProvider,
+			));
             } else {
                 throw new CHttpException(404,'You have no authorization for this operation.');
             }
