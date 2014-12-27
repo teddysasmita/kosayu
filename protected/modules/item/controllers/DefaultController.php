@@ -151,7 +151,7 @@ class DefaultController extends Controller
 	            $dataProvider=new CActiveDataProvider('Items',
 	            	array(
                      'criteria'=>array(
-                        'order'=>'id desc'
+                        'order'=>'datetimelog desc, id desc'
                      )
                   ));
 			$this->render('index',array(
