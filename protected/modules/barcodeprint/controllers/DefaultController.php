@@ -108,6 +108,8 @@ class DefaultController extends Controller
                          $this->loadPO($model->transid, $model->id);
                       } 
                    } else if (isset($_POST['yt0'])) {
+                   		echo "<DIV>here</DIV>";
+                   		die;
                       	 $model->attributes = $_POST['Barcodeprints'];
                       	 Yii::app()->session['Barcodeprints']=$model->attributes;
                       	 $newbarcodes = $this->prepareBarcode($_POST['batchcode'], $_POST['batchrep'],
