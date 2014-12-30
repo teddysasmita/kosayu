@@ -114,7 +114,7 @@ class DefaultController extends Controller
                       	 	$model->id);
 						 $barcodes = Yii::app()->session['Detailbarcodeprints'];
 						 $barcodes = array_merge($barcodes, $newbarcodes);
-						 YIi::app()->session['Detailbarcodeprints'] = $barcodes;
+						 Yii::app()->session['Detailbarcodeprints'] = $barcodes;
                    	  }
                 }
 
