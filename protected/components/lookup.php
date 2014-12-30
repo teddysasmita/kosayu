@@ -180,7 +180,7 @@ class lookup extends CComponent {
 	   	else {
 	   		$data = Yii::app()->db->createCommand()
 	   		->select('a.normalprice')->from('sellingprices a')
-	   		->where('a.batchcode = :p_batchcode',
+	   		->where('a.iditem = :p_batchcode',
 	   				array(':p_batchcode'=>$code))
 	   				->queryScalar();
 	   		return $data;
