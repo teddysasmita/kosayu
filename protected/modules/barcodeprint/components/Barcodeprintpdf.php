@@ -37,13 +37,15 @@ class Barcodeprintpdf extends TCPDF {
 		$counter=0;
 		$iditem='';
 		$margin=$this->getMargins();
+		$this->style['vpadding'] = 3;
+		$this->style['hpadding'] = 2;
 		for($i=0; $i<count($this->detaildata); $i++) {
 			unset($brand);
 			unset($price);
 			$price = 'Rp '.number_format(lookup::ItemPriceFromItemCode($this->detaildata[$i]['num']));
 			$brand = lookup::ItemNameFromItemCode($this->detaildata[$i]['num']);
 			//$this->style['label'] = $this->detaildata[$i]['num'].' - '.$price;
-			$this->style['vpadding'] = 3;
+			
 			if (($this->GetX() + $this->labelwidth) >= ($this->getPageWidth()- $margin['right'])) 
 				$this->Ln((int)$this->labelheight);
 			$this->checkPageBreak($this->labelheight);
