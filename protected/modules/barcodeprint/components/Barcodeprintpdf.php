@@ -39,12 +39,10 @@ class Barcodeprintpdf extends TCPDF {
 		$iditem='';
 		$margin=$this->getMargins();
 		for($i=0; $i<count($this->detaildata); $i++) {
-			if (($this->GetX() + $this->labelwidth) <= ($this->getPageWidth()- $margin['right'])) 
-				$this->write1DBarcode($this->detaildata[$i]['num'], $this->barcodetype,
-					'', '', $this->labelwidth, $this->labelheight, 0.4, $this->style, 'T');
-			else {
+			if (($this->GetX() + $this->labelwidth) >= ($this->getPageWidth()- $margin['right'])) 
 				$this->Ln((int)$this->labelheight);
-			}
+			$this->write1DBarcode($this->detaildata[$i]['num'], $this->barcodetype,
+					'', '', $this->labelwidth, $this->labelheight, 0.4, $this->style, 'T');
 		};	
 	}
 
