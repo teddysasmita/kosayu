@@ -40,7 +40,7 @@ class Barcodeprintpdf extends TCPDF {
 		for($i=0; $i<count($this->detaildata); $i++) {
 			unset($brand);
 			unset($price);
-			$price = lookup::ItemPriceFromItemCode($this->detaildata[$i]['num']);
+			$price = 'Rp '.lookup::ItemPriceFromItemCode($this->detaildata[$i]['num']);
 			$brand = lookup::ItemNameFromItemCode($this->detaildata[$i]['num']);
 			$this->style['label'] = $this->detaildata[$i]['num'].' - '.$price;
 			$this->style['vpadding'] = 3;
