@@ -55,7 +55,7 @@ class Barcodeprintpdf extends TCPDF {
 		$this->SetKeywords('Cetak Barcode');
 		
 		// set default header data
-		$this->setHeaderData(false, 0, 'Gunung Sari Intan',
+		$this->setHeaderData(false, 0, 'KOSAYU',
 				'Cetak Barcode', 'Testing');
 		
 		// set header and footer fonts
