@@ -7,6 +7,15 @@
 <div class="form">
 
 <?php
+
+
+$supplierScript=<<<EOS
+      $('#prepare').click(function() {
+    	$('#barcodeprints-form').submit();  
+	});
+EOS;
+Yii::app()->clientScript->registerScript("supplierScript", $supplierScript, CClientscript::POS_READY);
+	
    if($command=='create') 
       $form=$this->beginWidget('CActiveForm', array(
 	'id'=>'barcodeprints-form',
@@ -88,6 +97,24 @@
         <?php echo $form->error($model,'barcodetype');?> 
 	</div>
 	  
+	<div class="row">
+		<?php echo CHtml::label('Nomor Batch Code', null) ?>
+        <?php 
+           echo CHtml::textField('batchcode'); 
+        ?>
+	</div>
+	
+	<div class="row">
+		<?php echo CHtml::label('Jumlah Repetisi', null) ?>
+        <?php 
+           echo CHtml::textField('batchrep'); 
+        ?>
+	</div>
+	
+	<div class="row">
+		<?php echo CHtml::button('Siapkan', array('id'=>'prepare')) ?>
+	</div>
+	
 <?php 
     if (isset(Yii::app()->session['Detailbarcodeprints'])) {
        $rawdata=Yii::app()->session['Detailbarcodeprints'];

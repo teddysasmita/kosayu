@@ -35,11 +35,6 @@ Laporan Konsinyasi (AD2)
 Bagian Customer Service
 Barang Masuk Display (AC28)
 
-Kasir
-Penjualan Tunai (AC50)
-Cetak Faktur Duplikat (AC51)
-Pelunasan (AC52)
-
 Bagian Gudang
 Barang Keluar (AC15)
 Pemasukan Saldo Stok Opname (AC8)
@@ -54,3 +49,20 @@ Penentuan Harga Pokok Opname(AC9)
 Penentuan Nilai Kurs Mata Uang Asing(AC24)
 Pembayaran Komisi Guide (AC23)
 Pencatatan Kas Keluar (AC27)
+
+Kasir
+Penjualan Tunai (AC50)
+Cetak Faktur Duplikat (AC51)
+Pelunasan (AC52)
+
+Bagian Pembukuan
+Periode Akunting (AC53)
+Master Data Akun (AC54)
+Master Data Aset (AC55)
+Proses Penyesuaian Saldo Buku (AC56)
+Proses Pemasukan Manual (AC57)
+Proses Pengaturan Akun (AC58)
+Proses Koreksi Fiskal (AC59)
+Pencetakan Laporan (AC60)
+Proses Pencatatan (AC61)
+Proses Pembuatan Rekap (AC62)

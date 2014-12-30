@@ -106,7 +106,14 @@ class DefaultController extends Controller
                          $model->attributes=$_POST['Barcodeprints'];
                          Yii::app()->session['Barcodeprints']=$_POST['Barcodeprints'];
                          $this->loadPO($model->transid, $model->id);
-                      }
+                      } else if (isset($_POST['batchcode'])) {
+                      	 $model->attributes = $_POST['Barcodeprints'];
+                      	 Yii::app()->session['Barcodeprints']=$model->attributes;
+                      	 $newbarcodes = $this->prepareBarcode($_POST['batchcode'], $_POST['batchrep']);
+						 $barcodes = Yii::app()->session['Detailbarcodeprints'];
+						 $barcodes = array_merge($barcodes, $newbarcodes);
+						 YIi::app()->session['Detailbarcodeprints'] = $barcodes;
+                   	  }
                    }
                 }
 
@@ -592,9 +599,21 @@ class DefaultController extends Controller
 			$mypdf->output('Cetak Barcode'.'-'.date('Ymd').'.pdf', 'I');
 		} else {
 			throw new CHttpException(404,'You have no authorization for this operation.');
+		}	
+	}
+	
+	private function prepareBarcode($code, $rep, $id) 
+	{
+		for ($i = 0; $i < $rep; $i++) {
+			$temp['iddetail'] = idmaker::getCurrentID2();
+			$temp['id'] = $id;
+			$temp['num'] = $code;
+			$temp['userlog'] = Yii::app()->user->id;
+			$temp['datetimelog'] = idmaker::getDateTime();
+
+			$newdata[] = $temp;				
 		}
 		
-		
-		
+		return $newdata;
 	}
 }

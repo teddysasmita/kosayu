@@ -15,6 +15,7 @@ $this->pageTitle=Yii::app()->name;
 <h3><?php echo CHtml::link('Pembelian dari Pemasok', Yii::app()->createUrl('purchases'))?></h3>
 <h3><?php echo CHtml::link('Pembelian Konsinyasi ke Pemasok', Yii::app()->createUrl('consignpurchases'))?></h3>
 <h3><?php echo CHtml::link('Retur Barang ke Pemasok', Yii::app()->createUrl('purchasesretur'))?></h3>
+<h3><?php echo CHtml::link('Cetak Barcode', Yii::app()->createUrl('barcodeprint'))?></h3>
 
 <h2>Bagian Penjualan</h2>
 <h3><?php echo CHtml::link('Penentuan Harga Jual', Yii::app()->createUrl('sellingprice'))?></h3>
