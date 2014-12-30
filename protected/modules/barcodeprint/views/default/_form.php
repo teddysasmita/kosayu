@@ -11,6 +11,7 @@
 
 $supplierScript=<<<EOS
       $('#prepare').click(function() {
+		$('#command').val('batchcode');
     	$('#barcodeprints-form').submit();  
 	});
 EOS;

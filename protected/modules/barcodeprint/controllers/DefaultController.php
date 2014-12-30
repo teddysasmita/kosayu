@@ -66,8 +66,6 @@ class DefaultController extends Controller
                $this->performAjaxValidation($model);
 
                 if (isset($_POST)){
-                   print_r($_POST);
-                   die;
                 	if(isset($_POST['yt1'])) {
                       //The user pressed the button;
                       $model->attributes=$_POST['Barcodeprints'];
@@ -108,8 +106,7 @@ class DefaultController extends Controller
                          $model->attributes=$_POST['Barcodeprints'];
                          Yii::app()->session['Barcodeprints']=$_POST['Barcodeprints'];
                          $this->loadPO($model->transid, $model->id);
-                      } 
-                   } else if (isset($_POST['yt0'])) {
+                      } else if ($_POST['command'] == 'batchcode') {
                    		echo "<DIV>here</DIV>";
                    		die;
                       	 $model->attributes = $_POST['Barcodeprints'];
@@ -120,6 +117,7 @@ class DefaultController extends Controller
 						 $barcodes = array_merge($barcodes, $newbarcodes);
 						 Yii::app()->session['Detailbarcodeprints'] = $barcodes;
                    	  }
+                   } 
                 }
 
                 $this->render('create',array(
