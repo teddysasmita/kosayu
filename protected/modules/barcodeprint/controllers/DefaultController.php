@@ -111,9 +111,13 @@ class DefaultController extends Controller
                       	 Yii::app()->session['Barcodeprints']=$model->attributes;
                       	 $newbarcodes = $this->prepareBarcode($_POST['batchcode'], $_POST['batchrep'],
                       	 	$model->id);
-						 $barcodes = Yii::app()->session['Detailbarcodeprints'];
-						 $barcodes = array_merge($barcodes, $newbarcodes);
-						 Yii::app()->session['Detailbarcodeprints'] = $barcodes;
+                      	
+                      	 if (isset(Yii::app()->session['Detailbarcodeprints'])) {
+						 	$barcodes = Yii::app()->session['Detailbarcodeprints'];
+						 	$barcodes = array_merge($barcodes, $newbarcodes);
+                      	 } else 
+                      	 	$barcodes = $newbarcodes;
+                      	 Yii::app()->session['Detailbarcodeprints'] = $barcodes;
                    	  }
                    } 
                 }
