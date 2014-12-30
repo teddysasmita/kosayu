@@ -46,7 +46,7 @@ class Barcodeprintpdf extends TCPDF {
 			$tempx = $this->GetX();
 			$tempy = $this->GetY();
 			$this->Cell($this->labelwidth, 3, $brand, 0);
-			$this->setXY($tempx, $tempy + 3);
+			$this->setXY($tempx, $tempy);
 			if (($this->GetX() + $this->labelwidth) >= ($this->getPageWidth()- $margin['right'])) 
 				$this->Ln((int)$this->labelheight);
 			$this->write1DBarcode($this->detaildata[$i]['num'], $this->barcodetype,
