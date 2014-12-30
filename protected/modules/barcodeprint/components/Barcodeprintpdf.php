@@ -31,7 +31,7 @@ class Barcodeprintpdf extends TCPDF {
 		$this->SetTextColor(0);
 		$this->SetDrawColor(0, 0, 0);
 		$this->SetLineWidth(0.3);
-		$this->SetFontSize(8);
+		$this->SetFontSize(7);
 		// Data
 		$fill = 0;
 		$counter=0;
@@ -40,7 +40,7 @@ class Barcodeprintpdf extends TCPDF {
 		for($i=0; $i<count($this->detaildata); $i++) {
 			unset($brand);
 			unset($price);
-			$price = 'Rp '.lookup::ItemPriceFromItemCode($this->detaildata[$i]['num']);
+			$price = 'Rp '.number_format(lookup::ItemPriceFromItemCode($this->detaildata[$i]['num']));
 			$brand = lookup::ItemNameFromItemCode($this->detaildata[$i]['num']);
 			//$this->style['label'] = $this->detaildata[$i]['num'].' - '.$price;
 			$this->style['vpadding'] = 3;
@@ -48,9 +48,9 @@ class Barcodeprintpdf extends TCPDF {
 				$this->Ln((int)$this->labelheight);
 			$tempx = $this->GetX();
 			$tempy = $this->GetY();
-			$this->Cell($this->labelwidth, 3, $brand, 0);
+			$this->Cell($this->labelwidth, 3, $brand, 0, 'C');
 			$this->setXY($tempx, $tempy + $this->labelheight-4);
-			$this->Cell($this->labelwidth, 3, $price, 0);
+			$this->Cell($this->labelwidth, 3, $price, 0, 'C');
 			$this->setXY($tempx, $tempy);
 			$this->write1DBarcode($this->detaildata[$i]['num'], $this->barcodetype,
 					'', '', $this->labelwidth, $this->labelheight, 0.4, $this->style, 'T');
