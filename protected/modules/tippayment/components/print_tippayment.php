@@ -73,6 +73,7 @@ class MYPDF extends TCPDF {
 			$cashiername = substr(lookup::UserNameFromUserID($row['idcashier']), 0, 7);
 			$this->Cell($this->headerwidths1[4], $ih, $cashiername , 0, 0, 'C');
 			$this->ln($ih);
+			$this->checkPageBreak($ih);
 		}
 		
 		$this->ln(5);
