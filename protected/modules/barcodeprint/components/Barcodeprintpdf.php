@@ -31,7 +31,7 @@ class Barcodeprintpdf extends TCPDF {
 		$this->SetTextColor(0);
 		$this->SetDrawColor(0, 0, 0);
 		$this->SetLineWidth(0.3);
-		$this->SetFontSize(7);
+		$this->SetFontSize(8);
 		// Data
 		$fill = 0;
 		$counter=0;
