@@ -66,7 +66,9 @@ class DefaultController extends Controller
                $this->performAjaxValidation($model);
 
                 if (isset($_POST)){
-                   if(isset($_POST['yt1'])) {
+                   print_r($_POST);
+                   die;
+                	if(isset($_POST['yt1'])) {
                       //The user pressed the button;
                       $model->attributes=$_POST['Barcodeprints'];
                       
