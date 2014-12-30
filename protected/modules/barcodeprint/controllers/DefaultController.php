@@ -107,8 +107,6 @@ class DefaultController extends Controller
                          Yii::app()->session['Barcodeprints']=$_POST['Barcodeprints'];
                          $this->loadPO($model->transid, $model->id);
                       } else if ($_POST['command'] == 'batchcode') {
-                   		echo "<DIV>here</DIV>";
-                   		die;
                       	 $model->attributes = $_POST['Barcodeprints'];
                       	 Yii::app()->session['Barcodeprints']=$model->attributes;
                       	 $newbarcodes = $this->prepareBarcode($_POST['batchcode'], $_POST['batchrep'],
