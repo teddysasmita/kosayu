@@ -173,6 +173,20 @@ class lookup extends CComponent {
    		}
    }
    
+   public static function ItemPriceFromItemCode($code)
+   {
+		if ($code == '-')
+	   		return '-';
+	   	else {
+	   		$data = Yii::app()->db->createCommand()
+	   		->select('a.normalprice')->from('sellingprices a')
+	   		->where('a.batchcode = :p_batchcode',
+	   				array(':p_batchcode'=>$code))
+	   				->queryScalar();
+	   		return $data;
+	   	}
+   }
+   
    public static function ItemCodeFromItemID($id)
    {
    	$sql="select code from items where id='$id'";
