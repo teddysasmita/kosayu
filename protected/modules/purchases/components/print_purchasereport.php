@@ -15,10 +15,8 @@ class MYPDF extends TCPDF {
 	
 	
 	// Load table data from file
-	private function LoadData($data) {
+	public function LoadData($data) {
 		// Read file lines
-		print_r($data);
-		die;
 		$this->data = $data;
 		$this->headernames = array('Tanggal', 'Nama Pemasok', 'Kode', 'Nama Barang', 'Jmlh', 
 			'Harga@', 'Disc',' Total');
@@ -165,8 +163,6 @@ function execute($data) {
 	
 	// add a page
 	
-	print_r($pdf);
-	die;
 	$pdf->LoadData($data);
 	//$pdf->AddPage(PDF_PAGE_ORIENTATION, 'A4');
 	$pdf->AddPage();
