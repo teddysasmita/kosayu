@@ -17,6 +17,8 @@ class MYPDF extends TCPDF {
 	// Load table data from file
 	private function LoadData($data) {
 		// Read file lines
+		print_r($data);
+		die;
 		$this->data = $data;
 		$this->headernames = array('Tanggal', 'Nama Pemasok', 'Kode', 'Nama Barang', 'Jmlh', 
 			'Harga@', 'Disc',' Total');
