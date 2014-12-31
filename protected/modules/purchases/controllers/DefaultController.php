@@ -456,7 +456,7 @@ class DefaultController extends Controller
 				Yii::app()->user->id))  {
 						
 			
-			$dataSQL = Yii::app()->db->createCommand
+			$dataSQL = Yii::app()->db->createCommand()
 				->select('a.idatetime, a.idsupplier, b.iditem, b.batchcode, b.qty, b.price, b.discount')
 				->from('purchases a')->join('detailpurchases b', 'b.id = a.id')
 				->where('a.idatetime >= :p_startdate and a.idatetime <= :p_enddate',
