@@ -163,7 +163,7 @@ function execute($data) {
 	
 	// add a page
 	
-	$pdf->LoadData($data);
+	//$pdf->LoadData($data);
 	print_r($data);
 	die;
 	//$pdf->AddPage(PDF_PAGE_ORIENTATION, 'A4');
