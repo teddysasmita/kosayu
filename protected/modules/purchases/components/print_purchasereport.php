@@ -58,7 +58,7 @@ class MYPDF extends TCPDF {
 			
 			
 			$this->checkPageBreak($ih);
-				$this->Cell($this->headerwidths[0], $ih, $row['regnum'], 'LR', 0, 'C', $fill);
+				$this->Cell($this->headerwidths[0], $ih, $row['regnum'].$ih, 'LR', 0, 'C', $fill);
 				$this->Cell($this->headerwidths[1], $ih, substr($row['idatetime'],0,10), 'R', 0, 'C', $fill);
 				$this->MultiCell($this->headerwidths[2], $ih, 
 					lookup::SupplierNameFromSupplierID($row['idsupplier']), 'R', 'L', false, 0);
