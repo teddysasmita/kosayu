@@ -38,14 +38,14 @@ class MYPDF extends TCPDF {
 		$counter=0;
 		$iditem='';
 		$this->SetXY(10, 42);
-		if (count($this->detaildata) <= $this->maxrows)
+		if (count($this->data) <= $this->maxrows)
 			$maxrows = $this->maxrows;
 		else
-			$maxrows = count($this->detaildata);		
+			$maxrows = count($this->data);		
 		for($i=0;$i<$maxrows;$i++) {
 			$this->setX(10);
-			if ($i<count($this->detaildata)) {
-				$row=$this->detaildata[$i];
+			if ($i<count($this->data)) {
+				$row=$this->data[$i];
 				$counter+=1;
 				
 				$this->Cell($this->headerwidths[0], 6, substr($row['idatetime'],0,10), 0, 0, 'C', $fill);
