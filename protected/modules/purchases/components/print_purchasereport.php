@@ -38,12 +38,8 @@ class MYPDF extends TCPDF {
 		$counter=0;
 		$iditem='';
 		$this->SetXY(10, 42);
-		if (count($this->data) <= $this->maxrows)
-			$maxrows = $this->maxrows;
-		else
-			$maxrows = count($this->data);		
-		for($i=0;$i<$maxrows;$i++) {
-			$this->setX(10);
+			
+		$this->setX(10);
 			if ($i<count($this->data)) {
 				$row=$this->data[$i];
 				$counter+=1;
@@ -63,7 +59,6 @@ class MYPDF extends TCPDF {
 				$this->total += $total;
 				$this->Cell($this->headerwidths[7], 6, number_format($total), 'LR', 1, 'R', $fill);
 			} 
-		}
 		$this->setX(10);
 		$this->Cell(120, 5, 'Total', 'LTB', 0, 'R');
 		$this->Cell(65, 5, number_format($this->total), 'LTBR', 1, 'R');
@@ -167,8 +162,6 @@ function execute($data) {
 	$pdf->SetFont('helvetica', '', 12);
 	
 	// add a page
-	print_r($data);
-	die;
 	$pdf->LoadData($data);
 	
 	$pdf->AddPage(PDF_PAGE_ORIENTATION, 'A4');
