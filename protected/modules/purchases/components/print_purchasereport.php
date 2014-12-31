@@ -39,7 +39,7 @@ class MYPDF extends TCPDF {
 		$fill = 0;
 		$counter=0;
 		$iditem='';
-		$this->SetXY(10, 28);
+		$this->SetXY(10, 27);
 			
 		$this->setX(10);
 		for ($i=0;$i<count($this->data);$i++) {
@@ -59,11 +59,11 @@ class MYPDF extends TCPDF {
 						'LR', 0, 'R', $fill);
 				$total = $row['qty'] * ($row['price']-$row['discount']);
 				$this->total += $total;
-				$this->Cell($this->headerwidths[7], 6, number_format($total), 'LR', 1, 'R', $fill);
+				$this->Cell($this->headerwidths[8], 6, number_format($total), 'LR', 1, 'R', $fill);
 			} 
 		$this->setX(10);
 		$this->Cell(120, 5, 'Total', 'LTB', 0, 'R');
-		$this->Cell(65, 5, number_format($this->total), 'LTBR', 1, 'R');
+		$this->Cell(75, 5, number_format($this->total), 'LTBR', 1, 'R');
 		//$this->Cell(array_sum($this->headerwidths), 0, '', 'T');
 	}
 	
@@ -145,7 +145,7 @@ function execute($data) {
 	$pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
 	
 	//set margins
-	$pdf->SetMargins($pdf->left_margin, 28, $pdf->right_margin);
+	$pdf->SetMargins($pdf->left_margin, 27, $pdf->right_margin);
 	$pdf->SetHeaderMargin(0);
 	$pdf->SetFooterMargin(0);
 	
