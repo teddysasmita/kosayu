@@ -164,10 +164,10 @@ function execute($data) {
 	$pdf->SetFont('helvetica', '', 12);
 	
 	// add a page
-	
-	$pdf->LoadData($data);
 	print_r($data);
 	die;
+	$pdf->LoadData($data);
+	
 	//$pdf->AddPage(PDF_PAGE_ORIENTATION, 'A4');
 	$pdf->AddPage();
 	
