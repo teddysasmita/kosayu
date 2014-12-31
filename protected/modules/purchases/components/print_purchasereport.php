@@ -43,6 +43,9 @@ class MYPDF extends TCPDF {
 			
 		$this->setX(10);
 		for ($i=0;$i<count($this->data);$i++) {
+			$row=$this->data[$i];
+			$counter+=1;
+			
 			$ih = $this->getStringHeight($this->headerwidths[1],lookup::ItemNameFromItemID($row['iditem']),
 					false, true, 2);
 			$it = $this->getStringHeight($this->headerwidths[1],
@@ -52,8 +55,7 @@ class MYPDF extends TCPDF {
 				$ih = $it;
 			if ($ih < 6)
 				$ih = 6;
-			$row=$this->data[$i];
-			$counter+=1;
+			
 			
 			$this->checkPageBreak($ih);
 				$this->Cell($this->headerwidths[0], $ih, $row['regnum'], 'LR', 0, 'C', $fill);
