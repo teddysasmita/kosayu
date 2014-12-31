@@ -163,12 +163,11 @@ function execute($data) {
 	
 	// add a page
 	$pdf->LoadData($data);
-	echo '<DIV>here</DIV>';
 	
 	$pdf->AddPage(PDF_PAGE_ORIENTATION, 'A4');
 	//$pdf->AddPage();
 	
-	//$pdf->ColoredTable();
+	$pdf->ColoredTable();
 	//$pdf->master();
 	// print colored table
 	
