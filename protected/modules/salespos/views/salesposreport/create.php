@@ -4,7 +4,7 @@
 
 $this->breadcrumbs=array(
 	'Proses'=>array('/site/proses'),
-	'Laporan Pendapatan Kasir',
+	'Laporan Penjualan',
 );
 
 $this->menu=array(

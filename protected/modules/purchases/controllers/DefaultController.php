@@ -438,6 +438,51 @@ class DefaultController extends Controller
 			throw new CHttpException(404,'You have no authorization for this operation.');
 		}
 	}
+	
+	public function actionGetreport()
+	{
+		if(Yii::app()->authManager->checkAccess($this->formid.'-List',
+			Yii::app()->user->id))  {
+			$this->trackActivity('v');
+			$this->render('report');
+		} else {
+			throw new CHttpException(404,'You have no authorization for this operation.');
+		};
+	}
+	
+	public function actionReportprint($startdate, $enddate, $order)
+	{
+		if(Yii::app()->authManager->checkAccess($this->formid.'-List',
+				Yii::app()->user->id))  {
+						
+			
+			$dataSQL = Yii::app()->db->createCommand
+				->select('a.idatetime, a.idsupplier, b.iditem, b.batchcode, b.qty, b.price, b.discount')
+				->from('purchases a')->join('detailpurchases b', 'b.id = a.id')
+				->where('a.idatetime >= :p_startdate and a.idatetime <= :p_enddate',
+					array(':p_startdate'=>$startdate, ':p_enddate'=>$enddate));
+			switch ($order) {
+				case 'B':
+					$dataSQL->order('b.batchcode');
+				break;
+				case 'S':
+					$dataSQL->order('a.idsupplier');
+				break;
+			}
+			$reportdata = $dataSQL->queryAll();
+						
+			Yii::import('application.vendors.tcpdf.*');
+			require_once ('tcpdf.php');
+			Yii::import('application.modules.purchases.components.*');
+			require_once('print_purchasereport.php');
+			ob_clean();
+				
+			execute($reportdata);
+		} else {
+			throw new CHttpException(404,'You have no authorization for this operation.');
+		}
+	
+	}
       
      protected function saveNewDetails(array $details)
      {                  
