@@ -47,10 +47,10 @@ class MYPDF extends TCPDF {
 			$counter+=1;
 			
 			$ih = $this->getStringHeight($this->headerwidths[1],lookup::ItemNameFromItemID($row['iditem']),
-					false, true, 2);
+					false, false, 0);
 			$it = $this->getStringHeight($this->headerwidths[1],
 					lookup::SupplierNameFromSupplierID($row['idsupplier']),
-					false, true, 2);
+					false, false, 0);
 			if ($ih < $it)
 				$ih = $it;
 			if ($ih < 6)
