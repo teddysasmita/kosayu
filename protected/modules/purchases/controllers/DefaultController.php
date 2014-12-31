@@ -463,10 +463,10 @@ class DefaultController extends Controller
 					array(':p_startdate'=>$startdate, ':p_enddate'=>$enddate));
 			switch ($order) {
 				case 'B':
-					$dataSQL->order('b.batchcode');
+					$dataSQL->order('b.batchcode, a.idatetime');
 				break;
 				case 'S':
-					$dataSQL->order('a.idsupplier');
+					$dataSQL->order('a.idsupplier, a.idatetime');
 				break;
 			}
 			$reportdata = $dataSQL->queryAll();
