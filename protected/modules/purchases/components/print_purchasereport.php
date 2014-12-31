@@ -165,6 +165,8 @@ function execute($data) {
 	
 	// add a page
 	
+	print_r($pdf);
+	die;
 	$pdf->LoadData($data);
 	//$pdf->AddPage(PDF_PAGE_ORIENTATION, 'A4');
 	$pdf->AddPage();
