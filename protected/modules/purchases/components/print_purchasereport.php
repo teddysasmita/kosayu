@@ -46,7 +46,7 @@ class MYPDF extends TCPDF {
 				$row=$this->data[$i];
 				$counter+=1;
 				$this->Cell($this->headerwidths[0], 6, $row['regnum'], 'LR', 0, 'C', $fill);
-				$this->Cell($this->headerwidths[1], 6, substr($row['idatetime'],0,10), 0, 0, 'C', $fill);
+				$this->Cell($this->headerwidths[1], 6, substr($row['idatetime'],0,10), 'R', 0, 'C', $fill);
 				$this->Cell($this->headerwidths[2], 6, 
 					lookup::SupplierNameFromSupplierID($row['idsupplier']), 'R', 0, 'L', $fill);
 				$this->Cell($this->headerwidths[3], 6, $row['batchcode'], 'R', 0, 'L', $fill);
