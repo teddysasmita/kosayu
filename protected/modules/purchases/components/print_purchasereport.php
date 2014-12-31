@@ -43,23 +43,34 @@ class MYPDF extends TCPDF {
 			
 		$this->setX(10);
 		for ($i=0;$i<count($this->data);$i++) {
-				$row=$this->data[$i];
-				$counter+=1;
-				$this->Cell($this->headerwidths[0], 6, $row['regnum'], 'LR', 0, 'C', $fill);
-				$this->Cell($this->headerwidths[1], 6, substr($row['idatetime'],0,10), 'R', 0, 'C', $fill);
-				$this->Cell($this->headerwidths[2], 6, 
+			$ih = $this->getStringHeight($this->headerwidths[1],lookup::ItemNameFromItemID($row['iditem']),
+					false, true, 2);
+			$it = $this->getStringHeight($this->headerwidths[1],
+					lookup::SupplierNameFromSupplierID($row['idsupplier']),
+					false, true, 2);
+			if ($ih < $it)
+				$ih = $it;
+			if ($ih < 6)
+				$ih = 6;
+			$row=$this->data[$i];
+			$counter+=1;
+			
+			$this->checkPageBreak($ih);
+				$this->Cell($this->headerwidths[0], $ih, $row['regnum'], 'LR', 0, 'C', $fill);
+				$this->Cell($this->headerwidths[1], $ih, substr($row['idatetime'],0,10), 'R', 0, 'C', $fill);
+				$this->MultiCell($this->headerwidths[2], 0, 
 					lookup::SupplierNameFromSupplierID($row['idsupplier']), 'R', 0, 'L', $fill);
-				$this->Cell($this->headerwidths[3], 6, $row['batchcode'], 'R', 0, 'L', $fill);
-				$this->Cell($this->headerwidths[4], 6, 
+				$this->Cell($this->headerwidths[3], $ih, $row['batchcode'], 'R', 0, 'L', $fill);
+				$this->Cell($this->headerwidths[4], 0, 
 					lookup::ItemNameFromItemID($row['iditem']), 'R', 0, 'L', $fill);
-				$this->Cell($this->headerwidths[5], 6, number_format($row['qty']), 'R', 0, 'R', $fill);
-				$this->Cell($this->headerwidths[6], 6, number_format($row['price']), 
+				$this->Cell($this->headerwidths[5], $ih, number_format($row['qty']), 'R', 0, 'R', $fill);
+				$this->Cell($this->headerwidths[6], $ih, number_format($row['price']), 
 						'R', 0, 'R', $fill);
-				$this->Cell($this->headerwidths[7], 6, number_format($row['discount']),
+				$this->Cell($this->headerwidths[7], $ih, number_format($row['discount']),
 						'R', 0, 'R', $fill);
 				$total = $row['qty'] * ($row['price']-$row['discount']);
 				$this->total += $total;
-				$this->Cell($this->headerwidths[8], 6, number_format($total), 'R', 1, 'R', $fill);
+				$this->Cell($this->headerwidths[8], $ih, number_format($total), 'R', 1, 'R', $fill);
 			} 
 		$this->setX(10);
 		$this->Cell(120, 5, 'Total', 'LTB', 0, 'R');
