@@ -20,9 +20,9 @@ class MYPDF extends TCPDF {
 	public function LoadData($data) {
 		// Read file lines
 		$this->data = $data;
-		$this->headernames = array('Tanggal', 'Nama Pemasok', 'Kode', 'Nama Barang', 'Jmlh', 
+		$this->headernames = array('Nomor','Tanggal',  'Nama Pemasok', 'Kode', 'Nama Barang', 'Jmlh', 
 			'Harga@', 'Disc',' Total');
-		$this->headerwidths = array(20, 45, 20, 50, 10, 15, 15, 20);
+		$this->headerwidths = array(10, 20, 35, 20, 50, 10, 15, 15, 20);
 	}
 
 	// Colored table
@@ -39,23 +39,23 @@ class MYPDF extends TCPDF {
 		$fill = 0;
 		$counter=0;
 		$iditem='';
-		$this->SetXY(10, 20);
+		$this->SetXY(10, 28);
 			
 		$this->setX(10);
 		for ($i=0;$i<count($this->data);$i++) {
 				$row=$this->data[$i];
 				$counter+=1;
-				
-				$this->Cell($this->headerwidths[0], 6, substr($row['idatetime'],0,10), 0, 0, 'C', $fill);
-				$this->Cell($this->headerwidths[1], 6, 
+				$this->Cell($this->headerwidths[0], 6, $row['regnum'], 0, 0, 'C', $fill);
+				$this->Cell($this->headerwidths[1], 6, substr($row['idatetime'],0,10), 0, 0, 'C', $fill);
+				$this->Cell($this->headerwidths[2], 6, 
 					lookup::SupplierNameFromSupplierID($row['idsupplier']), 0, 0, 'L', $fill);
-				$this->Cell($this->headerwidths[2], 6, $row['batchcode'], 0, 0, 'L', $fill);
-				$this->Cell($this->headerwidths[3], 6, 
+				$this->Cell($this->headerwidths[3], 6, $row['batchcode'], 0, 0, 'L', $fill);
+				$this->Cell($this->headerwidths[4], 6, 
 					lookup::ItemNameFromItemID($row['iditem']), 0, 0, 'L', $fill);
-				$this->Cell($this->headerwidths[4], 6, number_format($row['qty']), 'LR', 0, 'R', $fill);
-				$this->Cell($this->headerwidths[5], 6, number_format($row['price']), 
+				$this->Cell($this->headerwidths[5], 6, number_format($row['qty']), 'LR', 0, 'R', $fill);
+				$this->Cell($this->headerwidths[6], 6, number_format($row['price']), 
 						'LR', 0, 'R', $fill);
-				$this->Cell($this->headerwidths[6], 6, number_format($row['discount']),
+				$this->Cell($this->headerwidths[7], 6, number_format($row['discount']),
 						'LR', 0, 'R', $fill);
 				$total = $row['qty'] * ($row['price']-$row['discount']);
 				$this->total += $total;
@@ -106,7 +106,7 @@ class MYPDF extends TCPDF {
 	
 		$this->setFontSize(15);
 		$this->setXY(10, 10);
-		$this->Cell(185, 10, 'Laporan Pembelian Putus', 'LTR', 1, 'C');
+		$this->Cell(195, 10, 'Laporan Pembelian Putus', 'LTR', 1, 'C');
 		$this->SetFontSize(10);		
 		$this->setX(10);
 		$this->SetFont('Helvetica', 'B');
@@ -145,7 +145,7 @@ function execute($data) {
 	$pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
 	
 	//set margins
-	$pdf->SetMargins($pdf->left_margin, PDF_MARGIN_TOP, $pdf->right_margin);
+	$pdf->SetMargins($pdf->left_margin, 28, $pdf->right_margin);
 	$pdf->SetHeaderMargin(0);
 	$pdf->SetFooterMargin(0);
 	
