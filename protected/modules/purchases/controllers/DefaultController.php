@@ -470,7 +470,7 @@ class DefaultController extends Controller
 				break;
 			}
 			$reportdata = $dataSQL->queryAll();
-			print_r($reportata);
+			print_r($reportdata);
 			die;			
 			Yii::import('application.vendors.tcpdf.*');
 			require_once ('tcpdf.php');
