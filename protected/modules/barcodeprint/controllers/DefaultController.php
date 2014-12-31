@@ -512,7 +512,7 @@ class DefaultController extends Controller
          $model->barcodetype = 'C128';
          $model->papersize = 'A4';
          $model->labelwidth = 30;
-         $model->labelheight = 10;
+         $model->labelheight = 15;
      }
 
      protected function afterPost(& $model)
