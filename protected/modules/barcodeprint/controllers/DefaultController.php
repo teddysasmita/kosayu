@@ -511,7 +511,7 @@ class DefaultController extends Controller
          $model->datetimelog=$idmaker->getDateTime();
          $model->barcodetype = 'C128';
          $model->papersize = 'A4';
-         $model->labelwidth = 30;
+         $model->labelwidth = 33;
          $model->labelheight = 15;
      }
 
