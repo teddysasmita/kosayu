@@ -13,6 +13,8 @@ class MYPDF extends TCPDF {
 	private $headerwidths;
 	private $total = 0;
 	
+	public $left_margin = 10;
+	public $right_margin = 10;
 	
 	// Load table data from file
 	public function LoadData($data) {
@@ -20,7 +22,7 @@ class MYPDF extends TCPDF {
 		$this->data = $data;
 		$this->headernames = array('Tanggal', 'Nama Pemasok', 'Kode', 'Nama Barang', 'Jmlh', 
 			'Harga@', 'Disc',' Total');
-		$this->headerwidths = array(30, 30, 30, 30, 15, 20, 20, 20);
+		$this->headerwidths = array(20, 30, 20, 30, 15, 20, 20, 20);
 	}
 
 	// Colored table
@@ -37,7 +39,7 @@ class MYPDF extends TCPDF {
 		$fill = 0;
 		$counter=0;
 		$iditem='';
-		$this->SetXY(10, 42);
+		$this->SetXY(10, 20);
 			
 		$this->setX(10);
 		for ($i=0;$i<count($this->data);$i++) {
@@ -46,10 +48,10 @@ class MYPDF extends TCPDF {
 				
 				$this->Cell($this->headerwidths[0], 6, substr($row['idatetime'],0,10), 0, 0, 'C', $fill);
 				$this->Cell($this->headerwidths[1], 6, 
-					lookup::SupplierNameFromSupplierID($row['idsupplier']), 0, 0, 'C', $fill);
-				$this->Cell($this->headerwidths[2], 6, $row['batchcode'], 0, 0, 'C', $fill);
+					lookup::SupplierNameFromSupplierID($row['idsupplier']), 0, 0, 'L', $fill);
+				$this->Cell($this->headerwidths[2], 6, $row['batchcode'], 0, 0, 'L', $fill);
 				$this->Cell($this->headerwidths[3], 6, 
-					lookup::ItemNameFromItemID($row['iditem']), 0, 0, 'C', $fill);
+					lookup::ItemNameFromItemID($row['iditem']), 0, 0, 'L', $fill);
 				$this->Cell($this->headerwidths[4], 6, number_format($row['qty']), 'LR', 0, 'R', $fill);
 				$this->Cell($this->headerwidths[5], 6, number_format($row['price']), 
 						'LR', 0, 'R', $fill);
@@ -143,7 +145,7 @@ function execute($data) {
 	$pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
 	
 	//set margins
-	$pdf->SetMargins(PDF_MARGIN_LEFT, PDF_MARGIN_TOP, PDF_MARGIN_RIGHT);
+	$pdf->SetMargins($pdf->left_margin, PDF_MARGIN_TOP, $pdf->right_margin);
 	$pdf->SetHeaderMargin(0);
 	$pdf->SetFooterMargin(0);
 	
