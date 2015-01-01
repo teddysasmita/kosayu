@@ -58,23 +58,23 @@ class MYPDF extends TCPDF {
 			
 			
 			$this->checkPageBreak($ih);
-				$this->Cell($this->headerwidths[0], $ih, $row['regnum'], 'LR', 0, 'C', $fill);
-				$this->Cell($this->headerwidths[1], $ih, substr($row['idatetime'],0,10), 'R', 0, 'C', $fill);
+				$this->Cell($this->headerwidths[0], $ih, $row['regnum'], 'BLR', 0, 'C', $fill);
+				$this->Cell($this->headerwidths[1], $ih, substr($row['idatetime'],0,10), 'BR', 0, 'C', $fill);
 				$this->MultiCell($this->headerwidths[2], $ih, 
 					lookup::SupplierNameFromSupplierID($row['idsupplier']), 
-					'R', 'L', false, 0,'','',true,0,false,true,0,'M');
-				$this->Cell($this->headerwidths[3], $ih, $row['batchcode'], 'R', 0, 'L', $fill);
+					'BR', 'L', false, 0,'','',true,0,false,true,0,'M');
+				$this->Cell($this->headerwidths[3], $ih, $row['batchcode'], 'BR', 0, 'L', $fill);
 				$this->MultiCell($this->headerwidths[4], $ih, 
 					lookup::ItemNameFromItemID($row['iditem']), 
-					'R', 'L', false, 0,'','',true,0,false,true,0,'M');
-				$this->Cell($this->headerwidths[5], $ih, number_format($row['qty']), 'R', 0, 'R', $fill);
+					'BR', 'L', false, 0,'','',true,0,false,true,0,'M');
+				$this->Cell($this->headerwidths[5], $ih, number_format($row['qty']), 'BR', 0, 'R', $fill);
 				$this->Cell($this->headerwidths[6], $ih, number_format($row['price']), 
-						'R', 0, 'R', $fill);
+						'BR', 0, 'R', $fill);
 				$this->Cell($this->headerwidths[7], $ih, number_format($row['discount']),
-						'R', 0, 'R', $fill);
+						'BR', 0, 'R', $fill);
 				$total = $row['qty'] * ($row['price']-$row['discount']);
 				$this->total += $total;
-				$this->Cell($this->headerwidths[8], $ih, number_format($total), 'R', 1, 'R', $fill);
+				$this->Cell($this->headerwidths[8], $ih, number_format($total), 'BR', 1, 'R', $fill);
 			} 
 		$this->setX(10);
 		$this->Cell(120, 5, 'Total', 'LTB', 0, 'R');
