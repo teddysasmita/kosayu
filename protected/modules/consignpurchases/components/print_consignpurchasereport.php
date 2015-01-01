@@ -21,8 +21,8 @@ class MYPDF extends TCPDF {
 		// Read file lines
 		$this->data = $data;
 		$this->headernames = array('Nmr','Tanggal',  'Nama Pemasok', 'Kode', 'Nama Barang', 'Jmlh', 
-			'Harga@', 'Disc',' Total', 'H Jual');
-		$this->headerwidths = array(10, 20, 30, 20, 40, 10, 15, 15, 20, 15);
+			'Harga@', 'Total', 'H Jual');
+		$this->headerwidths = array(10, 20, 35, 20, 50, 10, 15, 20, 15);
 	}
 
 	// Colored table
@@ -70,9 +70,7 @@ class MYPDF extends TCPDF {
 				$this->Cell($this->headerwidths[5], $ih, number_format($row['qty']), 'BR', 0, 'R', $fill);
 				$this->Cell($this->headerwidths[6], $ih, number_format($row['buyprice']), 
 						'BR', 0, 'R', $fill);
-				$this->Cell($this->headerwidths[7], $ih, number_format($row['discount']),
-						'BR', 0, 'R', $fill);
-				$total = $row['qty'] * ($row['buyprice']-$row['discount']);
+				$total = $row['qty'] * ($row['buyprice']);
 				$this->total += $total;
 				$this->Cell($this->headerwidths[8], $ih, number_format($total), 'BR', 0, 'R', $fill);
 				$this->Cell($this->headerwidths[9], $ih, number_format($row['sellprice']), 'BR', 1, 'R', $fill);
