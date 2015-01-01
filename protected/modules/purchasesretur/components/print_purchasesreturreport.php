@@ -121,7 +121,7 @@ class MYPDF extends TCPDF {
 	
 		$this->setFontSize(15);
 		$this->setXY(10, 10);
-		$this->Cell(195, 10, 'Laporan Pembelian Putus', 'LTR', 1, 'C');
+		$this->Cell(195, 10, 'Laporan Retur Pembelian', 'LTR', 1, 'C');
 		$this->SetFontSize(10);		
 		$this->setX(10);
 		$this->SetFont('Helvetica', 'B');
@@ -146,7 +146,7 @@ function execute($data) {
 	// set document information
 	$pdf->SetCreator(PDF_CREATOR);
 	$pdf->SetAuthor(lookup::UserNameFromUserID(Yii::app()->user->id));
-	$pdf->SetTitle('Laporan Pembelian Putus');
+	$pdf->SetTitle('Laporan Retur Pembelian');
 	$pdf->SetSubject('BP');
 	$pdf->SetKeywords('BP');
 	
@@ -191,7 +191,7 @@ function execute($data) {
 	// ---------------------------------------------------------
 	
 	//Close and output PDF document
-	$pdf->Output('Laporan Beli Putus'.idmaker::getDateTime().'.pdf', 'D');
+	$pdf->Output('Laporan Retur Pembelian'.idmaker::getDateTime().'.pdf', 'D');
 }
 //============================================================+
 // END OF FILE                                                
