@@ -62,10 +62,11 @@ class MYPDF extends TCPDF {
 				$this->Cell($this->headerwidths[1], $ih, substr($row['idatetime'],0,10), 'R', 0, 'C', $fill);
 				$this->MultiCell($this->headerwidths[2], $ih, 
 					lookup::SupplierNameFromSupplierID($row['idsupplier']), 
-					'BTR', 'L', false, 0,'','',true,0,false,false,0,'M');
+					'BTR', 'L', false, 0,'','',true,0,false,true,0,'M');
 				$this->Cell($this->headerwidths[3], $ih, $row['batchcode'], 'R', 0, 'L', $fill);
 				$this->MultiCell($this->headerwidths[4], $ih, 
-					lookup::ItemNameFromItemID($row['iditem']), 'R', 'L', false, 0,'','',true,0,false,false,0,'M');
+					lookup::ItemNameFromItemID($row['iditem']), 
+					'R', 'L', false, 0,'','',true,0,false,true,0,'M');
 				$this->Cell($this->headerwidths[5], $ih, number_format($row['qty']), 'R', 0, 'R', $fill);
 				$this->Cell($this->headerwidths[6], $ih, number_format($row['price']), 
 						'R', 0, 'R', $fill);
