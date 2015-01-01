@@ -468,6 +468,9 @@ class DefaultController extends Controller
 				case 'S':
 					$dataSQL->order('a.idsupplier, a.idatetime');
 				break;
+				case 'T':
+					$dataSQL->order('a.idatetime, b.batchcode');
+				break;
 			}
 			$reportdata = $dataSQL->queryAll();
 			Yii::import('application.vendors.tcpdf.*');

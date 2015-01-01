@@ -63,7 +63,7 @@ $this->menu=array(
 	<?php echo CHtml::label('Urutkan Berdasar', FALSE); ?>
 	<?php
 		echo CHtml::dropDownList('order', '', 
-			array('B'=>'Kode Barang', 'S'=>'Pemasok'),
+			array('B'=>'Kode Barang', 'S'=>'Pemasok', 'T'=>'Waktu'),
 			array('empty'=>'Harap Pilih'));
 	?>
 	</div>
