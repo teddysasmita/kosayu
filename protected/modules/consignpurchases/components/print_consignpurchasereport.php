@@ -72,8 +72,8 @@ class MYPDF extends TCPDF {
 						'BR', 0, 'R', $fill);
 				$total = $row['qty'] * ($row['buyprice']);
 				$this->total += $total;
-				$this->Cell($this->headerwidths[8], $ih, number_format($total), 'BR', 0, 'R', $fill);
-				$this->Cell($this->headerwidths[9], $ih, number_format($row['sellprice']), 'BR', 1, 'R', $fill);
+				$this->Cell($this->headerwidths[7], $ih, number_format($total), 'BR', 0, 'R', $fill);
+				$this->Cell($this->headerwidths[8], $ih, number_format($row['sellprice']), 'BR', 1, 'R', $fill);
 			} 
 		$this->setX(10);
 		$this->Cell(120, 5, 'Total', 'LTB', 0, 'R');
