@@ -18,7 +18,7 @@ $this->menu=array(
 <div class="form">
 
 <?php  
-	echo CHtml::beginForm(Yii::app()->createUrl('purchases/default/reportprint'), 'get');
+	echo CHtml::beginForm(Yii::app()->createUrl('consignpurchases/default/reportprint'), 'get');
 ?>
 
 	<p class="note">Fields with <span class="required">*</span> are required.</p>
