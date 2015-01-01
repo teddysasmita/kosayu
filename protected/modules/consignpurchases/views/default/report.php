@@ -4,7 +4,8 @@
 
 $this->breadcrumbs=array(
 	'Proses'=>array('/site/proses'),
-	'Laporan Pembelian dari Pemasok',
+	'Daftar'=>array('index'),
+	'Laporan Pembelian Konsinyasi dari Pemasok',
 );
 
 $this->menu=array(
@@ -12,7 +13,7 @@ $this->menu=array(
 );
 ?>
 
-<h1>Laporan Pembelian dari Pemasok</h1>
+<h1>Laporan Pembelian Konsinyasi dari Pemasok</h1>
 
 <div class="form">
 

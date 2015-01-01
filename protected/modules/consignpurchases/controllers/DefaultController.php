@@ -460,7 +460,7 @@ class DefaultController extends Controller
       					
       		$dataSQL = Yii::app()->db->createCommand()
       			->select('a.idatetime, a.regnum, a.idsupplier, b.iditem, b.batchcode, b.qty, b.price, b.discount')
-      			->from('purchases a')->join('detailpurchases b', 'b.id = a.id')
+      			->from('consignpurchases a')->join('detailconsignpurchases b', 'b.id = a.id')
       			->where('a.idatetime >= :p_startdate and a.idatetime <= :p_enddate',
       				array(':p_startdate'=>$startdate, ':p_enddate'=>$enddate));
       		switch ($order) {
