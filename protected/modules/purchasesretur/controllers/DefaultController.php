@@ -349,6 +349,53 @@ class DefaultController extends Controller
         		throw new CHttpException(404,'You have no authorization for this operation.');
         	}
         }
+        
+	public function actionGetreport()
+	{
+		if(Yii::app()->authManager->checkAccess($this->formid.'-List',
+			Yii::app()->user->id))  {
+			$this->trackActivity('v');
+			$this->render('report');
+		} else {
+			throw new CHttpException(404,'You have no authorization for this operation.');
+		};
+	}
+        
+	public function actionReportprint($startdate, $enddate, $order)
+	{
+		if(Yii::app()->authManager->checkAccess($this->formid.'-List',
+			Yii::app()->user->id))  {
+        	
+			$dataSQL = Yii::app()->db->createCommand()
+        		->select('a.idatetime, a.regnum, a.idsupplier, b.iditem, b.batchcode, b.qty, b.price, b.discount')
+        		->from('purchasesreturs a')->join('detailpurchasesreturs b', 'b.id = a.id')
+        		->where('a.idatetime >= :p_startdate and a.idatetime <= :p_enddate',
+        				array(':p_startdate'=>$startdate, ':p_enddate'=>$enddate));
+        	switch ($order) {	
+        		case 'B':
+        			$dataSQL->order('b.batchcode, a.idatetime');
+        		break;
+        		case 'S':
+        			$dataSQL->order('a.idsupplier, a.idatetime');
+        		break;
+        		case 'T':
+        			$dataSQL->order('a.idatetime, b.batchcode');
+        		break;
+        	}
+        
+        	$reportdata = $dataSQL->queryAll();
+        	Yii::import('application.vendors.tcpdf.*');
+        	require_once ('tcpdf.php');
+        	Yii::import('application.modules.purchasesreturs.components.*');
+        	require_once('print_purchasesreturreport.php');
+        	ob_clean();
+        
+        	execute($reportdata);
+        } else {
+        	throw new CHttpException(404,'You have no authorization for this operation.');
+        }
+	}
+        
 	/**
 	 * Returns the data model based on the primary key given in the GET variable.
 	 * If the data model is not found, an HTTP exception will be raised.
