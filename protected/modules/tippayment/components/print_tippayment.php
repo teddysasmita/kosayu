@@ -40,7 +40,7 @@ class MYPDF extends TCPDF {
 		$this->SetTextColor(0);
 		$this->SetDrawColor(0, 0, 0);
 		$this->SetLineWidth(0.3);
-		$this->setfontsize(9);
+		$this->setfontsize(10);
 
 		$this->SetXY($this->leftmargin, 35);
 		for($i = 0; $i < count($this->headernames1); ++$i) {
