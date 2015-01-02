@@ -100,7 +100,7 @@ EOS;
 		join salespos a on a.id = b.idpos
 		where a.userlog like '$idcashier'
 		and a.idatetime >= '$startdate' and a.idatetime <= '$enddate'
-		and (b.method = 'C' or b.method = 'R')
+		and (b.method = 'C')
 		group by idate, a.userlog
 		order by idate, a.userlog
 EOS;
