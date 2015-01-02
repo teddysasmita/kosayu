@@ -346,6 +346,8 @@ EOS;
 					$ds['itemcog'] = lookup::getbuyprice($ds['code']);
 				}
 				unset($ds);
+				print_r($datasales);
+				die;
 				$summarysales = array();
 				foreach($datasales as $ds1) {
 					$batchcode = $ds1['code'];
