@@ -243,7 +243,7 @@ EOS;
 		) on b.id = a.id
 		where
 		b.idatetime >= '$startdate' and b.idatetime <= '$enddate'
-		group by a.itemcode, b.id
+		group by b.id, a.itemcode
 EOS;
 				$infosales = Yii::app()->db->createCommand($sql4)->queryAll();
 				
