@@ -343,7 +343,7 @@ EOS;
 				unset($ds);
 				
 				$summarysales = array();
-				foreach($datasales as & $ds) {
+				foreach($datasales as $ds) {
 					$batchcode = $ds['code'];
 					$found = FALSE;
 					foreach($summarysales as &$ss) {
