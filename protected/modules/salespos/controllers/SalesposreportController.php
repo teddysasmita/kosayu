@@ -258,7 +258,7 @@ EOS;
 				}
 				unset($ds);
 				$summarysales = array();
-				foreach($datasales as & $ds) {
+				foreach($datasales as $ds) {
 					$scode = $ds['scode'];
 					$found = FALSE;
 					foreach($summarysales as &$ss) {
