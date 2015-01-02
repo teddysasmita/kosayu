@@ -69,7 +69,7 @@ class MYPDF extends TCPDF {
 			$this->Cell($this->headerwidths1[0], $ih, $row['invoicenum'], 0, 0, 'C');
 			$this->Cell($this->headerwidths1[1], $ih, number_format($row['amount']), 0, 0, 'R');
 			$this->Cell($this->headerwidths1[2], $ih, number_format($row['totaldiscount']), 0, 0, 'R');
-			$cashierlog = substr($row['idatetime'], 0, 2);
+			$cashierlog = substr($row['cashierlog'], 0, 2);
 			$cashierlog = substr($cashierlog, -1, 2);
 			$this->Cell($this->headerwidths1[3], $ih, $cashierlog, 0, 0, 'C');
 			$cashiername = substr(lookup::UserNameFromUserID($row['idcashier']), 0, 7);
