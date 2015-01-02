@@ -321,7 +321,8 @@ EOS;
 				$datasales = Yii::app()->db->createCommand($sql1)->queryAll();
 						
 				$sql4 =<<<EOS
-	select a.itemcode, b.id, b.total, b.discount, sum((a.price-a.discount)*a.qty) as itemtotal
+	select a.itemcode, b.id, b.total, b.discount, a.qty, 
+		sum((a.price-a.discount)*a.qty) as itemtotal
 	from detailsalespos a
 	join (salespos b
 	join posreceipts d on d.idpos = b.id
@@ -334,7 +335,7 @@ EOS;
 				$infosales = Yii::app()->db->createCommand($sql4)->queryAll();
 
 				foreach ($infosales as & $is) {
-					$is['udisc'] = $is['discount'] / $is['total'] * $is['itemtotal'];
+					$is['udisc'] = $is['discount'] / $is['total'] * $is['itemtotal'] / $is['qty'];
 				}
 				foreach($datasales as &$ds) {
 					foreach($infosales as $is) {
