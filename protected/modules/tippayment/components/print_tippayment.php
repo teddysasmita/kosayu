@@ -70,8 +70,8 @@ class MYPDF extends TCPDF {
 			$this->Cell($this->headerwidths1[1], $ih, number_format($row['amount']), 0, 0, 'R');
 			$this->Cell($this->headerwidths1[2], $ih, number_format($row['totaldiscount']), 0, 0, 'R');
 			unset($cashierlog);
-			$cashierlog = substr($row['cashierlog'], 0, 2);
-			//$cashierlog = substr($cashierlog, -1, 2);
+			$cashierlog = substr($row['cashierlog'], 2, strlen($row['cashierlog'])-2);
+			$cashierlog = substr($cashierlog, -3, strlen($cashierlog)-3);
 			$this->Cell($this->headerwidths1[3], $ih, $cashierlog, 0, 0, 'C');
 			$cashiername = substr(lookup::UserNameFromUserID($row['idcashier']), 0, 7);
 			$this->Cell($this->headerwidths1[4], $ih, $cashiername , 0, 0, 'C');
