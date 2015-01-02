@@ -248,7 +248,10 @@ EOS;
 				$infosales = Yii::app()->db->createCommand($sql4)->queryAll();
 				
 				foreach ($infosales as & $is) {
-					$is['udisc'] = $is['discount'] / $is['total'] * $is['itemtotal'] / $is['qty'];
+					if ($is['qty'] > 0)
+						$is['udisc'] = $is['discount'] / $is['total'] * $is['itemtotal'] / $is['qty'];
+					else
+						$is['udisc'] = 0;
 				}
 				
 				foreach($datasales as &$ds) {
