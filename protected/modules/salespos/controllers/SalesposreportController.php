@@ -274,6 +274,7 @@ EOS;
 					}
 					unset($ss);
 					if (!$found) {
+						unset($temp);
 						$temp['iddetail'] = $ds['iddetail'];
 						$temp['name'] = $ds['firstname'];
 						$temp['scode'] = $scode;
@@ -359,6 +360,7 @@ EOS;
 					}
 					unset($ss);
 					if (!$found) {
+						unset($temp);
 						$temp['iddetail'] = $ds1['iddetail'];
 						$temp['iditem'] = $ds1['iditem'];
 						$temp['name'] = $ds1['name'];
