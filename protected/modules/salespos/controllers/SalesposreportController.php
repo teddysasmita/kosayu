@@ -231,7 +231,7 @@ EOS;
 	join items c on c.id = a.iditem
 	where
 	b.idatetime >= '$startdate' and b.idatetime <= '$enddate'
-	order by scode, code
+	order by scode, code, b.id
 EOS;
 				$datasales = Yii::app()->db->createCommand($sql1)->queryAll();
 				
@@ -244,6 +244,7 @@ EOS;
 		where
 		b.idatetime >= '$startdate' and b.idatetime <= '$enddate'
 		group by b.id, a.itemcode
+		order by a.itemcode, b.id
 EOS;
 				$infosales = Yii::app()->db->createCommand($sql4)->queryAll();
 				
