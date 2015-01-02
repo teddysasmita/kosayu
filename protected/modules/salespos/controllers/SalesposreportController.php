@@ -321,14 +321,15 @@ EOS;
 				$datasales = Yii::app()->db->createCommand($sql1)->queryAll();
 						
 				$sql4 =<<<EOS
-	select b.id, b.total, b.discount, sum((a.price-a.discount)*a.qty) as itemtotal
+	select a.itemcode, b.id, b.total, b.discount, sum((a.price-a.discount)*a.qty) as itemtotal
 	from detailsalespos a
 	join (salespos b
 	join posreceipts d on d.idpos = b.id
 	) on b.id = a.id
 	where
-	b.idatetime >= '$startdate' and b.idatetime <= '$enddate'
-	group by b.id
+	b.idatetime >= '$startdate' and b.idatetime <= '$enddate' 
+		and a.itemcode like '$suppliercode%'
+	group by a.itemcode, b.id
 EOS;
 				$infosales = Yii::app()->db->createCommand($sql4)->queryAll();
 
@@ -337,7 +338,7 @@ EOS;
 				}
 				foreach($datasales as &$ds) {
 					foreach($infosales as $is) {
-						if ($is['id'] == $ds['id']) {
+						if (($is['id'] == $ds['id']) && ($is['itemcode'] == $ds['code'])) {
 							$ds['discount']	+= $is['udisc'];
 							break;
 						}
@@ -345,8 +346,6 @@ EOS;
 					$ds['itemcog'] = lookup::getbuyprice($ds['code']);
 				}
 				unset($ds);
-				print_r($datasales);
-				die;
 				$summarysales = array();
 				foreach($datasales as $ds1) {
 					$batchcode = $ds1['code'];
