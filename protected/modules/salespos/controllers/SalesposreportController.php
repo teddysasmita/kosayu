@@ -107,7 +107,7 @@ EOS;
 				$datacashreturn = Yii::app()->db->createCommand($sql2)->queryAll();
 				
 				foreach($datareceipt as & $sd) {
-					if ( $sd['method'] == 'C' && $sd['idrate'] == 'NA') {
+					if ( (($sd['method'] == 'C') or ($sd['method'] == 'R')) && $sd['idrate'] == 'NA') {
 						foreach($datacashreturn as $dc) {
 							if (($dc['idcashier'] == $sd['idcashier']) && 
 								($dc['idate'] == $sd['idate'])) {
