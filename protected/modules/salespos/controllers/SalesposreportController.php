@@ -236,7 +236,7 @@ EOS;
 				$datasales = Yii::app()->db->createCommand($sql1)->queryAll();
 				
 				$sql4 =<<<EOS
-		select a.itemcode, b.id, b.total, b.discount, sum((a.price-a.discount)*a.qty) as itemtotal
+		select a.itemcode, a.qty,  b.id, b.total, b.discount, sum((a.price-a.discount)*a.qty) as itemtotal
 		from detailsalespos a
 		join (salespos b
 		join posreceipts d on d.idpos = b.id
