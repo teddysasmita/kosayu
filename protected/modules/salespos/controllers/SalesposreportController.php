@@ -236,20 +236,20 @@ EOS;
 				$datasales = Yii::app()->db->createCommand($sql1)->queryAll();
 				
 				$sql4 =<<<EOS
-		select b.id, b.total, b.discount, sum((a.price-a.discount)*a.qty) as itemtotal
+		select a.itemcode, b.id, b.total, b.discount, sum((a.price-a.discount)*a.qty) as itemtotal
 		from detailsalespos a
 		join (salespos b
 		join posreceipts d on d.idpos = b.id
 		) on b.id = a.id
 		where
 		b.idatetime >= '$startdate' and b.idatetime <= '$enddate'
-		group by b.id
+		group by a.itemcode, b.id
 EOS;
 				$infosales = Yii::app()->db->createCommand($sql4)->queryAll();
 				
 				foreach($datasales as &$ds) {
 					foreach($infosales as $is) {
-						if ($is['id'] == $ds['id']) {
+						if (($is['id'] == $ds['id']) and ($is['itemcode'] == $ds['code'])) {
 							$ds['discount']	+= ($is['discount'] / $is['total'] * $is['itemtotal']);
 							break;
 						}
@@ -330,7 +330,7 @@ EOS;
 	where
 	b.idatetime >= '$startdate' and b.idatetime <= '$enddate' 
 		and a.itemcode like '$suppliercode%'
-	group by a.itemcode, b.id
+	group by b.id
 EOS;
 				$infosales = Yii::app()->db->createCommand($sql4)->queryAll();
 
