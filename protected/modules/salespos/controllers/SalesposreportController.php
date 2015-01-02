@@ -343,30 +343,30 @@ EOS;
 				unset($ds);
 				
 				$summarysales = array();
-				foreach($datasales as $ds) {
-					$batchcode = $ds['code'];
+				foreach($datasales as $ds1) {
+					$batchcode = $ds1['code'];
 					$found = FALSE;
 					foreach($summarysales as &$ss) {
 						if ($ss['batchcode'] == $batchcode) {
-							$ss['qty'] += $ds['qty'];
-							$ss['totalsold'] += $ds['qty'] * $ds['price'];
-							$ss['totaldisc'] += $ds['qty'] * $ds['discount'];
-							$ss['totalcog'] += $ds['qty'] * $ds['itemcog'];
-							$ss['totalgain'] += ($ds['qty'] * ($ds['price'] - $ds['discount'] - $ds['itemcog']));
+							$ss['qty'] += $ds1['qty'];
+							$ss['totalsold'] += $ds1['qty'] * $ds1['price'];
+							$ss['totaldisc'] += $ds1['qty'] * $ds1['discount'];
+							$ss['totalcog'] += $ds1['qty'] * $ds1['itemcog'];
+							$ss['totalgain'] += ($ds1['qty'] * ($ds1['price'] - $ds1['discount'] - $ds1['itemcog']));
 							$found = TRUE;
 							break;
 						}
 					}
 					unset($ss);
 					if (!$found) {
-						$temp['iddetail'] = $ds['iddetail'];
-						$temp['iditem'] = $ds['iditem'];
-						$temp['name'] = $ds['name'];
+						$temp['iddetail'] = $ds1['iddetail'];
+						$temp['iditem'] = $ds1['iditem'];
+						$temp['name'] = $ds1['name'];
 						$temp['batchcode'] = $batchcode;
-						$temp['qty'] = $ds['qty'];
-						$temp['totalsold'] = $ds['qty'] * $ds['price'];
-						$temp['totaldisc'] = $ds['qty'] * $ds['discount'];
-						$temp['totalcog'] = $ds['qty'] * $ds['itemcog'];
+						$temp['qty'] = $ds1['qty'];
+						$temp['totalsold'] = $ds1['qty'] * $ds1['price'];
+						$temp['totaldisc'] = $ds1['qty'] * $ds1['discount'];
+						$temp['totalcog'] = $ds1['qty'] * $ds1['itemcog'];
 						$temp['totalgain'] = $temp['totalsold'] - $temp['totalcog'];
 						//$temp['suppliername'] = $ds['firstname'];
 						$summarysales[] = $temp;
