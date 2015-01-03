@@ -968,6 +968,7 @@ EOS;
 			
 			Yii::import('application.modules.tippayment.components.*');
 			require_once('printtext.php');
+			execute($model, $detailmodel, $detailmodel2);
     	
     	} else {
 			throw new CHttpException(404,'You have no authorization for this operation.');
