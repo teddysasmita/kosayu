@@ -27,7 +27,7 @@ class Print2Text extends CComponent
 		}
 	} 
 	
-	public function printHLine($width = 0, $linechar = '-', $ln = 0)
+	public function printHLine($width = 0, $linechar = '-', $ln = 1)
 	{
 		if (!isset($this->data[$this->curY]))
 			$this->data[$this->curY] = '';
