@@ -625,6 +625,18 @@ class Action extends CComponent {
       return Yii::app()->createUrl('item/default/restoreDeleted', array('idtrack'=>$data['idtrack']));
    }
    
+   public static function decodeRestoreHistoryItemBatchUrl($data)
+   {
+   	//return print_r($data);
+   	return Yii::app()->createUrl('itembatch/default/restore', array('idtrack'=>$data['idtrack']));
+   }
+    
+   public static function decodeRestoreDeletedItemBatchUrl($data)
+   {
+   	//return print_r($data);
+   	return Yii::app()->createUrl('itembatch/default/restoreDeleted', array('idtrack'=>$data['idtrack']));
+   }
+   
    public static function decodeRestoreHistoryCashOutUrl($data)
    {
    	//return print_r($data);
