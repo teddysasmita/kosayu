@@ -31,9 +31,14 @@ $this->menu=array(
                 ),   
 		'idatetime',
 		array(
+			'name'=>'status',
+			'value'=>lookup::voucherStatus($model->status)
+		),
+		array(
                    'name'=>'userlog',
                    'value'=>lookup::UserNameFromUserID($model->userlog)
                 ),
+		
 		'datetimelog',
 	),
 )); ?>
