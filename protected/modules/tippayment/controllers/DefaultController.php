@@ -973,9 +973,10 @@ EOS;
 				$printer->printText(1, 10, number_format($dm['amount']), 'R', 1);
 			}
 			
-			//header('Content-type: application/txt');
+			header('Content-type: application/txt');
+			header('Content-Disposition: attachment; filename = "Bayar Komisi-$id.txt"');
 			$printer->sendOutput();
-			die;
+			
     	} else {
 			throw new CHttpException(404,'You have no authorization for this operation.');
     	}
