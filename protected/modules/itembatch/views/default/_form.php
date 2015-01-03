@@ -7,7 +7,20 @@
 <div class="form">
     
 
-<?php $form=$this->beginWidget('CActiveForm', array(
+<?php 
+
+$itemScript=<<<EOS
+	$('#Itembatch_iditem').change(
+		function() {
+			$.getJSON('index.php?r=LookUp/getItemFromID',{ id: $('#Itembatch_iditem').val() },
+               	function(data) {
+				 	$('#itemname').html(data);
+               })
+	});
+EOS;
+Yii::app()->clientScript->registerScript('itemscript', $itemScript, CClientScript::POS_READY);
+
+	$form=$this->beginWidget('CActiveForm', array(
 	'id'=>'itembatch-form',
 	// Please note: When you enable ajax validation, make sure the corresponding
 	// controller action is handling ajax validation correctly.
@@ -45,8 +58,14 @@
 		<?php echo $form->error($model,'iditem'); ?>
       </div>
       
+    <div class="row">
+		<?php echo CHtml::label('',''); ?>
+		<?php echo CHtml::tag('span',array('id'=>'itemname', 'class'=>'money'), 
+			lookup::ItemNameFromItemID($model->iditem)); ?>
+	</div>
+	
 	<div class="row">
-		<?php echo $form->labelEx($model,'batch'); ?>
+		<?php echo $form->labelEx($model,'batchcode'); ?>
 		<?php echo $form->textField($model,'batchcode',array('size'=>30,'maxlength'=>50)); ?>
 		<?php echo $form->error($model,'batchcode'); ?>
 	</div>
