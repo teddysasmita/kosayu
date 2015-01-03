@@ -966,11 +966,8 @@ EOS;
     		$detailmodel=$this->loadDetails($id);
 			$detailmodel2=$this->loadDetails2($id);
 			
-			Yii::import('application.modules.tippayment.view.default.*');
-			$this->renderFile('printtext.php', 
-				array('data'=>$model, 'detaildata'=>$detailmodel, 
-					'detaildata2'=>$detailmodel2)
-			);
+			Yii::import('application.modules.tippayment.components.*');
+			require_once('printtext.php');
     	
     	} else {
 			throw new CHttpException(404,'You have no authorization for this operation.');
