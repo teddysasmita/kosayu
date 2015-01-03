@@ -12,6 +12,7 @@ class Print2Text extends CComponent
 	{
 		if (!isset($this->data[$this->curY]))
 			$this->data[$this->curY] = '';
+		
 		for($i=0; $i < $x-$this->curX; $i++)
 			$this->data[$this->curY] .= $this->filler;
 		
@@ -25,6 +26,21 @@ class Print2Text extends CComponent
 			$this->curY += 1;
 		}
 	} 
+	
+	public function printHLine($width = 0, $linechar = '-', $ln = 0)
+	{
+		if (!isset($this->data[$this->curY]))
+			$this->data[$this->curY] = '';
+		if ($width == 0)
+			$width = $this->pageWidth;
+		for($i=0; $i < $width; $i++ )
+			$this->data[$this->curY] .= $linechar;
+		
+		if ($ln == 1) {
+			$this->data[$this->curY] .= "\n";
+			$this->curY += 1;
+		}
+	}
 	
 	public function sendOutput()
 	{
