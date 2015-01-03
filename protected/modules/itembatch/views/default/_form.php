@@ -47,7 +47,7 @@ Yii::app()->clientScript->registerScript('itemscript', $itemScript, CClientScrip
 
                $this->widget('zii.widgets.jui.CJuiAutoComplete', array(
                   'name'=>'Itembatch[iditem]',
-                  'sourceUrl'=> Yii::app()->createUrl('LookUp/getItemAll'),
+                  'sourceUrl'=> Yii::app()->createUrl('LookUp/getItem2'),
                   'htmlOptions'=>array(
                      'style'=>'height:20px;',
                   ),
