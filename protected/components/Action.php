@@ -987,12 +987,14 @@ class Action extends CComponent {
    			'regnum = :p_regnum', array(':p_regnum'=>$invnum));
    	}
    	
-   	public static function saveItemBatch($id, $iditem, $batchcode, $buyprice, $baseprice = 0)
+   	public static function saveItemBatch($id, $iditem, $batchcode, $buyprice, $userlog, 
+   			$datetimelog, $baseprice = 0)
    	{
    		Yii::app()->db->createCommand()
    			->insert('itembatch', 
    				array('id'=>$id, 'iditem'=>$iditem, 'batchcode'=>$batchcode, 
-   					 'buyprice'=>$buyprice, 'baseprice'=>$baseprice));
+   					 'buyprice'=>$buyprice, 'baseprice'=>$baseprice, 
+   					'userlog'=>$userlog, 'datetimelog'=>$datetimelog ));
    	}
    	
    	public static function deleteItemBatch($id)
