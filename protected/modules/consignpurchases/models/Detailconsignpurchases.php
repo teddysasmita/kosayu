@@ -10,7 +10,6 @@
  * @property string $batchcode
  * @property string $idunit
  * @property double $qty
- * @property double $baseprice
  * @property double $sellprice
  * @property double $buyprice
  * @property string $expirydate
@@ -36,7 +35,7 @@ class Detailconsignpurchases extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('iddetail, id, iditem, batchcode, qty, userlog, datetimelog', 'required'),
-			array('qty, baseprice, sellprice, buyprice', 'numerical'),
+			array('qty, sellprice, buyprice', 'numerical'),
 			array('iddetail, id, iditem, batchcode, idunit, userlog', 'length', 'max'=>21),
 			array('expirydate, datetimelog', 'length', 'max'=>19),
 			// The following rule is used by search().
@@ -68,7 +67,6 @@ class Detailconsignpurchases extends CActiveRecord
 			'batchcode' => 'Nomor Batch',
 			'qty' => 'Qty',
          	'idunit'=> 'Satuan',
-         	'baseprice' => 'Harga Pokok',
 			'sellprice' => 'Harga Jual',
 			'buyprice' => 'Harga Beli',
 			'expirydate' => 'Tgl Kdl',
@@ -100,7 +98,6 @@ class Detailconsignpurchases extends CActiveRecord
 		$criteria->compare('iditem',$this->iditem,true);
 		//$criteria->compare('idunit',$this->idunit,true);
 		$criteria->compare('qty',$this->qty);
-		$criteria->compare('baseprice',$this->baseprice);
 		$criteria->compare('sellprice',$this->sellprice);
 		$criteria->compare('buyprice',$this->buyprice);
 		$criteria->compare('expirydate',$this->expirydate,true);

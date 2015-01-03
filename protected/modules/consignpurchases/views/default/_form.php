@@ -171,21 +171,16 @@ EOS;
                'header'=>'Qty',
                'name'=>'qty',
             ),
-            array(
-               'header'=>'Harga Jual @',
-               'name'=>'sellprice',
-               'type'=>'number'
-            ),
-            array(
-               'header'=>'Margin (%)',
-               'name'=>'marginpct',
-               'type'=>'number'
-            ),
 			array(
 				'header'=>'Harga Beli@',
 				'name'=>'buyprice',
 				'type'=>'number'
 			),
+            array(
+            	'header'=>'Harga Jual @',
+            	'name'=>'sellprice',
+            	'type'=>'number'
+            ),
             array(
                'class'=>'CButtonColumn',
                'buttons'=> array(

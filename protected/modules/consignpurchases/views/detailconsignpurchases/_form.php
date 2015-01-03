@@ -112,18 +112,6 @@ EOS;
 		<?php echo $form->textField($model,'qty'); ?>
 		<?php echo $form->error($model,'qty'); ?>
 	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'baseprice'); ?>
-		<?php echo $form->textField($model,'baseprice'); ?>
-		<?php echo $form->error($model,'baseprice'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'sellprice'); ?>
-		<?php echo $form->textField($model,'sellprice'); ?>
-		<?php echo $form->error($model,'sellprice'); ?>
-	</div>
 	
 	<div class="row">
 		<?php echo $form->labelEx($model,'buyprice'); ?>
@@ -149,6 +137,12 @@ EOS;
                ));
             ?>
 		<?php echo $form->error($model,'expirydate'); ?>
+	</div>
+	
+	<div class="row">
+		<?php echo $form->labelEx($model,'sellprice'); ?>
+		<?php echo $form->textField($model,'sellprice'); ?>
+		<?php echo $form->error($model,'sellprice'); ?>
 	</div>
 	
 	<div class="row buttons">
