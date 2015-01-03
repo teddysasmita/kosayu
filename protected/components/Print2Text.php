@@ -21,7 +21,7 @@ class Print2Text extends CComponent
 			$format = '%'."$width.$width".'s';
 		$this->data[$this->curY] .= sprintf($format, $text);
 		if ($ln == 1) {
-			$this->data[$this->curY] .= '\n';
+			$this->data[$this->curY] .= "\n";
 			$this->curY += 1;
 		}
 	} 
