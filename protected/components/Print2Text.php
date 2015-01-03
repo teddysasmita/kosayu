@@ -29,7 +29,7 @@ class Print2Text extends CComponent
 	public function sendOutput()
 	{
 		for($i=0; $i < $this->curY; $i++) {
-			echo $this->data[$i].'\n';	
+			echo $this->data[$i];	
 		}
 	}
 }
