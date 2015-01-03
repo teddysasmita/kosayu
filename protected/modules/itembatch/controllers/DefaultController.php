@@ -56,9 +56,9 @@ class DefaultController extends Controller
 		// Uncomment the following line if AJAX validation is needed
 		$this->performAjaxValidation($model);
 
-		if(isset($_POST['Itembatch']))
+		if(isset($_POST['itembatch']))
 		{
-			$model->attributes=$_POST['Itembatch'];
+			$model->attributes=$_POST['itembatch'];
                         $this->beforePost($model);
 			if($model->save()) {
                             $this->afterPost($model);
@@ -93,9 +93,9 @@ class DefaultController extends Controller
 		// Uncomment the following line if AJAX validation is needed
 			$this->performAjaxValidation($model);
 
-			if(isset($_POST['Itembatch']))
+			if(isset($_POST['itembatch']))
 			{
-				$model->attributes=$_POST['Itembatch'];
+				$model->attributes=$_POST['itembatch'];
                          
 				$this->beforePost($model);   
 				$this->tracker->modify('itembatch', $id);
