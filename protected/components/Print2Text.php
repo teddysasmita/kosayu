@@ -10,6 +10,8 @@ class Print2Text extends CComponent
 	
 	public function printText($x, $width, $text, $align = 'L', $ln = 0)
 	{
+		if (!isset($this->data[$this->curY]))
+			$this->data[$this->curY] = '';
 		for($i=0; $i < $x-$this->curX; $i++)
 			$this->data[$this->curY] .= $this->filler;
 		
