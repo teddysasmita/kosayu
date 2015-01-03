@@ -570,9 +570,31 @@ class DefaultController extends Controller
             $details = $this->loadDetails($model->id);
             
             foreach($details as $d) {
+            	if ($d['sellprice'] > 0) {
+            		$sellprice = Sellingprices::model()->findByPk($d['iddetail']);
+            		if (is_null($sellprice)) {
+            			$sellprice = new Sellingprices();
+            			$sellprice->id = $d['iddetail'];
+            			$sellprice->regnum = idmaker::getRegNum('AC11');
+            		}
+            		$sellprice->idatetime = $model->idatetime;
+            		//$sellprice->iditem = lookup::ItemCodeFromItemID($d['iditem']);
+            		$sellprice->iditem = $d['batchcode'];
+            		$sellprice->normalprice = $d['sellprice'];
+            		$sellprice->minprice = $d['sellprice'];
+            		$sellprice->approvalby = 'Pak Made';
+            		$sellprice->datetimelog = $d['datetimelog'];
+            		$sellprice->userlog = $d['userlog'];
+            
+            		$resp = $sellprice->save();
+            		if (!$resp) {
+            			throw new CHttpException(100,'There is an error in after post');
+            		}
+            		idmaker::saveRegNum('AC11', $sellprice->regnum);
+            	}
             	Action::saveItemBatch($d['iddetail'], $d['iditem'], $d['batchcode'],
             		$d['price']);
-            }
+            }            
         }
         
         protected function beforePost(& $model)
