@@ -966,7 +966,7 @@ EOS;
     		$detailmodel=$this->loadDetails($id);
 			$detailmodel2=$this->loadDetails2($id);
 			
-			$this->renderFile('printtext', 
+			$this->renderFile('printtext.php', 
 				array('data'=>$model, 'detaildata'=>$detailmodel, 
 					'detaildata2'=>$detailmodel2)
 			);
