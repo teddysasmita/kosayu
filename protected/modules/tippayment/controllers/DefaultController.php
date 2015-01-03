@@ -966,7 +966,8 @@ EOS;
     		$detailmodel=$this->loadDetails($id);
 			$detailmodel2=$this->loadDetails2($id);
 			
-			$this->renderFile('application.modules.tippayment.view.default.printtext', 
+			Yii::import('application.modules.tippayment.view.default.*');
+			$this->renderFile('printtext.php', 
 				array('data'=>$model, 'detaildata'=>$detailmodel, 
 					'detaildata2'=>$detailmodel2)
 			);
