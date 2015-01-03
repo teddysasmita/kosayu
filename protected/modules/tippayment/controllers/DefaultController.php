@@ -976,7 +976,7 @@ EOS;
 			$printer->printHLine();
 		
 			header('Content-type: application/txt');
-			header('Content-Disposition: attachment; filename = "Bayar Komisi-$id.txt"');
+			header('Content-Disposition: attachment; filename = "Bayar Komisi-'.$id.'.txt"');
 			$printer->sendOutput();
 			
     	} else {
