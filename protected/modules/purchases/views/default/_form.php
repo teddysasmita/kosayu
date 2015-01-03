@@ -176,6 +176,11 @@ EOS;
                'name'=>'discount',
                'type'=>'number'
             ),
+			array(
+            	'header'=>'Hrg Jual @',
+            	'name'=>'sellprice',
+            	'type'=>'number'
+            ),
             array(
                'class'=>'CButtonColumn',
                'buttons'=> array(

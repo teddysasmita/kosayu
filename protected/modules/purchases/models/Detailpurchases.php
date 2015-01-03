@@ -12,6 +12,7 @@
  * @property double $qty
  * @property double $discount
  * @property double $price
+ * @property double $sellprice
  * @property string $expirydate
  * @property string $userlog
  * @property string $datetimelog
@@ -34,8 +35,8 @@ class Detailpurchases extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('iddetail, id, iditem, batchcode, qty, price, discount, userlog, datetimelog', 'required'),
-			array('qty, discount, price', 'numerical'),
+			array('iddetail, id, iditem, batchcode, qty, sellprice, price, discount, userlog, datetimelog', 'required'),
+			array('qty, discount, sellprice, price', 'numerical'),
 			array('iddetail, id, iditem, batchcode, idunit, userlog', 'length', 'max'=>21),
 			array('datetimelog, expirydate', 'length', 'max'=>19),
 			// The following rule is used by search().
@@ -69,6 +70,7 @@ class Detailpurchases extends CActiveRecord
 			'idunit'=> 'Satuan',
          	'discount' => 'Discount',
 			'price' => 'Harga',
+			'sellprice' => 'Harga Jual',
 			'expirydate' => 'Tgl Kdl',
 			'userlog' => 'Userlog',
 			'datetimelog' => 'Datetimelog',
@@ -100,6 +102,7 @@ class Detailpurchases extends CActiveRecord
 		$criteria->compare('qty',$this->qty);
 		$criteria->compare('discount',$this->discount);
 		$criteria->compare('price',$this->price);
+		$criteria->compare('sellprice',$this->sellprice);
 		$criteria->compare('expirydate',$this->expirydate);
 		$criteria->compare('userlog',$this->userlog,true);
 		$criteria->compare('datetimelog',$this->datetimelog,true);
