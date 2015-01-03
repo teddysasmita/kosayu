@@ -954,5 +954,29 @@ EOS;
     		throw new CHttpException(404,'You have no authorization for this operation.');
     	}
     }
-      
+
+    
+    public function actionPrintastext($id)
+    {
+    	if(Yii::app()->authManager->checkAccess($this->formid.'-Append',
+    			Yii::app()->user->id)) {
+			$this->trackActivity('p');
+    
+    		$model=$this->loadModel($id);
+    		$detailmodel=$this->loadDetails($id);
+			$detailmodel2=$this->loadDetails2($id);
+    	
+			$printer = new Print2Text();
+			$printer->pageWidth = 40;
+			foreach($detailmodel as $dm) {
+				$printer->printText(1, 20, $dm['idatetime']);
+				$printer->printText(1, 10, number_format($dm['amount']), 'R', 1);
+			}
+			
+			header('Content-type: application/txt');
+			$printer->sendOutput();
+    	} else {
+			throw new CHttpException(404,'You have no authorization for this operation.');
+    	}
+    }
 }

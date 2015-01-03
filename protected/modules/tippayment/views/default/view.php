@@ -16,7 +16,7 @@ $this->menu=array(
 	array('label'=>'Sejarah', 'url'=>array('history', 'id'=>$model->id)),
 	array('label'=>'Print', 'url'=>array('print', 'id'=>$model->id)),
 	array('label'=>'Lihat Detail', 'url'=>array('showDetail', 'id'=>$model->id)),
-		
+	array('label'=>'PrintTest', 'url'=>array('printastext', 'id'=>$model->id)),
 );
 ?>
 
