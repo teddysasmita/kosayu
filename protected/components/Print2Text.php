@@ -11,13 +11,13 @@ class Print2Text extends CComponent
 	public function printText($x, $width, $text, $align = 'L', $ln = 0)
 	{
 		for($i=0; $i < $x-$this->curX; $i++)
-			$data[$this->curY] .= $this->filler;
+			$this->data[$this->curY] .= $this->filler;
 		
 		if ($align == 'L')
 			$format = '%'.'-'."$width.$width".'s';
 		$data[$this->curY] .= sprintf($format, $text);
 		if ($ln == 1) {
-			$data[$this->curY] .= '\n';
+			$this->data[$this->curY] .= '\n';
 			$this->curY += 1;
 		}
 	} 
@@ -25,7 +25,7 @@ class Print2Text extends CComponent
 	public function sendOutput()
 	{
 		for($i=0; $i < $this->curY; $i++) {
-			echo $data[$i].'\n';	
+			echo $this->data[$i].'\n';	
 		}
 	}
 }
