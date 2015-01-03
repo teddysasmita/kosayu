@@ -12,7 +12,7 @@
 $itemScript=<<<EOS
 	$('#Itembatch_iditem').change(
 		function() {
-			$.getJSON('index.php?r=LookUp/getItemFromID',{ id: $('#Itembatch_iditem').val() },
+			$.getJSON('index.php?r=LookUp/getItemName2',{ id: $('#Itembatch_iditem').val() },
                	function(data) {
 				 	$('#itemname').html(data);
                })
