@@ -22,7 +22,7 @@ class Print2Text extends CComponent
 			$format = '%'."$width.$width".'s';
 		$this->data[$this->curY] .= sprintf($format, $text);
 		if ($ln == 1) {
-			$this->data[$this->curY] .= "\n";
+			$this->data[$this->curY] .= "<BR>";
 			$this->curY += 1;
 		}
 	} 
@@ -37,7 +37,7 @@ class Print2Text extends CComponent
 			$this->data[$this->curY] .= $linechar;
 		
 		if ($ln == 1) {
-			$this->data[$this->curY] .= "\n";
+			$this->data[$this->curY] .= "<BR>";
 			$this->curY += 1;
 		}
 	}
