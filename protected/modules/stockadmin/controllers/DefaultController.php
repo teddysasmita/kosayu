@@ -45,8 +45,6 @@ class DefaultController extends Controller
 				$dateparam = Yii::app()->session['stockquantitydate'];
 				$prefixparam = Yii::app()->session['stockquantityprefix'];
 			} 
-			if (isset($_POST))
-				print_r($_POST);
 			if (isset($_POST['go'])) {
 				$dateparam = substr($_POST['cdate'], 0, 10).' 23:59:59';
 				$prefixparam = $_POST['cprefix'];
