@@ -326,6 +326,7 @@ class DefaultController extends Controller
 		if ($databuy) {
 			$model->iditem = $databuy['iditem'];
         	$model->buyprice = $databuy['buyprice'];
+        	$model->baseprice = 0;
         }
 	}
 }
