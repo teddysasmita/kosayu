@@ -34,6 +34,12 @@ $this->breadcrumbs=array(
 	?>
 </div>
 
+<div class="row">
+	<?php echo CHtml::label('Awalan Kode', FALSE); ?>
+	<?php 
+		echo CHtml::textField('prefix', $cprefix); 
+	?>
+</div>
 
 <div class="row">
 <?php 

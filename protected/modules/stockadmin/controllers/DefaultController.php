@@ -24,7 +24,7 @@ class DefaultController extends Controller
 			
 			Yii::app()->session->remove('stockquantityreport');
 			Yii::app()->session->remove('stockquantitydate');
-			
+			Yii::app()->session->remove('stockquantityprefix');
 			$this->render('index');
 		} else {
 			throw new CHttpException(404,'You have no authorization for this operation.');
@@ -40,10 +40,12 @@ class DefaultController extends Controller
 			if (!isset(Yii::app()->session['stockquantityreport'])) {
 				$alldata = array();
 				$dateparam = idmaker::getDateTime();
+				$prefixparam = '';
 			} else
 				$dateparam = Yii::app()->session['stockquantitydate'];
 			if (isset($_POST['go'])) {
 				$dateparam = substr($_POST['cdate'], 0, 10).' 23:59:59';
+				$prefixparam = $_POST['cprefix'];
 				$alldata = Yii::app()->db->createCommand()
 					->select("b.batchcode, c.name, sum(b.qty) as totalqty")
 					->from('detailstocks b')
@@ -51,14 +53,18 @@ class DefaultController extends Controller
 					->join('items c', 'c.id = b.iditem')
 					->where('a.idatetime <= :p_cdate', 
 						array(':p_cdate'=>$dateparam))
+					->andWhere('b.batchcode like :p_batchcode', array(':p_batchcode'=>$prefixparam.'%'))
 					->group('b.batchcode')
 					->order('b.batchcode')
 					->queryAll();	
 				Yii::app()->session['stockquantityreport'] = $alldata;
 				Yii::app()->session['stockquantitydate'] = $dateparam;
+				Yii::app()->session['stockquantityprefix'] = $prefixparam;
 			}
 				
-			$this->render('quantity', array('cdate'=>substr($dateparam, 0, 10)));
+			$this->render('quantity', array('cdate'=>substr($dateparam, 0, 10), 
+				'cprefix'=>$prefixparam)
+			));
 		} else {
 			throw new CHttpException(404,'You have no authorization for this operation.');
 		};

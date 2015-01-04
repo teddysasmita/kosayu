@@ -13,6 +13,6 @@ $this->menu=array(
 
 <h1><?php echo "Administrasi Persediaan (Stok)" ?></h1>
 
-<h3><?php echo CHtml::link('Berdasarkan Stok', 
+<h3><?php echo CHtml::link('Berdasarkan Kode Barang', 
 		Yii::app()->createUrl('stockadmin/default/quantity'))?></h3> 
 
