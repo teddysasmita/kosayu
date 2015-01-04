@@ -23,6 +23,7 @@ class DefaultController extends Controller
 			$this->trackActivity('v');
 			
 			Yii::app()->session->remove('stockquantityreport');
+			Yii::app()->session->remove('stockquantitydate');
 			
 			$this->render('index');
 		} else {
@@ -54,7 +55,9 @@ class DefaultController extends Controller
 						->queryAll();	
 				}
 				Yii::app()->session['stockquantityreport'] = $alldata;
-			} 
+				Yii::app()->session['stockquantitydate'] = $dateparam;
+			} else
+				$dateparam = Yii::app()->session['stockquantitydate'];
 			$this->render('quantity', array('cdate'=>substr($dateparam, 0, 10)));
 		} else {
 			throw new CHttpException(404,'You have no authorization for this operation.');
