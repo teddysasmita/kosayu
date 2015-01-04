@@ -46,7 +46,6 @@ class DefaultController extends Controller
 						array(':p_cdate'=>$dateparam))
 					->order('b.batchcode')
 					->queryAll();	
-				$alldata = array_merge($alldata, $data);
 			}
 			$this->render('quantity', array('alldata'=>$alldata, 'cdate'=>substr($dateparam, 0, 10)));
 		} else {
