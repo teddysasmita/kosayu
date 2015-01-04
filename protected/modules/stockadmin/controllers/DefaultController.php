@@ -40,7 +40,7 @@ class DefaultController extends Controller
 			if (!isset(Yii::app()->session['stockquantityreport'])) {
 				$alldata = array();
 				$dateparam = idmaker::getDateTime();
-				$prefixparam = '';
+				$prefixparam = '';;
 			} else {
 				$dateparam = Yii::app()->session['stockquantitydate'];
 				$prefixparam = Yii::app()->session['stockquantityprefix'];
