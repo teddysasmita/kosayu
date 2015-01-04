@@ -283,6 +283,9 @@ class DefaultController extends Controller
         protected function afterPost(& $model)
         {
         	if ($model->sellprice > 0) {
+        		Yii::import('application.modules.sellingprice.models.*');
+        		$details = $this->loadDetails($model->id);
+        		
         		$sellprice = Sellingprices::model()->findByPk($d['iddetail']);
         		if (is_null($sellprice)) {
         			$sellprice = new Sellingprices();
