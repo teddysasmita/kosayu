@@ -43,6 +43,8 @@ class DefaultController extends Controller
 				
 				if (isset($_POST['go'])) {
 					$dateparam = substr($_POST['cdate'], 0, 10).' 23:59:59';
+					print_r($dateparam);
+					die();
 					$alldata = Yii::app()->db->createCommand()
 						->select("b.batchcode, c.name, sum(b.qty) as totalqty")
 						->from('detailstocks b')
