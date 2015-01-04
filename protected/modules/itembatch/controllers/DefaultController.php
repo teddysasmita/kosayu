@@ -284,9 +284,8 @@ class DefaultController extends Controller
         {
         	if ($model->sellprice > 0) {
         		Yii::import('application.modules.sellingprice.models.*');
-        		$details = $this->loadDetails($model->id);
         		
-        		$sellprice = Sellingprices::model()->findByPk($d['iddetail']);
+        		$sellprice = Sellingprices::model()->findByPk($model->iddetail);
         		if (is_null($sellprice)) {
         			$sellprice = new Sellingprices();
         			$sellprice->id = $model->id;
