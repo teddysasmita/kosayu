@@ -40,6 +40,7 @@ class DefaultController extends Controller
 			if (isset($_POST)) {
 				echo "<DIV>";
 				print_r($_POST);
+				print_r(Yii::app()->session['stockquantityreport']);
 				echo "</DIV>";
 			}
 			if (!isset(Yii::app()->session['stockquantityreport'])) {
