@@ -64,7 +64,7 @@ class DefaultController extends Controller
 				
 			$this->render('quantity', array('cdate'=>substr($dateparam, 0, 10), 
 				'cprefix'=>$prefixparam)
-			));
+			);
 		} else {
 			throw new CHttpException(404,'You have no authorization for this operation.');
 		};
