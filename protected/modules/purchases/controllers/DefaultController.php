@@ -593,7 +593,7 @@ class DefaultController extends Controller
             		idmaker::saveRegNum('AC11', $sellprice->regnum);
             	}
             	Action::saveItemBatch($d['iddetail'], $d['iditem'], $d['batchcode'],
-            		$d['userlog'], $d['datetimelog'],$d['price']);
+            		$d['price'], $d['userlog'], $d['datetimelog']);
             }            
         }
         
@@ -604,6 +604,11 @@ class DefaultController extends Controller
             $model->userlog=Yii::app()->user->id;
             $model->datetimelog=$idmaker->getDateTime();
             $model->regnum=$idmaker->getRegNum($this->formid);
+            
+            $details = $this->loadDetails($model->id);
+            foreach($details as $d) {
+            	Action::deleteItemBatch($d['iddetail']);
+            }
         }
         
         protected function beforeDelete(& $model)
