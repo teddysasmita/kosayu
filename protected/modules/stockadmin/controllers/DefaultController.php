@@ -35,8 +35,8 @@ class DefaultController extends Controller
 			
 			$alldata = array();
 			$dateparam = '';
-			if (isset($_POST['go'])) {
-				$dateparam = substr($_POST['cdate'], 0, 10).' 23:59:59';
+			if (isset($_GET['go'])) {
+				$dateparam = substr($_GET['cdate'], 0, 10).' 23:59:59';
 				$alldata = Yii::app()->db->createCommand()
 					->select("b.batchcode, c.name, sum(b.qty) as totalqty")
 					->from('detailstocks b')

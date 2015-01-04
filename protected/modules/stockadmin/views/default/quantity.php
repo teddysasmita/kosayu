@@ -12,7 +12,7 @@ $this->breadcrumbs=array(
 
 <div class="form">
 <?php 
-	echo CHtml::beginForm("index.php?r=stockadmin/default/quantity", 'post');	
+	echo CHtml::beginForm("index.php?r=stockadmin/default/quantity", 'get');	
 ?>
 	
 <div class="row">
