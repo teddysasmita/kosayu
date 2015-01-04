@@ -41,6 +41,7 @@ class DefaultController extends Controller
 				$alldata = array();
 				$dateparam = idmaker::getDateTime();
 				
+				print_r($_POST);
 				if (isset($_POST['go'])) {
 					$dateparam = substr($_POST['cdate'], 0, 10).' 23:59:59';
 					print_r($dateparam);
