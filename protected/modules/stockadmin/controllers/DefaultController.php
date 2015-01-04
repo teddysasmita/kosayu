@@ -37,7 +37,11 @@ class DefaultController extends Controller
 				Yii::app()->user->id))  {
 			$this->trackActivity('v');
 			
-			print_r($POST);
+			if (isset($_POST)) {
+				echo "<DIV>";
+				print_r($_POST);
+				echo "</DIV>";
+			}
 			if (!isset(Yii::app()->session['stockquantityreport'])) {
 				$alldata = array();
 				$dateparam = idmaker::getDateTime();
