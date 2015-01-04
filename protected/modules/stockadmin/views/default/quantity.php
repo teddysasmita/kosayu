@@ -12,7 +12,7 @@ $this->breadcrumbs=array(
 
 <div class="form">
 <?php 
-	echo CHtml::beginForm("index.php?r=stockadmin/default/quantity", 'get');	
+	echo CHtml::beginForm("index.php?r=stockadmin/default/quantity", 'post');	
 ?>
 	
 <div class="row">
@@ -29,6 +29,7 @@ $this->breadcrumbs=array(
 			'htmlOptions'=>array(
 				'style'=>'height:20px;',
 			),
+			'value'=>$cdate
 		)); 
 	?>
 </div>
@@ -48,6 +49,7 @@ $this->breadcrumbs=array(
 <?php 
 
 //if (isset($alldata)) {
+	$alldata = Yii::app()->session['stockquantityreport'];
 	$mydp = new CArrayDataProvider($alldata, array(
 			'keyField'=>'batchcode',
 			'pagination'=>array(

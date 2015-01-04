@@ -21,6 +21,9 @@ class DefaultController extends Controller
 		if(Yii::app()->authManager->checkAccess($this->formid.'-List',
 				Yii::app()->user->id))  {
 			$this->trackActivity('v');
+			
+			Yii::app()->session->remove('stockquantityreport');
+			
 			$this->render('index');
 		} else {
 			throw new CHttpException(404,'You have no authorization for this operation.');
@@ -33,22 +36,25 @@ class DefaultController extends Controller
 				Yii::app()->user->id))  {
 			$this->trackActivity('v');
 			
-			$alldata = array();
-			$dateparam = '';
-			if (isset($_GET['go'])) {
-				$dateparam = substr($_GET['cdate'], 0, 10).' 23:59:59';
-				$alldata = Yii::app()->db->createCommand()
-					->select("b.batchcode, c.name, sum(b.qty) as totalqty")
-					->from('detailstocks b')
-					->join('stocks a', 'a.id = b.id')
-					->join('items c', 'c.id = b.iditem')
-					->where('a.idatetime <= :p_cdate', 
-						array(':p_cdate'=>$dateparam))
-					->group('b.batchcode')
-					->order('b.batchcode')
-					->queryAll();	
+			if (!isset(Yii::app()->session['stockquantityreport'])) {
+				$alldata = array();
+				$dateparam = '';
+				if (isset($_POST['go'])) {
+					$dateparam = substr($_POST['cdate'], 0, 10).' 23:59:59';
+					$alldata = Yii::app()->db->createCommand()
+						->select("b.batchcode, c.name, sum(b.qty) as totalqty")
+						->from('detailstocks b')
+						->join('stocks a', 'a.id = b.id')
+						->join('items c', 'c.id = b.iditem')
+						->where('a.idatetime <= :p_cdate', 
+							array(':p_cdate'=>$dateparam))
+						->group('b.batchcode')
+						->order('b.batchcode')
+						->queryAll();	
+				}
+				Yii::app()->session['stockquantityreport'] = $alldata;
 			}
-			$this->render('quantity', array('alldata'=>$alldata, 'cdate'=>substr($dateparam, 0, 10)));
+			$this->render('quantity', array('cdate'=>substr($dateparam, 0, 10)));
 		} else {
 			throw new CHttpException(404,'You have no authorization for this operation.');
 		};
