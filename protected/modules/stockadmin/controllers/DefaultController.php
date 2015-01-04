@@ -54,9 +54,8 @@ class DefaultController extends Controller
 						->order('b.batchcode')
 						->queryAll();	
 					Yii::app()->session['stockquantityreport'] = $alldata;
+					Yii::app()->session['stockquantitydate'] = $dateparam;
 				}
-				
-				Yii::app()->session['stockquantitydate'] = $dateparam;
 			} else
 				$dateparam = Yii::app()->session['stockquantitydate'];
 			$this->render('quantity', array('cdate'=>substr($dateparam, 0, 10)));
