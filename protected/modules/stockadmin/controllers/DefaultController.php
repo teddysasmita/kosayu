@@ -40,24 +40,24 @@ class DefaultController extends Controller
 			if (!isset(Yii::app()->session['stockquantityreport'])) {
 				$alldata = array();
 				$dateparam = idmaker::getDateTime();
-				
-				if (isset($_POST['go'])) {
-					$dateparam = substr($_POST['cdate'], 0, 10).' 23:59:59';
-					$alldata = Yii::app()->db->createCommand()
-						->select("b.batchcode, c.name, sum(b.qty) as totalqty")
-						->from('detailstocks b')
-						->join('stocks a', 'a.id = b.id')
-						->join('items c', 'c.id = b.iditem')
-						->where('a.idatetime <= :p_cdate', 
-							array(':p_cdate'=>$dateparam))
-						->group('b.batchcode')
-						->order('b.batchcode')
-						->queryAll();	
-					Yii::app()->session['stockquantityreport'] = $alldata;
-					Yii::app()->session['stockquantitydate'] = $dateparam;
-				}
 			} else
 				$dateparam = Yii::app()->session['stockquantitydate'];
+			if (isset($_POST['go'])) {
+				$dateparam = substr($_POST['cdate'], 0, 10).' 23:59:59';
+				$alldata = Yii::app()->db->createCommand()
+					->select("b.batchcode, c.name, sum(b.qty) as totalqty")
+					->from('detailstocks b')
+					->join('stocks a', 'a.id = b.id')
+					->join('items c', 'c.id = b.iditem')
+					->where('a.idatetime <= :p_cdate', 
+						array(':p_cdate'=>$dateparam))
+					->group('b.batchcode')
+					->order('b.batchcode')
+					->queryAll();	
+				Yii::app()->session['stockquantityreport'] = $alldata;
+				Yii::app()->session['stockquantitydate'] = $dateparam;
+			}
+				
 			$this->render('quantity', array('cdate'=>substr($dateparam, 0, 10)));
 		} else {
 			throw new CHttpException(404,'You have no authorization for this operation.');
