@@ -16,7 +16,7 @@ $this->breadcrumbs=array(
 ?>
 	
 <div class="row">
-	<?php echo CHtml::label('Tanggal Awal', FALSE); ?>
+	<?php echo CHtml::label('Per Tanggal', FALSE); ?>
 	<?php 
 		$this->widget('zii.widgets.jui.CJuiDatePicker',array(
 			'name'=>'cdate',
