@@ -65,6 +65,7 @@ class DefaultController extends Controller
 						$this->redirect(array('view','id'=>$model->id));                 
 					}    
 				} else if ($_POST['command'] == 'setCode') {
+					die('<DIV>Here</DIV>');
 					$this->getBatchCodeInfo($model);	
 				}
 			}
@@ -326,6 +327,5 @@ class DefaultController extends Controller
 			$model->iditem = $databuy['iditem'];
         	$model->buyprice = $databuy['buyprice'];
         }
-        die();
 	}
 }
