@@ -37,16 +37,10 @@ class DefaultController extends Controller
 				Yii::app()->user->id))  {
 			$this->trackActivity('v');
 			
-			if (isset($_POST)) {
-				echo "<DIV>";
-				print_r($_POST);
-				print_r(Yii::app()->session['stockquantityreport']);
-				echo "</DIV>";
-			}
 			if (is_null(Yii::app()->session->get('stockquantityreport', null))) {
 				$alldata = array();
 				$dateparam = idmaker::getDateTime();
-				echo "<DIV>Here</DIV>";
+				
 				if (isset($_POST['go'])) {
 					$dateparam = substr($_POST['cdate'], 0, 10).' 23:59:59';
 					$alldata = Yii::app()->db->createCommand()
@@ -59,9 +53,9 @@ class DefaultController extends Controller
 						->group('b.batchcode')
 						->order('b.batchcode')
 						->queryAll();	
-					
+					Yii::app()->session['stockquantityreport'] = $alldata;
 				}
-				Yii::app()->session['stockquantityreport'] = $alldata;
+				
 				Yii::app()->session['stockquantitydate'] = $dateparam;
 			} else
 				$dateparam = Yii::app()->session['stockquantitydate'];
