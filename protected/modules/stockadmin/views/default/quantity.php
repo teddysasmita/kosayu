@@ -12,40 +12,25 @@ $this->breadcrumbs=array(
 
 <div class="form">
 <?php 
-	echo CHtml::beginForm("index.php?r=stockadmin/default/quantity", 'get');	
+	echo CHtml::beginForm("index.php?r=stockadmin/default/quantity", 'post');	
 ?>
 	
 <div class="row">
-<?php
-echo CHtml::label('Nama Barang','itemname');
-$this->widget("zii.widgets.jui.CJuiAutoComplete", array(
-		'name'=>'itemname',
-		'sourceUrl'=>Yii::app()->createUrl('LookUp/getItemName'),
-		'htmlOptions'=>array('size'=>50),
-		'value'=>$itemname,
-));
-?>
-</div>
-
-<div class="row">
-<?php
-echo CHtml::label('Gudang', 'whcode');
-$this->widget("zii.widgets.jui.CJuiAutoComplete", array(
-		'name'=>'whcode',
-		'sourceUrl'=>Yii::app()->createUrl('LookUp/getWarehouse'),
-		'htmlOptions'=>array('size'=>50),
-		'value'=>$whcode
-));
-?>
-</div>
-
-<div class="row">
-<?php
-echo CHtml::label('Kondisi', 'status');
-echo CHtml::dropDownList('status', $status, array('Semua'=>'Semua', '1'=>'Bagus', '0'=>'Rusak', 
-	'2'=>'Servis'),
-	array('empty'=>'Harap Pilih'));
-?>
+	<?php echo CHtml::label('Tanggal Awal', FALSE); ?>
+	<?php 
+		$this->widget('zii.widgets.jui.CJuiDatePicker',array(
+			'name'=>'cdate',
+                     // additional javascript options for the date picker plugin
+			'options'=>array(
+			'showAnim'=>'fold',
+			'dateFormat'=>'yy/mm/dd',
+			'defaultdate'=>idmaker::getDateTime()
+			),
+			'htmlOptions'=>array(
+				'style'=>'height:20px;',
+			),
+		)); 
+	?>
 </div>
 
 
@@ -75,26 +60,16 @@ echo CHtml::dropDownList('status', $status, array('Semua'=>'Semua', '1'=>'Bagus'
 			'columns'=>array(
 					//'id',
 					array(
+							'header'=>'Kode Barang',
+							'name'=>'batchcode',
+					),
+					array(
 							'header'=>'Nama Barang',
 							'name'=>'name',
 					),
 					array(
 							'header'=>'Jumlah',
-							'name'=>'total',
-					),
-					array(
-							'header'=>'Gudang',
-							'name'=>'code',
-					),
-					array(
-							'header'=>'Kondisi',
-							'name'=>'status',
-							'value'=>"lookup::StockStatusName(\$data['status'])"
-					),
-					array(
-						'header'=>'Sedia',
-						'name'=>'avail',
-						'value'=>"lookup::StockAvailName(\$data['avail'])"
+							'name'=>'totalqty',
 					),
 			),
 	));

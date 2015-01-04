@@ -27,42 +27,28 @@ class DefaultController extends Controller
 		};
 	}
 	
-	public function actionQuantity()
+	public function actionQuantity($cdate)
 	{
 		if(Yii::app()->authManager->checkAccess($this->formid.'-List',
 				Yii::app()->user->id))  {
 			$this->trackActivity('v');
 			
 			$alldata = array();
-			$whcodeparam = '';
-			$itemnameparam = '';
-			$statusparam = '';
+			$dateparam = substr($_POST['cdate'], 0, 10).' 23:59:59';
 				
-			if (isset($_GET['go'])) {
-				$whcodeparam = $_GET['whcode'];
-				$itemnameparam = $_GET['itemname'];
-				$statusparam = $_GET['status'];
-				$whs = Yii::app()->db->createCommand()
-					->select("id, code")->from('warehouses')->where('code like :p_code', 
-						array(':p_code'=>'%'.$whcodeparam.'%'))
+			if (isset($_POST['go'])) {
+				$alldata = Yii::app()->db->createCommand()
+					->select("b.batchcode, c.name, sum(b.qty) as totalqty")
+					->from('detailstocks b')
+					->join('stocks a', 'a.id = b.id')
+					->join('items c', 'c.id = b.iditem')
+					->where('a.idatetime <= :p_cdate', 
+						array(':p_cdate'=>$dateparam))
+					->order('b.batchcode')
 					->queryAll();	
-				foreach($whs as $wh) {
-					$command = Yii::app()->db->createCommand()
-						->select("count(*) as total, a.iddetail, a.iditem, b.name, '${wh['code']}' as code, a.avail, a.status")
-						->from("wh${wh['id']} a")
-						->join('items b', 'b.id = a.iditem')
-						->where("b.name like :p_name", array(':p_name'=>"%$itemnameparam%"));	
-						if ($statusparam !== 'Semua')
-							$command->andWhere("a.status = :p_status", array(':p_status'=>$statusparam));
-					$data = $command->group(array('iditem', 'avail'))
-						->order('a.iditem, a.avail')
-						->queryAll();
-					$alldata = array_merge($alldata, $data);
-				}
-				usort($alldata, 'cmp');
+				$alldata = array_merge($alldata, $data);
 			}
-			$this->render('quantity', array('alldata'=>$alldata, 'status'=>$statusparam, 
-					'whcode'=>$whcodeparam, 'itemname'=>$itemnameparam));
+			$this->render('quantity', array('alldata'=>$alldata, 'cdate'=>substr($_POST['cdate'], 0, 10)));
 		} else {
 			throw new CHttpException(404,'You have no authorization for this operation.');
 		};
