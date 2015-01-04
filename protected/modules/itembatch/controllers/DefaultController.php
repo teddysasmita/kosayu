@@ -96,16 +96,20 @@ class DefaultController extends Controller
 		// Uncomment the following line if AJAX validation is needed
 			$this->performAjaxValidation($model);
 
-			if(isset($_POST['itembatch']))
+			if(isset($_POST['Itembatch']))
 			{
-				$model->attributes=$_POST['itembatch'];
-                         
-				$this->beforePost($model);   
-				$this->tracker->modify('itembatch', $id);
-				if($model->save()) {
-					$this->afterPost($model);
-					$this->redirect(array('view','id'=>$model->id));
-				}        
+				$model->attributes=$_POST['Itembatch'];
+				if (isset($_POST['yt0'])) {         
+					$this->beforePost($model);   
+					$this->tracker->modify('Itembatch', $id);
+					if($model->save()) {
+						$this->afterPost($model);
+						$this->redirect(array('view','id'=>$model->id));
+					}         
+				}  else if ($_POST['command'] == 'setCode') {
+					//die('<DIV>Here</DIV>');
+					$this->getBatchCodeInfo($model);	
+				}
 			}
 
 			$this->render('update',array(
@@ -129,7 +133,7 @@ class DefaultController extends Controller
                     $this->trackActivity('d');
                 $model=$this->loadModel($id);
                 $this->beforeDelete($model);
-                $this->tracker->delete('itembatch', $id);
+                $this->tracker->delete('Itembatch', $id);
                 
                 $model->delete();
                 $this->afterDelete();
@@ -219,7 +223,7 @@ class DefaultController extends Controller
             if(Yii::app()->authManager->checkAccess($this->formid.'-Update', 
                Yii::app()->user->id)) {
                 $this->trackActivity('r');
-                $this->tracker->restore('itembatch', $idtrack);
+                $this->tracker->restore('Itembatch', $idtrack);
                 
                 $dataProvider=new CActiveDataProvider('Itembatch');
                 $this->render('index',array(
@@ -235,7 +239,7 @@ class DefaultController extends Controller
             if(Yii::app()->authManager->checkAccess($this->formid.'-Update', 
                Yii::app()->user->id)) {
                 $this->trackActivity('n');
-                $this->tracker->restoreDeleted('itembatch', $idtrack);
+                $this->tracker->restoreDeleted('Itembatch', $idtrack);
                 
                 $dataProvider=new CActiveDataProvider('Itembatch');
                 $this->render('index',array(
