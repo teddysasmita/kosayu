@@ -58,6 +58,7 @@ class DefaultController extends Controller
 						->group('b.batchcode')
 						->order('b.batchcode')
 						->queryAll();	
+					echo "<DIV>Here</DIV>";
 				}
 				Yii::app()->session['stockquantityreport'] = $alldata;
 				Yii::app()->session['stockquantitydate'] = $dateparam;
