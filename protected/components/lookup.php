@@ -551,12 +551,12 @@ class lookup extends CComponent {
 	public static function getbuyprice($code)
 	{
 		$price =  Yii::app()->db->createCommand()
-			->select('id, buyprice, baseprice')->from('itembatch')
+			->select('id, buyprice')->from('itembatch')
 			->where('batchcode = :p_batchcode', array(':p_batchcode'=>$code))
 			->order('id desc')
 			->queryRow();
 		if (!$price['buyprice'])
-			return $price['baseprice'];
+			return 0;
 		else
 			return $price['buyprice'];
 	}
