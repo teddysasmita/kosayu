@@ -49,7 +49,7 @@ $this->breadcrumbs=array(
 
 //if (isset($alldata)) {
 	$mydp = new CArrayDataProvider($alldata, array(
-			'keyField'=>'iddetail',
+			'keyField'=>'batchcode',
 			'pagination'=>array(
 				'pageSize'=>20
 			),
