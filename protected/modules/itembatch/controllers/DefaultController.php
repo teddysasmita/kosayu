@@ -155,7 +155,7 @@ class DefaultController extends Controller
                 Yii::app()->user->id)) {
                 $this->trackActivity('l');
                 
-	            $dataProvider=new CActiveDataProvider('itembatch',
+	            $dataProvider=new CActiveDataProvider('Itembatch',
 	            	array(
                      'criteria'=>array(
                         'order'=>'datetimelog desc, id desc'
