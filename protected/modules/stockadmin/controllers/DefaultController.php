@@ -53,8 +53,8 @@ class DefaultController extends Controller
 						->group('b.batchcode')
 						->order('b.batchcode')
 						->queryAll();	
+					print_r($alldata);
 				}
-				print_r($alldata);
 				Yii::app()->session['stockquantityreport'] = $alldata;
 				Yii::app()->session['stockquantitydate'] = $dateparam;
 			} else
