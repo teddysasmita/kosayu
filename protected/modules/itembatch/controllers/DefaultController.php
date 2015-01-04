@@ -291,7 +291,7 @@ class DefaultController extends Controller
         			$sellprice->id = $model->id;
         			$sellprice->regnum = idmaker::getRegNum('AC11');
         		}
-        		$sellprice->idatetime = $model->idatetime;
+        		$sellprice->idatetime = $model->datetimelog;
         		//$sellprice->iditem = lookup::ItemCodeFromItemID($d['iditem']);
         		$sellprice->iditem = $model->batchcode;
         		$sellprice->normalprice = $model->sellprice;
