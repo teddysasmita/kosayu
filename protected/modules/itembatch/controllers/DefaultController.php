@@ -56,8 +56,8 @@ class DefaultController extends Controller
 		// Uncomment the following line if AJAX validation is needed
 			$this->performAjaxValidation($model);
 
-			if(isset($_POST['itembatch'])) {
-				$model->attributes=$_POST['itembatch'];
+			if(isset($_POST['Itembatch'])) {
+				$model->attributes=$_POST['Itembatch'];
 				if (isset($_POST['yt0'])) {
 	            	$this->beforePost($model);
 					if($model->save()) {
@@ -65,7 +65,7 @@ class DefaultController extends Controller
 						$this->redirect(array('view','id'=>$model->id));                 
 					}    
 				} else if ($_POST['command'] == 'setCode') {
-					die('<DIV>Here</DIV>');
+					//die('<DIV>Here</DIV>');
 					$this->getBatchCodeInfo($model);	
 				}
 			}
