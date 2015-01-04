@@ -38,6 +38,7 @@ class DefaultController extends Controller
 			
 			if (!isset(Yii::app()->session['stockquantityreport'])) {
 				$alldata = array();
+				$dateparam = idmaker::getDateTime();
 				
 				if (isset($_POST['go'])) {
 					$dateparam = substr($_POST['cdate'], 0, 10).' 23:59:59';
@@ -53,8 +54,7 @@ class DefaultController extends Controller
 						->queryAll();	
 				}
 				Yii::app()->session['stockquantityreport'] = $alldata;
-			} else
-				$dateparam = idmaker::getDateTime();
+			} 
 			$this->render('quantity', array('cdate'=>substr($dateparam, 0, 10)));
 		} else {
 			throw new CHttpException(404,'You have no authorization for this operation.');
