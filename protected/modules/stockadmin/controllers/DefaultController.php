@@ -43,7 +43,7 @@ class DefaultController extends Controller
 				print_r(Yii::app()->session['stockquantityreport']);
 				echo "</DIV>";
 			}
-			if (!isset(Yii::app()->session['stockquantityreport'])) {
+			if (is_null(Yii::app()->session['stockquantityreport'])) {
 				$alldata = array();
 				$dateparam = idmaker::getDateTime();
 				
