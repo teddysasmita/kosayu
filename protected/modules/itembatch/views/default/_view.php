@@ -17,8 +17,8 @@
 	<?php echo CHtml::encode($data->buyprice); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('baseprice')); ?>:</b>
-	<?php echo CHtml::encode($data->baseprice); ?>
+	<b><?php echo CHtml::encode($data->getAttributeLabel('sellprice')); ?>:</b>
+	<?php echo CHtml::encode($data->sellprice); ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('userlog')); ?>:</b>

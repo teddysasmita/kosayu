@@ -33,7 +33,7 @@ $this->menu=array(
                    'value'=>lookup::ItemNameFromItemID($model['iditem']),
                 ),   
 		'buyprice',
-		'baseprice',
+		'sellprice',
 		array(
                    'name'=>'userlog',
                    'value'=>lookup::UserNameFromUserID($model->userlog)

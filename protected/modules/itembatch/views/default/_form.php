@@ -82,9 +82,9 @@ Yii::app()->clientScript->registerScript('itemscript', $itemScript, CClientScrip
 	</div>
 	
 	<div class="row">
-		<?php echo $form->labelEx($model,'baseprice'); ?>
-		<?php echo $form->textField($model,'baseprice'); ?>
-		<?php echo $form->error($model,'baseprice'); ?>
+		<?php echo $form->labelEx($model,'sellprice'); ?>
+		<?php echo $form->textField($model,'sellprice'); ?>
+		<?php echo $form->error($model,'sellprice'); ?>
 	</div>
 	
 

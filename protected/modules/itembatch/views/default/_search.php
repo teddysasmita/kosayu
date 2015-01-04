@@ -32,8 +32,8 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'baseprice'); ?>
-		<?php echo $form->textField($model,'baseprice'); ?>
+		<?php echo $form->label($model,'sellprice'); ?>
+		<?php echo $form->textField($model,'sellprice'); ?>
 	</div>
 	
 	<div class="row">
