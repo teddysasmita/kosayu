@@ -44,6 +44,7 @@ class DefaultController extends Controller
 					->join('items c', 'c.id = b.iditem')
 					->where('a.idatetime <= :p_cdate', 
 						array(':p_cdate'=>$dateparam))
+					->group('b.batchcode')
 					->order('b.batchcode')
 					->queryAll();	
 			}
