@@ -34,7 +34,7 @@ class DefaultController extends Controller
 			$this->trackActivity('v');
 			
 			$alldata = array();
-				
+			$dateparam = '';
 			if (isset($_POST['go'])) {
 				$dateparam = substr($_POST['cdate'], 0, 10).' 23:59:59';
 				$alldata = Yii::app()->db->createCommand()
@@ -48,7 +48,7 @@ class DefaultController extends Controller
 					->queryAll();	
 				$alldata = array_merge($alldata, $data);
 			}
-			$this->render('quantity', array('alldata'=>$alldata, 'cdate'=>substr($_POST['cdate'], 0, 10)));
+			$this->render('quantity', array('alldata'=>$alldata, 'cdate'=>substr($dateparam, 0, 10)));
 		} else {
 			throw new CHttpException(404,'You have no authorization for this operation.');
 		};
