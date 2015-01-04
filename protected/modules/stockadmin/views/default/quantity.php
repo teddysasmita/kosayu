@@ -50,7 +50,6 @@ $this->breadcrumbs=array(
 
 //if (isset($alldata)) {
 	$alldata = Yii::app()->session['stockquantityreport'];
-	print_r($alldata);
 	$mydp = new CArrayDataProvider($alldata, array(
 			'keyField'=>'batchcode',
 			'pagination'=>array(
