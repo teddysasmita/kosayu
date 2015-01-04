@@ -101,7 +101,7 @@ class DefaultController extends Controller
 				$model->attributes=$_POST['Itembatch'];
 				if (isset($_POST['yt0'])) {         
 					$this->beforePost($model);   
-					$this->tracker->modify('Itembatch', $id);
+					$this->tracker->modify('itembatch', $id);
 					if($model->save()) {
 						$this->afterPost($model);
 						$this->redirect(array('view','id'=>$model->id));
@@ -133,7 +133,7 @@ class DefaultController extends Controller
                     $this->trackActivity('d');
                 $model=$this->loadModel($id);
                 $this->beforeDelete($model);
-                $this->tracker->delete('Itembatch', $id);
+                $this->tracker->delete('itembatch', $id);
                 
                 $model->delete();
                 $this->afterDelete();
@@ -155,7 +155,7 @@ class DefaultController extends Controller
                 Yii::app()->user->id)) {
                 $this->trackActivity('l');
                 
-	            $dataProvider=new CActiveDataProvider('Itembatch',
+	            $dataProvider=new CActiveDataProvider('itembatch',
 	            	array(
                      'criteria'=>array(
                         'order'=>'datetimelog desc, id desc'
@@ -223,7 +223,7 @@ class DefaultController extends Controller
             if(Yii::app()->authManager->checkAccess($this->formid.'-Update', 
                Yii::app()->user->id)) {
                 $this->trackActivity('r');
-                $this->tracker->restore('Itembatch', $idtrack);
+                $this->tracker->restore('itembatch', $idtrack);
                 
                 $dataProvider=new CActiveDataProvider('Itembatch');
                 $this->render('index',array(
@@ -239,7 +239,7 @@ class DefaultController extends Controller
             if(Yii::app()->authManager->checkAccess($this->formid.'-Update', 
                Yii::app()->user->id)) {
                 $this->trackActivity('n');
-                $this->tracker->restoreDeleted('Itembatch', $idtrack);
+                $this->tracker->restoreDeleted('itembatch', $idtrack);
                 
                 $dataProvider=new CActiveDataProvider('Itembatch');
                 $this->render('index',array(
