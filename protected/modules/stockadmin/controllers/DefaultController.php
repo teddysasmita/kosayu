@@ -27,16 +27,16 @@ class DefaultController extends Controller
 		};
 	}
 	
-	public function actionQuantity($cdate)
+	public function actionQuantity()
 	{
 		if(Yii::app()->authManager->checkAccess($this->formid.'-List',
 				Yii::app()->user->id))  {
 			$this->trackActivity('v');
 			
 			$alldata = array();
-			$dateparam = substr($_POST['cdate'], 0, 10).' 23:59:59';
 				
 			if (isset($_POST['go'])) {
+				$dateparam = substr($_POST['cdate'], 0, 10).' 23:59:59';
 				$alldata = Yii::app()->db->createCommand()
 					->select("b.batchcode, c.name, sum(b.qty) as totalqty")
 					->from('detailstocks b')
