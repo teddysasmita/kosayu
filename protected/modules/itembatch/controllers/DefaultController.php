@@ -282,7 +282,28 @@ class DefaultController extends Controller
         
         protected function afterPost(& $model)
         {
-            
+        	if ($model->sellprice > 0) {
+        		$sellprice = Sellingprices::model()->findByPk($d['iddetail']);
+        		if (is_null($sellprice)) {
+        			$sellprice = new Sellingprices();
+        			$sellprice->id = $model->id;
+        			$sellprice->regnum = idmaker::getRegNum('AC11');
+        		}
+        		$sellprice->idatetime = $model->idatetime;
+        		//$sellprice->iditem = lookup::ItemCodeFromItemID($d['iditem']);
+        		$sellprice->iditem = $model->batchcode;
+        		$sellprice->normalprice = $model->sellprice;
+        		$sellprice->minprice = $model->sellprice;
+        		$sellprice->approvalby = 'Pak Made';
+        		$sellprice->datetimelog = $model->datetimelog;
+        		$sellprice->userlog = $model->userlog;
+        	
+        		$resp = $sellprice->save();
+        		if (!$resp) {
+        			throw new CHttpException(100,'There is an error in after post');
+        		}
+        		idmaker::saveRegNum('AC11', $sellprice->regnum);
+        	}
         }
         
         protected function beforePost(& $model)
