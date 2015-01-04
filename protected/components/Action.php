@@ -988,12 +988,12 @@ class Action extends CComponent {
    	}
    	
    	public static function saveItemBatch($id, $iditem, $batchcode, $buyprice, $userlog, 
-   			$datetimelog, $baseprice = 0)
+   			$datetimelog, $sellprice)
    	{
    		Yii::app()->db->createCommand()
    			->insert('itembatch', 
    				array('id'=>$id, 'iditem'=>$iditem, 'batchcode'=>$batchcode, 
-   					 'buyprice'=>$buyprice, 'baseprice'=>$baseprice, 
+   					 'buyprice'=>$buyprice, 'sellprice'=>$sellprice, 
    					'userlog'=>$userlog, 'datetimelog'=>$datetimelog ));
    	}
    	

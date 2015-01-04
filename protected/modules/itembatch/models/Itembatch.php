@@ -8,7 +8,7 @@
  * @property string $batchcode
  * @property string $iditem
  * @property string $buyprice
- * @property string $baseprice
+ * @property string $sellprice
  * @property string $userlog
  * @property string $datetimelog
  */
@@ -30,13 +30,13 @@ class Itembatch extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id, batchcode, iditem, buyprice, baseprice, userlog, datetimelog', 'required'),
-			array('buyprice, baseprice', 'numerical'),
+			array('id, batchcode, iditem, buyprice, sellprice, userlog, datetimelog', 'required'),
+			array('buyprice, sellprice', 'numerical'),
 			array('id, batchcode, userlog', 'length', 'max'=>21),
 			array('datetimelog', 'length', 'max'=>19),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, batchcode, iditem, buyprice, baseprice, datetimelog, userlog', 'safe', 'on'=>'search'),
+			array('id, batchcode, iditem, buyprice, sellprice, datetimelog, userlog', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -61,7 +61,7 @@ class Itembatch extends CActiveRecord
 			'iditem' => 'Nama Barang',
 			'batchcode' => 'Kode Batch',
 			'buyprice' => 'Harga Beli',
-			'baseprice' => 'Harga Pokok',
+			'sellprice' => 'Harga Jual',
 			'userlog' => 'Userlog',
 			'datetimelog' => 'Datetimelog',
 		);
@@ -89,7 +89,7 @@ class Itembatch extends CActiveRecord
 		$criteria->compare('iditem',$this->iditem,true);
 		$criteria->compare('batchcode',$this->batchcode);
 		$criteria->compare('buyprice',$this->buyprice,true);
-		$criteria->compare('baseprice',$this->baseprice,true);
+		$criteria->compare('sellprice',$this->sellprice,true);
 		$criteria->compare('userlog',$this->userlog,true);
 		$criteria->compare('datetimelog',$this->datetimelog,true);
 

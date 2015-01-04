@@ -322,11 +322,20 @@ class DefaultController extends Controller
         	->where("batchcode = :p_batchcode", array(':p_batchcode'=>$model->batchcode))
         	->order("id desc")
         	->queryRow();
-        
+		
 		if ($databuy) {
 			$model->iditem = $databuy['iditem'];
         	$model->buyprice = $databuy['buyprice'];
-        	$model->baseprice = 0;
+        }
+        
+        $datasell = Yii::app()->db->createCommand()
+        	->select('normalprice')->from("sellingprices")
+        	->where("iditem = :p_batchcode", array(':p_batchcode'=>$model->batchcode))
+        	->order("id desc")
+        	->queryScalar();
+        
+        if ($datasell) {
+        	$model->sellprice = $datasell;
         }
 	}
 }
