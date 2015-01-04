@@ -294,6 +294,7 @@ class DefaultController extends Controller
         			$sellprice = new Sellingprices();
         			$sellprice->id = $model->id;
         			$sellprice->regnum = idmaker::getRegNum('AC11');
+        			idmaker::saveRegNum('AC11', $sellprice->regnum);
         		}
         		$sellprice->idatetime = $model->datetimelog;
         		//$sellprice->iditem = lookup::ItemCodeFromItemID($d['iditem']);
@@ -308,7 +309,7 @@ class DefaultController extends Controller
         		if (!$resp) {
         			throw new CHttpException(100,'There is an error in after post');
         		}
-        		idmaker::saveRegNum('AC11', $sellprice->regnum);
+        		
         	}
         }
         
