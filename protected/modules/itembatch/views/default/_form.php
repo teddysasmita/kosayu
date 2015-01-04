@@ -10,6 +10,10 @@
 <?php 
 
 $itemScript=<<<EOS
+	$('#Itembatch_batchcode').change(function(){
+		$('#command').val('setCode');
+		$('#itembatch-form').submit();
+	});
 	$('#Itembatch_iditem').change(
 		function() {
 			$.getJSON('index.php?r=LookUp/getItemName2',{ id: $('#Itembatch_iditem').val() },
@@ -38,8 +42,15 @@ Yii::app()->clientScript->registerScript('itemscript', $itemScript, CClientScrip
 		echo $form->hiddenField($model, 'id');
 		echo $form->hiddenField($model, 'userlog');
 		echo $form->hiddenField($model, 'datetimelog');
+		echo CHtml::hiddenField('command');
     ?>
 
+    <div class="row">
+		<?php echo $form->labelEx($model,'batchcode'); ?>
+		<?php echo $form->textField($model,'batchcode',array('size'=>30,'maxlength'=>50)); ?>
+		<?php echo $form->error($model,'batchcode'); ?>
+	</div>
+	
     <div class="row">
 		<?php echo $form->labelEx($model,'iditem'); ?>
             <?php
@@ -62,12 +73,6 @@ Yii::app()->clientScript->registerScript('itemscript', $itemScript, CClientScrip
 		<?php echo CHtml::label('',''); ?>
 		<?php echo CHtml::tag('span',array('id'=>'itemname', 'class'=>'money'), 
 			lookup::ItemNameFromItemID($model->iditem)); ?>
-	</div>
-	
-	<div class="row">
-		<?php echo $form->labelEx($model,'batchcode'); ?>
-		<?php echo $form->textField($model,'batchcode',array('size'=>30,'maxlength'=>50)); ?>
-		<?php echo $form->error($model,'batchcode'); ?>
 	</div>
 
 	<div class="row">

@@ -45,33 +45,35 @@ class DefaultController extends Controller
 	 */
 	public function actionCreate()
 	{
-             if(Yii::app()->authManager->checkAccess($this->formid.'-Append', 
+		if(Yii::app()->authManager->checkAccess($this->formid.'-Append', 
                     Yii::app()->user->id))  {   
-                $this->state='c';
-                $this->trackActivity('c');    
+			$this->state='c';
+			$this->trackActivity('c');    
                     
-                $model=new Itembatch;
-                $this->afterInsert($model);
+			$model=new Itembatch;
+			$this->afterInsert($model);
                 
 		// Uncomment the following line if AJAX validation is needed
-		$this->performAjaxValidation($model);
+			$this->performAjaxValidation($model);
 
-		if(isset($_POST['itembatch']))
-		{
-			$model->attributes=$_POST['itembatch'];
-                        $this->beforePost($model);
-			if($model->save()) {
-                            $this->afterPost($model);
-                            $this->redirect(array('view','id'=>$model->id));                 
-                        }    
-                }
-
-		$this->render('create',array(
-			'model'=>$model,
-		));
-             } else {
-                throw new CHttpException(404,'You have no authorization for this operation.');
-             }
+			if(isset($_POST['itembatch'])) {
+				$model->attributes=$_POST['itembatch'];
+				if (isset($_POST['yt0'])) {
+	            	$this->beforePost($model);
+					if($model->save()) {
+						$this->afterPost($model);
+						$this->redirect(array('view','id'=>$model->id));                 
+					}    
+				} else if ($_POST['command'] == 'setCode') {
+					$this->getBatchCodeInfo($model);	
+				}
+			}
+			$this->render('create',array(
+				'model'=>$model,
+			));
+		} else {
+			throw new CHttpException(404,'You have no authorization for this operation.');
+		}
 	}
 
 	/**
@@ -311,5 +313,18 @@ class DefaultController extends Controller
             $this->tracker->init();
             $this->tracker->logActivity($this->formid, $action);
         }
-     
+	
+	protected function getBatchCodeInfo(& $model)
+	{
+		$databuy = Yii::app()->db->createCommand()
+        	->select()->from("itembatch")
+        	->where("batchcode = :p_batchcode", array(':p_batchcode'=>$model->batchcode))
+        	->order("id desc")
+        	->queryRow();
+        
+		if ($databuy) {
+			$model->iditem = $databuy['iditem'];
+        	$model->buyprice = $databuy['buyprice'];
+        }
+	}
 }
