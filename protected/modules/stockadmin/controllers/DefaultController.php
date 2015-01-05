@@ -13,7 +13,7 @@ function cmp2($a, $b)
 class DefaultController extends Controller
 {
 	public $layout='//layouts/column2';
-	private $formid = 'AC51';
+	private $formid = 'AC30';
 	private $tracker;
 	
 	public function actionIndex()
