@@ -19,7 +19,7 @@ $this->breadcrumbs=array(
 	<?php echo CHtml::label('Tanggal Awal', FALSE); ?>
 	<?php 
 		$this->widget('zii.widgets.jui.CJuiDatePicker',array(
-			'name'=>'cdate',
+			'name'=>'cstart',
                      // additional javascript options for the date picker plugin
 			'options'=>array(
 			'showAnim'=>'fold',
@@ -38,7 +38,7 @@ $this->breadcrumbs=array(
 	<?php echo CHtml::label('Tanggal Akhir', FALSE); ?>
 	<?php 
 		$this->widget('zii.widgets.jui.CJuiDatePicker',array(
-			'name'=>'cdate',
+			'name'=>'cend',
                      // additional javascript options for the date picker plugin
 			'options'=>array(
 			'showAnim'=>'fold',
