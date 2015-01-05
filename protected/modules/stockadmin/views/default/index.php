@@ -15,4 +15,5 @@ $this->menu=array(
 
 <h3><?php echo CHtml::link('Berdasarkan Kode Barang', 
 		Yii::app()->createUrl('stockadmin/default/quantity'))?></h3> 
-
+<h3><?php echo CHtml::link('Berdasarkan Aliran Barang', 
+		Yii::app()->createUrl('stockadmin/default/flow'))?></h3> 
