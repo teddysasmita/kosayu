@@ -598,7 +598,7 @@ class DefaultController extends Controller
 	            	idmaker::saveRegNum('AC11', $sellprice->regnum);
             	}
             	Action::saveItemBatch($d['iddetail'], $d['iditem'], $d['batchcode'], 
-            		$d['buyprice'], $d['userlog'], $d['datetimelog'], $d['baseprice']);
+            		$d['buyprice'], $d['userlog'], $d['datetimelog'], $d['sellprice']);
             }
         }
         

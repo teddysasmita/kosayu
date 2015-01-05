@@ -72,125 +72,101 @@ class DefaultController extends Controller
 		};
 	}
 	
-	public function actionSerial()
-	{
-		if(Yii::app()->authManager->checkAccess($this->formid.'-List',
-				Yii::app()->user->id))  {
-			$this->trackActivity('v');
-				
-			$alldata = array();
-			$whcodeparam = '';
-			$itemnameparam = '';
-			$statusparam = '';
-			
-			if (isset($_GET['go'])) {
-				$whcodeparam = $_GET['whcode'];
-				$itemnameparam = $_GET['itemname'];
-				$statusparam = $_GET['status'];
-				$whs = Yii::app()->db->createCommand()
-				->select("id, code")->from('warehouses')->where('code like :p_code',
-						array(':p_code'=>'%'.$whcodeparam.'%'))
-						->queryAll();
-				foreach($whs as $wh) {
-					$command = Yii::app()->db->createCommand()
-						->select("a.iddetail, a.iditem, b.name, a.serialnum, concat('${wh['code']}') as code, a.avail, a.status")
-						->from("wh${wh['id']} a")
-						->join('items b', 'b.id = a.iditem')
-						->where("b.name like :p_name", array(':p_name'=>"%$itemnameparam%"));
-						
-					if ($statusparam !== 'Semua')
-						$command->andWhere("a.status = :p_status", array(':p_status'=>$statusparam));
-					$data = $command->order('b.name, a.avail')->queryAll();
-					$alldata = array_merge($alldata, $data);
-				}
-				usort($alldata, 'cmp');
-			}
-			$this->render('serial', array('alldata'=>$alldata, 'status'=>$statusparam,
-				'whcode'=>$whcodeparam, 'itemname'=>$itemnameparam));
-		} else {
-			throw new CHttpException(404,'You have no authorization for this operation.');
-		};
-	}
-	
-	public function actionTrace()
-	{
-		if(Yii::app()->authManager->checkAccess($this->formid.'-List',
-				Yii::app()->user->id))  {
-			$this->trackActivity('v');
-	
-			$alldata = array();
-			$serialnumparam = '';
-				
-			if (isset($_GET['go'])) {
-				$serialnumparam = $_GET['serialnum'];
-				$whs = Yii::app()->db->createCommand()
-					->select("id, code")->from('warehouses')->queryAll();
-				foreach($whs as $wh) {
-					$data = Yii::app()->db->createCommand()
-						->select("a.iddetail, a.iditem, ('${wh['code']}') as code, a.avail, a.status, b.name")
-						->from("wh${wh['id']} a")
-						->join('items b', 'b.id = a.iditem')
-						->where("a.serialnum = :p_serialnum", 
-							array(':p_serialnum'=>$serialnumparam))
-						->queryAll();
-					if (!$data) {
-						$data = Yii::app()->db->createCommand()
-						->select("a.iddetail, a.iditem, ('${wh['code']}') as code, a.avail, a.status, ('Tidak Terdaftar') as name")
-						->from("wh${wh['id']} a")
-						->where("a.serialnum = :p_serialnum",
-								array(':p_serialnum'=>$serialnumparam))
-								->queryAll();
-					}
-					$alldata = array_merge($alldata, $data);
-				}
-			}
-			$this->render('trace', array('alldata'=>$alldata, 'serialnum'=>$serialnumparam));
-		} else {
-			throw new CHttpException(404,'You have no authorization for this operation.');
-		};
-	}
-	
 	public function actionFlow()
 	{
 		if(Yii::app()->authManager->checkAccess($this->formid.'-List',
 				Yii::app()->user->id))  {
 			$this->trackActivity('v');
 		
-			$alldata = array();
-			$iditemparam = '';
-			$whcodeparam = '';
+			if (!isset(Yii::app()->session['stockflowreport'])) {
+				$predata = array();
+				$startparam = idmaker::getDateTime();
+				$endparam = idmaker::getDateTime();
+				$prefixparam = '';;
+			} else {
+				$startparam = Yii::app()->session['stockflowstart'];
+				$endparam = Yii::app()->session['stockflowend'];
+				$prefixparam = Yii::app()->session['stockquantityprefix'];
+			} 
+			if (isset($_POST['go'])) {
+				$startparam = substr($_POST['cstart'], 0, 10).' 00:00:00';
+				$endparam = substr($_POST['cend'], 0, 10).' 23:59:59';
+				$prefixparam = $_POST['cprefix'];
+				$predata = Yii::app()->db->createCommand()
+					->select("b.batchcode, c.name, sum(b.qty) as totalqty")
+					->from('detailstocks b')
+					->join('stocks a', 'a.id = b.id')
+					->join('items c', 'c.id = b.iditem')
+					->where('a.idatetime <= :p_cstart', 
+						array(':p_cstart'=>$startparam))
+					->andWhere('b.batchcode like :p_batchcode', array(':p_batchcode'=>$prefixparam.'%'))
+					->group('b.batchcode')
+					->order('b.batchcode')
+					->queryAll();	
 				
-			if (isset($_GET['go'])) {
-				$sql=<<<EOS
-	select b.iddetail, a.idwarehouse, a.regnum, a.transname, a.transid, a.idatetime, count(*) as total, b.iditem from stockentries a 
-	join detailstockentries b on b.id = a.id
-	where b.iditem = :p_b_iditem and a.idwarehouse like :p_a_idwh and b.serialnum <> 'Belum Diterima'
-	group by a.regnum
-	union
-	select d.iddetail, c.idwarehouse, c.regnum, c.transname, c.transid, c.idatetime, - (count(*)) as total, d.iditem from stockexits c 
-	join detailstockexits d on d.id = c.id
-	where d.iditem = :p_d_iditem and c.idwarehouse like :p_c_idwh and d.serialnum <> 'Belum Diterima'
-	group by c.regnum
-	order by idatetime							
-EOS;
-				$iditemparam = $_GET['iditem'];
-				$whcodeparam = $_GET['whcode'];
-				if ($whcodeparam !== "")
-					$idwh = lookup::WarehouseIDFromCode($whcodeparam);
-				else
-					$idwh = '%';
-				$command = Yii::app()->db->createCommand($sql);
-				$command->bindParam(':p_b_iditem', $iditemparam, PDO::PARAM_STR);
-				$command->bindParam(':p_d_iditem', $iditemparam, PDO::PARAM_STR);
-				$command->bindParam(':p_a_idwh', $idwh, PDO::PARAM_STR);
-				$command->bindParam(':p_c_idwh', $idwh, PDO::PARAM_STR);
-				$alldata = $command->queryAll();
-				usort($alldata, 'cmp2');
-				foreach ($alldata as & $data) {
-					$data['serialnums'] = $this->getSerials($data['regnum'], $data['iditem'], $data['total']);
-				}
+				$receivedata = Yii::app()->db->createCommand()
+					->select("b.batchcode, c.name, sum(b.qty) as totalqty")
+					->from('detailstocks b')
+					->join('stocks a', 'a.id = b.id')
+					->join('items c', 'c.id = b.iditem')
+					->where('a.idatetime >= :p_cstart and a.idatetime <= :p_cend',
+						array(':p_cstart'=>$startparam, ':p_cend'=>$endparam))
+					->andWhere('b.batchcode like :p_batchcode', array(':p_batchcode'=>$prefixparam.'%'))
+					->andWhere('a.transtype = :p_transtype1 or a.transtype = :p_transtype2', 
+						array(':p_transtype1'=>'Beli Putus', ':p_transtype2'=>'Beli Konsinyasi'))
+					->group('b.batchcode')
+					->order('b.batchcode')
+					->queryAll();
+				
+				$solddata = Yii::app()->db->createCommand()
+					->select("b.batchcode, c.name, sum(b.qty) as totalqty")
+					->from('detailstocks b')
+					->join('stocks a', 'a.id = b.id')
+					->join('items c', 'c.id = b.iditem')
+					->where('a.idatetime >= :p_cstart and a.idatetime <= :p_cend',
+						array(':p_cstart'=>$startparam, ':p_cend'=>$endparam))
+					->andWhere('b.batchcode like :p_batchcode', array(':p_batchcode'=>$prefixparam.'%'))
+					->andWhere('a.transtype = :p_transtype',
+						array(':p_transtype'=>'Penjualan'))
+					->group('b.batchcode')
+					->order('b.batchcode')
+					->queryAll();
+				
+				$returdata = Yii::app()->db->createCommand()
+					->select("b.batchcode, c.name, sum(b.qty) as totalqty")
+					->from('detailstocks b')
+					->join('stocks a', 'a.id = b.id')
+					->join('items c', 'c.id = b.iditem')
+					->where('a.idatetime >= :p_cstart and a.idatetime <= :p_cend',
+						array(':p_cstart'=>$startparam, ':p_cend'=>$endparam))
+					->andWhere('b.batchcode like :p_batchcode', array(':p_batchcode'=>$prefixparam.'%'))
+					->andWhere('a.transtype = :p_transtype',
+						array(':p_transtype'=>'Retur Beli'))
+					->group('b.batchcode')
+					->order('b.batchcode')
+					->queryAll();
+				
+				$postdata = Yii::app()->db->createCommand()
+					->select("b.batchcode, c.name, sum(b.qty) as totalqty")
+					->from('detailstocks b')
+					->join('stocks a', 'a.id = b.id')
+					->join('items c', 'c.id = b.iditem')
+					->where('a.idatetime <= :p_cend',
+						array(':p_cend'=>$endparam))
+					->andWhere('b.batchcode like :p_batchcode', array(':p_batchcode'=>$prefixparam.'%'))
+					->group('b.batchcode')
+					->order('b.batchcode')
+					->queryAll();
+				
+				Yii::app()->session['stockflowreport'] = $alldata;
+				Yii::app()->session['stockflowend'] = $endparam;
+				Yii::app()->session['stockflowstart'] = $startparam;
+				Yii::app()->session['stockflowprefix'] = $prefixparam;
 			}
-			$this->render('flow', array('alldata'=>$alldata, 'iditem'=>$iditemparam, 'whcode'=>$whcodeparam));
+				
+			$this->render('quantity', array('cdate'=>substr($dateparam, 0, 10), 
+				'cprefix'=>$prefixparam)
+			);
 		} else {
 			throw new CHttpException(404,'You have no authorization for this operation.');
 		};
