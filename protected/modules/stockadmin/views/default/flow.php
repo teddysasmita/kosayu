@@ -4,7 +4,7 @@
 $this->breadcrumbs=array(
 		'Proses'=>array('/site/proses'),
 		'Daftar'=>array('default/index'),
-		'Kartu Stok'
+		'Berdasarkan Aliran Stok'
 );
 ?>
 
@@ -12,30 +12,53 @@ $this->breadcrumbs=array(
 
 <div class="form">
 <?php 
-	echo CHtml::beginForm("index.php?r=stockadmin/default/flow", 'get');	
+	echo CHtml::beginForm("index.php?r=stockadmin/default/flow", 'post');	
 ?>
 	
 <div class="row">
-<?php
-echo CHtml::label('ID Barang','iditem');
-$this->widget("zii.widgets.jui.CJuiAutoComplete", array(
-		'name'=>'iditem',
-		'sourceUrl'=>Yii::app()->createUrl('LookUp/getItem3'),
-		'htmlOptions'=>array('size'=>50),
-		'value'=>$iditem,
-));
-?>
+	<?php echo CHtml::label('Tanggal Awal', FALSE); ?>
+	<?php 
+		$this->widget('zii.widgets.jui.CJuiDatePicker',array(
+			'name'=>'cdate',
+                     // additional javascript options for the date picker plugin
+			'options'=>array(
+			'showAnim'=>'fold',
+			'dateFormat'=>'yy/mm/dd',
+			'defaultdate'=>idmaker::getDateTime()
+			),
+			'htmlOptions'=>array(
+				'style'=>'height:20px;',
+			),
+			'value'=>$cstart
+		)); 
+	?>
+</div>
 
 <div class="row">
-<?php
-echo CHtml::label('Gudang', 'whcode');
-$this->widget("zii.widgets.jui.CJuiAutoComplete", array(
-		'name'=>'whcode',
-		'sourceUrl'=>Yii::app()->createUrl('LookUp/getWarehouse'),
-		'htmlOptions'=>array('size'=>50),
-		'value'=>$whcode
-));
-?>
+	<?php echo CHtml::label('Tanggal Akhir', FALSE); ?>
+	<?php 
+		$this->widget('zii.widgets.jui.CJuiDatePicker',array(
+			'name'=>'cdate',
+                     // additional javascript options for the date picker plugin
+			'options'=>array(
+			'showAnim'=>'fold',
+			'dateFormat'=>'yy/mm/dd',
+			'defaultdate'=>idmaker::getDateTime()
+			),
+			'htmlOptions'=>array(
+				'style'=>'height:20px;',
+			),
+			'value'=>$cend
+		)); 
+	?>
+</div>
+
+<div class="row">
+	<?php echo CHtml::label('Awalan Kode', FALSE); ?>
+	<?php 
+		echo CHtml::textField('cprefix', $cprefix); 
+	?>
+</div>
 
 <div class="row">
 <?php 
@@ -43,19 +66,21 @@ $this->widget("zii.widgets.jui.CJuiAutoComplete", array(
 ?>
 </div>
 
-</div>
 <?php 
 	echo CHtml::endForm();
 ?>
 </div> <!-- form -->
 
-
-<h2><?php echo lookup::ItemNameFromItemID($iditem). " - $iditem" ?></h2>
 <?php 
-	
+
 //if (isset($alldata)) {
+	if (isset(Yii::app()->session['stockflowreport']))
+		$alldata = Yii::app()->session['stockflowreport'];
+	else
+		$alldata = array();
+	
 	$mydp = new CArrayDataProvider($alldata, array(
-			'keyField'=>'iddetail',
+			'keyField'=>'batchcode',
 			'pagination'=>array(
 				'pageSize'=>20
 			),
@@ -66,46 +91,36 @@ $this->widget("zii.widgets.jui.CJuiAutoComplete", array(
 			'columns'=>array(
 					//'id',
 					array(
-							'header'=>'Tanggal',
-							'name'=>'idatetime',
+							'header'=>'Kode Barang',
+							'name'=>'batchcode',
 					),
 					array(
-							'header'=>'Nomor Urut',
-							'name'=>'regnum',
+							'header'=>'Nama Barang',
+							'name'=>'name',
 					),
 					array(
-						'header'=>'Transaksi',
-						'class'=>'CLinkColumn',
-						'labelExpression'=>"\$data['transid']",
-						'urlExpression'=>"lookup::getTrans(\$data)",
+							'header'=>'Jml Awal',
+							'name'=>'startqty',
 					),
 					array(
-							'header'=>'Total',
-							'name'=>'total',
+							'header'=>'Jml Beli',
+							'name'=>'receiveqty',
 					),
 					array(
-							'header'=>'Gudang',
-							'name'=>'code',
-							'value'=>"lookup::WarehouseNameFromWarehouseID(\$data['idwarehouse'])"
+							'header'=>'Jml Jual',
+							'name'=>'soldqty',
 					),
 					array(
-							'header'=>'Nomor Seri',
-							'name'=>'serialnums',
-							'type'=>'ntext',
+							'header'=>'Jml Retur',
+							'name'=>'returqty',
+					),
+					array(
+							'header'=>'Jml Akhir',
+							'name'=>'endqty',
 					),
 			),
 	));
 //}
 
-?>
 
-<h2>
-<?php 
-	$mytotal = 0;
-	foreach($alldata as $data) {
-		$mytotal += $data['total'];
-	};
-	
-	echo "Jumlah = ".number_format($mytotal)." unit."; 
 ?>
-</h2>

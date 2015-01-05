@@ -79,7 +79,7 @@ class DefaultController extends Controller
 			$this->trackActivity('v');
 		
 			if (!isset(Yii::app()->session['stockflowreport'])) {
-				$predata = array();
+				$postdata = array();
 				$startparam = idmaker::getDateTime();
 				$endparam = idmaker::getDateTime();
 				$prefixparam = '';;
@@ -92,6 +92,7 @@ class DefaultController extends Controller
 				$startparam = substr($_POST['cstart'], 0, 10).' 00:00:00';
 				$endparam = substr($_POST['cend'], 0, 10).' 23:59:59';
 				$prefixparam = $_POST['cprefix'];
+				
 				$predata = Yii::app()->db->createCommand()
 					->select("b.batchcode, c.name, sum(b.qty) as totalqty")
 					->from('detailstocks b')
@@ -147,7 +148,7 @@ class DefaultController extends Controller
 					->queryAll();
 				
 				$postdata = Yii::app()->db->createCommand()
-					->select("b.batchcode, c.name, sum(b.qty) as totalqty")
+					->select("b.batchcode, c.name, sum(b.qty) as endqty")
 					->from('detailstocks b')
 					->join('stocks a', 'a.id = b.id')
 					->join('items c', 'c.id = b.iditem')
@@ -158,15 +159,73 @@ class DefaultController extends Controller
 					->order('b.batchcode')
 					->queryAll();
 				
-				Yii::app()->session['stockflowreport'] = $alldata;
+				foreach($predata as & $pr) {
+					$found = FALSE;
+					foreach($postdata as & $ps) {
+						if ($pr['batchcode'] == $ps['batchcode']) {
+							$found = TRUE;
+							$ps['startqty'] = $pr['totalqty'];
+							break;
+						}
+					}
+					if (!$found) {
+						$temp['batchcode'] = $pr['batchcode'];
+						$temp['name'] = $pr['name'];
+						$temp['startqty'] = $pr['totalqty'];
+						$temp['endqty'] = 0;
+						$postdata[] = $temp;
+					}
+				}
+				
+				unset($pr);
+				unset($ps);
+				foreach($postdata as & $ps) {
+					$found = FALSE;
+					foreach($receivedata as $rc) {
+						if ($ps['batchcode'] == $rc['batchcode']) {
+							$found = TRUE;
+							$ps['receiveqty'] = $rc['totalqty'];
+							break;
+						}
+					}
+					if (!$found) {
+						$ps['receiveqty'] = 0;
+					}		
+					$found = FALSE;
+					foreach($solddata as $sd) {
+						if ($ps['batchcode'] == $sd['batchcode']) {
+							$found = TRUE;
+							$ps['soldqty'] = $sd['totalqty'];
+							break;
+						}
+					}
+					if (!$found) {
+						$ps['soldqty'] = 0;
+					}
+					$found = FALSE;
+					foreach($returdata as $rt) {
+						if ($ps['batchcode'] == $rt['batchcode']) {
+							$found = TRUE;
+							$ps['returqty'] = $rt['totalqty'];
+							break;
+						}
+					}
+					if (!$found) {
+						$ps['returqty'] = 0;
+					}
+				}
+				
+				Yii::app()->session['stockflowreport'] = $postdata;
 				Yii::app()->session['stockflowend'] = $endparam;
 				Yii::app()->session['stockflowstart'] = $startparam;
 				Yii::app()->session['stockflowprefix'] = $prefixparam;
 			}
 				
-			$this->render('quantity', array('cdate'=>substr($dateparam, 0, 10), 
-				'cprefix'=>$prefixparam)
-			);
+			$this->render('quantity', array(
+				'cstart'=>substr($startparam, 0, 10), 
+				'cend'=>substr($endparam, 0, 10),
+				'cprefix'=>$prefixparam
+			));
 		} else {
 			throw new CHttpException(404,'You have no authorization for this operation.');
 		};
