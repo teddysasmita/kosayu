@@ -221,7 +221,7 @@ class DefaultController extends Controller
 				Yii::app()->session['stockflowprefix'] = $prefixparam;
 			}
 				
-			$this->render('quantity', array(
+			$this->render('flow', array(
 				'cstart'=>substr($startparam, 0, 10), 
 				'cend'=>substr($endparam, 0, 10),
 				'cprefix'=>$prefixparam
