@@ -77,6 +77,8 @@ class MYPDF extends TCPDF {
 				
 			}
 		}
+		$ih = $this->getStringHeight(185, $this->data->remark);
+		$this->checkPageBreak($ih + 5);
 		$this->setX(10);
 		$this->Cell(120, 5, 'Total', 'LTB', 0, 'R');
 		$this->Cell(65, 5, number_format($this->total), 'LTBR', 1, 'R');
