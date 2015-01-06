@@ -83,7 +83,7 @@ class MYPDF extends TCPDF {
 		$this->Cell(120, 5, 'Total', 'LTB', 0, 'R');
 		$this->Cell(65, 5, number_format($this->total), 'LTBR', 1, 'R');
 		$this->setX(10);
-		$this->MultiCell(185, $ih, $this->data->remark, 'LTRB');
+		$this->MultiCell(185, $ih, $this->data->remark, 'LTRB', 'L');
 		//$this->Cell(array_sum($this->headerwidths), 0, '', 'T');
 	}
 	
