@@ -324,14 +324,23 @@ class DetailpurchasesController extends Controller
         protected function getBatchCodeInfo(& $model)
         {
         	$databuy = Yii::app()->db->createCommand()
-        	->select()->from("itembatch")
-        	->where("batchcode = :p_batchcode", array(':p_batchcode'=>$model->batchcode))
-        	->order("id desc")
-        	->queryRow();
+        		->select()->from("itembatch")
+        		->where("batchcode = :p_batchcode", array(':p_batchcode'=>$model->batchcode))
+        		->order("id desc")
+        		->queryRow();       	 
         
         	if ($databuy) {
+        		$datasell = Yii::app()->db->createCommand()
+        			->select('normalprice')->from("sellingprices")
+        			->where("iditem = :p_batchcode", array(':p_batchcode'=>$model->batchcode))
+        			->order("id desc")
+        			->queryScalar();
+        		
         		$model->iditem = $databuy['iditem'];
         		$model->price = $databuy['buyprice'];
+        		if ($datasell) {
+        			$model->sellprice = $datasell;
+        		}
         	}
         }
 }
