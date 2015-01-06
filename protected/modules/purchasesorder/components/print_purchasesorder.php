@@ -120,7 +120,7 @@ class MYPDF extends TCPDF {
 	
 		$this->setFontSize(15);
 		$this->setXY(10, 10);
-		$this->Cell(195, 10, 'Nota Pemesanan Barang', 'LTR', 1, 'C');
+		$this->Cell(185, 10, 'Nota Pemesanan Barang', 'LTR', 1, 'C');
 		$this->SetFontSize(10);
 		$this->SetFont('Helvetica', 'B');
 		$this->setXY(10, 20);
