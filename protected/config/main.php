@@ -83,7 +83,8 @@ return array(
 			'expenses',
 			'cashouts',
 			'cashboxes',
-			'itembatch'
+			'itembatch',
+			'cashins'
         ),
 
         
