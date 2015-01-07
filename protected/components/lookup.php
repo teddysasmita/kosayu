@@ -612,6 +612,19 @@ class lookup extends CComponent {
 		else
 			return $name;
 	}
+	
+	public static function AccountNameFromID($id)
+	{
+		$name = Yii::app()->db->createCommand()
+		->select('name')->from('accounts')
+		->where('id = :p_id', array(':p_id'=>$id))
+		->queryScalar();
+	
+		if(!$name)
+			return 'Belum Terdaftar';
+		else
+			return $name;
+	}
 }
 
 

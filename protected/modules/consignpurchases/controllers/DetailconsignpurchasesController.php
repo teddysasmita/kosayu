@@ -280,6 +280,7 @@ class DetailconsignpurchasesController extends Controller
         protected function afterInsert($id, & $model)
         {
             $idmaker=new idmaker();
+            
             $model->id=$id;  
             $model->iddetail=$idmaker->getCurrentID2();
             $model->userlog=Yii::app()->user->id;

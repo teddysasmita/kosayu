@@ -131,6 +131,25 @@ class LookUpController extends Controller {
 		};
 	}
 	
+	public function actionGetCashInCredit($term)
+	{
+		if (!Yii::app()->user->isGuest) {
+			$data=Yii::app()->db->createCommand()
+				->selectDistinct("concat(a.id, ' -> ', a.name) as label, a.id as value")
+				->from('accounts a')
+				->where('a.name like :p_name', array(':p_name'=>$term.'%'))
+				->andWhere('a.kind like :p_kind1', array(':p_kind1'=>'L%'))
+				->andWhere('a.kind like :p_kind2', array(':p_kind2'=>'R%'))
+				->andWhere('a.kind like :p_kind3', array(':p_kind3'=>'Q1'))
+				->order('a.name')
+				->queryAll();
+		
+			echo json_encode($data);
+		} else {
+			throw new CHttpException(404,'You have no authorization for this operation.');
+		};
+	}
+	
 	public function actionGetObjects($term)
 	{
 		if (!Yii::app()->user->isGuest) {
@@ -959,6 +978,25 @@ EOS;
 		};
 	
 	}
+	
+	public function actionGetAccountName($id)
+	{
+		$name=rawurldecode($id);
+	
+		if (!Yii::app()->user->isGuest) {
+			$data=Yii::app()->db->createCommand()
+				->select("concat(id, ' -> ', name)")
+				->from('accounts')
+				->where('id = :p_id',
+					array(':p_id'=>$id))
+				->queryScalar();
+			echo json_encode($data);
+		} else {
+			throw new CHttpException(404,'You have no authorization for this operation.');
+		};
+	
+	}
+	
 	public function actionGetSCAddress($id)
 	{
 		if (!Yii::app()->user->isGuest) {
