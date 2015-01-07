@@ -6,7 +6,7 @@ class DefaultController extends Controller
 	 * @var string the default layin for the views. Defaults to '//layins/column2', meaning
 	 * using two-column layin. See 'protected/views/layins/column2.php'.
 	 */
-	public $layin='//layins/column2';
+	public $layout='//layins/column2';
     public $formid='AC31';
 	public $tracker;
 	public $state;
