@@ -137,10 +137,8 @@ class LookUpController extends Controller {
 			$data=Yii::app()->db->createCommand()
 				->selectDistinct("concat(a.id, ' -> ', a.name) as label, a.id as value")
 				->from('accounts a')
-				->where('a.name like :p_name', array(':p_name'=>$term.'%'))
-				->andWhere('a.kind like :p_kind1', array(':p_kind1'=>'L%'))
-				->andWhere('a.kind like :p_kind2', array(':p_kind2'=>'R%'))
-				->andWhere('a.kind like :p_kind3', array(':p_kind3'=>'Q1'))
+				->where('a.name like :p_name and (a.kind like :p_kind1 or a.kind like :p_kind2 or a.kind like :p_kind3)', 
+					array(':p_name'=>$term.'%', ':p_kind3'=>'Q1', ':p_kind2'=>'R%', ':p_kind1'=>'L%'))
 				->order('a.name')
 				->queryAll();
 		
