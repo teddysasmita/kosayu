@@ -32,14 +32,14 @@ class Cashins extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id, idatetime, regnum, idacctcredit, idexpense, amount, userlog, datetimelog', 'required'),
+			array('id, idatetime, regnum, idacctcredit, idcash, amount, userlog, datetimelog', 'required'),
 			array('amount', 'numerical'),
-			array('id, idexpense, idacctcredit, userlog', 'length', 'max'=>21),
+			array('id, idcash, idacctcredit, userlog', 'length', 'max'=>21),
 			array('idatetime, datetimelog', 'length', 'max'=>19),
 			array('remark','safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, idatetime, regnum, idexpense, idacctcredit, amount, userlog, datetimelog', 'safe', 'on'=>'search'),
+			array('id, idatetime, regnum, idcash, idacctcredit, amount, userlog, datetimelog', 'safe', 'on'=>'search'),
 		);
 	}
 
