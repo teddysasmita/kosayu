@@ -145,20 +145,20 @@ class DefaultController extends Controller
 	 */
 	public function actionIndex()
 	{
-            if(Yii::app()->authManager->checkAccess($this->formid.'-List', 
-                Yii::app()->user->id)) {
-                $this->trackActivity('l');
+		if(Yii::app()->authManager->checkAccess($this->formid.'-List', 
+			Yii::app()->user->id)) {
+			$this->trackActivity('l');
                 
-                $dataProvider=new CActiveDataProvider('Cashins', array(
-					'criteria'=>array(
-                		'order'=>'idatetime desc, regnum desc'
-                )));
-		$this->render('index',array(
-			'dataProvider'=>$dataProvider,
-		));
-            } else {
-                throw new CHttpException(404,'You have no authorization for this operation.');
-            }
+			$dataProvider=new CActiveDataProvider('Cashins', array(
+				'criteria'=>array(
+					'order'=>'idatetime desc, regnum desc'
+			)));
+			$this->render('index',array(
+				'dataProvider'=>$dataProvider,
+			));
+		} else {
+			throw new CHttpException(404,'You have no authorization for this operation.');
+		}
 	}
 
 	/**

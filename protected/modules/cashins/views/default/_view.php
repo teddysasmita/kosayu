@@ -13,14 +13,14 @@
 	<?php echo CHtml::encode($data->idatetime); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('idacctcredit')); ?>:</b>
-	<?php echo CHtml::encode(lookup::CashboxNameFromID($data->idacctcredit)); ?>
-	<br />
-
 	<b><?php echo CHtml::encode($data->getAttributeLabel('idcash')); ?>:</b>
-	<?php echo CHtml::encode(lookup::ExpenseNameFromID($data->idcash)); ?>
+	<?php echo CHtml::encode(lookup::CashboxNameFromID($data->idcash)); ?>
 	<br />
 
+	<b><?php echo CHtml::encode($data->getAttributeLabel('idacctcredit')); ?>:</b>
+	<?php echo CHtml::encode(lookup::AccountNameFromID($data->idacctcredit)); ?>
+	<br />
+	
 	<b><?php echo CHtml::encode($data->getAttributeLabel('amount')); ?>:</b>
 	<?php echo CHtml::encode(number_format($data->amount)); ?>
 	<br />
