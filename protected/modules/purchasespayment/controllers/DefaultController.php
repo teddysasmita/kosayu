@@ -70,6 +70,8 @@ class DefaultController extends Controller
                       //The user pressed the button;
                       $model->attributes=$_POST['Purchasespayments'];
                       
+                      print_r($_POST);
+                      die;
                       $this->beforePost($model);
                       $respond=$model->save();
                       if(!$respond) {
