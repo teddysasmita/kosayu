@@ -43,7 +43,6 @@
 				$('#command').val('adddetail');
             	mainform=$('#purchasespayments-form');
             	mainform.submit();
-            	event.preventDefault();	
 		});
 	
 		function getPrice(id) {
