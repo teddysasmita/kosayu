@@ -189,6 +189,7 @@ EOS;
        $sql="select * from detailpurchasespayments2 where id='$model->id'";
        $rawdata=Yii::app()->db->createCommand($sql)->queryAll ();
     }
+    print_r($rawdata);
     $dataProvider=new CArrayDataProvider($rawdata, array(
           'totalItemCount'=>$count,
     ));
