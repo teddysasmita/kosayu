@@ -7,7 +7,7 @@ class DefaultController extends Controller
 	 * using two-column layout. See 'protected/views/layouts/column2.php'.
 	 */
 	public $layout='//layouts/column2';
-	public $formid='AC7';
+	public $formid='AC32';
 	public $tracker;
 	public $state;
 
@@ -98,7 +98,10 @@ class DefaultController extends Controller
                       } else if ($_POST['command']=='setSupplier') {
                          $model->attributes=$_POST['Purchasespayments'];
                          Yii::app()->session['Purchasespayments']=$_POST['Purchasespayments'];
-                         $this->loadSupplier($model->idsupplier, $model->id);
+                         Yii::app()->session['Detailpurchasespayments'] = 
+                         	$this->loadPurchases($model->idsupplier, $model->id);
+                         Yii::app()->session['Detailpurchasespayments2'] =
+                         	$this->loadReturs($model->idsupplier, $model->id);
                       }
                    }
                 }
@@ -573,41 +576,26 @@ class DefaultController extends Controller
          $this->tracker->logActivity($this->formid, $action);
      }
      
-      private function loadSupplier($idsupplier, $id)
-      {
-        $details=array();
+	private function loadPurchases($idsupplier, $id)
+    {
+		$details=array();
 
         $dataPO=Yii::app()->db->createCommand()
            ->select()
-           ->from('purchasesorders')
+           ->from('purchases')
            ->where('idsupplier=:idsupplier and paystatus<>:paystatus and status=:status', 
            		array(':idsupplier'=>$idsupplier, ':paystatus'=>'2', ':status'=>'2'))
            ->queryAll();
         Yii::app()->session->remove('Detailpurchasespayments');
         foreach($dataPO as $rowPO) {
-        	//finding any memo of purchases
-        	$total=$rowPO['total'];
-        	$disc=$rowPO['discount'];
-        	$dataMemo=Yii::app()->db->createCommand()
-	           ->select()
-	           ->from('purchasesmemos')
-	           ->where('idpurchaseorder=:idpo', 
-	           		array(':idpo'=>$rowPO['id']))
-	           ->order('idatetime desc')
-	           ->queryRow();
-        	if($dataMemo){
-        		$total=$dataMemo['total'];
-        		$disc=$dataMemo['discount'];
-        	}
         	//----------------------------
         	//finding payments
         	$dataPaid=Yii::app()->db->createCommand()
-	        	->select('sum(b.amount) as totalpaid, b.idpurchaseorder')
+	        	->select('sum(b.amount) as totalpaid, b.idpurchases')
 	        	->from('purchasespayments a')
 	        	->join('detailpurchasespayments b', 'b.id = a.id')
-	        	->where('b.idpurchaseorder=:idpo',
+	        	->where('b.idpurchases=:idpo',
 	        			array(':idpo'=>$rowPO['id']))
-	        	->group('b.idpurchaseorder')
 	        	->queryRow();
         	if($dataPaid){
         		$paid=$dataPaid['totalpaid'];
@@ -620,15 +608,39 @@ class DefaultController extends Controller
         	$detail['id']=$id;
         	$detail['userlog']=Yii::app()->user->id;
         	$detail['datetimelog']=idmaker::getDateTime();
-        	$detail['idpurchaseorder']=$rowPO['id'];
+        	$detail['idpurchase']=$rowPO['id'];
         	$detail['total']=$total;
         	$detail['discount']=$disc;
         	$detail['paid']=$paid;
         	$detail['amount']=0;
         	$details[]=$detail;
         }
-        Yii::app()->session['Detailpurchasespayments']=$details;
-      }
+        return $details;
+	}
+	
+	private function loadReturs($idsupplier, $id)
+	{
+		$details=array();
+		
+		$dataPO=Yii::app()->db->createCommand()
+		->select()
+		->from('purchasesreturs')
+		->where('idsupplier=:idsupplier and status=:status',
+				array(':idsupplier'=>$idsupplier, ':status'=>'0'))
+				->queryAll();
+		Yii::app()->session->remove('Detailpurchasespayments2');
+		foreach($dataPO as $rowPO) { 
+			$detail['iddetail']=idmaker::getCurrentID2();
+			$detail['id']=$id;
+			$detail['userlog']=Yii::app()->user->id;
+			$detail['datetimelog']=idmaker::getDateTime();
+			$detail['idpurchaseretur']=$rowPO['id'];
+			$detail['total']=$total;
+			$detail['checked']=0;
+			$details[]=$detail;
+		}
+		return $details;
+	}
       
  	private function setStatusPO($detailmodel) 
  	{	

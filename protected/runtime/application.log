@@ -3878,3 +3878,66 @@ Stack trace:
 #34 {main}
 REQUEST_URI=/~teddy/kosayu/
 ---
+2015/01/07 21:22:26 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: SQLSTATE[28000] [1045] Access denied for user 'root'@'localhost' (using password: YES)' in /home/teddy/public_html/yii/framework/db/CDbConnection.php:382
+Stack trace:
+#0 /home/teddy/public_html/yii/framework/db/CDbConnection.php(330): CDbConnection->open()
+#1 /home/teddy/public_html/yii/framework/db/CDbConnection.php(308): CDbConnection->setActive(true)
+#2 /home/teddy/public_html/yii/framework/base/CModule.php(387): CDbConnection->init()
+#3 /home/teddy/public_html/yii/framework/web/CDbHttpSession.php(175): CModule->getComponent('db')
+#4 /home/teddy/public_html/yii/framework/web/CDbHttpSession.php(199): CDbHttpSession->getDbConnection()
+#5 [internal function]: CDbHttpSession->openSession('/var/lib/php5', 'PHPSESSID')
+#6 /home/teddy/public_html/yii/framework/web/CHttpSession.php(114): session_start()
+#7 /home/teddy/public_html/yii/framework/web/CHttpSession.php(88): CHttpSession->open()
+#8 /home/teddy/public_html/yii/framework/base/CModule.php(387): CHttpSession->init()
+#9 /home/teddy/public_html/yii/framework/web/CWebApplication.php(201): CModule->getComponent('session')
+#10 /home/teddy/public_html/yii/framework/web/auth/CWebUser.php(199): CWebApplication->getSession()
+#11 /home/teddy/public_html/yii/framework/base/CModule.php(387): CWebUser->init()
+#12 /home/teddy/public_html/yii/framework/base/CModule.php(103): CModule->getComponent('user')
+#13 /home/teddy/public_html/yii/framework/gii/GiiModule.php(176): CModule->__get('user')
+#14 /home/teddy/public_html/yii/framework/web/CController.php(263): GiiModule->beforeControllerAction(Object(DefaultController), Object(CInlineAction))
+#15 /home/teddy/public_html/yii/framework/web/CWebApplication.php(282): CController->run('')
+#16 /home/teddy/public_html/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('gii')
+#17 /home/teddy/public_html/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#18 /home/teddy/public_html/kosayu/index.php(13): CApplication->run()
+#19 {main}
+REQUEST_URI=/~teddy/kosayu/index.php?r=gii
+---
+2015/01/07 21:23:51 [error] [php] file_put_contents(/home/teddy/public_html/kosayu/protected/runtime/gii-1.1.15/ModelCode.php): failed to open stream: Permission denied (/home/teddy/public_html/yii/framework/gii/CCodeModel.php:388)
+Stack trace:
+#0 /home/teddy/public_html/yii/framework/gii/CCodeGenerator.php(63): ModelGenerator->prepare()
+#1 /home/teddy/public_html/yii/framework/web/actions/CInlineAction.php(49): ModelGenerator->actionIndex()
+#2 /home/teddy/public_html/yii/framework/web/CController.php(308): CInlineAction->runWithParams()
+#3 /home/teddy/public_html/yii/framework/web/CController.php(286): ModelGenerator->runAction()
+#4 /home/teddy/public_html/yii/framework/web/CController.php(265): ModelGenerator->runActionWithFilters()
+#5 /home/teddy/public_html/yii/framework/web/CWebApplication.php(282): ModelGenerator->run()
+#6 /home/teddy/public_html/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#7 /home/teddy/public_html/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#8 /home/teddy/public_html/kosayu/index.php(13): CWebApplication->run()
+REQUEST_URI=/~teddy/kosayu/index.php?r=gii/model/index
+in /home/teddy/public_html/kosayu/index.php (13)
+2015/01/07 21:25:00 [error] [php] file_put_contents(/home/teddy/public_html/kosayu/protected/runtime/gii-1.1.15/ModelCode.php): failed to open stream: Permission denied (/home/teddy/public_html/yii/framework/gii/CCodeModel.php:388)
+Stack trace:
+#0 /home/teddy/public_html/yii/framework/gii/CCodeGenerator.php(63): ModelGenerator->prepare()
+#1 /home/teddy/public_html/yii/framework/web/actions/CInlineAction.php(49): ModelGenerator->actionIndex()
+#2 /home/teddy/public_html/yii/framework/web/CController.php(308): CInlineAction->runWithParams()
+#3 /home/teddy/public_html/yii/framework/web/CController.php(286): ModelGenerator->runAction()
+#4 /home/teddy/public_html/yii/framework/web/CController.php(265): ModelGenerator->runActionWithFilters()
+#5 /home/teddy/public_html/yii/framework/web/CWebApplication.php(282): ModelGenerator->run()
+#6 /home/teddy/public_html/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#7 /home/teddy/public_html/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#8 /home/teddy/public_html/kosayu/index.php(13): CWebApplication->run()
+REQUEST_URI=/~teddy/kosayu/index.php?r=gii/model/index
+in /home/teddy/public_html/kosayu/index.php (13)
+2015/01/07 21:25:30 [error] [php] file_put_contents(/home/teddy/public_html/kosayu/protected/runtime/gii-1.1.15/ModelCode.php): failed to open stream: Permission denied (/home/teddy/public_html/yii/framework/gii/CCodeModel.php:388)
+Stack trace:
+#0 /home/teddy/public_html/yii/framework/gii/CCodeGenerator.php(63): ModelGenerator->prepare()
+#1 /home/teddy/public_html/yii/framework/web/actions/CInlineAction.php(49): ModelGenerator->actionIndex()
+#2 /home/teddy/public_html/yii/framework/web/CController.php(308): CInlineAction->runWithParams()
+#3 /home/teddy/public_html/yii/framework/web/CController.php(286): ModelGenerator->runAction()
+#4 /home/teddy/public_html/yii/framework/web/CController.php(265): ModelGenerator->runActionWithFilters()
+#5 /home/teddy/public_html/yii/framework/web/CWebApplication.php(282): ModelGenerator->run()
+#6 /home/teddy/public_html/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#7 /home/teddy/public_html/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#8 /home/teddy/public_html/kosayu/index.php(13): CWebApplication->run()
+REQUEST_URI=/~teddy/kosayu/index.php?r=gii/model/index
+in /home/teddy/public_html/kosayu/index.php (13)

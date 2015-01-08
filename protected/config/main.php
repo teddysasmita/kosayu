@@ -117,7 +117,7 @@ return array(
                'connectionString' => 'mysql:host=localhost;dbname=kosayu',
                'emulatePrepare' => true,
                'username' => 'root',
-               'password' => 'master',
+               'password' => 'test',
                'charset' => 'utf8',
 
              ),

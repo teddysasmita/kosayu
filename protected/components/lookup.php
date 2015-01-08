@@ -625,6 +625,20 @@ class lookup extends CComponent {
 		else
 			return $name;
 	}
+	
+	public static function PurchasesReturInfoFromID($id)
+	{
+		$info = Yii::app()->db->createCommand()
+			->select('regnum, idatetime, total')
+			->from('purchasesreturs')
+			->where('id = :p_id', array(':p_id'=>$id))
+			->queryRow();
+
+		if (!$info)
+			return 'Belum Terdaftar';
+		else
+			return $info['regnum'].' - '.$info['idatetime'];
+	}
 }
 
 

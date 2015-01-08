@@ -178,6 +178,45 @@ EOS;
     ));
     
 ?>
+
+<?php 
+    if (isset(Yii::app()->session['Detailpurchasespayments2'])) {
+       $rawdata=Yii::app()->session['Detailpurchasespayments2'];
+       $count=count($rawdata);
+    } else {
+       $count=Yii::app()->db->createCommand("select count(*) from detailpurchasespayments2 where id='$model->id'")
+            ->queryScalar();
+       $sql="select * from detailpurchasespayments2 where id='$model->id'";
+       $rawdata=Yii::app()->db->createCommand($sql)->queryAll ();
+    }
+    $dataProvider=new CArrayDataProvider($rawdata, array(
+          'totalItemCount'=>$count,
+    ));
+    $this->widget('zii.widgets.grid.CGridView', array(
+            'dataProvider'=>$dataProvider,
+            'columns'=>array(
+               	array(
+					'header'=>'No. Retur',
+					'name'=>'idpurchaseretur',
+					'value'=>"lookup::PurchasesReturInfoFromID(\$data['idpurchaseretur'])"
+				),
+				array(
+					'header'=>'Total',
+					'type'=>'number',
+					'name'=>'total',
+				),
+               array(
+                  	'class'=>'CCheckBoxColumn',
+					'header'=>'Pilih',
+					'selectableRows'=>2,
+					'headerTemplate'=>'<span> Pilih {item}</span>',
+					'value'=>"\$data['iddetail']",
+					'checked'=>"lookup::RepairCheck(\$data)",
+				),
+          ),
+    ));
+    
+?>
 	
 	<div class="row">
       <?php echo $form->labelEx($model,'total'); ?>
