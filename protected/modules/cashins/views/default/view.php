@@ -30,7 +30,7 @@ $this->menu=array(
 		),
 		array(
 			'name'=>'idacctcredit',
-			'value'=>lookup::CashboxNameFromID($model['idacctcredit']),
+			'value'=>lookup::AccountNameFromID($model['idacctcredit']),
 		),
 		array(
 			'name'=>'amount',
