@@ -592,7 +592,7 @@ class DefaultController extends Controller
         	//----------------------------
         	//finding payments
         	$dataPaid=Yii::app()->db->createCommand()
-	        	->select('sum(b.amount) as totalpaid, b.idpurchases')
+	        	->select('sum(b.amount) as totalpaid, b.idpurchase')
 	        	->from('purchasespayments a')
 	        	->join('detailpurchasespayments b', 'b.id = a.id')
 	        	->where('b.idpurchase=:idpo',
