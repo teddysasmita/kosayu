@@ -277,6 +277,12 @@ class lookup extends CComponent {
       return Yii::app()->db->createCommand($sql)->queryScalar();
    }
    
+   public static function PurchasesNumFromID($id)
+   {
+   	$sql="select regnum from purchases where id='$id'";
+   	return Yii::app()->db->createCommand($sql)->queryScalar();
+   }
+   
    public static function CustomerNameFromCustomerID($id)
    {
       $sql="select concat(firstname, ' ', lastname) as name from customers where id='$id'";

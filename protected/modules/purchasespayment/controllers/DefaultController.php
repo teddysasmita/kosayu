@@ -634,7 +634,7 @@ class DefaultController extends Controller
 			$detail['id']=$id;
 			$detail['userlog']=Yii::app()->user->id;
 			$detail['datetimelog']=idmaker::getDateTime();
-			$detail['idpurchasere[ptur']=$rowPO['id'];
+			$detail['idpurchaseretur']=$rowPO['id'];
 			$detail['total']=$rowPO['total'];
 			$detail['checked']=0;
 			$details[]=$detail;

@@ -138,9 +138,9 @@ EOS;
             'dataProvider'=>$dataProvider,
             'columns'=>array(
                	array(
-					'header'=>'Nomor PO',
-					'name'=>'idpurchaseorder',
-					'value'=>"lookup::PurchasesOrderNumFromID(\$data['idpurchaseorder'])"
+					'header'=>'Nomor Beli',
+					'name'=>'idpurchase',
+					'value'=>"lookup::PurchasesNumFromID(\$data['idpurchase'])"
 				),
 				array(
 					'header'=>'Total',
