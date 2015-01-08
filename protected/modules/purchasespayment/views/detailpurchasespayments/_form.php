@@ -49,7 +49,7 @@
 	
 	<div class="row">
 		<?php echo $form->labelEx($model,'paid'); ?>
-		<?php echo CHtml::label(number_format($model->paid), false); ?>
+		<?php echo CHtml::label($model->paid, false); ?>
 		<?php echo $form->error($model,'paid'); ?>
 	</div>
 	
