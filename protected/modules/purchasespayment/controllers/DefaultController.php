@@ -585,7 +585,7 @@ class DefaultController extends Controller
            ->select()
            ->from('purchases')
            ->where('idsupplier=:idsupplier and paystatus<>:paystatus and status=:status', 
-           		array(':idsupplier'=>$idsupplier, ':paystatus'=>'2', ':status'=>'2'))
+           		array(':idsupplier'=>$idsupplier, ':paystatus'=>'0', ':status'=>'0'))
            ->queryAll();
         Yii::app()->session->remove('Detailpurchasespayments');
         foreach($dataPO as $rowPO) {
