@@ -23,16 +23,16 @@
          echo $form->hiddenField($model,'id');
          echo $form->hiddenField($model,'userlog');
          echo $form->hiddenField($model,'datetimelog');
-         echo $form->hiddenField($model,'idpurchaseorder');
+         echo $form->hiddenField($model,'idpurchase');
          echo $form->hiddenField($model,'total');
          echo $form->hiddenField($model,'discount');
          echo $form->hiddenField($model,'paid');
         ?>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'idpurchaseorder'); ?>
-		<?php echo CHtml::label(lookup::PurchasesOrderNumFromID($model->idpurchaseorder), false); ?>
-		<?php echo $form->error($model,'idpurchaseorder'); ?>
+		<?php echo $form->labelEx($model,'idpurchase'); ?>
+		<?php echo CHtml::label(lookup::PurchasesNumFromID($model->idpurchase), false); ?>
+		<?php echo $form->error($model,'idpurchas'); ?>
 	</div>
 	
 	<div class="row">
