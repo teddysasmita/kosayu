@@ -70,8 +70,6 @@ class DefaultController extends Controller
                       //The user pressed the button;
                       $model->attributes=$_POST['Purchasespayments'];
                       
-                      print_r($_POST);
-                      die;
                       $this->beforePost($model);
                       $respond=$model->save();
                       if(!$respond) {
@@ -95,6 +93,7 @@ class DefaultController extends Controller
                       if($_POST['command']=='adddetail') {
                          $model->attributes=$_POST['Purchasespayments'];
                          Yii::app()->session['Purchasespayments']=$_POST['Purchasespayments'];
+                         Yii::app()->session['Detailpurchasespayments2'] = $_POST['yw2_c2'];
                          $this->redirect(array('detailpurchasespayments/create',
                             'id'=>$model->id));
                       } else if ($_POST['command']=='setSupplier') {
@@ -389,8 +388,9 @@ class DefaultController extends Controller
              $model=new Purchasespayments;
              $model->attributes=Yii::app()->session['Purchasespayments'];
 
-             $details=Yii::app()->session['Detailpurchasespayments'];
-             $this->afterUpdateDetail($model, $details);
+             $details =Yii::app()->session['Detailpurchasespayments'];
+             $details2 = Yii::app()->session['Detailpurchasespayments2'];
+             $this->afterUpdateDetail($model, $details, $details2);
 
              $this->render('update',array(
                  'model'=>$model,
@@ -561,9 +561,9 @@ class DefaultController extends Controller
      }
 
 
-     protected function afterUpdateDetail(& $model, $details)
+     protected function afterUpdateDetail(& $model, $details, $details2)
      {
-		$this->sumDetail($model, $details);
+		$this->sumDetail($model, $details, $details2);
      }
 
      protected function afterDeleteDetail(& $model, $details)
@@ -680,12 +680,15 @@ class DefaultController extends Controller
  			Action::setPaymentStatusPO($detailmodel->idpurchaseorder, '1');
  	}
  	
- 	private function sumDetail(& $model, $details)
+ 	private function sumDetail(& $model, $details, $details2)
  	{
  		$total=0;
  		$totaldisc=0;
  		foreach ($details as $row) {
  			$total=$total+$row['amount'];
+ 		}
+ 		foreach ($details2 as $row) {
+ 			$total=$total - $row['total'];
  		}
  		$model->attributes=Yii::app()->session['Purchasespayments'];
  		$model->total=$total;
