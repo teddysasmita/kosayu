@@ -598,10 +598,10 @@ class DefaultController extends Controller
 	        	->where('b.idpurchase=:idpo',
 	        			array(':idpo'=>$rowPO['id']))
 	        	->queryRow();
-        	if($dataPaid){
-        		$paid=$dataPaid['totalpaid'];
-        	} else {
+        	if(!$dataPaid){
         		$paid=0;
+        	} else {
+        		$paid=$dataPaid['totalpaid'];
         	}
         	//----------------------------
         	
