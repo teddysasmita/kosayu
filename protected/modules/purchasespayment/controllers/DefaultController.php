@@ -595,7 +595,7 @@ class DefaultController extends Controller
 	        	->select('sum(b.amount) as totalpaid, b.idpurchases')
 	        	->from('purchasespayments a')
 	        	->join('detailpurchasespayments b', 'b.id = a.id')
-	        	->where('b.idpurchases=:idpo',
+	        	->where('b.idpurchase=:idpo',
 	        			array(':idpo'=>$rowPO['id']))
 	        	->queryRow();
         	if($dataPaid){
