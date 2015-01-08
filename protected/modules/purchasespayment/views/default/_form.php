@@ -40,7 +40,7 @@
 			
 		$('#updateDetail').click(
 			function(event) {
-				$('#command').val('addDetail');
+				$('#command').val('adddetail');
             	mainform=$('#purchasespayments-form');
             	mainform.submit();
             	event.preventDefault();	
