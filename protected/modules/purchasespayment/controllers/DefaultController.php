@@ -598,9 +598,8 @@ class DefaultController extends Controller
 	        	->where('b.idpurchase=:idpo',
 	        			array(':idpo'=>$rowPO['id']))
 	        	->queryRow();
-        	print_r($dataPaid);
-        	die;
-        	if(!$dataPaid){
+        	
+        	if(is_null($dataPaid['totalpaid'])){
         		$paid=0;
         	} else {
         		$paid=$dataPaid['totalpaid'];
@@ -618,6 +617,8 @@ class DefaultController extends Controller
         	$detail['amount']=0;
         	$details[]=$detail;
         }
+        print_r($details);
+        die;
         return $details;
 	}
 	
