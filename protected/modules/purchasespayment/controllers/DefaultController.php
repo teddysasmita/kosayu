@@ -555,9 +555,9 @@ class DefaultController extends Controller
 
      }
 
-     protected function afterInsertDetail(& $model, $details)
+     protected function afterInsertDetail(& $model, $details, $details2)
      {
-		$this->sumDetail($model, $details);
+		$this->sumDetail($model, $details, $details2);
      }
 
 
