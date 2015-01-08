@@ -235,6 +235,7 @@ class DefaultController extends Controller
 
          Yii::app()->session->remove('Purchasespayments');
          Yii::app()->session->remove('Detailpurchasespayments');
+         Yii::app()->session->remove('Detailpurchasespayments2');
          Yii::app()->session->remove('DeleteDetailpurchasespayments');
          $dataProvider=new CActiveDataProvider('Purchasespayments',
             array(
