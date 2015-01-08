@@ -181,16 +181,17 @@ EOS;
 
 <?php 
     if (isset(Yii::app()->session['Detailpurchasespayments2'])) {
-       $rawdata=Yii::app()->session['Detailpurchasespayments2'];
-       $count=count($rawdata);
+       $rawdata2=Yii::app()->session['Detailpurchasespayments2'];
+       $count=count($rawdata2);
     } else {
        $count=Yii::app()->db->createCommand("select count(*) from detailpurchasespayments2 where id='$model->id'")
             ->queryScalar();
        $sql="select * from detailpurchasespayments2 where id='$model->id'";
-       $rawdata=Yii::app()->db->createCommand($sql)->queryAll ();
+       $rawdata2=Yii::app()->db->createCommand($sql)->queryAll ();
     }
-    print_r($rawdata);
-    $dataProvider=new CArrayDataProvider($rawdata, array(
+    print_r($rawdata2);
+    die;
+    $dataProvider=new CArrayDataProvider($rawdata2, array(
           'totalItemCount'=>$count,
     ));
     $this->widget('zii.widgets.grid.CGridView', array(
