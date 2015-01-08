@@ -19,7 +19,7 @@ $this->menu=array(
 
 ?>
 
-<h1>Detil Memo Pembelian</h1>
+<h1>Detil Pembayaran Pada Pemasok</h1>
 
 <?php    $data=Yii::app()->tracker->createCommand()->
        select()->from('detailpurchasespayments')->where('id=:id',array(':id'=>$model->iddetail))->queryAll();

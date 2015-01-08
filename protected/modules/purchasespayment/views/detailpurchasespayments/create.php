@@ -18,6 +18,6 @@ else if ($master=='update')
 
 ?>
 
-<h1>Detil Memo Pembeliank</h1>
+<h1>Detil Pembayaran Pada Pemasok</h1>
 
 <?php $this->renderPartial('_form', array('model'=>$model, 'mode'=>'Create')); ?>

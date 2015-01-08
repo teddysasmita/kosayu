@@ -23,7 +23,7 @@ $this->menu=array(
 );
 ?>
 
-<h1>Detil Memo Pembelian</h1>
+<h1>Detil Pembayaran Pada Pemasok</h1>
 
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,
@@ -37,28 +37,8 @@ $this->menu=array(
 		//'idunit',
 		'qty',
       array(
-         'label'=>'Harga Terakhir', 
-         'value'=>number_format($model->prevprice)
-		),
-      array(
          'label'=>'Harga Baru', 
          'value'=>number_format($model->price)
-		),
-      array(
-         'label'=>'Biaya 1 Terakhir', 
-         'value'=>number_format($model->prevcost1)
-		),
-      array(
-         'label'=>'Biaya 1 Baru', 
-         'value'=>number_format($model->cost1)
-		),
-      array(
-         'label'=>'Biaya 2 Terakhir', 
-         'value'=>number_format($model->prevcost2)
-		),
-      array(
-         'label'=>'Biaya 2 Baru', 
-         'value'=>number_format($model->cost2)
 		),
       array(
          'label'=>'Userlog',

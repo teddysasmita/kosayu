@@ -17,7 +17,7 @@ $this->menu=array(
 
 ?>
 
-<h1>Detil Memo Pembelian</h1>
+<h1>Detil Pembayaran Pada Pemasok</h1>
 
 <p>
 You may optionally enter a comparison operator (<b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>&lt;&gt;</b>
