@@ -38,9 +38,7 @@
          }
       );   
 	
-		var returslist = CJSON::
 		function getPrice(id) {
-			for(count = 0; count < length(
 			
       	}
 EOS;
