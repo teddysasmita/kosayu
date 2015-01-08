@@ -370,7 +370,9 @@ class DefaultController extends Controller
              $model->attributes=Yii::app()->session['Purchasespayments'];
 
              $details=Yii::app()->session['Detailpurchasespayments'];
-             $this->afterInsertDetail($model, $details);
+             $details2 = Yii::app()->session['Detailpurchasespayments2'];
+            
+             $this->afterInsertDetail($model, $details, $details2);
 
              $this->render('create',array(
                  'model'=>$model,
