@@ -18,6 +18,8 @@
 	}
 	$supplierids=CJSON::encode($supplierids);
 	$suppliernames=CJSON::encode($suppliernames);
+	$returlist = CJSON::encode(Yii::app()->session['Detailpurchasespayments2']);
+	
 	$supplierScript=<<<EOS
       var supplierids=$supplierids;
       var suppliernames=$suppliernames;
@@ -35,6 +37,12 @@
             event.preventDefault();
          }
       );   
+	
+		var returslist = CJSON::
+		function getPrice(id) {
+			for(count = 0; count < length(
+			
+      	}
 EOS;
    Yii::app()->clientScript->registerScript("supplierScript", $supplierScript, CClientscript::POS_READY);
 

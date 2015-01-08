@@ -524,9 +524,9 @@ class DefaultController extends Controller
      {
          $idmaker=new idmaker();
          $idmaker->saveRegNum($this->formid, $model->regnum);
-         Action::addFinancePayment(
+         /*Action::addFinancePayment(
          	lookup::SupplierNameFromSupplierID($model->idsupplier), $model->idatetime, 
-         	$model->idatetime, $model->total);
+         	$model->idatetime, $model->total);*/
      }
 
      protected function beforePost(& $model)

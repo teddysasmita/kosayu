@@ -6,7 +6,7 @@
  * The followings are the available columns in table 'detailpurchasespayments':
  * @property string $iddetail
  * @property string $id
- * @property string $idpurchaseorder
+ * @property string $idpurchase
  * @property double $discount
  * @property double $total
  * @property double $paid
@@ -32,13 +32,13 @@ class Detailpurchasespayments extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('iddetail, id, idpurchaseorder, discount, total, paid, amount, userlog, datetimelog', 'required'),
+			array('iddetail, id, idpurchase, discount, total, paid, amount, userlog, datetimelog', 'required'),
 			array('discount, total, paid, amount', 'numerical'),
-			array('iddetail, id, idpurchaseorder, userlog', 'length', 'max'=>21),
+			array('iddetail, id, idpurchase, userlog', 'length', 'max'=>21),
 			array('datetimelog', 'length', 'max'=>19),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('iddetail, id, idpurchaseorder, discount, total, paid, amount, userlog, datetimelog', 'safe', 'on'=>'search'),
+			array('iddetail, id, idpurchase, discount, total, paid, amount, userlog, datetimelog', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -61,7 +61,7 @@ class Detailpurchasespayments extends CActiveRecord
 		return array(
 			'iddetail' => 'Iddetail',
 			'id' => 'ID',
-			'idpurchaseorder' => 'Nomor PO',
+			'idpurchase' => 'Nomor Pembelian',
 			'discount' => 'Diskon',
 			'total' => 'Total',
 			'paid' => 'Terbayar',
@@ -91,7 +91,7 @@ class Detailpurchasespayments extends CActiveRecord
 
 		$criteria->compare('iddetail',$this->iddetail,true);
 		$criteria->compare('id',$this->id,true);
-		$criteria->compare('idpurchaseorder',$this->idpurchaseorder,true);
+		$criteria->compare('idpurchase',$this->idpurchase,true);
 		$criteria->compare('discount',$this->discount);
 		$criteria->compare('total',$this->total);
 		$criteria->compare('paid',$this->paid);
