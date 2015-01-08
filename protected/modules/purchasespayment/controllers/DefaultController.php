@@ -617,6 +617,7 @@ class DefaultController extends Controller
         	$details[]=$detail;
         }
         print_r($details);
+        die;
         return $details;
 	}
 	
