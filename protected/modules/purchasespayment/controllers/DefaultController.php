@@ -99,6 +99,10 @@ class DefaultController extends Controller
                          echo "<DIV>";
                          print_r($_POST['yw2_c2']);
                          echo "</DIV>";
+                         echo "<DIV>";
+                         print_r($details2);
+                         echo "</DIV>";
+                          
                          die;
                          //$this->redirect(array('detailpurchasespayments/create',
                             //'id'=>$model->id));
