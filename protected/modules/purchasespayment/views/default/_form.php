@@ -40,9 +40,9 @@
 			
 		$(".updateDetail").click(
 			function(event) {
-				$("#mycommand").val("adddetail");
-            	mainform=$('#purchasespayments-form');
-            	mainform.submit();
+			$("#command").val("adddetail");
+            mainform=$('#purchasespayments-form');
+            mainform.submit();
 		});
 	
 		function getPrice(id) {
@@ -70,7 +70,8 @@ EOS;
 	<?php echo $form->errorSummary($model); ?>
         
       <?php 
-        echo CHtml::hiddenField('mycommand', '', array('id'=>'mycommand'));
+        echo CHtml::hiddenField('command', '', array('id'=>'command'));
+        echo CHtml::hiddenField('commandinfo', '', array('id'=>'commandinfo'));
         echo $form->hiddenField($model, 'id');
         echo $form->hiddenField($model, 'idsupplier');
         echo $form->hiddenField($model, 'userlog');
