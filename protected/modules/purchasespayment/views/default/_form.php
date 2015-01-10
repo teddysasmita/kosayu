@@ -31,7 +31,7 @@
    	
       $('#searchUnsettledPO').click(
          function(event) {
-            $('#mycommand').val('setSupplier');
+            $('#command').val('setSupplier');
             mainform=$('#purchasespayments-form');
             mainform.submit();
             event.preventDefault();
