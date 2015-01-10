@@ -704,7 +704,7 @@ class DefaultController extends Controller
  		foreach($main as & $m) {
  			foreach( $post as $p ) {
  				if ($m['iddetail'] == $p) {
- 					$m['checked'] = 1; 
+ 					$m['checked'] = '1'; 
  					break;
  				}	
  			}
