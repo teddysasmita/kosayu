@@ -93,9 +93,6 @@ class DefaultController extends Controller
                       if($_POST['command']=='adddetail') {
                          $model->attributes=$_POST['Purchasespayments'];
                          Yii::app()->session['Purchasespayments']=$_POST['Purchasespayments'];
-                         $details2 = Yii::app()->session['Detailpurchasespayments2'];
-                         $this->matchRetur($details2, $_POST['yw2_c2']);
-                         Yii::app()->session['Detailpurchasespayments2'] = $details2;
                          //$this->redirect(array('detailpurchasespayments/create',
                             //'id'=>$model->id));
                       } else if ($_POST['command']=='setSupplier') {
@@ -105,6 +102,16 @@ class DefaultController extends Controller
                          	$this->loadPurchases($model->idsupplier, $model->id);
                          Yii::app()->session['Detailpurchasespayments2'] =
                          	$this->loadReturs($model->idsupplier, $model->id);
+                      } else if($_POST['command']=='adddetail2') {
+                         $model->attributes=$_POST['Purchasespayments'];
+                         Yii::app()->session['Purchasespayments']=$_POST['Purchasespayments'];
+                         $details2 = Yii::app()->session['Detailpurchasespayments2'];
+                         $details = Yii::app()->session['Detailpurchasespayments'];
+                         $this->matchRetur($details2, $_POST['yw2_c2']);
+                         Yii::app()->session['Detailpurchasespayments2'] = $details2;
+                         $this->sumDetail($model, $details, $details2);
+                         //$this->redirect(array('detailpurchasespayments/create',
+                            //'id'=>$model->id));
                       }
                    }
                 }

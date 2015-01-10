@@ -45,9 +45,12 @@
             mainform.submit();
 		});
 	
-		function getPrice(id) {
-			
-      	}
+		$(".updateDetail2").click(
+			function(event) {
+			$("#command").val("adddetail2");
+            mainform=$('#purchasespayments-form');
+            mainform.submit();
+		});
 EOS;
    Yii::app()->clientScript->registerScript("supplierScript", $supplierScript, CClientscript::POS_READY);
 
@@ -227,7 +230,7 @@ EOS;
 					'headerTemplate'=>'<span> Pilih {item}</span>',
 					'value'=>"\$data['iddetail']",
 					'checked'=>"lookup::RepairCheck(\$data)",
-               		'htmlOptions'=>array('class'=>'updateDetail'),
+               		'htmlOptions'=>array('class'=>'updateDetail2'),
 				),
           ),
     ));
