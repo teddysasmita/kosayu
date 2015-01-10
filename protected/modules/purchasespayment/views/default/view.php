@@ -15,7 +15,7 @@ $this->menu=array(
 	array('label'=>'Pencarian Data', 'url'=>array('admin')),
       array('label'=>'Sejarah', 'url'=>array('history', 'id'=>$model->id)),
       array('label'=>'Data Detil yang dihapus', 
-         'url'=>array('/purchasesorder/detailpurchasespayments/deleted', 'id'=>$model->id)),
+         'url'=>array('/purchasespayment/detailpurchasespayments/deleted', 'id'=>$model->id)),
 );
 ?>
 
@@ -65,7 +65,7 @@ $this->menu=array(
       array(
              'header'=>'Nomor PO',
              'name'=>'idpurchaseorder',
-             'value'=>"lookup::PurchasesOrderNumFromID(\$data['idpurchaseorder'])"
+             'value'=>"lookup::PurchasesNumFromID(\$data['idpurchase'])"
          ),
       array(
          'header'=>'Total',
