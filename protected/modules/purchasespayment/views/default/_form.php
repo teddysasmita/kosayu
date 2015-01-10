@@ -38,7 +38,7 @@
          }
       );   
 			
-		$('#updateDetail').click(
+		$('.updateDetail').click(
 			function(event) {
 				$('#command').val('adddetail');
             	mainform=$('#purchasespayments-form');
@@ -187,7 +187,7 @@ EOS;
                      )
                   ),
                   'updateButtonUrl'=>"Action::decodeUpdateDetailPurchasesPaymentUrl(\$data)",
-               		'updateButtonOptions'=>array('id'=>'updateDetail'),
+               		'updateButtonOptions'=>array('class'=>'updateDetail'),
                )
           ),
     ));
