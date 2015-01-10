@@ -88,7 +88,7 @@ class DefaultController extends Controller
                          $this->redirect(array('view','id'=>$model->id));
                       } 
                            
-                   } else if (isset($_POST['command'])){
+                   } else if (isset($_POST['mycommand'])){
                       // save the current master data before going to the detail page
                       if($_POST['mycommand']=='adddetail') {
                          $model->attributes=$_POST['Purchasespayments'];
