@@ -115,7 +115,7 @@ EOS;
              'source'=>$suppliername,
            'value'=>lookup::SupplierNameFromSupplierID($model->idsupplier)
          ));
-         echo CHtml::submitButton('Cari PO', array( 'id'=>'searchUnsettledPO'));   
+         echo CHtml::button('Cari PO', array( 'id'=>'searchUnsettledPO'));   
       ?>
 		<?php echo $form->error($model,'idsupplier'); ?>
 	</div>
