@@ -690,7 +690,8 @@ class DefaultController extends Controller
  			$total=$total+$row['amount'];
  		}
  		foreach ($details2 as $row) {
- 			$total=$total - $row['total'];
+ 			if ($row['checked'] == '1')
+ 				$total=$total - $row['total'];
  		}
  		$model->attributes=Yii::app()->session['Purchasespayments'];
  		$model->total=$total;
