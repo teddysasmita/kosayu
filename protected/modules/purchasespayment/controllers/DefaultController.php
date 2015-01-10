@@ -699,7 +699,7 @@ class DefaultController extends Controller
  	private function matchRetur(& $main, $post)
  	{
  		foreach($main as $m) {
- 			foreach( $post as s$p ) {
+ 			foreach( $post as $p ) {
  				if ($m['iddetail'] == $p) {
  					$m['checked'] = 1; 
  					break;
