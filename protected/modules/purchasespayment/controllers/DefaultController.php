@@ -96,14 +96,6 @@ class DefaultController extends Controller
                          $details2 = Yii::app()->session['Detailpurchasespayments2'];
                          $this->matchRetur($details2, $_POST['yw2_c2']);
                          Yii::app()->session['Detailpurchasespayments2'] = $details2;
-                         echo "<DIV>";
-                         print_r($_POST['yw2_c2']);
-                         echo "</DIV>";
-                         echo "<DIV>";
-                         print_r($details2);
-                         echo "</DIV>";
-                          
-                         die;
                          //$this->redirect(array('detailpurchasespayments/create',
                             //'id'=>$model->id));
                       } else if ($_POST['command']=='setSupplier') {
