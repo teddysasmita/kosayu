@@ -59,6 +59,10 @@ class DefaultController extends Controller
 					->group('b.batchcode')
 					->order('b.batchcode')
 					->queryAll();	
+				foreach($alldata as & $ad) {
+					$ad['buyprice'] = lookup::getbuyprice($ad['batchcode']);
+				}
+				unset($ad);
 				Yii::app()->session['stockquantityreport'] = $alldata;
 				Yii::app()->session['stockquantitydate'] = $dateparam;
 				Yii::app()->session['stockquantityprefix'] = $prefixparam;

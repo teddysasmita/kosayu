@@ -93,7 +93,7 @@ class DefaultController extends Controller
                       if($_POST['command']=='adddetail') {
                          $model->attributes=$_POST['Purchasespayments'];
                          Yii::app()->session['Purchasespayments']=$_POST['Purchasespayments'];
-                         Yii::app()->session['Detailpurchasespayments2'] = $_POST['yw2_c2'];
+                         $this->matchRetur(Yii::app()->session['Detailpurchasespayments2'], $_POST['yw2_c2']);
                          //$this->redirect(array('detailpurchasespayments/create',
                             //'id'=>$model->id));
                       } else if ($_POST['command']=='setSupplier') {
@@ -694,5 +694,17 @@ class DefaultController extends Controller
  		}
  		$model->attributes=Yii::app()->session['Purchasespayments'];
  		$model->total=$total;
+ 	}
+ 	
+ 	private function matchRetur(& $main, $post)
+ 	{
+ 		foreach($main as $m) {
+ 			foreach( $post a s$p ) {
+ 				if ($m['iddetail'] == $p) {
+ 					$m['checked'] = 1; 
+ 					break;
+ 				}	
+ 			}
+ 		}
  	}
 }

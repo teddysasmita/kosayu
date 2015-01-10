@@ -83,6 +83,11 @@ $this->breadcrumbs=array(
 							'header'=>'Jumlah',
 							'name'=>'totalqty',
 					),
+					array(
+							'header'=>'Harga Beli',
+							'name'=>'buyprice',
+							'type'=>'number'
+					),
 			),
 	));
 //}
