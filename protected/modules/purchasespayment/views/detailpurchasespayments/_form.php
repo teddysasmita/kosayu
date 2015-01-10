@@ -19,6 +19,7 @@
 	<?php echo $form->errorSummary($model); ?>
         
         <?php 
+        print_r(Yii::app()->session['Detailpurchasespayments2']);
          echo $form->hiddenField($model,'iddetail');
          echo $form->hiddenField($model,'id');
          echo $form->hiddenField($model,'userlog');
