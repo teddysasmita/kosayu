@@ -540,7 +540,7 @@ class lookup extends CComponent {
 	
 	public static function RepairCheck($data)
 	{
-		if ($data['checked'] == '1') 
+		if ($data['checked'] == 1) 
 			return true;
 		else
 			return false;
