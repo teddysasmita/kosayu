@@ -702,12 +702,16 @@ class DefaultController extends Controller
  	private function matchRetur(& $main, $post)
  	{
  		foreach($main as & $m) {
+ 			$found = false;
  			foreach( $post as $p ) {
- 				if ($m['iddetail'] == $p) 
+ 				if ($m['iddetail'] == $p) {
  					$m['checked'] = 1;
-				else
-					$m['checked'] = 0;
+ 					$found = true;
+ 					break;
+ 				}
  			}
+ 			if (!$found)
+ 				$m['checked'] = 0;
  		}
  	}
 }
