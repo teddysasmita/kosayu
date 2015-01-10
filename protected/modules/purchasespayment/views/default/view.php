@@ -63,8 +63,8 @@ $this->menu=array(
    'dataProvider'=>$dataProvider,
    'columns'=>array(
       array(
-             'header'=>'Nomor PO',
-             'name'=>'idpurchaseorder',
+             'header'=>'Nomor Nota',
+             'name'=>'idpurchase',
              'value'=>"lookup::PurchasesNumFromID(\$data['idpurchase'])"
          ),
       array(
