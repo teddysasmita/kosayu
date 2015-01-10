@@ -227,6 +227,7 @@ EOS;
 					'headerTemplate'=>'<span> Pilih {item}</span>',
 					'value'=>"\$data['iddetail']",
 					'checked'=>"lookup::RepairCheck(\$data)",
+               		'htmlOptions'=>array('class'=>'updateDetail'),
 				),
           ),
     ));
