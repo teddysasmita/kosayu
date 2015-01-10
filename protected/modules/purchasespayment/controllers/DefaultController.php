@@ -701,8 +701,11 @@ class DefaultController extends Controller
  	
  	private function matchRetur(& $main, $post)
  	{
+ 		echo "<DIV>";
  		print_r($main);
  		print_r($post);
+ 		echo "</DIV>";
+ 		die;
  		foreach($main as $m) {
  			foreach( $post as $p ) {
  				if ($m['iddetail'] == $p) {
