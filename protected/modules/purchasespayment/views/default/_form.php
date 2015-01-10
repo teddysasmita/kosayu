@@ -209,6 +209,7 @@ EOS;
     }
     $dataProvider=new CArrayDataProvider($rawdata2, array(
           'totalItemCount'=>$count,
+    	'pagination'=>'false',
     ));
     $this->widget('zii.widgets.grid.CGridView', array(
             'dataProvider'=>$dataProvider,
