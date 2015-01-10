@@ -186,7 +186,7 @@ EOS;
                      )
                   ),
                   'updateButtonUrl'=>"Action::decodeUpdateDetailPurchasesPaymentUrl(\$data)",
-               	//'updateButtonOptions'=>array('class'=>"updateDetail"),
+               	'updateButtonOptions'=>array('class'=>"updateDetail"),
                )
           ),
     ));
