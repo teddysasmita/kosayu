@@ -43,6 +43,7 @@
 				$('#command').val('adddetail');
             	mainform=$('#purchasespayments-form');
             	mainform.submit();
+			event.preventDefault();
 		});
 	
 		function getPrice(id) {
@@ -194,7 +195,6 @@ EOS;
 ?>
 
 <?php 
-    print_r(Yii::app()->session['Detailpurchasespayments2']);
     if (isset(Yii::app()->session['Detailpurchasespayments2'])) {
        $rawdata2=Yii::app()->session['Detailpurchasespayments2'];
        $count=count($rawdata2);
