@@ -90,7 +90,7 @@ class DefaultController extends Controller
                            
                    } else if (isset($_POST['command'])){
                       // save the current master data before going to the detail page
-                      if($_POST['command']=='adddetail') {
+                      if($_POST['mycommand']=='adddetail') {
                          $model->attributes=$_POST['Purchasespayments'];
                          Yii::app()->session['Purchasespayments']=$_POST['Purchasespayments'];
                          $details2 = Yii::app()->session['Detailpurchasespayments2'];
@@ -99,7 +99,7 @@ class DefaultController extends Controller
                          die;
                          //$this->redirect(array('detailpurchasespayments/create',
                             //'id'=>$model->id));
-                      } else if ($_POST['command']=='setSupplier') {
+                      } else if ($_POST['mycommand']=='setSupplier') {
                          $model->attributes=$_POST['Purchasespayments'];
                          Yii::app()->session['Purchasespayments']=$_POST['Purchasespayments'];
                          Yii::app()->session['Detailpurchasespayments'] = 

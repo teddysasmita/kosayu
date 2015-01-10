@@ -31,7 +31,7 @@
    	
       $('#searchUnsettledPO').click(
          function(event) {
-            $('#command').val('setSupplier');
+            $('#mycommand').val('setSupplier');
             mainform=$('#purchasespayments-form');
             mainform.submit();
             event.preventDefault();
@@ -40,7 +40,7 @@
 			
 		$(".updateDetail").click(
 			function(event) {
-				$("#command").val("adddetail");
+				$("#mycommand").val("adddetail");
             	mainform=$('#purchasespayments-form');
             	mainform.submit();
 		});
@@ -70,7 +70,7 @@ EOS;
 	<?php echo $form->errorSummary($model); ?>
         
       <?php 
-        echo CHtml::hiddenField('command', '', array('id'=>'command'));
+        echo CHtml::hiddenField('mycommand', '', array('id'=>'mycommand'));
         echo $form->hiddenField($model, 'id');
         echo $form->hiddenField($model, 'idsupplier');
         echo $form->hiddenField($model, 'userlog');
