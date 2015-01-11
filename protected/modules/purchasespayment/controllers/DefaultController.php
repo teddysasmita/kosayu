@@ -584,14 +584,12 @@ class DefaultController extends Controller
      protected function saveNewDetails3(array $details)
      {
      	foreach ($details as $row) {
-     		if ($row['checked'] == 1) {
      			$detailmodel=new Payments;
      			$detailmodel->attributes=$row;
      			$respond=$detailmodel->insert();
      			if (!$respond) {
      				break;
      			}
-     		}
      	}
      	return $respond;
      }
