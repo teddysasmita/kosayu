@@ -78,7 +78,7 @@ EOS;
 		<?php echo $form->labelEx($model,'bg_pubdate'); ?>
 		<?php
                $this->widget('zii.widgets.jui.CJuiDatePicker',array(
-                  'name'=>'Detailpurchasespayments3[bg_pubdate]',
+                  'name'=>'Payments[bg_pubdate]',
                      // additional javascript options for the date picker plugin
                   'options'=>array(
                      'showAnim'=>'fold',
@@ -99,7 +99,7 @@ EOS;
 		<?php echo $form->labelEx($model,'bg_duedate'); ?>
 		<?php
                $this->widget('zii.widgets.jui.CJuiDatePicker',array(
-                  'name'=>'Detailpurchasespayments3[bg_duedate]',
+                  'name'=>'Payments[bg_duedate]',
                      // additional javascript options for the date picker plugin
                   'options'=>array(
                      'showAnim'=>'fold',
