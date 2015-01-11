@@ -161,6 +161,7 @@ class lookup extends CComponent {
 				->join('items b', 'b.id = a.iditem')
 				->where('a.batchcode = :p_batchcode', 
 					array(':p_batchcode'=>$code))
+				->order('a.id desc')
 				->queryScalar();
    			if (!$data) {
    				$data = Yii::app()->db->createCommand()
