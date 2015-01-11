@@ -277,6 +277,7 @@ EOS;
                	array(
 					'header'=>'Metode',
 					'name'=>'method',
+               		'value'=>"lookup::getMethod(\$data['method'])"
 				),
 				array(
 					'header'=>'Jumlah',

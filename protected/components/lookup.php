@@ -54,6 +54,8 @@ class lookup extends CComponent {
    				return 'Voucher';
    			case 'R':
    				return 'Retur';	
+   			case 'BG':
+   				return 'Cheque/BG';
    		}
    }
    
