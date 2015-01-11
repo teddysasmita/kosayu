@@ -283,7 +283,7 @@ class lookup extends CComponent {
    		$data = Yii::app()->db->createCommand($sql)->queryRow();
    	
    		if ($data)
-   			return $data['idatetime'].'-'.$data['regnum'];
+   			return 'Tanggal: '.$data['idatetime'].'- Nomor: '.$data['regnum'];
    		else
    			return 'Tidak Ditemukan';
    }
