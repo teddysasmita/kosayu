@@ -275,8 +275,8 @@ class Detailpurchasespayments3Controller extends Controller
         protected function afterInsert($id, & $model)
         {
             $idmaker=new idmaker();
-            $model->id=$id;  
-            $model->iddetail=$idmaker->getCurrentID2();
+            $model->idtransaction=$id;  
+            $model->id=$idmaker->getCurrentID2();
             $model->userlog=Yii::app()->user->id;
             $model->datetimelog=$idmaker->getDateTime();
         }
