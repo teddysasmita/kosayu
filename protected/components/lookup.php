@@ -548,10 +548,13 @@ class lookup extends CComponent {
 	
 	public static function RepairCheck($data)
 	{
-		if ($data['checked'] == 1) 
+		if (isset($data['checked'])) {
+			if ($data['checked'] == 1) 
+				return true;
+			else
+				return false;
+		} else
 			return true;
-		else
-			return false;
 	}
 	
 	public static function GetOldSupplierID($name)
