@@ -231,7 +231,6 @@ class DefaultController extends Controller
                $this->tracker->init();
                $this->tracker->delete('detailpurchasespayments', array('iddetail'=>$dm->iddetail));
                $dm->delete();
-               $this->setStatusPO($dm);
             }
 
             $model->delete();
