@@ -279,11 +279,11 @@ class lookup extends CComponent {
    
    public static function PurchasesNumFromID($id)
    {
-		$sql="select idatetime, regnum from purchases where id='$id'";
+		$sql="select left(idatetime, 10) as idate, regnum from purchases where id='$id'";
    		$data = Yii::app()->db->createCommand($sql)->queryRow();
    	
    		if ($data)
-   			return 'Tanggal: '.$data['idatetime'].'- Nomor: '.$data['regnum'];
+   			return 'Tanggal: '.$data['idate'].'- Nomor: '.$data['regnum'];
    		else
    			return 'Tidak Ditemukan';
    }
