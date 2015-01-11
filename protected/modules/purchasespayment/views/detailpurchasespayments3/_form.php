@@ -9,9 +9,9 @@
 <?php
    
 $paymentScript=<<<EOS
-	$("#Detailpurchasespayments3_method").change(
+	$("#Payments_method").change(
 		function(event) {
-		var method = $("#Detailpurchasespayments3_method").val();		
+		var method = $("#Payments_method").val();		
 		if (method == 'BG') {
 			$("#bg").show();
 			$("#transfer").hide();
