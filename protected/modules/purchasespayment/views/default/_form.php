@@ -267,7 +267,7 @@ EOS;
        $sql="select * from payments where idtransaction='$model->id'";
        $rawdata3 = Yii::app()->db->createCommand($sql)->queryAll ();
     }
-    $dataProvider=new CArrayDataProvider($rawdata2, array(
+    $dataProvider=new CArrayDataProvider($rawdata3, array(
           'totalItemCount'=>$count,
     	'pagination'=>false,
     ));
