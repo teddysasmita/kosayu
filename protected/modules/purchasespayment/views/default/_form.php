@@ -257,7 +257,47 @@ EOS;
       <?php echo $form->error($model,'discount'); ?>
    </div>
 	
-
+<?php 
+    if (isset(Yii::app()->session['Detailpurchasespayments3'])) {
+       $rawdata3=Yii::app()->session['Detailpurchasespayments3'];
+       $count=count($rawdata3);
+    } else {
+       $count=Yii::app()->db->createCommand("select count(*) from payments where idtransaction='$model->id'")
+            ->queryScalar();
+       $sql="select * from payments where idtransaction='$model->id'";
+       $rawdata3 = Yii::app()->db->createCommand($sql)->queryAll ();
+    }
+    $dataProvider=new CArrayDataProvider($rawdata2, array(
+          'totalItemCount'=>$count,
+    	'pagination'=>false,
+    ));
+    $this->widget('zii.widgets.grid.CGridView', array(
+            'dataProvider'=>$dataProvider,
+            'columns'=>array(
+               	array(
+					'header'=>'Metode',
+					'name'=>'method',
+				),
+				array(
+					'header'=>'Jumlah',
+					'type'=>'number',
+					'name'=>'amount',
+				),
+            	array(
+            		'class'=>'CButtonColumn',
+            		'buttons'=> array(
+            			'view'=>array(
+            				'visible'=>'false'
+            			)
+            		),
+            		'updateButtonUrl'=>"Action::decodeUpdateDetailPurchasesPayment3Url(\$data)",
+            		'deleteButtonUrl'=>"Action::decodeDeleteDetailPurchasesPayment3Url(\$data)",
+            	)
+          ),
+    ));
+    
+?>
+   
    <div class="row buttons">
       <?php echo CHtml::submitButton(ucfirst($command)); ?>
    </div>
