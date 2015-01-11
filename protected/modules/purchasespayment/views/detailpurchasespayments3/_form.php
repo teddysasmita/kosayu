@@ -43,6 +43,7 @@ EOS;
         <?php 
          echo $form->hiddenField($model,'id');
          echo $form->hiddenField($model,'idtransaction');
+         echo $form->hiddenField($model,'idatetime');
          echo $form->hiddenField($model,'userlog');
          echo $form->hiddenField($model,'datetimelog');
         ?>

@@ -278,6 +278,7 @@ class Detailpurchasespayments3Controller extends Controller
             $model->idtransaction=$id;  
             $model->id=$idmaker->getCurrentID2();
             $model->userlog=Yii::app()->user->id;
+            $model->idatetime=$idmaker->getDateTime();
             $model->datetimelog=$idmaker->getDateTime();
         }
         

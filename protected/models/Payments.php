@@ -42,10 +42,10 @@ class Payments extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id, idtransaction, amount, method, userlog, datetimelog', 'required'),
+			array('id, idtransaction, idatetime, amount, method, userlog, datetimelog', 'required'),
 			array('amount', 'numerical'),
 			array('id, idtransaction, bg_idbank, bg_receiver, tr_idbank, userlog', 'length', 'max'=>21),
-			array('bg_pubdate, bg_duedate, datetimelog', 'length', 'max'=>19),
+			array('idatetime, bg_pubdate, bg_duedate, datetimelog', 'length', 'max'=>19),
 			array('method', 'length', 'max'=>3),
 			array('bg_type, bg_status', 'length', 'max'=>1),
 			array('tr_receiver', 'length', 'max'=>100),
@@ -75,6 +75,7 @@ class Payments extends CActiveRecord
 		return array(
 			'id' => 'ID',
 			'idtransaction' => 'No Transaksi',
+			'idatetime' => 'Tanggal',
 			'amount' => 'Jumlah',
 			'method' => 'Metode',
 			'bg_idbank' => 'Bank Penerbit',
