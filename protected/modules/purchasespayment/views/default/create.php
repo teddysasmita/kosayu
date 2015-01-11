@@ -13,7 +13,7 @@ $this->menu=array(
 	array('label'=>'Pengaturan', 'url'=>array('admin')),
    */
 	array('label'=>'Tambah Detil', 'url'=>array('detailpurchasespayments3/create', 
-      'id'=>$model->id),
+      'idtransaction'=>$model->id),
       'linkOptions'=>array('id'=>'addpayment')),  
 );
 
