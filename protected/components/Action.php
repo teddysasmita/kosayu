@@ -687,7 +687,7 @@ class Action extends CComponent {
    			->queryScalar();
    		
    		$paid = Yii::app()->db->createCommand()
-   			->select("sum('amount') as total")->from('detailpurchasespayment')
+   			->select("sum('amount') as total")->from('detailpurchasespayments')
    			->where("idpurchase = :p_idpurchase", array(':p_idpurchase'=>$idpurchase))
    			->queryScalar();
    		
