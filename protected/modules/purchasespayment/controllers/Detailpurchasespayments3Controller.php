@@ -265,7 +265,7 @@ class Detailpurchasespayments3Controller extends Controller
         {
             $details=Yii::app()->session['Detailpurchasespayments3'];
             foreach ($details as $row) {
-                if($row['iddetail']==$iddetail)
+                if($row['id']==$iddetail)
                     return $row;
             }
             throw new CHttpException(404,'The requested page does not exist.');
