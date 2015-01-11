@@ -279,8 +279,13 @@ class lookup extends CComponent {
    
    public static function PurchasesNumFromID($id)
    {
-   	$sql="select regnum from purchases where id='$id'";
-   	return Yii::app()->db->createCommand($sql)->queryScalar();
+		$sql="select idatetime, regnum from purchases where id='$id'";
+   		$data = Yii::app()->db->createCommand($sql)->queryRow();
+   	
+   		if ($data)
+   			return $data['idatetime'].'-'.$data['regnum'];
+   		else
+   			return 'Tidak Ditemukan';
    }
    
    public static function CustomerNameFromCustomerID($id)

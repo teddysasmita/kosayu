@@ -119,7 +119,7 @@ EOS;
              'source'=>$suppliername,
            'value'=>lookup::SupplierNameFromSupplierID($model->idsupplier)
          ));
-         echo CHtml::button('Cari PO', array( 'id'=>'searchUnsettledPO'));   
+         echo CHtml::button('Cari Nota & Retur', array( 'id'=>'searchUnsettledPO'));   
       ?>
 		<?php echo $form->error($model,'idsupplier'); ?>
 	</div>
@@ -154,8 +154,8 @@ EOS;
     $this->widget('zii.widgets.grid.CGridView', array(
             'dataProvider'=>$dataProvider,
             'columns'=>array(
-               	array(
-					'header'=>'Nomor Beli',
+            	array(
+					'header'=>'Nomor Nota',
 					'name'=>'idpurchase',
 					'value'=>"lookup::PurchasesNumFromID(\$data['idpurchase'])"
 				),
