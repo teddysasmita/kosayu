@@ -50,41 +50,41 @@ class Detailpurchasespayments3Controller extends Controller
 	 */
 	public function actionCreate($idtransaction)
 	{
-             if(Yii::app()->authManager->checkAccess($this->formid.'-Append', 
+		if(Yii::app()->authManager->checkAccess($this->formid.'-Append', 
                     Yii::app()->user->id))  {   
-                $this->state='c';
-                $this->trackActivity('c');    
+			$this->state='c';
+			$this->trackActivity('c');    
                     
-                $model=new Payments;
-                $this->afterInsert($idtransaction, $model);
+			$model=new Payments;
+			$this->afterInsert($idtransaction, $model);
                 
-                $master=Yii::app()->session['master'];
+			$master=Yii::app()->session['master'];
                                 
-		// Uncomment the following line if AJAX validation is needed
-		$this->performAjaxValidation($model);
+				// Uncomment the following line if AJAX validation is needed
+			$this->performAjaxValidation($model);
                 
-                if(isset($_POST['Payments'])) {
-                    $temp=Yii::app()->session['Detailpurchasespayments3'];
-                    $model->attributes=$_POST['Payments'];
+			if(isset($_POST['Payments'])) {
+				$temp=Yii::app()->session['Detailpurchasespayments3'];
+				$model->attributes=$_POST['Payments'];
                     //posting into session
-                    $temp[]=$_POST['Payments'];
                     
-                    if ($model->validate()) {
-                        Yii::app()->session['Detailpurchasespayments3']=$temp;
-                        if ($master=='create')
-                            $this->redirect(array('default/createdetail'));
-                        else if($master=='update')
-                            $this->redirect(array('default/updatedetail'));
-                    }    
-                }                
+				if ($model->validate()) {
+					$temp[]=$_POST['Payments'];
+					Yii::app()->session['Detailpurchasespayments3']=$temp;
+					if ($master=='create')
+						$this->redirect(array('default/createdetail'));
+					else if($master=='update')
+						$this->redirect(array('default/updatedetail'));
+				}    
+			}                
 
-                $this->render('create',array(
-                    'model'=>$model, 'master'=>$master
-                ));
+			$this->render('create',array(
+				'model'=>$model, 'master'=>$master
+			));
                 
-             } else {
-                throw new CHttpException(404,'You have no authorization for this operation.');
-             }
+		} else {
+			throw new CHttpException(404,'You have no authorization for this operation.');
+		}
 	}
 
 	/**
