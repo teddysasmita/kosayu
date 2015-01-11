@@ -68,14 +68,16 @@ class Detailpurchasespayments3Controller extends Controller
 				$model->attributes=$_POST['Payments'];
                     //posting into session
                     
-				if ($model->validate()) {
-					$temp[]=$_POST['Payments'];
-					Yii::app()->session['Detailpurchasespayments3']=$temp;
-					if ($master=='create')
-						$this->redirect(array('default/createdetail'));
-					else if($master=='update')
-						$this->redirect(array('default/updatedetail'));
-				}    
+				if (isset($_POST['yt0'])) {
+					if ($model->validate()) {
+						$temp[]=$_POST['Payments'];
+						Yii::app()->session['Detailpurchasespayments3']=$temp;
+						if ($master=='create')
+							$this->redirect(array('default/createdetail'));
+						else if($master=='update')
+							$this->redirect(array('default/updatedetail'));
+					}    
+				}
 			}                
 
 			$this->render('create',array(
