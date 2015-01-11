@@ -102,10 +102,10 @@ class Detailpurchasespayments3Controller extends Controller
                 
                 $master=Yii::app()->session['master'];
                 
-                $model=$this->loadModel($iddetail);
+                $model=$this->loadModel($id);
                 if(isset(Yii::app()->session['Detailpurchasespayments3'])) {
                     $model=new Payments;
-                    $model->attributes=$this->loadSession($iddetail);
+                    $model->attributes=$this->loadSession($id);
                 }
                 $this->afterEdit($model);
                     
@@ -154,7 +154,7 @@ class Detailpurchasespayments3Controller extends Controller
                 
                 $details=Yii::app()->session['Detailpurchasespayments3'];
                 foreach ($details as $ik => $iv) {
-                   if($iv['iddetail']==$iddetail) {
+                   if($iv['id']==$id) {
                       if(isset(Yii::app()->session['Deletedetailpurchasespayments']))
                          $deletelist=Yii::app()->session['Deletedetailpurchasespayments'];
                       $deletelist[]=$iv;
