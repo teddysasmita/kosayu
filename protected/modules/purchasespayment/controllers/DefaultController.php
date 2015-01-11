@@ -123,6 +123,11 @@ class DefaultController extends Controller
                          $this->sumDetail($model, $details, $details2);
                          //$this->redirect(array('detailpurchasespayments/create',
                             //'id'=>$model->id));
+                      } else if ($_POST['command']=='addpayment') {
+                         $model->attributes=$_POST['Purchasespayments'];
+                         Yii::app()->session['Purchasespayments']=$_POST['Purchasespayments'];
+                         //$this->redirect(array('detailpurchasespayments/create',
+                            //'id'=>$model->id));
                       }
                    }
                 }

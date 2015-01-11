@@ -11,18 +11,18 @@ $this->breadcrumbs=array(
 $this->menu=array(
 	/*array('label'=>'Daftar', 'url'=>array('index')),
 	array('label'=>'Pengaturan', 'url'=>array('admin')),
-   array('label'=>'Tambah Detil', 'url'=>array('detailstockentries/create', 
+   */
+	array('label'=>'Tambah Detil', 'url'=>array('detailpurchasespayments3/create', 
       'id'=>$model->id),
-      'linkOptions'=>array('id'=>'adddetail')),  
-    */
+      'linkOptions'=>array('id'=>'addpayment')),  
 );
 
 $jq=<<<EOH
-   $('#adddetail').click(function(event){
+   $('#addpayment').click(function(event){
      var mainform;
      var hiddenvar;
      mainform=$('#purchasespayments-form');
-     $('#command').val('adddetail');
+     $('#command').val('addpayment');
      mainform.submit();
      event.preventDefault();
    });

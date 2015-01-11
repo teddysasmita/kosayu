@@ -12,6 +12,7 @@
  * @property double $amount
  * @property string $method
  * @property string $bg_idbank
+ * @property string $bg_num
  * @property string $bg_pubdate
  * @property string $bg_duedate
  * @property string $bg_receiver
@@ -41,14 +42,14 @@ class Payments extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id, idtransaction, idatetime, c_idcurr, c_idrate, amount, method, bg_status, userlog, datetimelog', 'required'),
+			array('id, idtransaction, idatetime, amount, method, userlog, datetimelog', 'required'),
 			array('amount', 'numerical'),
-			array('id, idtransaction, c_idcurr, c_idrate, bg_idbank, bg_receiver, tr_idbank, userlog', 'length', 'max'=>21),
+			array('id, idtransaction, bg_idbank, bg_receiver, tr_idbank, userlog', 'length', 'max'=>21),
 			array('idatetime, bg_pubdate, bg_duedate, datetimelog', 'length', 'max'=>19),
 			array('method', 'length', 'max'=>3),
 			array('bg_type, bg_status', 'length', 'max'=>1),
 			array('tr_receiver', 'length', 'max'=>100),
-			array('tr_bank', 'length', 'max'=>50),
+			array('tr_bank, bg_num', 'length', 'max'=>50),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id, idtransaction, idatetime, c_idcurr, c_idrate, amount, method, bg_idbank, bg_pubdate, bg_duedate, bg_receiver, bg_type, bg_status, tr_idbank, tr_receiver, tr_bank, userlog, datetimelog', 'safe', 'on'=>'search'),
@@ -75,11 +76,10 @@ class Payments extends CActiveRecord
 			'id' => 'ID',
 			'idtransaction' => 'No Transaksi',
 			'idatetime' => 'Tanggal',
-			'c_idcurr' => 'Mata Uang Tunai',
-			'c_idrate' => 'Kurs Mata Uang Tunai',
 			'amount' => 'Jumlah',
 			'method' => 'Metode',
 			'bg_idbank' => 'Bank Penerbit',
+			'bg_num' => 'Nomor BG/Cheque',
 			'bg_pubdate' => 'Tanggal Tulis',
 			'bg_duedate' => 'Tanggal Jatuh Tempo',
 			'bg_receiver' => 'Penerima',
@@ -114,11 +114,10 @@ class Payments extends CActiveRecord
 		$criteria->compare('id',$this->id,true);
 		$criteria->compare('idtransaction',$this->idtransaction,true);
 		$criteria->compare('idatetime',$this->idatetime,true);
-		$criteria->compare('c_idcurr',$this->c_idcurr,true);
-		$criteria->compare('c_idrate',$this->c_idrate,true);
 		$criteria->compare('amount',$this->amount);
 		$criteria->compare('method',$this->method,true);
 		$criteria->compare('bg_idbank',$this->bg_idbank,true);
+		$criteria->compare('bg_num',$this->bg_num,true);
 		$criteria->compare('bg_pubdate',$this->bg_pubdate,true);
 		$criteria->compare('bg_duedate',$this->bg_duedate,true);
 		$criteria->compare('bg_receiver',$this->bg_receiver,true);
