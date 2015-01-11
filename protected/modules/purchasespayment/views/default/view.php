@@ -138,3 +138,39 @@ $this->menu=array(
    )));
  ?>
  
+ <?php 
+   $count=Yii::app()->db->createCommand("select count(*) from payments where idtransaction='$model->id'")
+      ->queryScalar();
+   $sql="select * from payments where idtransaction='$model->id'";
+
+   $dataProvider=new CSqlDataProvider($sql,array(
+      'totalItemCount'=>$count,
+   ));
+   $this->widget('zii.widgets.grid.CGridView', array(
+   'dataProvider'=>$dataProvider,
+   'columns'=>array(
+      array(
+             'header'=>'Metode',
+             'name'=>'method',
+             'value'=>"lookup::getMethod(\$data['method'])"
+         ),
+      array(
+         'header'=>'Jumlah',
+         'type'=>'number',
+         'name'=>'amount',
+      ),
+      /*array(
+         'class'=>'CButtonColumn',
+         'buttons'=> array(
+            'delete'=>array(
+               'visible'=>'false'
+             ),
+            'update'=>array(
+               'visible'=>'false'
+            )
+         ),
+         'viewButtonUrl'=>"Action::decodeViewDetailPurchaseMemoUrl(\$data)",
+      )*/      
+   )));
+ ?>
+ 
