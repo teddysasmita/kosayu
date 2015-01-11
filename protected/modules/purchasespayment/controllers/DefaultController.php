@@ -181,7 +181,7 @@ class DefaultController extends Controller
              $this->performAjaxValidation($model);
 
              if(isset($_POST)) {
-                 if(isset($_POST['yt0'])) {
+                 if(isset($_POST['yt1'])) {
                      $model->attributes=$_POST['Purchasespayments'];
                      $this->beforePost($model);
                      $this->tracker->modify('purchasespayments', $id);
@@ -207,15 +207,81 @@ class DefaultController extends Controller
                            throw new CHttpException(404,'There is an error in detail deletion');
                          }
                      };
+                     
+                     if(isset(Yii::app()->session['Detailpurchasespayments2'])) {
+                     	$details=Yii::app()->session['Detailpurchasespayments2'];
+                     	$respond=$respond&&$this->saveDetails2($details);
+                     	if(!$respond) {
+                     		throw new CHttpException(404,'There is an error in detail2 posting');
+                     	}
+                     };
+                      
+                     if(isset(Yii::app()->session['DeleteDetailpurchasespayments2'])) {
+                     	$deletedetails=Yii::app()->session['DeleteDetailpurchasespayments2'];
+                     	$respond=$respond&&$this->deleteDetails($deletedetails);
+                     	if(!$respond) {
+                     		throw new CHttpException(404,'There is an error in detail2 deletion');
+                     	}
+                     };
+                     
+                     if(isset(Yii::app()->session['Detailpurchasespayments3'])) {
+                     	$details=Yii::app()->session['Detailpurchasespayments3'];
+                     	$respond=$respond&&$this->saveDetails($details);
+                     	if(!$respond) {
+                     		throw new CHttpException(404,'There is an error in detail3 posting');
+                     	}
+                     };
+                      
+                     if(isset(Yii::app()->session['DeleteDetailpurchasespayments3'])) {
+                     	$deletedetails=Yii::app()->session['DeleteDetailpurchasespayments3'];
+                     	$respond=$respond&&$this->deleteDetails($deletedetails);
+                     	if(!$respond) {
+                     		throw new CHttpException(404,'There is an error in detail3 deletion');
+                     	}
+                     };
                     
                      if($respond) {
                      	$this->afterPost($model);
                          Yii::app()->session->remove('Purchasespayments');
                          Yii::app()->session->remove('Detailpurchasespayments');
+                         Yii::app()->session->remove('Detailpurchasespayments2');
+                         Yii::app()->session->remove('Detailpurchasespayments3');
                          Yii::app()->session->remove('DeleteDetailpurchasespayments');
+                         Yii::app()->session->remove('DeleteDetailpurchasespayments2');
+                         Yii::app()->session->remove('DeleteDetailpurchasespayments3');
                          $this->redirect(array('view','id'=>$model->id));
                      }
-                 }
+                 } else if (isset($_POST['command'])){
+                      // save the current master data before going to the detail page
+                      if($_POST['command']=='adddetail') {
+                         $model->attributes=$_POST['Purchasespayments'];
+                         Yii::app()->session['Purchasespayments']=$_POST['Purchasespayments'];
+                         //$this->redirect(array('detailpurchasespayments/create',
+                            //'id'=>$model->id));
+                      } else if ($_POST['command']=='setSupplier') {
+                         $model->attributes=$_POST['Purchasespayments'];
+                         Yii::app()->session['Purchasespayments']=$_POST['Purchasespayments'];
+                         Yii::app()->session['Detailpurchasespayments'] = 
+                         	$this->loadPurchases($model->idsupplier, $model->id);
+                         Yii::app()->session['Detailpurchasespayments2'] =
+                         	$this->loadReturs($model->idsupplier, $model->id);
+                      } else if($_POST['command']=='adddetail2') {
+                         $model->attributes=$_POST['Purchasespayments'];
+                         Yii::app()->session['Purchasespayments']=$_POST['Purchasespayments'];
+                         $details2 = Yii::app()->session['Detailpurchasespayments2'];
+                         $details = Yii::app()->session['Detailpurchasespayments'];
+                         $this->matchRetur($details2, $_POST['yw2_c2']);
+                         Yii::app()->session['Detailpurchasespayments2'] = $details2;
+                         $this->sumDetail($model, $details, $details2);
+                         //$this->redirect(array('detailpurchasespayments/create',
+                            //'id'=>$model->id));
+                      } else if ($_POST['command']=='addpayment') {
+                         $model->attributes=$_POST['Purchasespayments'];
+                         Yii::app()->session['Purchasespayments']=$_POST['Purchasespayments'];
+                         //$this->redirect(array('detailpurchasespayments/create',
+                            //'id'=>$model->id));
+                      }
+                   }
              }
 
              $this->render('update',array(
