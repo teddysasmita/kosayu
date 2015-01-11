@@ -616,7 +616,7 @@ class DefaultController extends Controller
          }
          
          $details2 = $this->loadDetails2($model->id);
-         foreach($details as $d) {
+         foreach($details2 as $d) {
          	Action::setStatusRetur($d['idpurchaseretur'], '1');
          }
      }
