@@ -216,13 +216,13 @@ class DefaultController extends Controller
                      	}
                      };
                       
-                     if(isset(Yii::app()->session['DeleteDetailpurchasespayments2'])) {
+                     /*if(isset(Yii::app()->session['DeleteDetailpurchasespayments2'])) {
                      	$deletedetails=Yii::app()->session['DeleteDetailpurchasespayments2'];
                      	$respond=$respond&&$this->deleteDetails($deletedetails);
                      	if(!$respond) {
                      		throw new CHttpException(404,'There is an error in detail2 deletion');
                      	}
-                     };
+                     };*/
                      
                      if(isset(Yii::app()->session['Detailpurchasespayments3'])) {
                      	$details=Yii::app()->session['Detailpurchasespayments3'];
@@ -313,7 +313,21 @@ class DefaultController extends Controller
                $this->tracker->delete('detailpurchasespayments', array('iddetail'=>$dm->iddetail));
                $dm->delete();
             }
-
+            
+            $detailmodels=Detailpurchasespayments2::model()->findAll('id=:id',array(':id'=>$id));
+            foreach($detailmodels as $dm) {
+            	$this->tracker->init();
+            	$this->tracker->delete('detailpurchasespayments2', array('iddetail'=>$dm->iddetail));
+            	$dm->delete();
+            }
+			
+            $detailmodels=Payments::model()->findAll('idtransaction=:id',array(':id'=>$id));
+            foreach($detailmodels as $dm) {
+            	$this->tracker->init();
+            	$this->tracker->delete('payments', array('id'=>$dm->id));
+            	$dm->delete();
+            }
+            
             $model->delete();
             $this->afterDelete($model);
 
@@ -778,6 +792,7 @@ class DefaultController extends Controller
          $model->userlog=Yii::app()->user->id;
          $model->datetimelog=$idmaker->getDateTime();
          $model->regnum=$idmaker->getRegNum($this->formid);
+         
      }
 
 	protected function beforeDelete(& $model)
@@ -791,7 +806,7 @@ class DefaultController extends Controller
      	foreach($details2 as $d) {
      		Action::setStatusRetur($d['idpurchaseretur'], '0');
      	}
-     }
+	}
 
      protected function afterDelete(& $model)
      {
