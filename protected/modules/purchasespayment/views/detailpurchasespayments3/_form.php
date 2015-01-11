@@ -13,11 +13,14 @@ $paymentScript=<<<EOS
 		function(event) {
 		var method = $("#Detailpurchasespayments3_method").val();		
 		if (method == 'BG') {
-				
+			$("#bg").show();
+			$("#transfer").hide();
 		} else if (method == 'T') {
-		
+			$("#bg").hide();
+			$("#transfer").show();
 		} else if (method == 'C') {
-		
+			$("#bg").hide();
+			$("#transfer").hide();
 		}
 	});
 	
