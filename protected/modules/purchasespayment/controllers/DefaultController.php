@@ -569,7 +569,9 @@ class DefaultController extends Controller
      	foreach ($details as $row) {
      		if ($row['checked'] == 1) {
      			$detailmodel=new Detailpurchasespayments2;
-     			$detailmodel->attributes=$row;
+     			$row1 = $row;
+     			unset($row1['checked']);
+     			$detailmodel->attributes=$row1;
      			$respond=$detailmodel->insert();
      			if (!$respond) {
      				break;
