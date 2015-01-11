@@ -679,12 +679,37 @@ class Action extends CComponent {
          ->update('purchasesorders', array('status'=>$status), 'regnum=:id', array(':id'=>$idpo));
    }
    
-   public static function setPaymentStatusPO($idpo, $status)
-   {
-   	Yii::app()->db->createCommand()
-   	->update('purchasesorders', array('paystatus'=>$status), 'id=:id', array(':id'=>$idpo));
-   }
+   	public static function updatePaymentStatusPurchase($idpurchase)
+   	{
+   		$total = Yii::app()->db->createCommand()
+   			->select("(total - discount) as grandtotal")->from('purchases')
+   			->where("id = :p_id", array(':p_id'=>$idpurchase))
+   			->queryScalar();
+   		
+   		$paid = Yii::app()->db->createCommand()
+   			->select("sum('amount') as total")->from('detailpurchasespayment')
+   			->where("idpurchase = :p_idpurchase", array(':p_idpurchase'=>$idpurchase))
+   			->queryScalar();
+   		
+   		if ($total == $paid)
+   			$this->setPaymentStatusPurchase($idpurchase, '0');
+   		else if ($paid > 0)
+   			$this->setPaymentStatusPurchase($idpurchase, '1');
+   		else if ($paid == $total)
+   			$this->setPaymentStatusPurchase($idpurchase, '2');
+   	}
+	
+	public static function setPaymentStatusPurchase($idpurchase, $status)
+	{
+		Yii::app()->db->createCommand()
+   			->update('purchases', array('paystatus'=>$status), 'id=:id', array(':id'=>$idpurchase));
+	}
     
+	public static function setStatusRetur($idpurchaseretur, $status)
+	{
+		Yii::app()->db->createCommand()
+			->update('purchasesreturs', array('status'=>$status), 'id=:id', array(':id'=>$idpurchaseretur));
+	}
    
    public static function decodeRestoreHistoryWarehouseUrl($data)
    {

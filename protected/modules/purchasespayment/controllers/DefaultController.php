@@ -80,7 +80,18 @@ class DefaultController extends Controller
                         $details=Yii::app()->session['Detailpurchasespayments'];
                         $respond=$respond&&$this->saveNewDetails($details);
                       } 
-
+                      if(!$respond) {
+                      	throw new CHttpException(404,'There is an error in detail posting');
+                      }	
+                      
+                      if(isset(Yii::app()->session['Detailpurchasespayments2']) ) {
+                      	$details2=Yii::app()->session['Detailpurchasespayments2'];
+                      	$respond=$respond&&$this->saveNewDetails2($details2);
+                      }
+                      if(!$respond) {
+                      	throw new CHttpException(404,'There is an error in detail2 posting');
+                      }
+                      
                       if($respond) {
                          $this->afterPost($model);
                          Yii::app()->session->remove('Purchasespayments');
@@ -432,30 +443,46 @@ class DefaultController extends Controller
       }
       
 
-     protected function saveNewDetails(array $details)
-     {                  
-         foreach ($details as $row) {
-             $detailmodel=new Detailpurchasespayments;
-             $detailmodel->attributes=$row;
-             $respond=$detailmodel->insert();
-             if (!$respond) {
-                break;
-             } else {
-             	$purchasetotal=$detailmodel->total-$detailmodel->discount;
-             	$left=$detailmodel->total-($detailmodel->discount+$detailmodel->paid+
-             		$detailmodel->amount);
-             	if ($purchasetotal == $left)
-             		Action::setPaymentStatusPO($detailmodel->idpurchaseorder, '0');
-             	else if ($left>0)
-             		Action::setPaymentStatusPO($detailmodel->idpurchaseorder, '1');
-             	else if ($left==0)
-             		Action::setPaymentStatusPO($detailmodel->idpurchaseorder, '2');
-             }
-         }
-         return $respond;
+	protected function saveNewDetails(array $details)
+	{                  
+		foreach ($details as $row) {
+			if ($row['amount'] > 0) {
+				$detailmodel=new Detailpurchasespayments;
+             	$detailmodel->attributes=$row;
+             	$respond=$detailmodel->insert();
+             	if (!$respond) {
+                	break;
+             	} else {
+             		$purchasetotal=$detailmodel->total-$detailmodel->discount;
+             		$left=$detailmodel->total-($detailmodel->discount+$detailmodel->paid+
+             			$detailmodel->amount);
+             		if ($purchasetotal == $left)
+             			Action::setPaymentStatusPurchase($detailmodel->idpurchase, '0');
+             		else if ($left>0)
+             			Action::setPaymentStatusPurchase($detailmodel->idpurchase, '1');
+             		else if ($left==0)
+             			Action::setPaymentStatusPurchase($detailmodel->idpurchaseo, '2');
+         		}
+			}
+		}	
+		return $respond;
      }
      
-
+     protected function saveNewDetails2(array $details)
+     {
+     	foreach ($details as $row) {
+     		if ($row['checked'] == 1) {
+     			$detailmodel=new Detailpurchasespayments2;
+     			$detailmodel->attributes=$row;
+     			$respond=$detailmodel->insert();
+     			if (!$respond) {
+     				break;
+     			} 
+     		}
+     	}
+     	return $respond;
+     }
+     
      protected function saveDetails(array $details)
      {
          $idmaker=new idmaker();
@@ -477,51 +504,89 @@ class DefaultController extends Controller
              $respond=$detailmodel->save();
              if (!$respond) {
                break;
-             } else {
-             	$purchasetotal=$detailmodel->total-$detailmodel->discount;
-             	$left=$detailmodel->total-($detailmodel->discount+$detailmodel->paid+
-             		$detailmodel->amount);
-             	if ($purchasetotal == $left)
-             		Action::setPaymentStatusPO($detailmodel->idpurchaseorder, '0');
-             	else if ($left>0)
-             		Action::setPaymentStatusPO($detailmodel->idpurchaseorder, '1');
-             	else if ($left==0)
-             		Action::setPaymentStatusPO($detailmodel->idpurchaseorder, '2');
-             }
+             } 
           }
           return $respond;
      }
       
-     protected function deleteDetails(array $details)
+     protected function saveDetails2(array $details)
      {
-         $respond=true;
-         foreach ($details as $row) {
-             $detailmodel=Detailpurchasespayments::model()->findByPk($row['iddetail']);
-             if($detailmodel) {
-                 $this->tracker->init();
-                 $this->trackActivity('d', $this->__DETAILFORMID);
-                 $this->tracker->delete('detailpurchasespayments', $detailmodel->id);
-                 $respond=$detailmodel->delete();
-                 if (!$respond) {
-                   break;
-                 } else {
-					$this->setStatusPO($detailmodel);
-                 }
-             }
-         }
-         return $respond;
+     	$idmaker=new idmaker();
+     
+     	$respond=true;
+     	foreach ($details as $row) {
+     		$detailmodel=Detailpurchasespayment2s::model()->findByPk($row['iddetail']);
+     		if($detailmodel==NULL) {
+     			$detailmodel=new Detailpurchasespayments2;
+     		} else {
+     			if(count(array_diff($detailmodel->attributes,$row))) {
+     				$this->tracker->init();
+     				$this->tracker->modify('detailpurchasespayments2', array('iddetail'=>$detailmodel->iddetail));
+     			}
+     		}
+     		$detailmodel->attributes=$row;
+     		$detailmodel->userlog=Yii::app()->user->id;
+     		$detailmodel->datetimelog=$idmaker->getDateTime();
+     		$respond=$detailmodel->save();
+     		if (!$respond) {
+     			break;
+     		}
+     	}
+     	return $respond;
      }
+     
+	protected function deleteDetails(array $details)
+	{
+		$respond=true;
+		foreach ($details as $row) {
+			$detailmodel=Detailpurchasespayments::model()->findByPk($row['iddetail']);
+			if($detailmodel) {
+				$this->tracker->init();
+				$this->trackActivity('d', $this->__DETAILFORMID);
+				$this->tracker->delete('detailpurchasespayments', $detailmodel->id);
+				$respond=$detailmodel->delete();
+				if (!$respond) {
+					break;
+				} 
+			}
+		}
+		return $respond;
+	}
 
+	protected function deleteDetails2(array $details)
+	{
+		$respond=true;
+		foreach ($details as $row) {
+			$detailmodel=Detailpurchasespayments2::model()->findByPk($row['iddetail']);
+			if($detailmodel) {
+				$this->tracker->init();
+     			$this->trackActivity('d', $this->__DETAILFORMID);
+     			$this->tracker->delete('detailpurchasespayments2', $detailmodel->id);
+     			$respond=$detailmodel->delete();
+     			if (!$respond) {
+     				break;
+     			}
+			}
+		}
+     	return $respond;
+	}
 
-     protected function loadDetails($id)
-     {
-      $sql="select * from detailpurchasespayments where id='$id'";
-      $details=Yii::app()->db->createCommand($sql)->queryAll();
+	protected function loadDetails($id)
+	{
+		$sql="select * from detailpurchasespayments where id='$id'";
+		$details=Yii::app()->db->createCommand($sql)->queryAll();
 
-      return $details;
+		return $details;
+	}
+
+	protected function loadDetails2($id)
+	{
+		$sql="select * from detailpurchasespayments2 where id='$id'";
+     	$details=Yii::app()->db->createCommand($sql)->queryAll();
+     
+     	return $details;
      }
-
-
+     
      protected function afterInsert(& $model)
      {
          $idmaker=new idmaker();
@@ -540,6 +605,21 @@ class DefaultController extends Controller
          /*Action::addFinancePayment(
          	lookup::SupplierNameFromSupplierID($model->idsupplier), $model->idatetime, 
          	$model->idatetime, $model->total);*/
+         $details = $this->loadDetails($model->id);
+         foreach($details as $d) {
+			$left = $d['total'] - ($d['discount'] + $d['paid'] + $d['amount']);
+         	if ($d['total'] - $d['discount'] == $left)
+         		Action::setPaymentStatusPurchase($d['idpurchase'], '0');
+         	else if ($left > 0)
+         		Action::setPaymentStatusPurchase($d['idpurchase'], '1');
+         	else if ($left == 0)
+         		Action::setPaymentStatusPurchase($d['idpurchase'], '2');         	
+         }
+         
+         $details2 = $this->loadDetails2($model->id);
+         foreach($details as $d) {
+         	Action::setStatusRetur($d['idpurchaseretur'], '1');
+         }
      }
 
      protected function beforePost(& $model)
@@ -551,9 +631,17 @@ class DefaultController extends Controller
          $model->regnum=$idmaker->getRegNum($this->formid);
      }
 
-     protected function beforeDelete(& $model)
-     {
-
+	protected function beforeDelete(& $model)
+	{
+		$details = $this->loadDetails($model->id);
+     	foreach($details as $d) {
+     		Action::updatePaymentStatusPurchase($d['idpurchase']);
+     	}
+     	 
+     	$details2 = $this->loadDetails2($model->id);
+     	foreach($details as $d) {
+     		Action::setStatusRetur($d['idpurchaseretur'], '0');
+     	}
      }
 
      protected function afterDelete(& $model)
