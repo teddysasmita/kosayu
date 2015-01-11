@@ -8,6 +8,24 @@
 
 <?php
    
+$paymentScript=<<<EOS
+	$("#Detailpurchasespayments3_method").change(
+		function(event) {
+		var method = $("#Detailpurchasespayments3_method").val();		
+		if (method == 'BG') {
+				
+		} else if (method == 'T') {
+		
+		} else if (method == 'C') {
+		
+		}
+	});
+	
+	$("#bg").hide();
+	$("#transfer").hide();
+EOS;
+   Yii::app()->clientScript->registerScript("paymentScript", $paymentScript, CClientscript::POS_READY);
+
    $form=$this->beginWidget('CActiveForm', array(
 	'id'=>'detailpurchasespayments3-form',
 	'enableAjaxValidation'=>true,
