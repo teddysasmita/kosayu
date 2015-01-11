@@ -24,7 +24,6 @@ $jq=<<<EOH
      mainform=$('#purchasespayments-form');
      $('#command').val('addpayment');
      mainform.submit();
-     event.preventDefault();
    });
 EOH;
 Yii::app()->clientScript->registerScript('myscript', $jq, CClientScript::POS_READY);
