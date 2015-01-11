@@ -84,7 +84,8 @@ return array(
 			'cashouts',
 			'cashboxes',
 			'itembatch',
-			'cashins'
+			'cashins',
+			'consignpayment'
         ),
 
         

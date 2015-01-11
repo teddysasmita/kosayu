@@ -541,6 +541,7 @@ class DefaultController extends Controller
                     if (!$respond) {
                       break;
                     }
+                    Action::deleteDetailStock($detailmodel->iddetail);
                 }
             }
             return $respond;
@@ -570,6 +571,11 @@ class DefaultController extends Controller
         {
             $idmaker=new idmaker();
             $idmaker->saveRegNum($this->formid, $model->regnum);    
+            
+            if ($this->state == 'c')
+            	Action::addStock($model->id, $model->idatetime, $model->regnum, 'Konsinyasi');
+            else if ($this->state == 'u')
+            	Action::updateStock($model->id, $model->idatetime);
  
             Yii::import('application.modules.sellingprice.models.*');
             $details = $this->loadDetails($model->id);
@@ -599,6 +605,11 @@ class DefaultController extends Controller
             	}
             	Action::saveItemBatch($d['iddetail'], $d['iditem'], $d['batchcode'], 
             		$d['buyprice'], $d['userlog'], $d['datetimelog'], $d['sellprice']);
+            	
+            	if ($this->state == 'c')
+            		Action::addDetailStock($d['iddetail'], $d['id'], $d['iditem'], $d['batchcode'], $d['qty']);
+            	else if ($this->state == 'u')
+            		Action::updateDetailStock($d['iddetail'], $d['iditem'], $d['batchcode'], $d['qty']);
             }
         }
         
@@ -613,10 +624,12 @@ class DefaultController extends Controller
         
         protected function beforeDelete(& $model)
         {
+        	Action::deleteStock($model->id);
         	
         	Yii::import('application.modules.sellingprice.models.*');
         	$details = $this->loadDetails($model->id);
         	
+        	Action::deleteDetailStock2($model->id);
         	foreach($details as $d) {
         		if ($d['sellprice'] > 0) {
         			$sellprice = Sellingprices::model()->findByPk($d['iddetail']);

@@ -1055,6 +1055,53 @@ class Action extends CComponent {
    			->delete('itembatch', 'id = :p_id',
    				array(':p_id'=>$id));
    	}
+   	
+   	public static function addStock($id, $idatetime, $regnum, $transtype)
+   	{
+   		Yii::app()->db->createCommand()
+   			->insert('stocks', array('id'=>$id, 'idatetime'=>$idatetime, 'regnum'=>$regnum,
+   			'transtype'=>$transtype));	
+   	}
+   	
+   	public static function deleteStock($id)
+   	{
+   		Yii::app()->db->createCommand()
+   			->delete('stocks', 'id = :p_id', array(':p_id'=>$id));	
+   	}
+   	
+   	public static function updateStock($id, $idatetime)
+   	{
+   		Yii::app()->db->createCommand()
+   			->update('stocks', array('idatetime'=>$idatetime), array('id'=>$id));
+   	}
+   	
+   	public static function addDetailStock($iddetail, $id, $iditem, $batchcode, $qty)
+   	{
+   		Yii::app()->db->createCommand()
+   			->insert('detailstocks', array('iddetail'=>$iddetail, 'id'=>$id, 
+   				'iditem'=>$iditem, 'batchcode'=>$batchcode, 'qty'=>$qty ));   		
+   	}
+   	
+   	public static function deleteDetailStock($iddetail)
+   	{
+   		Yii::app()->db->createCommand()
+   			->delete('detailstocks', 'iddetail = :p_iddetail', 
+   				array(':p_iddetail'=>$iddetail));
+   	}
+   	
+   	public static function deleteDetailStock2($id)
+   	{
+   		Yii::app()->db->createCommand()
+   			->delete('detailstocks', 'id = :p_id',
+   				array(':p_id'=>$id));
+   	}
+   	
+   	public static function updateDetailStock($iddetail, $iditem, $batchcode, $qty)
+   	{
+   		Yii::app()->db->createCommand()
+   			->update('detailstocks', array('iditem'=>$iditem, 'batchcode'=>$batchcode, 'qty'=>$qty), 
+   				array('iddetail'=>$iddetail));
+   	}
 }
 
 ?>

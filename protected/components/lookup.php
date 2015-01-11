@@ -303,6 +303,13 @@ class lookup extends CComponent {
       return Yii::app()->db->createCommand($sql)->queryScalar();
    }
    
+
+   public static function SupplierCodeFromID($id)
+   {
+   	$sql="select code from suppliers where id='$id'";
+   	return Yii::app()->db->createCommand($sql)->queryScalar();
+   }
+   
    public static function SalesNameFromID($id)
    {
    	$sql="select concat(firstname, ' ', lastname) as name from salespersons where id='$id'";

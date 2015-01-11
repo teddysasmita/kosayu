@@ -536,6 +536,7 @@ class DefaultController extends Controller
                  if (!$respond) {
                    break;
                  }
+                 Action::deleteDetailStock($detailmodel->iddetail);
              }
          }
          return $respond;
@@ -568,6 +569,19 @@ class DefaultController extends Controller
          $idmaker=new idmaker();
          $idmaker->saveRegNum($this->formid, $model->regnum);
          
+         if ($this->state == 'c')
+         	Action::addStock($model->id, $model->idatetime, $model->regnum, 'Retur Beli');
+         else if ($this->state == 'u')
+         	Action::updateStock($model->id, $model->idatetime);
+         
+         $details = $this->loadDetails($model->id);
+         
+         foreach($details as $d) {
+         	if ($this->state == 'c')
+         		Action::addDetailStock($d['iddetail'], $d['id'], $d['iditem'], $d['batchcode'], - $d['qty']);
+         	else if ($this->state == 'u')
+         		Action::updateDetailStock($d['iddetail'], $d['iditem'], $d['batchcode'], - $d['qty']);
+         }
      }
 
      protected function beforePost(& $model)
@@ -581,7 +595,8 @@ class DefaultController extends Controller
 
      protected function beforeDelete(& $model)
      {
-
+     	Action::deleteStock($model->id);
+     	Action::deleteDetailStock2($model->id);
      }
 
      protected function afterDelete(& $model)
