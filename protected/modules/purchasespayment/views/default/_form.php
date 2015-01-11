@@ -258,6 +258,7 @@ EOS;
    </div>
 	
 <?php 
+	print_r(Yii::app()->session['Detailpurchasespayments3']);
     if (isset(Yii::app()->session['Detailpurchasespayments3'])) {
        $rawdata3=Yii::app()->session['Detailpurchasespayments3'];
        $count=count($rawdata3);
