@@ -63,11 +63,11 @@ class Detailpurchasespayments3Controller extends Controller
 		// Uncomment the following line if AJAX validation is needed
 		$this->performAjaxValidation($model);
                 
-                if(isset($_POST['Detailpurchasespayments3'])) {
+                if(isset($_POST['Payments'])) {
                     $temp=Yii::app()->session['Detailpurchasespayments3'];
-                    $model->attributes=$_POST['Detailpurchasespayments3'];
+                    $model->attributes=$_POST['Payments'];
                     //posting into session
-                    $temp[]=$_POST['Detailpurchasespayments3'];
+                    $temp[]=$_POST['Payments'];
                     
                     if ($model->validate()) {
                         Yii::app()->session['Detailpurchasespayments3']=$temp;
