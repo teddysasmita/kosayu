@@ -396,8 +396,9 @@ class DefaultController extends Controller
              $details=Yii::app()->session['Detailpurchasespayments'];
              $details2 = Yii::app()->session['Detailpurchasespayments2'];
             
-             $this->afterInsertDetail($model, $details, $details2);
-
+			if (is_array($details) && is_array($details2)) {
+             	$this->afterInsertDetail($model, $details, $details2);
+			}
              $this->render('create',array(
                  'model'=>$model,
              ));
@@ -783,7 +784,7 @@ class DefaultController extends Controller
  			Action::setPaymentStatusPO($detailmodel->idpurchaseorder, '1');
  	}
  	
- 	private function sumDetail(& $model, $details, $details2)
+ 	private function sumDetail(& $model, array $details, array $details2)
  	{
  		$total=0;
  		$totaldisc=0;
