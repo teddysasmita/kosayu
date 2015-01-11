@@ -92,10 +92,20 @@ class DefaultController extends Controller
                       	throw new CHttpException(404,'There is an error in detail2 posting');
                       }
                       
+                      if(isset(Yii::app()->session['Detailpurchasespayments3']) ) {
+                      	$details3=Yii::app()->session['Detailpurchasespayments3'];
+                      	$respond=$respond&&$this->saveNewDetails3($details3);
+                      }
+                      if(!$respond) {
+                      	throw new CHttpException(404,'There is an error in detail2 posting');
+                      }
+                      
                       if($respond) {
                          $this->afterPost($model);
                          Yii::app()->session->remove('Purchasespayments');
                          Yii::app()->session->remove('Detailpurchasespayments');
+                         Yii::app()->session->remove('Detailpurchasespayments2');
+                         Yii::app()->session->remove('Detailpurchasespayments3');
                          $this->redirect(array('view','id'=>$model->id));
                       } 
                            
@@ -489,6 +499,21 @@ class DefaultController extends Controller
      	return $respond;
      }
      
+     protected function saveNewDetails3(array $details)
+     {
+     	foreach ($details as $row) {
+     		if ($row['checked'] == 1) {
+     			$detailmodel=new Payments;
+     			$detailmodel->attributes=$row;
+     			$respond=$detailmodel->insert();
+     			if (!$respond) {
+     				break;
+     			}
+     		}
+     	}
+     	return $respond;
+     }
+     
      protected function saveDetails(array $details)
      {
          $idmaker=new idmaker();
@@ -521,13 +546,39 @@ class DefaultController extends Controller
      
      	$respond=true;
      	foreach ($details as $row) {
-     		$detailmodel=Detailpurchasespayment2s::model()->findByPk($row['iddetail']);
+     		$detailmodel=Detailpurchasespayments2::model()->findByPk($row['iddetail']);
      		if($detailmodel==NULL) {
      			$detailmodel=new Detailpurchasespayments2;
      		} else {
      			if(count(array_diff($detailmodel->attributes,$row))) {
      				$this->tracker->init();
      				$this->tracker->modify('detailpurchasespayments2', array('iddetail'=>$detailmodel->iddetail));
+     			}
+     		}
+     		$detailmodel->attributes=$row;
+     		$detailmodel->userlog=Yii::app()->user->id;
+     		$detailmodel->datetimelog=$idmaker->getDateTime();
+     		$respond=$detailmodel->save();
+     		if (!$respond) {
+     			break;
+     		}
+     	}
+     	return $respond;
+     }
+     
+     protected function saveDetails3(array $details)
+     {
+     	$idmaker=new idmaker();
+     	 
+     	$respond=true;
+     	foreach ($details as $row) {
+     		$detailmodel=Payments::model()->findByPk($row['iddetail']);
+     		if($detailmodel==NULL) {
+     			$detailmodel=new Payments;
+     		} else {
+     			if(count(array_diff($detailmodel->attributes,$row))) {
+     				$this->tracker->init();
+     				$this->tracker->modify('payments', array('id'=>$detailmodel->id));
      			}
      		}
      		$detailmodel->attributes=$row;
@@ -576,6 +627,24 @@ class DefaultController extends Controller
 		}
      	return $respond;
 	}
+	
+	protected function deleteDetails3(array $details)
+	{
+		$respond=true;
+		foreach ($details as $row) {
+			$detailmodel=Payments::model()->findByPk($row['id']);
+			if($detailmodel) {
+				$this->tracker->init();
+				$this->trackActivity('d', $this->__DETAILFORMID);
+				$this->tracker->delete('payments', $detailmodel->idtransaction);
+				$respond=$detailmodel->delete();
+				if (!$respond) {
+					break;
+				}
+			}
+		}
+		return $respond;
+	}
 
 	protected function loadDetails($id)
 	{
@@ -592,6 +661,14 @@ class DefaultController extends Controller
      
      	return $details;
      }
+     
+	protected function loadDetails3($id)
+	{
+		$sql="select * from payments where idtransaction='$id'";
+		$details=Yii::app()->db->createCommand($sql)->queryAll();
+     	 
+     	return $details;
+	}
      
      protected function afterInsert(& $model)
      {
