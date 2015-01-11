@@ -453,10 +453,10 @@ class Action extends CComponent {
    			array('id'=>$data['id']))  ;
    }
     
-   public static function decodeViewDetailPurchasesPayment3Url($data)
+   public static function decodeDeleteDetailPurchasesPayment3Url($data)
    {
    	//return print_r($data);
-   	return Yii::app()->createUrl('/purchasespayment/detailpurchasespayments3/view',
+   	return Yii::app()->createUrl('/purchasespayment/detailpurchasespayments3/delete',
    			array('id'=>$data['id']));
    }
 

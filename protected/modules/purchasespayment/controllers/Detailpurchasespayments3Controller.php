@@ -26,7 +26,7 @@ class Detailpurchasespayments3Controller extends Controller
 	 * Displays a particular model.
 	 * @param integer $id the ID of the model to be displayed
 	 */
-	public function actionView($iddetail)
+	public function actionView($id)
 	{
 		if(Yii::app()->authManager->checkAccess($this->formid.'-List',
 				Yii::app()->user->id))  {
@@ -48,7 +48,7 @@ class Detailpurchasespayments3Controller extends Controller
 	 * Creates a new model.
 	 * If creation is successful, the browser will be redirected to the 'view' page.
 	 */
-	public function actionCreate($id)
+	public function actionCreate($idtransaction)
 	{
              if(Yii::app()->authManager->checkAccess($this->formid.'-Append', 
                     Yii::app()->user->id))  {   
@@ -56,7 +56,7 @@ class Detailpurchasespayments3Controller extends Controller
                 $this->trackActivity('c');    
                     
                 $model=new Payments;
-                $this->afterInsert($id, $model);
+                $this->afterInsert($idtransaction, $model);
                 
                 $master=Yii::app()->session['master'];
                                 
@@ -92,7 +92,7 @@ class Detailpurchasespayments3Controller extends Controller
 	 * If update is successful, the browser will be redirected to the 'view' page.
 	 * @param integer $id the ID of the model to be updated
 	 */
-	public function actionUpdate($iddetail)
+	public function actionUpdate($id)
 	{
              if(Yii::app()->authManager->checkAccess($this->formid.'-Update', 
                     Yii::app()->user->id))  {
@@ -145,7 +145,7 @@ class Detailpurchasespayments3Controller extends Controller
 	 * If deletion is successful, the browser will be redirected to the 'admin' page.
 	 * @param integer $id the ID of the model to be deleted
 	 */
-	public function actionDelete($iddetail)
+	public function actionDelete($id)
 	{
             if(Yii::app()->authManager->checkAccess($this->formid.'-Delete', 
                     Yii::app()->user->id))  {
