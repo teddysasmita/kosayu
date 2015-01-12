@@ -1,6 +1,6 @@
 <?php
 
-class PurchasespaymentModule extends CWebModule
+class ConsignpaymentModule extends CWebModule
 {
 	public function init()
 	{
@@ -9,8 +9,8 @@ class PurchasespaymentModule extends CWebModule
 
 		// import the module-level models and components
 		$this->setImport(array(
-			'purchasespayment.models.*',
-			'purchasespayment.components.*',
+			'consignpayment.models.*',
+			'consignpayment.components.*',
 		));
 	}
 
