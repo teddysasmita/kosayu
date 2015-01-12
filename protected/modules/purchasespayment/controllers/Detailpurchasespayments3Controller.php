@@ -116,23 +116,25 @@ class Detailpurchasespayments3Controller extends Controller
                 
                if(isset($_POST['Detailpurchasespayments3'])) {
                   $temp=Yii::app()->session['Detailpurchasespayments3'];
-                  $model->attributes=$_POST['Detailpurchasespayments3'];
+                  $model->attributes=$_POST['Payments'];
                   foreach ($temp as $tk=>$tv) {
-                     if($tv['iddetail']==$_POST['Detailpurchasespayments3']['iddetail']) {
-                         $temp[$tk]=$_POST['Detailpurchasespayments3'];
+                     if($tv['id']==$_POST['payments']['id']) {
+                         $temp[$tk]=$_POST['Payments'];
                          break;
                      }
                   }
                     //posting into session
-                  if($model->validate()) {
-                     Yii::app()->session['Detailpurchasespayments3']=$temp;
-
-                     if ($master=='create')
-                           $this->redirect(array('default/createdetail'));
-                     else if($master=='update')
-                           $this->redirect(array('default/updatedetail'));
-                  }	
-                }
+                  if (isset($_POST['yt0'])) {
+	                  if($model->validate()) {
+	                     Yii::app()->session['Detailpurchasespayments3']=$temp;
+	
+	                     if ($master=='create')
+	                           $this->redirect(array('default/createdetail'));
+	                     else if($master=='update')
+	                           $this->redirect(array('default/updatedetail'));
+	                  }	
+                  }
+				}
                
                 $this->render('update',array(
                         'model'=>$model,'master'=>$master
