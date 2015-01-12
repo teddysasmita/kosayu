@@ -843,7 +843,7 @@ class DefaultController extends Controller
     {
     	$idsupplier = lookup::SupplierCodeFromID($idsupplier);
         $soldqty=Yii::app()->db->createCommand()
-           ->select('sum(b.qty) as soldqty, b.batchcode')
+           ->select('sum(b.qty) as soldqty, b.batchcode, b.iditem')
            ->from('stocks a')->join('detailstocks b', 'b.id = a.id')
            ->where('b.batchcode like :p_batchcode and a.idatetime >= :p_start', 
            		array(':p_batchcode'=>$idsupplier.'%', ':p_start'=>$start))
@@ -852,7 +852,7 @@ class DefaultController extends Controller
            ->queryAll();
         
         $salereturqty=Yii::app()->db->createCommand()
-        	->select('sum(b.qty) as returqty, b.batchcode')
+        	->select('sum(b.qty) as returqty, b.batchcode, b.iditem')
         	->from('stocks a')->join('detailstocks b', 'b.id = a.id')
         	->where('b.batchcode like :p_batchcode and a.idatetime >= :p_start',
         		array(':p_batchcode'=>$idsupplier.'%', ':p_start'=>$start))
