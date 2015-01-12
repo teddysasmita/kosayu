@@ -874,7 +874,7 @@ class DefaultController extends Controller
         }
         return $soldqty;
 	}
-      
+      //shit
  	private function setStatusPO($detailmodel) 
  	{	
  		$dataPO=Yii::app()->db->createCommand()
