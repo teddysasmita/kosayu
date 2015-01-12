@@ -16,14 +16,14 @@
  * @property string $userlog
  * @property string $datetimelog
  */
-class Purchasespayments extends CActiveRecord
+class Consignpayments extends CActiveRecord
 {
 	/**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
 	{
-		return 'purchasespayments';
+		return 'consignpayments';
 	}
 
 	/**
