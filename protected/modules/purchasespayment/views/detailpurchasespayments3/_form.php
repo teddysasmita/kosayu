@@ -7,6 +7,8 @@
 <div class="form">
 
 <?php
+
+$mymethod = json_encode($model->method);
    
 $paymentScript=<<<EOS
 	function setDisplay(method)  {
@@ -28,7 +30,7 @@ $paymentScript=<<<EOS
 		setDisplay(method)
 	});
 	
-	setDisplay($model->method);
+	setDisplay($mymethod);
 EOS;
    Yii::app()->clientScript->registerScript("paymentScript", $paymentScript, CClientscript::POS_READY);
 
