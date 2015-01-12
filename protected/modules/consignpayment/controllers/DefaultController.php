@@ -842,6 +842,7 @@ class DefaultController extends Controller
            ->andWhere('a.idatetime <= :p_end', array(':p_end'=>$end ))
            ->andWhere('a.transtype <= :p_sold', array(':p_end'=>'Penjualan'))
            ->queryAll();
+        
         $salereturqty=Yii::app()->db->createCommand()
         	->select('sum(b.qty) as returqty, b.batchcode')
         	->from('stocks a')->join('detailstocks b', 'b.id = a.id')
