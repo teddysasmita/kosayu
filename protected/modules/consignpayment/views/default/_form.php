@@ -84,6 +84,27 @@ EOS;
       ?>
         
 	<div class="row">
+		<?php echo $form->labelEx($model,'idsupplier'); ?>
+		<?php 
+         $suppliers=Yii::app()->db->createCommand()
+            ->select("id,code,firstname,lastname")
+            ->from("suppliers")
+            ->order("firstname, lastname")   
+            ->queryAll();
+         foreach($suppliers as $row) {
+            $suppliername[]=$row['code'].'-'.$row['firstname'].' '.$row['lastname'];
+         }
+         $this->widget("zii.widgets.jui.CJuiAutoComplete", array(
+             'name'=>'Consignpayments_suppliername',
+             'source'=>$suppliername,
+           'value'=>lookup::SupplierNameFromSupplierID($model->idsupplier)
+         ));
+         echo CHtml::button('Cari Nota & Retur', array( 'id'=>'searchUnsettledPO'));   
+      ?>
+		<?php echo $form->error($model,'idsupplier'); ?>
+	</div>
+   
+   <div class="row">
 		<?php echo $form->labelEx($model,'ldatetime'); ?>
             <?php
                /*$this->widget('zii.widgets.jui.CJuiDatePicker',array(
@@ -123,28 +144,7 @@ EOS;
             ?>
 		<?php echo $form->error($model,'idatetime'); ?>
 	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'idsupplier'); ?>
-		<?php 
-         $suppliers=Yii::app()->db->createCommand()
-            ->select("id,code,firstname,lastname")
-            ->from("suppliers")
-            ->order("firstname, lastname")   
-            ->queryAll();
-         foreach($suppliers as $row) {
-            $suppliername[]=$row['code'].'-'.$row['firstname'].' '.$row['lastname'];
-         }
-         $this->widget("zii.widgets.jui.CJuiAutoComplete", array(
-             'name'=>'Consignpayments_suppliername',
-             'source'=>$suppliername,
-           'value'=>lookup::SupplierNameFromSupplierID($model->idsupplier)
-         ));
-         echo CHtml::button('Cari Nota & Retur', array( 'id'=>'searchUnsettledPO'));   
-      ?>
-		<?php echo $form->error($model,'idsupplier'); ?>
-	</div>
-   
+	
    <div class="row">
 		<?php echo $form->labelEx($model,'remark'); ?>
          <?php 

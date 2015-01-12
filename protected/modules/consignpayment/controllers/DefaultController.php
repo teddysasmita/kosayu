@@ -113,18 +113,26 @@ class DefaultController extends Controller
                       // save the current master data before going to the detail page
                       if($_POST['command']=='adddetail') {
                          $model->attributes=$_POST['Consignpayments'];
-                         Yii::app()->session['Consignpayments']=$_POST['Consignpayments'];
+                         Yii::app()->session['Consignpayments']=$model->attributes;
                          //$this->redirect(array('detailconsignpayments/create',
                             //'id'=>$model->id));
                       } else if ($_POST['command']=='setSupplier') {
                          $model->attributes=$_POST['Consignpayments'];
-                         Yii::app()->session['Consignpayments']=$_POST['Consignpayments'];
+                         $ldt = Yii::app()->db->createCommand()->select('idatetime')
+                         	->from('consignpayments')
+                         	->where('idsupplier = :p_idsupplier', array(':p_idsupplier'=>$model->idsupplier))
+                         	->order('id desc')->queryScalar();
+                         if ($ldt)
+                         	$model->ldatetime = $ldt;
+                         else
+                         	$model->ldatetime = '2013/08/01 00:00:00';
+                         Yii::app()->session['Consignpayments']=$model->attributes;
                          Yii::app()->session['Detailconsignpayments'] = 
                          	$this->loadConsign( $model->idsupplier, $model->id, 
                          	$model->ldatetime, $model->idatetime);
                       } else if ($_POST['command']=='addpayment') {
                          $model->attributes=$_POST['Consignpayments'];
-                         Yii::app()->session['Consignpayments']=$_POST['Consignpayments'];
+                         Yii::app()->session['Consignpayments']=$model->attributes;
                          //$this->redirect(array('detailconsignpayments/create',
                             //'id'=>$model->id));
                       }
@@ -743,7 +751,7 @@ class DefaultController extends Controller
      {
          $idmaker=new idmaker();
          $model->id=$idmaker->getCurrentID2();
-         $model->idatetime=$idmaker->getDateTime();
+         $model->idatetime=$idmaker->getDateTime(); 
          $model->regnum=$idmaker->getRegNum($this->formid);
          $model->userlog=Yii::app()->user->id;
          $model->datetimelog=$idmaker->getDateTime();
