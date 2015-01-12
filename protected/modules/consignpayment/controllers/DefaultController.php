@@ -840,7 +840,7 @@ class DefaultController extends Controller
            ->where('b.batchcode like :p_batchcode and a.idatetime >= :p_start', 
            		array(':p_batchcode'=>$idsupplier.'%', ':p_start'=>$start))
            ->andWhere('a.idatetime <= :p_end', array(':p_end'=>$end ))
-           ->andWhere('a.transtype <= :p_sold', array(':p_end'=>'Penjualan'))
+           ->andWhere('a.transtype <= :p_type', array(':p_type'=>'Penjualan'))
            ->queryAll();
         
         $salereturqty=Yii::app()->db->createCommand()
@@ -849,7 +849,7 @@ class DefaultController extends Controller
         	->where('b.batchcode like :p_batchcode and a.idatetime >= :p_start',
         		array(':p_batchcode'=>$idsupplier.'%', ':p_start'=>$start))
         		->andWhere('a.idatetime <= :p_end', array(':p_end'=>$end ))
-        		->andWhere('a.transtype <= :p_sold', array(':p_end'=>'Retur Jual'))
+        		->andWhere('a.transtype <= :p_type', array(':p_type'=>'Retur Jual'))
         		->queryAll();
         
         Yii::app()->session->remove('Detailconsignpayments');
