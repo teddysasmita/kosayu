@@ -28,7 +28,7 @@ $paymentScript=<<<EOS
 		setDisplay(method)
 	});
 	
-	setDisplay($("Payments_method").val());
+	setDisplay($model->method);
 EOS;
    Yii::app()->clientScript->registerScript("paymentScript", $paymentScript, CClientscript::POS_READY);
 
