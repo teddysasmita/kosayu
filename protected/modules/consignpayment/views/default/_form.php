@@ -98,8 +98,7 @@ EOS;
              'name'=>'Consignpayments_suppliername',
              'source'=>$suppliername,
            'value'=>lookup::SupplierNameFromSupplierID($model->idsupplier)
-         ));
-         echo CHtml::button('Cari Nota & Retur', array( 'id'=>'searchUnsettledPO'));   
+         ));   
       ?>
 		<?php echo $form->error($model,'idsupplier'); ?>
 	</div>
@@ -107,7 +106,7 @@ EOS;
    <div class="row">
 		<?php echo $form->labelEx($model,'ldatetime'); ?>
             <?php
-               /*$this->widget('zii.widgets.jui.CJuiDatePicker',array(
+               $this->widget('zii.widgets.jui.CJuiDatePicker',array(
                   'name'=>'Consignpayments[ldatetime]',
                      // additional javascript options for the date picker plugin
                   'options'=>array(
@@ -119,8 +118,8 @@ EOS;
                      'style'=>'height:20px;',
                   ),
                   'value'=>$model->ldatetime,
-               ));*/
-				CHtml::tag('span', array('id'=>'ldatetime', 'class'=>'money'), $model->ldatetime);
+               ));
+				//CHtml::tag('span', array('id'=>'ldatetime', 'class'=>'money'), $model->ldatetime);
             ?>
 		<?php echo $form->error($model,'ldatetime'); ?>
 	</div>
@@ -141,7 +140,8 @@ EOS;
                   ),
                   'value'=>$model->idatetime,
                ));
-            ?>
+               echo CHtml::button('Cari Nota & Retur', array( 'id'=>'searchUnsettledPO'));
+         ?>
 		<?php echo $form->error($model,'idatetime'); ?>
 	</div>
 	

@@ -118,14 +118,6 @@ class DefaultController extends Controller
                             //'id'=>$model->id));
                       } else if ($_POST['command']=='setSupplier') {
                          $model->attributes=$_POST['Consignpayments'];
-                         $ldt = Yii::app()->db->createCommand()->select('idatetime')
-                         	->from('consignpayments')
-                         	->where('idsupplier = :p_idsupplier', array(':p_idsupplier'=>$model->idsupplier))
-                         	->order('id desc')->queryScalar();
-                         if (! $ldt)
-                         	$model->ldatetime = '2013/08/01 00:00:00';
-                         else
-                         	$model->ldatetime = $ldt;
                          Yii::app()->session['Consignpayments']=$model->attributes;
                          Yii::app()->session['Detailconsignpayments'] = 
                          	$this->loadConsign( $model->idsupplier, $model->id, 
