@@ -199,7 +199,7 @@ EOS;
 					'type'=>'number',
 					'name'=>'buyprice',
 				),
-               array(
+               /*array(
                   'class'=>'CButtonColumn',
                   'buttons'=> array(
                      'delete'=>array(
@@ -211,7 +211,7 @@ EOS;
                   ),
                   	'updateButtonUrl'=>"Action::decodeUpdateDetailConsignPaymentUrl(\$data)",
                		'updateButtonOptions'=>array('class'=>"updateDetail"),
-               )
+               )*/
           ),
     ));
     
