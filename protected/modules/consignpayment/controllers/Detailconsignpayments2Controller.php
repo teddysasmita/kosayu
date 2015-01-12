@@ -1,6 +1,6 @@
 <?php
 
-class DetailconsignpaymentsController extends Controller
+class Detailconsignpayments2Controller extends Controller
 {
 	/**
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
@@ -32,7 +32,7 @@ class DetailconsignpaymentsController extends Controller
 				Yii::app()->user->id))  {
             $this->trackActivity('v');
             $model=$this->loadModel($iddetail);
-            if(($model==NULL)&&isset(Yii::app()->session['Detailconsignpayments'])) {
+            if(($model==NULL)&&isset(Yii::app()->session['Detailconsignpayments2'])) {
                 $model=new Payments;
                 $model->attributes=$this->loadSession($iddetail);
             }  
@@ -64,14 +64,14 @@ class DetailconsignpaymentsController extends Controller
 			$this->performAjaxValidation($model);
                 
 			if(isset($_POST['Payments'])) {
-				$temp=Yii::app()->session['Detailconsignpayments'];
+				$temp=Yii::app()->session['Detailconsignpayments2'];
 				$model->attributes=$_POST['Payments'];
                     //posting into session
                     
 				if (isset($_POST['yt0'])) {
 					if ($model->validate()) {
 						$temp[]=$_POST['Payments'];
-						Yii::app()->session['Detailconsignpayments']=$temp;
+						Yii::app()->session['Detailconsignpayments2']=$temp;
 						if ($master=='create')
 							$this->redirect(array('default/createdetail'));
 						else if($master=='update')
@@ -105,7 +105,7 @@ class DetailconsignpaymentsController extends Controller
                 $master=Yii::app()->session['master'];
                 
                 $model=$this->loadModel($id);
-                if(isset(Yii::app()->session['Detailconsignpayments'])) {
+                if(isset(Yii::app()->session['Detailconsignpayments2'])) {
                     $model=new Payments;
                     $model->attributes=$this->loadSession($id);
                 }
@@ -114,12 +114,12 @@ class DetailconsignpaymentsController extends Controller
                 // Uncomment the following line if AJAX validation is needed
                 $this->performAjaxValidation($model);
                 
-               if(isset($_POST['Detailconsignpayments'])) {
-                  $temp=Yii::app()->session['Detailconsignpayments'];
-                  $model->attributes=$_POST['Detailconsignpayments'];
+               if(isset($_POST['Detailconsignpayments2'])) {
+                  $temp=Yii::app()->session['Detailconsignpayments2'];
+                  $model->attributes=$_POST['Payments'];
                   foreach ($temp as $tk=>$tv) {
-                     if($tv['iddetail']==$_POST['Detailconsignpayments']['iddetail']) {
-                         $temp[$tk]=$_POST['Detailconsignpayments'];
+                     if($tv['iddetail']==$_POST['Payments']['iddetail']) {
+                         $temp[$tk]=$_POST['Payments'];
                          break;
                      }
                   }
@@ -154,20 +154,20 @@ class DetailconsignpaymentsController extends Controller
                 
                 $this->trackActivity('d');
                 
-                $details=Yii::app()->session['Detailconsignpayments'];
+                $details=Yii::app()->session['Detailconsignpayments2'];
                 foreach ($details as $ik => $iv) {
                    if($iv['id']==$id) {
-                      if(isset(Yii::app()->session['Deletedetailconsignpayments']))
-                         $deletelist=Yii::app()->session['Deletedetailconsignpayments'];
+                      if(isset(Yii::app()->session['Deletedetailconsignpayments2']))
+                         $deletelist=Yii::app()->session['Deletedetailconsignpayments2'];
                       $deletelist[]=$iv;
-                      Yii::app()->session['Deletedetailconsignpayments']=$deletelist;
+                      Yii::app()->session['Deletedetailconsignpayments2']=$deletelist;
                       unset($details[$ik]);
                       break;
                    }
                 }
                 
                             
-                Yii::app()->session['Detailconsignpayments']=$details;
+                Yii::app()->session['Detailconsignpayments2']=$details;
 
 		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
 		if(!isset($_GET['ajax']))
@@ -207,7 +207,7 @@ class DetailconsignpaymentsController extends Controller
             if(Yii::app()->authManager->checkAccess($this->formid.'-Update', 
                Yii::app()->user->id)) {
                 $this->trackActivity('r');
-                $this->tracker->restore('detailconsignpayments', $idtrack);
+                $this->tracker->restore('payments', $idtrack);
                 
                 $dataProvider=new CActiveDataProvider('Payments');
                 $this->render('index',array(
@@ -223,7 +223,7 @@ class DetailconsignpaymentsController extends Controller
             if(Yii::app()->authManager->checkAccess($this->formid.'-Update', 
                Yii::app()->user->id)) {
                 $this->trackActivity('n');
-                $this->tracker->restoreDeleted('detailconsignpayments', $idtrack);
+                $this->tracker->restoreDeleted('payments', $idtrack);
                 
                 $dataProvider=new CActiveDataProvider('Payments');
                 $this->render('index',array(

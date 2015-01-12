@@ -9,9 +9,7 @@
 <?php
    
 $paymentScript=<<<EOS
-	$("#Payments_method").change(
-		function(event) {
-		var method = $("#Payments_method").val();		
+	function setDisplay(method)  {
 		if (method == 'BG') {
 			$("#bg").show();
 			$("#transfer").hide();
@@ -22,10 +20,15 @@ $paymentScript=<<<EOS
 			$("#bg").hide();
 			$("#transfer").hide();
 		}
+	}
+
+	$("#Payments_method").change(
+		function(event) {
+		var method = $("#Payments_method").val();		
+		setDisplay(method)
 	});
 	
-	$("#bg").hide();
-	$("#transfer").hide();
+	setDisplay($("Payments_method").val());
 EOS;
    Yii::app()->clientScript->registerScript("paymentScript", $paymentScript, CClientscript::POS_READY);
 
