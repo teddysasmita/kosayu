@@ -86,7 +86,7 @@ EOS;
 	<div class="row">
 		<?php echo $form->labelEx($model,'ldatetime'); ?>
             <?php
-               $this->widget('zii.widgets.jui.CJuiDatePicker',array(
+               /*$this->widget('zii.widgets.jui.CJuiDatePicker',array(
                   'name'=>'Consignpayments[ldatetime]',
                      // additional javascript options for the date picker plugin
                   'options'=>array(
@@ -98,7 +98,8 @@ EOS;
                      'style'=>'height:20px;',
                   ),
                   'value'=>$model->ldatetime,
-               ));
+               ));*/
+				CHtml::tag('span', array('id'=>'ldatetime', 'class'=>'money'), $model->ldatetime);
             ?>
 		<?php echo $form->error($model,'ldatetime'); ?>
 	</div>
