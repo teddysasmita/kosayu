@@ -122,9 +122,11 @@ class DefaultController extends Controller
                          	->from('consignpayments')
                          	->where('idsupplier = :p_idsupplier', array(':p_idsupplier'=>$model->idsupplier))
                          	->order('id desc')->queryScalar();
+                         echo '<DIV>Boom';
                          print_r($ldt);
+                         echo '</DIV>';
                          die;
-                         if (!$ldt)
+                         if (is_null($ldt))
                          	$model->ldatetime = '2013/08/01 00:00:00';
                          else
                          	$model->ldatetime = $ldt;
