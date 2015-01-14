@@ -118,10 +118,16 @@ class DefaultController extends Controller
                             //'id'=>$model->id));
                       } else if ($_POST['command']=='setSupplier') {
                          $model->attributes=$_POST['Consignpayments'];
-                         Yii::app()->session['Consignpayments']=$model->attributes;
-                         Yii::app()->session['Detailconsignpayments'] = 
-                         	$this->loadConsign( $model->idsupplier, $model->id, 
+                         $dataConsign = $this->loadConsign( $model->idsupplier, $model->id, 
                          	$model->ldatetime, $model->idatetime);
+                         $total = 0;
+                         foreach($dataConsign as $dc) {
+                         	$total +=($dc['soldqty'] - $dc['salereturqty']) * $dc['buyprice'];
+                         }
+                         $model->total = $total;
+                         Yii::app()->session['Consignpayments']=$model->attributes;
+                         Yii::app()->session['Detailconsignpayments'] = $dataConsign;
+                         	
                       } else if ($_POST['command']=='addpayment') {
                          $model->attributes=$_POST['Consignpayments'];
                          Yii::app()->session['Consignpayments']=$model->attributes;
