@@ -124,7 +124,7 @@ class DefaultController extends Controller
                          foreach($dataConsign as $dc) {
                          	$total += ($dc['soldqty'] - $dc['returqty']) * $dc['buyprice'];
                          }
-                         print_r($total);
+                         print_r($dataConsign);
                          die;
                          $model->total = - ($total);
                          Yii::app()->session['Consignpayments']=$model->attributes;
