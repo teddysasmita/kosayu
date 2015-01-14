@@ -114,11 +114,11 @@ class Detailpurchasespayments3Controller extends Controller
                 // Uncomment the following line if AJAX validation is needed
                 $this->performAjaxValidation($model);
                 
-               if(isset($_POST['Detailpurchasespayments3'])) {
+               if(isset($_POST['Payments'])) {
                   $temp=Yii::app()->session['Detailpurchasespayments3'];
                   $model->attributes=$_POST['Payments'];
                   foreach ($temp as $tk=>$tv) {
-                     if($tv['id']==$_POST['payments']['id']) {
+                     if($tv['id']==$_POST['Payments']['id']) {
                          $temp[$tk]=$_POST['Payments'];
                          break;
                      }
