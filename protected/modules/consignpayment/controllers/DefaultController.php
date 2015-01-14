@@ -122,7 +122,7 @@ class DefaultController extends Controller
                          	$model->ldatetime, $model->idatetime);
                          $total = 0;
                          foreach($dataConsign as $dc) {
-                         	$total += ($dc['total'];
+                         	$total += $dc['total'];
                          }
                          $model->total = - ($total);
                          Yii::app()->session['Consignpayments']=$model->attributes;
