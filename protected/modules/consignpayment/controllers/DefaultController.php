@@ -122,8 +122,10 @@ class DefaultController extends Controller
                          	$model->ldatetime, $model->idatetime);
                          $total = 0;
                          foreach($dataConsign as $dc) {
-                         	$total +=($dc['soldqty'] - $dc['returqty']) * $dc['buyprice'];
+                         	$total += ($dc['soldqty'] - $dc['returqty']) * $dc['buyprice'];
                          }
+                         print_r($total);
+                         die;
                          $model->total = - ($total);
                          Yii::app()->session['Consignpayments']=$model->attributes;
                          Yii::app()->session['Detailconsignpayments'] = $dataConsign;
