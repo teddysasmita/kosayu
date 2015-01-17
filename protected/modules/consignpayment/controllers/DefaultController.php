@@ -846,7 +846,7 @@ class DefaultController extends Controller
            ->where('b.batchcode like :p_batchcode and a.idatetime >= :p_start', 
            		array(':p_batchcode'=>$idsupplier.'%', ':p_start'=>$start))
            ->andWhere('a.idatetime <= :p_end', array(':p_end'=>$end ))
-           ->andWhere('a.transtype <= :p_type', array(':p_type'=>'Penjualan'))
+           ->andWhere('a.transtype = :p_type', array(':p_type'=>'Penjualan'))
            ->group('b.batchcode')
            ->queryAll();
         
@@ -856,7 +856,7 @@ class DefaultController extends Controller
         	->where('b.batchcode like :p_batchcode and a.idatetime >= :p_start',
         		array(':p_batchcode'=>$idsupplier.'%', ':p_start'=>$start))
         		->andWhere('a.idatetime <= :p_end', array(':p_end'=>$end ))
-        		->andWhere('a.transtype <= :p_type', array(':p_type'=>'Retur Jual'))
+        		->andWhere('a.transtype = :p_type', array(':p_type'=>'Retur Jual'))
         		->group('b.batchcode')
         ->queryAll();
         
