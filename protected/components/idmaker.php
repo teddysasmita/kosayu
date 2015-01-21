@@ -125,6 +125,14 @@ class idmaker extends CComponent
       Yii::app()->db->createCommand($sql)->execute();
    }
    
+	public static function getInformation($formid)
+  	{
+   		$sql="select val from information where id='$formid'";
+   		$temp=Yii::app()->db->createCommand($sql)->queryScalar();
+   		
+   		return $temp;
+   	}
+   
    public static function lookUpAuthType($type)
    {
       switch ($type) {

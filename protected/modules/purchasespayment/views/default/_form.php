@@ -51,6 +51,16 @@
             mainform=$('#purchasespayments-form');
             mainform.submit();
 		});
+	
+	$("#Purchasespayments_discount").change(
+		function(event) {
+			var discount = $("#Purchasespayments_discount").val();
+			var total = $("#Purchasespayments_total").val();
+			if (discount < 0) {
+				discount = discount / 100 * total;
+				$("#Purchasespayments_discount").val(discount);
+			}
+	});
 EOS;
    Yii::app()->clientScript->registerScript("supplierScript", $supplierScript, CClientscript::POS_READY);
 
@@ -250,13 +260,20 @@ EOS;
 
    <div class="row">
       <?php echo $form->labelEx($model,'discount'); ?>
-      <?php echo CHtml::label(number_format($model->discount),'false', 
-         array('class'=>'money')); 
-         echo $form->hiddenfield($model, 'discount');
-      ?>
+      <?php echo $form->textField($model, 'discount'); ?>
       <?php echo $form->error($model,'discount'); ?>
    </div>
-	
+   
+	<div class="row">
+      <?php echo $form->labelEx($model,'labelcost'); ?>
+      <?php echo CHtml::label(number_format($model->labelcost),'false', 
+         array('class'=>'money')); 
+         echo $form->hiddenfield($model, 'labelcost');
+      ?>
+      <?php echo $form->error($model,'labelcost'); ?>
+   	</div>
+   	
+
 <?php 
     if (isset(Yii::app()->session['Detailpurchasespayments3'])) {
        $rawdata3=Yii::app()->session['Detailpurchasespayments3'];

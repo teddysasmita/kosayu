@@ -118,11 +118,17 @@ class DefaultController extends Controller
                             //'id'=>$model->id));
                       } else if ($_POST['command']=='setSupplier') {
                          $model->attributes=$_POST['Purchasespayments'];
-                         Yii::app()->session['Purchasespayments']=$_POST['Purchasespayments'];
-                         Yii::app()->session['Detailpurchasespayments'] = 
-                         	$this->loadPurchases($model->idsupplier, $model->id);
+                         $details = $this->loadPurchases($model->idsupplier, $model->id);
+                         Yii::app()->session['Detailpurchasespayments'] = $details;
+                         $totalqty = 0;
+                         foreach( $details as $d) {
+                         	$totalqty += $d['qty'];
+                         }
+                         $model->labelcost = $totalqty * idmaker::getInformation('labelcost'); 
+                         $model->total -= $model->labelcost;
                          Yii::app()->session['Detailpurchasespayments2'] =
                          	$this->loadReturs($model->idsupplier, $model->id);
+                         Yii::app()->session['Purchasespayments']=$model->attributes;	 
                       } else if($_POST['command']=='adddetail2') {
                          $model->attributes=$_POST['Purchasespayments'];
                          Yii::app()->session['Purchasespayments']=$_POST['Purchasespayments'];
@@ -852,6 +858,15 @@ class DefaultController extends Controller
            ->where('idsupplier=:idsupplier and paystatus <> :paystatus', 
            		array(':idsupplier'=>$idsupplier, ':paystatus'=>'2'))
            ->queryAll();
+        $dataPO2=Yii::app()->db->createCommand()
+        	->select('a.id, sum(b.qty) as totalqty')
+        	->from('purchases a')
+        	->join('detailpurchases b', 'b.id = a.id')
+        	->group('a.id')
+        	->where('a.idsupplier = :p_idsupplier and a.paystatus <> :p_paystatus',
+        		array(':p_idsupplier'=>$idsupplier, ':p_paystatus'=>'2'))
+        	->queryAll();
+        
         Yii::app()->session->remove('Detailpurchasespayments');
         foreach($dataPO as $rowPO) {
         	//----------------------------
@@ -880,6 +895,14 @@ class DefaultController extends Controller
         	$detail['discount']=$rowPO['discount'];
         	$detail['paid']=$paid;
         	$detail['amount']=0;
+        	
+        	foreach($dataPO2 as $d2) {
+        		if ($d2['id'] == $rowPO['id']) {
+        			$detail['qty'] = $d2['totalqty'];
+        			break;
+        		}
+        	}
+        	
         	$details[]=$detail;
         }
         return $details;
