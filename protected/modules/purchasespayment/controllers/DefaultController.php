@@ -120,7 +120,7 @@ class DefaultController extends Controller
                          $model->attributes=$_POST['Purchasespayments'];
                          $details = $this->loadPurchases($model->idsupplier, $model->id);
                          Yii::app()->session['Detailpurchasespayments'] = $details;
-                         ii::app()->session['Detailpurchasespayments2'] =
+                         Yii::app()->session['Detailpurchasespayments2'] =
                          	$this->loadReturs($model->idsupplier, $model->id);
                          Yii::app()->session['Purchasespayments']=$model->attributes;	 
                       } else if($_POST['command']=='adddetail2') {
