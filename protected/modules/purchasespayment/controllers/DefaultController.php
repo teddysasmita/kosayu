@@ -120,13 +120,7 @@ class DefaultController extends Controller
                          $model->attributes=$_POST['Purchasespayments'];
                          $details = $this->loadPurchases($model->idsupplier, $model->id);
                          Yii::app()->session['Detailpurchasespayments'] = $details;
-                         $totalqty = 0;
-                         foreach( $details as $d) {
-                         	$totalqty += $d['qty'];
-                         }
-                         $model->labelcost = $totalqty * idmaker::getInformation('labelcost'); 
-                         $model->total -= $model->labelcost;
-                         Yii::app()->session['Detailpurchasespayments2'] =
+                         ii::app()->session['Detailpurchasespayments2'] =
                          	$this->loadReturs($model->idsupplier, $model->id);
                          Yii::app()->session['Purchasespayments']=$model->attributes;	 
                       } else if($_POST['command']=='adddetail2') {
@@ -137,6 +131,13 @@ class DefaultController extends Controller
                          $this->matchRetur($details2, $_POST['yw2_c2']);
                          Yii::app()->session['Detailpurchasespayments2'] = $details2;
                          $this->sumDetail($model, $details, $details2);
+                         $totalqty = 0;
+                         foreach( $details as $d) {
+                         	if ($d['checked'] == '1')
+                         		$totalqty += $d['qty'];
+                         }
+                         $model->labelcost = $totalqty * idmaker::getInformation('labelcost');
+                         $model->total -= $model->labelcost;
                          //$this->redirect(array('detailpurchasespayments/create',
                             //'id'=>$model->id));
                       } else if ($_POST['command']=='addpayment') {
