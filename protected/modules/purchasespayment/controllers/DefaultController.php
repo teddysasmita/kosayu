@@ -133,7 +133,7 @@ class DefaultController extends Controller
                          $this->sumDetail($model, $details, $details2);
                          $totalqty = 0;
                          foreach( $details as $d) {
-                         	if ($d['checked'] == '1')
+                         	if ($d['checked'] == 1)
                          		$totalqty += $d['qty'];
                          }
                          $model->labelcost = $totalqty * idmaker::getInformation('labelcost');
@@ -977,7 +977,7 @@ class DefaultController extends Controller
  			$total=$total+$row['amount'];
  		}
  		foreach ($details2 as $row) {
- 			if ($row['checked'] == '1')
+ 			if ($row['checked'] == 1)
  				$total=$total - $row['total'];
  		}
  		$model->attributes=Yii::app()->session['Purchasespayments'];
