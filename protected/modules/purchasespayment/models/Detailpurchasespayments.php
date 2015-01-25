@@ -8,6 +8,7 @@
  * @property string $id
  * @property string $idpurchase
  * @property double $discount
+ * @property double $labelcost
  * @property double $total
  * @property double $paid
  * @property double $amount
@@ -32,13 +33,13 @@ class Detailpurchasespayments extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('iddetail, id, idpurchase, discount, total, paid, amount, userlog, datetimelog', 'required'),
-			array('discount, total, paid, amount', 'numerical'),
+			array('iddetail, id, idpurchase, discount, labelcost, total, paid, amount, userlog, datetimelog', 'required'),
+			array('discount, total, paid, amount, labelcost', 'numerical'),
 			array('iddetail, id, idpurchase, userlog', 'length', 'max'=>21),
 			array('datetimelog', 'length', 'max'=>19),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('iddetail, id, idpurchase, discount, total, paid, amount, userlog, datetimelog', 'safe', 'on'=>'search'),
+			array('iddetail, id, idpurchase, discount, total, labelcost, paid, amount, userlog, datetimelog', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -63,6 +64,7 @@ class Detailpurchasespayments extends CActiveRecord
 			'id' => 'ID',
 			'idpurchase' => 'Nomor Pembelian',
 			'discount' => 'Diskon',
+			'labelcost' => 'Biaya Label',
 			'total' => 'Total',
 			'paid' => 'Terbayar',
 			'amount' => 'Dibayar',
@@ -93,6 +95,7 @@ class Detailpurchasespayments extends CActiveRecord
 		$criteria->compare('id',$this->id,true);
 		$criteria->compare('idpurchase',$this->idpurchase,true);
 		$criteria->compare('discount',$this->discount);
+		$criteria->compare('labelcost',$this->labelcost);
 		$criteria->compare('total',$this->total);
 		$criteria->compare('paid',$this->paid);
 		$criteria->compare('amount',$this->amount);

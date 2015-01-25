@@ -27,6 +27,7 @@
          echo $form->hiddenField($model,'total');
          echo $form->hiddenField($model,'discount');
          echo $form->hiddenField($model,'paid');
+         echo $form->hiddenField($model,'labelcost');
         ?>
 
 	<div class="row">

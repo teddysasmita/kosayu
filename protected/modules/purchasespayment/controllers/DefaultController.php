@@ -901,7 +901,7 @@ class DefaultController extends Controller
         	
         	foreach($dataPO2 as $d2) {
         		if ($d2['id'] == $rowPO['id']) {
-        			$detail['qty'] = $d2['totalqty'];
+        			$detail['labelcost'] = $d2['totalqty'] * idmaker::getInformation('labelcost');
         			break;
         		}
         	}
