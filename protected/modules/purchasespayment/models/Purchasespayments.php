@@ -10,7 +10,6 @@
  * @property string $idsupplier
  * @property double $total
  * @property double $discount
- * @property double $labelcost
  * @property string $status
  * @property string $remark
  * @property string $userlog
@@ -34,8 +33,8 @@ class Purchasespayments extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id, regnum, idatetime, idsupplier, labelcost, status, userlog, datetimelog', 'required'),
-			array('total, discount, labeldiscount', 'numerical'),
+			array('id, regnum, idatetime, idsupplier, status, userlog, datetimelog', 'required'),
+			array('total, discount', 'numerical'),
 			array('id, idsupplier, userlog', 'length', 'max'=>21),
 			array('regnum', 'length', 'max'=>12),
 			array('idatetime, datetimelog', 'length', 'max'=>19),
@@ -43,7 +42,7 @@ class Purchasespayments extends CActiveRecord
 			array('remark', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('regnum, idatetime, idsupplier,labeldiscount, status, userlog, datetimelog', 'safe', 'on'=>'search'),
+			array('regnum, idatetime, idsupplier, status, userlog, datetimelog', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -70,7 +69,6 @@ class Purchasespayments extends CActiveRecord
 			'idsupplier' => 'Pemasok',
 			'total' => 'Total',
 			'discount' => 'Diskon',
-			'labelcost' => 'Biaya Label',
 			'status' => 'Status',
 			'remark' => 'Catatan',
 			'userlog' => 'Userlog',
@@ -104,7 +102,6 @@ class Purchasespayments extends CActiveRecord
 		$criteria->compare('idsupplier',lookup::SupplierIDFromLastName($this->idsupplier),true, 'or' );
 		$criteria->compare('total',$this->total);
 		$criteria->compare('discount',$this->discount);
-		$criteria->compare('labelcost',$this->labelcost);
 		$criteria->compare('status',$this->status,true);
 		//$criteria->compare('remark',$this->remark,true);
 		//$criteria->compare('userlog',lookup::UserIDFromName($this->userlog),true);

@@ -268,15 +268,6 @@ EOS;
       <?php echo $form->textField($model, 'discount'); ?>
       <?php echo $form->error($model,'discount'); ?>
    </div>
-   
-	<div class="row">
-      <?php echo $form->labelEx($model,'labelcost'); ?>
-      <?php echo CHtml::label(number_format($model->labelcost),'false', 
-         array('class'=>'money')); 
-         echo $form->hiddenfield($model, 'labelcost');
-      ?>
-      <?php echo $form->error($model,'labelcost'); ?>
-   	</div>
    	
 
 <?php 

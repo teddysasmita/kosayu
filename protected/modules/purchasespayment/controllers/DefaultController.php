@@ -120,9 +120,9 @@ class DefaultController extends Controller
                          $model->attributes=$_POST['Purchasespayments'];
                          $details = $this->loadPurchases($model->idsupplier, $model->id);
                          Yii::app()->session['Detailpurchasespayments'] = $details;
-                         Yii::app()->session['Detailpurchasespayments2'] =
-                         	$this->loadReturs($model->idsupplier, $model->id);
-                         Yii::app()->session['Purchasespayments']=$model->attributes;	 
+                        $details2 = $this->loadReturs($model->idsupplier, $model->id); 
+						Yii::app()->session['Detailpurchasespayments2'] = $details2;
+                        Yii::app()->session['Purchasespayments']=$model->attributes;	 
                       } else if($_POST['command']=='adddetail2') {
                          $model->attributes=$_POST['Purchasespayments'];
                          Yii::app()->session['Purchasespayments']=$_POST['Purchasespayments'];
@@ -131,12 +131,6 @@ class DefaultController extends Controller
                          $this->matchRetur($details2, $_POST['yw2_c2']);
                          Yii::app()->session['Detailpurchasespayments2'] = $details2;
                          $this->sumDetail($model, $details, $details2);
-                         $model->labelcost = 0;
-                         foreach( $details2 as $d) {
-                         	if ($d['checked'] == 1)
-                         		$model->labelcost += $d['labelcost'];
-                         }
-                         $model->total -= $model->labelcost;
                          //$this->redirect(array('detailpurchasespayments/create',
                             //'id'=>$model->id));
                       } else if ($_POST['command']=='addpayment') {
@@ -893,7 +887,6 @@ class DefaultController extends Controller
         	$detail['userlog']=Yii::app()->user->id;
         	$detail['datetimelog']=idmaker::getDateTime();
         	$detail['idpurchase']=$rowPO['id'];
-        	$detail['total']=$rowPO['total'];
         	$detail['discount']=$rowPO['discount'];
         	$detail['paid']=$paid;
         	$detail['amount']=0;
@@ -905,6 +898,7 @@ class DefaultController extends Controller
         		}
         	}
         	
+        	$detail['total']=$rowPO['total'] - $detail['labelcost'];
         	$details[]=$detail;
         }
         return $details;
