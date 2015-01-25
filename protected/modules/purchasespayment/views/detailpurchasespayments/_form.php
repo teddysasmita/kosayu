@@ -49,6 +49,12 @@
 	</div>
 	
 	<div class="row">
+		<?php echo $form->labelEx($model,'labelcost'); ?>
+		<?php echo CHtml::label(number_format($model->labelcost), false); ?>
+		<?php echo $form->error($model,'labelcost'); ?>
+	</div>
+	
+	<div class="row">
 		<?php echo $form->labelEx($model,'paid'); ?>
 		<?php echo CHtml::label($model->paid, false); ?>
 		<?php echo $form->error($model,'paid'); ?>
