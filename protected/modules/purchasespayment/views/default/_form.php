@@ -180,6 +180,11 @@ EOS;
 					'name'=>'discount',
 				),
 				array(
+					'header'=>'Label',
+					'type'=>'number',
+					'name'=>'labelcost',
+				),
+				array(
 					'header'=>'Terbayar',
 					'type'=>'number',
 					'name'=>'paid',	
