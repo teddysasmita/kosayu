@@ -131,12 +131,11 @@ class DefaultController extends Controller
                          $this->matchRetur($details2, $_POST['yw2_c2']);
                          Yii::app()->session['Detailpurchasespayments2'] = $details2;
                          $this->sumDetail($model, $details, $details2);
-                         $totalqty = 0;
-                         foreach( $details as $d) {
+                         $model->labelcost = 0;
+                         foreach( $details2 as $d) {
                          	if ($d['checked'] == 1)
-                         		$totalqty += $d['qty'];
+                         		$model->labelcost += $d['labelcost'];
                          }
-                         $model->labelcost = $totalqty * idmaker::getInformation('labelcost');
                          $model->total -= $model->labelcost;
                          //$this->redirect(array('detailpurchasespayments/create',
                             //'id'=>$model->id));
