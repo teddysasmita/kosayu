@@ -180,7 +180,7 @@ EOS;
 					'name'=>'discount',
 				),
 				array(
-					'header'=>'Label',
+					'header'=>'Label Harga',
 					'type'=>'number',
 					'name'=>'labelcost',
 				),
