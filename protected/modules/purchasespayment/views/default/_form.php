@@ -170,11 +170,6 @@ EOS;
 					'value'=>"lookup::PurchasesNumFromID(\$data['idpurchase'])"
 				),
 				array(
-					'header'=>'Total',
-					'type'=>'number',
-					'name'=>'total',
-				),
-				array(
 					'header'=>'Diskon',
 					'type'=>'number',
 					'name'=>'discount',
@@ -184,6 +179,11 @@ EOS;
 					'type'=>'number',
 					'name'=>'labelcost',
 				),
+				array(
+					'header'=>'Total',
+            		'type'=>'number',
+            		'name'=>'total',
+            	),
 				array(
 					'header'=>'Terbayar',
 					'type'=>'number',

@@ -897,7 +897,7 @@ class DefaultController extends Controller
         		}
         	}
         	
-        	$detail['total']=$rowPO['total'];// - $detail['labelcost'];
+        	$detail['total']=$rowPO['total'] - $detail['labelcost'];
         	$details[]=$detail;
         }
         return $details;
