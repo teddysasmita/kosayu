@@ -983,6 +983,8 @@ class DefaultController extends Controller
  		}
  		$model->attributes=Yii::app()->session['Purchasespayments'];
  		$model->total=$total;
+ 		if ($model->labelcost < 0) 
+ 			$model->labelcost = 0;
  		$model->labelcost = $labelcost;
  	}
  	

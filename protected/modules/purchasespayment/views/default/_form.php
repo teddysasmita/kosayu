@@ -52,14 +52,31 @@
             mainform.submit();
 		});
 	
-	$("#Purchasespayments_discount").change(
-		function(event) {
-			var discount = $("#Purchasespayments_discount").val();
-			var total = $("#Purchasespayments_total").val();
-			if (discount < 0) {
-				discount = discount / 100 * total;
-				$("#Purchasespayments_discount").val(discount);
-			}
+	$("#Purchasespayments_discount").change(function() {
+		var disc = $("#Purchasespayments_discount").val();
+		var labelcost = $("#Purchasespayments_labelcost").val();
+		var total = $("#Purchasespayments_total").val();
+		if ( disc < 0 ) {
+			
+			disc = - disc * total / 100;
+			$("#Purchasespayments_discount").val(disc);
+			$("#Purchasespayments_total").val(total - disc - labelcost);
+		}
+		$("#labeltotal").html(total - disc - labelcost);
+		$("#labeltotal").addClass("money");
+	});
+	
+	$("#Purchasespayments_labelcost").change(function() {
+		var disc = $("#Purchasespayments_discount").val();
+		var labelcost = $("#Purchasespayments_labelcost").val();
+		var total = $("#Purchasespayments_total").val();
+		if ( disc < 0 ) {
+			disc = - disc * total / 100;
+			$("#Purchasespayments_discount").val(disc);
+			$("#Purchasespayments_total").val(total - disc - labelcost);
+		}
+		$("#labeltotal").html(total - disc - labelcost);
+		$("#labeltotal").addClass("money");
 	});
 EOS;
    Yii::app()->clientScript->registerScript("supplierScript", $supplierScript, CClientscript::POS_READY);
