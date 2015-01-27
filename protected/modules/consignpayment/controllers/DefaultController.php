@@ -826,12 +826,10 @@ class DefaultController extends Controller
 
      protected function afterUpdateDetail(& $model, $details, $details2)
      {
-		$this->sumDetail($model, $details, $details2);
      }
 
      protected function afterDeleteDetail(& $model, $details)
      {
-     	$this->sumDetail($model, $details);
      }
 
 
@@ -923,34 +921,4 @@ class DefaultController extends Controller
  			Action::setPaymentStatusPO($detailmodel->idpurchaseorder, '1');
  	}
  	
- 	private function sumDetail(& $model, array $details, array $details2)
- 	{
- 		$total=0;
- 		$totaldisc=0;
- 		foreach ($details as $row) {
- 			$total=$total+$row['amount'];
- 		}
- 		foreach ($details2 as $row) {
- 			if ($row['checked'] == '1')
- 				$total=$total - $row['total'];
- 		}
- 		$model->attributes=Yii::app()->session['Consignpayments'];
- 		$model->total=$total;
- 	}
- 	
- 	private function matchRetur(& $main, $post)
- 	{
- 		foreach($main as & $m) {
- 			$found = false;
- 			foreach( $post as $p ) {
- 				if ($m['iddetail'] == $p) {
- 					$m['checked'] = 1;
- 					$found = true;
- 					break;
- 				}
- 			}
- 			if (!$found)
- 				$m['checked'] = 0;
- 		}
- 	}
 }
