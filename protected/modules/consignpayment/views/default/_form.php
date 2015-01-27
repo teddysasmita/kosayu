@@ -51,6 +51,15 @@
             mainform=$('#consignpayments-form');
             mainform.submit();
 		});
+	
+	$("#Consignpayments_discount").change(function() {
+		var disc = $("#Consignpayments_discount").val();
+		if ( disc < 0 ) {
+			var total = $("#Consignpayments_total").val();
+			disc = - disc * total / 100;
+			$("#Consignpayments_discount").val(disc);
+		}
+	});
 EOS;
    Yii::app()->clientScript->registerScript("supplierScript", $supplierScript, CClientscript::POS_READY);
 
@@ -239,9 +248,7 @@ EOS;
 
    <div class="row">
       <?php echo $form->labelEx($model,'discount'); ?>
-      <?php echo CHtml::label(number_format($model->discount),'false', 
-         array('class'=>'money')); 
-         echo $form->hiddenfield($model, 'discount');
+      <?php echo $form->textField($model, 'discount'); 
       ?>
       <?php echo $form->error($model,'discount'); ?>
    </div>
