@@ -124,7 +124,7 @@ class DefaultController extends Controller
                          foreach($dataConsign as $dc) {
                          	$total += $dc['total'];
                          }
-                         $model->total = - ($total);
+                         $model->total = $total;
                          Yii::app()->session['Consignpayments']=$model->attributes;
                          Yii::app()->session['Detailconsignpayments'] = $dataConsign;
                          	
@@ -841,7 +841,7 @@ class DefaultController extends Controller
     {
     	$idsupplier = lookup::SupplierCodeFromID($idsupplier);
         $soldqty=Yii::app()->db->createCommand()
-           ->select('sum(b.qty) as soldqty, b.batchcode, b.iditem')
+           ->select('- sum(b.qty) as soldqty, b.batchcode, b.iditem')
            ->from('stocks a')->join('detailstocks b', 'b.id = a.id')
            ->where('b.batchcode like :p_batchcode and a.idatetime >= :p_start', 
            		array(':p_batchcode'=>$idsupplier.'%', ':p_start'=>$start))
@@ -874,8 +874,8 @@ class DefaultController extends Controller
         		$sq['returqty'] = 0;
         	}
         	$sq['buyprice'] = lookup::getbuyprice($sq['batchcode']);
-        	$sq['labelcost'] = - ($sq['soldqty'] * idmaker::getInformation('labelcost'));
-        	$sq['total'] = -(($sq['soldqty'] - $sq['returqty']) * $sq['buyprice']) - $sq['labelcost'];
+        	$sq['labelcost'] = ($sq['soldqty'] * idmaker::getInformation('labelcost'));
+        	$sq['total'] = ($sq['soldqty'] - $sq['returqty']) * $sq['buyprice'] - $sq['labelcost'];
         	$sq['iddetail'] = idmaker::getCurrentID2();
         	$sq['id'] = $id;
         	$sq['userlog']=Yii::app()->user->id;
