@@ -92,20 +92,11 @@ class DefaultController extends Controller
                       	throw new CHttpException(404,'There is an error in detail2 posting');
                       }
                       
-                      if(isset(Yii::app()->session['Detailconsignpayments3']) ) {
-                      	$details3=Yii::app()->session['Detailconsignpayments3'];
-                      	$respond=$respond&&$this->saveNewDetails3($details3);
-                      }
-                      if(!$respond) {
-                      	throw new CHttpException(404,'There is an error in detail2 posting');
-                      }
-                      
                       if($respond) {
                          $this->afterPost($model);
                          Yii::app()->session->remove('Consignpayments');
                          Yii::app()->session->remove('Detailconsignpayments');
                          Yii::app()->session->remove('Detailconsignpayments2');
-                         Yii::app()->session->remove('Detailconsignpayments3');
                          $this->redirect(array('view','id'=>$model->id));
                       } 
                            
@@ -214,39 +205,21 @@ class DefaultController extends Controller
                      	}
                      };
                       
-                     /*if(isset(Yii::app()->session['DeleteDetailconsignpayments2'])) {
+                     if(isset(Yii::app()->session['DeleteDetailconsignpayments2'])) {
                      	$deletedetails=Yii::app()->session['DeleteDetailconsignpayments2'];
                      	$respond=$respond&&$this->deleteDetails($deletedetails);
                      	if(!$respond) {
                      		throw new CHttpException(404,'There is an error in detail2 deletion');
                      	}
-                     };*/
+                     };
                      
-                     if(isset(Yii::app()->session['Detailconsignpayments3'])) {
-                     	$details=Yii::app()->session['Detailconsignpayments3'];
-                     	$respond=$respond&&$this->saveDetails($details);
-                     	if(!$respond) {
-                     		throw new CHttpException(404,'There is an error in detail3 posting');
-                     	}
-                     };
-                      
-                     if(isset(Yii::app()->session['DeleteDetailconsignpayments3'])) {
-                     	$deletedetails=Yii::app()->session['DeleteDetailconsignpayments3'];
-                     	$respond=$respond&&$this->deleteDetails($deletedetails);
-                     	if(!$respond) {
-                     		throw new CHttpException(404,'There is an error in detail3 deletion');
-                     	}
-                     };
-                    
                      if($respond) {
                      	$this->afterPost($model);
                          Yii::app()->session->remove('Consignpayments');
                          Yii::app()->session->remove('Detailconsignpayments');
                          Yii::app()->session->remove('Detailconsignpayments2');
-                         Yii::app()->session->remove('Detailconsignpayments3');
                          Yii::app()->session->remove('DeleteDetailconsignpayments');
                          Yii::app()->session->remove('DeleteDetailconsignpayments2');
-                         Yii::app()->session->remove('DeleteDetailconsignpayments3');
                          $this->redirect(array('view','id'=>$model->id));
                      }
                  } else if (isset($_POST['command'])){
@@ -540,46 +513,17 @@ class DefaultController extends Controller
 	protected function saveNewDetails(array $details)
 	{                  
 		foreach ($details as $row) {
-			if ($row['amount'] > 0) {
-				$detailmodel=new Detailconsignpayments;
-             	$detailmodel->attributes=$row;
-             	$respond=$detailmodel->insert();
-             	if (!$respond) {
-                	break;
-             	} else {
-             		$purchasetotal=$detailmodel->total-$detailmodel->discount;
-             		$left=$detailmodel->total-($detailmodel->discount+$detailmodel->paid+
-             			$detailmodel->amount);
-             		if ($purchasetotal == $left)
-             			Action::setPaymentStatusPurchase($detailmodel->idpurchase, '0');
-             		else if ($left>0)
-             			Action::setPaymentStatusPurchase($detailmodel->idpurchase, '1');
-             		else if ($left==0)
-             			Action::setPaymentStatusPurchase($detailmodel->idpurchaseo, '2');
-         		}
+			$detailmodel=new Detailconsignpayments;
+			$detailmodel->attributes=$row;
+			$respond=$detailmodel->insert();
+			if (!$respond) {
+				break;
 			}
 		}	
 		return $respond;
      }
      
      protected function saveNewDetails2(array $details)
-     {
-     	foreach ($details as $row) {
-     		if ($row['checked'] == 1) {
-     			$detailmodel=new Detailconsignpayments2;
-     			$row1 = $row;
-     			unset($row1['checked']);
-     			$detailmodel->attributes=$row1;
-     			$respond=$detailmodel->insert();
-     			if (!$respond) {
-     				break;
-     			} 
-     		}
-     	}
-     	return $respond;
-     }
-     
-     protected function saveNewDetails3(array $details)
      {
      	foreach ($details as $row) {
      			$detailmodel=new Payments;
@@ -619,32 +563,6 @@ class DefaultController extends Controller
      }
       
      protected function saveDetails2(array $details)
-     {
-     	$idmaker=new idmaker();
-     
-     	$respond=true;
-     	foreach ($details as $row) {
-     		$detailmodel=Detailconsignpayments2::model()->findByPk($row['iddetail']);
-     		if($detailmodel==NULL) {
-     			$detailmodel=new Detailconsignpayments2;
-     		} else {
-     			if(count(array_diff($detailmodel->attributes,$row))) {
-     				$this->tracker->init();
-     				$this->tracker->modify('detailconsignpayments2', array('iddetail'=>$detailmodel->iddetail));
-     			}
-     		}
-     		$detailmodel->attributes=$row;
-     		$detailmodel->userlog=Yii::app()->user->id;
-     		$detailmodel->datetimelog=$idmaker->getDateTime();
-     		$respond=$detailmodel->save();
-     		if (!$respond) {
-     			break;
-     		}
-     	}
-     	return $respond;
-     }
-     
-     protected function saveDetails3(array $details)
      {
      	$idmaker=new idmaker();
      	 
@@ -692,24 +610,6 @@ class DefaultController extends Controller
 	{
 		$respond=true;
 		foreach ($details as $row) {
-			$detailmodel=Detailconsignpayments2::model()->findByPk($row['iddetail']);
-			if($detailmodel) {
-				$this->tracker->init();
-     			$this->trackActivity('d', $this->__DETAILFORMID);
-     			$this->tracker->delete('detailconsignpayments2', $detailmodel->id);
-     			$respond=$detailmodel->delete();
-     			if (!$respond) {
-     				break;
-     			}
-			}
-		}
-     	return $respond;
-	}
-	
-	protected function deleteDetails3(array $details)
-	{
-		$respond=true;
-		foreach ($details as $row) {
 			$detailmodel=Payments::model()->findByPk($row['id']);
 			if($detailmodel) {
 				$this->tracker->init();
@@ -733,14 +633,6 @@ class DefaultController extends Controller
 	}
 
 	protected function loadDetails2($id)
-	{
-		$sql="select * from detailconsignpayments2 where id='$id'";
-     	$details=Yii::app()->db->createCommand($sql)->queryAll();
-     
-     	return $details;
-     }
-     
-	protected function loadDetails3($id)
 	{
 		$sql="select * from payments where idtransaction='$id'";
 		$details=Yii::app()->db->createCommand($sql)->queryAll();
