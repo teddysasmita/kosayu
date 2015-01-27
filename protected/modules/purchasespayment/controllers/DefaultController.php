@@ -923,7 +923,7 @@ class DefaultController extends Controller
 			$detail['datetimelog']=idmaker::getDateTime();
 			$detail['idpurchaseretur']=$rowPO['id'];
 			$detail['total']=$rowPO['total'];
-			$detail['qty']=$rowPO['qty'];
+			$detail['qty']=$rowPO['itemqty'];
 			$detail['checked']=0;
 			$details[]=$detail;
 		}
