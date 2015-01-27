@@ -121,10 +121,13 @@ class DefaultController extends Controller
                          $dataConsign = $this->loadConsign( $model->idsupplier, $model->id, 
                          	$model->ldatetime, $model->idatetime);
                          $total = 0;
+                         $labelcost = 0;
                          foreach($dataConsign as $dc) {
                          	$total += $dc['total'];
+                         	$labelcost += $dc['labelcost'];
                          }
                          $model->total = $total;
+                         $model->labelcost = $labelcost;
                          Yii::app()->session['Consignpayments']=$model->attributes;
                          Yii::app()->session['Detailconsignpayments'] = $dataConsign;
                          	
@@ -875,7 +878,7 @@ class DefaultController extends Controller
         	}
         	$sq['buyprice'] = lookup::getbuyprice($sq['batchcode']);
         	$sq['labelcost'] = ($sq['soldqty'] * idmaker::getInformation('labelcost'));
-        	$sq['total'] = ($sq['soldqty'] - $sq['returqty']) * $sq['buyprice'] - $sq['labelcost'];
+        	$sq['total'] = ($sq['soldqty'] - $sq['returqty']) * $sq['buyprice'];
         	$sq['iddetail'] = idmaker::getCurrentID2();
         	$sq['id'] = $id;
         	$sq['userlog']=Yii::app()->user->id;

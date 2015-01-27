@@ -54,13 +54,15 @@
 	
 	$("#Consignpayments_discount").change(function() {
 		var disc = $("#Consignpayments_discount").val();
+		var labelcost = $("#Consignpayments_labelcost").val();
 		if ( disc < 0 ) {
 			var total = $("#Consignpayments_total").val();
 			disc = - disc * total / 100;
 			$("#Consignpayments_discount").val(disc);
-			$("#Consignpayments_total").val(total - disc);
+			$("#Consignpayments_total").val(total - disc - labelcost);
 		}
-		$("#labeltotal").html(total - disc);
+		$("#labeltotal").html(total - disc - labelcost);
+		$("#labeltotal").addClass("money");
 	});
 EOS;
    Yii::app()->clientScript->registerScript("supplierScript", $supplierScript, CClientscript::POS_READY);
@@ -210,11 +212,6 @@ EOS;
 					'type'=>'number',
 					'name'=>'buyprice',
 				),
-            	array(
-					'header'=>'Label Harga',
-					'type'=>'number',
-					'name'=>'labelcost',
-				),
 				array(
 					'header'=>'Total',
 					'type'=>'number',
@@ -252,6 +249,12 @@ EOS;
       <?php echo $form->error($model,'discount'); ?>
    </div>
 	
+	<div class="row">
+      <?php echo $form->labelEx($model,'labelcost'); ?>
+      <?php echo $form->textField($model, 'labelcost'); ?>
+      <?php echo $form->error($model,'labelcost'); ?>
+   </div>
+   
 	<div class="row">
       <?php echo $form->labelEx($model,'total'); ?>
       <?php 
