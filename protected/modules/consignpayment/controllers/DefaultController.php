@@ -757,6 +757,8 @@ class DefaultController extends Controller
          $model->userlog=Yii::app()->user->id;
          $model->datetimelog=$idmaker->getDateTime();
          $model->status='0';
+ 		 $model->discount = 0;
+ 		 $model->labelcost = 0;
      }
 
      protected function afterPost(& $model)
