@@ -284,14 +284,7 @@ class DefaultController extends Controller
                $this->tracker->delete('detailconsignpayments', array('iddetail'=>$dm->iddetail));
                $dm->delete();
             }
-            
-            $detailmodels=Detailconsignpayments2::model()->findAll('id=:id',array(':id'=>$id));
-            foreach($detailmodels as $dm) {
-            	$this->tracker->init();
-            	$this->tracker->delete('detailconsignpayments2', array('iddetail'=>$dm->iddetail));
-            	$dm->delete();
-            }
-			
+            	
             $detailmodels=Payments::model()->findAll('idtransaction=:id',array(':id'=>$id));
             foreach($detailmodels as $dm) {
             	$this->tracker->init();
