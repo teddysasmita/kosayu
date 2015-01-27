@@ -460,6 +460,20 @@ class Action extends CComponent {
    			array('id'=>$data['id']));
    }
 
+   public static function decodeUpdateDetailConsignPaymentUrl($data)
+   {
+   	//return print_r($data);
+   	return Yii::app()->createUrl('/consignpayment/detailconsignpayments/update',
+   			array('iddetail'=>$data['iddetail']))  ;
+   }
+    
+   public static function decodeViewDetailConsignPaymentUrl($data)
+   {
+   	//return print_r($data);
+   	return Yii::app()->createUrl('/consignpayment/detailconsignpayments/view',
+   			array('iddetail'=>$data['iddetail']));
+   }
+    
    public static function decodeDeleteDetailStockExitUrl($data)
    {
    	//return print_r($data);
