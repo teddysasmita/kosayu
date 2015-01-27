@@ -252,7 +252,26 @@ EOS;
     ));
     
 ?>
-	
+	<div class="row">
+      <?php echo CHtml::label('SubTotal', 'false'); ?>
+      <?php 
+         echo CHtml::label(number_format($model->total + $model->discount),'false', 
+            array('class'=>'money')); 
+      ?>
+   </div>
+   
+   <div class="row">
+      <?php echo $form->labelEx($model,'discount'); ?>
+      <?php echo $form->textField($model, 'discount'); ?>
+      <?php echo $form->error($model,'discount'); ?>
+   </div>
+   	
+   	<div class="row">
+      <?php echo $form->labelEx($model,'labelcost'); ?>
+      <?php echo $form->textField($model, 'labelcost'); ?>
+      <?php echo $form->error($model,'labelcost'); ?>
+   </div>
+   
 	<div class="row">
       <?php echo $form->labelEx($model,'total'); ?>
       <?php 
@@ -262,14 +281,8 @@ EOS;
       ?>
       <?php echo $form->error($model,'total'); ?>
    </div>
-
-   <div class="row">
-      <?php echo $form->labelEx($model,'discount'); ?>
-      <?php echo $form->textField($model, 'discount'); ?>
-      <?php echo $form->error($model,'discount'); ?>
-   </div>
-   	
-
+	
+   
 <?php 
     if (isset(Yii::app()->session['Detailpurchasespayments3'])) {
        $rawdata3=Yii::app()->session['Detailpurchasespayments3'];

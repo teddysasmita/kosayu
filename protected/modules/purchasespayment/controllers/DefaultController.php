@@ -897,7 +897,8 @@ class DefaultController extends Controller
         		}
         	}
         	
-        	$detail['total']=$rowPO['total'] - $detail['labelcost'];
+        	$detail['total']=$rowPO['total'];
+        	
         	$details[]=$detail;
         }
         return $details;
@@ -908,11 +909,12 @@ class DefaultController extends Controller
 		$details=array();
 		
 		$dataPO=Yii::app()->db->createCommand()
-		->select()
-		->from('purchasesreturs')
-		->where('idsupplier=:idsupplier and status=:status',
-				array(':idsupplier'=>$idsupplier, ':status'=>'0'))
-				->queryAll();
+			->select("a.*, sum(b.qty) as itemqty")
+			->from('purchasesreturs a')
+			->join('detailpurchasesreturs b', 'b.id = a.id')
+			->where('a.idsupplier=:p_idsupplier and a.status=:p_status',
+				array(':p_idsupplier'=>$idsupplier, ':p_status'=>'0'))
+			->queryAll();
 		Yii::app()->session->remove('Detailpurchasespayments2');
 		foreach($dataPO as $rowPO) { 
 			$detail['iddetail']=idmaker::getCurrentID2();
@@ -921,6 +923,7 @@ class DefaultController extends Controller
 			$detail['datetimelog']=idmaker::getDateTime();
 			$detail['idpurchaseretur']=$rowPO['id'];
 			$detail['total']=$rowPO['total'];
+			$detail['qty']=$rowPO['qty'];
 			$detail['checked']=0;
 			$details[]=$detail;
 		}
@@ -964,16 +967,19 @@ class DefaultController extends Controller
  	private function sumDetail(& $model, array $details, array $details2)
  	{
  		$total=0;
- 		$totaldisc=0;
+ 		$labelcost=0;
  		foreach ($details as $row) {
  			$total=$total+$row['amount'];
+ 			$labelcost += $row['labelcost'];
  		}
  		foreach ($details2 as $row) {
  			if ($row['checked'] == 1)
  				$total=$total - $row['total'];
+ 				$labelcost -= $row['qty'] * idmaker::getInformation('labelcost');
  		}
  		$model->attributes=Yii::app()->session['Purchasespayments'];
  		$model->total=$total;
+ 		$model->labelcost = $labelcost;
  	}
  	
  	private function matchRetur(& $main, $post)
