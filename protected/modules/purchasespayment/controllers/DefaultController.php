@@ -969,8 +969,10 @@ class DefaultController extends Controller
  		$total=0;
  		$labelcost=0;
  		foreach ($details as $row) {
- 			$total=$total+$row['amount'];
- 			$labelcost += $row['labelcost'];
+ 			if ($row['amount'] > 0 ) {
+ 				$total=$total+$row['amount'];
+ 				$labelcost += $row['labelcost'];
+ 			};
  		}
  		foreach ($details2 as $row) {
  			if ($row['checked'] == 1)
