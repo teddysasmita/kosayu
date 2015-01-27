@@ -874,8 +874,8 @@ class DefaultController extends Controller
         		$sq['returqty'] = 0;
         	}
         	$sq['buyprice'] = lookup::getbuyprice($sq['batchcode']);
-        	$sq['labelcost'] = $sq['soldqty'] * idmaker::getInformation('labelcost');
-        	$sq['total'] = ($sq['soldqty'] - $sq['returqty']) * $sq['buyprice'] - $sq['labelcost'];
+        	$sq['labelcost'] = - ($sq['soldqty'] * idmaker::getInformation('labelcost'));
+        	$sq['total'] = -(($sq['soldqty'] - $sq['returqty']) * $sq['buyprice']) - $sq['labelcost'];
         	$sq['iddetail'] = idmaker::getCurrentID2();
         	$sq['id'] = $id;
         	$sq['userlog']=Yii::app()->user->id;
