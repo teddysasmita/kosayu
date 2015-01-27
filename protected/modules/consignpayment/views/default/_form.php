@@ -55,8 +55,9 @@
 	$("#Consignpayments_discount").change(function() {
 		var disc = $("#Consignpayments_discount").val();
 		var labelcost = $("#Consignpayments_labelcost").val();
+		var total = $("#Consignpayments_total").val();
 		if ( disc < 0 ) {
-			var total = $("#Consignpayments_total").val();
+			
 			disc = - disc * total / 100;
 			$("#Consignpayments_discount").val(disc);
 			$("#Consignpayments_total").val(total - disc - labelcost);
@@ -68,8 +69,8 @@
 	$("#Consignpayments_labelcost").change(function() {
 		var disc = $("#Consignpayments_discount").val();
 		var labelcost = $("#Consignpayments_labelcost").val();
+		var total = $("#Consignpayments_total").val();
 		if ( disc < 0 ) {
-			var total = $("#Consignpayments_total").val();
 			disc = - disc * total / 100;
 			$("#Consignpayments_discount").val(disc);
 			$("#Consignpayments_total").val(total - disc - labelcost);
