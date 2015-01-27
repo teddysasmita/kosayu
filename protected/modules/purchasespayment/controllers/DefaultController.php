@@ -566,6 +566,7 @@ class DefaultController extends Controller
      
      protected function saveNewDetails2(array $details)
      {
+     	$respond = true;
      	foreach ($details as $row) {
      		if ($row['checked'] == 1) {
      			$detailmodel=new Detailpurchasespayments2;
@@ -583,6 +584,7 @@ class DefaultController extends Controller
      
      protected function saveNewDetails3(array $details)
      {
+     	$respond = true;
      	foreach ($details as $row) {
      			$detailmodel=new Payments;
      			$detailmodel->attributes=$row;
