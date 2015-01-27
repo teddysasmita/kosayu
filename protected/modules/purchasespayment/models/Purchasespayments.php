@@ -34,7 +34,7 @@ class Purchasespayments extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id, regnum, idatetime, idsupplier, labelcost, discountstatus, userlog, datetimelog', 'required'),
+			array('id, regnum, idatetime, idsupplier, labelcost, discount, status, userlog, datetimelog', 'required'),
 			array('total, discount, labelcost', 'numerical'),
 			array('id, idsupplier, userlog', 'length', 'max'=>21),
 			array('regnum', 'length', 'max'=>12),
