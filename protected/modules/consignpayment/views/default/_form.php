@@ -203,7 +203,12 @@ EOS;
 					'header'=>'Label Harga',
 					'type'=>'number',
 					'name'=>'labelcost',
-				),	 	
+				),
+				array(
+					'header'=>'Total',
+					'type'=>'number',
+					'name'=>'total',
+				),
                /*array(
                   'class'=>'CButtonColumn',
                   'buttons'=> array(
