@@ -199,6 +199,11 @@ EOS;
 					'type'=>'number',
 					'name'=>'buyprice',
 				),
+            	array(
+					'header'=>'Label Harga',
+					'type'=>'number',
+					'name'=>'labelcost',
+				),	 	
                /*array(
                   'class'=>'CButtonColumn',
                   'buttons'=> array(
