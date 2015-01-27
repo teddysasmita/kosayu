@@ -759,7 +759,8 @@ class DefaultController extends Controller
          $model->userlog=Yii::app()->user->id;
          $model->datetimelog=$idmaker->getDateTime();
          $model->status='0';
-         
+         $model->discount=0;
+         $model->labelcost=0;
      }
 
      protected function afterPost(& $model)
@@ -975,9 +976,10 @@ class DefaultController extends Controller
  			};
  		}
  		foreach ($details2 as $row) {
- 			if ($row['checked'] == 1)
+ 			if ($row['checked'] == 1) {
  				$total=$total - $row['total'];
  				$labelcost -= $row['qty'] * idmaker::getInformation('labelcost');
+ 			};
  		}
  		$model->attributes=Yii::app()->session['Purchasespayments'];
  		$model->total=$total;
