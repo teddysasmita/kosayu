@@ -64,6 +64,19 @@
 		$("#labeltotal").html(total - disc - labelcost);
 		$("#labeltotal").addClass("money");
 	});
+	
+	$("#Consignpayments_labelcost").change(function() {
+		var disc = $("#Consignpayments_discount").val();
+		var labelcost = $("#Consignpayments_labelcost").val();
+		if ( disc < 0 ) {
+			var total = $("#Consignpayments_total").val();
+			disc = - disc * total / 100;
+			$("#Consignpayments_discount").val(disc);
+			$("#Consignpayments_total").val(total - disc - labelcost);
+		}
+		$("#labeltotal").html(total - disc - labelcost);
+		$("#labeltotal").addClass("money");
+	});
 EOS;
    Yii::app()->clientScript->registerScript("supplierScript", $supplierScript, CClientscript::POS_READY);
 
