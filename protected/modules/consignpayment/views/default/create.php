@@ -12,7 +12,7 @@ $this->menu=array(
 	/*array('label'=>'Daftar', 'url'=>array('index')),
 	array('label'=>'Pengaturan', 'url'=>array('admin')),
    */
-	array('label'=>'Tambah Detil', 'url'=>array('detailconsignpayments2/create', 
+	array('label'=>'Tambah Metode Bayar', 'url'=>array('detailconsignpayments2/create', 
       'idtransaction'=>$model->id),
       'linkOptions'=>array('id'=>'addpayment')),  
 );
