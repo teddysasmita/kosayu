@@ -293,10 +293,9 @@ EOS;
       <?php echo $form->labelEx($model,'total'); ?>
       <?php 
          echo CHtml::label(number_format($model->total),'false', 
-            array('class'=>'money')); 
+            array('class'=>'money', 'id'=>'labeltotal')); 
          echo $form->hiddenfield($model, 'total');
       ?>
-      <?php echo $form->error($model,'total'); ?>
    </div>
 	
    
