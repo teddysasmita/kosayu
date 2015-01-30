@@ -918,6 +918,7 @@ class DefaultController extends Controller
 			->where('a.idsupplier=:p_idsupplier and a.status=:p_status',
 				array(':p_idsupplier'=>$idsupplier, ':p_status'=>'0'))
 			->group('a.id')
+			->order("a.idatetime desc, a.id")
 			->queryAll();
 		Yii::app()->session->remove('Detailpurchasespayments2');
 		foreach($dataPO as $rowPO) { 
