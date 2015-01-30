@@ -55,7 +55,7 @@
 	$("#Consignpayments_discount").change(function() {
 		var disc = $("#Consignpayments_discount").val();
 		var labelcost = $("#Consignpayments_labelcost").val();
-		var total = $("#Consignpayments_total").val();
+		var total = $("#total").val();
 		if ( disc < 0 ) {
 			
 			disc = - disc * total / 100;
@@ -69,7 +69,7 @@
 	$("#Consignpayments_labelcost").change(function() {
 		var disc = $("#Consignpayments_discount").val();
 		var labelcost = $("#Consignpayments_labelcost").val();
-		var total = $("#Consignpayments_total").val();
+		var total = $("#total").val();
 		if ( disc < 0 ) {
 			disc = - disc * total / 100;
 			$("#Consignpayments_discount").val(disc);
@@ -251,8 +251,10 @@ EOS;
 	<div class="row">
       <?php echo CHtml::label('SubTotal', 'false'); ?>
       <?php 
-         echo CHtml::label(number_format($model->total + $model->discount),'false', 
-            array('class'=>'money')); 
+         echo CHtml::label(number_format($model->total + $model->discount + $model->labelcost),'false', 
+            array('class'=>'money'));
+         echo CHtml::hiddenField('total', $model->total + $model->discount + $model->labelcost,
+         		array('id'=>'total'));
       ?>
    </div>
 	

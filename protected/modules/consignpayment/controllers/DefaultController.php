@@ -805,4 +805,21 @@ class DefaultController extends Controller
  			Action::setPaymentStatusPO($detailmodel->idpurchaseorder, '1');
  	}
  	
+ 	private function sumDetail(& $model, array $details, array $details2)
+ 	{
+ 		$total=0;
+ 		$labelcost=0;
+ 		foreach ($details as $row) {
+ 			if ($row['amount'] > 0 ) {
+ 				$total=$total+$row['amount'];
+ 				$labelcost += $row['labelcost'];
+ 			};
+ 		}
+ 		$model->attributes=Yii::app()->session['Purchasespayments'];
+ 		if ($model->labelcost < 0)
+ 			$model->labelcost = 0;
+ 		$model->labelcost = $labelcost;
+ 		$model->total=$total - $labelcost;
+ 	}
+ 	
 }
