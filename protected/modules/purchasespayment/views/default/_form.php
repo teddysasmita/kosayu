@@ -55,7 +55,7 @@
 	$("#Purchasespayments_discount").change(function() {
 		var disc = $("#Purchasespayments_discount").val();
 		var labelcost = $("#Purchasespayments_labelcost").val();
-		var total = $("#Purchasespayments_total").val();
+		var total = $("#total").val();
 		if ( disc < 0 ) {
 			
 			disc = - disc * total / 100;
@@ -69,7 +69,7 @@
 	$("#Purchasespayments_labelcost").change(function() {
 		var disc = $("#Purchasespayments_discount").val();
 		var labelcost = $("#Purchasespayments_labelcost").val();
-		var total = $("#Purchasespayments_total").val();
+		var total = $("#total").val();
 		if ( disc < 0 ) {
 			disc = - disc * total / 100;
 			$("#Purchasespayments_discount").val(disc);
@@ -273,7 +273,8 @@ EOS;
       <?php echo CHtml::label('SubTotal', 'false'); ?>
       <?php 
          echo CHtml::label(number_format($model->total + $model->discount + $model->labelcost),'false', 
-            array('class'=>'money')); 
+            array('class'=>'money'));
+         echo CHtml::hidden('total', $model->total + $model->discount + $model->labelcost); 
       ?>
    </div>
    
