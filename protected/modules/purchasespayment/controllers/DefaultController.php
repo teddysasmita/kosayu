@@ -917,7 +917,7 @@ class DefaultController extends Controller
 			->join('detailpurchasesreturs b', 'b.id = a.id')
 			->where('a.idsupplier=:p_idsupplier and a.status=:p_status',
 				array(':p_idsupplier'=>$idsupplier, ':p_status'=>'0'))
-			->order('a.id')
+			->group('a.id')
 			->queryAll();
 		Yii::app()->session->remove('Detailpurchasespayments2');
 		foreach($dataPO as $rowPO) { 
