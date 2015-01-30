@@ -274,7 +274,8 @@ EOS;
       <?php 
          echo CHtml::label(number_format($model->total + $model->discount + $model->labelcost),'false', 
             array('class'=>'money'));
-         echo CHtml::hidden('total', $model->total + $model->discount + $model->labelcost); 
+         echo CHtml::hiddenField('total', $model->total + $model->discount + $model->labelcost,
+         	array('id'=>'total')); 
       ?>
    </div>
    
