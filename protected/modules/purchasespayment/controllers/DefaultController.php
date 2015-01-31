@@ -557,7 +557,7 @@ class DefaultController extends Controller
              		else if ($left>0)
              			Action::setPaymentStatusPurchase($detailmodel->idpurchase, '1');
              		else if ($left==0)
-             			Action::setPaymentStatusPurchase($detailmodel->idpurchaseo, '2');
+             			Action::setPaymentStatusPurchase($detailmodel->idpurchase, '2');
          		}
 			}
 		}	
