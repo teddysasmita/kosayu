@@ -60,8 +60,9 @@
 			
 			disc = - disc * total / 100;
 			$("#Consignpayments_discount").val(disc);
-			$("#Consignpayments_total").val(total - disc - labelcost);
+			
 		}
+		$("#Consignpayments_total").val(total - disc - labelcost);
 		$("#labeltotal").html(total - disc - labelcost);
 		$("#labeltotal").addClass("money");
 	});
@@ -75,6 +76,7 @@
 			$("#Consignpayments_discount").val(disc);
 			$("#Consignpayments_total").val(total - disc - labelcost);
 		}
+		$("#Consignpayments_total").val(total - disc - labelcost);
 		$("#labeltotal").html(total - disc - labelcost);
 		$("#labeltotal").addClass("money");
 	});

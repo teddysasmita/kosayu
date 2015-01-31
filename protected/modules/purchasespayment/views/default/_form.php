@@ -62,6 +62,7 @@
 			$("#Purchasespayments_discount").val(disc);
 			$("#Purchasespayments_total").val(total - disc - labelcost);
 		}
+		$("#Purchasespayments_total").val(total - disc - labelcost);
 		$("#labeltotal").html(total - disc - labelcost);
 		$("#labeltotal").addClass("money");
 	});
@@ -76,6 +77,7 @@
 			$("#Purchasespayments_total").val(total - disc - labelcost);
 		}
 		$("#labeltotal").html(total - disc - labelcost);
+		$("#Purchasespayments_total").val(total - disc - labelcost);
 		$("#labeltotal").addClass("money");
 	});
 EOS;
