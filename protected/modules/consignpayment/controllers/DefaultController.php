@@ -819,7 +819,7 @@ class DefaultController extends Controller
  		if ($model->labelcost < 0)
  			$model->labelcost = 0;
  		$model->labelcost = $labelcost;
- 		$model->total=$total - $labelcost;
+ 		$model->total=$total;
  	}
  	
 }

@@ -136,6 +136,7 @@ class DefaultController extends Controller
                       } else if ($_POST['command']=='addpayment') {
                          $model->attributes=$_POST['Purchasespayments'];
                          Yii::app()->session['Purchasespayments']=$_POST['Purchasespayments'];
+                         throw new CHttpException(404,'Here');
                          //$this->redirect(array('detailpurchasespayments/create',
                             //'id'=>$model->id));
                       }
