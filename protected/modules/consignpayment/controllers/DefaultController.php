@@ -117,7 +117,7 @@ class DefaultController extends Controller
                          	$total += $dc['total'];
                          	$labelcost += $dc['labelcost'];
                          }
-                         $model->total = $total;
+                         $model->total = $total - $labelcost;
                          $model->labelcost = $labelcost;
                          Yii::app()->session['Consignpayments']=$model->attributes;
                          Yii::app()->session['Detailconsignpayments'] = $dataConsign;
