@@ -72,7 +72,8 @@ EOS;
 		<?php echo $form->labelEx($model,'bg_idbank'); ?>
 		<?php 
 			$data = Yii::app()->db->createCommand()
-				->select()->from('salesposbanks');
+				->select()->from('salesposbanks')
+				->queryAll();
 			$data = CHtml::listData($data, 'id', 'name');
 			echo $form->dropDownList($model, 'bg_idbank', $data, array('empty'=>'Harap Pilih')); 
 		?>
