@@ -136,8 +136,9 @@ class DefaultController extends Controller
                       } else if ($_POST['command']=='addpayment') {
                          $model->attributes=$_POST['Purchasespayments'];
                          Yii::app()->session['Purchasespayments']=$_POST['Purchasespayments'];
-                         $this->redirect(array('detailpurchasespayments3/create', 
-      						'idtransaction'=>$model->id));
+                         throw new CHttpException(400,'There is an error in detail2 posting');
+                         //$this->redirect(array('detailpurchasespayments3/create', 
+      						//'idtransaction'=>$model->id));
                       }
                    }
                 }
