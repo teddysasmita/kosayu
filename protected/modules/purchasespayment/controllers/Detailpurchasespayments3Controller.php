@@ -73,9 +73,9 @@ class Detailpurchasespayments3Controller extends Controller
 						$temp[]=$_POST['Payments'];
 						Yii::app()->session['Detailpurchasespayments3']=$temp;
 						if ($master=='create')
-							$this->redirect(array('default/createdetail'));
+							$this->redirect(array('default/createdetail3'));
 						else if($master=='update')
-							$this->redirect(array('default/updatedetail'));
+							$this->redirect(array('default/updatedetail3'));
 					}    
 				}
 			}                
@@ -129,9 +129,9 @@ class Detailpurchasespayments3Controller extends Controller
 	                     Yii::app()->session['Detailpurchasespayments3']=$temp;
 	
 	                     if ($master=='create')
-	                           $this->redirect(array('default/createdetail'));
+	                           $this->redirect(array('default/createdetail3'));
 	                     else if($master=='update')
-	                           $this->redirect(array('default/updatedetail'));
+	                           $this->redirect(array('default/updatedetail3'));
 	                  }	
                   }
 				}

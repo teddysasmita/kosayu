@@ -529,6 +529,7 @@ class DefaultController extends Controller
              $model->attributes=Yii::app()->session['Purchasespayments'];
 
              $details=Yii::app()->session['Detailpurchasespayments'];
+             $details2=Yii::app()->session['Detailpurchasespayments2'];
              $this->afterDeleteDetail($model, $details);
 
              $this->render('update',array(
@@ -539,7 +540,64 @@ class DefaultController extends Controller
          }
       }
       
-
+      public function actionCreateDetail3()
+      {
+      	//this action continues the process from the detail page
+      	if(Yii::app()->authManager->checkAccess($this->formid.'-Append',
+      			Yii::app()->user->id))  {
+      				$model=new Purchasespayments;
+      				$model->attributes=Yii::app()->session['Purchasespayments'];
+      
+      				$details=Yii::app()->session['Detailpurchasespayments'];
+      				$details2 = Yii::app()->session['Detailpurchasespayments2'];
+      
+      				$this->render('create',array(
+      						'model'=>$model,
+      				));
+      			} else {
+      				throw new CHttpException(404,'You have no authorization for this operation.');
+      			}
+      }
+      
+      public function actionUpdateDetail3()
+      {
+      	if(Yii::app()->authManager->checkAccess($this->formid.'-Update',
+      			Yii::app()->user->id))  {
+      
+      				$model=new Purchasespayments;
+      				$model->attributes=Yii::app()->session['Purchasespayments'];
+      
+      				$details =Yii::app()->session['Detailpurchasespayments'];
+      				$details2 = Yii::app()->session['Detailpurchasespayments2'];
+      
+      				$this->render('update',array(
+      						'model'=>$model,
+      				));
+      			} else {
+      				throw new CHttpException(404,'You have no authorization for this operation.');
+      			}
+      }
+      
+      public function actionDeleteDetail3()
+      {
+      	if(Yii::app()->authManager->checkAccess($this->formid.'-Update',
+      			Yii::app()->user->id))  {
+      
+      
+      				$model=new Purchasespayments;
+      				$model->attributes=Yii::app()->session['Purchasespayments'];
+      
+      				$details=Yii::app()->session['Detailpurchasespayments'];
+      				$details2=Yii::app()->session['Detailpurchasespayments2'];
+      				
+      				$this->render('update',array(
+      						'model'=>$model,
+      				));
+      			} else {
+      				throw new CHttpException(404,'You have no authorization for this operation.');
+      			}
+      }
+      
 	protected function saveNewDetails(array $details)
 	{                  
 		foreach ($details as $row) {
