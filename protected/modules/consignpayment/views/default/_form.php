@@ -253,9 +253,9 @@ EOS;
 	<div class="row">
       <?php echo CHtml::label('SubTotal', 'false'); ?>
       <?php 
-         echo CHtml::label(number_format($model->total + $model->discount + $model->labelcost),'false', 
+         echo CHtml::label(number_format($model->total + $model->discount),'false', 
             array('class'=>'money'));
-         echo CHtml::hiddenField('total', $model->total + $model->discount + $model->labelcost,
+         echo CHtml::hiddenField('total', $model->total + $model->discount,
          		array('id'=>'total'));
       ?>
    </div>
