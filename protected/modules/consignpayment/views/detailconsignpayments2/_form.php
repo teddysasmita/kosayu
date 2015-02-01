@@ -80,6 +80,12 @@ EOS;
 	</div>
 	
 	<div class="row">
+		<?php echo $form->labelEx($model,'bg_num'); ?>
+		<?php echo $form->textField($model, 'bg_num'); ?>
+		<?php echo $form->error($model,'bg_num'); ?>
+	</div>
+	
+	<div class="row">
 		<?php echo $form->labelEx($model,'bg_pubdate'); ?>
 		<?php
                $this->widget('zii.widgets.jui.CJuiDatePicker',array(
