@@ -51,6 +51,7 @@ EOS;
          echo $form->hiddenField($model,'idatetime');
          echo $form->hiddenField($model,'userlog');
          echo $form->hiddenField($model,'datetimelog');
+         print_r(Yii::app()->session['Purchasespayments']);
         ?>
 
 	
