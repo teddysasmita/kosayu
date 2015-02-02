@@ -522,7 +522,7 @@ class DefaultController extends Controller
          
          $details = $this->loadDetails($model->id);
          foreach($details as $d) {
-         	Action::addLabelPrintJob($d['num']);
+         	Action::addLabelPrintJob($d['iddetail'], $d['num']);
          }
      }
 
