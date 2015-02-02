@@ -9,14 +9,18 @@
       <?php echo CHtml::link(CHtml::encode($data->regnum), array('view', 'id'=>$data->id)); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('ldatetime')); ?>:</b>
-	<?php echo CHtml::encode($data->ldatetime); ?>
-	<br />
-	
 	<b><?php echo CHtml::encode($data->getAttributeLabel('idatetime')); ?>:</b>
 	<?php echo CHtml::encode($data->idatetime); ?>
 	<br />
-
+	
+	<b><?php echo CHtml::encode($data->getAttributeLabel('sdatetime')); ?>:</b>
+	<?php echo CHtml::encode($data->sdatetime); ?>
+	<br />
+	
+	<b><?php echo CHtml::encode($data->getAttributeLabel('edatetime')); ?>:</b>
+	<?php echo CHtml::encode($data->edatetime); ?>
+	<br />
+	
 	<b><?php echo CHtml::encode($data->getAttributeLabel('idsupplier')); ?>:</b>
 	<?php echo CHtml::encode(lookup::SupplierNameFromSupplierID($data->idsupplier)); ?>
 	<br />
