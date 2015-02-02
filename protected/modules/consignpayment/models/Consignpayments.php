@@ -68,7 +68,7 @@ class Consignpayments extends CActiveRecord
 		return array(
 			'id' => 'ID',
 			'regnum' => 'Nomor Urut',
-			'idatetime' => 'Tgl Akhir',
+			'idatetime' => 'Tgl',
 			'sdatetime' => 'Tgl Awal',
 			'edatetime' => 'Tgl Akhir',
 			'idsupplier' => 'Pemasok',
