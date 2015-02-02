@@ -759,7 +759,7 @@ class DefaultController extends Controller
         		}
         	}
         	if (!$found) {
-        		$sq['returqty'] = 0;
+        		$sq['salereturqty'] = 0;
         	}
         	$sq['buyprice'] = lookup::getbuyprice($sq['batchcode']);
         	$sq['labelcost'] = ($sq['soldqty'] * idmaker::getInformation('labelcost'));
