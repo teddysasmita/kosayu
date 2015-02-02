@@ -653,7 +653,7 @@ class DefaultController extends Controller
          /*Action::addFinancePayment(
          	lookup::SupplierNameFromSupplierID($model->idsupplier), $model->idatetime, 
          	$model->idatetime, $model->total);*/
-         $details = $this->loadDetails($model->id);
+         /*$details = $this->loadDetails($model->id);
          foreach($details as $d) {
 			$left = $d['total'] - ($d['discount'] + $d['paid'] + $d['amount']);
          	if ($d['total'] - $d['discount'] == $left)
@@ -667,7 +667,7 @@ class DefaultController extends Controller
          $details2 = $this->loadDetails2($model->id);
          foreach($details2 as $d) {
          	Action::setStatusRetur($d['idpurchaseretur'], '1');
-         }
+         }*/
      }
 
      protected function beforePost(& $model)
@@ -682,7 +682,7 @@ class DefaultController extends Controller
 
 	protected function beforeDelete(& $model)
 	{
-		$details = $this->loadDetails($model->id);
+		/*$details = $this->loadDetails($model->id);
      	foreach($details as $d) {
      		Action::updatePaymentStatusPurchase($d['idpurchase']);
      	}
@@ -691,6 +691,7 @@ class DefaultController extends Controller
      	foreach($details2 as $d) {
      		Action::setStatusRetur($d['idpurchaseretur'], '0');
      	}
+     	*/
 	}
 
      protected function afterDelete(& $model)
