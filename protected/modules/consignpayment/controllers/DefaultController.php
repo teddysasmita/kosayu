@@ -110,7 +110,7 @@ class DefaultController extends Controller
                       } else if ($_POST['command']=='setSupplier') {
                          $model->attributes=$_POST['Consignpayments'];
                          $dataConsign = $this->loadConsign( $model->idsupplier, $model->id, 
-                         	$model->ldatetime, $model->idatetime);
+                         	$model->sdatetime, $model->edatetime);
                          $total = 0;
                          $labelcost = 0;
                          foreach($dataConsign as $dc) {
@@ -638,6 +638,7 @@ class DefaultController extends Controller
          $idmaker=new idmaker();
          $model->id=$idmaker->getCurrentID2();
          $model->idatetime=$idmaker->getDateTime(); 
+         $model->edatetime=$model->idatetime; 
          $model->regnum=$idmaker->getRegNum($this->formid);
          $model->userlog=Yii::app()->user->id;
          $model->datetimelog=$idmaker->getDateTime();

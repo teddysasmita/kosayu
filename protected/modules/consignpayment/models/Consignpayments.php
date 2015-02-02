@@ -7,7 +7,8 @@
  * @property string $id
  * @property string $regnum
  * @property string $idatetime
- * @property string $ldatetime
+ * @property string $sdatetime
+ * @property string $edatetime
  * @property string $idsupplier
  * @property double $total
  * @property double $discount
@@ -35,16 +36,16 @@ class Consignpayments extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id, regnum, idatetime, idsupplier, labelcost, discount, status, userlog, datetimelog', 'required'),
+			array('id, regnum, idatetime, sdatetime, edatetime, idsupplier, labelcost, discount, status, userlog, datetimelog', 'required'),
 			array('total, discount, labelcost', 'numerical'),
 			array('id, idsupplier, userlog', 'length', 'max'=>21),
 			array('regnum', 'length', 'max'=>12),
-			array('ldatetime, idatetime, datetimelog', 'length', 'max'=>19),
+			array('edatetime, sdatetime, idatetime, datetimelog', 'length', 'max'=>19),
 			array('status', 'length', 'max'=>10),
 			array('remark', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('regnum, ldatetime, idatetime, labelcost, idsupplier,status, userlog, datetimelog', 'safe', 'on'=>'search'),
+			array('regnum, sdatetime, edatetime, idatetime, labelcost, idsupplier,status, userlog, datetimelog', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -68,7 +69,8 @@ class Consignpayments extends CActiveRecord
 			'id' => 'ID',
 			'regnum' => 'Nomor Urut',
 			'idatetime' => 'Tgl Akhir',
-			'ldatetime' => 'Tgl Awal',
+			'sdatetime' => 'Tgl Awal',
+			'edatetime' => 'Tgl Akhir',
 			'idsupplier' => 'Pemasok',
 			'total' => 'Total',
 			'labelcost' => 'Biaya Label',
@@ -101,6 +103,8 @@ class Consignpayments extends CActiveRecord
 		//$criteria->compare('id',$this->id,true);
 		$criteria->compare('regnum',$this->regnum,true);
 		$criteria->compare('idatetime',$this->idatetime,true);
+		$criteria->compare('sdatetime',$this->sdatetime,true);
+		$criteria->compare('edatetime',$this->edatetime,true);
 		//$criteria->compare('idsupplier',$this->idsupplier,true);
 		$criteria->compare('idsupplier',lookup::SupplierIDFromFirstName($this->idsupplier),true);
 		$criteria->compare('idsupplier',lookup::SupplierIDFromLastName($this->idsupplier),true, 'or' );
