@@ -12,6 +12,7 @@
  * @property double $salereturqty
  * @property double $labelcost
  * @property double $buyprice
+ * @property double $total
  * @property string $userlog
  * @property string $datetimelog
  */
@@ -33,13 +34,13 @@ class Detailconsignpayments extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('iddetail, id, labelcost, batchcode, iditem, soldqty, salereturty, buyprice, userlog, datetimelog', 'required'),
-			array('soldqty, salereturqty, labelcost, buyprice', 'numerical'),
+			array('iddetail, id, labelcost, batchcode, iditem, total, soldqty, salereturty, buyprice, userlog, datetimelog', 'required'),
+			array('soldqty, salereturqty, labelcost, buyprice, total', 'numerical'),
 			array('iddetail, id, iditem, userlog', 'length', 'max'=>21),
 			array('datetimelog', 'length', 'max'=>19),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('iddetail, id, batchcode, iditem, soldqty, salereturqty, buyprice, userlog, datetimelog', 'safe', 'on'=>'search'),
+			array('iddetail, id, batchcode, iditem, soldqty, total, salereturqty, buyprice, userlog, datetimelog', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -67,6 +68,7 @@ class Detailconsignpayments extends CActiveRecord
 			'soldqty' => 'Terjual',
 			'salereturqty' => 'Retur',
 			'labelcost' => 'Biaya Label',
+			'total' => 'Total',			
 			'buyprice' => 'Harga Beli',
 			'userlog' => 'Userlog',
 			'datetimelog' => 'Datetimelog',
@@ -99,6 +101,7 @@ class Detailconsignpayments extends CActiveRecord
 		$criteria->compare('salereturqty',$this->salereturqty);
 		$criteria->compare('labelcost',$this->labelcost);
 		$criteria->compare('buyprice',$this->buyprice);
+		$criteria->compare('total',$this->total);
 		$criteria->compare('userlog',$this->userlog,true);
 		$criteria->compare('datetimelog',$this->datetimelog,true);
 

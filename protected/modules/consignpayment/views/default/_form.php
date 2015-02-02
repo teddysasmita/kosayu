@@ -221,7 +221,7 @@ EOS;
 				array(
 					'header'=>'Retur',
 					'type'=>'number',
-					'name'=>'returqty',	
+					'name'=>'salereturqty',	
 				),
 				array(
 					'header'=>'Harga Beli',

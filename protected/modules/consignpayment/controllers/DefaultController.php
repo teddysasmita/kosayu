@@ -753,7 +753,7 @@ class DefaultController extends Controller
         	foreach($salereturqty as $rq) {
         		if ($sq['batchcode'] == $rq['batchcode']) {
         			$found = true;
-        			$sq['returqty'] = $rq['returqty'];
+        			$sq['salereturqty'] = $rq['returqty'];
         			break;
         		}
         	}
@@ -762,7 +762,7 @@ class DefaultController extends Controller
         	}
         	$sq['buyprice'] = lookup::getbuyprice($sq['batchcode']);
         	$sq['labelcost'] = ($sq['soldqty'] * idmaker::getInformation('labelcost'));
-        	$sq['total'] = ($sq['soldqty'] - $sq['returqty']) * $sq['buyprice'];
+        	$sq['total'] = ($sq['soldqty'] - $sq['salereturqty']) * $sq['buyprice'];
         	$sq['iddetail'] = idmaker::getCurrentID2();
         	$sq['id'] = $id;
         	$sq['userlog']=Yii::app()->user->id;
