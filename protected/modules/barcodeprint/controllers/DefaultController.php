@@ -519,6 +519,11 @@ class DefaultController extends Controller
      {
          $idmaker=new idmaker();
          $idmaker->saveRegNum($this->formid, $model->regnum);
+         
+         $details = $this->loadDetails($model->id);
+         foreach($details as $d) {
+         	Action::addLabelPrintJob($d['num']);
+         }
      }
 
      protected function beforePost(& $model)
