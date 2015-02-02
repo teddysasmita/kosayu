@@ -40,10 +40,6 @@ $this->menu=array(
 				'value'=>number_format($model->discount)
 		),
 		array(
-			'label'=>'Status',
-			'value'=>lookup::paymentStatus($model->status)
-		),
-		array(
             'label'=>'Userlog',
             'value'=>lookup::UserNameFromUserID($model->userlog),
         ),
