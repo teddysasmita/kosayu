@@ -66,7 +66,7 @@ EOS;
                       'autoOpen'=>false,
                       'height'=>300,
                       'width'=>600,
-                      'modal'=>true,
+                      //'modal'=>true,
                       'buttons'=>array(
                           array('text'=>'Ok', 'click'=>'js:function(){
                              $(\'#Detailitemtipgroups_itemname\').val($(\'#dialog-item-name\').val());
