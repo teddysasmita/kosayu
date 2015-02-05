@@ -1120,7 +1120,7 @@ class Action extends CComponent {
    	public static function addLabelPrintJob($id, $batchcode)
    	{
    		Yii::app()->db->createCommand()
-   			->insert('labelprintjob', array('id'=>$id, 'num'=>$batchcode));
+   			->insert('labelprintjobs', array('id'=>$id, 'num'=>$batchcode));
    	}
 }
 
