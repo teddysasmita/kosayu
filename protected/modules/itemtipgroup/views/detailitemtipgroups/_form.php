@@ -10,6 +10,7 @@
 	$itemScript=<<<EOS
       $('#Detailitemtipgroups_itemname').focus(function(){
          $('#ItemDialog').dialog("open");
+		 return false;
       });
       $('#dialog-item-name').change(
          function(){
