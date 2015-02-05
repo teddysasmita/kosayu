@@ -8,7 +8,7 @@
 
 <?php
 	$itemScript=<<<EOS
-      $('#Detailitemtipgroups_itemname').focus(function(){
+      $('#Detailitemtipgroups_itemname').click(function(){
          $('#ItemDialog').dialog("open");
 		 return false;
       });
@@ -66,7 +66,7 @@ EOS;
                       'autoOpen'=>false,
                       'height'=>300,
                       'width'=>600,
-                      //'modal'=>true,
+                      'modal'=>true,
                       'buttons'=>array(
                           array('text'=>'Ok', 'click'=>'js:function(){
                              $(\'#Detailitemtipgroups_itemname\').val($(\'#dialog-item-name\').val());

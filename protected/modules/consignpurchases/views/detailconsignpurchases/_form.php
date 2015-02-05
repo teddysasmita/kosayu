@@ -13,7 +13,7 @@
 		$('#command').val('setCode');
 		$('#detailconsignpurchases-form').submit();
 	});
-      $('#Detailconsignpurchases_itemname').focus(function(){
+      $('#Detailconsignpurchases_itemname').click(function(){
          $('#ItemDialog').dialog('open');
       });
       $('#dialog-item-name').change(

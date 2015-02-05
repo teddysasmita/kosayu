@@ -14,7 +14,7 @@
 		$('#command').val('setCode');
 		$('#detailpurchasesorders-form').submit();
 	});
-      $('#Detailpurchasesorders_itemname').focus(function(){
+      $('#Detailpurchasesorders_itemname').click(function(){
          $('#ItemDialog').dialog('open');
       });
       $('#dialog-item-name').change(
