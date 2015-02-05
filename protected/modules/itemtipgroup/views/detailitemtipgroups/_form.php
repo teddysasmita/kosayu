@@ -9,7 +9,7 @@
 <?php
 	$itemScript=<<<EOS
       $('#Detailitemtipgroups_itemname').focus(function(){
-         $('#ItemDialog').dialog('open');
+         $('#ItemDialog').dialog("open");
       });
       $('#dialog-item-name').change(
          function(){
