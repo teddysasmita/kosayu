@@ -15,7 +15,7 @@ $this->menu=array(
 
 ?>
 
-<h1>Memo Pembelian</h1>
+<h1>Pembayaran ke Pemasok</h1>
 
 <p>
 You may optionally enter a comparison operator (<b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>&lt;&gt;</b>
@@ -39,8 +39,11 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 		'id',
 		'regnum',
 		'idatetime',
-		'rdatetime',
-		'idsupplier',
+		array(
+			'name'=>'idsupplier',
+			'header'=>'Pemasok',
+			'value'=>"lookup::SupplierNameFromSupplierID(\$data['idsupplier'])"
+ 		),
 		/*
 		'discount',
 		'status',
