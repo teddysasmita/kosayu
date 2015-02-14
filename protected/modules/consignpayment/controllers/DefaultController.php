@@ -755,7 +755,7 @@ class DefaultController extends Controller
         	foreach($salereturqty as $rq) {
         		if ($sq['batchcode'] == $rq['batchcode']) {
         			$found = true;
-        			$sq['salereturqty'] = $rq['returqty'];
+        			$sq['salereturqty'] = $rq['salereturqty'];
         			break;
         		}
         	}
