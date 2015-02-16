@@ -494,12 +494,21 @@ EOS;
    {
    	if (!Yii::app()->user->isGuest) {
    		$data=Yii::app()->db->createCommand()
-   		->select("concat(code, ' - ', firstname) as label, code as value")
-   		->from('suppliers')
-   		->where('firstname like :p_name',
+   			->select("concat(code, ' - ', firstname) as label, code as value")
+   			->from('suppliers')
+   			->where('firstname like :p_name',
    				array(':p_name'=>"%$term%"))
    				->limit(10)
-   				->queryAll();
+   			->queryAll();
+   		if (! $data) {
+   			$data=Yii::app()->db->createCommand()
+   				->select("concat(code, ' - ', firstname) as label, code as value")
+   				->from('suppliers')
+   				->where('code like :p_code',
+   					array(':p_code'=>"$code%"))
+   				->limit(10)
+   				->queryAll();	
+   		}
    		/*echo Yii::app()->db->createCommand()->select('a.donum, b.id')->from('stockentries a')
    		 ->leftJoin('purchasesreceipts b','b.donum = a.donum' )
    		 ->where("a.idsupplier = :idsupplier and b.id = NULL", array(':idsupplier'=>$idsupplier))->text;
