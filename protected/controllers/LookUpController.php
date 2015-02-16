@@ -505,7 +505,7 @@ EOS;
    				->select("concat(code, ' - ', firstname) as label, code as value")
    				->from('suppliers')
    				->where('code like :p_code',
-   					array(':p_code'=>"$code%"))
+   					array(':p_code'=>"$term%"))
    				->limit(10)
    				->queryAll();	
    		}
