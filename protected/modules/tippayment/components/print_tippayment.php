@@ -102,9 +102,15 @@ class MYPDF extends TCPDF {
 		$this->setX($this->leftmargin);
 		$this->Cell(85,1,'','B',1);
 		
-		$this->setX($this->leftmargin);
 		$this->SetFontSize(11);
-		$this->Cell(45, 5, 'Total :', 0, 0, 'R'); 
+		$this->setX($this->leftmargin);
+		$this->Cell(45, 5, 'Total Nota:', 0, 0, 'R'); 
+		$this->Cell(40, 5, number_format($this->data->totalsales), 0, 1, 'R');
+		$this->setX($this->leftmargin);
+		$this->Cell(45, 5, 'Total Disc:', 0, 0, 'R'); 
+		$this->Cell(40, 5, number_format($this->data->totaldiscount), 0, 1, 'R');
+		$this->setX($this->leftmargin);
+		$this->Cell(45, 5, 'Total :', 0, 0, 'R');
 		$this->Cell(40, 5, number_format($this->data->amount), 0, 1, 'R');
 	}
 	
