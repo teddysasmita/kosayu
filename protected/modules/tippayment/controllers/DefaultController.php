@@ -139,18 +139,22 @@ class DefaultController extends Controller
 							$model->attributes=$_POST['Tippayments'];
                          	
                          	$this->getSales($model->id, $model->idsticker, $model->ddatetime);
+                         	
                          	foreach($this->salesdata as $sd) {
                          		$model->totalsales = $model->totalsales + $sd['amount'];
-                         		$model->totaldiscount = $model->totaldiscount + $sd['totaldiscount'];
+                         		//$model->totaldiscount = $model->totaldiscount + $sd['totaldiscount'];
                          	}
                          	Yii::app()->session['Detailtippayments'] = $this->salesdata;
                          	$temp = $this->getSalesDetail($model->id, $model->idpartner, $model->idcomp, 
                          		$model->idsticker, $model->ddatetime);
                          	 Yii::app()->session['Detailtippayments2'] = $temp;
                          	$total = 0;
+                         	$discount = 0;
                          	foreach($temp as $t) {
                          		$total = $total + $t['amount'];
+                         		$discount = $discount + $t['discount'];
                          	}
+                         	$model->totaldiscount = $discount;
                          	$model->amount = idmaker::cashRound($total, 1000);
                          	Yii::app()->session['Tippayments']=$model->attributes;
                       	} 
