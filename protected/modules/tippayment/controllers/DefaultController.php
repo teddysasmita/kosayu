@@ -18,6 +18,7 @@ class DefaultController extends Controller
 	
 	private $salesdata = array();
 	private $grosssales = array();
+	private $totaldiscount;
 
 	/**
 	 * @return array action filters
@@ -139,13 +140,9 @@ class DefaultController extends Controller
 							$model->attributes=$_POST['Tippayments'];
                          	
                          	$this->getSales($model->id, $model->idsticker, $model->ddatetime);
-                         	$discount = 0;
                          	foreach($this->salesdata as $sd) {
                          		$model->totalsales = $model->totalsales + $sd['amount'];
-                         		$discount += $sd['totaldiscount'];
-                         		//$model->totaldiscount = $model->totaldiscount + $sd['totaldiscount'];
                          	}
-                         	$model->totaldiscount = $discount;
                          	Yii::app()->session['Detailtippayments'] = $this->salesdata;
                          	$temp = $this->getSalesDetail($model->id, $model->idpartner, $model->idcomp, 
                          		$model->idsticker, $model->ddatetime);
@@ -154,6 +151,7 @@ class DefaultController extends Controller
                          	foreach($temp as $t) {
                          		$total = $total + $t['amount'];
                          	}
+                         	$model->totaldiscount = $this->totaldiscount;
                          	$model->amount = idmaker::cashRound($total, 1000);
                          	Yii::app()->session['Tippayments']=$model->attributes;
                       	} 
@@ -856,6 +854,7 @@ EOS;
     		} else
     			$ds['pct'] = $ds['pct'] * $tip2;
     		$ds['amount'] = ($ds['price'] - $ds['discount']) * $ds['qty'] * $ds['pct'] / 100;
+    		$this->totaldiscount += $discount;
     	};
     	unset($ds);
     	//print_r($detailsales);
