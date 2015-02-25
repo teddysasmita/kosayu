@@ -854,7 +854,7 @@ EOS;
     		} else
     			$ds['pct'] = $ds['pct'] * $tip2;
     		$ds['amount'] = ($ds['price'] - $ds['discount']) * $ds['qty'] * $ds['pct'] / 100;
-    		$this->totaldiscount += $ds['discount'];
+    		$this->totaldiscount += $ds['discount'] * $ds['qty'];
     	};
     	unset($ds);
     	//print_r($detailsales);
