@@ -87,7 +87,7 @@ class Itembatch extends CActiveRecord
 
 		$criteria->compare('id',$this->id,true);
 		$criteria->compare('iditem',$this->iditem,true);
-		$criteria->compare('batchcode',$this->batchcode);
+		$criteria->compare('batchcode',$this->batchcode, true);
 		$criteria->compare('buyprice',$this->buyprice,true);
 		$criteria->compare('sellprice',$this->sellprice,true);
 		$criteria->compare('userlog',$this->userlog,true);
