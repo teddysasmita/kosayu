@@ -305,7 +305,10 @@ class DefaultController extends Controller
         		$sellprice->datetimelog = $model->datetimelog;
         		$sellprice->userlog = $model->userlog;
         	
-        		$resp = $sellprice->save();
+        		if ($sellprice->isNewRecord)
+        			$resp = $sellprice->insert();
+        		else 
+        			$resp = $sellprice->save();
         		if (!$resp) {
         			throw new CHttpException(100,'There is an error in after post');
         		}
