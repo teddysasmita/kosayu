@@ -104,6 +104,14 @@ Yii::app()->clientScript->registerScript('cashoutscript', $cashoutScript, CClien
 	</div>
 	
 	<div class="row">
+		<?php echo $form->labelEx($model,'periodcount'); ?>
+		<?php 
+         	echo $form->textField($model, 'periodcount' );
+     	?>
+		<?php echo $form->error($model,'periodcount'); ?>
+	</div>
+	
+	<div class="row">
 		<?php echo $form->labelEx($model,'idacctcredit'); ?>
 		<?php 
 			$this->widget('zii.widgets.jui.CJuiAutoComplete', array(
