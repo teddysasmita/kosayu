@@ -136,7 +136,7 @@ Yii::app()->clientScript->registerScript('cashoutscript', $cashoutScript, CClien
                              { idcashout: encodeURI($(\'#Cashouts_idexpense\').val()),
 								amount: encodeURI($(\'#Cashouts_amount\').val()),
 								periodcount: encodeURI($(\'#Cashouts_periodcount\').val()),
-								count: encodeURI($(\'#periodcount\').val())}, nil
+								count: encodeURI($(\'#periodcount\').val())}, null
                              )
                              $(this).dialog("close");
                            }'),
