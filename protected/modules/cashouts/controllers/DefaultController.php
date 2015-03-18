@@ -242,6 +242,14 @@ class DefaultController extends Controller
             }
         }
         
+	public function actionAdjustCashOut($idcashout, $amount, $periodcount, $count)
+	{
+		Yii::app()->db->createCommand()->insert('assetdepreciations',
+			array('id'=>idmaker::getCurrentID2(), 'idatetime'=>idmaker::getDateTime(),
+				'idasset'=>$idcashout, 'idacctperiod'=>idmaker::getAcctPeriod(), 'amount'=>$amount/$periodcount*$count
+			));
+	}
+        
 	/**
 	 * Returns the data model based on the primary key given in the GET variable.
 	 * If the data model is not found, an HTTP exception will be raised.
@@ -316,32 +324,4 @@ class DefaultController extends Controller
             $this->tracker->logActivity($this->formid, $action);
         }
         
-        public function actionDisplaycashouts($itemname)
-        {
-        	if(Yii::app()->authManager->checkAccess($this->formid.'-List',
-        			Yii::app()->user->id))  {
-        		$this->trackActivity('v');
-        			$data = Yii::app()->db->createCommand()
-        				->select('a.*, b.name')->from('cashouts a')
-						->join('items b', 'b.id = a.iditem')
-						->where('b.name like :p_name', array(':p_name'=>'%'.$itemname.'%'))
-						->order('b.name, a.idatetime desc')
-						->queryAll();
-        		$this->render('display1a',array(
-        				'data'=>$data));
-        	} else {
-        		throw new CHttpException(404,'You have no authorization for this operation.');
-        	};
-        }
-        
-        public function actionGetcashouts()
-        {
-        	if(Yii::app()->authManager->checkAccess($this->formid.'-List',
-        			Yii::app()->user->id))  {
-        		$this->trackActivity('v');
-        		$this->render('display1');
-        	} else {
-        		throw new CHttpException(404,'You have no authorization for this operation.');
-        	};
-        }
 }

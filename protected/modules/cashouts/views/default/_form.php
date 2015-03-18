@@ -24,6 +24,12 @@ $cashoutScript=<<<EOS
 				 	$('#acctcreditname').html(data);
                })
 	});
+
+	$('#adjustButton').click(
+		function() {
+			$('#AdjustDialog').dialog('open');
+		}
+	);
 EOS;
 Yii::app()->clientScript->registerScript('cashoutscript', $cashoutScript, CClientScript::POS_READY);
 
@@ -109,6 +115,45 @@ Yii::app()->clientScript->registerScript('cashoutscript', $cashoutScript, CClien
          	echo $form->textField($model, 'periodcount' );
      	?>
 		<?php echo $form->error($model,'periodcount'); ?>
+	</div>	
+	
+	<div class="row">
+		<?php 
+			echo CHtml::button('Penyesuaian', array('id'=>'adjustBtn'));
+		?>
+		<?php 
+			$this->beginWidget('zii.widgets.jui.CJuiDialog', array(
+                  'id'=>'AdjustDialog',
+                  'options'=>array(
+                      'title'=>'Pilih Barang',
+                      'autoOpen'=>false,
+                      'height'=>200,
+                      'width'=>600,
+                      'modal'=>true,
+                      'buttons'=>array(
+                          array('text'=>'Ok', 'click'=>'js:function(){
+                             $.get(\'index.php?r=cashouts/default/adjustCashOut\',
+                             { idcashout: encodeURI($(\'#Cashouts_idexpense\').val()),
+								amount: encodeURI($(\'#Cashouts_amount\').val()),
+								periodcount: encodeURI($(\'#Cashouts_periodcount\').val()),
+								count: encodeURI($(\'#periodcount\').val())}, nil
+                             )
+                             $(this).dialog("close");
+                           }'),
+                          array('text'=>'Close', 'click'=>'js:function(){
+                              $(this).dialog("close");
+                          }'),
+                      ),
+                  ),
+               ));
+               $myd=<<<EOS
+         
+            <div>Jumlah Periode: <input type="text" name="periodcount" id="periodcount" size='50'/>
+            </div>
+EOS;
+               echo $myd;
+               $this->endWidget('zii.widgets.jui.CJuiDialog');
+		?>
 	</div>
 	
 	<div class="row">

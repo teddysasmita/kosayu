@@ -99,7 +99,6 @@ EOS;
                 <option>Harap Pilih</option>
             </select>           
             </div>
-            </select>           
 EOS;
                echo $myd;
                $this->endWidget('zii.widgets.jui.CJuiDialog');

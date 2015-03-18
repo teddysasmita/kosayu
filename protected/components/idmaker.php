@@ -203,7 +203,12 @@ class idmaker extends CComponent
       return Yii::app()->createUrl('user/default/deleteassignedrole', array('id'=>$data['id']));
    }
    
-   
+   public static function getAcctPeriod()
+   {
+   		return Yii::app()->db-createCommand()->select('id')->from('acctperiods')
+   			->where('periodstate = :p_periodstate', array(':p_periodstate'=>'1'))
+   			->queryScalar();
+   }
    
 }
 
