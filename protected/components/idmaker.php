@@ -205,9 +205,11 @@ class idmaker extends CComponent
    
    public static function getAcctPeriod()
    {
-   		return Yii::app()->db-createCommand()->select('id')->from('acctperiods')
+   		$respond = Yii::app()->db->createCommand()
+   			->select('id')->from('acctperiods')
    			->where('periodstate = :p_periodstate', array(':p_periodstate'=>'1'))
    			->queryScalar();
+   		return $respond;
    }
    
 }

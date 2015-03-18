@@ -133,10 +133,10 @@ Yii::app()->clientScript->registerScript('cashoutscript', $cashoutScript, CClien
                       'buttons'=>array(
                           array('text'=>'Ok', 'click'=>'js:function(){
                              $.get(\'index.php?r=cashouts/default/adjustCashOut\',
-                             { idcashout: encodeURI($(\'#Cashouts_idexpense\').val()),
+                             { idcashout: encodeURI($(\'#Cashouts_id\').val()),
 								amount: encodeURI($(\'#Cashouts_amount\').val()),
 								periodcount: encodeURI($(\'#Cashouts_periodcount\').val()),
-								count: encodeURI($(\'#periodcount\').val())}, null
+								count: encodeURI($(\'#periodcount\').val())}
                              )
                              $(this).dialog("close");
                            }'),
@@ -148,7 +148,7 @@ Yii::app()->clientScript->registerScript('cashoutscript', $cashoutScript, CClien
                ));
                $myd=<<<EOS
          
-            <div>Jumlah Periode: <input type="text" name="periodcount" id="periodcount" size='50'/>
+            <div>Jumlah Periode: <input type="text" name="periodcount" id="periodcount" value="0" size="50"/>
             </div>
 EOS;
                echo $myd;

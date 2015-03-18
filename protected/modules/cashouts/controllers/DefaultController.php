@@ -244,10 +244,17 @@ class DefaultController extends Controller
         
 	public function actionAdjustCashOut($idcashout, $amount, $periodcount, $count)
 	{
-		Yii::app()->db->createCommand()->insert('assetdepreciations',
-			array('id'=>idmaker::getCurrentID2(), 'idatetime'=>idmaker::getDateTime(),
-				'idasset'=>$idcashout, 'idacctperiod'=>idmaker::getAcctPeriod(), 'amount'=>$amount/$periodcount*$count
+		if(Yii::app()->authManager->checkAccess($this->formid.'-List',
+				Yii::app()->user->id)) {
+		
+			Yii::app()->db->createCommand()->insert('assetdepreciations',
+				array('id'=>idmaker::getCurrentID2(), 'idatetime'=>idmaker::getDateTime(),
+					'idasset'=>$idcashout, 'idacctperiod'=>idmaker::getAcctPeriod(), 
+					'amount'=>$amount/$periodcount*$count
 			));
+		} else {
+			throw new CHttpException(404,'You have no authorization for this operation.');
+        }
 	}
         
 	/**
