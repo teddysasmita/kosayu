@@ -119,7 +119,7 @@ Yii::app()->clientScript->registerScript('cashoutscript', $cashoutScript, CClien
 	
 	<div class="row">
 		<?php 
-			echo CHtml::button('Penyesuaian', array('id'=>'adjustBtn'));
+			echo CHtml::button('Penyesuaian', array('id'=>'adjustButton'));
 		?>
 		<?php 
 			$this->beginWidget('zii.widgets.jui.CJuiDialog', array(
