@@ -9,12 +9,14 @@ $this->breadcrumbs=array(
 	'Ubah Data',
 );
 
-$this->menu=array(
+if ($model->periodcount > 1) {
+	$this->menu=array(
 	/*array('label'=>'List Cashouts', 'url'=>array('index')),
 	array('label'=>'Create Cashouts', 'url'=>array('create')),
 	array('label'=>'View Cashouts', 'url'=>array('view', 'id'=>$model->id)),
-	array('label'=>'Manage Cashouts', 'url'=>array('admin')),*/
-);
+	array('label'=>'Manage Cashouts', 'url'=>array('admin')),*/	
+	);
+	
 ?>
 
 <h1>Pencatatan Kas Keluar</h1>
