@@ -9,7 +9,6 @@ $this->breadcrumbs=array(
 	'Ubah Data',
 );
 
-if ($model->periodcount > 1) {
 	$this->menu=array(
 	/*array('label'=>'List Cashouts', 'url'=>array('index')),
 	array('label'=>'Create Cashouts', 'url'=>array('create')),
