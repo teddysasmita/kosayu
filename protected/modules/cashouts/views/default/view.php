@@ -15,8 +15,8 @@ if ($model->periodcount > 1) {
 		array('label'=>'Hapus Data', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'Are you sure you want to delete this item?')),
 		array('label'=>'Pencarian Data', 'url'=>array('admin')),
 		array('label'=>'Sejarah', 'url'=>array('history', 'id'=>$model->id)),
-		array('label'=>'Penyesuaian', 'url'=>'#',
-			'linkOptions'=>array('id'=>'adjustButton') ),
+		/*array('label'=>'Penyesuaian', 'url'=>'#',
+			'linkOptions'=>array('id'=>'adjustButton') ),*/
 	);
 } else {
 	$this->menu=array(
