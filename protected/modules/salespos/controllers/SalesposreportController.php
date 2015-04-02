@@ -324,6 +324,16 @@ EOS;
 	join items c on c.id = a.iditem
 	where
 	a.itemcode like '$suppliercode%' and b.idatetime >= '$startdate' and b.idatetime <= '$enddate'
+	union 
+	select f.id, left(g.itemcode, 3) as scode, i.name, g.iddetail, g.iditem, g.itemcode as code, g.qty, 
+	g.price, g.discount
+	from (detailsalesposreturs g
+	join suppliers h on h.code = left(g.itemcode, 3)
+	) join salesposreturs f on f.id = g.id
+	join items i on i.id = g.iditem
+	where
+	g.itemcode like '$suppliercode%' and f.idatetime >= '$startdate' and f.idatetime <= '$enddate'
+	
 	order by scode, code
 EOS;
 				$datasales = Yii::app()->db->createCommand($sql1)->queryAll();
