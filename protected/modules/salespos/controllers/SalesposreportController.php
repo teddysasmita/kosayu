@@ -326,7 +326,7 @@ EOS;
 	a.itemcode like '$suppliercode%' and b.idatetime >= '$startdate' and b.idatetime <= '$enddate'
 	union 
 	select f.id, left(g.itemcode, 3) as scode, i.name, g.iddetail, g.iditem, g.itemcode as code, - g.qty, 
-	- g.price, - g.discount
+	g.price, g.discount
 	from (detailsalesposreturs g
 	join suppliers h on h.code = left(g.itemcode, 3)
 	) join salesposreturs f on f.id = g.id
