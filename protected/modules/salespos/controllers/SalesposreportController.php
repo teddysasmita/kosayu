@@ -381,20 +381,21 @@ EOS;
 						}
 					}
 					unset($ds);
-					if (!$found) {
-						$ds['code'] = $rs['code'];
-						$ds['scode'] = $rs['scode'];
-						$ds['name'] = $rs['name'];
-						$ds['iddetail'] = $rs['code'];
-						$ds['iditem'] = $rs['iditem'];
-						$ds['id'] = $rs['id'];
-						$ds['price'] = $rs['price'];
-						$ds['discount'] = $rs['discount'];
-						$ds['rqty'] = $rs['qty'];
-						$ds['qty'] = 0;
-						$ds['itemcog'] = lookup::getbuyprice($rs['code']);
+					if (! $found) {
+						unset($temp);
+						$temp['code'] = $rs['code'];
+						$temp['scode'] = $rs['scode'];
+						$temp['name'] = $rs['name'];
+						$temp['iddetail'] = $rs['code'];
+						$temp['iditem'] = $rs['iditem'];
+						$temp['id'] = $rs['id'];
+						$temp['price'] = $rs['price'];
+						$temp['discount'] = $rs['discount'];
+						$temp['rqty'] = $rs['qty'];
+						$temp['qty'] = 0;
+						$temp['itemcog'] = lookup::getbuyprice($rs['code']);
 						
-						$datasales[] = $ds;
+						$datasales[] = $temp;
 					}
 				}
 				unset($ds);
