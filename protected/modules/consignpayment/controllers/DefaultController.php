@@ -770,6 +770,32 @@ class DefaultController extends Controller
         	$sq['userlog']=Yii::app()->user->id;
         	$sq['datetimelog']=idmaker::getDateTime();
         }
+        
+        foreach($salereturqty as $rq) {
+        	$found = false;
+        	foreach($soldqty as &$sq) {
+        		if ($sq['batchcode'] == $rq['batchcode']) {
+        			$found = true;
+        			$sq['salereturqty'] = $rq['salereturqty'];
+        			break;
+        		}
+        	}	
+ 			if (!$found) {
+ 				unset($temp);
+ 				$temp['soldqty'] = 0;
+ 				$temp['batchcode'] = $rq['batchcode'];
+ 				$temp['iditem'] = $rq['iditem']; 
+ 				$temp['buyprice'] = lookup::getbuyprice($rq['batchcode']);
+ 				$temp['labelcost'] = 0;
+ 				$temp['total'] = ($rq['salereturqty']) * $temp['buyprice'];
+ 				$temp['iddetail'] = idmaker::getCurrentID2();
+ 				$temp['id'] = $id;
+ 				$temp['userlog']=Yii::app()->user->id;
+ 				$temp['datetimelog']=idmaker::getDateTime();
+ 				
+ 				$soldqty[] = $temp;
+ 			} 
+        }
         return $soldqty;
 	}
       //shit
