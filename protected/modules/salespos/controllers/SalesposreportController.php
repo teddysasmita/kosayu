@@ -508,10 +508,10 @@ EOS;
 					->setCategory("Laporan");
 					$data = Yii::app()->session['datasales4'];
 					$headersfield = array(
-							'batchcode', 'name', 'qty', 'totalsold', 'totaldisc', 'totalcog', 'totalgain'
+							'batchcode', 'name', 'qty', 'rqty', 'totalsold', 'totaldisc', 'totalcog', 'totalgain'
 					);
 					$headersname = array(
-							'Kode Batch', 'Nama Barang', 'Qty', 'Bruto', 'Potongan', 'Harga Beli', 'Margin'
+							'Kode Batch', 'Nama Barang', 'Qty', 'Retur Qty', 'Bruto', 'Potongan', 'Harga Beli', 'Margin'
 					);
 					for( $i=0;$i<count($headersname); $i++ ) {
 						$xl->setActiveSheetIndex(0)
