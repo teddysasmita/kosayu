@@ -317,27 +317,30 @@ EOS;
 			if (is_null(Yii::app()->session['datasales4'])) {
 				$sql1 =<<<EOS
 	select b.id, left(a.itemcode, 3) as scode, c.name, a.iddetail, a.iditem, a.itemcode as code, a.qty, 
-	a.price, a.discount
+	a.price, a.discount, 0 as rqty
 	from (detailsalespos a
 	join suppliers e on e.code = left(a.itemcode, 3)
 	) join salespos b on b.id = a.id
 	join items c on c.id = a.iditem
 	where
 	a.itemcode like '$suppliercode%' and b.idatetime >= '$startdate' and b.idatetime <= '$enddate'
-	union 
-	select f.id, left(g.itemcode, 3) as scode, i.name, g.iddetail, g.iditem, g.itemcode as code, - g.qty, 
+	order by scode, code
+EOS;
+				$datasales = Yii::app()->db->createCommand($sql1)->queryAll();
+						
+				$sql2 = <<<EOS
+	select f.id, left(g.itemcode, 3) as scode, i.name, g.iddetail, g.iditem, g.itemcode as code, g.qty, 
 	g.price, g.discount
 	from (detailsalesposreturs g
 	join suppliers h on h.code = left(g.itemcode, 3)
 	) join salesposreturs f on f.id = g.id
 	join items i on i.id = g.iditem
 	where
-	g.itemcode like '$suppliercode%' and f.idatetime >= '$startdate' and f.idatetime <= '$enddate'
-	
+	g.itemcode like '$suppliercode%' and f.idatetime >= '$startdate' and f.idatetime <= '$enddate'	
 	order by scode, code
 EOS;
-				$datasales = Yii::app()->db->createCommand($sql1)->queryAll();
-						
+				$datasalereturs = Yii::app()->db->createCommand($sql2)->queryAll();
+				
 				$sql4 =<<<EOS
 	select a.itemcode, b.id, b.total, b.discount, a.qty, 
 		sum((a.price-a.discount)*a.qty) as itemtotal
@@ -369,6 +372,33 @@ EOS;
 				}
 				unset($ds);
 				
+				foreach ($datasalereturs as $rs) {
+					$found = false;
+					foreach ($datasales as &$ds) {
+						if ($ds['code'] == $rs['code']) {
+							$ds['rqty'] = $rs['qty'];
+							$found = true;
+						}
+					}
+					unset($ds);
+					if (!$found) {
+						$ds['code'] = $rs['code'];
+						$ds['scode'] = $rs['scode'];
+						$ds['name'] = $rs['name'];
+						$ds['iddetail'] = $rs['code'];
+						$ds['iditem'] = $rs['iditem'];
+						$ds['id'] = $rs['id'];
+						$ds['price'] = $rs['price'];
+						$ds['discount'] = $rs['discount'];
+						$ds['rqty'] = $rs['rqty'];
+						$ds['qty'] = 0;
+						
+						$datasales[] = $ds;
+					}
+				}
+				unset($ds);
+				
+				
 				$summarysales = array();
 				foreach($datasales as $ds1) {
 					$batchcode = $ds1['code'];
@@ -376,8 +406,9 @@ EOS;
 					foreach($summarysales as &$ss) {
 						if ($ss['batchcode'] == $batchcode) {
 							$ss['qty'] += $ds1['qty'];
-							$ss['totalsold'] += $ds1['qty'] * $ds1['price'];
-							$ss['totaldisc'] += $ds1['qty'] * $ds1['discount'];
+							$ss['totalsold'] += ($ds1['qty']) * $ds1['price'];
+							$ss['totaldisc'] += ($ds1['qty']) * $ds1['discount'];
+							$ss['totalsaleretur'] += ($ds1['rqty']) * $ds1['price'];
 							$ss['totalcog'] += $ds1['qty'] * $ds1['itemcog'];
 							$ss['totalgain'] += ($ds1['qty'] * ($ds1['price'] - $ds1['discount'] - $ds1['itemcog']));
 							$found = TRUE;
@@ -392,9 +423,10 @@ EOS;
 						$temp['name'] = $ds1['name'];
 						$temp['batchcode'] = $batchcode;
 						$temp['qty'] = $ds1['qty'];
-						$temp['totalsold'] = $ds1['qty'] * $ds1['price'];
-						$temp['totaldisc'] = $ds1['qty'] * $ds1['discount'];
-						$temp['totalcog'] = $ds1['qty'] * $ds1['itemcog'];
+						$temp['rqty'] = $ds1['rqty'];
+						$temp['totalsold'] = ($ds1['qty'] - $ds1['rqty']) * $ds1['price'];
+						$temp['totaldisc'] = ($ds1['qty'] - $ds1['rqty']) * $ds1['discount'];
+						$temp['totalcog'] = ($ds1['qty'] - $ds1['rqty']) * $ds1['itemcog'];
 						$temp['totalgain'] = $temp['totalsold'] - $temp['totalcog'];
 						//$temp['suppliername'] = $ds['firstname'];
 						$summarysales[] = $temp;

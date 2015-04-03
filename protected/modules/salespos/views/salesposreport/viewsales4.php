@@ -50,6 +50,11 @@ $this->menu=array(
 						'type'=>'number',
 				),
 				array(
+						'header'=>'Retur Qty',
+						'name'=>'rqty',
+						'type'=>'number',
+				),
+				array(
 						'header'=>'Bruto',
 						'name'=>'totalsold',
 						'type'=>'number',
