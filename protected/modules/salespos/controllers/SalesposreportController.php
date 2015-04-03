@@ -392,6 +392,7 @@ EOS;
 						$ds['discount'] = $rs['discount'];
 						$ds['rqty'] = $rs['qty'];
 						$ds['qty'] = 0;
+						$ds['itemcog'] = lookup::getbuyprice($rs['code']);
 						
 						$datasales[] = $ds;
 					}
