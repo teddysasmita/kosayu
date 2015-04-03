@@ -783,11 +783,12 @@ class DefaultController extends Controller
  			if (!$found) {
  				unset($temp);
  				$temp['soldqty'] = 0;
+ 				$temp['salereturqty'] = $rq['salereturqty'];
  				$temp['batchcode'] = $rq['batchcode'];
  				$temp['iditem'] = $rq['iditem']; 
  				$temp['buyprice'] = lookup::getbuyprice($rq['batchcode']);
  				$temp['labelcost'] = 0;
- 				$temp['total'] = ($rq['salereturqty']) * $temp['buyprice'];
+ 				$temp['total'] = - ($rq['salereturqty']) * $temp['buyprice'];
  				$temp['iddetail'] = idmaker::getCurrentID2();
  				$temp['id'] = $id;
  				$temp['userlog']=Yii::app()->user->id;
