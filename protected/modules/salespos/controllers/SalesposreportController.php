@@ -390,7 +390,7 @@ EOS;
 						$ds['id'] = $rs['id'];
 						$ds['price'] = $rs['price'];
 						$ds['discount'] = $rs['discount'];
-						$ds['rqty'] = $rs['rqty'];
+						$ds['rqty'] = $rs['qty'];
 						$ds['qty'] = 0;
 						
 						$datasales[] = $ds;
