@@ -378,6 +378,7 @@ EOS;
 						if ($ds['code'] == $rs['code']) {
 							$ds['rqty'] = $rs['qty'];
 							$found = true;
+							break;
 						}
 					}
 					unset($ds);
