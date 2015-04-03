@@ -406,10 +406,11 @@ EOS;
 					foreach($summarysales as &$ss) {
 						if ($ss['batchcode'] == $batchcode) {
 							$ss['qty'] += $ds1['qty'];
-							$ss['totalsold'] += ($ds1['qty']) * $ds1['price'];
-							$ss['totaldisc'] += ($ds1['qty']) * $ds1['discount'];
-							$ss['totalcog'] += $ds1['qty'] * $ds1['itemcog'];
-							$ss['totalgain'] += ($ds1['qty'] * ($ds1['price'] - $ds1['discount'] - $ds1['itemcog']));
+							$ss['rqty'] += $ds1['rqty'];
+							$ss['totalsold'] += ($ds1['qty'] - $ds1['rqty']) * $ds1['price'];
+							$ss['totaldisc'] += ($ds1['qty'] - $ds1['rqty']) * $ds1['discount'];
+							$ss['totalcog'] += ($ds1['qty'] - $ds1['rqty']) * $ds1['itemcog'];
+							$ss['totalgain'] += (($ds1['qty'] - $ds1['rqty']) * ($ds1['price'] - $ds1['discount'] - $ds1['itemcog']));
 							$found = TRUE;
 							break;
 						}
