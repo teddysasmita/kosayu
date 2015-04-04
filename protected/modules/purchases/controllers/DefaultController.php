@@ -712,6 +712,7 @@ class DefaultController extends Controller
         					$temp['id'] = $id;
         					$temp['iddetail'] = idmaker::getCurrentID2();
         					$temp['iditem'] = $so['iditem'];
+        					$temp['batchcode'] = $so['batchcode'];
         					$temp['qty'] = $so['qty'] - $rd['qty'];
         					$temp['price'] = $so['price'];
         					$temp['userlog'] = Yii::app()->user->id;
@@ -725,6 +726,7 @@ class DefaultController extends Controller
         			$temp['id'] = $id;
         			$temp['iddetail'] = idmaker::getCurrentID2();
         			$temp['iditem'] = $so['iditem'];
+        			$temp['batchcode'] = $so['batchcode'];
 					$temp['qty'] = $so['qty'];
         			$temp['price'] = $so['price'];
         			$temp['discount'] = 0;
