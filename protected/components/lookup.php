@@ -585,6 +585,19 @@ class lookup extends CComponent {
 			return $price['buyprice'];
 	}
 	
+	public static function getsellprice($code)
+	{
+		$price =  Yii::app()->db->createCommand()
+			->select('id, normalprice')->from('sellingprices')
+			->where('batchcode = :p_batchcode', array(':p_batchcode'=>$code))
+			->order('id desc')
+			->queryRow();
+		if (!$price['normalprice'])
+			return 0;
+		else
+			return $price['normalprice'];
+	}
+	
 	public static function ExpenseNameFromID($id)
 	{
 		$name = Yii::app()->db->createCommand()

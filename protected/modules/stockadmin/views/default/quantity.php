@@ -88,6 +88,11 @@ $this->breadcrumbs=array(
 							'name'=>'buyprice',
 							'type'=>'number'
 					),
+					array(
+							'header'=>'Harga Jual',
+							'name'=>'sellprice',
+							'type'=>'number'
+					),
 			),
 	));
 //}

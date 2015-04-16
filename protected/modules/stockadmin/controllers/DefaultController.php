@@ -61,6 +61,7 @@ class DefaultController extends Controller
 					->queryAll();	
 				foreach($alldata as & $ad) {
 					$ad['buyprice'] = lookup::getbuyprice($ad['batchcode']);
+					$ad['sellprice'] = lookup::getsellprice($ad['batchcode']);
 				}
 				unset($ad);
 				Yii::app()->session['stockquantityreport'] = $alldata;
