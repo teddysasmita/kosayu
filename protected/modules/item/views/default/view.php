@@ -27,11 +27,11 @@ $this->menu=array(
 	'attributes'=>array(
 		//'id',
 		'code',
-		array(
+		/*array(
                    'name'=>'type',
                    'label'=>'Jenis',
                    'value'=>lookup::TypeToName($model['type']),
-                ),   
+                ), */  
 		'name',
 		'brand',
 		array(

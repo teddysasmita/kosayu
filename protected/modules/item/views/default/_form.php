@@ -34,12 +34,12 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'type'); ?>
+		<?php //echo $form->labelEx($model,'type'); ?>
 		<?php 
-         echo $form->dropDownList($model, 'type', array(1=>'Beli-Putus', 
-            2=>'Konsinyasi'), array('empty'=>'Harap Pilih'));
+         //echo $form->dropDownList($model, 'type', array(1=>'Beli-Putus', 
+            //2=>'Konsinyasi'), array('empty'=>'Harap Pilih'));
       ?>
-		<?php echo $form->error($model,'type'); ?>
+		<?php //echo $form->error($model,'type'); ?>
 	</div>
 
 	<div class="row">

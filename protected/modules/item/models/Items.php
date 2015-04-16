@@ -7,7 +7,7 @@
  * @property string $id
  * @property string $code
  * @property integer $type
- * @property string $name
+ //* @property string $name
  * @property string $brand
  * @property string $picture
  * @property string $userlog
@@ -31,7 +31,8 @@ class Items extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id, code, type, name, userlog, datetimelog', 'required'),
+			//array('id, code, type, name, userlog, datetimelog', 'required'),
+			array('id, code, name, userlog, datetimelog', 'required'),
 			array('type', 'numerical', 'integerOnly'=>true),
 			array('id, userlog', 'length', 'max'=>21),
 			array('code', 'length', 'max'=>50),
@@ -41,7 +42,7 @@ class Items extends CActiveRecord
 			array('picture', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, code, type, name, brand, picture, userlog, datetimelog', 'safe', 'on'=>'search'),
+			array('id, code, name, brand, picture, userlog, datetimelog', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -64,7 +65,7 @@ class Items extends CActiveRecord
 		return array(
 			'id' => 'ID',
 			'code' => 'Code',
-			'type' => 'Jenis',
+			//'type' => 'Jenis',
 			'name' => 'Name',
 			'brand' => 'Brand',
 			'picture' => 'Picture',
@@ -93,7 +94,7 @@ class Items extends CActiveRecord
 
 		$criteria->compare('id',$this->id,true);
 		$criteria->compare('code',$this->code,true);
-		$criteria->compare('type',$this->type);
+		//$criteria->compare('type',$this->type);
 		$criteria->compare('name',$this->name,true);
 		$criteria->compare('brand',$this->brand,true);
 		$criteria->compare('picture',$this->picture,true);
