@@ -330,11 +330,16 @@ EOS;
 	              ->queryColumn();
 	   		*/
 	   		//if (!$data) 
-	   			$data=Yii::app()->db->createCommand()->selectDistinct('name')->from('items')
+	   			/*$data=Yii::app()->db->createCommand()->selectDistinct('name')->from('items')
 	   				->where('name like :itemname and type = :p_type',
 	   					array(':itemname'=>'%'.$name.'%',':p_type'=>1))
 	   				->order('name')
-	   				->queryColumn();
+	   				->queryColumn();*/
+	   			$data=Yii::app()->db->createCommand()->selectDistinct('name')->from('items')
+	   			->where('name like :itemname',
+	   					array(':itemname'=>'%'.$name.'%'))
+	   					->order('name')
+	   					->queryColumn();
 	      
 	      	if(count($data)) { 
 	         	foreach($data as $key=>$value) {
@@ -359,12 +364,18 @@ EOS;
    			->queryColumn();
 		*/
    		//if (!$data) 
-	   		$data=Yii::app()->db->createCommand()->selectDistinct('name')->from('items')
+	   		/*$data=Yii::app()->db->createCommand()->selectDistinct('name')->from('items')
    				->where('name like :itemname and type = :p_type',
    					array(':itemname'=>'%'.$name.'%', ':p_type'=>2))
    				->order('name')
    				->queryColumn();
-   		 
+			*/   		 
+	   		$data=Yii::app()->db->createCommand()->selectDistinct('name')->from('items')
+	   		->where('name like :itemname',
+	   				array(':itemname'=>'%'.$name.'%'))
+	   				->order('name')
+	   				->queryColumn();
+	   		
    		if(count($data)) {
    			foreach($data as $key=>$value) {
    				$data[$key]=rawurlencode($value);
@@ -410,11 +421,18 @@ EOS;
    public function actionGetConsignedItem($name)
    {
    	if (!Yii::app()->user->isGuest) {
-   		$data=Yii::app()->db->createCommand()->selectDistinct('name')->from('items')
-   		->where('name like :itemname and type = :p_type', 
+   		/*$data=Yii::app()->db->createCommand()->selectDistinct('name')->from('items')
+   			->where('name like :itemname and type = :p_type', 
    			array(':itemname'=>'%'.$name.'%', ':p_type'=>2))
-   		->order('name')
-   		->queryColumn();
+   			->order('name')
+   			->queryColumn();
+   		*/
+   		
+   		$data=Yii::app()->db->createCommand()->selectDistinct('name')->from('items')
+   		->where('name like :itemname',
+   				array(':itemname'=>'%'.$name.'%'))
+   				->order('name')
+   				->queryColumn();
    		 
    		if(count($data)) {
    			foreach($data as $key=>$value) {
