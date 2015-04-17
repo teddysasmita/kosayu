@@ -414,7 +414,6 @@ EOS;
 							$ss['totaldisc'] += ($ds1['qty'] - $ds1['rqty']) * $ds1['discount'];
 							$ss['totalcog'] += ($ds1['qty'] - $ds1['rqty']) * $ds1['itemcog'];
 							$ss['totalgain'] += (($ds1['qty'] - $ds1['rqty']) * ($ds1['price'] - $ds1['discount'] - $ds1['itemcog']));
-							$ss['sellprice'] = lookup::getsellprice($ss['batchcode']);
 							$found = TRUE;
 							break;
 						}
@@ -432,7 +431,6 @@ EOS;
 						$temp['totaldisc'] = ($ds1['qty'] - $ds1['rqty']) * $ds1['discount'];
 						$temp['totalcog'] = ($ds1['qty'] - $ds1['rqty']) * $ds1['itemcog'];
 						$temp['totalgain'] = $temp['totalsold'] - $temp['totalcog'];
-						$temp['sellprice'] = lookup::getsellprice($temp['batchcode']);
 						//$temp['suppliername'] = $ds['firstname'];
 						$summarysales[] = $temp;
 					}
