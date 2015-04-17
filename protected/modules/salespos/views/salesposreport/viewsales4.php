@@ -76,11 +76,11 @@ $this->menu=array(
 						'name'=>'totalgain',
 						'type'=>'number',
 				),
-				array(
+				/*array(
 						'header'=>'Harga Jual',
 						'name'=>'sellprice',
 						'type'=>'number',
-				),
+				),*/
 				/*
 				array(
 						'header'=>'Netto',
