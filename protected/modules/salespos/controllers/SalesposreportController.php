@@ -499,45 +499,45 @@ EOS;
 	{
 		if(Yii::app()->authManager->checkAccess($this->formid.'-Append',
 				Yii::app()->user->id))  {
-					$this->trackActivity('v');
-					$xl = new PHPExcel();
-					$xl->getProperties()->setCreator("Program KOSAYU")
-					->setLastModifiedBy("Program KOSAYU")
-					->setTitle("Laporan Penjualan Tiap Pemasok")
-					->setSubject("Laporan Penjuala Tiap Pemasokn")
-					->setDescription("Laporan Penjualan Tiap Pemasok")
-					->setKeywords("Laporan Penjualan Tiap Pemasok")
-					->setCategory("Laporan");
-					$data = Yii::app()->session['datasales4'];
-					$headersfield = array(
-							'batchcode', 'name', 'qty', 'rqty', 'totalsold', 'totaldisc', 'totalcog', 'totalgain'
-					);
-					$headersname = array(
-							'Kode Batch', 'Nama Barang', 'Qty', 'Retur Qty', 'Bruto', 'Potongan', 'Harga Beli', 'Margin'
-					);
-					for( $i=0;$i<count($headersname); $i++ ) {
-						$xl->setActiveSheetIndex(0)
-						->setCellValueByColumnAndRow($i,1, $headersname[$i]);
-					}
+			$this->trackActivity('v');
+			$xl = new PHPExcel();
+			$xl->getProperties()->setCreator("Program KOSAYU")
+				->setLastModifiedBy("Program KOSAYU")
+				->setTitle("Laporan Penjualan Tiap Pemasok")
+				->setSubject("Laporan Penjuala Tiap Pemasokn")
+				->setDescription("Laporan Penjualan Tiap Pemasok")
+				->setKeywords("Laporan Penjualan Tiap Pemasok")
+				->setCategory("Laporan");
+			$data = Yii::app()->session['datasales4'];
+			$headersfield = array(
+				'batchcode', 'name', 'qty', 'rqty', 'totalsold', 'totaldisc', 'totalcog', 'totalgain'
+			);
+			$headersname = array(
+				'Kode Batch', 'Nama Barang', 'Qty', 'Retur Qty', 'Bruto', 'Potongan', 'Harga Beli', 'Margin'
+			);
+			for( $i=0;$i<count($headersname); $i++ ) {
+				$xl->setActiveSheetIndex(0)
+				->setCellValueByColumnAndRow($i,1, $headersname[$i]);
+			}
 	
-					for( $i=0; $i<count($data); $i++){
-						for( $j=0; $j<count($headersfield); $j++ ) {
-							$cellvalue = $data[$i][$headersfield[$j]];
-							$xl->setActiveSheetindex(0)
-							->setCellValueByColumnAndRow($j,$i+2, $cellvalue);
-						}
-					}
+			for( $i=0; $i<count($data); $i++){
+				for( $j=0; $j<count($headersfield); $j++ ) {
+					$cellvalue = $data[$i][$headersfield[$j]];
+					$xl->setActiveSheetindex(0)
+					->setCellValueByColumnAndRow($j,$i+2, $cellvalue);
+				}
+			}
 	
-					$xl->getActiveSheet()->setTitle('Laporan Penjualan 2');
-					$xl->setActiveSheetIndex(0);
-					header('Content-Type: application/pdf');
-					header('Content-Disposition: attachment;filename="sales-report2-'.idmaker::getDateTime().'.xls"');
-					header('Cache-Control: max-age=0');
-					$xlWriter = PHPExcel_IOFactory::createWriter($xl, 'Excel5');
-					$xlWriter->save('php://output');
-				} else {
-					throw new CHttpException(404,'You have no authorization for this operation.');
-				};
+			$xl->getActiveSheet()->setTitle('Laporan Penjualan 2');
+			$xl->setActiveSheetIndex(0);
+			header('Content-Type: application/pdf');
+			header('Content-Disposition: attachment;filename="sales-report2-'.idmaker::getDateTime().'.xls"');
+			header('Cache-Control: max-age=0');
+			$xlWriter = PHPExcel_IOFactory::createWriter($xl, 'Excel5');
+			$xlWriter->save('php://output');
+		} else {
+			throw new CHttpException(404,'You have no authorization for this operation.');
+		};
 	}
 	
 	public function actionGetexcel($startdate, $enddate, $brand, $objects)
@@ -818,6 +818,22 @@ EOS;
 		} else {
             throw new CHttpException(404,'You have no authorization for this operation.');
          };
+	}
+	
+	public function actionReportprint4()
+	{
+		if(Yii::app()->authManager->checkAccess($this->formid.'-List',
+				Yii::app()->user->id))  {
+			$reportdata = Yii::app()->session['datasales4'];
+			Yii::import('application.vendors.tcpdf.*');
+			require_once ('tcpdf.php');
+			Yii::import('application.modules.salespos.components.*');
+			require_once('print_salesreport4.php');
+			ob_clean();
+			execute($reportdata);
+		} else {
+			throw new CHttpException(404,'You have no authorization for this operation.');
+		}
 	}
 	
 	protected function trackActivity($action)

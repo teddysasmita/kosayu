@@ -10,6 +10,7 @@ $this->breadcrumbs=array(
 
 $this->menu=array(
 		array('label'=>'Export ke XL', 'url'=>array('getexcel4')),
+		array('label'=>'Cetak', 'url'=>array('reportprint4')),
 );
 
 ?>
