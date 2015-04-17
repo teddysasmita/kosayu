@@ -5,11 +5,11 @@
 
 <div class="view">
 
-	<b><?php //echo CHtml::encode($data->getAttributeLabel('code')); ?>:</b>
+	<b><?php //echo CHtml::encode($data->getAttributeLabel('code')); ?></b>
 	<?php //echo CHtml::link(CHtml::encode($data->code), array('view', 'id'=>$data->id)); ?>
 	<br />
 
-	<b><?php //echo CHtml::encode($data->getAttributeLabel('type')); ?>:</b>
+	<b><?php //echo CHtml::encode($data->getAttributeLabel('type')); ?></b>
 	<?php //echo CHtml::encode(lookup::TypeToName($data->type)); ?>
 	<br />
 
@@ -17,7 +17,7 @@
 	<?php echo CHtml::link(CHtml::encode($data->name), array('view', 'id'=>$data->id)); ?>
 	<br />
 
-	<b><?php //echo CHtml::encode($data->getAttributeLabel('brand')); ?>:</b>
+	<b><?php //echo CHtml::encode($data->getAttributeLabel('brand')); ?></b>
 	<?php //echo CHtml::encode($data->brand); ?>
 	<br />
 
