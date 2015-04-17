@@ -47,12 +47,7 @@ class MYPDF extends TCPDF {
 			$row=$this->data[$i];
 			$counter+=1;
 			
-			$ih = $this->getStringHeight($this->headerwidths[4],lookup::ItemNameFromItemID($row['iditem']),
-					true, false, 0);
-			
-			if ($ih < 6)
-				$ih = 6;
-			
+			$ih = 6;
 			
 			$this->checkPageBreak($ih);
 			$this->Cell($this->headerwidths[0], $ih, $row['batchcode'], 'BLR', 0, 'C', $fill);
