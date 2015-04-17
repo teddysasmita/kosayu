@@ -33,7 +33,7 @@ class Items extends CActiveRecord
 		return array(
 			//array('id, code, type, name, userlog, datetimelog', 'required'),
 			array('id, code, name, userlog, datetimelog', 'required'),
-			array('type', 'numerical', 'integerOnly'=>true),
+			//array('type', 'numerical', 'integerOnly'=>true),
 			array('id, userlog', 'length', 'max'=>21),
 			array('code', 'length', 'max'=>50),
 			array('name', 'length', 'max'=>255),
