@@ -20,7 +20,7 @@ class MYPDF extends TCPDF {
 	public function LoadData($data) {
 		// Read file lines
 		$this->data = $data;
-		$this->headersnames = array(
+		$this->headernames = array(
 				'Kode Batch', 'Nama Barang', 'Qty', 'Retur Qty', 'Bruto', 'Potongan', 'Harga Beli', 'Margin'
 		);
 		$this->headerwidths = array(25, 65, 10, 10, 20, 20, 20, 20);
