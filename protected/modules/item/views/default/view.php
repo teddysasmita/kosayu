@@ -26,14 +26,14 @@ $this->menu=array(
 	'data'=>$model,
 	'attributes'=>array(
 		//'id',
-		'code',
+		//'code',
 		/*array(
                    'name'=>'type',
                    'label'=>'Jenis',
                    'value'=>lookup::TypeToName($model['type']),
                 ), */  
 		'name',
-		'brand',
+		//'brand',
 		array(
                    'name'=>'picture',
                    'label'=>'Foto',
