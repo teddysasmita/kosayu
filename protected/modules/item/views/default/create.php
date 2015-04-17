@@ -3,7 +3,7 @@
 /* @var $model Items */
 
 $this->breadcrumbs=array(
-   'Proses'=>array('/site/proses'),
+   'Master Data'=>array('/site/masterdata'),
 	'Daftar'=>array('index'),
 	'Tambah Data',
 );
