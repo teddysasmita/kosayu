@@ -21,9 +21,9 @@ class MYPDF extends TCPDF {
 		// Read file lines
 		$this->data = $data;
 		$this->headernames = array(
-				'Kode Batch', 'Nama Barang', 'Qty', 'Retur Qty', 'Bruto', 'Potongan', 'Harga Beli', 'Margin'
+				'Kode Batch', 'Nama Barang', 'Qty', 'Retur', 'Bruto', 'Potongan', 'Harga Beli', 'Margin'
 		);
-		$this->headerwidths = array(25, 65, 10, 10, 20, 20, 20, 20);
+		$this->headerwidths = array(25, 65, 10, 15, 20, 20, 20, 20);
 	}
 
 	// Colored table
