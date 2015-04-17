@@ -822,7 +822,7 @@ EOS;
 	
 	public function actionReportprint4()
 	{
-		if(Yii::app()->authManager->checkAccess($this->formid.'-List',
+		if(Yii::app()->authManager->checkAccess($this->formid.'-Append',
 				Yii::app()->user->id))  {
 			$reportdata = Yii::app()->session['datasales4'];
 			Yii::import('application.vendors.tcpdf.*');
