@@ -592,10 +592,22 @@ class lookup extends CComponent {
 			->where('batchcode = :p_batchcode', array(':p_batchcode'=>$code))
 			->order('id desc')
 			->queryRow();
-		if (!$price['normalprice'])
-			return 0;
+	
+		if (!$price['normalprice']) {
+			$price =  Yii::app()->db->createCommand()
+				->select('id, sellprice')->from('itembatch')
+				->where('batchcode = :p_batchcode', array(':p_batchcode'=>$code))
+				->order('id desc')
+				->queryRow();
+		} else
+			$sellprice = $price['normalprice'];
+			
+		if (!$price['sellprice'])
+			$sellprice = 0;
 		else
-			return $price['normalprice'];
+			$sellprice = $price['sellprice'];
+		
+		return $sellprice;
 	}
 	
 	public static function ExpenseNameFromID($id)
