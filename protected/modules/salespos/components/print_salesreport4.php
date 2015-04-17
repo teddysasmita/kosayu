@@ -58,16 +58,16 @@ class MYPDF extends TCPDF {
 			$this->Cell($this->headerwidths[0], $ih, $row['batchcode'], 'BLR', 0, 'C', $fill);
 			$this->MultiCell($this->headerwidths[1], $ih, $row['name'], 
 				'BR', 'L', false, 0,'','',true,0,false,true,0,'M');
-			$this->Cell($this->headerwidths[2], $ih, number_format($row['qty']), 'BR', 0, 'L', $fill);
-			$this->Cell($this->headerwidths[3], $ih, number_format($row['rqty']), 'BR', 0, 'L', $fill);
-			$this->Cell($this->headerwidths[4], $ih, number_format($row['totalsold']), 'BR', 0, 'L', $fill);
-			$this->Cell($this->headerwidths[5], $ih, number_format($row['totaldisc']), 'BR', 0, 'L', $fill);
+			$this->Cell($this->headerwidths[2], $ih, number_format($row['qty']), 'BR', 0, 'R', $fill);
+			$this->Cell($this->headerwidths[3], $ih, number_format($row['rqty']), 'BR', 0, 'R', $fill);
+			$this->Cell($this->headerwidths[4], $ih, number_format($row['totalsold']), 'BR', 0, 'R', $fill);
+			$this->Cell($this->headerwidths[5], $ih, number_format($row['totaldisc']), 'BR', 0, 'R', $fill);
 			$this->Cell($this->headerwidths[6], $ih, number_format($row['totalcog']), 'BR', 0, 'R', $fill);
 			$this->Cell($this->headerwidths[7], $ih, number_format($row['totalgain']), 'BR', 1, 'R', $fill);
 		} 
 		$this->setX(10);
-		$this->Cell(120, 5, 'Total', 'LTB', 0, 'R');
-		$this->Cell(75, 5, number_format($this->total), 'LTBR', 1, 'R');
+		//$this->Cell(120, 5, 'Total', 'LTB', 0, 'R');
+		//$this->Cell(75, 5, number_format($this->total), 'LTBR', 1, 'R');
 		//$this->Cell(array_sum($this->headerwidths), 0, '', 'T');
 	}
 	
