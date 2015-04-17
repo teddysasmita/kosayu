@@ -432,7 +432,7 @@ EOS;
 						$temp['totaldisc'] = ($ds1['qty'] - $ds1['rqty']) * $ds1['discount'];
 						$temp['totalcog'] = ($ds1['qty'] - $ds1['rqty']) * $ds1['itemcog'];
 						$temp['totalgain'] = $temp['totalsold'] - $temp['totalcog'];
-						$temp['sellprice'] = lookup::getsellprice(['batchcode']);
+						$temp['sellprice'] = lookup::getsellprice($temp['batchcode']);
 						//$temp['suppliername'] = $ds['firstname'];
 						$summarysales[] = $temp;
 					}
