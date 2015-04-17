@@ -105,7 +105,7 @@ class MYPDF extends TCPDF {
 	
 		$this->setFontSize(7);
 		$this->setXY(170, 10);
-		$this->Cell(20, 10, $this->getPage().' / '.$this->getNumPages(), '', 1, 'C');
+		$this->Cell(20, 10, $this->getPage().' / '.$this->getAliasNbPages(), '', 1, 'C');
 		$this->setFontSize(15);
 		$this->setXY(10, 10);
 		$this->Cell(195, 10, 'Laporan Penjualan', 'LTR', 1, 'C');
