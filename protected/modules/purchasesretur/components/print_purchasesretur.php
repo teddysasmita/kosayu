@@ -205,7 +205,7 @@ function execute($model, $detailmodel) {
 	$pdf->SetFooterMargin(0);
 	
 	//set auto page breaks
-	$pdf->SetAutoPageBreak(TRUE, 20);
+	$pdf->SetAutoPageBreak(TRUE, 25);
 	
 	//set image scale factor
 	$pdf->setImageScale(2.8);
