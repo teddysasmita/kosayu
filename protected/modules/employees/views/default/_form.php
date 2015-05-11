@@ -69,18 +69,6 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'userlog'); ?>
-		<?php echo $form->textField($model,'userlog'); ?>
-		<?php echo $form->error($model,'userlog'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'datetimelog'); ?>
-		<?php echo $form->textField($model,'datetimelog'); ?>
-		<?php echo $form->error($model,'datetimelog'); ?>
-	</div>
-
-	<div class="row">
 		<?php echo $form->labelEx($model,'phone'); ?>
 		<?php echo $form->textField($model,'phone'); ?>
 		<?php echo $form->error($model,'phone'); ?>
@@ -113,7 +101,7 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'active'); ?>
-		<?php echo $form->dropDownList($model,'active', array('Aktif'=>'1', 'Tidak'=>'0')); ?>
+		<?php echo $form->dropDownList($model,'active', array('1'=>'Aktif', '0'=>'Tidak')); ?>
 		<?php echo $form->error($model,'active'); ?>
 	</div>
 
