@@ -20,12 +20,6 @@
 	<?php echo $form->errorSummary($model); ?>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'id'); ?>
-		<?php echo $form->textField($model,'id'); ?>
-		<?php echo $form->error($model,'id'); ?>
-	</div>
-
-	<div class="row">
 		<?php echo $form->labelEx($model,'firstname'); ?>
 		<?php echo $form->textField($model,'firstname'); ?>
 		<?php echo $form->error($model,'firstname'); ?>
@@ -57,7 +51,20 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'startdate'); ?>
-		<?php echo $form->textField($model,'startdate'); ?>
+		<?php 
+			$this->widget('zii.widgets.jui.CJuiDatePicker',array(
+                  'name'=>'startdate',
+                     // additional javascript options for the date picker plugin
+                  'options'=>array(
+                     'showAnim'=>'fold',
+                     'dateFormat'=>'yy/mm/dd',
+                     'defaultdate'=>idmaker::getDateTime()
+                  ),
+                  'htmlOptions'=>array(
+                     'style'=>'height:20px;',
+                  ),
+               )); 
+		?>
 		<?php echo $form->error($model,'startdate'); ?>
 	</div>
 
@@ -87,13 +94,26 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'enddate'); ?>
-		<?php echo $form->textField($model,'enddate'); ?>
+		<?php 
+			$this->widget('zii.widgets.jui.CJuiDatePicker',array(
+                  'name'=>'enddate',
+                     // additional javascript options for the date picker plugin
+                  'options'=>array(
+                     'showAnim'=>'fold',
+                     'dateFormat'=>'yy/mm/dd',
+                     'defaultdate'=>idmaker::getDateTime()
+                  ),
+                  'htmlOptions'=>array(
+                     'style'=>'height:20px;',
+                  ),
+               )); 
+		?>
 		<?php echo $form->error($model,'enddate'); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'active'); ?>
-		<?php echo $form->textField($model,'active'); ?>
+		<?php echo $form->dropDownList($model,'active', array('Aktif'=>'1', 'Tidak'=>'0')); ?>
 		<?php echo $form->error($model,'active'); ?>
 	</div>
 
