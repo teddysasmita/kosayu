@@ -4894,3 +4894,23 @@ Stack trace:
 REQUEST_URI=/~teddy/kosayu/index.php?r=cashouts/default/adjustCashOut&idcashout=undefined&amount=undefined&periodcount=undefined&count=3
 in /home/teddy/public_html/kosayu/protected/modules/cashouts/controllers/DefaultController.php (253)
 in /home/teddy/public_html/kosayu/index.php (13)
+2015/05/10 11:55:12 [error] [exception.CException] exception 'CException' with message 'Alias "application.modules.employees.models.employees" is invalid. Make sure it points to an existing PHP file and the file is readable.' in /home/teddy/public_html/yii/framework/YiiBase.php:323
+Stack trace:
+#0 /home/teddy/public_html/yii/framework/gii/generators/form/FormCode.php(58): YiiBase::import('application.mod...', true)
+#1 /home/teddy/public_html/yii/framework/validators/CInlineValidator.php(42): FormCode->validateModel('model', Array)
+#2 /home/teddy/public_html/yii/framework/validators/CValidator.php(201): CInlineValidator->validateAttribute(Object(FormCode), 'model')
+#3 /home/teddy/public_html/yii/framework/base/CModel.php(159): CValidator->validate(Object(FormCode), NULL)
+#4 /home/teddy/public_html/yii/framework/gii/CCodeGenerator.php(159): CModel->validate()
+#5 /home/teddy/public_html/yii/framework/gii/CCodeGenerator.php(63): CCodeGenerator->prepare()
+#6 /home/teddy/public_html/yii/framework/web/actions/CInlineAction.php(49): CCodeGenerator->actionIndex()
+#7 /home/teddy/public_html/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#8 /home/teddy/public_html/yii/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#9 /home/teddy/public_html/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#10 /home/teddy/public_html/yii/framework/web/CWebApplication.php(282): CController->run('index')
+#11 /home/teddy/public_html/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('gii/form/index')
+#12 /home/teddy/public_html/yii/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#13 /home/teddy/public_html/kosayu/index.php(13): CApplication->run()
+#14 {main}
+REQUEST_URI=/~teddy/kosayu/index.php?r=gii/form/index
+HTTP_REFERER=http://localhost/~teddy/kosayu/index.php?r=gii/form/index
+---
