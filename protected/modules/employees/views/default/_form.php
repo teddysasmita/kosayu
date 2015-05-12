@@ -68,6 +68,7 @@
                      'dateFormat'=>'yy/mm/dd',
                      'defaultdate'=>idmaker::getDateTime()
                   ),
+				'value'=>$model->startdate,
                   'htmlOptions'=>array(
                      'style'=>'height:20px;',
                   ),
@@ -96,8 +97,9 @@
                   'options'=>array(
                      'showAnim'=>'fold',
                      'dateFormat'=>'yy/mm/dd',
-                     'defaultdate'=>idmaker::getDateTime()
+                     'defaultdate'=>idmaker::getDateTime(),
                   ),
+				'value'=>$model->enddate,
                   'htmlOptions'=>array(
                      'style'=>'height:20px;',
                   ),
