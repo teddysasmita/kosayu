@@ -284,18 +284,7 @@ class DefaultController extends Controller
         
         protected function beforePost(& $model)
         {
-            $idmaker=new idmaker();
-            
-            $model->userlog=Yii::app()->user->id;
-            $model->datetimelog=$idmaker->getDateTime();
-            if($_FILES['Jobgroups']['size']['picture']>0) {
-                $tmpfile=$_FILES['Jobgroups']['tmp_name']['picture'];
-                $newfile='/home/teddy/public_html/gsi/images/'.$_FILES['Jobgroups']['name']['picture'];
-                move_uploaded_file($tmpfile, $newfile);
-                $model->picture=$_FILES['Jobgroups']['name']['picture'];
-            }
-            /*print_r($_FILES);
-            die();*/
+          
         }
         
         protected function beforeDelete(& $model)
