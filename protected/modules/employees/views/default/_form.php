@@ -109,7 +109,7 @@
 	<div class="row">
 		<?php echo $form->labelEx($model,'active'); ?>
 		<?php echo $form->dropDownList($model,'active', 
-				array('Ya'=>'1', 'Tidak'=>'0')); 
+				array('0'=>'Tidak', '1'=>'Ya'), array('empty'=>'Harap Pilih')); 
 		?>
 		<?php echo $form->error($model,'active'); ?>
 	</div>
