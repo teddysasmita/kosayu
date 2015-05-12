@@ -654,6 +654,30 @@ class Action extends CComponent {
       return Yii::app()->createUrl('item/default/restoreDeleted', array('idtrack'=>$data['idtrack']));
    }
    
+   public static function decodeRestoreHistoryEmployeeUrl($data)
+   {
+   	//return print_r($data);
+   	return Yii::app()->createUrl('employees/default/restore', array('idtrack'=>$data['idtrack']));
+   }
+    
+   public static function decodeRestoreDeletedEmployeeUrl($data)
+   {
+   	//return print_r($data);
+   	return Yii::app()->createUrl('employees/default/restoreDeleted', array('idtrack'=>$data['idtrack']));
+   }
+   
+   public static function decodeRestoreHistoryJobgroupUrl($data)
+   {
+   	//return print_r($data);
+   	return Yii::app()->createUrl('jobgroups/default/restore', array('idtrack'=>$data['idtrack']));
+   }
+   
+   public static function decodeRestoreDeletedJobgroupUrl($data)
+   {
+   	//return print_r($data);
+   	return Yii::app()->createUrl('jobgroups/default/restoreDeleted', array('idtrack'=>$data['idtrack']));
+   }
+   
    public static function decodeRestoreHistoryItemBatchUrl($data)
    {
    	//return print_r($data);
