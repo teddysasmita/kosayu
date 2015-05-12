@@ -29,25 +29,29 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'wager'); ?>
-		<?php echo $form->dropDownList($model, 'wager', array('0'=>'Tidak', '1'=>'Tetap', '2'=>'Kehadiran')); ?>
+		<?php echo $form->dropDownList($model, 'wager', array('0'=>'Tidak', '1'=>'Tetap', '2'=>'Kehadiran'),
+				array('empty'=>'Harap Pilih')); ?>
 		<?php echo $form->error($model,'wager'); ?>		
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'bonus'); ?>
-		<?php echo $form->dropDownList($model, 'bonus', array('0'=>'Tidak', '1'=>'Ya')); ?>
+		<?php echo $form->dropDownList($model, 'bonus', array('0'=>'Tidak', '1'=>'Ya'),
+				array('empty'=>'Harap Pilih')); ?>
 		<?php echo $form->error($model,'bonus'); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'thr'); ?>
-		<?php echo $form->dropDownList($model, 'bonus', array('0'=>'Tidak', '1'=>'Ya')); ?>
+		<?php echo $form->dropDownList($model, 'bonus', array('0'=>'Tidak', '1'=>'Ya'),
+				array('empty'=>'Harap Pilih')); ?>
 		<?php echo $form->error($model,'thr'); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'cashier'); ?>
-		<?php echo $form->dropDownList($model, 'bonus', array('0'=>'Tidak', '1'=>'Ya')); ?>
+		<?php echo $form->dropDownList($model, 'bonus', array('0'=>'Tidak', '1'=>'Ya'),
+				array('empty'=>'Harap Pilih')); ?>
 		<?php echo $form->error($model,'cashier'); ?>
 	</div>
 
