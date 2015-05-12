@@ -26,14 +26,26 @@ $this->menu=array(
 	'data'=>$model,
 	'attributes'=>array(
 		'name',
-		'wager',
-		'thr',
-		'bonus',
-		'cashier',
 		array(
-                   'name'=>'userlog',
-                   'value'=>lookup::UserNameFromUserID($model->userlog)
-                ),
+			'name'=>'wage',
+			'value'=>lookup::getWageStat($model->wage),		
+		),
+		array(
+			'name'=>'thr',
+			'value'=>lookup::getYesNo($model->thr),
+		),
+		array(
+			'name'=>'bonus',
+			'value'=>lookup::getYesNo($model->bonus),
+		),
+		array(
+			'name'=>'cashier',
+			'value'=>lookup::getYesNo($model->cashier),
+		),
+		array(
+			'name'=>'userlog',
+			'value'=>lookup::UserNameFromUserID($model->userlog)
+        ),
 		'datetimelog',
 	),
 )); ?>

@@ -688,6 +688,28 @@ class lookup extends CComponent {
 		else
 			return $info['regnum'].' - '.$info['idatetime'];
 	}
+	
+	public static function getYesNo($stat)
+	{
+		switch ($stat) {
+			case '0': return 'Tidak';
+			break;
+			case '1': return 'Ya'; 	
+			break;
+		}
+	}
+	
+	public static function getWageStat($stat)
+	{
+		switch ($stat) {
+			case '0': return 'Tidak';
+			break;
+			case '1': return 'Tetap';
+			break;
+			case '2': return 'Kehadiran';
+			break;
+		}
+	}
 }
 
 
