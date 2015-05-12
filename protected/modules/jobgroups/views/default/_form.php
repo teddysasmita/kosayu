@@ -30,8 +30,7 @@
 	<div class="row">
 		<?php echo $form->labelEx($model,'wager'); ?>
 		<?php echo $form->dropDownList($model, 'wager', array('0'=>'Tidak', '1'=>'Tetap', '2'=>'Kehadiran')); ?>
-		<?php echo $form->error($model,'wager'); ?><?php echo $form->dropDownList($model, 'wager', array('0'=>'Tidak', '1'=>'Tetap', '2'=>'Kehadiran')); ?>
-		
+		<?php echo $form->error($model,'wager'); ?>		
 	</div>
 
 	<div class="row">
