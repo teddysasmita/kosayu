@@ -52,7 +52,7 @@
 				->select('id, name')->from('jobgroups')
 				->queryAll();
 			$jobdata = CHtml::listData($jobdata, 'id', 'name');
-			echo $form->dropDownList(model,'idjobgroup',
+			echo $form->dropDownList($model,'idjobgroup',
 				$jobdata, array('empty'=>'Harap Pilih')); 
 		?>
 		<?php echo $form->error($model,'idjobgroup'); ?>
