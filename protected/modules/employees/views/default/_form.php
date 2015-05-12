@@ -61,7 +61,7 @@
 	<div class="row">
 		<?php echo $form->labelEx($model,'startdate'); ?>
 		<?php $this->widget('zii.widgets.jui.CJuiDatePicker',array(
-                  'name'=>'startdate',
+                  'name'=>'Employees[startdate]',
                      // additional javascript options for the date picker plugin
                   'options'=>array(
                      'showAnim'=>'fold',
@@ -91,7 +91,7 @@
 	<div class="row">
 		<?php echo $form->labelEx($model,'enddate'); ?>
 		<?php $this->widget('zii.widgets.jui.CJuiDatePicker',array(
-                  'name'=>'enddate',
+                  'name'=>'Employees[enddate]',
                      // additional javascript options for the date picker plugin
                   'options'=>array(
                      'showAnim'=>'fold',
