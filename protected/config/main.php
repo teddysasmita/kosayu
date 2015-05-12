@@ -87,7 +87,7 @@ return array(
 			'cashins',
 			'consignpayment',
 			'employees',
-			'jobgroups'
+			'jobgroups',
         ),
 
         
