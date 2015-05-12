@@ -43,14 +43,14 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'thr'); ?>
-		<?php echo $form->dropDownList($model, 'bonus', array('0'=>'Tidak', '1'=>'Ya'),
+		<?php echo $form->dropDownList($model, 'thr', array('0'=>'Tidak', '1'=>'Ya'),
 				array('empty'=>'Harap Pilih')); ?>
 		<?php echo $form->error($model,'thr'); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'cashier'); ?>
-		<?php echo $form->dropDownList($model, 'bonus', array('0'=>'Tidak', '1'=>'Ya'),
+		<?php echo $form->dropDownList($model, 'cashier', array('0'=>'Tidak', '1'=>'Ya'),
 				array('empty'=>'Harap Pilih')); ?>
 		<?php echo $form->error($model,'cashier'); ?>
 	</div>
