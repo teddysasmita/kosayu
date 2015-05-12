@@ -27,8 +27,8 @@ $this->menu=array(
 	'attributes'=>array(
 		'name',
 		array(
-			'name'=>'wage',
-			'value'=>lookup::getWageStat($model->wage),		
+			'name'=>'wager',
+			'value'=>lookup::getWageStat($model->wager),		
 		),
 		array(
 			'name'=>'thr',
