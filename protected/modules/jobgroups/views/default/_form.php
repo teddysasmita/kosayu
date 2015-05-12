@@ -7,7 +7,7 @@
 <div class="form">
 
 <?php $form=$this->beginWidget('CActiveForm', array(
-	'id'=>'jobgroups-form',
+	'id'=>'jobgroups-_form-form',
 	// Please note: When you enable ajax validation, make sure the corresponding
 	// controller action is handling ajax validation correctly.
 	// See class documentation of CActiveForm for details on this,
@@ -29,25 +29,26 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'wager'); ?>
-		<?php echo $form->textField($model,'wager'); ?>
-		<?php echo $form->error($model,'wager'); ?>
+		<?php echo $form->dropDownList($model, 'wager', array('0'=>'Tidak', '1'=>'Tetap', '2'=>'Kehadiran')); ?>
+		<?php echo $form->error($model,'wager'); ?><?php echo $form->dropDownList($model, 'wager', array('0'=>'Tidak', '1'=>'Tetap', '2'=>'Kehadiran')); ?>
+		
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'bonus'); ?>
-		<?php echo $form->textField($model,'bonus'); ?>
+		<?php echo $form->dropDownList($model, 'bonus', array('0'=>'Tidak', '1'=>'Ya')); ?>
 		<?php echo $form->error($model,'bonus'); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'thr'); ?>
-		<?php echo $form->textField($model,'thr'); ?>
+		<?php echo $form->dropDownList($model, 'bonus', array('0'=>'Tidak', '1'=>'Ya')); ?>
 		<?php echo $form->error($model,'thr'); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'cashier'); ?>
-		<?php echo $form->textField($model,'cashier'); ?>
+		<?php echo $form->dropDownList($model, 'bonus', array('0'=>'Tidak', '1'=>'Ya')); ?>
 		<?php echo $form->error($model,'cashier'); ?>
 	</div>
 
