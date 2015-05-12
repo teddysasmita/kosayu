@@ -275,6 +275,8 @@ class DefaultController extends Controller
         {
             $idmaker=new idmaker();
             $model->id=$idmaker->getcurrentID2();  
+            $model->userlog=Yii::app()->user->id;
+            $model->datetimelog=$idmaker->getDateTime();
         }
         
         protected function afterPost(& $model)
