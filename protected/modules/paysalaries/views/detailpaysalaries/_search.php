@@ -1,6 +1,6 @@
 <?php
-/* @var $this DetailpurchasesController */
-/* @var $model Detailpurchases */
+/* @var $this DetailpaysalariesController */
+/* @var $model Detailpaysalaries */
 /* @var $form CActiveForm */
 ?>
 
@@ -22,28 +22,13 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'iditem'); ?>
-		<?php echo $form->textField($model,'iditem',array('size'=>21,'maxlength'=>21)); ?>
+		<?php echo $form->label($model,'name'); ?>
+		<?php echo $form->textField($model,'name'); ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'idunit'); ?>
-		<?php echo $form->textField($model,'idunit',array('size'=>21,'maxlength'=>21)); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->label($model,'qty'); ?>
-		<?php echo $form->textField($model,'qty'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->label($model,'discount'); ?>
-		<?php echo $form->textField($model,'discount'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->label($model,'price'); ?>
-		<?php echo $form->textField($model,'price'); ?>
+		<?php echo $form->label($model,'amount'); ?>
+		<?php echo $form->textField($model,'amount'); ?>
 	</div>
 
 	<div class="row">

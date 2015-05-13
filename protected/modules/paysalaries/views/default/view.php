@@ -1,6 +1,6 @@
 <?php
-/* @var $this PurchasesController */
-/* @var $model Purchases */
+/* @var $this PaysalariesController */
+/* @var $model Paysalaries */
 
 $this->breadcrumbs=array(
    'Proses'=>array('/site/proses'),
@@ -15,13 +15,13 @@ $this->menu=array(
 	array('label'=>'Pencarian Data', 'url'=>array('admin')),
       array('label'=>'Sejarah', 'url'=>array('history', 'id'=>$model->id)),
       array('label'=>'Data Detil yang dihapus', 
-         'url'=>array('/purchasesorder/detailpurchases/deleted', 'id'=>$model->id)),
+         'url'=>array('/paysalariesorder/detailpaysalaries/deleted', 'id'=>$model->id)),
 	array('label'=>'Cetak', 'url'=>array('print', 'id'=>$model->id)),
 		
 );
 ?>
 
-<h1>Pembelian dari Pemasok</h1>
+<h1>Pembayaran Gaji Karyawan</h1>
 
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,
@@ -31,23 +31,9 @@ $this->menu=array(
 		'idatetime',
 		'idorder',
 		array(
-              'label'=>'Nama Pemasok',
-              'value'=>lookup::SupplierNameFromSupplierID($model->idsupplier)
+              'label'=>'Nama Karyawan',
+              'value'=>lookup::EmployeeNameFromID($model->idemployee)
             ),
-		array(
-                'label'=>'Total',
-                'value'=>number_format($model->total)
-            ),
-        array(
-            'label'=>'Diskon',
-             'value'=>number_format($model->discount)
-         ),
-		'pdatetime',
-		array(
-                'label'=>'Status',
-                'value'=>lookup::orderStatus($model->status)
-            ),
-		'remark',
 		array(
                'label'=>'Userlog',
                'value'=>lookup::UserNameFromUserID($model->userlog),
@@ -58,9 +44,9 @@ $this->menu=array(
 )); ?>
 
 <?php 
-   $count=Yii::app()->db->createCommand("select count(*) from detailpurchases where id='$model->id'")
+   $count=Yii::app()->db->createCommand("select count(*) from detailpaysalaries where id='$model->id'")
       ->queryScalar();
-   $sql="select * from detailpurchases where id='$model->id'";
+   $sql="select * from detailpaysalaries where id='$model->id'";
 
    $dataProvider=new CSqlDataProvider($sql,array(
           'totalItemCount'=>$count,
@@ -69,33 +55,14 @@ $this->menu=array(
          'dataProvider'=>$dataProvider,
          'columns'=>array(  
          	array(
-                  'header'=>'Kode Batch',
-                  'name'=>'batchcode',
+                  'header'=>'Komponen',
+                  'name'=>'name',
               ),
          	array(
-                  'header'=>'Item Name',
-                  'name'=>'iditem',
-                  'value'=>"lookup::ItemNameFromItemID(\$data['iditem'])"
+                  'header'=>'Jumlah',
+                  'name'=>'amount',
+                  'type'=>'number'
               ),
-             array(
-                 'header'=>'Qty',
-                 'name'=>'qty',
-             ),
-             array(
-                 'header'=>'Harga @',
-                 'name'=>'price',
-                 'type'=>'number',
-             ),
-             array(
-                 'header'=>'Disc',
-                 'name'=>'discount',
-                 'type'=>'number'
-             ),
-			array(
-         		'header'=>'Hrg Jual @',
-         		'name'=>'sellprice',
-         		'type'=>'number',
-         	),
             array(
                'class'=>'CButtonColumn',
                'buttons'=> array(
@@ -106,7 +73,7 @@ $this->menu=array(
                      'visible'=>'false'
                   )
                ),
-               'viewButtonUrl'=>"Action::decodeViewDetailPurchasesOrderUrl(\$data, $model->regnum)",
+               'viewButtonUrl'=>"Action::decodeViewDetailPaySalaryUrl(\$data, $model->regnum)",
             )
          ),
    ));

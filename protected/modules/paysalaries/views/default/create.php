@@ -1,6 +1,6 @@
 <?php
-/* @var $this PurchasesController */
-/* @var $model Purchases */
+/* @var $this PaysalariesController */
+/* @var $model Paysalaries */
 
 $this->breadcrumbs=array(
       'Proses'=>array('/site/proses'),
@@ -11,7 +11,7 @@ $this->breadcrumbs=array(
 $this->menu=array(
 	//array('label'=>'Daftar', 'url'=>array('index')),
 	//array('label'=>'Pengaturan', 'url'=>array('admin')),
-      array('label'=>'Tambah Detil', 'url'=>array('detailpurchases/create', 
+      array('label'=>'Tambah Detil', 'url'=>array('detailpaysalaries/create', 
          'id'=>$model->id),
           'linkOptions'=>array('id'=>'adddetail')), 
 );
@@ -20,7 +20,7 @@ $jq=<<<EOH
    $('#adddetail').click(function(event){
      var mainform;
      var hiddenvar;
-     mainform=$('#purchases-form');
+     mainform=$('#paysalaries-form');
      $('#command').val('adddetail');
      mainform.submit();
      event.preventDefault();
@@ -29,6 +29,6 @@ EOH;
 Yii::app()->clientScript->registerScript('myscript', $jq, CClientScript::POS_READY);
 ?>
 
-<h1>Pembelian dari Pemasok</h1>
+<h1>Pembayaran Gaji Karyawan</h1>
 
 <?php $this->renderPartial('_form', array('model'=>$model, 'id'=>$model->id, 'command'=>'create')); ?>

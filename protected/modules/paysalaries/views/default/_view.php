@@ -1,6 +1,6 @@
 <?php
-/* @var $this PurchasesController */
-/* @var $data Purchases */
+/* @var $this PaysalariesController */
+/* @var $data Paysalaries */
 ?>
 
 <div class="view">
@@ -13,27 +13,18 @@
 	<?php echo CHtml::encode($data->idatetime); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('idorder')); ?>:</b>
-	<?php echo CHtml::encode($data->idorder); ?>
+	<b><?php echo CHtml::encode($data->getAttributeLabel('idemployee')); ?>:</b>
+	<?php echo CHtml::encode(lookup::EmployeeNameFromID($data->idemployee)); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('idsupplier')); ?>:</b>
-	<?php echo CHtml::encode(lookup::SupplierNameFromSupplierID($data->idsupplier)); ?>
-	<br />
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('total')); ?>:</b>
-	<?php echo CHtml::encode(number_format($data->total)); ?>
-	<br />
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('discount')); ?>:</b>
-	<?php echo CHtml::encode(number_format($data->discount)); ?>
+	<b><?php echo CHtml::encode($data->getAttributeLabel('startdate')); ?>:</b>
+	<?php echo CHtml::encode($data->startdate); ?>
 	<br />
 	
-	<b><?php echo CHtml::encode($data->getAttributeLabel('pdatetime')); ?>:</b>
-	<?php echo CHtml::encode($data->pdatetime); ?>
+	<b><?php echo CHtml::encode($data->getAttributeLabel('enddate')); ?>:</b>
+	<?php echo CHtml::encode($data->enddate); ?>
 	<br />
 	
-
       <b><?php echo CHtml::encode($data->getAttributeLabel('userlog')); ?>:</b>
 	<?php echo CHtml::encode(lookup::UserNameFromUserID($data->userlog)); ?>
 	<br />

@@ -1,6 +1,6 @@
 <?php
-/* @var $this PurchasesController */
-/* @var $model Purchases */
+/* @var $this PaysalariesController */
+/* @var $model Paysalaries */
 
 $this->breadcrumbs=array(
       'Proses'=>array('/site/proses'),
@@ -10,19 +10,19 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	//array('label'=>'List Purchases', 'url'=>array('index')),
-	//array('label'=>'Create Purchases', 'url'=>array('create')),
-	//array('label'=>'View Purchases', 'url'=>array('view', 'id'=>$model->id)),
-	//array('label'=>'Manage Purchases', 'url'=>array('admin')),
-    array('label'=>'Tambah Detil', 'url'=>array('detailpurchases/create', 
+	//array('label'=>'List Paysalaries', 'url'=>array('index')),
+	//array('label'=>'Create Paysalaries', 'url'=>array('create')),
+	//array('label'=>'View Paysalaries', 'url'=>array('view', 'id'=>$model->id)),
+	//array('label'=>'Manage Paysalaries', 'url'=>array('admin')),
+    array('label'=>'Tambah Detil', 'url'=>array('detailpaysalaries/create', 
        'id'=>$model->id, 'command'=>'update', 'regnum'=>$model->regnum),
           'linkOptions'=>array('id'=>'adddetail')), 
-   array('label'=>'Tambah Detil2', 'url'=>array('detailpurchases2/create', 
+   array('label'=>'Tambah Detil2', 'url'=>array('detailpaysalaries2/create', 
       'id'=>$model->id, 'command'=>'update', 'regnum'=>$model->regnum),
           'linkOptions'=>array('id'=>'adddetail2')) 
 );
 ?>
 
-<h1>Pembelian dari Pemasok</h1>
+<h1>Pembayaran Gaji Karyawan</h1>
 
 <?php $this->renderPartial('_form', array('model'=>$model, 'command'=>'update')); ?>

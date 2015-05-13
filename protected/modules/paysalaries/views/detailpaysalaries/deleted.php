@@ -1,6 +1,6 @@
 <?php
-/* @var $this DetailpurchasesController */
-/* @var $model Detailpurchases */
+/* @var $this DetailpaysalariesController */
+/* @var $model Detailpaysalaries */
 
 $this->breadcrumbs=array(
       'Proses'=>array('/site/proses'),
@@ -10,14 +10,14 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	/*array('label'=>'List Detailpurchases', 'url'=>array('index')),
-	array('label'=>'Create Detailpurchases', 'url'=>array('create')),
+	/*array('label'=>'List Detailpaysalaries', 'url'=>array('index')),
+	array('label'=>'Create Detailpaysalaries', 'url'=>array('create')),
       */
  );
 
 ?>
 
-<h1>Pembelian dari Pemasok</h1>
+<h1>Detil Pembayaran Gaji Karyawan</h1>
 
 <p>
 You may optionally enter a comparison operator (<b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>&lt;&gt;</b>
@@ -27,7 +27,7 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 <?php
     
     $data=Yii::app()->tracker->createCommand()->
-       select('a.*')->from('detailpurchases a')->join('userjournal b', 'b.id=a.idtrack')
+       select('a.*')->from('detailpaysalaries a')->join('userjournal b', 'b.id=a.idtrack')
        ->where('b.action=:action and a.id=:id', array(':action'=>'d', 'id'=>$id))->queryAll();
     $ap=new CArrayDataProvider($data);
 ?>
@@ -35,16 +35,13 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 
 <?php
  $this->widget('zii.widgets.grid.CGridView', array(
-	'id'=>'detailpurchases-grid',
+	'id'=>'detailpaysalaries-grid',
 	'dataProvider'=>$ap,
 	'columns'=>array(
 		'iddetail',
 		'id',
-		'iditem',
-		'idunit',
-		'price',
-		'discount',
-      'qty',
+		'name',
+		'amount',
 		/*
 		'userlog',
 		'datetimelog',
@@ -59,7 +56,7 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
                           'visible'=>'false',
                         ),
                     ),
-                   'updateButtonUrl'=>"Action::decodeRestoreHistoryCustomerUrl(\$data)",
+                   'updateButtonUrl'=>"Action::decodeRestoreHistoryDetailPaySalaryUrl(\$data)",
 		),
 	),
 )); ?>

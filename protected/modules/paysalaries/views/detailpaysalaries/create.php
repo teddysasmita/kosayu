@@ -1,6 +1,6 @@
 <?php
-/* @var $this DetailpurchasesController */
-/* @var $model Detailpurchases */
+/* @var $this DetailpaysalariesController */
+/* @var $model Detailpaysalaries */
 
 $master=Yii::app()->session['master'];
 if($master=='create')
@@ -19,6 +19,6 @@ else if ($master=='update')
 
 ?>
 
-<h1>Pembelian dari Pemasok</h1>
+<h1>Detil Pembayaran Gaji Karyawan</h1>
 
 <?php $this->renderPartial('_form', array('model'=>$model, 'mode'=>'Create')); ?>

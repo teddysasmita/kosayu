@@ -1,6 +1,6 @@
 <?php
-/* @var $this PurchasesController */
-/* @var $model Purchases */
+/* @var $this PaysalariesController */
+/* @var $model Paysalaries */
 
 $this->breadcrumbs=array(
       'Proses'=>array('/site/proses'),
@@ -15,7 +15,7 @@ $this->menu=array(
 
 ?>
 
-<h1>Pembelian dari Pemasok</h1>
+<h1>Pembayaran Gaji Karyawan</h1>
 
 <p>
 You may optionally enter a comparison operator (<b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>&lt;&gt;</b>
@@ -25,7 +25,7 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 <?php
     
     $data=Yii::app()->tracker->createCommand()->
-       select('a.*')->from('purchases a')->join('userjournal b', 'b.id=a.idtrack')
+       select('a.*')->from('paysalaries a')->join('userjournal b', 'b.id=a.idtrack')
        ->where('b.action=:action', array(':action'=>'d'))->queryAll();
     $ap=new CArrayDataProvider($data);
 ?>
@@ -33,15 +33,13 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 
 <?php
  $this->widget('zii.widgets.grid.CGridView', array(
-	'id'=>'purchases-grid',
+	'id'=>'paysalaries-grid',
 	'dataProvider'=>$ap,
 	'columns'=>array(
 		'id',
 		'regnum',
 		'idatetime',
-		'idorder',
-		'idsupplier',
-		'total',
+		'idemployee',
 		/*
 		'discount',
 		'status',
@@ -59,7 +57,7 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
                           'visible'=>'false',
                         ),
                     ),
-                   'updateButtonUrl'=>"Action::decodeRestoreHistoryCustomerUrl(\$data)",
+                   'updateButtonUrl'=>"Action::decodeRestoreHistoryPaySalaryUrl(\$data)",
 		),
 	),
 )); ?>

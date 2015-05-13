@@ -1,6 +1,6 @@
 <?php
-/* @var $this DetailpurchasesController */
-/* @var $model Detailpurchases */
+/* @var $this DetailpaysalariesController */
+/* @var $model Detailpaysalaries */
 
 
  $this->breadcrumbs=array(
@@ -11,36 +11,24 @@
  );
 
 $this->menu=array(
-	/*array('label'=>'List Detailpurchases', 'url'=>array('index')),
-	array('label'=>'Create Detailpurchases', 'url'=>array('create')),
-	array('label'=>'Update Detailpurchases', 'url'=>array('update', 'id'=>$model->iddetail)),
-	array('label'=>'Delete Detailpurchases', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->iddetail),'confirm'=>'Are you sure you want to delete this item?')),
-	array('label'=>'Manage Detailpurchases', 'url'=>array('admin')),
-   array('label'=>'Ubah Detil', 'url'=>array('/purchasesorder/detailpurchases/update',
+	/*array('label'=>'List Detailpaysalaries', 'url'=>array('index')),
+	array('label'=>'Create Detailpaysalaries', 'url'=>array('create')),
+	array('label'=>'Update Detailpaysalaries', 'url'=>array('update', 'id'=>$model->iddetail)),
+	array('label'=>'Delete Detailpaysalaries', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->iddetail),'confirm'=>'Are you sure you want to delete this item?')),
+	array('label'=>'Manage Detailpaysalaries', 'url'=>array('admin')),
+   array('label'=>'Ubah Detil', 'url'=>array('/paysalariesorder/detailpaysalaries/update',
       'iddetail'=>$model->iddetail)),*/
    array('label'=>'Sejarah', 'url'=>array('history', 'iddetail'=>$model->iddetail)),
 );
 ?>
 
-<h1>Pembelian dari Pemasok</h1>
+<h1>Detil Pembayaran Gaji Karyawan</h1>
 
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,
 	'attributes'=>array(
-		//'iddetail',
-		//'id',
-		array(
-               'label'=>'Nama Barang',
-               'value'=>lookup::ItemNameFromItemID($model->iditem)
-            ),
-		//'idunit',
-		'qty',
-		'discount',
-		array(
-               'label'=>'Harga',
-               'type'=>'number',
-               'value'=>$model->price
-            ),
+		'name',
+		'amount',
 		array(
                'label'=>'Userlog',
                'value'=>lookup::UserNameFromUserID($model->userlog),

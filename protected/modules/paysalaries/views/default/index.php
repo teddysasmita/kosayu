@@ -1,5 +1,5 @@
 <?php
-/* @var $this PurchasesController */
+/* @var $this PaysalariesController */
 /* @var $dataProvider CActiveDataProvider */
 
 $this->breadcrumbs=array(
@@ -15,7 +15,7 @@ $this->menu=array(
 );
 ?>
 
-<h1>Pembelian dari Pemasok</h1>
+<h1>Pembayaran Gaji Karyawan</h1>
 
 <?php $this->widget('zii.widgets.CListView', array(
 	'dataProvider'=>$dataProvider,

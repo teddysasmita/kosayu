@@ -1,6 +1,6 @@
 <?php
-/* @var $this PurchasesController */
-/* @var $model Purchases */
+/* @var $this PaysalariesController */
+/* @var $model Paysalaries */
 /* @var $form CActiveForm */
 ?>
 
@@ -27,33 +27,8 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'idorder'); ?>
-		<?php echo $form->textField($model,'idorder',array('size'=>20,'maxlength'=>19)); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->label($model,'idsupplier'); ?>
-		<?php echo $form->textField($model,'idsupplier',array('size'=>21,'maxlength'=>21)); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->label($model,'total'); ?>
-		<?php echo $form->textField($model,'total'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->label($model,'discount'); ?>
-		<?php echo $form->textField($model,'discount'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->label($model,'status'); ?>
-		<?php echo $form->textField($model,'status',array('size'=>10,'maxlength'=>10)); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->label($model,'remark'); ?>
-		<?php echo $form->textArea($model,'remark',array('rows'=>6, 'cols'=>50)); ?>
+		<?php echo $form->label($model,'idemployee'); ?>
+		<?php echo $form->textField($model,'idemployee',array('size'=>21,'maxlength'=>21)); ?>
 	</div>
 
 	<div class="row">

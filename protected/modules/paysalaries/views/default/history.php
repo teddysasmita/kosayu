@@ -1,6 +1,6 @@
 <?php
-/* @var $this PurchasesController */
-/* @var $model Purchases */
+/* @var $this PaysalariesController */
+/* @var $model Paysalaries */
 
 $this->breadcrumbs=array(
    'Proses'=>array('/site/proses'),
@@ -15,23 +15,21 @@ $this->menu=array(
 
 ?>
 
-<h1>Pembelian dari Pemasok</h1>
+<h1>Pembayaran Gaji Karyawan</h1>
 
 <?php    $data=Yii::app()->tracker->createCommand()->
-       select()->from('purchases')->where('id=:id',array(':id'=>$model->id))->queryAll();
+       select()->from('paysalaries')->where('id=:id',array(':id'=>$model->id))->queryAll();
     $ap=new CArrayDataProvider($data);
  ?> 
 
 <?php $this->widget('zii.widgets.grid.CGridView', array(
-	'id'=>'purchases-grid',
+	'id'=>'paysalaries-grid',
 	'dataProvider'=>$ap,
 	'columns'=>array(
 		'id',
 		'regnum',
 		'idatetime',
-		'idorder',
-		'idsupplier',
-		'total',
+		'idemployee',
 		/*
 		'discount',
 		'status',
@@ -49,7 +47,7 @@ $this->menu=array(
                           'visible'=>'false',
                         ),
                     ),
-                   'updateButtonUrl'=>"Action::decodeRestoreHistoryCustomerUrl(\$data)",
+                   'updateButtonUrl'=>"Action::decodeRestoreHistoryPaySalaryUrl(\$data)",
 		),
 	),
 )); ?>

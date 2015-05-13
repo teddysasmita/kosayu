@@ -1,42 +1,39 @@
 <?php
-/* @var $this DetailpurchasesController */
-/* @var $model Detailpurchasesorders */
+/* @var $this DetailpaysalariesController */
+/* @var $model Detailpaysalariesorders */
 
 $this->breadcrumbs=array(
    'Proses'=>array('/site/proses'),
    'Daftar'=>array('default/index'),
    'Lihat Data'=>array('default/view', 'id'=>$model->id),
    'Ubah Data'=>array('default/update', 'id'=>$model->id),
-   'Lihat Detil'=>array('/purchasesorder/detailpurchasesorders/view',
+   'Lihat Detil'=>array('/paysalariesorder/detailpaysalariesorders/view',
          'iddetail'=>$model->iddetail),
    'Sejarah'
 );
 
 $this->menu=array(
-	//array('label'=>'List Detailpurchasesorders', 'url'=>array('index')),
-	//array('label'=>'Create Detailpurchasesorders', 'url'=>array('create')),
+	//array('label'=>'List Detailpaysalariesorders', 'url'=>array('index')),
+	//array('label'=>'Create Detailpaysalariesorders', 'url'=>array('create')),
 );
 
 ?>
 
-<h1>Pembelian dari Pemasok</h1>
+<h1>Detil Pembayaran Gaji Karyawan</h1>
 
 <?php    $data=Yii::app()->tracker->createCommand()->
-       select()->from('detailpurchasesorders')->where('id=:id',array(':id'=>$model->iddetail))->queryAll();
+       select()->from('detailpaysalaries')->where('id=:id',array(':id'=>$model->iddetail))->queryAll();
     $ap=new CArrayDataProvider($data);
  ?> 
 
 <?php $this->widget('zii.widgets.grid.CGridView', array(
-	'id'=>'detailpurchasesorders-grid',
+	'id'=>'detailpaysalariesorders-grid',
 	'dataProvider'=>$ap,
 	'columns'=>array(
 		'iddetail',
 		'id',
-		'iditem',
-		'idunit',
-      'price',
-		'discount',
-      'qty',
+		'name',
+		'amount',
 		/*
 		
 		'userlog',
@@ -52,7 +49,7 @@ $this->menu=array(
                           'visible'=>'false',
                         ),
                     ),
-                   'updateButtonUrl'=>"Action::decodeRestoreHistoryCustomerUrl(\$data)",
+                   'updateButtonUrl'=>"Action::decodeRestoreHistoryDetailPaySalaryUrl(\$data)",
 		),
 	),
 )); ?>

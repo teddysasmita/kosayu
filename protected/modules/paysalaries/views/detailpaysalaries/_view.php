@@ -1,6 +1,6 @@
 <?php
-/* @var $this DetailpurchasesController */
-/* @var $data Detailpurchases */
+/* @var $this DetailpaysalariesController */
+/* @var $data Detailpaysalaries */
 ?>
 
 <div class="view">
@@ -13,24 +13,12 @@
 	<?php echo CHtml::encode($data->id); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('iditem')); ?>:</b>
-	<?php echo CHtml::encode($data->iditem); ?>
+	<b><?php echo CHtml::encode($data->getAttributeLabel('name')); ?>:</b>
+	<?php echo CHtml::encode($data->name); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('idunit')); ?>:</b>
-	<?php echo CHtml::encode($data->idunit); ?>
-	<br />
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('qty')); ?>:</b>
-	<?php echo CHtml::encode(number_format($data->qty)); ?>
-	<br />
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('discount')); ?>:</b>
-	<?php echo CHtml::encode(number_format($data->discount)); ?>
-	<br />
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('price')); ?>:</b>
-	<?php echo CHtml::encode(number_format($data->price)); ?>
+	<b><?php echo CHtml::encode($data->getAttributeLabel('amount')); ?>:</b>
+	<?php echo CHtml::encode(number_format($data->amount)); ?>
 	<br />
 
 	<?php /*
