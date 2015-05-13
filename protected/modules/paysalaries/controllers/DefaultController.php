@@ -559,8 +559,6 @@ class DefaultController extends Controller
             $model->id=$idmaker->getCurrentID2();
             $model->idatetime=$idmaker->getDateTime();
             $model->regnum=$idmaker->getRegNum($this->formid);
-            $lookup=new lookup();
-            $model->status=$lookup->reverseOrderStatus('Belum Diproses');
         }
         
         protected function afterPost(& $model)
