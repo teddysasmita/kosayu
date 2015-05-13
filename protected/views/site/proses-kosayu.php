@@ -35,3 +35,6 @@ $this->pageTitle=Yii::app()->name;
 <h3><?php echo CHtml::link('Pencatatan Kas Masuk', Yii::app()->createUrl('cashins'))?></h3>
 <h3><?php echo CHtml::link('Pembayaran Pada Pemasok', Yii::app()->createUrl('purchasespayment'))?></h3>
 <h3><?php echo CHtml::link('Pembayaran Konsinyasi', Yii::app()->createUrl('consignpayment'))?></h3>
+
+<h2>Bagian Personalia</h2>
+<h3><?php echo CHtml::link('Pembayaran Gaji Karyawan', Yii::app()->createUrl('paysalaries'))?></h3>
