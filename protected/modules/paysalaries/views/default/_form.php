@@ -32,7 +32,7 @@
    			$('#paysalaries-form').submit();
       	});
 EOS;
-   Yii::app()->clientScript->registerScript("supplierScript", $supplierScript, CClientscript::POS_READY);
+   Yii::app()->clientScript->registerScript("employeeScript", $employeeScript, CClientscript::POS_READY);
 
    if($command=='create') 
       $form=$this->beginWidget('CActiveForm', array(
