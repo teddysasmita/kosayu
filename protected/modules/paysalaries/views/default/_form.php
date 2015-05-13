@@ -14,7 +14,7 @@
       ->queryAll();
    foreach($employees as $row) {
       $employeeids[]=$row['id'];
-      $employeenames[]=$row['code'].'-'.$row['firstname'].' '.$row['lastname'];
+      $employeenames[]=$row['firstname'].' '.$row['lastname'];
    }
    $employeeids=CJSON::encode($employeeids);
    $employeenames=CJSON::encode($employeenames);
