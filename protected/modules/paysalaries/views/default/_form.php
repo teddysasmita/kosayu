@@ -83,18 +83,18 @@ EOS;
 	<div class="row">
 		<?php echo $form->labelEx($model,'idemployee'); ?>
 		<?php 
-               $suppliers=Yii::app()->db->createCommand()
+               $employees=Yii::app()->db->createCommand()
                   ->select("id,firstname,lastname")
                   ->from("employees")
                   ->order("firstname, lastname")   
                   ->queryAll();
-               foreach($suppliers as $row) {
-                  $suppliername[]=$row['firstname'].' '.$row['lastname'];
+               foreach($employees as $row) {
+                  $employeename[]=$row['firstname'].' '.$row['lastname'];
                }
                $this->widget("zii.widgets.jui.CJuiAutoComplete", array(
                    'name'=>'employeename',
                    'source'=>$employeename,
-                 'value'=>lookup::EmployeeNameFromID($model->idsupplier)
+                 'value'=>lookup::EmployeeNameFromID($model->idemployee)
                ));
             ?>
 		<?php echo $form->error($model,'idemployee'); ?>
