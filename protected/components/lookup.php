@@ -716,6 +716,23 @@ class lookup extends CComponent {
 			break;
 		}
 	}
+	
+	public static function getComponentName($componentid)
+	{
+		switch ($stat) {
+			case '1': return 'Gaji Pokok';
+			break;
+			case '2': return 'Bonus';
+			break;
+			case '3': return 'THR';
+			break;
+			case '4': return 'Tunjangan Kasir';
+			break;
+			case '5': return 'Sanksi';
+			break;
+		}
+	}
+	
 }
 
 

@@ -6,7 +6,7 @@
  * The followings are the available columns in table 'detailpaysalaries':
  * @property string $iddetail
  * @property string $id
- * @property string $name
+ * @property string $componentname
  * @property double $amount
  * @property string $userlog
  * @property string $datetimelog
@@ -29,14 +29,14 @@ class Detailpaysalaries extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('iddetail, id, name, amount, userlog, datetimelog', 'required'),
+			array('iddetail, id, componentname, amount, userlog, datetimelog', 'required'),
 			array('amount', 'numerical'),
 			array('iddetail, id, userlog', 'length', 'max'=>21),
-			array('name', 'length', 'max'=>50),
+			array('componentname', 'length', 'max'=>1),
 			array('datetimelog', 'length', 'max'=>19),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('iddetail, id, name, amount, userlog, datetimelog', 'safe', 'on'=>'search'),
+			array('iddetail, id, componentname, amount, userlog, datetimelog', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -59,7 +59,7 @@ class Detailpaysalaries extends CActiveRecord
 		return array(
 			'iddetail' => 'Iddetail',
 			'id' => 'ID',
-			'name' => 'Nama',
+			'componentname' => 'Nama',
 			'amount' => 'Jumlah',
 			'userlog' => 'Userlog',
 			'datetimelog' => 'Datetimelog',
@@ -86,7 +86,7 @@ class Detailpaysalaries extends CActiveRecord
 
 		$criteria->compare('iddetail',$this->iddetail,true);
 		$criteria->compare('id',$this->id,true);
-		$criteria->compare('name',$this->name,true);
+		$criteria->compare('componentname',$this->componentname,true);
 		$criteria->compare('amount',$this->amount);
 		$criteria->compare('userlog',$this->userlog,true);
 		$criteria->compare('datetimelog',$this->datetimelog,true);
