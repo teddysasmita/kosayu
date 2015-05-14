@@ -34,6 +34,24 @@
 	</div>
 	
 	<div class="row">
+		<?php echo $form->labelEx($model,'bonusamount'); ?>
+		<?php echo $form->textField($model,'bonusamount'); ?>
+		<?php echo $form->error($model,'bonusamount'); ?>
+	</div>
+	
+	<div class="row">
+		<?php echo $form->labelEx($model,'cashieramount'); ?>
+		<?php echo $form->textField($model,'cashieramount'); ?>
+		<?php echo $form->error($model,'cashieramount'); ?>
+	</div>
+	
+	<div class="row">
+		<?php echo $form->labelEx($model,'thrqty'); ?>
+		<?php echo $form->textField($model,'thrqty'); ?>
+		<?php echo $form->error($model,'thrqty'); ?>
+	</div>
+	
+	<div class="row">
 		<?php echo $form->labelEx($model,'wager'); ?>
 		<?php echo $form->dropDownList($model, 'wager', array('0'=>'Tidak', '1'=>'Tetap', '2'=>'Kehadiran'),
 				array('empty'=>'Harap Pilih')); ?>

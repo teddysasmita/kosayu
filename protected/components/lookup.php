@@ -728,7 +728,17 @@ class lookup extends CComponent {
 			break;
 			case '4': return 'Tunjangan Kasir';
 			break;
-			case '5': return 'Sanksi';
+			case '5': return 'Lembur';
+			break;
+			case '6': return 'Terlambat';
+			break;
+			case '7': return 'Piutang';
+			break;
+			case '8': return 'Transport';
+			break;
+			case '9': return 'Penerimaan Bayar Piutang';
+			break;
+			case 'A': return 'BPJS';
 			break;
 		}
 	}
