@@ -6,6 +6,7 @@
  * The followings are the available columns in table 'jobgroups':
  * @property string $id
  * @property string $name
+ * @property double $wageamount
  * @property string $wager
  * @property string $bonus
  * @property string $thr
@@ -32,13 +33,14 @@ class Jobgroups extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('id, name, wager, bonus, thr, cashier, userlog, datetimelog', 'required'),
+			array('wageamount', 'numerical'),
 			array('id, userlog', 'length', 'max'=>21),
 			array('name', 'length', 'max'=>100),
 			array('wager, bonus, thr, cashier', 'length', 'max'=>1),
 			array('datetimelog', 'length', 'max'=>19),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, name, wager, bonus, thr, cashier, userlog, datetimelog', 'safe', 'on'=>'search'),
+			array('id, name, wageamount, wager, bonus, thr, cashier, userlog, datetimelog', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -61,6 +63,7 @@ class Jobgroups extends CActiveRecord
 		return array(
 			'id' => 'ID',
 			'name' => 'Nama',
+			'wageamount' => 'Jumlah Gaji Pokok',
 			'wager' => 'Gaji Pokok',
 			'bonus' => 'Bonus',
 			'thr' => 'Thr',
@@ -90,6 +93,7 @@ class Jobgroups extends CActiveRecord
 
 		$criteria->compare('id',$this->id,true);
 		$criteria->compare('name',$this->name,true);
+		$criteria->compare('wageamount',$this->wageamount,true);
 		$criteria->compare('wager',$this->wager,true);
 		$criteria->compare('bonus',$this->bonus,true);
 		$criteria->compare('thr',$this->thr,true);

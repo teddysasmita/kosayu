@@ -28,6 +28,12 @@
 	</div>
 
 	<div class="row">
+		<?php echo $form->labelEx($model,'wageamount'); ?>
+		<?php echo $form->textField($model,'wageamount'); ?>
+		<?php echo $form->error($model,'wageamount'); ?>
+	</div>
+	
+	<div class="row">
 		<?php echo $form->labelEx($model,'wager'); ?>
 		<?php echo $form->dropDownList($model, 'wager', array('0'=>'Tidak', '1'=>'Tetap', '2'=>'Kehadiran'),
 				array('empty'=>'Harap Pilih')); ?>
