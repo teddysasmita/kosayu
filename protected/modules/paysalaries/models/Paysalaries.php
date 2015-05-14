@@ -12,6 +12,7 @@
  * @property double $overtime
  * @property string $startdate
  * @property string $enddate
+ * @property double total
  * @property string $userlog
  * @property string $datetimelog
  */
@@ -33,15 +34,15 @@ class Paysalaries extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id, regnum, idatetime, idemployee, presence, overtime, startdate, enddate, userlog, datetimelog', 'required'),
+			array('id, regnum, idatetime, idemployee, presence, overtime, total, startdate, enddate, userlog, datetimelog', 'required'),
 			array('presence', 'numerical', 'integerOnly'=>true),
-			array('overtime', 'numerical'),
+			array('overtime, total', 'numerical'),
 			array('id, idemployee, startdate, enddate, userlog', 'length', 'max'=>21),
 			array('regnum', 'length', 'max'=>12),
 			array('idatetime, datetimelog', 'length', 'max'=>19),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, regnum, idatetime, idemployee, presence, overtime, startdate, enddate, userlog, datetimelog', 'safe', 'on'=>'search'),
+			array('id, regnum, idatetime, idemployee, presence, overtime, total, startdate, enddate, userlog, datetimelog', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -70,6 +71,7 @@ class Paysalaries extends CActiveRecord
 			'overtime' => 'Lembur (menit)',
 			'startdate' => 'Awal Periode',
 			'enddate' => 'Akhir Periode',
+			'total' => 'Total',
 			'userlog' => 'Userlog',
 			'datetimelog' => 'Datetimelog',
 		);
@@ -101,6 +103,7 @@ class Paysalaries extends CActiveRecord
 		$criteria->compare('overtime',$this->overtime);
 		$criteria->compare('startdate',$this->startdate,true);
 		$criteria->compare('enddate',$this->enddate,true);
+		$criteria->compare('total',$this->total,true);
 		$criteria->compare('userlog',$this->userlog,true);
 		$criteria->compare('datetimelog',$this->datetimelog,true);
 

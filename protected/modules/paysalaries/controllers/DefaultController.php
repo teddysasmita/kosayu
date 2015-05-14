@@ -559,56 +559,12 @@ class DefaultController extends Controller
             $model->id=$idmaker->getCurrentID2();
             $model->idatetime=$idmaker->getDateTime();
             $model->regnum=$idmaker->getRegNum($this->formid);
+            $model->total = 0;
         }
         
         protected function afterPost(& $model)
         {
-            $idmaker=new idmaker();
-            $idmaker->saveRegNum($this->formid, $model->regnum); 
-
-            if ($this->state == 'c')
-            	Action::addStock($model->id, $model->idatetime, $model->regnum, 'Beli Putus');
-			else if ($this->state == 'u')
-				Action::updateStock($model->id, $model->idatetime);
-            
-            Yii::import('application.modules.sellingprice.models.*');
-            $details = $this->loadDetails($model->id);
-            
-            foreach($details as $d) {
-            	if ($d['sellprice'] > 0) {
-            		$sellprice = Sellingprices::model()->findByPk($d['iddetail']);
-            		if (is_null($sellprice)) {
-            			$sellprice = new Sellingprices();
-            			$sellprice->id = $d['iddetail'];
-            			$sellprice->regnum = idmaker::getRegNum('AC11');
-            		}
-            		$sellprice->idatetime = $model->idatetime;
-            		//$sellprice->iditem = lookup::ItemCodeFromItemID($d['iditem']);
-            		$sellprice->iditem = $d['batchcode'];
-            		$sellprice->normalprice = $d['sellprice'];
-            		$sellprice->minprice = $d['sellprice'];
-            		$sellprice->approvalby = 'Pak Made';
-            		$sellprice->datetimelog = $d['datetimelog'];
-            		$sellprice->userlog = $d['userlog'];
-            
-            		if ($sellprice->isNewRecord)
-            			$resp = $sellprice->insert();
-            		else
-            			$resp = $sellprice->save();
-            		if (!$resp) {
-            			throw new CHttpException(100,'There is an error in after post');
-            		}
-            		idmaker::saveRegNum('AC11', $sellprice->regnum);
-            	}
-            	Action::saveItemBatch($d['iddetail'], $d['iditem'], $d['batchcode'],
-            		$d['price'], $d['userlog'], $d['datetimelog'], $d['sellprice']);
-            	
-            	if ($this->state == 'c') 
-            		Action::addDetailStock($d['iddetail'], $d['id'], $d['iditem'], $d['batchcode'], $d['qty']);
-            	else if ($this->state == 'u')
-					Action::updateDetailStock($d['iddetail'], $d['iditem'], $d['batchcode'], $d['qty']);
-            
-            }            
+                
         }
         
         protected function beforePost(& $model)
@@ -618,22 +574,10 @@ class DefaultController extends Controller
             $model->userlog=Yii::app()->user->id;
             $model->datetimelog=$idmaker->getDateTime();
             $model->regnum=$idmaker->getRegNum($this->formid);
-            
-            $details = $this->loadDetails($model->id);
-            foreach($details as $d) {
-            	Action::deleteItemBatch($d['iddetail']);
-            }
         }
         
         protected function beforeDelete(& $model)
         {
-        	Action::deleteStock($model->id);
-        	$details = $this->loadDetails($model->id);
-        	 
-        	Action::deleteDetailStock2($model->id);
-        	foreach($details as $d) {
-        		Action::deleteItemBatch($d['iddetail']);
-        	}
         }
         
         protected function afterDelete()
@@ -674,11 +618,9 @@ class DefaultController extends Controller
         	$total=0;
         	$totaldisc=0;
         	foreach ($details as $row) {
-        		$total=$total+(($row['price']-$row['discount'])*$row['qty']);
-        		$totaldisc=$totaldisc+$row['discount']*$row['qty'];
+        		$total=$total+($row['amount']);
         	}
         	$model->total=$total;
-        	$model->discount=$totaldisc;
         }
         
         private function setPO($id, $idorder, & $idsupplier)

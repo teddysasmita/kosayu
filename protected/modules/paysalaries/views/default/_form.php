@@ -190,6 +190,14 @@ EOS;
           ),
     ));
 ?> 
+	
+	<div class="row">
+		<?php echo $form->labelEx($model,'total'); ?>
+		<?php echo CHtml::tag('span', array('id'=>'totalro', 
+				'class'=>'money'), number_format($model->total)); ?>
+		<?php echo $form->error($model,'total'); ?>
+	</div>
+	
    
    <div class="row buttons">
       <?php echo CHtml::submitButton(ucfirst($command)); ?>
