@@ -719,7 +719,7 @@ class lookup extends CComponent {
 	
 	public static function getComponentName($componentid)
 	{
-		switch ($stat) {
+		switch ($componentid) {
 			case '1': return 'Gaji Pokok';
 			break;
 			case '2': return 'Bonus';
