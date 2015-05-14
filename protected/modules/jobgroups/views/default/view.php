@@ -26,10 +26,18 @@ $this->menu=array(
 	'data'=>$model,
 	'attributes'=>array(
 		'name',
-		'wageamount',
-		'bonusamount',
-		'cashieramount',
-		'thrqty',
+		array(
+			'name'=>'wageamount',
+			'value'=>number_format($model->wageamount),
+		),
+		array(
+			'name'=>'bonusamount',
+			'value'=>number_format($model->bonusamount),
+		),
+		array(
+			'name'=>'thrqty',
+			'value'=>number_format($model->thrqty),
+		),
 		array(
 			'name'=>'wager',
 			'value'=>lookup::getWageStat($model->wager),		
