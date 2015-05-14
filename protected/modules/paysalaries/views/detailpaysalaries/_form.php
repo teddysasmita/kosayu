@@ -28,7 +28,7 @@
 	<div class="row">
 		<?php echo $form->labelEx($model,'name'); ?>
 		<?php echo CHtml::tag('span', array('id'=>'componentname', 'class'=>'money'),
-				lookup::getComponentName($model->name) ); ?>
+				lookup::getComponentName($model->componentname) ); ?>
 	</div>
 	
 	<div class="row">
