@@ -616,15 +616,71 @@ class DefaultController extends Controller
         private function sumDetail(& $model, $details)
         {
         	$total=0;
-        	$totaldisc=0;
         	foreach ($details as $row) {
         		$total=$total+($row['amount']);
         	}
         	$model->total=$total;
         }
         
-        private function setPO($id, $idorder, & $idsupplier)
-        {
+        private function setComponents($model)
+        {        	
+        	$jobgroup = Yii::app()->db->createCommand()
+        		->select('idjobgroup')->from('employees')
+        		->where('id = :p_id', array(':p_id'=>$model->idemployee))
+        		->queryScalar();
+        	$jginfo = Yii::app()->db->createCommand()
+        		->select()->from('jobgroups')
+        		->where('id = :p_id', array(':p_id'=>$jobgroup))
+        		->queryRow();
+        	
+        	$daysnum = cal_days_in_month(CAL_GREGORIAN, $model->pmonth, $model-pyear) - 4;
+        	$minutewage = $jginfo['wageamount'] / ($daysnum * 8 * 60);
+        	//--- wager ---
+        	$temp['id'] = $model->id;
+        	$temp['iddetail'] = idmaker::getCurrentID2();
+        	$temp['componentname'] = '1';
+        	if ($jginfo['wager'] == '1') {
+        		$temp['amount'] = $jginfo['wageamount'];	
+        	} else if ($jginfo['wager'] == '2') {
+        		$temp['amount'] = ($jginfo['wageamount'] / $daysnum) * $model->presence;
+         	}
+         	$details[] = $temp;
+         	//--- bonus ---
+         	$temp['id'] = $model->id;
+         	$temp['iddetail'] = idmaker::getCurrentID2();
+         	$temp['componentname'] = '2';
+         	if ($jginfo['bonus'] == '0') {
+         		$temp['amount'] = 0;
+         	} else if ($jginfo['bonus'] == '1') {
+         		if ($daysnum - $model->presence <= 4) {
+         		$temp['amount'] = $jginfo['bonusamount'];
+         	}
+         	$details[] = $temp;
+         	//--- cashier ---
+         	$temp['id'] = $model->id;
+         	$temp['iddetail'] = idmaker::getCurrentID2();
+         	$temp['componentname'] = '4';
+         	if ($jginfo[''] == '0') {
+         		$temp['amount'] = 0;
+         	} else if ($jginfo['cashier'] == '1') {
+         		$temp['amount'] = $jginfo['cashiersamount'];
+         	}	
+         	$details[] = $temp;
+         	//--- overtime ---
+         	$temp['id'] = $model->id;
+         	$temp['iddetail'] = idmaker::getCurrentID2();
+         	$temp['componentname'] = '5';
+         	$temp['amount'] = floor($model->overtime / 30) * $minutewage;
+         	$details[] = $temp;
+         	//--- late charges ---
+         	$temp['id'] = $model->id;
+         	$temp['iddetail'] = idmaker::getCurrentID2();
+         	$temp['componentname'] = '6';
+         	$temp['amount'] = - floor($model->late) * $minutewage;
+         	$details[] = $temp;
+         	
+         	
+         	
         	$salesorders = Yii::app()->db->createCommand()
         		->select('b.idsupplier, a.*')->from('detailpaysalariesorders a')
         		->join('paysalariesorders b', 'b.id = a.id')
