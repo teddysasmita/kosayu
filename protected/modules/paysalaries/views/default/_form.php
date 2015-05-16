@@ -113,7 +113,11 @@ EOS;
 	
 	<div class="row">
 		<?php echo $form->labelEx($model,'pyear'); ?>
-		<?php echo $form->textField($model,'pyear'); ?>
+		<?php 
+			
+			echo $form->textField($model,'pyear'); 
+		
+		?>
 		<?php echo $form->error($model,'pyear'); ?>
 	</div>
 		
