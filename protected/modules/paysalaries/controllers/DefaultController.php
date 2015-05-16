@@ -636,6 +636,7 @@ class DefaultController extends Controller
         	$daysnum = cal_days_in_month(CAL_GREGORIAN, $model->pmonth, $model-pyear) - 4;
         	$minutewage = $jginfo['wageamount'] / ($daysnum * 8 * 60);
         	//--- wager ---
+        	unset($temp);
         	$temp['id'] = $model->id;
         	$temp['iddetail'] = idmaker::getCurrentID2();
         	$temp['componentname'] = '1';
@@ -646,6 +647,7 @@ class DefaultController extends Controller
          	}
          	$details[] = $temp;
          	//--- bonus ---
+         	unset($temp);
          	$temp['id'] = $model->id;
          	$temp['iddetail'] = idmaker::getCurrentID2();
          	$temp['componentname'] = '2';
@@ -657,6 +659,7 @@ class DefaultController extends Controller
          	}
          	$details[] = $temp;
          	//--- cashier ---
+         	unset($temp);
          	$temp['id'] = $model->id;
          	$temp['iddetail'] = idmaker::getCurrentID2();
          	$temp['componentname'] = '4';
@@ -667,24 +670,49 @@ class DefaultController extends Controller
          	}	
          	$details[] = $temp;
          	//--- overtime ---
+         	unset($temp);
          	$temp['id'] = $model->id;
          	$temp['iddetail'] = idmaker::getCurrentID2();
          	$temp['componentname'] = '5';
          	$temp['amount'] = floor($model->overtime / 30) * $minutewage;
          	$details[] = $temp;
          	//--- late charges ---
+         	unset($temp);
          	$temp['id'] = $model->id;
          	$temp['iddetail'] = idmaker::getCurrentID2();
          	$temp['componentname'] = '6';
          	$temp['amount'] = - floor($model->late) * $minutewage;
          	$details[] = $temp;
          	//--- lunch ---
+         	unset($temp);
          	$temp['id'] = $model->id;
          	$temp['iddetail'] = idmaker::getCurrentID2();
          	$temp['componentname'] = 'B';
          	$temp['amount'] = $model->lunch;
          	$details[] = $temp;
-         		
+         	//--- receivable ---
+         	unset($temp);
+         	$temp['id'] = $model->id;
+         	$temp['iddetail'] = idmaker::getCurrentID2();
+         	$temp['componentname'] = '7';
+         	$temp['amount'] = $model->receivable;
+         	$details[] = $temp;
+         	//--- payment ---
+         	unset($temp);
+         	$temp['id'] = $model->id;
+         	$temp['iddetail'] = idmaker::getCurrentID2();
+         	$temp['componentname'] = '9';
+         	$temp['amount'] = $model->payment;
+         	$details[] = $temp;
+         	//--- thr ---
+         	unset($temp);
+         	$temp['id'] = $model->id;
+         	$temp['iddetail'] = idmaker::getCurrentID2();
+         	$temp['componentname'] = '3';
+         	$temp['amount'] = $jginfo['thrqty'] * $jginfo['wageamount'];
+         	$details[] = $temp;
+         	
+         	
          	return $details;
 		}
 }
