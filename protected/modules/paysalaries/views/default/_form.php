@@ -101,45 +101,17 @@ EOS;
 	</div>
 	
 	<div class="row">
-		<?php echo $form->labelEx($model,'startdate'); ?>
-            <?php
-               $this->widget('zii.widgets.jui.CJuiDatePicker',array(
-                  'name'=>'Paysalaries[startdate]',
-                     // additional javascript options for the date picker plugin
-                  'options'=>array(
-                     'showAnim'=>'fold',
-                     'dateFormat'=>'yy/mm/dd',
-                     'defaultdate'=>$model->startdate
-                  ),
-                  'htmlOptions'=>array(
-                     'style'=>'height:20px;',
-                  ),
-                  'value'=>$model->startdate,
-               ));
-            ?>
-		<?php echo $form->error($model,'startdate'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'enddate'); ?>
-            <?php
-               $this->widget('zii.widgets.jui.CJuiDatePicker',array(
-                  'name'=>'Paysalaries[enddate]',
-                     // additional javascript options for the date picker plugin
-                  'options'=>array(
-                     'showAnim'=>'fold',
-                     'dateFormat'=>'yy/mm/dd',
-                     'defaultdate'=>$model->enddate
-                  ),
-                  'htmlOptions'=>array(
-                     'style'=>'height:20px;',
-                  ),
-                  'value'=>$model->enddate,
-               ));
-            ?>
-		<?php echo $form->error($model,'enddate'); ?>
+		<?php echo $form->labelEx($model,'pmonth'); ?>
+		<?php echo $form->textField($model,'pmonth'); ?>
+		<?php echo $form->error($model,'pmonth'); ?>
 	</div>
 	
+	<div class="row">
+		<?php echo $form->labelEx($model,'pyear'); ?>
+		<?php echo $form->textField($model,'pyear'); ?>
+		<?php echo $form->error($model,'pyear'); ?>
+	</div>
+		
 	<div class="row">
 		<?php echo $form->labelEx($model,'presence'); ?>
 		<?php echo $form->textField($model,'presence'); ?>
@@ -150,6 +122,12 @@ EOS;
 		<?php echo $form->labelEx($model,'overtime'); ?>
 		<?php echo $form->textField($model,'overtime'); ?>
 		<?php echo $form->error($model,'overtime'); ?>
+	</div>
+	
+	<div class="row">
+		<?php echo $form->labelEx($model,'late'); ?>
+		<?php echo $form->textField($model,'late'); ?>
+		<?php echo $form->error($model,'late'); ?>
 	</div>
 	
 

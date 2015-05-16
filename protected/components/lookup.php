@@ -28,15 +28,15 @@ class lookup extends CComponent {
    
    public static function voucherStatus($stat)
    {
-   	switch ($stat) {
-   		case '0':
-   			return 'Berlaku';
-   		case '1':
-   			return 'Telah Digunakan';
-   		case '2':
-   			return 'Tidak Berlaku';
-   
-   	}
+	   	switch ($stat) {
+	   		case '0':
+	   			return 'Berlaku';
+	   		case '1':
+	   			return 'Telah Digunakan';
+	   		case '2':
+	   			return 'Tidak Berlaku';
+	   
+	   	}
    }
    
    public static function getMethod($code)
@@ -742,6 +742,8 @@ class lookup extends CComponent {
 			break;
 		}
 	}
+	
+	
 	
 }
 
