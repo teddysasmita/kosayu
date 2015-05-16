@@ -740,6 +740,8 @@ class lookup extends CComponent {
 			break;
 			case 'A': return 'BPJS';
 			break;
+			case 'B': return 'Uang Makan';
+			break;
 		}
 	}
 	

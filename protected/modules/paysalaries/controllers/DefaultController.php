@@ -652,8 +652,8 @@ class DefaultController extends Controller
          	if ($jginfo['bonus'] == '0') {
          		$temp['amount'] = 0;
          	} else if ($jginfo['bonus'] == '1') {
-         		if ($daysnum - $model->presence <= 4) {
-         		$temp['amount'] = $jginfo['bonusamount'];
+         		if ($daysnum - $model->presence <= 4) 
+         			$temp['amount'] = $jginfo['bonusamount'];
          	}
          	$details[] = $temp;
          	//--- cashier ---
@@ -678,60 +678,14 @@ class DefaultController extends Controller
          	$temp['componentname'] = '6';
          	$temp['amount'] = - floor($model->late) * $minutewage;
          	$details[] = $temp;
+         	//--- lunch ---
+         	$temp['id'] = $model->id;
+         	$temp['iddetail'] = idmaker::getCurrentID2();
+         	$temp['componentname'] = 'B';
+         	$temp['amount'] = $model->;
+         	$details[] = $temp;
+         		
          	
-         	
-         	
-        	$salesorders = Yii::app()->db->createCommand()
-        		->select('b.idsupplier, a.*')->from('detailpaysalariesorders a')
-        		->join('paysalariesorders b', 'b.id = a.id')
-        		->join('items c', 'c.id = a.iditem')
-        		->where('b.regnum = :p_regnum and c.type = :p_type', 
-        			array(':p_regnum'=>$idorder, ':p_type'=>'1'))
-        		->queryAll();	
-        	
-        	$idsupplier = $salesorders[0]['idsupplier'];
-        	
-        	$received = Yii::app()->db->createCommand()
-        		->select('a.*')->from('detailpaysalaries a')
-        		->join('paysalaries b', 'b.id = a.id')
-        		->where('b.idorder = :p_idorder', array(':p_idorder'=>$idorder))
-        		->queryAll();
-        	
-        	$data = array();
-        	
-        	foreach($salesorders as $so) {
-        		$found = FALSE;
-        		foreach($received as $rd) {
-        			if ($rd['iditem'] == $so['iditem'])	{
-        				$found = TRUE;
-        				if ($so['qty'] - $rd['qty'] > 0) {
-        					$temp['id'] = $id;
-        					$temp['iddetail'] = idmaker::getCurrentID2();
-        					$temp['iditem'] = $so['iditem'];
-        					$temp['batchcode'] = $so['batchcode'];
-        					$temp['qty'] = $so['qty'] - $rd['qty'];
-        					$temp['price'] = $so['price'];
-        					$temp['userlog'] = Yii::app()->user->id;
-        					$temp['datetimelog'] = idmaker::getDateTime();
-        					$data[] = $temp;
-        				};
-        				break;
-        			}
-        		};
-        		if (! $found ) {
-        			$temp['id'] = $id;
-        			$temp['iddetail'] = idmaker::getCurrentID2();
-        			$temp['iditem'] = $so['iditem'];
-        			$temp['batchcode'] = $so['batchcode'];
-					$temp['qty'] = $so['qty'];
-        			$temp['price'] = $so['price'];
-        			$temp['discount'] = 0;
-        			$temp['userlog'] = Yii::app()->user->id;
-					$temp['datetimelog'] = idmaker::getDateTime();
-        			$data[] = $temp;
-        		}
-        	}
-        	return $data;
-        }
-
+         	return $details;
+		}
 }

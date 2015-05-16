@@ -113,9 +113,9 @@ EOS;
 	</div>
 		
 	<div class="row">
-		<?php echo $form->labelEx($model,'presence'); ?>
-		<?php echo $form->textField($model,'presence'); ?>
-		<?php echo $form->error($model,'presence'); ?>
+		<?php echo $form->labelEx($model,'transport'); ?>
+		<?php echo $form->textField($model,'transport'); ?>
+		<?php echo $form->error($model,'transport'); ?>
 	</div>
 
 	<div class="row">
@@ -125,11 +125,28 @@ EOS;
 	</div>
 	
 	<div class="row">
-		<?php echo $form->labelEx($model,'late'); ?>
-		<?php echo $form->textField($model,'late'); ?>
-		<?php echo $form->error($model,'late'); ?>
+		<?php echo $form->labelEx($model,'lunch'); ?>
+		<?php echo $form->textField($model,'lunch'); ?>
+		<?php echo $form->error($model,'lunch'); ?>
 	</div>
 	
+	<div class="row">
+		<?php echo $form->labelEx($model,'transport'); ?>
+		<?php echo $form->textField($model,'transport'); ?>
+		<?php echo $form->error($model,'transport'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->labelEx($model,'receivable'); ?>
+		<?php echo $form->textField($model,'receivable'); ?>
+		<?php echo $form->error($model,'receivable'); ?>
+	</div>
+	
+	<div class="row">
+		<?php echo $form->labelEx($model,'payment'); ?>
+		<?php echo $form->textField($model,'payment'); ?>
+		<?php echo $form->error($model,'payment'); ?>
+	</div>
 
 <?php 
     if (isset(Yii::app()->session['Detailpaysalaries'])) {

@@ -11,6 +11,10 @@
  * @property integer $presence
  * @property double $overtime
  * @property double $late
+ * @property double $lunch
+ * @property double $payment
+ * @property double $transport
+ * @property double $receivable
  * @property string $startdate
  * @property string $enddate
  * @property double total
@@ -35,15 +39,15 @@ class Paysalaries extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id, regnum, idatetime, idemployee, presence, overtime, total, startdate, enddate, userlog, datetimelog', 'required'),
+			array('id, regnum, idatetime, idemployee, presence, overtime, transport, lunch, payment, receivable, total, startdate, enddate, userlog, datetimelog', 'required'),
 			array('presence', 'numerical', 'integerOnly'=>true),
-			array('overtime, late, total', 'numerical'),
+			array('overtime, late, lunch, payment, receivable, transport, total', 'numerical'),
 			array('id, idemployee, startdate, enddate, userlog', 'length', 'max'=>21),
 			array('regnum', 'length', 'max'=>12),
 			array('idatetime, datetimelog', 'length', 'max'=>19),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, regnum, idatetime, idemployee, presence, overtime, late, total, startdate, enddate, userlog, datetimelog', 'safe', 'on'=>'search'),
+			array('id, regnum, idatetime, idemployee, presence, overtime, late, lunch, payment, receivable, transport, total, startdate, enddate, userlog, datetimelog', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -71,6 +75,10 @@ class Paysalaries extends CActiveRecord
 			'presence' => 'Jumlah Kehadiran (Hari)',
 			'overtime' => 'Lembur (menit)',
 			'late' => 'Terlambat (menit)',
+			'lunch' => 'Uang Makan',
+			'receivable' => 'Piutang',
+			'payment' => 'Bayar Piutang',
+			'transport' => 'Uang Transport',
 			'startdate' => 'Awal Periode',
 			'enddate' => 'Akhir Periode',
 			'total' => 'Total',
@@ -103,7 +111,11 @@ class Paysalaries extends CActiveRecord
 		$criteria->compare('idemployee',$this->idemployee,true);
 		$criteria->compare('presence',$this->presence);
 		$criteria->compare('overtime',$this->overtime);
-		$criteria->compare('terlambat',$this->late);
+		$criteria->compare('late',$this->late);
+		$criteria->compare('lunch',$this->lunch);
+		$criteria->compare('payment',$this->payment);
+		$criteria->compare('receivable',$this->receivable);
+		$criteria->compare('transport',$this->transport);
 		$criteria->compare('startdate',$this->startdate,true);
 		$criteria->compare('enddate',$this->enddate,true);
 		$criteria->compare('total',$this->total,true);
