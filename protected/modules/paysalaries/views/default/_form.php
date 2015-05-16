@@ -103,9 +103,9 @@ EOS;
 	<div class="row">
 		<?php echo $form->labelEx($model,'pmonth'); ?>
 		<?php
-			$pmonth = array('Januari'=>1, 'Februari'=>2, 'Maret'=>3, 'April'=>4,
-				'Mei'=>5, 'Juni'=>6, 'Juli'=>7, 'Agustus'=>8, 'September'=>9,
-				'Oktober'=>10, 'Nopember'=>11, 'Desember'=>12
+			$pmonth = array(1=>'Januari', 2=>'Februari', 3=>'Maret', 4=>'April',
+				5=>'Mei', 6=>'Juni', 7=>'Juli', 8=>'Agustus', 9=>'September',
+				10=>'Oktober', 11=>'Nopember', 12=>'Desember'
 			);
 			echo $form->dropDownList($model, 'pmonth', $pmonth); ?>
 		<?php echo $form->error($model,'pmonth'); ?>
