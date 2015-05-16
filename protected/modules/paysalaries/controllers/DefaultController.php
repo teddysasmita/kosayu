@@ -682,10 +682,9 @@ class DefaultController extends Controller
          	$temp['id'] = $model->id;
          	$temp['iddetail'] = idmaker::getCurrentID2();
          	$temp['componentname'] = 'B';
-         	$temp['amount'] = $model->;
+         	$temp['amount'] = $model->lunch;
          	$details[] = $temp;
          		
-         	
          	return $details;
 		}
 }
