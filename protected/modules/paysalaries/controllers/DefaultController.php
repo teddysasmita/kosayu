@@ -560,6 +560,8 @@ class DefaultController extends Controller
             $model->idatetime=$idmaker->getDateTime();
             $model->regnum=$idmaker->getRegNum($this->formid);
             $model->total = 0;
+            $model->pmonth = date('M');
+            $model->pyear = date('Y');
         }
         
         protected function afterPost(& $model)
