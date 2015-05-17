@@ -621,7 +621,7 @@ class DefaultController extends Controller
         	$model->total=$total;
         }
         
-        private function setComponents($model)
+        private function setComponents(& $model)
         {        	
         	$jobgroup = Yii::app()->db->createCommand()
         		->select('idjobgroup')->from('employees')
@@ -728,8 +728,8 @@ class DefaultController extends Controller
          	$temp['amount'] = $model->lunch;
          	$details[] = $temp;
          	
-         	
-         	
+        	foreach($details as $d) 
+        		$model->total += $d['amount'];
          	return $details;
 		}
 }
