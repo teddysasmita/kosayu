@@ -633,6 +633,7 @@ class DefaultController extends Controller
         		->queryRow();
         	$daysnum = cal_days_in_month(CAL_GREGORIAN, $model->pmonth, $model->pyear) - 4;
         	$minutewage = $jginfo['wageamount'] / ($daysnum * 8 * 60);
+        	print_r($jginfo);
         	//--- wager ---
         	if ($jginfo['wager'] !== 0) {
         		unset($temp);
@@ -740,6 +741,8 @@ class DefaultController extends Controller
 	         	$details[] = $temp;
          	}
          	
+         	print_r($details);
+         	die;
         	foreach($details as $d) 
         		$model->total += $d['amount'];
         	
