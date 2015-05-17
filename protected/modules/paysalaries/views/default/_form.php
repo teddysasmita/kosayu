@@ -200,6 +200,7 @@ EOS;
             array(
                'header'=>'Jumlah',
                'name'=>'amount',
+            	'type'=>'number',
             ),
             array(
                'class'=>'CButtonColumn',

@@ -643,7 +643,8 @@ class DefaultController extends Controller
         		$temp['amount'] = $jginfo['wageamount'];	
         	} else if ($jginfo['wager'] == '2') {
         		$temp['amount'] = ($jginfo['wageamount'] / $daysnum) * $model->presence;
-         	}
+         	} else if ($jginfo['wager'] == '0') 
+         		$temp['amount'] = 0;
          	$details[] = $temp;
          	//--- bonus ---
          	unset($temp);
@@ -655,6 +656,8 @@ class DefaultController extends Controller
          	} else if ($jginfo['bonus'] == '1') {
          		if ($daysnum - $model->presence <= 4) 
          			$temp['amount'] = $jginfo['bonusamount'];
+         		else
+         			$temp['amount'] = 0;
          	}
          	$details[] = $temp;
          	//--- thr ---
@@ -669,7 +672,7 @@ class DefaultController extends Controller
          	$temp['id'] = $model->id;
          	$temp['iddetail'] = idmaker::getCurrentID2();
          	$temp['componentname'] = '4';
-         	if ($jginfo[''] == '0') {
+         	if ($jginfo['cashier'] == '0') {
          		$temp['amount'] = 0;
          	} else if ($jginfo['cashier'] == '1') {
          		$temp['amount'] = $jginfo['cashiersamount'];
