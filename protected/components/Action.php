@@ -218,20 +218,20 @@ class Action extends CComponent {
    			array('iddetail'=>$data['iddetail'], 'regnum'=>$regnum));
    }
    
-   public static function decodeDeleteDetailPaysalarysUrl($data)
+   public static function decodeDeleteDetailPaysalaryUrl($data)
    {
    	//return print_r($data);
    	return Yii::app()->createUrl('paysalaries/detailpaysalaries/delete', array('iddetail'=>$data['iddetail']));
    }
    
-   public static function decodeUpdateDetailPaysalarysUrl($data, $regnum)
+   public static function decodeUpdateDetailPaysalaryUrl($data, $regnum)
    {
    	//return print_r($data);
    	return Yii::app()->createUrl('paysalaries/detailpaysalaries/update',
    			array('iddetail'=>$data['iddetail'], 'regnum'=>$regnum ));
    }
    
-   public static function decodeViewDetailPaysalarysUrl($data, $regnum)
+   public static function decodeViewDetailPaysalaryUrl($data, $regnum)
    {
    	//return print_r($data);
    	return Yii::app()->createUrl('paysalaries/detailpaysalaries/view',
