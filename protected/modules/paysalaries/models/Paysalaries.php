@@ -119,8 +119,8 @@ class Paysalaries extends CActiveRecord
 		$criteria->compare('bpjs',$this->bpjs);
 		$criteria->compare('receivable',$this->receivable);
 		$criteria->compare('transport',$this->transport);
-		$criteria->compare('pmonth',$this->pmonth,true);
-		$criteria->compare('pyear',$this->pyear,true);
+		$criteria->compare('pmonth',$this->pmonth);
+		$criteria->compare('pyear',$this->pyear);
 		$criteria->compare('total',$this->total,true);
 		$criteria->compare('userlog',$this->userlog,true);
 		$criteria->compare('datetimelog',$this->datetimelog,true);
