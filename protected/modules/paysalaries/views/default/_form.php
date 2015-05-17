@@ -67,6 +67,7 @@ EOS;
         echo $form->hiddenField($model, 'userlog');
         echo $form->hiddenField($model, 'datetimelog');
         echo $form->hiddenField($model, 'regnum');
+        echo $form->hiddenField($model, 'idemployee');
       ?>
         
 	<div class="row">
@@ -101,7 +102,7 @@ EOS;
                   $employeename[]=$row['firstname'].' '.$row['lastname'];
                }
                $this->widget("zii.widgets.jui.CJuiAutoComplete", array(
-                   'name'=>'Paysalaries[idemployee]',
+                   'name'=>'employeename',
                    'source'=>$employeename,
                  'value'=>lookup::EmployeeNameFromID($model->idemployee)
                ));
