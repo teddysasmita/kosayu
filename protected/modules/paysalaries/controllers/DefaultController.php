@@ -634,98 +634,111 @@ class DefaultController extends Controller
         	$daysnum = cal_days_in_month(CAL_GREGORIAN, $model->pmonth, $model->pyear) - 4;
         	$minutewage = $jginfo['wageamount'] / ($daysnum * 8 * 60);
         	//--- wager ---
-        	unset($temp);
-        	$temp['id'] = $model->id;
-        	$temp['iddetail'] = idmaker::getCurrentID2();
-        	$temp['componentname'] = '1';
-        	if ($jginfo['wager'] == '1') {
-        		$temp['amount'] = $jginfo['wageamount'];	
-        	} else if ($jginfo['wager'] == '2') {
-        		$temp['amount'] = ($jginfo['wageamount'] / $daysnum) * $model->presence;
-         	} else if ($jginfo['wager'] == '0') 
-         		$temp['amount'] = 0;
-         	$details[] = $temp;
-         	//--- bonus ---
-         	unset($temp);
-         	$temp['id'] = $model->id;
-         	$temp['iddetail'] = idmaker::getCurrentID2();
-         	$temp['componentname'] = '2';
-         	if ($jginfo['bonus'] == '0') {
-         		$temp['amount'] = 0;
-         	} else if ($jginfo['bonus'] == '1') {
-         		if ($daysnum - $model->presence <= 4) 
-         			$temp['amount'] = $jginfo['bonusamount'];
-         		else
-         			$temp['amount'] = 0;
+        	if ($jginfo['wager'] !== 0) {
+        		unset($temp);
+        		$temp['id'] = $model->id;
+        		$temp['iddetail'] = idmaker::getCurrentID2();
+        		$temp['componentname'] = '1';
+	        	if ($jginfo['wager'] == '1') {
+	        		$temp['amount'] = $jginfo['wageamount'];	
+	        	} else if ($jginfo['wager'] == '2') {
+	        		$temp['amount'] = ($jginfo['wageamount'] / $daysnum) * $model->presence;
+	         	} 
+	         	$details[] = $temp;
+        	}
+        	//--- bonus ---
+        	if ($jginfo['bonus'] !== 0) {
+	         	unset($temp);
+	         	$temp['id'] = $model->id;
+	         	$temp['iddetail'] = idmaker::getCurrentID2();
+	         	$temp['componentname'] = '2';
+	         	if ($daysnum - $model->presence <= 4) 
+	         		$temp['amount'] = $jginfo['bonusamount'];
+	         	else
+	         		$temp['amount'] = 0;
+	         	$details[] = $temp;
+        	}
+        	//--- thr ---
+         	if ($jginfo['thr'] !== 0) {
+	        	unset($temp);
+	         	$temp['id'] = $model->id;
+	         	$temp['iddetail'] = idmaker::getCurrentID2();
+	         	$temp['componentname'] = '3';
+	         	$temp['amount'] = $jginfo['thrqty'] * $jginfo['wageamount'];
+	         	$details[] = $temp;
          	}
-         	$details[] = $temp;
-         	//--- thr ---
-         	unset($temp);
-         	$temp['id'] = $model->id;
-         	$temp['iddetail'] = idmaker::getCurrentID2();
-         	$temp['componentname'] = '3';
-         	$temp['amount'] = $jginfo['thrqty'] * $jginfo['wageamount'];
-         	$details[] = $temp;
          	//--- cashier ---
-         	unset($temp);
-         	$temp['id'] = $model->id;
-         	$temp['iddetail'] = idmaker::getCurrentID2();
-         	$temp['componentname'] = '4';
-         	if ($jginfo['cashier'] == '0') {
-         		$temp['amount'] = 0;
-         	} else if ($jginfo['cashier'] == '1') {
-         		$temp['amount'] = $jginfo['cashiersamount'];
-         	}	
-         	$details[] = $temp;
+         	if ($jginfo['cashier'] !== 0) {
+	         	unset($temp);
+	         	$temp['id'] = $model->id;
+	         	$temp['iddetail'] = idmaker::getCurrentID2();
+	         	$temp['componentname'] = '4';
+	         	$temp['amount'] = $jginfo['cashiersamount'];
+	         	$details[] = $temp;
+         	}
          	//--- overtime ---
-         	unset($temp);
-         	$temp['id'] = $model->id;
-         	$temp['iddetail'] = idmaker::getCurrentID2();
-         	$temp['componentname'] = '5';
-         	$temp['amount'] = floor($model->overtime / 30) * $minutewage;
-         	$details[] = $temp;
+         	if ($model->overtime !== 0) {
+	         	unset($temp);
+	         	$temp['id'] = $model->id;
+	         	$temp['iddetail'] = idmaker::getCurrentID2();
+	         	$temp['componentname'] = '5';
+	         	$temp['amount'] = floor($model->overtime / 30) * $minutewage;
+	         	$details[] = $temp;
+         	}
          	//--- late charges ---
-         	unset($temp);
-         	$temp['id'] = $model->id;
-         	$temp['iddetail'] = idmaker::getCurrentID2();
-         	$temp['componentname'] = '6';
-         	$temp['amount'] = - floor($model->late) * $minutewage;
-         	$details[] = $temp;
+         	if ($model->late !== 0) {
+	         	unset($temp);
+	         	$temp['id'] = $model->id;
+	         	$temp['iddetail'] = idmaker::getCurrentID2();
+	         	$temp['componentname'] = '6';
+	         	$temp['amount'] = - floor($model->late) * $minutewage;
+	         	$details[] = $temp;
+         	}
          	//--- receivable ---
-         	unset($temp);
-         	$temp['id'] = $model->id;
-         	$temp['iddetail'] = idmaker::getCurrentID2();
-         	$temp['componentname'] = '7';
-         	$temp['amount'] = $model->receivable;
-         	$details[] = $temp;
+         	if ($model->receivable !== 0) {
+		        unset($temp);
+	         	$temp['id'] = $model->id;
+	         	$temp['iddetail'] = idmaker::getCurrentID2();
+	         	$temp['componentname'] = '7';
+	         	$temp['amount'] = $model->receivable;
+	         	$details[] = $temp;
+         	}
          	//--- transport ---
-         	unset($temp);
-         	$temp['id'] = $model->id;
-         	$temp['iddetail'] = idmaker::getCurrentID2();
-         	$temp['componentname'] = '8';
-         	$temp['amount'] = $model->lunch;
-         	$details[] = $temp;
+         	if ($model->transport !== 0) {
+			    unset($temp);
+	         	$temp['id'] = $model->id;
+	         	$temp['iddetail'] = idmaker::getCurrentID2();
+	         	$temp['componentname'] = '8';
+	         	$temp['amount'] = $model->transport;
+	         	$details[] = $temp;
+         	}
          	//--- payment ---
-         	unset($temp);
-         	$temp['id'] = $model->id;
-         	$temp['iddetail'] = idmaker::getCurrentID2();
-         	$temp['componentname'] = '9';
-         	$temp['amount'] = $model->payment;
-         	$details[] = $temp;
+         	if ($model->payment !== 0) {
+			    unset($temp);
+	         	$temp['id'] = $model->id;
+	         	$temp['iddetail'] = idmaker::getCurrentID2();
+	         	$temp['componentname'] = '9';
+	         	$temp['amount'] = - $model->payment;
+	         	$details[] = $temp;
+         	}
          	//--- bpjs ---
-         	unset($temp);
-         	$temp['id'] = $model->id;
-         	$temp['iddetail'] = idmaker::getCurrentID2();
-         	$temp['componentname'] = 'A';
-         	$temp['amount'] = $model->bpjs;
-         	$details[] = $temp;
+         	if ($model->bpjs !== 0) {
+			    unset($temp);
+	         	$temp['id'] = $model->id;
+	         	$temp['iddetail'] = idmaker::getCurrentID2();
+	         	$temp['componentname'] = 'A';
+	         	$temp['amount'] = $model->bpjs;
+	         	$details[] = $temp;
+         	}
          	//--- lunch ---
-         	unset($temp);
-         	$temp['id'] = $model->id;
-         	$temp['iddetail'] = idmaker::getCurrentID2();
-         	$temp['componentname'] = 'B';
-         	$temp['amount'] = $model->lunch;
-         	$details[] = $temp;
+         	if ($model->lunch !== 0) {
+		    	unset($temp);
+	         	$temp['id'] = $model->id;
+	         	$temp['iddetail'] = idmaker::getCurrentID2();
+	         	$temp['componentname'] = 'B';
+	         	$temp['amount'] = $model->lunch;
+	         	$details[] = $temp;
+         	}
          	
         	foreach($details as $d) 
         		$model->total += $d['amount'];
