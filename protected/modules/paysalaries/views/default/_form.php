@@ -101,7 +101,7 @@ EOS;
                   $employeename[]=$row['firstname'].' '.$row['lastname'];
                }
                $this->widget("zii.widgets.jui.CJuiAutoComplete", array(
-                   'name'=>'employeename',
+                   'name'=>'Paysalaries[idemployee]',
                    'source'=>$employeename,
                  'value'=>lookup::EmployeeNameFromID($model->idemployee)
                ));
