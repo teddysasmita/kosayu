@@ -640,9 +640,9 @@ class DefaultController extends Controller
         		$temp['id'] = $model->id;
         		$temp['iddetail'] = idmaker::getCurrentID2();
         		$temp['componentname'] = '1';
-	        	if ($jginfo['wager'] == '1') {
+	        	if ($jginfo['wager'] == 1) {
 	        		$temp['amount'] = $jginfo['wageamount'];	
-	        	} else if ($jginfo['wager'] == '2') {
+	        	} else if ($jginfo['wager'] == 2) {
 	        		$temp['amount'] = ($jginfo['wageamount'] / $daysnum) * $model->presence;
 	         	} 
 	         	$details[] = $temp;
