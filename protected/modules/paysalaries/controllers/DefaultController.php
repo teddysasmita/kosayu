@@ -94,7 +94,7 @@ class DefaultController extends Controller
                             'id'=>$model->id, 'regnum'=>$model->regnum));
                       } else if($_POST['command']=='countWage') {
                          $model->attributes=$_POST['Paysalaries'];
-                         $data = $this->setComponents($model);
+                         $data = $this->setComponents($model->attributes);
                          Yii::app()->session['Detailpaysalaries'] = $data;
                          Yii::app()->session['Paysalaries']=$model->attributes;
                       }
@@ -631,7 +631,7 @@ class DefaultController extends Controller
         		->select()->from('jobgroups')
         		->where('id = :p_id', array(':p_id'=>$idjobgroup))
         		->queryRow();
-        	print($model);
+        	print_r($model);
         	print_r($jginfo);
         	die;
         	$daysnum = cal_days_in_month(CAL_GREGORIAN, $model->pmonth, $model->pyear) - 4;
