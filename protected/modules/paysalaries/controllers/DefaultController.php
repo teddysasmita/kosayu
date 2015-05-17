@@ -658,6 +658,13 @@ class DefaultController extends Controller
          			$temp['amount'] = $jginfo['bonusamount'];
          	}
          	$details[] = $temp;
+         	//--- thr ---
+         	unset($temp);
+         	$temp['id'] = $model->id;
+         	$temp['iddetail'] = idmaker::getCurrentID2();
+         	$temp['componentname'] = '3';
+         	$temp['amount'] = $jginfo['thrqty'] * $jginfo['wageamount'];
+         	$details[] = $temp;
          	//--- cashier ---
          	unset($temp);
          	$temp['id'] = $model->id;
@@ -683,19 +690,19 @@ class DefaultController extends Controller
          	$temp['componentname'] = '6';
          	$temp['amount'] = - floor($model->late) * $minutewage;
          	$details[] = $temp;
-         	//--- lunch ---
-         	unset($temp);
-         	$temp['id'] = $model->id;
-         	$temp['iddetail'] = idmaker::getCurrentID2();
-         	$temp['componentname'] = 'B';
-         	$temp['amount'] = $model->lunch;
-         	$details[] = $temp;
          	//--- receivable ---
          	unset($temp);
          	$temp['id'] = $model->id;
          	$temp['iddetail'] = idmaker::getCurrentID2();
          	$temp['componentname'] = '7';
          	$temp['amount'] = $model->receivable;
+         	$details[] = $temp;
+         	//--- transport ---
+         	unset($temp);
+         	$temp['id'] = $model->id;
+         	$temp['iddetail'] = idmaker::getCurrentID2();
+         	$temp['componentname'] = '8';
+         	$temp['amount'] = $model->lunch;
          	$details[] = $temp;
          	//--- payment ---
          	unset($temp);
@@ -704,13 +711,21 @@ class DefaultController extends Controller
          	$temp['componentname'] = '9';
          	$temp['amount'] = $model->payment;
          	$details[] = $temp;
-         	//--- thr ---
+         	//--- bpjs ---
          	unset($temp);
          	$temp['id'] = $model->id;
          	$temp['iddetail'] = idmaker::getCurrentID2();
-         	$temp['componentname'] = '3';
-         	$temp['amount'] = $jginfo['thrqty'] * $jginfo['wageamount'];
+         	$temp['componentname'] = 'A';
+         	$temp['amount'] = $model->bpjs;
          	$details[] = $temp;
+         	//--- lunch ---
+         	unset($temp);
+         	$temp['id'] = $model->id;
+         	$temp['iddetail'] = idmaker::getCurrentID2();
+         	$temp['componentname'] = 'B';
+         	$temp['amount'] = $model->lunch;
+         	$details[] = $temp;
+         	
          	
          	
          	return $details;
