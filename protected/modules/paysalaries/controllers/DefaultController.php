@@ -743,6 +743,7 @@ class DefaultController extends Controller
         		$model->total += $d['amount'];
         	
         	print_r($model->attributes);
+        	print_r($minutewage);
         	die;
          	return $details;
 		}
