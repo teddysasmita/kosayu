@@ -94,7 +94,7 @@ class DefaultController extends Controller
                             'id'=>$model->id, 'regnum'=>$model->regnum));
                       } else if($_POST['command']=='countWage') {
                          $model->attributes=$_POST['Paysalaries'];
-                         $data = $this->setComponents($model->attributes);
+                         $data = $this->setComponents($model);
                          Yii::app()->session['Detailpaysalaries'] = $data;
                          Yii::app()->session['Paysalaries']=$model->attributes;
                       }
