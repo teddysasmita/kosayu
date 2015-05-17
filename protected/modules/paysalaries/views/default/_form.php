@@ -208,8 +208,8 @@ EOS;
                      'visible'=>'false'
                   )
                ),
-            	'deleteButtonUrl'=>"Action::decodeDeleteDetailPaysalariesUrl(\$data, $model->regnum)",
-               'updateButtonUrl'=>"Action::decodeUpdateDetailPaysalariesUrl(\$data, $model->regnum)",
+            	'deleteButtonUrl'=>"Action::decodeDeleteDetailPaysalaryUrl(\$data, $model->regnum)",
+               'updateButtonUrl'=>"Action::decodeUpdateDetailPaysalaryUrl(\$data, $model->regnum)",
             )
           ),
     ));
