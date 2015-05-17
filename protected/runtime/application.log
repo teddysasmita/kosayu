@@ -4934,3 +4934,28 @@ Stack trace:
 REQUEST_URI=/~teddy/kosayu/index.php?r=gii/form/index
 HTTP_REFERER=http://localhost/~teddy/kosayu/index.php?r=gii/form/index
 ---
+2015/05/17 09:26:10 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: SQLSTATE[28000] [1045] Access denied for user 'root'@'localhost' (using password: YES)' in /home/teddy/public_html/yii/framework/db/CDbConnection.php:399
+Stack trace:
+#0 /home/teddy/public_html/yii/framework/db/CDbConnection.php(347): CDbConnection->open()
+#1 /home/teddy/public_html/yii/framework/db/CDbConnection.php(325): CDbConnection->setActive(true)
+#2 /home/teddy/public_html/yii/framework/base/CModule.php(394): CDbConnection->init()
+#3 /home/teddy/public_html/yii/framework/web/CDbHttpSession.php(175): CModule->getComponent('db')
+#4 /home/teddy/public_html/yii/framework/web/CDbHttpSession.php(199): CDbHttpSession->getDbConnection()
+#5 [internal function]: CDbHttpSession->openSession('/var/lib/php5', 'PHPSESSID')
+#6 /home/teddy/public_html/yii/framework/web/CHttpSession.php(114): session_start()
+#7 /home/teddy/public_html/yii/framework/web/CHttpSession.php(88): CHttpSession->open()
+#8 /home/teddy/public_html/yii/framework/base/CModule.php(394): CHttpSession->init()
+#9 /home/teddy/public_html/yii/framework/web/CWebApplication.php(201): CModule->getComponent('session')
+#10 /home/teddy/public_html/yii/framework/web/auth/CWebUser.php(199): CWebApplication->getSession()
+#11 /home/teddy/public_html/yii/framework/base/CModule.php(394): CWebUser->init()
+#12 /home/teddy/public_html/yii/framework/base/CModule.php(103): CModule->getComponent('user')
+#13 /home/teddy/public_html/yii/framework/gii/GiiModule.php(176): CModule->__get('user')
+#14 /home/teddy/public_html/yii/framework/web/CController.php(263): GiiModule->beforeControllerAction(Object(DefaultController), Object(CInlineAction))
+#15 /home/teddy/public_html/yii/framework/web/CWebApplication.php(282): CController->run('logout')
+#16 /home/teddy/public_html/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('gii/default/log...')
+#17 /home/teddy/public_html/yii/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#18 /home/teddy/public_html/kosayu/index.php(13): CApplication->run()
+#19 {main}
+REQUEST_URI=/~teddy/kosayu/index.php?r=gii/default/logout
+HTTP_REFERER=http://localhost/~teddy/kosayu/index.php?r=gii/model/index
+---

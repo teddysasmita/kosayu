@@ -41,7 +41,7 @@ class Paysalaries extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('id, regnum, idatetime, idemployee, presence, overtime, transport, lunch, payment, pmonth, pyear, receivable, bpjs, total, userlog, datetimelog', 'required'),
-			array('presence', 'pmonth', 'pyear', 'numerical', 'integerOnly'=>true),
+			array('presence, pmonth, pyear', 'numerical', 'integerOnly'=>true),
 			array('overtime, late, lunch, payment, receivable, transport, total, bpjs', 'numerical'),
 			array('id, idemployee, userlog', 'length', 'max'=>21),
 			array('regnum', 'length', 'max'=>12),
