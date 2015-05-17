@@ -16,8 +16,8 @@
  * @property double $transport
  * @property double $receivable
  * @property double $bpjs
- * @property string $pmonth
- * @property string $pyear
+ * @property integer $pmonth
+ * @property integer $pyear
  * @property double total
  * @property string $userlog
  * @property string $datetimelog
