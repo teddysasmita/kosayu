@@ -742,6 +742,8 @@ class DefaultController extends Controller
         	foreach($details as $d) 
         		$model->total += $d['amount'];
         	
+        	print_r($model->attributes);
+        	die;
          	return $details;
 		}
 }
