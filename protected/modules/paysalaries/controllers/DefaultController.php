@@ -560,7 +560,7 @@ class DefaultController extends Controller
             $model->idatetime=$idmaker->getDateTime();
             $model->regnum=$idmaker->getRegNum($this->formid);
             $model->total = 0;
-            $model->pmonth = date('m');
+            $model->pmonth = date('n');
             $model->pyear = date('Y');
         }
         
