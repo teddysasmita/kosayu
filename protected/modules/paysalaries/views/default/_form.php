@@ -31,6 +31,15 @@
          	$('#command').val('setPO');
    			$('#paysalaries-form').submit();
       	});
+   
+	 $('#countWage').click(
+         function(event) {
+            $('#command').val('countWage');
+            mainform=$('#paysalaries-form');
+            mainform.submit();
+            event.preventDefault();
+         }
+      ); 
 EOS;
    Yii::app()->clientScript->registerScript("employeeScript", $employeeScript, CClientscript::POS_READY);
 
@@ -156,6 +165,16 @@ EOS;
 		<?php echo $form->textField($model,'payment'); ?>
 		<?php echo $form->error($model,'payment'); ?>
 	</div>
+	
+	<div class="row">
+		<?php echo $form->labelEx($model,'bpjs'); ?>
+		<?php echo $form->textField($model,'bpjs'); ?>
+		<?php echo $form->error($model,'bpjs'); ?>
+	</div>
+	
+	<div class="row buttons">
+      <?php echo CHtml::button('Hitung Gaji', array( 'id'=>'countWage'));   ?>
+   </div>
 
 <?php 
     if (isset(Yii::app()->session['Detailpaysalaries'])) {
