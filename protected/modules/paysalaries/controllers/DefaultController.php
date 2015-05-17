@@ -635,20 +635,20 @@ class DefaultController extends Controller
         	$minutewage = $jginfo['wageamount'] / ($daysnum * 8 * 60);
         	print_r($jginfo);
         	//--- wager ---
-        	if ($jginfo['wager'] !== 0) {
+        	if ($jginfo['wager'] !== '0') {
         		unset($temp);
         		$temp['id'] = $model->id;
         		$temp['iddetail'] = idmaker::getCurrentID2();
         		$temp['componentname'] = '1';
-	        	if ($jginfo['wager'] == 1) {
+	        	if ($jginfo['wager'] == '1') {
 	        		$temp['amount'] = $jginfo['wageamount'];	
-	        	} else if ($jginfo['wager'] == 2) {
+	        	} else if ($jginfo['wager'] == '2') {
 	        		$temp['amount'] = ($jginfo['wageamount'] / $daysnum) * $model->presence;
 	         	} 
 	         	$details[] = $temp;
         	}
         	//--- bonus ---
-        	if ($jginfo['bonus'] !== 0) {
+        	if ($jginfo['bonus'] !== '0') {
 	         	unset($temp);
 	         	$temp['id'] = $model->id;
 	         	$temp['iddetail'] = idmaker::getCurrentID2();
@@ -660,7 +660,7 @@ class DefaultController extends Controller
 	         	$details[] = $temp;
         	}
         	//--- thr ---
-         	if ($jginfo['thr'] !== 0) {
+         	if ($jginfo['thr'] !== '0') {
 	        	unset($temp);
 	         	$temp['id'] = $model->id;
 	         	$temp['iddetail'] = idmaker::getCurrentID2();
@@ -669,7 +669,7 @@ class DefaultController extends Controller
 	         	$details[] = $temp;
          	}
          	//--- cashier ---
-         	if ($jginfo['cashier'] !== 0) {
+         	if ($jginfo['cashier'] !== '0') {
 	         	unset($temp);
 	         	$temp['id'] = $model->id;
 	         	$temp['iddetail'] = idmaker::getCurrentID2();
