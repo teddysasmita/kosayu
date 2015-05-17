@@ -114,9 +114,9 @@ EOS;
 	<div class="row">
 		<?php echo $form->labelEx($model,'pyear'); ?>
 		<?php 
-			
-			echo $form->textField($model,'pyear'); 
-		
+			for($i=$model->pyear-3; $i < $model->pyear+3; $i++)
+				$pyear[$i] = $i;
+			echo $form->dropDownList($model,'pyear', $pyear); 
 		?>
 		<?php echo $form->error($model,'pyear'); ?>
 	</div>
