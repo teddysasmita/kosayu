@@ -632,7 +632,7 @@ class DefaultController extends Controller
         		->where('id = :p_id', array(':p_id'=>$jobgroup))
         		->queryRow();
         	
-        	$daysnum = cal_days_in_month(CAL_GREGORIAN, $model->pmonth, $model-pyear) - 4;
+        	$daysnum = cal_days_in_month(CAL_GREGORIAN, $model->pmonth, $model->pyear) - 4;
         	$minutewage = $jginfo['wageamount'] / ($daysnum * 8 * 60);
         	//--- wager ---
         	unset($temp);
