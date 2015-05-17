@@ -673,7 +673,7 @@ class DefaultController extends Controller
 	         	$temp['id'] = $model->id;
 	         	$temp['iddetail'] = idmaker::getCurrentID2();
 	         	$temp['componentname'] = '4';
-	         	$temp['amount'] = $jginfo['cashiersamount'];
+	         	$temp['amount'] = $jginfo['cashieramount'];
 	         	$details[] = $temp;
          	}
          	//--- overtime ---
