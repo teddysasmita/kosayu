@@ -623,13 +623,13 @@ class DefaultController extends Controller
         
         private function setComponents(& $model)
         {        	
-        	$jobgroup = Yii::app()->db->createCommand()
+        	$idjobgroup = Yii::app()->db->createCommand()
         		->select('idjobgroup')->from('employees')
         		->where('id = :p_id', array(':p_id'=>$model->idemployee))
         		->queryScalar();
         	$jginfo = Yii::app()->db->createCommand()
         		->select()->from('jobgroups')
-        		->where('id = :p_id', array(':p_id'=>$jobgroup))
+        		->where('id = :p_id', array(':p_id'=>$idjobgroup))
         		->queryRow();
         	print_r($jginfo);
         	die;
