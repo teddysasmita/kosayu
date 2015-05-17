@@ -132,6 +132,12 @@ EOS;
 	</div>
 		
 	<div class="row">
+		<?php echo $form->labelEx($model,'presence'); ?>
+		<?php echo $form->textField($model,'presence'); ?>
+		<?php echo $form->error($model,'presence'); ?>
+	</div>
+	
+	<div class="row">
 		<?php echo $form->labelEx($model,'transport'); ?>
 		<?php echo $form->textField($model,'transport'); ?>
 		<?php echo $form->error($model,'transport'); ?>
