@@ -40,15 +40,15 @@ class Paysalaries extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id, regnum, idatetime, idemployee, presence, overtime, transport, lunch, payment, receivable, bpjs, total, startdate, enddate, userlog, datetimelog', 'required'),
-			array('presence', 'numerical', 'integerOnly'=>true),
+			array('id, regnum, idatetime, idemployee, presence, overtime, transport, lunch, payment, receivable, bpjs, total, userlog, datetimelog', 'required'),
+			array('presence', 'pmonth', 'pyear', 'numerical', 'integerOnly'=>true),
 			array('overtime, late, lunch, payment, receivable, transport, total, bpjs', 'numerical'),
 			array('id, idemployee, startdate, enddate, userlog', 'length', 'max'=>21),
 			array('regnum', 'length', 'max'=>12),
 			array('idatetime, datetimelog', 'length', 'max'=>19),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, regnum, idatetime, idemployee, presence, overtime, late, lunch, payment, receivable, bpjs, transport, total, startdate, enddate, userlog, datetimelog', 'safe', 'on'=>'search'),
+			array('id, regnum, idatetime, idemployee, presence, overtime, late, lunch, payment, receivable, bpjs, transport, total, pyear, pmonth, userlog, datetimelog', 'safe', 'on'=>'search'),
 		);
 	}
 
