@@ -149,9 +149,9 @@ EOS;
 	</div>
 	
 	<div class="row">
-		<?php echo $form->labelEx($model,'transport'); ?>
-		<?php echo $form->textField($model,'transport'); ?>
-		<?php echo $form->error($model,'transport'); ?>
+		<?php echo $form->labelEx($model,'late'); ?>
+		<?php echo $form->textField($model,'late'); ?>
+		<?php echo $form->error($model,'late'); ?>
 	</div>
 
 	<div class="row">
