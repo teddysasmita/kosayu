@@ -97,7 +97,6 @@ class Jobgroups extends CActiveRecord
 
 		$criteria->compare('id',$this->id,true);
 		$criteria->compare('name',$this->name,true);
-		$criteria->compare('wageamount',$this->wageamount,true);
 		$criteria->compare('bonusamount',$this->bonusamount,true);
 		$criteria->compare('cashieramount',$this->cashieramount,true);
 		$criteria->compare('thrqty',$this->thrqty,true);
