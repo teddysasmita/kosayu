@@ -37,7 +37,7 @@ class MYPDF extends TCPDF {
 		$this->SetLineWidth(0.3);
 		$this->setfontsize(10);
 
-		$this->SetXY($this->leftmargin, 50);
+		$this->SetXY($this->leftmargin, 40);
 		for($i = 0; $i < count($this->headernames1); ++$i) {
 			$this->Cell($this->headerwidths1[$i], 5, $this->headernames1[$i], 'TB', 0, 'C');
 		}
@@ -69,7 +69,7 @@ class MYPDF extends TCPDF {
 			
 		$this->SetFontSize(11);
 		$this->setX($this->leftmargin);
-		$this->Cell(45, 5, 'Total:', 0, 0, 'R'); 
+		$this->Cell(30, 5, 'Total : ', 0, 0, 'R'); 
 		$this->Cell(40, 5, number_format($this->data->total), 0, 1, 'R');
 	}
 	
@@ -117,15 +117,15 @@ class MYPDF extends TCPDF {
 		$this->Cell(70, 5, 'SLIP GAJI', 0, 1, 'C');
 		$this->Ln(2);
 		$this->setX($this->leftmargin);
-		$this->Cell(30, 5, 'Tanggal:'); $this->Cell(40,5, $this->data->idatetime, 0, 1);
+		$this->Cell(40, 5, 'Tanggal'); $this->Cell(40, 5, ': '.$this->data->idatetime, 0, 1);
 		$this->setX($this->leftmargin);
-		$this->Cell(30, 5, 'Nama:'); $this->Cell(50,5, lookup::EmployeeNameFromID($this->data->idemployee), 0, 1);
+		$this->Cell(40, 5, 'Nama'); $this->Cell(50, 5, ': '.lookup::EmployeeNameFromID($this->data->idemployee), 0, 1);
 		$this->setX($this->leftmargin);
-		$this->Cell(30, 5, 'Gaji Pokok:'); $this->Cell(50,5, number_format($employeeinfo['wageamount']), 0, 1);
+		$this->Cell(40, 5, 'Gaji Pokok'); $this->Cell(50,5, ': Rp'.number_format($employeeinfo['wageamount']), 0, 1);
 		$this->setX($this->leftmargin);
-		$this->Cell(30, 5, 'Jumlah Hadir (hr):'); $this->Cell(10,5, $this->data->presence, 0, 1);
+		$this->Cell(40, 5, 'Jumlah Hadir (hr)'); $this->Cell(10,5, ': '.$this->data->presence, 0, 1);
 		$this->setX($this->leftmargin);
-		$this->Cell(30, 5, 'Jumlah Lembur (mnt):'); $this->Cell(10, 5, $this->data->overtime, 0, 1);
+		$this->Cell(40, 5, 'Jumlah Lembur (mnt)'); $this->Cell(10, 5, ': '.$this->data->overtime, 0, 1);
 	} 	
 }
 
