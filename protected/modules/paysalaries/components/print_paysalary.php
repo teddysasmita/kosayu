@@ -60,7 +60,7 @@ class MYPDF extends TCPDF {
 			$row=$this->detaildata[$i];
 			$counter+=1;
 			$this->setX($this->leftmargin);
-			$ih = $this->getStringHeight($this->headerwidths1[1],$row['invoicenum'], false, true, 2);
+			$ih = $this->getStringHeight($this->headerwidths1[1],$row['componentname'], false, true, 2);
 			$this->Cell($this->headerwidths1[0], $ih, lookup::getComponentName($row['componentname'], 0, 0, 'L'));
 			$this->Cell($this->headerwidths1[1], $ih, number_format($row['amount']), 0, 0, 'R');
 			$this->ln($ih);
