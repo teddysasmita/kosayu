@@ -693,7 +693,7 @@ class DefaultController extends Controller
 	         	$temp['id'] = $model->id;
 	         	$temp['iddetail'] = idmaker::getCurrentID2();
 	         	$temp['componentname'] = '5';
-	         	$temp['amount'] = floor($model->overtime / 30) * $minutewage;
+	         	$temp['amount'] = floor($model->overtime / 30) * 30 * $minutewage;
 	         	$details[] = $temp;
          	}
          	//--- late charges ---
