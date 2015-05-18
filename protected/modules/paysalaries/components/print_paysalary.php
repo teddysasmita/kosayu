@@ -70,7 +70,7 @@ class MYPDF extends TCPDF {
 		$this->SetFontSize(11);
 		$this->setX($this->leftmargin);
 		$this->Cell(30, 5, 'Total : ', 'T', 0, 'R'); 
-		$this->Cell(40, 5, number_format($this->data->total), 0, 1, 'R');
+		$this->Cell(40, 5, number_format($this->data->total), 'T', 1, 'R');
 		$this->ln();
 		$this->setX($this->leftmargin);
 		$this->Cell(30, 5, 'Diterima Oleh', 0, 0, 'C');
