@@ -138,6 +138,18 @@ EOS;
 	</div>
 	
 	<div class="row">
+		<?php echo $form->labelEx($model,'nonworkingdays'); ?>
+		<?php echo $form->textField($model,'nonworkingdays'); ?>
+		<?php echo $form->error($model,'nonworkingdays'); ?>
+	</div>
+	
+	<div class="row">
+		<?php echo $form->labelEx($model,'isthr'); ?>
+		<?php echo $form->dropDownList($model,'isthr', array('1'=>'Ya', '0'=>'Tidak')); ?>
+		<?php echo $form->error($model,'isthr'); ?>
+	</div>
+	
+	<div class="row">
 		<?php echo $form->labelEx($model,'transport'); ?>
 		<?php echo $form->textField($model,'transport'); ?>
 		<?php echo $form->error($model,'transport'); ?>

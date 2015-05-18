@@ -9,6 +9,8 @@
  * @property string $idatetime
  * @property string $idemployee
  * @property integer $presence
+ * @property integer $nonworkingdays
+ * @property string isthr
  * @property double $overtime
  * @property double $late
  * @property double $lunch
@@ -40,15 +42,16 @@ class Paysalaries extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id, regnum, idatetime, idemployee, presence, overtime, transport, lunch, payment, pmonth, pyear, receivable, bpjs, total, userlog, datetimelog', 'required'),
-			array('presence, pmonth, pyear', 'numerical', 'integerOnly'=>true),
+			array('id, regnum, idatetime, idemployee, presence, isthr, nonworkingdays, overtime, transport, lunch, payment, pmonth, pyear, receivable, bpjs, total, userlog, datetimelog', 'required'),
+			array('presence, pmonth, pyear, nonworkingdays', 'numerical', 'integerOnly'=>true),
 			array('overtime, late, lunch, payment, receivable, transport, total, bpjs', 'numerical'),
 			array('id, idemployee, userlog', 'length', 'max'=>21),
 			array('regnum', 'length', 'max'=>12),
+			array('isthr', 'length', 'max'=>1),
 			array('idatetime, datetimelog', 'length', 'max'=>19),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, regnum, idatetime, idemployee, presence, overtime, late, lunch, payment, receivable, bpjs, transport, total, pyear, pmonth, userlog, datetimelog', 'safe', 'on'=>'search'),
+			array('id, regnum, idatetime, idemployee, presence, nonworkindays, isthr, overtime, late, lunch, payment, receivable, bpjs, transport, total, pyear, pmonth, userlog, datetimelog', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -74,6 +77,8 @@ class Paysalaries extends CActiveRecord
 			'idatetime' => 'Tanggal',
 			'idemployee' => 'Nama Karyawan',
 			'presence' => 'Jumlah Kehadiran (Hari)',
+			'isthr' => 'Ada THR?',
+			'nonworkingdays' => 'Jumlah Libur Resmi',
 			'overtime' => 'Lembur (menit)',
 			'late' => 'Terlambat (menit)',
 			'lunch' => 'Uang Makan',
@@ -112,6 +117,8 @@ class Paysalaries extends CActiveRecord
 		$criteria->compare('idatetime',$this->idatetime,true);
 		$criteria->compare('idemployee',$this->idemployee,true);
 		$criteria->compare('presence',$this->presence);
+		$criteria->compare('nonworkindays',$this->nonworkingdays);
+		$criteria->compare('isthr',$this->isthr, true);
 		$criteria->compare('overtime',$this->overtime);
 		$criteria->compare('late',$this->late);
 		$criteria->compare('lunch',$this->lunch);

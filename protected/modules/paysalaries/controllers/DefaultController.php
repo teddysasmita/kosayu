@@ -66,7 +66,7 @@ class DefaultController extends Controller
                $this->performAjaxValidation($model);
 
                 if (isset($_POST)){
-                   if(isset($_POST['yt0'])) {
+                   if(isset($_POST['yt1'])) {
                       //The user pressed the button;
                       $model->attributes=$_POST['Paysalaries'];
                       
@@ -559,6 +559,16 @@ class DefaultController extends Controller
             $model->total = 0;
             $model->pmonth = date('n');
             $model->pyear = date('Y');
+            $model->overtime = 0;
+            $model->late = 0;
+            $model->presence = 0;
+            $model->nonworkingdays = 4;
+            $model->isthr = '0';
+            $model->bpjs = 0;
+            $model->payment = 0;
+            $model->transport = 0;
+            $model->lunch = 0;
+            $model->receivable = 0;
         }
         
         protected function afterPost(& $model)
