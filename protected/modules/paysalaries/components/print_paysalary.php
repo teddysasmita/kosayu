@@ -118,7 +118,7 @@ class MYPDF extends TCPDF {
 			->queryRow();
 		$this->Cell(15, 5, 'Tanggal:'); $this->Cell(40,5, $this->data->idatetime, 0, 1);
 		$this->Cell(15, 5, 'Nama:'); $this->Cell(60,5, lookup::EmployeeNameFromID($this->data->idemployee), 0, 1);
-		$this->Cell(15, 5, 'Gaji Pokok:'); $this->Cell(60,5, number_format($this->data->employeeinfo['wageamount']), 0, 1);
+		$this->Cell(15, 5, 'Gaji Pokok:'); $this->Cell(60,5, number_format($employeeinfo['wageamount']), 0, 1);
 		$this->Cell(15, 5, 'Jumlah Hadir (hr):'); $this->Cell(10,5, $this->data->presence, 0, 1);
 		$this->Cell(15, 5, 'Jumlah Lembur (mnt):'); $this->Cell(10, 5, $this->data->overtime, 0, 1);
 		$this->Ln();
