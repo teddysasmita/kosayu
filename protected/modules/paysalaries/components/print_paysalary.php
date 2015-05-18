@@ -24,7 +24,7 @@ class MYPDF extends TCPDF {
 		$this->data = $data;
 		$this->detaildata = $detaildata;
 		
-		$this->headernames1 = array('Komponen'. 'Jumlah' );
+		$this->headernames1 = array('Komponen', 'Jumlah' );
 		$this->headerwidths1 = array(50, 20);		
 	}
 
@@ -156,7 +156,7 @@ function execute($model, $detailmodel) {
 	$pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
 	
 	//set margins
-	$pdf->SetMargins(1, 50, PDF_MARGIN_RIGHT);
+	$pdf->SetMargins(1, 60, PDF_MARGIN_RIGHT);
 	$pdf->SetHeaderMargin(0);
 	$pdf->SetFooterMargin(0);
 	
