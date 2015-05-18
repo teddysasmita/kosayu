@@ -427,7 +427,7 @@ class DefaultController extends Controller
 			Yii::import('application.vendors.tcpdf.*');
 			require_once ('tcpdf.php');
 			Yii::import('application.modules.paysalaries.components.*');
-			require_once('printpurchase.php');
+			require_once('print_paysalary.php');
 			ob_clean();
 			
 			execute($masterdata, $detaildata);
