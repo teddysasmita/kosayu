@@ -10,7 +10,6 @@ class MYPDF extends TCPDF {
 
 	private $data;
 	private $detaildata;
-	private $detaildata2;
 	
 	private $headernames;
 	private $headerwidths;
@@ -20,11 +19,10 @@ class MYPDF extends TCPDF {
 	public $leftmargin;
 	
 	// Load table data from file
-	public function LoadData($data, array $detaildata, array $detaildata2) {
+	public function LoadData($data, array $detaildata) {
 		// Read file lines
 		$this->data = $data;
 		$this->detaildata = $detaildata;
-		$this->detaildata2 = $detaildata2;
 		
 		$this->headernames1 = array('Komponen'. 'Jumlah' );
 		$this->headerwidths1 = array(50, 20);		
@@ -173,7 +171,7 @@ function execute($model, $detailmodel) {
 	//$pdf->SetFont('helvetica', '', 11);
 	
 	// add a page
-	$pdf->LoadData($model, $detailmodel, $detailmodel2);
+	$pdf->LoadData($model, $detailmodel);
 	
 	$pdf->AddPage($pdf->pageorientation, $pdf->pagesize);
 	//$pdf->AddPage();
