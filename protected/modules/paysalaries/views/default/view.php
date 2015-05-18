@@ -56,7 +56,8 @@ $this->menu=array(
          'columns'=>array(  
          	array(
                   'header'=>'Komponen',
-                  'name'=>'name',
+                  'name'=>'componentname',
+         			'value'=>"lookup::getComponentName(\$data['componentname'])",
               ),
          	array(
                   'header'=>'Jumlah',
