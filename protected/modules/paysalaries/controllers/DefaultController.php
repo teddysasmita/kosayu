@@ -670,7 +670,7 @@ class DefaultController extends Controller
 	         	$details[] = $temp;
         	}
         	//--- thr ---
-         	if ($jginfo['thr'] !== '0') {
+         	if (($jginfo['thr'] !== '0') && ($model->isthr == '1')) {
 	        	unset($temp);
 	         	$temp['id'] = $model->id;
 	         	$temp['iddetail'] = idmaker::getCurrentID2();
