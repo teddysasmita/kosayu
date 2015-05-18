@@ -29,11 +29,16 @@ $this->menu=array(
 		//'id',
 		'regnum',
 		'idatetime',
-		'idorder',
 		array(
+			'name' => 'idemployee',
               'label'=>'Nama Karyawan',
               'value'=>lookup::EmployeeNameFromID($model->idemployee)
             ),
+		array(
+			'name'=>'total',
+			'label'=>'Total',
+			'type'=>'number',	
+		),
 		array(
                'label'=>'Userlog',
                'value'=>lookup::UserNameFromUserID($model->userlog),
