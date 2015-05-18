@@ -107,21 +107,21 @@ class MYPDF extends TCPDF {
 		$this->SetDrawColor(0, 0, 0);
 		$this->SetLineWidth(0.3);
 		$this->SetCellPadding(0.8);
-			
+
+		$employeeinfo = Yii::app()->db->createCommand()
+		->select()->from('employees')
+		->where('id = :p_id', array(':p_id'=>$this->data->idemployee))
+		->queryRow();
+		
 		$this->setXY($this->leftmargin, 5);
-		$this->Cell(80, 5, 'SLIP GAJI', 0, 1, 'C');
+		$this->Cell(70, 5, 'SLIP GAJI', 0, 1, 'C');
 		$this->Ln(2);
 		$this->setX($this->leftmargin);
-		$employeeinfo = Yii::app()->db->createCommand()
-			->select()->from('employees')
-			->where('id = :p_id', array(':p_id'=>$this->data->idemployee))
-			->queryRow();
-		$this->Cell(15, 5, 'Tanggal:'); $this->Cell(40,5, $this->data->idatetime, 0, 1);
-		$this->Cell(15, 5, 'Nama:'); $this->Cell(60,5, lookup::EmployeeNameFromID($this->data->idemployee), 0, 1);
-		$this->Cell(15, 5, 'Gaji Pokok:'); $this->Cell(60,5, number_format($employeeinfo['wageamount']), 0, 1);
-		$this->Cell(15, 5, 'Jumlah Hadir (hr):'); $this->Cell(10,5, $this->data->presence, 0, 1);
-		$this->Cell(15, 5, 'Jumlah Lembur (mnt):'); $this->Cell(10, 5, $this->data->overtime, 0, 1);
-		$this->Ln();
+		$this->Cell(30, 5, 'Tanggal:'); $this->Cell(40,5, $this->data->idatetime, 0, 1);
+		$this->Cell(30, 5, 'Nama:'); $this->Cell(50,5, lookup::EmployeeNameFromID($this->data->idemployee), 0, 1);
+		$this->Cell(30, 5, 'Gaji Pokok:'); $this->Cell(50,5, number_format($employeeinfo['wageamount']), 0, 1);
+		$this->Cell(30, 5, 'Jumlah Hadir (hr):'); $this->Cell(10,5, $this->data->presence, 0, 1);
+		$this->Cell(30, 5, 'Jumlah Lembur (mnt):'); $this->Cell(10, 5, $this->data->overtime, 0, 1);
 	} 	
 }
 
@@ -152,7 +152,7 @@ function execute($model, $detailmodel) {
 	$pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
 	
 	//set margins
-	$pdf->SetMargins(1, 40, PDF_MARGIN_RIGHT);
+	$pdf->SetMargins(1, 50, PDF_MARGIN_RIGHT);
 	$pdf->SetHeaderMargin(0);
 	$pdf->SetFooterMargin(0);
 	
