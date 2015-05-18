@@ -9,6 +9,7 @@
  * @property double $bonusamount
  * @property double $thrqty
  * @property double $cashieramount
+ * @property string $wager
  * @property string $bonus
  * @property string $thr
  * @property string $cashier
@@ -33,15 +34,15 @@ class Jobgroups extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id, name, bonus, thr, cashier, userlog, datetimelog', 'required'),
+			array('id, name, bonus, thr, cashier, wager, userlog, datetimelog', 'required'),
 			array('cashieramount, thrqty, bonusamount', 'numerical'),
 			array('id, userlog', 'length', 'max'=>21),
 			array('name', 'length', 'max'=>100),
-			array('bonus, thr, cashier', 'length', 'max'=>1),
+			array('wager, bonus, thr, cashier', 'length', 'max'=>1),
 			array('datetimelog', 'length', 'max'=>19),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, name, cashieramount, thrqty, bonusamount, bonus, thr, cashier, userlog, datetimelog', 'safe', 'on'=>'search'),
+			array('id, name, cashieramount, thrqty, bonusamount, bonus, thr, cashier, wager, userlog, datetimelog', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -69,7 +70,8 @@ class Jobgroups extends CActiveRecord
 			'thrqty' => 'THR',
 			'bonus' => 'Bonus',
 			'thr' => 'Thr',
-			'cashier' => 'Tunjangan Kasir',
+			'wager' => 'Gaji Pokok',
+ 			'cashier' => 'Tunjangan Kasir',
 			'userlog' => 'Userlog',
 			'datetimelog' => 'Datetimelog',
 		);
@@ -102,6 +104,7 @@ class Jobgroups extends CActiveRecord
 		$criteria->compare('wager',$this->wager,true);
 		$criteria->compare('bonus',$this->bonus,true);
 		$criteria->compare('thr',$this->thr,true);
+		$criteria->compare('wager',$this->wager,true);
 		$criteria->compare('cashier',$this->cashier,true);
 		$criteria->compare('userlog',$this->userlog,true);
 		$criteria->compare('datetimelog',$this->datetimelog,true);

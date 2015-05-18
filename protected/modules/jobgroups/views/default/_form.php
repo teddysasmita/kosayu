@@ -26,23 +26,12 @@
 		<?php echo $form->textField($model,'name'); ?>
 		<?php echo $form->error($model,'name'); ?>
 	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'bonusamount'); ?>
-		<?php echo $form->textField($model,'bonusamount'); ?>
-		<?php echo $form->error($model,'bonusamount'); ?>
-	</div>
 	
 	<div class="row">
-		<?php echo $form->labelEx($model,'cashieramount'); ?>
-		<?php echo $form->textField($model,'cashieramount'); ?>
-		<?php echo $form->error($model,'cashieramount'); ?>
-	</div>
-	
-	<div class="row">
-		<?php echo $form->labelEx($model,'thrqty'); ?>
-		<?php echo $form->textField($model,'thrqty'); ?>
-		<?php echo $form->error($model,'thrqty'); ?>
+		<?php echo $form->labelEx($model,'wager'); ?>
+		<?php echo $form->dropDownList($model, 'wager', array('1'=>'Gaji Tetap', '2'=>'Hitung Kehadiran'),
+				array('empty'=>'Harap Pilih')); ?>
+		<?php echo $form->error($model,'wager'); ?>
 	</div>
 	
 	<div class="row">
@@ -53,6 +42,12 @@
 	</div>
 
 	<div class="row">
+		<?php echo $form->labelEx($model,'bonusamount'); ?>
+		<?php echo $form->textField($model,'bonusamount'); ?>
+		<?php echo $form->error($model,'bonusamount'); ?>
+	</div>
+	
+	<div class="row">
 		<?php echo $form->labelEx($model,'thr'); ?>
 		<?php echo $form->dropDownList($model, 'thr', array('0'=>'Tidak', '1'=>'Ya'),
 				array('empty'=>'Harap Pilih')); ?>
@@ -60,13 +55,25 @@
 	</div>
 
 	<div class="row">
+		<?php echo $form->labelEx($model,'thrqty'); ?>
+		<?php echo $form->textField($model,'thrqty'); ?>
+		<?php echo $form->error($model,'thrqty'); ?>
+	</div>
+	
+	<div class="row">
 		<?php echo $form->labelEx($model,'cashier'); ?>
 		<?php echo $form->dropDownList($model, 'cashier', array('0'=>'Tidak', '1'=>'Ya'),
 				array('empty'=>'Harap Pilih')); ?>
 		<?php echo $form->error($model,'cashier'); ?>
 	</div>
-
-
+	
+	<div class="row">
+		<?php echo $form->labelEx($model,'cashieramount'); ?>
+		<?php echo $form->textField($model,'cashieramount'); ?>
+		<?php echo $form->error($model,'cashieramount'); ?>
+	</div>
+	
+	
 	<div class="row buttons">
 		<?php echo CHtml::submitButton('Submit'); ?>
 	</div>
