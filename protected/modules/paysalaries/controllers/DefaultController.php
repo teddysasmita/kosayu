@@ -642,7 +642,7 @@ class DefaultController extends Controller
         		->where('id = :p_id', array(':p_id'=>$employeeinfo['idjobgroup']))
         		->queryRow();
         	$daysnum = cal_days_in_month(CAL_GREGORIAN, $model->pmonth, $model->pyear) - 4;
-        	$minutewage = $jginfo['wageamount'] / ($daysnum * 8 * 60);
+        	$minutewage = $employeeinfo['wageamount'] / ($daysnum * 8 * 60);
 
         	//--- wager ---
         	if ($employeeinfo['wageamount'] > 0) {
@@ -675,7 +675,7 @@ class DefaultController extends Controller
 	         	$temp['id'] = $model->id;
 	         	$temp['iddetail'] = idmaker::getCurrentID2();
 	         	$temp['componentname'] = '3';
-	         	$temp['amount'] = $jginfo['thrqty'] * $jginfo['wageamount'];
+	         	$temp['amount'] = $jginfo['thrqty'] * $employeeinfo['wageamount'];
 	         	$details[] = $temp;
          	}
          	//--- cashier ---
