@@ -28,12 +28,6 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'wageamount'); ?>
-		<?php echo $form->textField($model,'wageamount'); ?>
-		<?php echo $form->error($model,'wageamount'); ?>
-	</div>
-	
-	<div class="row">
 		<?php echo $form->labelEx($model,'bonusamount'); ?>
 		<?php echo $form->textField($model,'bonusamount'); ?>
 		<?php echo $form->error($model,'bonusamount'); ?>
@@ -51,13 +45,6 @@
 		<?php echo $form->error($model,'thrqty'); ?>
 	</div>
 	
-	<div class="row">
-		<?php echo $form->labelEx($model,'wager'); ?>
-		<?php echo $form->dropDownList($model, 'wager', array('0'=>'Tidak', '1'=>'Tetap', '2'=>'Kehadiran'),
-				array('empty'=>'Harap Pilih')); ?>
-		<?php echo $form->error($model,'wager'); ?>		
-	</div>
-
 	<div class="row">
 		<?php echo $form->labelEx($model,'bonus'); ?>
 		<?php echo $form->dropDownList($model, 'bonus', array('0'=>'Tidak', '1'=>'Ya'),

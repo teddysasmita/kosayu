@@ -6,11 +6,9 @@
  * The followings are the available columns in table 'jobgroups':
  * @property string $id
  * @property string $name
- * @property double $wageamount
  * @property double $bonusamount
  * @property double $thrqty
  * @property double $cashieramount
- * @property string $wager
  * @property string $bonus
  * @property string $thr
  * @property string $cashier
@@ -35,15 +33,15 @@ class Jobgroups extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id, name, wager, bonus, thr, cashier, userlog, datetimelog', 'required'),
-			array('wageamount, cashieramount, thrqty, bonusamount', 'numerical'),
+			array('id, name, bonus, thr, cashier, userlog, datetimelog', 'required'),
+			array('cashieramount, thrqty, bonusamount', 'numerical'),
 			array('id, userlog', 'length', 'max'=>21),
 			array('name', 'length', 'max'=>100),
-			array('wager, bonus, thr, cashier', 'length', 'max'=>1),
+			array('bonus, thr, cashier', 'length', 'max'=>1),
 			array('datetimelog', 'length', 'max'=>19),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, name, cashieramount, thrqty, bonusamount, wageamount, wager, bonus, thr, cashier, userlog, datetimelog', 'safe', 'on'=>'search'),
+			array('id, name, cashieramount, thrqty, bonusamount, bonus, thr, cashier, userlog, datetimelog', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -66,11 +64,9 @@ class Jobgroups extends CActiveRecord
 		return array(
 			'id' => 'ID',
 			'name' => 'Nama',
-			'wageamount' => 'Jumlah Gaji Pokok',
 			'bonusamount' => 'Bonus',
 			'cashieramount' => 'Tunjangan Kasir',
 			'thrqty' => 'THR',
-			'wager' => 'Gaji Pokok',
 			'bonus' => 'Bonus',
 			'thr' => 'Thr',
 			'cashier' => 'Tunjangan Kasir',

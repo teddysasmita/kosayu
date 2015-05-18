@@ -12,6 +12,7 @@
  * @property string $email
  * @property string $idnumber
  * @property string $idjobgroup
+ * @property double wageamount
  * @property string $startdate
  * @property string $enddate
  * @property string $active
@@ -36,7 +37,8 @@ class Employees extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id, firstname, lastname, address, idnumber, idjobgroup, startdate, userlog, datetimelog', 'required'),
+			array('id, firstname, lastname, address, idnumber, idjobgroup, wageamount, startdate, userlog, datetimelog', 'required'),
+			array('wageamount', 'numerical'),
 			array('id, idjobgroup, userlog', 'length', 'max'=>21),
 			array('firstname, lastname, phone, idnumber', 'length', 'max'=>50),
 			array('address, email', 'length', 'max'=>100),
@@ -44,7 +46,7 @@ class Employees extends CActiveRecord
 			array('active', 'length', 'max'=>1),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, firstname, lastname, address, phone, email, idnumber, idjobgroup, startdate, enddate, active, userlog, datetimelog', 'safe', 'on'=>'search'),
+			array('id, firstname, lastname, address, phone, email, idnumber, idjobgroup, wageamount, startdate, enddate, active, userlog, datetimelog', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -73,6 +75,7 @@ class Employees extends CActiveRecord
 			'email' => 'Email',
 			'idnumber' => 'Nomor Kartu ID',
 			'idjobgroup' => 'Posisi',
+			'wageamount' => 'Gaji Pokok',
 			'startdate' => 'Tanggal Awal',
 			'enddate' => 'Tanggal Akhir',
 			'active' => 'Aktif',
@@ -107,6 +110,7 @@ class Employees extends CActiveRecord
 		$criteria->compare('email',$this->email,true);
 		$criteria->compare('idnumber',$this->idnumber,true);
 		$criteria->compare('idjobgroup',$this->idjobgroup,true);
+		$criteria->compare('wageamount',$this->wageamount);
 		$criteria->compare('startdate',$this->startdate,true);
 		$criteria->compare('enddate',$this->enddate,true);
 		$criteria->compare('active',$this->active,true);

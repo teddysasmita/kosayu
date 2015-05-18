@@ -30,6 +30,10 @@ $this->menu=array(
 		'address',
 		'phone',
 		array(
+			'name'=>'wageamount',
+			'type'=>'number',		
+		),
+		array(
                    'name'=>'userlog',
                    'value'=>lookup::UserNameFromUserID($model->userlog)
                 ),

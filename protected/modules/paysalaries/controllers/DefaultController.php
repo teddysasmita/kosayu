@@ -633,27 +633,27 @@ class DefaultController extends Controller
         
         private function setComponents(& $model)
         {        	
-        	$idjobgroup = Yii::app()->db->createCommand()
-        		->select('idjobgroup')->from('employees')
+        	$employeeinfo = Yii::app()->db->createCommand()
+        		->select()->from('employees')
         		->where('id = :p_id', array(':p_id'=>$model->idemployee))
-        		->queryScalar();
+        		->queryRow();
         	$jginfo = Yii::app()->db->createCommand()
         		->select()->from('jobgroups')
-        		->where('id = :p_id', array(':p_id'=>$idjobgroup))
+        		->where('id = :p_id', array(':p_id'=>$employeeinfo['idjobgroup']))
         		->queryRow();
         	$daysnum = cal_days_in_month(CAL_GREGORIAN, $model->pmonth, $model->pyear) - 4;
         	$minutewage = $jginfo['wageamount'] / ($daysnum * 8 * 60);
 
         	//--- wager ---
-        	if ($jginfo['wager'] !== '0') {
+        	if ($employeeinfo['wageamount'] > 0) {
         		unset($temp);
         		$temp['id'] = $model->id;
         		$temp['iddetail'] = idmaker::getCurrentID2();
         		$temp['componentname'] = '1';
 	        	if ($jginfo['wager'] == '1') {
-	        		$temp['amount'] = $jginfo['wageamount'];	
+	        		$temp['amount'] = $employeeinfo['wageamount'];	
 	        	} else if ($jginfo['wager'] == '2') {
-	        		$temp['amount'] = ($jginfo['wageamount'] / $daysnum) * $model->presence;
+	        		$temp['amount'] = ($employeeinfo['wageamount'] / $daysnum) * $model->presence;
 	         	} 
 	         	$details[] = $temp;
         	}

@@ -59,6 +59,12 @@
 	</div>
 
 	<div class="row">
+		<?php echo $form->labelEx($model,'wageamount'); ?>
+		<?php echo $form->textField($model,'wageamount'); ?>
+		<?php echo $form->error($model,'wageamount'); ?>
+	</div>
+	
+	<div class="row">
 		<?php echo $form->labelEx($model,'startdate'); ?>
 		<?php $this->widget('zii.widgets.jui.CJuiDatePicker',array(
                   'name'=>'Employees[startdate]',
