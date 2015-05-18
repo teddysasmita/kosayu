@@ -55,14 +55,14 @@ $this->menu=array(
          'dataProvider'=>$dataProvider,
          'columns'=>array(  
          	array(
-                  'header'=>'Komponen',
-                  'name'=>'componentname',
-         			'value'=>"lookup::getComponentName(\$data['componentname'])",
+                'header'=>'Komponen',
+                'name'=>'componentname',
+         		'value'=>"lookup::getComponentName(\$data['componentname'])",
               ),
          	array(
-                  'header'=>'Jumlah',
-                  'name'=>'amount',
-                  'type'=>'number'
+                'header'=>'Jumlah',
+                'name'=>'amount',
+                'type'=>'number'
               ),
             array(
                'class'=>'CButtonColumn',

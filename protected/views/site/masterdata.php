@@ -29,5 +29,5 @@ $this->pageTitle=Yii::app()->name;
 <h3><?php echo CHtml::link('Rekanan / Agen', Yii::app()->createUrl('partner'))?></h3>
 <h3><?php echo CHtml::link('Voucher / Kupon', Yii::app()->createUrl('salesvouchers'))?></h3>
 <h2>Bagian Personalia</h2>
-<h3><?php echo CHtml::link('Karyawan', Yii::app()->createUrl('employees'))?></h3>
 <h3><?php echo CHtml::link('Jabatan', Yii::app()->createUrl('jobgroups'))?></h3>
+<h3><?php echo CHtml::link('Karyawan', Yii::app()->createUrl('employees'))?></h3>
