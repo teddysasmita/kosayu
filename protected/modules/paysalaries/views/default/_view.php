@@ -17,12 +17,12 @@
 	<?php echo CHtml::encode(lookup::EmployeeNameFromID($data->idemployee)); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('startdate')); ?>:</b>
-	<?php echo CHtml::encode($data->startdate); ?>
+	<b><?php echo CHtml::encode($data->getAttributeLabel('pmonth')); ?>:</b>
+	<?php echo CHtml::encode(lookup::getMonthName($data->pmonth)); ?>
 	<br />
 	
-	<b><?php echo CHtml::encode($data->getAttributeLabel('enddate')); ?>:</b>
-	<?php echo CHtml::encode($data->enddate); ?>
+	<b><?php echo CHtml::encode($data->getAttributeLabel('pyear')); ?>:</b>
+	<?php echo CHtml::encode($data->pyear); ?>
 	<br />
 	
       <b><?php echo CHtml::encode($data->getAttributeLabel('userlog')); ?>:</b>
