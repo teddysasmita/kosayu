@@ -129,6 +129,8 @@ class MYPDF extends TCPDF {
 		$this->Cell(35, 5, 'Jumlah Hadir (hr)'); $this->Cell(10,5, ': '.$this->data->presence, 0, 1);
 		$this->setX($this->leftmargin);
 		$this->Cell(35, 5, 'Jumlah Lembur (mnt)'); $this->Cell(10, 5, ': '.$this->data->overtime, 0, 1);
+		$this->setX($this->leftmargin);
+		$this->Cell(35, 5, 'Jumlah Telat (mnt)'); $this->Cell(10, 5, ': '.$this->data->late, 0, 1);
 	} 	
 }
 
