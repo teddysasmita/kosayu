@@ -37,7 +37,7 @@ class MYPDF extends TCPDF {
 		$this->SetLineWidth(0.3);
 		$this->setfontsize(10);
 
-		$this->SetXY($this->leftmargin, 45);
+		$this->SetXY($this->leftmargin, 50);
 		for($i = 0; $i < count($this->headernames1); ++$i) {
 			$this->Cell($this->headerwidths1[$i], 5, $this->headernames1[$i], 'TB', 0, 'C');
 		}
