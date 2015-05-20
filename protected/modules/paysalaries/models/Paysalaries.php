@@ -43,7 +43,7 @@ class Paysalaries extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id, regnum, idatetime, idemployee, presence, isthr, nonworkingdays, overtime, earlystop, transport, lunch, payment, pmonth, pyear, receivable, bpjs, total, userlog, datetimelog', 'required'),
+			array('id, regnum, idatetime, idemployee, presence, isthr, nonworkingdays, overtime, earlystop, transport, lunch, payment, pmonth, pyear, receivable, bpjs, total, late, userlog, datetimelog', 'required'),
 			array('presence, pmonth, pyear, nonworkingdays', 'numerical', 'integerOnly'=>true),
 			array('overtime, earlystop, late, lunch, payment, receivable, transport, total, bpjs', 'numerical'),
 			array('id, idemployee, userlog', 'length', 'max'=>21),

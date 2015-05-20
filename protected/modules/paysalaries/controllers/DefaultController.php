@@ -561,6 +561,7 @@ class DefaultController extends Controller
             $model->pyear = date('Y');
             $model->overtime = 0;
             $model->late = 0;
+            $model->earlystop = 0;
             $model->presence = 0;
             $model->nonworkingdays = 4;
             $model->isthr = '0';
