@@ -31,13 +31,27 @@ $this->menu=array(
 		'idatetime',
 		array(
 			'name' => 'idemployee',
-              'label'=>'Nama Karyawan',
-              'value'=>lookup::EmployeeNameFromID($model->idemployee)
-            ),
+             'value'=>lookup::EmployeeNameFromID($model->idemployee)
+        ),
 		array(
 			'name'=>'total',
-			'label'=>'Total',
 			'type'=>'number',	
+		),
+		array(
+			'name'=>'presence',
+			'type'=>'number',
+		),
+		array(
+			'name'=>'late',
+			'type'=>'number',
+		),
+		array(
+			'name'=>'overtime',
+			'type'=>'number',
+		),
+		array(
+			'name'=>'earlystop',
+			'type'=>'number',
 		),
 		array(
                'label'=>'Userlog',

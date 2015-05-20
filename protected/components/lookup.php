@@ -742,6 +742,8 @@ class lookup extends CComponent {
 			break;
 			case 'B': return 'Uang Makan';
 			break;
+			case 'C': return 'Pulang Awal';
+			break;
 		}
 	}
 	

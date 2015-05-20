@@ -13,6 +13,7 @@
  * @property string isthr
  * @property double $overtime
  * @property double $late
+ * @property double $earlystop
  * @property double $lunch
  * @property double $payment
  * @property double $transport
@@ -42,9 +43,9 @@ class Paysalaries extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id, regnum, idatetime, idemployee, presence, isthr, nonworkingdays, overtime, transport, lunch, payment, pmonth, pyear, receivable, bpjs, total, userlog, datetimelog', 'required'),
+			array('id, regnum, idatetime, idemployee, presence, isthr, nonworkingdays, overtime, earlystop, transport, lunch, payment, pmonth, pyear, receivable, bpjs, total, userlog, datetimelog', 'required'),
 			array('presence, pmonth, pyear, nonworkingdays', 'numerical', 'integerOnly'=>true),
-			array('overtime, late, lunch, payment, receivable, transport, total, bpjs', 'numerical'),
+			array('overtime, earlystop, late, lunch, payment, receivable, transport, total, bpjs', 'numerical'),
 			array('id, idemployee, userlog', 'length', 'max'=>21),
 			array('regnum', 'length', 'max'=>12),
 			array('isthr', 'length', 'max'=>1),
@@ -81,6 +82,7 @@ class Paysalaries extends CActiveRecord
 			'nonworkingdays' => 'Jumlah Libur Resmi',
 			'overtime' => 'Lembur (menit)',
 			'late' => 'Terlambat (menit)',
+			'earlystop' => 'Pulang Awal (menit)',
 			'lunch' => 'Uang Makan',
 			'receivable' => 'Piutang',
 			'payment' => 'Bayar Piutang',
@@ -121,6 +123,7 @@ class Paysalaries extends CActiveRecord
 		$criteria->compare('isthr',$this->isthr, true);
 		$criteria->compare('overtime',$this->overtime);
 		$criteria->compare('late',$this->late);
+		$criteria->compare('earlystop',$this->earlystop);
 		$criteria->compare('lunch',$this->lunch);
 		$criteria->compare('payment',$this->payment);
 		$criteria->compare('bpjs',$this->bpjs);

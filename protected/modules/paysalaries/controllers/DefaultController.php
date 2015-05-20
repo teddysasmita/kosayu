@@ -709,6 +709,15 @@ class DefaultController extends Controller
 	         	$temp['amount'] = - floor($model->late) * $minutewage;
 	         	$details[] = $temp;
          	}
+         	//--- early stops ---
+         	if ($model->earlystop > 0) {
+         		unset($temp);
+         		$temp['id'] = $model->id;
+         		$temp['iddetail'] = idmaker::getCurrentID2();
+         		$temp['componentname'] = 'C';
+         		$temp['amount'] = - floor($model->earlystop / 30) * 30 * $minutewage;
+         		$details[] = $temp;
+         	}
          	//--- receivable ---
          	if ($model->receivable > 0) {
 		        unset($temp);

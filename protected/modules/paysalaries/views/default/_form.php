@@ -174,6 +174,12 @@ EOS;
 	</div>
 
 	<div class="row">
+		<?php echo $form->labelEx($model,'earlystop'); ?>
+		<?php echo $form->textField($model,'earlystop'); ?>
+		<?php echo $form->error($model,'earlystop'); ?>
+	</div>
+	
+	<div class="row">
 		<?php echo $form->labelEx($model,'receivable'); ?>
 		<?php echo $form->textField($model,'receivable'); ?>
 		<?php echo $form->error($model,'receivable'); ?>
