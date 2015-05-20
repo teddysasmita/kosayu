@@ -569,12 +569,12 @@ class DefaultController extends Controller
         
         protected function afterPost(& $model)
         {
-            $idmaker=new idmaker();
-            $idmaker->saveRegNum($this->formid, $model->regnum);    
             
-            if ($this->state == 'c')
+            if ($this->state == 'c') {
+            	$idmaker=new idmaker();
+            	$idmaker->saveRegNum($this->formid, $model->regnum);
             	Action::addStock($model->id, $model->idatetime, $model->regnum, 'Konsinyasi');
-            else if ($this->state == 'u')
+            } else if ($this->state == 'u')
             	Action::updateStock($model->id, $model->idatetime);
  
             Yii::import('application.modules.sellingprice.models.*');

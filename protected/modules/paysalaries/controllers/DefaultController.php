@@ -573,7 +573,11 @@ class DefaultController extends Controller
         
         protected function afterPost(& $model)
         {
-                
+        	if ($this->state == 'c') {
+        		$idmaker=new idmaker();
+        		$idmaker->saveRegNum($this->formid, $model->regnum);
+        		Action::addStock($model->id, $model->idatetime, $model->regnum, 'Konsinyasi');
+        	}    
         }
         
         protected function beforePost(& $model)
