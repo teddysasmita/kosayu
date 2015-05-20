@@ -37,7 +37,7 @@ class MYPDF extends TCPDF {
 		$this->SetLineWidth(0.3);
 		$this->setfontsize(10);
 
-		$this->SetXY($this->leftmargin, 50);
+		$this->SetXY($this->leftmargin, 55);
 		for($i = 0; $i < count($this->headernames1); ++$i) {
 			$this->Cell($this->headerwidths1[$i], 5, $this->headernames1[$i], 'TB', 0, 'C');
 		}
@@ -131,6 +131,8 @@ class MYPDF extends TCPDF {
 		$this->Cell(35, 5, 'Jumlah Lembur (mnt)'); $this->Cell(10, 5, ': '.$this->data->overtime, 0, 1);
 		$this->setX($this->leftmargin);
 		$this->Cell(35, 5, 'Jumlah Telat (mnt)'); $this->Cell(10, 5, ': '.$this->data->late, 0, 1);
+		$this->setX($this->leftmargin);
+		$this->Cell(35, 5, 'Pulang Awal (mnt)'); $this->Cell(10, 5, ': '.$this->data->earlystop, 0, 1);
 	} 	
 }
 
