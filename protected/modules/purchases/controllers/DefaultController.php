@@ -688,9 +688,11 @@ class DefaultController extends Controller
         	$salesorders = Yii::app()->db->createCommand()
         		->select('b.idsupplier, a.*')->from('detailpurchasesorders a')
         		->join('purchasesorders b', 'b.id = a.id')
-        		->join('items c', 'c.id = a.iditem')
-        		->where('b.regnum = :p_regnum and c.type = :p_type', 
-        			array(':p_regnum'=>$idorder, ':p_type'=>'1'))
+        		//->join('items c', 'c.id = a.iditem')
+        		//->where('b.regnum = :p_regnum and c.type = :p_type',
+        		->where('b.regnum = :p_regnum',
+        			//array(':p_regnum'=>$idorder, ':p_type'=>'1'))
+					array(':p_regnum'=>$idorder))
         		->queryAll();	
         	
         	$idsupplier = $salesorders[0]['idsupplier'];
