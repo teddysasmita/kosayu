@@ -46,7 +46,7 @@ class MYPDF extends TCPDF {
 		$fill = 0;
 		$counter=0;
 		$iditem='';
-		$this->SetXY(10, 42);
+		$this->SetXY(10, 35);
 			
 		$this->setX(10);
 		for ($i=0;$i<count($this->data);$i++) {
@@ -117,8 +117,8 @@ class MYPDF extends TCPDF {
 		$this->Cell(195, 10, 'Laporan Penjualan', 'LTR', 1, 'C');
 		$this->setXY(10, 20);
 		$this->setFontSize(10);
-		$this->Cell(50, 5, 'Kode Supplier :'. $this->suppliercode,'LTR', 0, 'L');
-		$this->Cell(145, 5, 'Periode  :'. $this->startdate. ' s/d '.$this->enddate, 'LTR', 1, 'L');		
+		$this->Cell(50, 5, 'Kode Supplier : '. $this->suppliercode,'LTR', 0, 'L');
+		$this->Cell(145, 5, 'Periode  : '. $this->startdate. ' s/d '.$this->enddate, 'LTR', 1, 'L');		
 		$this->SetFontSize(10);		
 		$this->setX(10);
 		$this->SetFont('Helvetica', 'B');
