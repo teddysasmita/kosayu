@@ -46,7 +46,7 @@ class MYPDF extends TCPDF {
 		$fill = 0;
 		$counter=0;
 		$iditem='';
-		$this->SetXY(10, 35);
+		$this->SetXY(10, 33);
 			
 		$this->setX(10);
 		for ($i=0;$i<count($this->data);$i++) {
