@@ -100,6 +100,7 @@ class DefaultController extends Controller
                          	Yii::app()->session['Detailpaysalaries'] = $data;
                          } else {
                          	$checkerror = 'Ditemukan pembayaran gaji yang sama.';
+                         	Yii::app()->session->remove('Detailpaysalaries');
                          }
                          Yii::app()->session['Paysalaries']=$model->attributes;
                       }
@@ -107,7 +108,7 @@ class DefaultController extends Controller
                 }
 
                 $this->render('create',array(
-                    'model'=>$model,
+                    'model'=>$model, 'checkerror'=>$checkerror
                 ));
                 
              } else {
