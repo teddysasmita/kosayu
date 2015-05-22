@@ -65,13 +65,13 @@ class MYPDF extends TCPDF {
 			$this->Cell($this->headerwidths[3], $ih, number_format($row['rqty']), 'BR', 0, 'R', $fill);
 			$totalrqty += $row['rqty'];
 			$this->Cell($this->headerwidths[4], $ih, number_format($row['totalsold']), 'BR', 0, 'R', $fill);
-			$totalsold += $row['sold'];
+			$totalsold += $row['totalsold'];
 			$this->Cell($this->headerwidths[5], $ih, number_format($row['totaldisc']), 'BR', 0, 'R', $fill);
-			$totaldisc += $row['disc'];
+			$totaldisc += $row['totaldisc'];
 			$this->Cell($this->headerwidths[6], $ih, number_format($row['totalcog']), 'BR', 0, 'R', $fill);
-			$totalcog += $row['cog'];
+			$totalcog += $row['totalcog'];
 			$this->Cell($this->headerwidths[7], $ih, number_format($row['totalgain']), 'BR', 1, 'R', $fill);
-			$totalgain += $row['gain'];
+			$totalgain += $row['totalgain'];
 		} 
 		$this->setX(10);
 		$this->Cell($this->headerwidths[0] + $this->headerwidths[1], 5, 'Total', 'LTB', 0, 'R');
