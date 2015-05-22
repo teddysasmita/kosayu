@@ -80,7 +80,7 @@ class MYPDF extends TCPDF {
 		$this->Cell($this->headerwidths[4], 5, number_format($totalsold), 'LTB', 0, 'R');
 		$this->Cell($this->headerwidths[5], 5, number_format($totaldisc), 'LTB', 0, 'R');
 		$this->Cell($this->headerwidths[6], 5, number_format($totalcog), 'LTB', 0, 'R');
-		$this->Cell($this->headerwidths[7], 5, number_format($totalgain), 'LTB', 0, 'R');
+		$this->Cell($this->headerwidths[7], 5, number_format($totalgain), 'LTB', 1, 'R');
 		$this->Cell(array_sum($this->headerwidths), 0, '', 'T');
 	}
 	
