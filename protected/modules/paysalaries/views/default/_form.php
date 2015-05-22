@@ -200,11 +200,16 @@ EOS;
 	<div class="row buttons">
       <?php echo CHtml::button('Hitung Gaji', array( 'id'=>'countWage'));   
       	//if (isset($checkerror))
-      		echo CHtml::tag('span', array('id'=>'checkerror', 
-				'class'=>'error'), $checkerror);	
+     	
       ?>
    </div>
-
+   
+	<div class="row">
+		 <?php echo CHtml::tag('span', array('id'=>'checkerror', 
+				'class'=>'error'), $checkerror);
+		 ?>
+	</div>
+	
 <?php 
     if (isset(Yii::app()->session['Detailpaysalaries'])) {
        $rawdata=Yii::app()->session['Detailpaysalaries'];
