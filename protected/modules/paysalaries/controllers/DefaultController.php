@@ -50,6 +50,7 @@ class DefaultController extends Controller
                 $this->state='c';
                 $this->trackActivity('c');    
                     
+               	$checkerror = '';
                 $model=new Paysalaries;
                 $this->afterInsert($model);
                 
@@ -94,8 +95,12 @@ class DefaultController extends Controller
                             'id'=>$model->id, 'regnum'=>$model->regnum));
                       } else if($_POST['command']=='countWage') {
                          $model->attributes=$_POST['Paysalaries'];
-                         $data = $this->setComponents($model);
-                         Yii::app()->session['Detailpaysalaries'] = $data;
+                         if (! $this->checkExisting($model)) {
+                         	$data = $this->setComponents($model);
+                         	Yii::app()->session['Detailpaysalaries'] = $data;
+                         } else {
+                         	$checkerror = 'Ditemukan pembayaran gaji yang sama.';
+                         }
                          Yii::app()->session['Paysalaries']=$model->attributes;
                       }
                    }
@@ -769,5 +774,15 @@ class DefaultController extends Controller
         	
         	$model->total = idmaker::cashRound($model->total, 1000); 
          	return $details;
+		}
+		
+		private function checkExisting($model) 
+		{
+			$existing = Yii::app()->db->createCommand()
+				->select('count(*) as total')->from('paysalaries')
+				->where('idemployee = :p_idemployee and pmonth = :p_pmonth and pyear = :p_pyear',
+					array(':p_idemployee'=>$model->idemployee, ':p_pmonth'=>$model->pmonth, ':p_pyear'=>$model->pyear))
+				->queryScalar();
+			return $existing > 0;
 		}
 }

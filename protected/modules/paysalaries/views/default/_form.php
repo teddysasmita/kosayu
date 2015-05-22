@@ -198,7 +198,10 @@ EOS;
 	</div>
 	
 	<div class="row buttons">
-      <?php echo CHtml::button('Hitung Gaji', array( 'id'=>'countWage'));   ?>
+      <?php echo CHtml::button('Hitung Gaji', array( 'id'=>'countWage'));   
+      	if (isset($checkerror))
+      		echo CHtml::tag('span', $checkerror);	
+      ?>
    </div>
 
 <?php 
