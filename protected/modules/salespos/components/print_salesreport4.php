@@ -9,6 +9,9 @@ require_once('config/lang/eng.php');
 class MYPDF extends TCPDF {
 
 	private $data;
+	private $suppliercode;
+	private $startdate;
+	private $enddate;
 	private $headernames;
 	private $headerwidths;
 	private $total = 0;
@@ -17,9 +20,12 @@ class MYPDF extends TCPDF {
 	public $right_margin = 10;
 	
 	// Load table data from file
-	public function LoadData($data) {
+	public function LoadData($data, $suppliercode, $startdate, $enddate) {
 		// Read file lines
 		$this->data = $data;
+		$this->suppliercode = $suppliercode;
+		$this->startdate = $startdate;
+		$this->enddate = $enddate;
 		$this->headernames = array(
 				'Kode Batch', 'Nama Barang', 'Qty', 'Retur', 'Bruto', 'Potongan', 'Harga Beli', 'Margin'
 		);
@@ -40,7 +46,7 @@ class MYPDF extends TCPDF {
 		$fill = 0;
 		$counter=0;
 		$iditem='';
-		$this->SetXY(10, 27);
+		$this->SetXY(10, 42);
 			
 		$this->setX(10);
 		for ($i=0;$i<count($this->data);$i++) {
@@ -109,6 +115,11 @@ class MYPDF extends TCPDF {
 		$this->setFontSize(15);
 		$this->setXY(10, 10);
 		$this->Cell(195, 10, 'Laporan Penjualan', 'LTR', 1, 'C');
+		$this->setXY(10, 20);
+		$this->setFontSize(10);
+		$this->Cell(50, 5, 'Kode Supplier :'. $this->suppliercode, '', 1, 'L');
+		$this->Cell(50, 5, 'Tanggal Awal  :'. $this->startdate, '', 1, 'L');
+		$this->Cell(50, 5, 'Tanggal Akhir:'. $this->enddate, '', 1, 'L');
 		
 		$this->SetFontSize(10);		
 		$this->setX(10);
@@ -125,7 +136,7 @@ class MYPDF extends TCPDF {
 	} 	
 }
 
-function execute($data) {
+function execute($data, $suppliercode, $startdate, $enddate) {
 
 	// create new PDF document
 	
@@ -168,7 +179,7 @@ function execute($data) {
 	
 	// add a page
 	
-	$pdf->LoadData($data);
+	$pdf->LoadData($data, $suppliercode, $startdate, $enddate);
 	//$pdf->AddPage(PDF_PAGE_ORIENTATION, 'A4');
 	$pdf->AddPage();
 	

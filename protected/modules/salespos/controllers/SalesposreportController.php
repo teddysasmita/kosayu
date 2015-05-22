@@ -820,7 +820,7 @@ EOS;
          };
 	}
 	
-	public function actionReportprint4()
+	public function actionReportprint4($suppliercode, $startdate, $enddate)
 	{
 		if(Yii::app()->authManager->checkAccess($this->formid.'-Append',
 				Yii::app()->user->id))  {
@@ -830,7 +830,7 @@ EOS;
 			Yii::import('application.modules.salespos.components.*');
 			require_once('print_salesreport4.php');
 			ob_clean();
-			execute($reportdata);
+			execute($reportdata, $suppliercode, $startdate, $enddate);
 		} else {
 			throw new CHttpException(404,'You have no authorization for this operation.');
 		}
