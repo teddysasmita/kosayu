@@ -764,12 +764,12 @@ class Action extends CComponent {
    			->where("idpurchase = :p_idpurchase", array(':p_idpurchase'=>$idpurchase))
    			->queryScalar();
    		
-   		if ($total == $paid)
-   			$this->setPaymentStatusPurchase($idpurchase, '0');
+   		if ($paid == $total)
+   			$this->setPaymentStatusPurchase($idpurchase, '2');
    		else if ($paid > 0)
    			$this->setPaymentStatusPurchase($idpurchase, '1');
-   		else if ($paid == $total)
-   			$this->setPaymentStatusPurchase($idpurchase, '2');
+   		else 
+   			$this->setPaymentStatusPurchase($idpurchase, '0');
    	}
 	
 	public static function setPaymentStatusPurchase($idpurchase, $status)
