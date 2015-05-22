@@ -47,7 +47,8 @@ class MYPDF extends TCPDF {
 		$counter=0;
 		$iditem='';
 		$this->SetXY(10, 33);
-			
+		$totalqty = $totalrqty = $totalsold = $totaldisc = $totalcog = $totalqty = $totalgain = 0;	
+		
 		$this->setX(10);
 		for ($i=0;$i<count($this->data);$i++) {
 			$row=$this->data[$i];
@@ -60,16 +61,27 @@ class MYPDF extends TCPDF {
 			$this->MultiCell($this->headerwidths[1], $ih, $row['name'], 
 				'BR', 'L', false, 0,'','',true,0,false,true,0,'M');
 			$this->Cell($this->headerwidths[2], $ih, number_format($row['qty']), 'BR', 0, 'R', $fill);
+			$totalqty += $row['qty'];
 			$this->Cell($this->headerwidths[3], $ih, number_format($row['rqty']), 'BR', 0, 'R', $fill);
+			$totalrqty += $row['rqty'];
 			$this->Cell($this->headerwidths[4], $ih, number_format($row['totalsold']), 'BR', 0, 'R', $fill);
+			$totalsold += $row['sold'];
 			$this->Cell($this->headerwidths[5], $ih, number_format($row['totaldisc']), 'BR', 0, 'R', $fill);
+			$totaldisc += $row['disc'];
 			$this->Cell($this->headerwidths[6], $ih, number_format($row['totalcog']), 'BR', 0, 'R', $fill);
+			$totalcog += $row['cog'];
 			$this->Cell($this->headerwidths[7], $ih, number_format($row['totalgain']), 'BR', 1, 'R', $fill);
+			$totalgain += $row['gain'];
 		} 
 		$this->setX(10);
-		//$this->Cell(120, 5, 'Total', 'LTB', 0, 'R');
-		//$this->Cell(75, 5, number_format($this->total), 'LTBR', 1, 'R');
-		//$this->Cell(array_sum($this->headerwidths), 0, '', 'T');
+		$this->Cell($this->headerwidths[0] + $this->headerwidths[1], 5, 'Total', 'LTB', 0, 'R');
+		$this->Cell($this->headerwidths[2], 5, number_format($totalqty), 'LTB', 0, 'R');
+		$this->Cell($this->headerwidths[3], 5, number_format($totalrqty), 'LTB', 0, 'R');
+		$this->Cell($this->headerwidths[4], 5, number_format($totalsold), 'LTB', 0, 'R');
+		$this->Cell($this->headerwidths[5], 5, number_format($totaldisc), 'LTB', 0, 'R');
+		$this->Cell($this->headerwidths[6], 5, number_format($totalcog), 'LTB', 0, 'R');
+		$this->Cell($this->headerwidths[7], 5, number_format($totalgain), 'LTB', 0, 'R');
+		$this->Cell(array_sum($this->headerwidths), 0, '', 'T');
 	}
 	
 	public function header()
