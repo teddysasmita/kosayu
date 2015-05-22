@@ -117,10 +117,8 @@ class MYPDF extends TCPDF {
 		$this->Cell(195, 10, 'Laporan Penjualan', 'LTR', 1, 'C');
 		$this->setXY(10, 20);
 		$this->setFontSize(10);
-		$this->Cell(50, 5, 'Kode Supplier :'. $this->suppliercode, '', 1, 'L');
-		$this->Cell(50, 5, 'Tanggal Awal  :'. $this->startdate, '', 1, 'L');
-		$this->Cell(50, 5, 'Tanggal Akhir:'. $this->enddate, '', 1, 'L');
-		
+		$this->Cell(50, 5, 'Kode Supplier :'. $this->suppliercode, LTR, 0, 'L');
+		$this->Cell(145, 5, 'Periode  :'. $this->startdate. ' s/d '.$this->enddate, LTR, 1, 'L');		
 		$this->SetFontSize(10);		
 		$this->setX(10);
 		$this->SetFont('Helvetica', 'B');
