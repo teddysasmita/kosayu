@@ -31,4 +31,4 @@ Yii::app()->clientScript->registerScript('myscript', $jq, CClientScript::POS_REA
 
 <h1>Pembayaran Gaji Karyawan</h1>
 
-<?php $this->renderPartial('_form', array('model'=>$model, 'id'=>$model->id, 'command'=>'create')); ?>
+<?php $this->renderPartial('_form', array('model'=>$model, 'id'=>$model->id, 'checkerror'=>$checkerror, 'command'=>'create')); ?>
