@@ -783,8 +783,6 @@ class DefaultController extends Controller
 				->where('idemployee = :p_idemployee and pmonth = :p_pmonth and pyear = :p_pyear',
 					array(':p_idemployee'=>$model->idemployee, ':p_pmonth'=>$model->pmonth, ':p_pyear'=>$model->pyear))
 				->queryScalar();
-			print_r($existing);
-			die;
 			return $existing > 0;
 		}
 }
