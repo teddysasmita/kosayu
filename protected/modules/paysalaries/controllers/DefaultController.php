@@ -99,7 +99,7 @@ class DefaultController extends Controller
                          	$data = $this->setComponents($model);
                          	Yii::app()->session['Detailpaysalaries'] = $data;
                          } else {
-                         	$checkerror = 'Ditemukan pembayaran gaji yang sama.';
+                         	$checkerror = 'Ditemukan data pembayaran gaji yang sama.';
                          	Yii::app()->session->remove('Detailpaysalaries');
                          }
                          Yii::app()->session['Paysalaries']=$model->attributes;
