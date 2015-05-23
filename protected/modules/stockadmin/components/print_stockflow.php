@@ -29,7 +29,7 @@ class MYPDF extends TCPDF {
 		$this->headernames = array(
 				'Kode Batch', 'Nama Barang', 'Jml Awal', 'Jml Beli', 'Jml Jual', 'Jml Retur B', 'Jml Retur J', 'Jml Akhir'
 		);
-		$this->headerwidths = array(25, 45, 20, 20, 20, 20, 20, 20);
+		$this->headerwidths = array(25, 45, 20, 20, 20, 22, 23, 20);
 	}
 
 	// Colored table
