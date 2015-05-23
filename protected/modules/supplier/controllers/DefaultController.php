@@ -322,10 +322,10 @@ class DefaultController extends Controller
         		$data = Yii::app()->db->createCommand()
         			->select()->from('suppliers')->queryAll();
         		$headersfield = array(
-        			'id', 'code', 'firstname', 'lastname', 'address', 'phone'
+        			'code', 'firstname', 'lastname', 'address', 'phone'
         		);
         		$headersname = array(
-        			'ID', 'Kode', 'Nama Awal', 'Nama Akhir', 'Alamat', 'Telp'
+        			'Kode', 'Nama Awal', 'Nama Akhir', 'Alamat', 'Telp'
         		);
         		for( $i=0;$i<count($headersname); $i++ ) {
         			$xl->setActiveSheetIndex(0)
@@ -343,7 +343,8 @@ class DefaultController extends Controller
         			$xl->getActiveSheet()->setTitle('Daftar Pemasok');
         			$xl->setActiveSheetIndex(0);
         			header('Content-Type: application/pdf');
-        			header('Content-Disposition: attachment;filename="sales-report-'.idmaker::getDateTime().'.xls"');
+        			$mydate = Date('Yndhis');
+        			header('Content-Disposition: attachment;filename="Daftar Pemasok-'.$mydate.'.xls"');
         			header('Cache-Control: max-age=0');
         			$xlWriter = PHPExcel_IOFactory::createWriter($xl, 'Excel5');
         			$xlWriter->save('php://output');
