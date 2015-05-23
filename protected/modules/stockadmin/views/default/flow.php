@@ -6,6 +6,10 @@ $this->breadcrumbs=array(
 		'Daftar'=>array('default/index'),
 		'Berdasarkan Aliran Stok'
 );
+
+$this->menu=array(
+		array('label'=>'Cetak', 'url'=>array('stockFlow')),
+);
 ?>
 
 <h1><?php echo "Masukkan Kriteria" ?></h1>

@@ -368,4 +368,22 @@ class DefaultController extends Controller
 		$this->tracker->logActivity($this->formid, $action);
 	}
 	
+	public function actionStockFlow()
+	{
+		if(Yii::app()->authManager->checkAccess($this->formid.'-Append',
+				Yii::app()->user->id))  {
+			$reportdata = Yii::app()->session['stockflowreport'];
+			$suppliercode = Yii::app()->session['stockflowprefix'];
+			$startdate = Yii::app()->session['stockflowstart'];
+			$enddate = Yii::app()->session['stockflowend'];	
+			Yii::import('application.vendors.tcpdf.*');
+			require_once ('tcpdf.php');
+			Yii::import('application.modules.stockadmin.components.*');
+			require_once('print_stockflow.php');
+			ob_clean();
+			execute($reportdata, $suppliercode, $startdate, $enddate);
+		} else {
+			throw new CHttpException(404,'You have no authorization for this operation.');
+		}
+	}
 }

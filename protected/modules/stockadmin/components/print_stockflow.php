@@ -27,7 +27,7 @@ class MYPDF extends TCPDF {
 		$this->startdate = $startdate;
 		$this->enddate = $enddate;
 		$this->headernames = array(
-				'Kode Batch', 'Nama Barang', 'Qty', 'Retur', 'Bruto', 'Potongan', 'Harga Beli', 'Margin'
+				'Kode Batch', 'Nama Barang', 'Jml Awal', 'Jml Beli', 'Jml Jual', 'Jml Retur B', 'Jml Retur J', 'Jml Akhir'
 		);
 		$this->headerwidths = array(25, 65, 10, 15, 20, 20, 20, 20);
 	}
@@ -60,20 +60,20 @@ class MYPDF extends TCPDF {
 			$this->Cell($this->headerwidths[0], $ih, $row['batchcode'], 'BLR', 0, 'C', $fill);
 			$this->MultiCell($this->headerwidths[1], $ih, $row['name'], 
 				'BR', 'L', false, 0,'','',true,0,false,true,0,'M');
-			$this->Cell($this->headerwidths[2], $ih, number_format($row['qty']), 'BR', 0, 'R', $fill);
-			$totalqty += $row['qty'];
-			$this->Cell($this->headerwidths[3], $ih, number_format($row['rqty']), 'BR', 0, 'R', $fill);
-			$totalrqty += $row['rqty'];
-			$this->Cell($this->headerwidths[4], $ih, number_format($row['totalsold']), 'BR', 0, 'R', $fill);
-			$totalsold += $row['totalsold'];
-			$this->Cell($this->headerwidths[5], $ih, number_format($row['totaldisc']), 'BR', 0, 'R', $fill);
-			$totaldisc += $row['totaldisc'];
-			$this->Cell($this->headerwidths[6], $ih, number_format($row['totalcog']), 'BR', 0, 'R', $fill);
-			$totalcog += $row['totalcog'];
-			$this->Cell($this->headerwidths[7], $ih, number_format($row['totalgain']), 'BR', 1, 'R', $fill);
-			$totalgain += $row['totalgain'];
+			$this->Cell($this->headerwidths[2], $ih, number_format($row['startqty']), 'BR', 0, 'R', $fill);
+			//$totalqty += $row['qty'];
+			$this->Cell($this->headerwidths[3], $ih, number_format($row['receiveqty']), 'BR', 0, 'R', $fill);
+			//$totalrqty += $row['rqty'];
+			$this->Cell($this->headerwidths[4], $ih, number_format($row['soldqty']), 'BR', 0, 'R', $fill);
+			//$totalsold += $row['totalsold'];
+			$this->Cell($this->headerwidths[5], $ih, number_format($row['returqty']), 'BR', 0, 'R', $fill);
+			//$totaldisc += $row['totaldisc'];
+			$this->Cell($this->headerwidths[6], $ih, number_format($row['salereturqty']), 'BR', 0, 'R', $fill);
+			//$totalcog += $row['totalcog'];
+			$this->Cell($this->headerwidths[7], $ih, number_format($row['endqty']), 'BR', 1, 'R', $fill);
+			//$totalgain += $row['totalgain'];
 		} 
-		$this->setX(10);
+		/**$this->setX(10);
 		$this->Cell($this->headerwidths[0] + $this->headerwidths[1], 5, 'Total', 'LTB', 0, 'R');
 		$this->Cell($this->headerwidths[2], 5, number_format($totalqty), 'LTB', 0, 'R');
 		$this->Cell($this->headerwidths[3], 5, number_format($totalrqty), 'LTB', 0, 'R');
@@ -81,7 +81,7 @@ class MYPDF extends TCPDF {
 		$this->Cell($this->headerwidths[5], 5, number_format($totaldisc), 'LTB', 0, 'R');
 		$this->Cell($this->headerwidths[6], 5, number_format($totalcog), 'LTB', 0, 'R');
 		$this->Cell($this->headerwidths[7], 5, number_format($totalgain), 'LTBR', 1, 'R');
-		$this->Cell(array_sum($this->headerwidths), 0, '', 'T');
+		$this->Cell(array_sum($this->headerwidths), 0, '', 'T');**/
 	}
 	
 	public function header()
@@ -126,7 +126,7 @@ class MYPDF extends TCPDF {
 		$this->Cell(20, 10, $this->getPage().' / '.$this->getAliasNbPages(), '', 1, 'C');
 		$this->setFontSize(15);
 		$this->setXY(10, 10);
-		$this->Cell(195, 10, 'Laporan Penjualan', 'LTR', 1, 'C');
+		$this->Cell(195, 10, 'Laporan Aliran Stok', 'LTR', 1, 'C');
 		$this->setXY(10, 20);
 		$this->setFontSize(10);
 		$this->Cell(50, 5, 'Kode Supplier : '. $this->suppliercode,'LTR', 0, 'L');
@@ -155,7 +155,7 @@ function execute($data, $suppliercode, $startdate, $enddate) {
 	// set document information
 	$pdf->SetCreator(PDF_CREATOR);
 	$pdf->SetAuthor(lookup::UserNameFromUserID(Yii::app()->user->id));
-	$pdf->SetTitle('Laporan Penjualan');
+	$pdf->SetTitle('Laporan Aliran Stok');
 	$pdf->SetSubject('BP');
 	$pdf->SetKeywords('BP');
 	
@@ -200,7 +200,7 @@ function execute($data, $suppliercode, $startdate, $enddate) {
 	// ---------------------------------------------------------
 	
 	//Close and output PDF document
-	$pdf->Output('Laporan Penjualan-'.idmaker::getDateTime().'.pdf', 'D');
+	$pdf->Output('Laporan Aliran Stok -'.idmaker::getDateTime().'.pdf', 'D');
 }
 //============================================================+
 // END OF FILE                                                
