@@ -25,6 +25,11 @@ class DefaultController extends Controller
 			Yii::app()->session->remove('stockquantityreport');
 			Yii::app()->session->remove('stockquantitydate');
 			Yii::app()->session->remove('stockquantityprefix');
+			Yii::app()->session->remove('stockflowreport');
+			Yii::app()->session->remove('stockflowend');
+			Yii::app()->session->remove('stockflowstart');
+			Yii::app()->session->remove('stockflowprefix');
+				
 			$this->render('index');
 		} else {
 			throw new CHttpException(404,'You have no authorization for this operation.');
@@ -363,25 +368,4 @@ class DefaultController extends Controller
 		$this->tracker->logActivity($this->formid, $action);
 	}
 	
-	private function getSerials($regnum, $iditem, $qty)
-	{
-		if ($qty < 0) {
-			$master = 'stockexits a';
-			$detail = 'detailstockexits b';
-		} else {
-			$master = 'stockentries a';
-			$detail = 'detailstockentries b';
-		}
-		$data = Yii::app()->db->createCommand()
-			->select('b.serialnum')->from($master)->join($detail, 'b.id = a.id')
-			->where("a.regnum = :p_regnum and b.iditem = :p_iditem and b.serialnum <> 'Belum Diterima'",
-				array(':p_regnum'=>$regnum, ':p_iditem'=>$iditem))
-			->queryColumn();	
-		if (is_array($data)) {
-			//print_r($data);
-			//die;
-			return implode(', ', $data);
-		} else 
-			return $data;
-	}
 }
