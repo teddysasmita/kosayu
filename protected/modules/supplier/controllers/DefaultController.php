@@ -320,7 +320,7 @@ class DefaultController extends Controller
         			->setKeywords("Daftar Pemasok")
         			->setCategory("Daftar");
         		$data = Yii::app()->db->createCommand()
-        			->select()->from('suppliers')->queryAll();
+        			->select()->from('suppliers')->order('code')->queryAll();
         		$headersfield = array(
         			'code', 'firstname', 'lastname', 'address', 'phone'
         		);
