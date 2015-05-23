@@ -152,6 +152,20 @@ class DefaultController extends Controller
 					->order('b.batchcode')
 					->queryAll();
 				
+				$salereturdata = Yii::app()->db->createCommand()
+					->select("b.batchcode, c.name, sum(b.qty) as totalqty")
+					->from('detailstocks b')
+					->join('stocks a', 'a.id = b.id')
+					->join('items c', 'c.id = b.iditem')
+					->where('a.idatetime >= :p_cstart and a.idatetime <= :p_cend',
+							array(':p_cstart'=>$startparam, ':p_cend'=>$endparam))
+					->andWhere('b.batchcode like :p_batchcode', array(':p_batchcode'=>$prefixparam.'%'))
+					->andWhere('a.transtype = :p_transtype',
+								array(':p_transtype'=>'Retur Jual'))
+					->group('b.batchcode')
+					->order('b.batchcode')
+					->queryAll();
+				
 				$postdata = Yii::app()->db->createCommand()
 					->select("b.batchcode, c.name, sum(b.qty) as endqty")
 					->from('detailstocks b')
@@ -217,6 +231,17 @@ class DefaultController extends Controller
 					}
 					if (!$found) {
 						$ps['returqty'] = 0;
+					}
+					$found = FALSE;
+					foreach($salereturdata as $srt) {
+						if ($ps['batchcode'] == $srt['batchcode']) {
+							$found = TRUE;
+							$ps['salereturqty'] = $srt['totalqty'];
+							break;
+						}
+					}
+					if (!$found) {
+						$ps['salereturqty'] = 0;
 					}
 				}
 				

@@ -111,8 +111,12 @@ $this->breadcrumbs=array(
 							'name'=>'soldqty',
 					),
 					array(
-							'header'=>'Jml Retur',
+							'header'=>'Jml Retur Beli',
 							'name'=>'returqty',
+					),
+					array(
+							'header'=>'Jml Retur Jual',
+							'name'=>'salereturqty',
 					),
 					array(
 							'header'=>'Jml Akhir',
