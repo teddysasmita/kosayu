@@ -403,15 +403,13 @@ EOS;
        					$where[] = 'brand = \''.$_POST['selectitems']['brand'].'\'';
        				if ($_POST['selectitems']['object'] !== '')
        					$where[] = 'objects = \''.$_POST['selectitems']['object'].'\'';
-       				if ($_POST['selectitems']['model'] !== '')
-       					$where[] = 'model = \''.$_POST['selectitems']['model'].'\'';
        				if (isset($where)) {
        					$query .= ' where ';
        					$query = $query . implode(' and ', $where);
        				};
        				$xl = new PHPExcel();
-       				$xl->getProperties()->setCreator("Program GSI Malang")
-	       				->setLastModifiedBy("Program GSI Malang")
+       				$xl->getProperties()->setCreator("Program Kosayu")
+	       				->setLastModifiedBy("Program Kosayu")
 	       				->setTitle("Daftar Barang")
 	       				->setSubject("Daftar Barang")
 	       				->setDescription("Daftar Barang")
@@ -436,7 +434,7 @@ EOS;
        					}
        				}
        					
-       				$xl->getActiveSheet()->setTitle('Laporan Penjualan');
+       				$xl->getActiveSheet()->setTitle('Laporan Master Barang');
        				$xl->setActiveSheetIndex(0);
        				header('Content-Type: application/pdf');
        				header('Content-Disposition: attachment;filename="nama_barang.xlsx"');

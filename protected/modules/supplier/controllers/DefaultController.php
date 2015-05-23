@@ -305,4 +305,50 @@ class DefaultController extends Controller
             $this->tracker->init();
             $this->tracker->logActivity($this->formid, $action);
         }
+        
+	public function actionGetexcel()
+	{
+        if(Yii::app()->authManager->checkAccess($this->formid.'-Append',
+        	Yii::app()->user->id))  {
+        		$this->trackActivity('v');
+        		$xl = new PHPExcel();
+        		$xl->getProperties()->setCreator("Program KOSAYU")
+        			->setLastModifiedBy("Program KOSAYU")
+        			->setTitle("Daftar Pemasok")
+        			->setSubject("Daftar Pemasok")
+        			->setDescription("Daftar Pemasok")
+        			->setKeywords("Daftar Pemasok")
+        			->setCategory("Daftar");
+        		$data = Yii::app()->db->createCommand()
+        			->select()->from('suppliers')->queryAll();
+        		$headersfield = array(
+        			'id', 'code', 'firstname', 'lastname', 'address', 'phone'
+        		);
+        		$headersname = array(
+        			'ID', 'Kode', 'Nama Awal', 'Nama Akhir', 'Alamat', 'Telp'
+        		);
+        		for( $i=0;$i<count($headersname); $i++ ) {
+        			$xl->setActiveSheetIndex(0)
+        				->setCellValueByColumnAndRow($i,1, $headersname[$i]);
+        			}
+        
+        			for( $i=0; $i<count($data); $i++){
+        				for( $j=0; $j<count($headersfield); $j++ ) {
+        					$cellvalue = $data[$i][$headersfield[$j]];
+        					$xl->setActiveSheetindex(0)
+        						->setCellValueByColumnAndRow($j,$i+2, $cellvalue);
+        				}
+        			}
+        
+        			$xl->getActiveSheet()->setTitle('Daftar Pemasok');
+        			$xl->setActiveSheetIndex(0);
+        			header('Content-Type: application/pdf');
+        			header('Content-Disposition: attachment;filename="sales-report-'.idmaker::getDateTime().'.xls"');
+        			header('Cache-Control: max-age=0');
+        			$xlWriter = PHPExcel_IOFactory::createWriter($xl, 'Excel5');
+        			$xlWriter->save('php://output');
+        } else {
+        	throw new CHttpException(404,'You have no authorization for this operation.');
+        };
+	}
 }
