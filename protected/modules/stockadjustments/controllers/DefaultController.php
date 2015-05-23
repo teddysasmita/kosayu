@@ -102,7 +102,7 @@ class DefaultController extends Controller
 				$model->attributes=$_POST['Stockadjustments'];
                          
 				$this->beforePost($model);   
-				$this->tracker->modify('stockadjustmentss', $id);
+				$this->tracker->modify('stockadjustments', $id);
 				if($model->save()) {
 					$this->afterPost($model);
 					$this->redirect(array('view','id'=>$model->id));
@@ -130,7 +130,7 @@ class DefaultController extends Controller
                     $this->trackActivity('d');
                 $model=$this->loadModel($id);
                 $this->beforeDelete($model);
-                $this->tracker->delete('stockadjustmentss', $id);
+                $this->tracker->delete('stockadjustments', $id);
                 
                 $model->delete();
                 $this->afterDelete();
@@ -219,7 +219,7 @@ class DefaultController extends Controller
             if(Yii::app()->authManager->checkAccess($this->formid.'-Update', 
                Yii::app()->user->id)) {
                 $this->trackActivity('r');
-                $this->tracker->restore('stockadjustmentss', $idtrack);
+                $this->tracker->restore('stockadjustments', $idtrack);
                 
                 $dataProvider=new CActiveDataProvider('Stockadjustments');
                 $this->render('index',array(
@@ -235,7 +235,7 @@ class DefaultController extends Controller
             if(Yii::app()->authManager->checkAccess($this->formid.'-Update', 
                Yii::app()->user->id)) {
                 $this->trackActivity('n');
-                $this->tracker->restoreDeleted('stockadjustmentss', $idtrack);
+                $this->tracker->restoreDeleted('stockadjustments', $idtrack);
                 
                 $dataProvider=new CActiveDataProvider('Stockadjustments');
                 $this->render('index',array(
@@ -267,7 +267,7 @@ class DefaultController extends Controller
 	 */
 	protected function performAjaxValidation($model)
 	{
-		if(isset($_POST['ajax']) && $_POST['ajax']==='stockadjustmentss-form')
+		if(isset($_POST['ajax']) && $_POST['ajax']==='stockadjustments-form')
 		{
 			echo CActiveForm::validate($model);
 			Yii::app()->end();
