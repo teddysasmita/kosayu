@@ -50,7 +50,7 @@ class DefaultController extends Controller
                 $this->state='create';
                 $this->trackActivity('c');    
                     
-                $model=new Stockadjustmentss;
+                $model=new Stockadjustments;
                 $this->afterInsert($model);
                 
 		// Uncomment the following line if AJAX validation is needed
@@ -58,7 +58,7 @@ class DefaultController extends Controller
 
 		if(isset($_POST['yt0']))
 		{
-			$model->attributes=$_POST['Stockadjustmentss'];
+			$model->attributes=$_POST['Stockadjustments'];
                         $this->beforePost($model);
 			if($model->save()) {
                             $this->afterPost($model);
@@ -93,9 +93,9 @@ class DefaultController extends Controller
 		// Uncomment the following line if AJAX validation is needed
 			$this->performAjaxValidation($model);
 
-			if(isset($_POST['Stockadjustmentss']))
+			if(isset($_POST['Stockadjustments']))
 			{
-				$model->attributes=$_POST['Stockadjustmentss'];
+				$model->attributes=$_POST['Stockadjustments'];
                          
 				$this->beforePost($model);   
 				$this->tracker->modify('stockadjustmentss', $id);
@@ -148,7 +148,7 @@ class DefaultController extends Controller
                 Yii::app()->user->id)) {
                 $this->trackActivity('l');
                 
-                $dataProvider=new CActiveDataProvider('Stockadjustmentss', array(
+                $dataProvider=new CActiveDataProvider('Stockadjustments', array(
 					'criteria'=>array(
                 		'order'=>'idatetime desc, regnum desc'
                 )));
@@ -169,11 +169,11 @@ class DefaultController extends Controller
 			Yii::app()->user->id)) {
 			
 			$this->trackActivity('s');
-			$model=new Stockadjustmentss('search');
+			$model=new Stockadjustments('search');
 			$model->unsetAttributes();  // clear any default values
 			
-			if(isset($_GET['Stockadjustmentss']))
-				$model->attributes=$_GET['Stockadjustmentss'];
+			if(isset($_GET['Stockadjustments']))
+				$model->attributes=$_GET['Stockadjustments'];
 
 			$this->render('admin',array(
 				'model'=>$model,
@@ -217,7 +217,7 @@ class DefaultController extends Controller
                 $this->trackActivity('r');
                 $this->tracker->restore('stockadjustmentss', $idtrack);
                 
-                $dataProvider=new CActiveDataProvider('Stockadjustmentss');
+                $dataProvider=new CActiveDataProvider('Stockadjustments');
                 $this->render('index',array(
                     'dataProvider'=>$dataProvider,
                 ));
@@ -233,7 +233,7 @@ class DefaultController extends Controller
                 $this->trackActivity('n');
                 $this->tracker->restoreDeleted('stockadjustmentss', $idtrack);
                 
-                $dataProvider=new CActiveDataProvider('Stockadjustmentss');
+                $dataProvider=new CActiveDataProvider('Stockadjustments');
                 $this->render('index',array(
                     'dataProvider'=>$dataProvider,
                 ));
@@ -246,12 +246,12 @@ class DefaultController extends Controller
 	 * Returns the data model based on the primary key given in the GET variable.
 	 * If the data model is not found, an HTTP exception will be raised.
 	 * @param integer $id the ID of the model to be loaded
-	 * @return Stockadjustmentss the loaded model
+	 * @return Stockadjustments the loaded model
 	 * @throws CHttpException
 	 */
 	public function loadModel($id)
 	{
-		$model=Stockadjustmentss::model()->findByPk($id);
+		$model=Stockadjustments::model()->findByPk($id);
 		if($model===null)
 			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;
@@ -259,7 +259,7 @@ class DefaultController extends Controller
 
 	/**
 	 * Performs the AJAX validation.
-	 * @param Stockadjustmentss $model the model to be validated
+	 * @param Stockadjustments $model the model to be validated
 	 */
 	protected function performAjaxValidation($model)
 	{
