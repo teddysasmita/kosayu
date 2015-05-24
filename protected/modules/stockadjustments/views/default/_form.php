@@ -11,7 +11,7 @@
 $itemScript=<<<EOS
 	$('#Stockadjustments_itembatch').change(
 		function() {
-			$.getJSON('index.php?r=LookUp/getItemFromBatchcode',{ batchcode: $('#Stockadjustments_iditem').val() },
+			$.getJSON('index.php?r=LookUp/getItemFromBatchcode',{ batchcode: $('#Stockadjustments_itembatch').val() },
                	function(data) {
 				 	$('#iditem').html(data.name);
                })
