@@ -323,7 +323,7 @@ class DefaultController extends Controller
 	private function getamount($model)
 	{
 		$amount = Yii::app()->db->createCommand()
-			->select('sum(amount) as total')->from('detailstocks')
+			->select('sum(qty) as total')->from('detailstocks')
 			->where('batchcode = :p_batchcode', array(':p_batchcode'=>$model->itembatch))
 			->queryScalar();
 		
