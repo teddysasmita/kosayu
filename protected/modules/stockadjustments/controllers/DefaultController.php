@@ -284,8 +284,19 @@ class DefaultController extends Controller
         protected function afterPost(& $model)
         {
         	$idmaker=new idmaker();
-        	if ($this->state == 'create')
+        	if ($this->state == 'create') 
         		$idmaker->saveRegNum($this->formid, $model->regnum);
+        		
+        	$iditem = lookup::ItemNameFromItemCode($model->itembatch);
+        	if ($this->state == 'create') {
+        		Action::addStock($model->id, $model->idatetime, $model->regnum, 'Penyesuaian');
+        		Action::addDetailStock($model->id, $model->id, $iditem, $model->itembatch, 
+        				$model->amount - $model->oldamount);
+        	} else if ($this->state == 'update') {
+        		Action::updateStock($model->id, $model->idatetime);
+        		Action::updateDetailStock($model->id, $iditem, $model->itembatch, 
+        				$model->amount - $model-oldamount);
+        	}
         }
         
         protected function beforePost(& $model)
@@ -300,7 +311,8 @@ class DefaultController extends Controller
         
         protected function beforeDelete(& $model)
         {
-            
+        	Action::deleteStock($model->id);
+        	Action::deleteDetailStock2($model->id);
         }
         
         protected function afterDelete()
