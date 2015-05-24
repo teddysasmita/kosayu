@@ -88,7 +88,8 @@ return array(
 			'consignpayment',
 			'employees',
 			'jobgroups',
-			'paysalaries'
+			'paysalaries',
+			'stockadjustments'
         ),
 
         
