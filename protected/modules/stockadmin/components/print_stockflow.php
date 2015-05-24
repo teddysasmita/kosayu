@@ -28,7 +28,7 @@ class MYPDF extends TCPDF {
 		$this->enddate = $enddate;
 		$this->headernames = array(
 				'Kode Batch', 'Nama Barang', 'Jml Awal', 'Jml Beli', 'Jml Jual', 'Jml Retur B', 'Jml Retur J', 
-				'Penyesuaian', 'Jml Akhir'
+				'Atur', 'Jml Akhir'
 		);
 		$this->headerwidths = array(25, 30, 20, 20, 20, 22, 22, 16, 20);
 	}
@@ -41,7 +41,7 @@ class MYPDF extends TCPDF {
 		$this->SetDrawColor(0, 0, 0);
 		$this->SetLineWidth(0.3);
 		$this->SetFont('Helvetica', 'B');
-		$this->SetFontSize(8);
+		$this->SetFontSize(9);
 		
 		// Data
 		$fill = 0;
