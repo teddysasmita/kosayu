@@ -89,7 +89,7 @@ return array(
 			'employees',
 			'jobgroups',
 			'paysalaries',
-			'stockadjustments'
+			'stockadjustments',
         ),
 
         
