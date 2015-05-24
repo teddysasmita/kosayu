@@ -63,9 +63,11 @@ class DefaultController extends Controller
 					$this->afterPost($model);
 					$this->redirect(array('view','id'=>$model->id));                 
 				}    
-        	} else if ($_POST['command'] == 'getamount') {
-        		$model->attributes = $_POST['Stockadjustments'];
-        		$model->oldamount = $this->getamount($model);
+        	} else if (isset($_POST['command'])) {
+        		if ($_POST['command'] == 'getamount') {
+        			$model->attributes = $_POST['Stockadjustments'];
+        			$model->oldamount = $this->getamount($model);
+        		}
         	}
 
 			$this->render('create',array(
