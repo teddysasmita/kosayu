@@ -108,8 +108,7 @@ Yii::app()->clientScript->registerScript('itemscript', $itemScript, CClientScrip
 	<div class="row">
 		<?php echo $form->labelEx($model,'remark'); ?>
 		<?php 
-         echo <?php echo $form->textArea($model,'remark',array('rows'=>6, 'cols'=>50)); ?>
-     	?>
+         echo $form->textArea($model,'remark',array('rows'=>6, 'cols'=>50)); ?>
 		<?php echo $form->error($model,'remark'); ?>
 	</div>	
 	
