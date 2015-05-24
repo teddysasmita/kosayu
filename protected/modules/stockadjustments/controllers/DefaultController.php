@@ -317,32 +317,5 @@ class DefaultController extends Controller
             $this->tracker->logActivity($this->formid, $action);
         }
         
-        public function actionDisplaystockadjustments($itemname)
-        {
-        	if(Yii::app()->authManager->checkAccess($this->formid.'-List',
-        			Yii::app()->user->id))  {
-        		$this->trackActivity('v');
-        			$data = Yii::app()->db->createCommand()
-        				->select('a.*, b.name')->from('stockadjustmentss a')
-						->join('items b', 'b.id = a.iditem')
-						->where('b.name like :p_name', array(':p_name'=>'%'.$itemname.'%'))
-						->order('b.name, a.idatetime desc')
-						->queryAll();
-        		$this->render('display1a',array(
-        				'data'=>$data));
-        	} else {
-        		throw new CHttpException(404,'You have no authorization for this operation.');
-        	};
-        }
-        
-        public function actionGetstockadjustments()
-        {
-        	if(Yii::app()->authManager->checkAccess($this->formid.'-List',
-        			Yii::app()->user->id))  {
-        		$this->trackActivity('v');
-        		$this->render('display1');
-        	} else {
-        		throw new CHttpException(404,'You have no authorization for this operation.');
-        	};
-        }
+
 }

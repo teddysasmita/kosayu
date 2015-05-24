@@ -38,3 +38,6 @@ $this->pageTitle=Yii::app()->name;
 
 <h2>Bagian Personalia</h2>
 <h3><?php echo CHtml::link('Pembayaran Gaji Karyawan', Yii::app()->createUrl('paysalaries'))?></h3>
+
+<h2>Bagian Gudang</h2>
+<h3><?php echo CHtml::link('Penyesuain Stok', Yii::app()->createUrl('stockadjustments'))?></h3>
