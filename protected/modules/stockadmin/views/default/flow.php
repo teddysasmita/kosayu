@@ -123,6 +123,10 @@ $this->menu=array(
 							'name'=>'salereturqty',
 					),
 					array(
+							'header'=>'Penyesuaian',
+							'name'=>'stockadjustqty',
+					),
+					array(
 							'header'=>'Jml Akhir',
 							'name'=>'endqty',
 					),

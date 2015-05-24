@@ -27,9 +27,10 @@ class MYPDF extends TCPDF {
 		$this->startdate = $startdate;
 		$this->enddate = $enddate;
 		$this->headernames = array(
-				'Kode Batch', 'Nama Barang', 'Jml Awal', 'Jml Beli', 'Jml Jual', 'Jml Retur B', 'Jml Retur J', 'Jml Akhir'
+				'Kode Batch', 'Nama Barang', 'Jml Awal', 'Jml Beli', 'Jml Jual', 'Jml Retur B', 'Jml Retur J', 
+				'Penyesuaian', 'Jml Akhir'
 		);
-		$this->headerwidths = array(25, 45, 20, 20, 20, 22, 23, 20);
+		$this->headerwidths = array(25, 30, 20, 20, 20, 22, 22, 16, 20);
 	}
 
 	// Colored table
@@ -70,6 +71,7 @@ class MYPDF extends TCPDF {
 			//$totaldisc += $row['totaldisc'];
 			$this->Cell($this->headerwidths[6], $ih, number_format($row['salereturqty']), 'BR', 0, 'R', $fill);
 			//$totalcog += $row['totalcog'];
+			$this->Cell($this->headerwidths[6], $ih, number_format($row['stockadjustqty']), 'BR', 0, 'R', $fill);
 			$this->Cell($this->headerwidths[7], $ih, number_format($row['endqty']), 'BR', 1, 'R', $fill);
 			//$totalgain += $row['totalgain'];
 		} 
