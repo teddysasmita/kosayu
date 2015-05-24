@@ -98,11 +98,11 @@ Yii::app()->clientScript->registerScript('itemscript', $itemScript, CClientScrip
 	</div>
 	
 	<div class="row">
-		<?php echo $form->labelEx($model,'newamount'); ?>
+		<?php echo $form->labelEx($model,'amount'); ?>
 		<?php 
-         echo $form->textField($model, 'newamount' );
+         echo $form->textField($model, 'amount' );
      	?>
-		<?php echo $form->error($model,'newamount'); ?>
+		<?php echo $form->error($model,'amount'); ?>
 	</div>	
 	
 	<div class="row">

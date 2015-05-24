@@ -50,7 +50,7 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 		'idatetime',
 		'itembatch',
 		'oldamount',
-		'newamount',
+		'amount',
 		//'userlog',
 		//'datetimelog',
 		array(

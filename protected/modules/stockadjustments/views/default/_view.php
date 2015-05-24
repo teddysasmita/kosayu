@@ -21,8 +21,8 @@
 	<?php echo CHtml::encode(lookup::ItemNameFromItemCode($data->itembatch)); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('newamount')); ?>:</b>
-	<?php echo CHtml::encode(number_format($data->newamount)); ?>
+	<b><?php echo CHtml::encode($data->getAttributeLabel('amount')); ?>:</b>
+	<?php echo CHtml::encode(number_format($data->amount)); ?>
 	<br />
 	
 	<b><?php echo CHtml::encode($data->getAttributeLabel('userlog')); ?>:</b>

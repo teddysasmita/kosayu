@@ -30,8 +30,8 @@ $this->menu=array(
 			'value'=>number_format($model['oldamount'])
 		),
 		array(
-			'name'=>'newaomount',
-			'value'=>number_format($model['newamount'])
+			'name'=>'aomount',
+			'value'=>number_format($model['amount'])
 		),
 		array(
 			'name'=>'userlog',

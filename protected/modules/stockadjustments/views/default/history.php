@@ -30,7 +30,7 @@ $this->menu=array(
 		'idatetime',
 		'itembatch',
 		'oldamount',
-		'newamount',
+		'amount',
 		array(
 			'class'=>'CButtonColumn',
 			'buttons'=> array(
