@@ -10,6 +10,7 @@
  * @property string $itembatch
  * @property double $oldamount
  * @property double $amount
+ * @property string $idlocation
  * @property string $remark
  * @property string $userlog
  * @property string $datetimelog
@@ -34,7 +35,7 @@ class Stockadjustments extends CActiveRecord
 		return array(
 			array('id, idatetime, itembatch, oldamount, amount, userlog, datetimelog', 'required'),
 			array('oldamount, amount', 'numerical'),
-			array('id, idref, itembatch, userlog', 'length', 'max'=>21),
+			array('id, idref, idlocation, itembatch, userlog', 'length', 'max'=>21),
 			array('idatetime, datetimelog', 'length', 'max'=>19),
 			array('remark', 'safe'),
 			// The following rule is used by search().
@@ -66,6 +67,7 @@ class Stockadjustments extends CActiveRecord
 			'itembatch' => 'Kode Batch',
 			'oldamount' => 'Jumlah Awal',
 			'amount' => 'Jumlah',
+			'idlocation' => 'Lokasi',
 			'remark' => 'Catatan',
 			'userlog' => 'Userlog',
 			'datetimelog' => 'Datetimelog',
@@ -96,6 +98,7 @@ class Stockadjustments extends CActiveRecord
 		$criteria->compare('itembatch',$this->itembatch,true);
 		$criteria->compare('oldamount',$this->oldamount);
 		$criteria->compare('amount',$this->amount);
+		$criteria->compare('idlocation',$this->idlocation);
 		$criteria->compare('remark',$this->remark,true);
 		$criteria->compare('userlog',$this->userlog,true);
 		$criteria->compare('datetimelog',$this->datetimelog,true);

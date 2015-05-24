@@ -275,7 +275,6 @@ class DefaultController extends Controller
             $idmaker=new idmaker();
             $model->id=$idmaker->getcurrentID2();  
             $model->idatetime=$idmaker->getDateTime();
-            $model->batchcode = '-';
         }
         
         protected function afterPost(& $model)
