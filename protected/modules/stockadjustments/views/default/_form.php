@@ -15,6 +15,8 @@ $itemScript=<<<EOS
                	function(data) {
 				 	$('#iditem').html(data.name);
                })
+			$('#command').val('getamount');
+			$('#stockadjustments-form').submit();
 	});
 EOS;
 Yii::app()->clientScript->registerScript('itemscript', $itemScript, CClientScript::POS_READY);
@@ -41,6 +43,7 @@ Yii::app()->clientScript->registerScript('itemscript', $itemScript, CClientScrip
              echo $form->hiddenField($model, 'datetimelog');
              echo $form->hiddenField($model, 'oldamount');
              echo $form->hiddenField($model, 'regnum');
+             echo CHtml::hiddenField('command');
              //echo $form->hiddenField($model, 'iditem');
               
           ?>

@@ -45,33 +45,35 @@ class DefaultController extends Controller
 	 */
 	public function actionCreate()
 	{
-             if(Yii::app()->authManager->checkAccess($this->formid.'-Append', 
+		if(Yii::app()->authManager->checkAccess($this->formid.'-Append', 
                     Yii::app()->user->id))  {   
-                $this->state='create';
-                $this->trackActivity('c');    
+			$this->state='create';
+			$this->trackActivity('c');    
                     
-                $model=new Stockadjustments;
-                $this->afterInsert($model);
+			$model=new Stockadjustments;
+			$this->afterInsert($model);
                 
-		// Uncomment the following line if AJAX validation is needed
-		$this->performAjaxValidation($model);
+			// Uncomment the following line if AJAX validation is needed
+			$this->performAjaxValidation($model);
 
-		if(isset($_POST['yt0']))
-		{
-			$model->attributes=$_POST['Stockadjustments'];
-                        $this->beforePost($model);
-			if($model->save()) {
-                            $this->afterPost($model);
-                            $this->redirect(array('view','id'=>$model->id));                 
-                        }    
-        }
+			if(isset($_POST['yt0'])) {
+				$model->attributes=$_POST['Stockadjustments'];
+				$this->beforePost($model);
+				if($model->save()) {
+					$this->afterPost($model);
+					$this->redirect(array('view','id'=>$model->id));                 
+				}    
+        	} else if ($_POST['command'] == 'getamount') {
+        		$model->attributes = $_POST['Stockadjustments'];
+        		$model->oldamount = $this->getamount($model);
+        	}
 
-		$this->render('create',array(
-			'model'=>$model,
-		));
-             } else {
-                throw new CHttpException(404,'You have no authorization for this operation.');
-             }
+			$this->render('create',array(
+				'model'=>$model,
+			));
+		} else {
+			throw new CHttpException(404,'You have no authorization for this operation.');
+		}
 	}
 
 	/**
@@ -316,5 +318,13 @@ class DefaultController extends Controller
             $this->tracker->logActivity($this->formid, $action);
         }
         
-
+	private function getamount($model)
+	{
+		$amount = Yii::app()->db->createCommand()
+			->select('sum(amount) as total')->from('detailstocks')
+			->where('batchcode = :p_batchcode', array(':p_batchcode'=>$model->itembatch))
+			->queryScalar();
+		
+		return $amount;
+	}
 }
