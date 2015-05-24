@@ -6,6 +6,7 @@
  * The followings are the available columns in table 'stockadjustments':
  * @property string $id
  * @property string $idatetime
+ * @property string $regnum
  * @property string $idref
  * @property string $itembatch
  * @property double $oldamount
@@ -33,14 +34,14 @@ class Stockadjustments extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id, idatetime, itembatch, oldamount, amount, userlog, datetimelog', 'required'),
+			array('id, regnum, idatetime, itembatch, oldamount, amount, userlog, datetimelog', 'required'),
 			array('oldamount, amount', 'numerical'),
 			array('id, idref, idlocation, itembatch, userlog', 'length', 'max'=>21),
 			array('idatetime, datetimelog', 'length', 'max'=>19),
 			array('remark', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, idatetime, idref, itembatch, oldamount, amount, remark, userlog, datetimelog', 'safe', 'on'=>'search'),
+			array('id, idatetime, regnum, idref, itembatch, oldamount, amount, remark, userlog, datetimelog', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -62,6 +63,7 @@ class Stockadjustments extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
+			'regnum' => 'Nomor Urut',
 			'idatetime' => 'Tanggal',
 			'idref' => 'ID Opname',
 			'itembatch' => 'Kode Batch',
