@@ -55,7 +55,7 @@ class MYPDF extends TCPDF {
 			$row=$this->data[$i];
 			$counter+=1;
 			
-			$ih = 6;
+			$ih = $this->getStringHeight($this->headerwidths[1], $row['name']);
 			
 			$this->checkPageBreak($ih);
 			$this->Cell($this->headerwidths[0], $ih, $row['batchcode'], 'BLR', 0, 'C', $fill);
@@ -71,8 +71,8 @@ class MYPDF extends TCPDF {
 			//$totaldisc += $row['totaldisc'];
 			$this->Cell($this->headerwidths[6], $ih, number_format($row['salereturqty']), 'BR', 0, 'R', $fill);
 			//$totalcog += $row['totalcog'];
-			$this->Cell($this->headerwidths[6], $ih, number_format($row['stockadjustqty']), 'BR', 0, 'R', $fill);
-			$this->Cell($this->headerwidths[7], $ih, number_format($row['endqty']), 'BR', 1, 'R', $fill);
+			$this->Cell($this->headerwidths[7], $ih, number_format($row['stockadjustqty']), 'BR', 0, 'R', $fill);
+			$this->Cell($this->headerwidths[8], $ih, number_format($row['endqty']), 'BR', 1, 'R', $fill);
 			//$totalgain += $row['totalgain'];
 		} 
 		/**$this->setX(10);
