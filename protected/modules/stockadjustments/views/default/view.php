@@ -30,7 +30,7 @@ $this->menu=array(
 			'value'=>number_format($model['oldamount'])
 		),
 		array(
-			'name'=>'aomount',
+			'name'=>'amount',
 			'value'=>number_format($model['amount'])
 		),
 		array(
