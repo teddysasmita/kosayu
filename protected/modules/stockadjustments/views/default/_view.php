@@ -14,7 +14,7 @@
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('itembatch')); ?>:</b>
-	<?php echo CHtml::encode(lookup::ItemNameFromItemCode($data->itembatch)); ?>
+	<?php echo CHtml::encode($data->itembatch); ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('amount')); ?>:</b>
