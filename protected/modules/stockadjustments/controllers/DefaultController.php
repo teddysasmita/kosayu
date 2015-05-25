@@ -137,7 +137,7 @@ class DefaultController extends Controller
 
 		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
 		if(!isset($_GET['ajax']))
-			$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
+			$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('index'));
             } else {
                 throw new CHttpException(404,'You have no authorization for this operation.');
             }
@@ -287,7 +287,7 @@ class DefaultController extends Controller
         	if ($this->state == 'create') 
         		$idmaker->saveRegNum($this->formid, $model->regnum);
         		
-        	$iditem = lookup::ItemIDFromItemCode($code)FromItemCode($model->itembatch);
+        	$iditem = lookup::ItemIDFromItemCode($model->itembatch);
         	if ($this->state == 'create') {
         		Action::addStock($model->id, $model->idatetime, $model->regnum, 'Penyesuaian');
         		Action::addDetailStock($model->id, $model->id, $iditem, $model->itembatch, 
