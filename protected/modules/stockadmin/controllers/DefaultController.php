@@ -272,8 +272,13 @@ class DefaultController extends Controller
 					}
 					if (!$found) {
 						$ps['stockadjustqty'] = 0;
+					}	
+				}
+				
+				foreach($postdata as & $ps) {
+					if (!isset($ps['startqty'])) {
+						$ps['startqty'] = 0;
 					}
-					
 				}
 				
 				Yii::app()->session['stockflowreport'] = $postdata;
