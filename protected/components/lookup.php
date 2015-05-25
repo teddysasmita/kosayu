@@ -176,6 +176,19 @@ class lookup extends CComponent {
    		}
    }
    
+   public static function ItemIDFromItemCode($code)
+   {
+   		if ($code == '-')
+   			return '-';
+   		else {
+   			$data = Yii::app()->db->createCommand()
+   				->select('iditem')->from('itembatch')
+   				->where('batchcode = :p_batchcode',
+   					array(':p_batchcode'=>$code))
+				->queryScalar();
+			return $data;
+   		}
+   }
    public static function ItemPriceFromItemCode($code)
    {
 		if ($code == '-')

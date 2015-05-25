@@ -287,7 +287,7 @@ class DefaultController extends Controller
         	if ($this->state == 'create') 
         		$idmaker->saveRegNum($this->formid, $model->regnum);
         		
-        	$iditem = lookup::ItemNameFromItemCode($model->itembatch);
+        	$iditem = lookup::ItemIDFromItemCode($code)FromItemCode($model->itembatch);
         	if ($this->state == 'create') {
         		Action::addStock($model->id, $model->idatetime, $model->regnum, 'Penyesuaian');
         		Action::addDetailStock($model->id, $model->id, $iditem, $model->itembatch, 
