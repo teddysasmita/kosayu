@@ -653,7 +653,7 @@ class DefaultController extends Controller
         		->where('id = :p_id', array(':p_id'=>$employeeinfo['idjobgroup']))
         		->queryRow();
         	$daysnum = cal_days_in_month(CAL_GREGORIAN, $model->pmonth, $model->pyear);
-        	$minutewage = $employeeinfo['wageamount'] / ($daysnum * 8 * 60);
+        	$minutewage = $employeeinfo['wageamount'] / (($daysnum - $model->nonworkingdays) * 8 * 60);
 
         	unset($details);
         	$details = array();
