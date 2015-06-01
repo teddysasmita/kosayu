@@ -676,7 +676,7 @@ class DefaultController extends Controller
 	         	$temp['id'] = $model->id;
 	         	$temp['iddetail'] = idmaker::getCurrentID2();
 	         	$temp['componentname'] = '2';
-	         	if ($daysnum - $model->presence <= 4) 
+	         	if ($daysnum - $model->presence <= $model->nonworkingdays) 
 	         		$temp['amount'] = $jginfo['bonusamount'];
 	         	else
 	         		$temp['amount'] = 0;
