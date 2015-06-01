@@ -666,7 +666,7 @@ class DefaultController extends Controller
 	        	if ($jginfo['wager'] == '1') {
 	        		$temp['amount'] = $employeeinfo['wageamount'];	
 	        	} else if ($jginfo['wager'] == '2') {
-	        		$temp['amount'] = ($employeeinfo['wageamount'] / $daysnum) * $model->presence;
+	        		$temp['amount'] = ($employeeinfo['wageamount'] / ($daysnum - $model->nonworkingdays)) * $model->presence;
 	         	} 
 	         	$details[] = $temp;
         	}
