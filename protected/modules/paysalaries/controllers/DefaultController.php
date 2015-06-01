@@ -652,9 +652,11 @@ class DefaultController extends Controller
         		->select()->from('jobgroups')
         		->where('id = :p_id', array(':p_id'=>$employeeinfo['idjobgroup']))
         		->queryRow();
-        	$daysnum = cal_days_in_month(CAL_GREGORIAN, $model->pmonth, $model->pyear) - 4;
+        	$daysnum = cal_days_in_month(CAL_GREGORIAN, $model->pmonth, $model->pyear);
         	$minutewage = $employeeinfo['wageamount'] / ($daysnum * 8 * 60);
 
+        	unset($details);
+        	$details = array();
         	//--- wager ---
         	if ($employeeinfo['wageamount'] > 0) {
         		unset($temp);
