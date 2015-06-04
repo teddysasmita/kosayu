@@ -773,6 +773,7 @@ class DefaultController extends Controller
 	         	$details[] = $temp;
          	}
          	print_r($details);
+         	die;
          	$model->total = 0;
         	foreach($details as $d) 
         		$model->total += $d['amount'];
