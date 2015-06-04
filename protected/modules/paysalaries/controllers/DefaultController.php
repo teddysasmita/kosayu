@@ -667,7 +667,8 @@ class DefaultController extends Controller
 	        		$temp['amount'] = $employeeinfo['wageamount'];	
 	        	} else if ($jginfo['wager'] == '2') {
 	        		$temp['amount'] = ($employeeinfo['wageamount'] / ($daysnum - $model->nonworkingdays)) * $model->presence;
-	         	} 
+	         	} else
+	         		throw new CHttpException(202,'Metode Perhitungan Gaji belum ditentukan di Master Jabatan');
 	         	$details[] = $temp;
         	}
         	//--- bonus ---
