@@ -211,6 +211,7 @@ EOS;
 	</div>
 	
 <?php 
+	$rawdata = array();
     if (isset(Yii::app()->session['Detailpaysalaries'])) {
        $rawdata=Yii::app()->session['Detailpaysalaries'];
        $count=count($rawdata);
