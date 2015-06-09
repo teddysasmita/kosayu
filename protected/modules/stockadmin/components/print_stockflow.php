@@ -171,7 +171,7 @@ function execute($data, $suppliercode, $startdate, $enddate) {
 	$pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
 	
 	//set margins
-	$pdf->SetMargins($pdf->left_margin, 27, $pdf->right_margin);
+	$pdf->SetMargins($pdf->left_margin, 33, $pdf->right_margin);
 	$pdf->SetHeaderMargin(0);
 	$pdf->SetFooterMargin(0);
 	
