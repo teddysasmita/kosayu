@@ -31,7 +31,7 @@ class MYPDF extends TCPDF {
 				'Jml Retur B', 'Jml Retur J', 'P.Stok', 'Jml Akhir', 'HB', 
 				'Total'
 		);
-		$this->headerwidths = array(15, 25, 16.6, 16.6, 16.6, 16.6, 16.6, 16.6, 16.8, 16.6, 17);
+		$this->headerwidths = array(20, 25, 16.6, 16.6, 16.6, 16.6, 16.6, 16.6, 16.8, 16.6, 17);
 	}
 
 	// Colored table
@@ -136,7 +136,7 @@ class MYPDF extends TCPDF {
 		$this->setFontSize(10);
 		$this->Cell(50, 5, 'Kode Supplier : '. $this->suppliercode,'LTR', 0, 'L');
 		$this->Cell(145, 5, 'Periode  : '. $this->startdate. ' s/d '.$this->enddate, 'LTR', 1, 'L');		
-		$this->SetFontSize(10);		
+		$this->SetFontSize(9);		
 		$this->setX(10);
 		$this->SetFont('Helvetica', 'B');
 		
