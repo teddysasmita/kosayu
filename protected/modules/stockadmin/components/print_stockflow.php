@@ -27,8 +27,8 @@ class MYPDF extends TCPDF {
 		$this->startdate = $startdate;
 		$this->enddate = $enddate;
 		$this->headernames = array(
-				'Kode Batch', 'Nama Barang', 'Jml Awal', 'Jml Beli', 'Jml Jual', 
-				'Jml Retur B', 'Jml Retur J', 'P.Stok', 'Jml Akhir', 'HB', 
+				'Kode Batch', 'Nama Barang', 'Awal', 'Beli', 'Jual', 
+				'Retur B', 'Retur J', 'P.Stok', 'Jml Akhir', 'HB', 
 				'Total'
 		);
 		$this->headerwidths = array(20, 25, 16.6, 16.6, 16.6, 16.6, 16.6, 16.6, 16.8, 16.6, 17);
