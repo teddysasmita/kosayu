@@ -97,12 +97,10 @@ $this->menu=array(
 					array(
 							'header'=>'Kode Barang',
 							'name'=>'batchcode',
-							'type'=>'number'
 					),
 					array(
 							'header'=>'Nama Barang',
 							'name'=>'name',
-							'type'=>'number'
 					),
 					array(
 							'header'=>'Jml Awal',
