@@ -97,42 +97,52 @@ $this->menu=array(
 					array(
 							'header'=>'Kode Barang',
 							'name'=>'batchcode',
+							'type'=>'number'
 					),
 					array(
 							'header'=>'Nama Barang',
 							'name'=>'name',
+							'type'=>'number'
 					),
 					array(
 							'header'=>'Jml Awal',
 							'name'=>'startqty',
+							'type'=>'number'
 					),
 					array(
 							'header'=>'Jml Beli',
 							'name'=>'receiveqty',
+							'type'=>'number'
 					),
 					array(
 							'header'=>'Jml Jual',
 							'name'=>'soldqty',
+							'type'=>'number'
 					),
 					array(
 							'header'=>'Jml Retur Beli',
 							'name'=>'returqty',
+							'type'=>'number'
 					),
 					array(
 							'header'=>'Jml Retur Jual',
 							'name'=>'salereturqty',
+							'type'=>'number'
 					),
 					array(
 							'header'=>'Penyesuaian',
 							'name'=>'stockadjustqty',
+							'type'=>'number'
 					),
 					array(
 							'header'=>'Jml Akhir',
 							'name'=>'endqty',
+							'type'=>'number'
 					),
 					array(
 							'header'=>'Harga Beli',
 							'name'=>'buyprice',
+							'type'=>'number'
 					),
 					array(
 							'header'=>'Nilai Akhir',
