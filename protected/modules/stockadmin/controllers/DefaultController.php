@@ -279,6 +279,8 @@ class DefaultController extends Controller
 					if (!isset($ps['startqty'])) {
 						$ps['startqty'] = 0;
 					}
+					$ps['buyprice'] = lookup::getbuyprice($ps['batchcode']);
+					$ps['total'] = $ps['buyprice'] * $ps['endqty'];
 				}
 				
 				Yii::app()->session['stockflowreport'] = $postdata;

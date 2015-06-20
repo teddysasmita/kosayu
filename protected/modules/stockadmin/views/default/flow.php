@@ -130,6 +130,16 @@ $this->menu=array(
 							'header'=>'Jml Akhir',
 							'name'=>'endqty',
 					),
+					array(
+							'header'=>'Harga Beli',
+							'name'=>'buyprice',
+					),
+					array(
+							'header'=>'Nilai Akhir',
+							'name'=>'total',
+							'type'=>'number'					
+					),
+					
 			),
 	));
 //}
