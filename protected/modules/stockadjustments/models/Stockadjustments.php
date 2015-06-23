@@ -15,6 +15,7 @@
  * @property string $remark
  * @property string $userlog
  * @property string $datetimelog
+ * @property string $kind
  */
 class Stockadjustments extends CActiveRecord
 {
@@ -34,14 +35,15 @@ class Stockadjustments extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id, regnum, idatetime, itembatch, oldamount, amount, userlog, datetimelog', 'required'),
+			array('id, regnum, kind, idatetime, itembatch, oldamount, amount, userlog, datetimelog', 'required'),
 			array('oldamount, amount', 'numerical'),
 			array('id, idref, idlocation, itembatch, userlog', 'length', 'max'=>21),
 			array('idatetime, datetimelog', 'length', 'max'=>19),
+			array('kind', 'length', 'max'=>1),
 			array('remark', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, idatetime, regnum, idref, itembatch, oldamount, amount, remark, userlog, datetimelog', 'safe', 'on'=>'search'),
+			array('id, idatetime, regnum, kind, idref, itembatch, oldamount, amount, remark, userlog, datetimelog', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -71,6 +73,7 @@ class Stockadjustments extends CActiveRecord
 			'amount' => 'Jumlah',
 			'idlocation' => 'Lokasi',
 			'remark' => 'Catatan',
+			'kind' => 'Jenis',
 			'userlog' => 'Userlog',
 			'datetimelog' => 'Datetimelog',
 		);
@@ -102,6 +105,7 @@ class Stockadjustments extends CActiveRecord
 		$criteria->compare('amount',$this->amount);
 		$criteria->compare('idlocation',$this->idlocation);
 		$criteria->compare('remark',$this->remark,true);
+		$criteria->compare('kind',$this->kind,true);
 		$criteria->compare('userlog',$this->userlog,true);
 		$criteria->compare('datetimelog',$this->datetimelog,true);
 
