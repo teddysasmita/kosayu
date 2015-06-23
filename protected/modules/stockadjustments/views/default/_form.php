@@ -115,6 +115,14 @@ Yii::app()->clientScript->registerScript('itemscript', $itemScript, CClientScrip
 		<?php echo $form->error($model,'remark'); ?>
 	</div>	
 	
+	<div class="row">
+		<?php echo $form->labelEx($model,'kind'); ?>
+		<?php 
+         echo $form->dropDownList($model, 'kind', 
+         	array('Penyesuaian'=>'P', 'Stok Awal'=>'A')); ?>
+		<?php echo $form->error($model,'kind'); ?>
+	</div>	
+	
 	<div class="row buttons">
 		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
 	</div>
