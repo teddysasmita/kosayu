@@ -9,12 +9,12 @@
 <?php
 
 $itemScript=<<<EOS
-	$('#Sellingprices_iditem').change(
+	$('#Sellingprices_batchcode').change(
 		function() {
-			$.getJSON('index.php?r=LookUp/getItemFromBatchcode',{ batchcode: $('#Sellingprices_iditem').val() },
+			$.getJSON('index.php?r=LookUp/getItemFromBatchcode',{ batchcode: $('#Sellingprices_batchcode').val() },
                	function(data) {
-				 	$('#batchcode').html(data.name);
-                  $('#Sellingprices_batchcode').val(data.iditem);
+				 	$('#iditem').html(data.name);
+                  $('#Sellingprices_iditem').val(data.iditem);
                })
 	});
 EOS;
@@ -66,10 +66,10 @@ Yii::app()->clientScript->registerScript('itemscript', $itemScript, CClientScrip
 	
 	
 	<div class="row">
-		<?php echo $form->labelEx($model,'iditem'); ?>
+		<?php echo $form->labelEx($model,'batchcode'); ?>
 		<?php 
 			$this->widget('zii.widgets.jui.CJuiAutoComplete', array(
-				'name'=>'Sellingprices[iditem]',
+				'name'=>'Sellingprices[batchcode]',
 				'sourceUrl'=> Yii::app()->createUrl('LookUp/getBatchcode'),
 				'htmlOptions'=>array(
 						'style'=>'height:20px;',
@@ -77,14 +77,14 @@ Yii::app()->clientScript->registerScript('itemscript', $itemScript, CClientScrip
 				'value'=>$model->iditem,
 			));
 		?>
-		<?php echo $form->error($model,'iditem'); ?>
+		<?php echo $form->error($model,'batchcode'); ?>
 	</div>
 	
 	<div class="row">
-		<?php echo $form->labelEx($model,'batchcode'); ?>
+		<?php echo $form->labelEx($model,'iditem'); ?>
 		<?php 
-         	echo CHtml::tag('span', array('id'=>'batchcode', 'class'=>'money'), 
-         		lookup::ItemNameFromItemCode($model->iditem) );
+         	echo CHtml::tag('span', array('id'=>'iditem', 'class'=>'money'), 
+         		lookup::ItemNameFromItemCode($model->batchcode) );
      	?>
 	</div>
 	
