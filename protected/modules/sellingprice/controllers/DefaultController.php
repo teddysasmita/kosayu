@@ -330,6 +330,15 @@ class DefaultController extends Controller
 						->where('a.batchcode like :p_batchcode', array(':p_batchcode'=>'%'.$batchcode.'%'))
 						->order('c.name, a.idatetime desc')
 						->queryAll();
+        			if (!$data)
+        			$data = Yii::app()->db->createCommand()
+        				->select('a.*, c.name')
+        				->from('sellingprices a')
+        				->join('itembatch b', 'b.id = a.iditem')
+        				->join('items c', 'c.id = b.iditem')
+        				->where('a.iditem like :p_batchcode', array(':p_batchcode'=>'%'.$batchcode.'%'))
+        				->order('c.name, a.idatetime desc')
+        				->queryAll();
         		$this->render('display1a',array(
         				'data'=>$data));
         	} else {
