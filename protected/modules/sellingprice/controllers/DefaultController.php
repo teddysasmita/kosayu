@@ -317,16 +317,18 @@ class DefaultController extends Controller
             $this->tracker->logActivity($this->formid, $action);
         }
         
-        public function actionDisplaysellingprice($itemname)
+        public function actionDisplaysellingprice($batchcode)
         {
         	if(Yii::app()->authManager->checkAccess($this->formid.'-List',
         			Yii::app()->user->id))  {
         		$this->trackActivity('v');
         			$data = Yii::app()->db->createCommand()
-        				->select('a.*, b.name')->from('sellingprices a')
-						->join('items b', 'b.id = a.iditem')
-						->where('b.name like :p_name', array(':p_name'=>'%'.$itemname.'%'))
-						->order('b.name, a.idatetime desc')
+        				->select('a.*, c.name')
+        				->from('sellingprices a')
+						->join('itembatch b', 'b.id = a.iditem')
+						->join('items c', 'c.id = b.iditem')
+						->where('b.batchcode like :p_batchcode', array(':p_batchcide'=>'%'.$batchcode.'%'))
+						->order('c.name, a.idatetime desc')
 						->queryAll();
         		$this->render('display1a',array(
         				'data'=>$data));

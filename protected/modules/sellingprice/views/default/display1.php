@@ -37,10 +37,10 @@ $('.search-form form').submit(function(){
 	
 <div class="row">
 <?php 
-	echo CHtml::label('Nama Barang', 'itemname');
+	echo CHtml::label('Kode Barang', 'batchcode');
 	$this->widget("zii.widgets.jui.CJuiAutoComplete", array(
-			'name'=>'itemname',
-			'sourceUrl'=>Yii::app()->createUrl('LookUp/getItemName'),
+			'name'=>'batchcode',
+			'sourceUrl'=>Yii::app()->createUrl('LookUp/getBatchCode'),
 			'htmlOptions'=>array('size'=>50),
 	));
 ?>
