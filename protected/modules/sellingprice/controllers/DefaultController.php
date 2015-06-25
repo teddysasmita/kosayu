@@ -323,22 +323,21 @@ class DefaultController extends Controller
         			Yii::app()->user->id))  {
         		$this->trackActivity('v');
         			$data = Yii::app()->db->createCommand()
-        				->select('a.*, c.name')
+        				->select('a.*')
         				->from('sellingprices a')
-						->join('itembatch b', 'b.batchcode = a.batchcode')
-						->join('items c', 'c.id = b.iditem')
 						->where('a.batchcode like :p_batchcode', array(':p_batchcode'=>'%'.$batchcode.'%'))
-						->order('c.name, a.idatetime desc')
+						->order('a.idatetime desc')
 						->queryAll();
         			if (!$data)
         			$data = Yii::app()->db->createCommand()
-        				->select('a.*, c.name')
+        				->select('a.*')
         				->from('sellingprices a')
-        				->join('itembatch b', 'b.batchcode = a.iditem')
-        				->join('items c', 'c.id = b.iditem')
         				->where('a.iditem like :p_batchcode', array(':p_batchcode'=>'%'.$batchcode.'%'))
-        				->order('c.name, a.idatetime desc')
+        				->order('a.idatetime desc')
         				->queryAll();
+        			foreach($data as &$d) {
+        				$d['name'] = lookup::ItemNameFromItemCode($d['batchcode']);
+        			}
         		$this->render('display1a',array(
         				'data'=>$data));
         	} else {
