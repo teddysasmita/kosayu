@@ -327,7 +327,7 @@ class DefaultController extends Controller
         				->from('sellingprices a')
 						->join('itembatch b', 'b.id = a.iditem')
 						->join('items c', 'c.id = b.iditem')
-						->where('b.batchcode like :p_batchcode', array(':p_batchcode'=>'%'.$batchcode.'%'))
+						->where('a.batchcode like :p_batchcode', array(':p_batchcode'=>'%'.$batchcode.'%'))
 						->order('c.name, a.idatetime desc')
 						->queryAll();
         		$this->render('display1a',array(
