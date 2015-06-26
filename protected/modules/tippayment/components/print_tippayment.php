@@ -76,7 +76,7 @@ class MYPDF extends TCPDF {
 			$cashiername = substr(lookup::UserNameFromUserID($row['idcashier']), 0, 7);
 			$this->Cell($this->headerwidths1[4], $ih, $cashiername , 0, 0, 'C');
 			$this->ln($ih);
-			$this->checkPageBreak($ih);
+			//$this->checkPageBreak($ih);
 		}
 		
 		$this->ln(5);
@@ -98,6 +98,7 @@ class MYPDF extends TCPDF {
 			$this->Cell($this->headerwidths2[0], $ih, lookup::ItemTipGroupNameFromID($row['idtipgroup']), 0, 0, 'L');
 			$this->Cell($this->headerwidths2[1], $ih, number_format($row['amount']), 0, 0, 'R');
 			$this->ln($ih);
+			//$this->checkPageBreak($ih);
 		}
 		$this->setX($this->leftmargin);
 		$this->Cell(85,1,'','B',1);
