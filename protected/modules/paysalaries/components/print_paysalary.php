@@ -1,6 +1,6 @@
 <?php
 
-require_once('config/lang/eng.php');
+
 //require_once('tcpdf.php');
 
 // extend TCPF with custom functions
@@ -36,6 +36,7 @@ class MYPDF extends TCPDF {
 		$this->SetDrawColor(0, 0, 0);
 		$this->SetLineWidth(0.3);
 		$this->setfontsize(10);
+		$this->setFont('helvetica');
 
 		$this->SetXY($this->leftmargin, 55);
 		for($i = 0; $i < count($this->headernames1); ++$i) {
@@ -111,6 +112,8 @@ class MYPDF extends TCPDF {
 		$this->SetLineWidth(0.3);
 		$this->SetCellPadding(0.8);
 
+		$this->setFont('helvetica');
+		
 		$employeeinfo = Yii::app()->db->createCommand()
 		->select()->from('employees')
 		->where('id = :p_id', array(':p_id'=>$this->data->idemployee))
@@ -171,7 +174,7 @@ function execute($model, $detailmodel) {
 	$pdf->SetAutoPageBreak(TRUE, 5);
 	
 	//set image scale factor
-	$pdf->setImageScale(2.8);
+	$pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
 	
 	//set some language-dependent strings
 	//$pdf->setLanguageArray($l);
