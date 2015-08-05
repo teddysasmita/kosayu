@@ -337,7 +337,7 @@ class DefaultController extends Controller
 		$amount = Yii::app()->db->createCommand()
 			->select('sum(b.qty) as total')->from('detailstocks b')
 			->join('stocks a', 'a.id = b.id')
-			->where('batchcode = :p_batchcode', array(':p_batchcode'=>$model->itembatch))
+			->where('b.batchcode = :p_batchcode', array(':p_batchcode'=>$model->itembatch))
 			->andWhere('a.idatetime < :p_enddate', array(':p_enddate'=>$model->idatetime))
 			->queryScalar();
 		
