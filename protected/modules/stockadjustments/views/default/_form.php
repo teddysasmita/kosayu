@@ -9,7 +9,7 @@
 <?php
 
 $itemScript=<<<EOS
-	$("#Stockadjustments_itembatch").change(
+	$("#findButton").click(
 		function() {
 			$.getJSON("index.php?r=LookUp/getItemFromBatchcode",{ batchcode: $("#Stockadjustments_itembatch").val() },
                	function(data) {
@@ -80,6 +80,7 @@ Yii::app()->clientScript->registerScript('itemscript', $itemScript, CClientScrip
 				),
 				'value'=>$model->itembatch,
 			));
+			echo CHtml::button('Cari Stok', array('id'=>'findButton'));
 		?>
 		<?php echo $form->error($model,'itembatch'); ?>
 	</div>
