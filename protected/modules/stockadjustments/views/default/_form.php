@@ -80,9 +80,12 @@ Yii::app()->clientScript->registerScript('itemscript', $itemScript, CClientScrip
 				),
 				'value'=>$model->itembatch,
 			));
-			echo CHtml::button('Cari Stok', array('id'=>'findButton'));
 		?>
 		<?php echo $form->error($model,'itembatch'); ?>
+	</div>
+	
+	<div class="row">
+		echo CHtml::button('Cari Stok', array('id'=>'findButton'));
 	</div>
 	
 	<div class="row">
