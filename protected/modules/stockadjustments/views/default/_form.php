@@ -85,7 +85,7 @@ Yii::app()->clientScript->registerScript('itemscript', $itemScript, CClientScrip
 	</div>
 	
 	<div class="row">
-		echo CHtml::button('Cari Stok', array('id'=>'findButton'));
+		<?php echo CHtml::button('Cari Stok', array('id'=>'findButton')); ?>
 	</div>
 	
 	<div class="row">
