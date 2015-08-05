@@ -278,7 +278,7 @@ class DefaultController extends Controller
         {
             $idmaker=new idmaker();
             $model->id=$idmaker->getcurrentID2();  
-            $model->idatetime=$idmaker->getDateTime();
+            $model->idatetime=substr($idmaker->getDateTime(), 0, 10);
         }
         
         protected function afterPost(& $model)
@@ -335,8 +335,10 @@ class DefaultController extends Controller
 	private function getamount($model)
 	{
 		$amount = Yii::app()->db->createCommand()
-			->select('sum(qty) as total')->from('detailstocks')
+			->select('sum(b.qty) as total')->from('detailstocks b')
+			->join('stocks a', 'a.id = b.id')
 			->where('batchcode = :p_batchcode', array(':p_batchcode'=>$model->itembatch))
+			->andWhere('a.idatetime < :p_enddate', array(':p_enddate'=>$model->idatetime))
 			->queryScalar();
 		
 		return $amount;
