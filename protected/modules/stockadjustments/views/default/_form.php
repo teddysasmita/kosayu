@@ -9,14 +9,14 @@
 <?php
 
 $itemScript=<<<EOS
-	$('#Stockadjustments_itembatch').change(
+	$("#Stockadjustments_itembatch").change(
 		function() {
-			$.getJSON('index.php?r=LookUp/getItemFromBatchcode',{ batchcode: $('#Stockadjustments_itembatch').val() },
+			$.getJSON("index.php?r=LookUp/getItemFromBatchcode",{ batchcode: $("#Stockadjustments_itembatch").val() },
                	function(data) {
-				 	$('#iditem').html(data.name);
+				 	$("#iditem").html(data.name);
                })
-			$('#command').val('getamount');
-			$('#stockadjustments-form').submit();
+			$("#command").val('getamount');
+			$("#stockadjustments-form").submit();
 	});
 EOS;
 Yii::app()->clientScript->registerScript('itemscript', $itemScript, CClientScript::POS_READY);
