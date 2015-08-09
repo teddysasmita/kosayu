@@ -759,7 +759,7 @@ EOS;
    			->queryAll(); 	
     	
     	$sql2 = <<<EOS
-    	select sum(a.total-a.tax) as totalretur
+    	select sum(a.total) as totalretur
     	from salesposreturs a
     	where a.invoicenum = :p_invoicenum
 EOS;
