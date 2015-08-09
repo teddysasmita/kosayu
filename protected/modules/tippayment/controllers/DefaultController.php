@@ -877,12 +877,12 @@ EOS;
     			$salesreturs->queryAll();
     		};
     		
-    		foreach($salesreturs as $sr) {
+    		/*foreach($salesreturs as $sr) {
     			if(isset($sr['iditem'])) {
     				if ($sr['iditem'] == $ds['iditem'])
     					$ds['qty'] -= $sr['totalretur'];
     			}
-    		}
+    		}*/
     		
     		$ds['discount'] += $this->getVRDisc($ds['regnum'], $ds['id']) * ($ds['price'] - $ds['discount']);
     		if ( is_null($ds['pct']) ) {
