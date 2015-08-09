@@ -792,7 +792,7 @@ EOS;
    			$sd['iddetail'] = idmaker::getCurrentID2();
    			$sd['totaldiscount'] = $sd['totaldiscount'] + $this->getVRDisc($sd['invoicenum'], $sd['id']);
    			
-   			$invoicenum = $sd['regnum'];
+   			$invoicenum = $sd['invoicenum'];
    			$totalretur = $salesreturs->queryScalar();
    			$sd['amount'] -= $totalretur;
    		};
