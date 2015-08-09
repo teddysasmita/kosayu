@@ -864,8 +864,10 @@ EOS;
     		};
     		
     		foreach($salesreturs as $sr) {
-    			if ($sr['iditem'] == $ds['iditem'])
-    				$ds['qty'] -= $sr['totalretur'];
+    			if(isset($sr['iditem'])) {
+    				if ($sr['iditem'] == $ds['iditem'])
+    					$ds['qty'] -= $sr['totalretur'];
+    			}
     		}
     		
     		$ds['discount'] += $this->getVRDisc($ds['regnum'], $ds['id']) * ($ds['price'] - $ds['discount']);
@@ -961,8 +963,10 @@ EOS;
     		};
     		
     		foreach($salesreturs as $sr) {
-    			if ($sr['iditem'] == $ds['iditem'])
-    				$ds['qty'] -= $sr['totalretur'];
+    			if (isset($sr['iditem'])) {
+    				if ($sr['iditem'] == $ds['iditem'])
+    					$ds['qty'] -= $sr['totalretur'];
+    			}
     		}
     
     		$ds['discount'] += $this->getVRDisc($ds['regnum'], $ds['id']) * ($ds['price'] - $ds['discount']);
