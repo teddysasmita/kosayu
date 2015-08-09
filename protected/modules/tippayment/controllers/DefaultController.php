@@ -841,10 +841,31 @@ EOS;
 		$detailsales = Yii::app()->db->createCommand($sql1)
 			->queryAll();
     
+    	$sql2 = <<<EOS
+    	select sum(b.qty) as totalretur, b.iditem
+    	from detailsalesposreturs b 
+    	join salesposreturs a on a.id = b.id
+    	where a.invoicenum = :p_invoicenum
+    	group by b.iditem
+EOS;
+    	$salesreturs = Yii::app()->db->createCommand($sql2);
+    	$invoicenum = '';
+    	$salesreturs->bindParam(":p_invoicenum", $invoicenum);
+    	
     	
     	foreach($detailsales as & $ds) {
     		if ($ds['discount'] == 0) {
     			$ds['discount'] = $this->getUnSeenDisc($ds['regnum']) * $ds['price'];
+    		}
+    		
+    		if ($invoicenum !== $ds['regnum']) {
+    			$invoicenum = $ds['regnum'];
+    			$salesreturs->queryAll();
+    		};
+    		
+    		foreach($salesreturs as $sr) {
+    			if ($sr['iditem'] == $ds['iditem'])
+    				$ds['qty'] -= $sr['totalretur'];
     		}
     		
     		$ds['discount'] += $this->getVRDisc($ds['regnum'], $ds['id']) * ($ds['price'] - $ds['discount']);
@@ -917,10 +938,31 @@ EOS;
 EOS;
     	$detailsales = Yii::app()->db->createCommand($sql1)
     	->queryAll();
+    	
+    	$sql2 = <<<EOS
+    	select sum(b.qty) as totalretur, b.iditem
+    	from detailsalesposreturs b
+    	join salesposreturs a on a.id = b.id
+    	where a.invoicenum = :p_invoicenum
+    	group by b.iditem
+EOS;
+    	$salesreturs = Yii::app()->db->createCommand($sql2);
+    	$invoicenum = '';
+    	$salesreturs->bindParam(":p_invoicenum", $invoicenum);
     
     	foreach($detailsales as & $ds) {
     		if ($ds['discount'] == 0) {
     			$ds['discount'] = $this->getUnSeenDisc($ds['regnum']) * $ds['price'];
+    		}
+    		
+    		if ($invoicenum !== $ds['regnum']) {
+    			$invoicenum = $ds['regnum'];
+    			$salesreturs->queryAll();
+    		};
+    		
+    		foreach($salesreturs as $sr) {
+    			if ($sr['iditem'] == $ds['iditem'])
+    				$ds['qty'] -= $sr['totalretur'];
     		}
     
     		$ds['discount'] += $this->getVRDisc($ds['regnum'], $ds['id']) * ($ds['price'] - $ds['discount']);
