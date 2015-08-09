@@ -874,10 +874,10 @@ EOS;
     		
     		if ($invoicenum !== $ds['regnum']) {
     			$invoicenum = $ds['regnum'];
-    			$salesreturs->queryAll();
+    			$returs = $salesreturs->queryAll();
     		};
     		
-    		foreach($salesreturs as $sr) {
+    		foreach($returs as $sr) {
     			if(isset($sr['iditem'])) {
     				if ($sr['iditem'] == $ds['iditem'])
     					$ds['qty'] -= $sr['totalretur'];
@@ -973,11 +973,10 @@ EOS;
     		
     		if ($invoicenum !== $ds['regnum']) {
     			$invoicenum = $ds['regnum'];
-    			$salesreturs->queryAll();
+    			$returs = $salesreturs->queryAll();
     		};
-    		print_r($salesreturs);
     		
-    		foreach($salesreturs as $sr) {
+    		foreach($returs as $sr) {
     			if (isset($sr['iditem'])) {
     				if ($sr['iditem'] == $ds['iditem'])
     					$ds['qty'] -= $sr['totalretur'];
