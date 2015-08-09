@@ -758,6 +758,16 @@ EOS;
    			->order('a.regnum')
    			->queryAll(); 	
     	
+    	$sql2 = <<<EOS
+    	select sum(a.total-a.tax) as totalretur
+    	from salesposreturs a
+    	where a.invoicenum = :p_invoicenum
+EOS;
+
+    	$salesreturs = Yii::app()->db->createCommand($sql2);
+    	$invoicenum = '';
+    	$salesreturs->bindParam(":p_invoicenum", $invoicenum);
+    	
     	$select2 = <<<EOS
     	select sum(b.qty*b.price) as totalnondisc from 	
 EOS;
@@ -781,6 +791,10 @@ EOS;
    			$sd['id'] = $id;	
    			$sd['iddetail'] = idmaker::getCurrentID2();
    			$sd['totaldiscount'] = $sd['totaldiscount'] + $this->getVRDisc($sd['invoicenum'], $sd['id']);
+   			
+   			$invoicenum = $sd['regnum'];
+   			$totalretur = $salesreturs->queryScalar();
+   			$sd['amount'] -= $totalretur;
    		};
     }
     
