@@ -17,6 +17,10 @@
 	<?php echo CHtml::encode($data->itembatch); ?>
 	<br />
 
+	<b><?php echo CHtml::encode($data->getAttributeLabel('oldamount')); ?>:</b>
+	<?php echo CHtml::encode(number_format($data->oldamount)); ?>
+	<br />
+	
 	<b><?php echo CHtml::encode($data->getAttributeLabel('amount')); ?>:</b>
 	<?php echo CHtml::encode(number_format($data->amount)); ?>
 	<br />
