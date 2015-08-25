@@ -25,6 +25,10 @@
 	<?php echo CHtml::encode(number_format($data->amount)); ?>
 	<br />
 	
+	<b><?php echo CHtml::encode($data->getAttributeLabel('kind')); ?>:</b>
+	<?php echo CHtml::encode(lookup::getAdjustmentType($kind)); ?>
+	<br />
+	
 	<b><?php echo CHtml::encode($data->getAttributeLabel('userlog')); ?>:</b>
 	<?php echo CHtml::encode(lookup::UserNameFromUserID($data->userlog)); ?>
 	<br />
