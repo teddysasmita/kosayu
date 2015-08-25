@@ -26,7 +26,7 @@
 	<br />
 	
 	<b><?php echo CHtml::encode($data->getAttributeLabel('kind')); ?>:</b>
-	<?php echo CHtml::encode(lookup::getAdjustmentType($kind)); ?>
+	<?php echo CHtml::encode(lookup::getAdjustmentType($data->kind)); ?>
 	<br />
 	
 	<b><?php echo CHtml::encode($data->getAttributeLabel('userlog')); ?>:</b>
