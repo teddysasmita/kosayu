@@ -34,6 +34,10 @@ $this->menu=array(
 			'value'=>number_format($model['amount'])
 		),
 		array(
+			'name'=>'kind',
+			'value'=>lookup::getAdjustmentType($model['kind'])
+		),
+		array(
 			'name'=>'userlog',
 			'value'=>lookup::UserNameFromUserID($model['userlog'])
 		),

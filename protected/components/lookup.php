@@ -781,7 +781,7 @@ class lookup extends CComponent {
 	public static function getAdjustmentType($adj)
 	{
 		switch( $adj) {
-			case 'A': return 'Stok Awal';
+			case 'I': return 'Stok Awal';
 			case 'P': return 'Penyesuaian';
 		}
 	}
