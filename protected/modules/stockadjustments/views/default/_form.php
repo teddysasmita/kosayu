@@ -123,7 +123,7 @@ Yii::app()->clientScript->registerScript('itemscript', $itemScript, CClientScrip
 		<?php echo $form->labelEx($model,'kind'); ?>
 		<?php 
          echo $form->dropDownList($model, 'kind', 
-         	array('P'=>'Penyesuaian', 'A'=>'Stok Awal')); ?>
+         	array('P'=>'Penyesuaian', 'I'=>'Stok Awal')); ?>
 		<?php echo $form->error($model,'kind'); ?>
 	</div>	
 	
