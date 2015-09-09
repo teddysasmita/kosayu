@@ -265,7 +265,7 @@ class Detailconsignpayments2Controller extends Controller
         
         protected function loadSession($iddetail)
         {
-            $details=Yii::app()->session['Detailconsignpayments'];
+            $details=Yii::app()->session['Detailconsignpayments2'];
             foreach ($details as $row) {
                 if($row['id']==$iddetail)
                     return $row;
