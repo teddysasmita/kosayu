@@ -166,6 +166,10 @@ class DefaultController extends Controller
              if(!isset(Yii::app()->session['Detailconsignpayments'])) 
                Yii::app()->session['Detailconsignpayments']=$this->loadDetails($id);
              
+             if(!isset(Yii::app()->session['Detailconsignpayments2']))
+             	Yii::app()->session['Detailconsignpayments2']=$this->loadDetails2($id);
+              
+             
              // Uncomment the following line if AJAX validation is needed
              $this->performAjaxValidation($model);
 
