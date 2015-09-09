@@ -125,7 +125,7 @@ class Detailconsignpayments2Controller extends Controller
                   }
                     //posting into session
                   if($model->validate()) {
-                     Yii::app()->session['Detailconsignpayments']=$temp;
+                     Yii::app()->session['Detailconsignpayments']=$temps;
 
                      if ($master=='create')
                            $this->redirect(array('default/createdetail'));
