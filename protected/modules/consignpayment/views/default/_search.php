@@ -22,14 +22,20 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'ldatetime'); ?>
-		<?php echo $form->textField($model,'ldatetime',array('size'=>19,'maxlength'=>19)); ?>
-	</div>
-	
-	<div class="row">
 		<?php echo $form->label($model,'idatetime'); ?>
 		<?php echo $form->textField($model,'idatetime',array('size'=>19,'maxlength'=>19)); ?>
 	</div>
+	
+	<div class="row">
+		<?php echo $form->label($model,'sdatetime'); ?>
+		<?php echo $form->textField($model,'sdatetime',array('size'=>19,'maxlength'=>19)); ?>
+	</div>
+	
+	<div class="row">
+		<?php echo $form->label($model,'edatetime'); ?>
+		<?php echo $form->textField($model,'edatetime',array('size'=>19,'maxlength'=>19)); ?>
+	</div>
+	
 
 	<div class="row">
 		<?php echo $form->label($model,'idsupplier'); ?>
