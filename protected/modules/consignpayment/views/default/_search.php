@@ -39,7 +39,14 @@
 
 	<div class="row">
 		<?php echo $form->label($model,'idsupplier'); ?>
-		<?php echo $form->textField($model,'idsupplier',array('size'=>21,'maxlength'=>21)); ?>
+		<?php 
+			//echo $form->textField($model,'idsupplier',array('size'=>21,'maxlength'=>21)); 
+			$suppliers = Yii::app()->db
+				->createCommand("select id, concat(firstname, ' ', lastname) as sname from suppliers")
+				->queryAll();
+			$suppliers = CHtml::listData($suppliers, 'id', 'sname');
+			echo $form->dropDownList($model, 'idsupplier', $suppliers);
+		?>
 	</div>
       
 	<div class="row">
