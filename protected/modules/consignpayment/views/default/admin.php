@@ -42,8 +42,6 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 </div><!-- search-form -->
 
 <?php
-	//print_r($model->attributes);
-	echo lookup::SupplierIDFromFirstName('');
 	$this->widget('zii.widgets.grid.CGridView', array(
 	'id'=>'consignpayments-grid',
 	'dataProvider'=>$model->search(),
@@ -55,6 +53,18 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 		array(
 			'name'=>'idsupplier',
 			'value'=>"lookup::SupplierNameFromSupplierID(\$data['idsupplier'])"
+		),
+		array(
+			'name'=>'total',
+			'type'=>'number'
+		),
+		array(
+			'name'=>'discount',
+			'type'=>'number'
+		),
+		array(
+			'name'=>'labelcost',
+			'type'=>'number'
 		),
 		'status',
 		array(
