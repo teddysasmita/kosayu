@@ -117,7 +117,7 @@ class Detailconsignpayments2Controller extends Controller
                if(isset($_POST['Payments'])) {
                   $temps=Yii::app()->session['Detailconsignpayments2'];
                   $model->attributes=$_POST['Payments'];
-                  foreach ($temp as & $tv) {
+                  foreach ($temps as & $tv) {
                      if($tv['iddetail'] == $_POST['Payments']['id']) {
                          $tv = $_POST['Payments'];
                          break;
