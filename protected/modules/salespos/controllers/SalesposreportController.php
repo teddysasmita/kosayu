@@ -587,7 +587,7 @@ EOS;
 					$xl->getProperties()->setCreator("Program KOSAYU")
 						->setLastModifiedBy("Program KOSAYU")
 						->setTitle("Laporan Penjualan")
-						->setSubject("Laporan Penjuala")
+						->setSubject("Laporan Penjualan")
 						->setDescription("Laporan Penjualan")
 						->setKeywords("Laporan Penjualan")
 						->setCategory("Laporan");
@@ -616,7 +616,7 @@ EOS;
 					$xl->getActiveSheet()->setTitle('Laporan Penjualan 2');
 					$xl->setActiveSheetIndex(0);
 					header('Content-Type: application/pdf');
-					header('Content-Disposition: attachment;filename="sales-report2-'.idmaker::getDateTime().'.xls"');
+					header('Content-Disposition: attachment;filename="sales-periodic-'.idmaker::getDateTime().'.xls"');
 					header('Cache-Control: max-age=0');
 					$xlWriter = PHPExcel_IOFactory::createWriter($xl, 'Excel5');
 					$xlWriter->save('php://output');
