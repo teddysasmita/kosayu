@@ -470,7 +470,7 @@ EOS;
 					$this->trackActivity('v');
 			if (is_null(Yii::app()->session['datasales5'])) {
 				$sql1 = <<<EOS
-	select a.regnum, a.idatetime, c.name, b.qty, b.price, b.discount, 
+	select a.regnum, a.idatetime, b.itemcode, c.name, b.qty, b.price, b.discount, 
 	(b.price - b.discount) * b.price as totaldetail
 	from salespos a join 
 	(detailsalespos b join items c on c.id = b.iditem 
