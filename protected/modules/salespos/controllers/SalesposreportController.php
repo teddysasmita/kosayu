@@ -595,7 +595,7 @@ EOS;
 						$this->getsales5($startdate, $enddate);
 					$data = Yii::app()->session['datasales5'];
 					$headersfield = array(
-							'regnum', 'idatetime', 'itemcode', 'name', 'saleqty', 'price', 'discount', 'totaldetail'
+							'regnum', 'idatetime', 'itemcode', 'name', 'qty', 'price', 'discount', 'totaldetail'
 					);
 					$headersname = array(
 							'Nomor Nota', 'Tanggal', 'Kode Barang', 'Nama Barang', 'Jumlah', 'Harga', 'Potongan', 'Total Item'
