@@ -548,7 +548,7 @@ EOS;
 				->setCategory("Laporan");
 			$data = Yii::app()->session['datasales4'];
 			$headersfield = array(
-				'batchcode', 'name', 'qty', 'rqty', 'totalsold', 'totaldisc', 'totalcog', 'totalgain'
+				'batchcode', 'itemname', 'qty', 'rqty', 'totalsold', 'totaldisc', 'totalcog', 'totalgain'
 			);
 			$headersname = array(
 				'Kode Batch', 'Nama Barang', 'Qty', 'Retur Qty', 'Bruto', 'Potongan', 'Harga Beli', 'Margin'
@@ -595,7 +595,7 @@ EOS;
 						$this->getsales5($startdate, $enddate);
 					$data = Yii::app()->session['datasales5'];
 					$headersfield = array(
-							'regnum', 'idatetime', 'itemcode', 'itemname', 'saleqty', 'price', 'discount', 'totaldetail'
+							'regnum', 'idatetime', 'itemcode', 'name', 'saleqty', 'price', 'discount', 'totaldetail'
 					);
 					$headersname = array(
 							'Nomor Nota', 'Tanggal', 'Kode Barang', 'Nama Barang', 'Jumlah', 'Harga', 'Potongan', 'Total Item'
