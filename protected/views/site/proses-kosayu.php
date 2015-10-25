@@ -25,6 +25,7 @@ $this->pageTitle=Yii::app()->name;
 <h3><?php echo CHtml::link('Perhitungan Konsinyasi 2', Yii::app()->createUrl('salespos/consignmentreport/create2'))?></h3>
 <h3><?php echo CHtml::link('Laporan Penjualan Global Berdasar Pemasok', Yii::app()->createUrl('salespos/salesposreport/create3'))?></h3>
 <h3><?php echo CHtml::link('Laporan Penjualan Tiap Pemasok', Yii::app()->createUrl('salespos/salesposreport/create4'))?></h3>
+<h3><?php echo CHtml::link('Laporan Penjualan Periodik', Yii::app()->createUrl('salespos/salesposreport/create5'))?></h3>
 
 <h2>Bagian Keuangan</h2>
 <h3><?php echo CHtml::link('Penentuan Nilai Tukar Mata Uang Asing', Yii::app()->createUrl('currencyrates'))?></h3>

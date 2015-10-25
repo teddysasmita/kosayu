@@ -73,6 +73,19 @@ class SalesposreportController extends Controller
 				};
 	}
 	
+	public function actionCreate5()
+	{
+		if(Yii::app()->authManager->checkAccess($this->formid.'-Append',
+				Yii::app()->user->id))  {
+					$this->trackActivity('v');
+	
+					Yii::app()->session->remove('datasales5');
+					$this->render('create5');
+				} else {
+					throw new CHttpException(404,'You have no authorization for this operation.');
+				};
+	}
+	
 	public function actionGetsales($startdate, $enddate, $idcashier )
 	{
 		if(Yii::app()->authManager->checkAccess($this->formid.'-Append',
@@ -450,6 +463,31 @@ EOS;
 		};
 	}
 	
+	private function getsales5($startdate, $enddate)
+	{
+		if(Yii::app()->authManager->checkAccess($this->formid.'-Append',
+				Yii::app()->user->id))  {
+					$this->trackActivity('v');
+			if (is_null(Yii::app()->session['datasales5'])) {
+				$sql1 = <<<EOS
+	select a.regnum, a.idatetime, c.itemname, b.qty, b.price, b.discount, 
+	(b.price - b.discount) * b.price as totaldetail
+	from salespos a join 
+	(detailsalespos b join items c on c.id = b.iditem 
+	) on b.id = a.id
+	where
+	a.idatetime >= '$startdate' and a.idatetime <= '$enddate'
+EOS;
+				$data = Yii::app()->db->createCommand($sql1)->queryAll();
+				Yii::app()->session['datasales5'] = $data;
+				
+				return $data;
+			}
+		} else {
+			throw new CHttpException(404,'You have no authorization for this operation.');
+		};
+	}
+	
 	public function actionGetexcel3()
 	{
 		if(Yii::app()->authManager->checkAccess($this->formid.'-Append',
@@ -538,6 +576,53 @@ EOS;
 		} else {
 			throw new CHttpException(404,'You have no authorization for this operation.');
 		};
+	}
+	
+	public function actionGetexcel5($startdate, $enddate)
+	{
+		if(Yii::app()->authManager->checkAccess($this->formid.'-Append',
+				Yii::app()->user->id))  {
+					$this->trackActivity('v');
+					$xl = new PHPExcel();
+					$xl->getProperties()->setCreator("Program KOSAYU")
+						->setLastModifiedBy("Program KOSAYU")
+						->setTitle("Laporan Penjualan")
+						->setSubject("Laporan Penjuala")
+						->setDescription("Laporan Penjualan")
+						->setKeywords("Laporan Penjualan")
+						->setCategory("Laporan");
+					if (!isset(Yii::app()->session['datasales5']))
+						$this->getsales5($startdate, $enddate);
+					$data = Yii::app()->session['datasales5'];
+					$headersfield = array(
+							'regnum', 'idatetime', 'itemcode', 'itemname', 'saleqty', 'price', 'discount', 'totaldetail'
+					);
+					$headersname = array(
+							'Nomor Nota', 'Tanggal', 'Kode Barang', 'Nama Barang', 'Jumlah', 'Harga', 'Potongan', 'Total Item'
+					);
+					for( $i=0;$i<count($headersname); $i++ ) {
+						$xl->setActiveSheetIndex(0)
+						->setCellValueByColumnAndRow($i,1, $headersname[$i]);
+					}
+	
+					for( $i=0; $i<count($data); $i++){
+						for( $j=0; $j<count($headersfield); $j++ ) {
+							$cellvalue = $data[$i][$headersfield[$j]];
+							$xl->setActiveSheetindex(0)
+							->setCellValueByColumnAndRow($j,$i+2, $cellvalue);
+						}
+					}
+	
+					$xl->getActiveSheet()->setTitle('Laporan Penjualan 2');
+					$xl->setActiveSheetIndex(0);
+					header('Content-Type: application/pdf');
+					header('Content-Disposition: attachment;filename="sales-report2-'.idmaker::getDateTime().'.xls"');
+					header('Cache-Control: max-age=0');
+					$xlWriter = PHPExcel_IOFactory::createWriter($xl, 'Excel5');
+					$xlWriter->save('php://output');
+				} else {
+					throw new CHttpException(404,'You have no authorization for this operation.');
+				};
 	}
 	
 	public function actionGetexcel($startdate, $enddate, $brand, $objects)
