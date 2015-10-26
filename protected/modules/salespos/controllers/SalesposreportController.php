@@ -573,6 +573,7 @@ EOS;
 			header('Cache-Control: max-age=0');
 			$xlWriter = PHPExcel_IOFactory::createWriter($xl, 'Excel5');
 			$xlWriter->save('php://output');
+			
 		} else {
 			throw new CHttpException(404,'You have no authorization for this operation.');
 		};
@@ -620,6 +621,7 @@ EOS;
 					header('Cache-Control: max-age=0');
 					$xlWriter = PHPExcel_IOFactory::createWriter($xl, 'Excel5');
 					$xlWriter->save('php://output');
+					$this->actionCreate5();
 				} else {
 					throw new CHttpException(404,'You have no authorization for this operation.');
 				};
