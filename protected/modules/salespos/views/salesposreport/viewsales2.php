@@ -55,11 +55,6 @@ $this->menu=array(
 						'type'=>'number',
 				),
 				array(
-						'header'=>'Kembalian',
-						'name'=>'cashreturn',
-						'type'=>'number',
-				),
-				array(
 						'header'=>'Tunai',
 						'name'=>'cash',
 						'type'=>'number',
@@ -82,6 +77,11 @@ $this->menu=array(
 				array(
 						'header'=>'Retur',
 						'name'=>'retur',
+						'type'=>'number',
+				),
+				array(
+						'header'=>'Kembalian',
+						'name'=>'cashreturn',
 						'type'=>'number',
 				),
 		),
