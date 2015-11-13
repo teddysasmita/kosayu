@@ -227,7 +227,7 @@ class DefaultController extends Controller
                      
                      if(isset(Yii::app()->session['Detailpurchasespayments3'])) {
                      	$details=Yii::app()->session['Detailpurchasespayments3'];
-                     	$respond=$respond&&$this->saveDetails($details);
+                     	$respond=$respond&&$this->saveDetails3($details);
                      	if(!$respond) {
                      		throw new CHttpException(404,'There is an error in detail3 posting');
                      	}
@@ -1028,7 +1028,7 @@ class DefaultController extends Controller
  			Action::setPaymentStatusPO($detailmodel->idpurchaseorder, '1');
  	}
  	
- 	private function sumDetail(& $model, array $details, array $details2)
+ 	private function sumDetail(& $model, array $details, $details2)
  	{
  		$total=0;
  		$labelcost=0;

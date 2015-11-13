@@ -548,7 +548,7 @@ EOS;
 				->setCategory("Laporan");
 			$data = Yii::app()->session['datasales4'];
 			$headersfield = array(
-				'batchcode', 'itemname', 'qty', 'rqty', 'totalsold', 'totaldisc', 'totalcog', 'totalgain'
+				'batchcode', 'name', 'qty', 'rqty', 'totalsold', 'totaldisc', 'totalcog', 'totalgain'
 			);
 			$headersname = array(
 				'Kode Batch', 'Nama Barang', 'Qty', 'Retur Qty', 'Bruto', 'Potongan', 'Harga Beli', 'Margin'
