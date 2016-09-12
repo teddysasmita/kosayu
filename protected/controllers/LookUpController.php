@@ -1128,4 +1128,69 @@ EOS;
 			throw new CHttpException(404,'You have no authorization for this operation.');
 		};
 	}
+	
+	public function actionCheckStickerInfo($stickerdate, $stickernum) 
+	{
+		if (!Yii::app()->user->isGuest) {
+			$data = Yii::app()->db->createCommand()
+				->select('count(*) as availnum')
+				->from('salespos')->where('idsticker = :p_stickernum and idatetime like :p_stickerdate',
+					[':p_stickernum'=>$stickernum, ':p_stickerdate'=>$stickerdate.'%'])
+				->queryScalar();	
+			
+			if ($data == 0) { 
+				echo json_encode(0);
+				return;
+			} else if ($data > 0) {
+				$data = Yii::app()->db->createCommand()
+					->select('count(*) as listednum')
+					->from('stickertoguides')->where('stickernum = :p_stickernum',
+						[':p_stickernum'=>$stickernum ])
+					->queryScalar();
+				if ($data == 0) {
+					echo json_encode(2);
+					return;
+				} else {
+					echo json_encode(1);
+					return;
+				}
+			}
+		} else {
+			throw new CHttpException(404,'You have no authorization for this operation.');
+		} 
+	}
+	
+	public function actionGetGuideName($id)
+	{
+		$name=rawurldecode($id);
+	
+		if (!Yii::app()->user->isGuest) {
+			$data=Yii::app()->db->createCommand()
+				->select("concat(firstname, ' ', lastname)")
+				->from('guides')
+				->where('id = :p_id', array(':p_id'=>$id))
+				->queryScalar();
+			if ($data == FALSE)
+				echo json_encode(0);
+			else 
+				echo json_encode($data);
+		} else {
+			throw new CHttpException(404,'You have no authorization for this operation.');
+		};
+	}
+	
+	public function actionCompleteGuide($term)
+	{
+		if (!Yii::app()->user->isGuest) {
+			$data=Yii::app()->db->createCommand()
+			->select("concat(firstname,' - ',lastname) as label, id as value")
+			->from('guides')
+			->where("firstname like :p_term or lastname like :p_term or phone like :p_term",
+					array(':p_term'=>"%$term%"))
+					->queryAll();
+			echo json_encode($data);
+		} else {
+			throw new CHttpException(404,'You have no authorization for this operation.');
+		};
+	}
 }

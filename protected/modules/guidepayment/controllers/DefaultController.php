@@ -12,7 +12,7 @@ class DefaultController extends Controller
 	 * using two-column layout. See 'protected/views/layouts/column2.php'.
 	 */
 	public $layout='//layouts/column2';
-	public $formid='AC23';
+	public $formid='AC67';
 	public $tracker;
 	public $state;
 	
@@ -61,19 +61,19 @@ class DefaultController extends Controller
                 $this->state='create';
                 $this->trackActivity('c');    
                     
-                $model=new Tippayments;
+                $model=new Guidepayments;
                 $this->afterInsert($model);
                 
                 Yii::app()->session['master']='create';
                 //as the operator enter for the first time, we load the default value to the session
-                if (!isset(Yii::app()->session['Tippayments'])) {
-                   Yii::app()->session['Tippayments']=$model->attributes;
+                if (!isset(Yii::app()->session['Guidepayments'])) {
+                   Yii::app()->session['Guidepayments']=$model->attributes;
                 } else {
                 // use the session to fill the model
-                    $model->attributes=Yii::app()->session['Tippayments'];
+                    $model->attributes=Yii::app()->session['Guidepayments'];
                 }
-                if (isset($_POST['Tippayments'])) {
-                	$model->attributes=$_POST['Tippayments'];
+                if (isset($_POST['Guidepayments'])) {
+                	$model->attributes=$_POST['Guidepayments'];
                 }
                // Uncomment the following line if AJAX validation is needed
                $this->performAjaxValidation($model);
@@ -81,70 +81,36 @@ class DefaultController extends Controller
 				if (isset($_POST)){
 					
 					if(isset($_POST['yt1'])) {
-						$model->attributes=$_POST['Tippayments'];
+						$model->attributes=$_POST['Guidepayments'];
                       //The user pressed the button;
 						$this->beforePost($model);
 						
 						$respond=$model->save();
 						if(!$respond) {
-							if (count($model->errors) > 0 )
-								$error = implode(',', $model->errors);
-							throw new CHttpException(5002,'There is an error in master posting: '.$error);
+							throw new CHttpException(5002,'There is an error in master posting: '.serialize($model->errors));
 	                    }
-	
-						if(isset(Yii::app()->session['Detailtippayments']) ) {
-							$details=Yii::app()->session['Detailtippayments'];
-							$respond=$respond&&$this->saveNewDetails($details);
-						} 
-						
-						if(isset(Yii::app()->session['Detailtippayments2']) ) {
-							$details=Yii::app()->session['Detailtippayments2'];
-							$respond=$respond&&$this->saveNewDetails2($details);
-						}
-						
-						if(!$respond) {
-							throw new CHttpException(5002,'There is an error in detail posting: ');
-						}
-	
+
+	                    if(isset(Yii::app()->session['Detailguidepayments']) ) {
+	                    	$details=Yii::app()->session['Detailguidepayments'];
+	                    	$respond=$this->saveDetails($details);
+	                    	if (!$respond)
+	                    		throw new CHttpException(5002,'There is an error in detail posting');
+	                    }
+	                     
+	                    
 						$this->afterPost($model);
-						Yii::app()->session->remove('Tippayments');
-						Yii::app()->session->remove('Detailtippayments');
-						Yii::app()->session->remove('Detailtippayments2');
-						Yii::app()->session->remove('Deletedetailtippayments');
-						Yii::app()->session->remove('Deletedetailtippayments2');
+						Yii::app()->session->remove('Guidepayments');
 						$this->redirect(array('view','id'=>$model->id));
 
 					} else if (isset($_POST['command'])){
                       // save the current master data before going to the detail page
-						if ($_POST['command']=='updateDetail') {
-							$model->attributes=$_POST['Tippayments'];
-                         	Yii::app()->session['Tippayments']=$_POST['Tippayments'];
-                      	} else if ($_POST['command']=='getComp') {
-							$model->attributes=$_POST['Tippayments'];
-							$compositions = $this->getCompositions($model->idpartner);
-							if ($compositions == 0) 
-								$model->idcomp = '-';
-							else
-								$model->idcomp = '';
-                         	Yii::app()->session['Tippayments']=$model->attributes;
-                      	} else if ($_POST['command']=='countTip') {
-							$model->attributes=$_POST['Tippayments'];
+						if ($_POST['command']=='countTip') {
+							$model->attributes=$_POST['Guidepayments'];
                          	
-                         	$this->getSales($model->id, $model->idsticker, $model->ddatetime);
-                         	foreach($this->salesdata as $sd) {
-                         		$model->totalsales = $model->totalsales + $sd['amount'];
-                         	}
-                         	Yii::app()->session['Detailtippayments'] = $this->salesdata;
-                         	$temp = $this->getSalesDetail($model->id, $model->idpartner, $model->idcomp, 
-                         		$model->idsticker, $model->ddatetime);
-                         	 Yii::app()->session['Detailtippayments2'] = $temp;
-                         	$total = 0;
-                         	foreach($temp as $t) {
-                         		$total = $total + $t['amount'];
-                         	}
-                         	$model->totaldiscount = $this->totaldiscount;
-                         	$model->amount = idmaker::cashRound($total, 1000);
-                         	Yii::app()->session['Tippayments']=$model->attributes;
+							$details = array();
+							$this->calculateGuide($model, $details);
+                         	Yii::app()->session['Guidepayments']=$model->attributes;
+                         	Yii::app()->session['Detailguidepayments']=$details;
                       	} 
 					}
 				}
@@ -176,15 +142,15 @@ class DefaultController extends Controller
              
 			Yii::app()->session['master']='update';
 
-			if(!isset(Yii::app()->session['Tippayments']))
-                Yii::app()->session['Tippayments']=$model->attributes;
+			if(!isset(Yii::app()->session['Guidepayments']))
+                Yii::app()->session['Guidepayments']=$model->attributes;
 			else
-                $model->attributes=Yii::app()->session['Tippayments'];
+                $model->attributes=Yii::app()->session['Guidepayments'];
 
-			if(!isset(Yii::app()->session['Detailtippayments'])) 
-				Yii::app()->session['Detailtippayments']=$this->loadDetails($id);
-			if(!isset(Yii::app()->session['Detailtippayments2']))
-				Yii::app()->session['Detailtippayments2']=$this->loadDetails2($id);
+			if(!isset(Yii::app()->session['Detailguidepayments'])) 
+				Yii::app()->session['Detailguidepayments']=$this->loadDetails($id);
+			if(!isset(Yii::app()->session['Detailguidepayments2']))
+				Yii::app()->session['Detailguidepayments2']=$this->loadDetails2($id);
              
              // Uncomment the following line if AJAX validation is needed
 			$this->performAjaxValidation($model);
@@ -192,13 +158,13 @@ class DefaultController extends Controller
 			if(isset($_POST)) {
 				if(isset($_POST['yt0'])) {
                       //The user pressed the button;
-					$model->attributes=$_POST['Tippayments'];
+					$model->attributes=$_POST['Guidepayments'];
                        
 					$this->beforePost($model);
 					$respond=$this->checkWarehouse($model->idwarehouse);
 					if (!$respond)
 						throw new CHttpException(5000,'Lokasi anda tidak terdaftar');
-					$respond = $this->checkSerialNum(Yii::app()->session['Detailtippayments'], $model->idwarehouse);
+					$respond = $this->checkSerialNum(Yii::app()->session['Detailguidepayments'], $model->idwarehouse);
 					if (!$respond)
 						throw new CHttpException(5001,'Nomor Seri yg anda daftarkan ada yg sdh terdaftar: '. $respond);
 	                      
@@ -211,34 +177,34 @@ class DefaultController extends Controller
 						throw new CHttpException(5002,'There is an error in master posting: '.$error);
 	                }
 	
-					if(isset(Yii::app()->session['Detailtippayments']) ) {
-						$details=Yii::app()->session['Detailtippayments'];
+					if(isset(Yii::app()->session['Detailguidepayments']) ) {
+						$details=Yii::app()->session['Detailguidepayments'];
 						$respond=$this->saveDetails($details, $model->idwarehouse);
 						if (!$respond)
 							throw new CHttpException(5002,'There is an error in detail posting');
 					} 
 	
 					$this->afterPost($model);
-					Yii::app()->session->remove('Tippayments');
-					Yii::app()->session->remove('Detailtippayments');
-					Yii::app()->session->remove('Deletedetailtippayments');
+					Yii::app()->session->remove('Guidepayments');
+					Yii::app()->session->remove('Detailguidepayments');
+					Yii::app()->session->remove('Deletedetailguidepayments');
 					
 					$this->redirect(array('view','id'=>$model->id));
 
 				} else if (isset($_POST['command'])){
                       // save the current master data before going to the detail page
 						if($_POST['command']=='adddetail') {
-							$model->attributes=$_POST['Tippayments'];
-							Yii::app()->session['Tippayments']=$_POST['Tippayments'];
-							$this->redirect(array('detailtippayments/create',
+							$model->attributes=$_POST['Guidepayments'];
+							Yii::app()->session['Guidepayments']=$_POST['Guidepayments'];
+							$this->redirect(array('detailguidepayments/create',
                             	'id'=>$model->id));
                       	} else if ($_POST['command']=='getPO') {
-                        	$model->attributes=$_POST['Tippayments'];
-                         	Yii::app()->session['Tippayments']=$_POST['Tippayments'];
+                        	$model->attributes=$_POST['Guidepayments'];
+                         	Yii::app()->session['Guidepayments']=$_POST['Guidepayments'];
                          	$this->loadLPB($model->transid, $model->id, $model->idwarehouse);
                       	} else if ($_POST['command']=='updateDetail') {
-							$model->attributes=$_POST['Tippayments'];
-                         	Yii::app()->session['Tippayments']=$_POST['Tippayments'];
+							$model->attributes=$_POST['Guidepayments'];
+                         	Yii::app()->session['Guidepayments']=$_POST['Guidepayments'];
                       	}
 					}
 				}
@@ -264,12 +230,12 @@ class DefaultController extends Controller
             $model=$this->loadModel($id);
             $this->trackActivity('d');
             $this->beforeDelete($model);
-            $this->tracker->delete('tippayments', $id);
+            $this->tracker->delete('guidepayments', $id);
 
-            $detailmodels=Detailtippayments::model()->findAll('id=:id',array(':id'=>$id));
+            $detailmodels=Detailguidepayments::model()->findAll('id=:id',array(':id'=>$id));
             foreach($detailmodels as $dm) {
                $this->tracker->init();
-               $this->tracker->delete('detailtippayments', array('iddetail'=>$dm->iddetail));
+               $this->tracker->delete('detailguidepayments', array('iddetail'=>$dm->iddetail));
                $dm->delete();
             }
 
@@ -293,12 +259,12 @@ class DefaultController extends Controller
                 Yii::app()->user->id)) {
                $this->trackActivity('l');
 
-               Yii::app()->session->remove('Tippayments');
-               Yii::app()->session->remove('Detailtippayments');
-               Yii::app()->session->remove('Deletedetailtippayments');
-               Yii::app()->session->remove('Detailtippayments2');
-               Yii::app()->session->remove('Deletedetailtippayments2');
-               $dataProvider=new CActiveDataProvider('Tippayments',
+               Yii::app()->session->remove('Guidepayments');
+               Yii::app()->session->remove('Detailguidepayments');
+               Yii::app()->session->remove('Deletedetailguidepayments');
+               Yii::app()->session->remove('Detailguidepayments2');
+               Yii::app()->session->remove('Deletedetailguidepayments2');
+               $dataProvider=new CActiveDataProvider('Guidepayments',
                   array(
                      'criteria'=>array(
                         'order'=>'id desc'
@@ -322,10 +288,10 @@ class DefaultController extends Controller
                 Yii::app()->user->id)) {
                 $this->trackActivity('s');
                
-                $model=new Tippayments('search');
+                $model=new Guidepayments('search');
 		$model->unsetAttributes();  // clear any default values
-		if(isset($_GET['Tippayments']))
-			$model->attributes=$_GET['Tippayments'];
+		if(isset($_GET['Guidepayments']))
+			$model->attributes=$_GET['Guidepayments'];
 
 		$this->render('admin',array(
 			'model'=>$model,
@@ -367,9 +333,9 @@ class DefaultController extends Controller
             if(Yii::app()->authManager->checkAccess($this->formid.'-Update', 
                Yii::app()->user->id)) {
                 $this->trackActivity('r');
-                $this->tracker->restore('tippayments', $idtrack);
+                $this->tracker->restore('guidepayments', $idtrack);
                 
-                $dataProvider=new CActiveDataProvider('Tippayments');
+                $dataProvider=new CActiveDataProvider('Guidepayments');
                 $this->render('index',array(
                     'dataProvider'=>$dataProvider,
                 ));
@@ -383,14 +349,14 @@ class DefaultController extends Controller
             if(Yii::app()->authManager->checkAccess($this->formid.'-Update', 
                Yii::app()->user->id)) {
                 $this->trackActivity('n');
-                $id = Yii::app()->tracker->createCommand()->select('id')->from('tippayments')
+                $id = Yii::app()->tracker->createCommand()->select('id')->from('guidepayments')
                 	->where('idtrack = :p_idtrack', array(':p_idtrack'=>$idtrack))
                 	->queryScalar();
                 
-                $this->tracker->restoreDeleted('detailtippayments', "id", $id );
-                $this->tracker->restoreDeleted('tippayments', "idtrack", $idtrack);
+                $this->tracker->restoreDeleted('detailguidepayments', "id", $id );
+                $this->tracker->restoreDeleted('guidepayments', "idtrack", $idtrack);
                 
-                $dataProvider=new CActiveDataProvider('Tippayments');
+                $dataProvider=new CActiveDataProvider('Guidepayments');
                 $this->render('index',array(
                     'dataProvider'=>$dataProvider,
                 ));
@@ -403,12 +369,12 @@ class DefaultController extends Controller
 	 * Returns the data model based on the primary key given in the GET variable.
 	 * If the data model is not found, an HTTP exception will be raised.
 	 * @param integer $id the ID of the model to be loaded
-	 * @return Tippayments the loaded model
+	 * @return Guidepayments the loaded model
 	 * @throws CHttpException
 	 */
 	public function loadModel($id)
 	{
-		$model=Tippayments::model()->findByPk($id);
+		$model=Guidepayments::model()->findByPk($id);
 		if($model===null)
 			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;
@@ -416,11 +382,11 @@ class DefaultController extends Controller
 
 	/**
 	 * Performs the AJAX validation.
-	 * @param Tippayments $model the model to be validated
+	 * @param Guidepayments $model the model to be validated
 	 */
 	protected function performAjaxValidation($model)
 	{
-		if(isset($_POST['ajax']) && $_POST['ajax']==='tippayments-form')
+		if(isset($_POST['ajax']) && $_POST['ajax']==='guidepayments-form')
 		{
 			echo CActiveForm::validate($model);
 			Yii::app()->end();
@@ -432,10 +398,10 @@ class DefaultController extends Controller
       //this action continues the process from the detail page
          if(Yii::app()->authManager->checkAccess($this->formid.'-Append', 
                  Yii::app()->user->id))  {
-             $model=new Tippayments;
-             $model->attributes=Yii::app()->session['Tippayments'];
+             $model=new Guidepayments;
+             $model->attributes=Yii::app()->session['Guidepayments'];
 
-             $details=Yii::app()->session['Detailtippayments'];
+             $details=Yii::app()->session['Detailguidepayments'];
              $this->afterInsertDetail($model, $details);
 			 
              
@@ -452,10 +418,10 @@ class DefaultController extends Controller
          if(Yii::app()->authManager->checkAccess($this->formid.'-Update', 
                  Yii::app()->user->id))  {
 
-             $model=new Tippayments;
-             $model->attributes=Yii::app()->session['Tippayments'];
+             $model=new Guidepayments;
+             $model->attributes=Yii::app()->session['Guidepayments'];
 
-             $details=Yii::app()->session['Detailtippayments'];
+             $details=Yii::app()->session['Detailguidepayments'];
              $this->afterUpdateDetail($model, $details);
 
              $this->render('update',array(
@@ -472,10 +438,10 @@ class DefaultController extends Controller
                  Yii::app()->user->id))  {
 
 
-             $model=new Tippayments;
-             $model->attributes=Yii::app()->session['Tippayments'];
+             $model=new Guidepayments;
+             $model->attributes=Yii::app()->session['Guidepayments'];
 
-             $details=Yii::app()->session['Detailtippayments'];
+             $details=Yii::app()->session['Detailguidepayments'];
              $this->afterDeleteDetail($model, $details);
 
              $this->render('update',array(
@@ -509,7 +475,7 @@ class DefaultController extends Controller
      protected function saveNewDetails(array $details)
      {                  
          foreach ($details as $row) {
-             $detailmodel=new Detailtippayments;
+             $detailmodel=new Detailguidepayments;
              $detailmodel->attributes=$row;
              $respond=$detailmodel->insert();
              if (!$respond) {
@@ -522,7 +488,7 @@ class DefaultController extends Controller
      protected function saveNewDetails2(array $details)
      {
      	foreach ($details as $row) {
-     		$detailmodel=new Detailtippayments2;
+     		$detailmodel=new Detailguidepayments2;
      		$detailmodel->attributes=$row;
      		$respond=$detailmodel->insert();
      		if (!$respond) {
@@ -538,13 +504,13 @@ class DefaultController extends Controller
 
          $respond=true;
          foreach ($details as $row) {
-             $detailmodel=Detailtippayments::model()->findByPk($row['iddetail']);
+             $detailmodel=Detailguidepayments::model()->findByPk($row['iddetail']);
              if($detailmodel==NULL) {
-                 $detailmodel=new Detailtippayments;
+                 $detailmodel=new Detailguidepayments;
              } else {
                  if(count(array_diff($detailmodel->attributes,$row))) {
                      $this->tracker->init();
-                     $this->tracker->modify('detailtippayments', array('iddetail'=>$detailmodel->iddetail));
+                     $this->tracker->modify('detailguidepayments', array('iddetail'=>$detailmodel->iddetail));
                  }    
              }
              $detailmodel->attributes=$row;
@@ -564,13 +530,13 @@ class DefaultController extends Controller
      
      	$respond=true;
      	foreach ($details as $row) {
-     		$detailmodel=Detailtippayments2::model()->findByPk($row['iddetail']);
+     		$detailmodel=Detailguidepayments2::model()->findByPk($row['iddetail']);
      		if($detailmodel==NULL) {
-     			$detailmodel=new Detailtippayments2;
+     			$detailmodel=new Detailguidepayments2;
      		} else {
      			if(count(array_diff($detailmodel->attributes,$row))) {
      				$this->tracker->init();
-     				$this->tracker->modify('detailtippayments', array('iddetail'=>$detailmodel->iddetail));
+     				$this->tracker->modify('detailguidepayments', array('iddetail'=>$detailmodel->iddetail));
      			}
      		}
      		$detailmodel->attributes=$row;
@@ -588,11 +554,11 @@ class DefaultController extends Controller
      {
          $respond=true;
          foreach ($details as $row) {
-             $detailmodel=Detailtippayments::model()->findByPk($row['iddetail']);
+             $detailmodel=Detailguidepayments::model()->findByPk($row['iddetail']);
              if($detailmodel) {
                  $this->tracker->init();
                  $this->trackActivity('d', $this->__DETAILFORMID);
-                 $this->tracker->delete('detailtippayments', $detailmodel->iddetail);
+                 $this->tracker->delete('detailguidepayments', $detailmodel->iddetail);
                  $respond=$detailmodel->delete();
                  if (!$respond) {
                    break;
@@ -606,11 +572,11 @@ class DefaultController extends Controller
      {
      	$respond=true;
      	foreach ($details as $row) {
-     		$detailmodel=Detailtippayments2::model()->findByPk($row['iddetail']);
+     		$detailmodel=Detailguidepayments2::model()->findByPk($row['iddetail']);
      		if($detailmodel) {
      			$this->tracker->init();
      			$this->trackActivity('d', $this->__DETAILFORMID);
-     			$this->tracker->delete('detailtippayments', $detailmodel->iddetail);
+     			$this->tracker->delete('detailguidepayments', $detailmodel->iddetail);
      			$respond=$detailmodel->delete();
      			if (!$respond) {
      				break;
@@ -623,7 +589,7 @@ class DefaultController extends Controller
 
      protected function loadDetails($id)
      {
-      $sql="select * from detailtippayments where id='$id'";
+      $sql="select * from detailguidepayments where id='$id'";
       $details=Yii::app()->db->createCommand($sql)->queryAll();
 
       return $details;
@@ -631,7 +597,7 @@ class DefaultController extends Controller
      
      protected function loadDetails2($id)
      {
-     	$sql="select * from detailtippayments2 where id='$id'";
+     	$sql="select * from detailguidepayments2 where id='$id'";
      	$details=Yii::app()->db->createCommand($sql)->queryAll();
      
      	return $details;
@@ -645,10 +611,9 @@ class DefaultController extends Controller
          $model->idatetime=$idmaker->getDateTime();
          $model->regnum=$idmaker->getRegNum($this->formid);
          //$model->idwarehouse=lookup::WarehouseNameFromIpAddr($_SERVER['REMOTE_ADDR']);
-         $model->idcomp = '-';
          $model->amount = 0;
-         $model->totaldiscount = 0;
-         $model->totalsales = 0;
+         $model->deposit = 0;
+         $model->commission = 0;
          $model->userlog=Yii::app()->user->id;
          $model->datetimelog=$idmaker->getDateTime();
      }
@@ -712,8 +677,6 @@ class DefaultController extends Controller
          $this->tracker->logActivity($this->formid, $action);
      }
      
-     
-  
       
       private function getCompositions($idpartner)
       {
@@ -742,7 +705,7 @@ class DefaultController extends Controller
     a.idatetime, a.userlog as idcashier, a.datetimelog as cashierlog,
     a.discount
 EOS;
-   		$this->salesdata = Yii::app()->db->createCommand()
+   		$salesdata = Yii::app()->db->createCommand()
    			->select($select1)->from('salespos a')
    			->where("a.idsticker = :p_idsticker and a.idatetime like :p_datetime",
    				array(':p_idsticker'=>$idsticker, ':p_datetime'=>$ddatetime.'%'))
@@ -772,7 +735,7 @@ EOS;
     		->order('a.regnum')
     		->queryAll();
    		
-   		foreach($this->salesdata as & $sd) {
+   		foreach($salesdata as & $sd) {
    			foreach($tempdata as $t) {
    				if ($t['invoicenum'] == $sd['invoicenum']) {
    					$sd['totalnondisc'] = $t['totalnondisc']; 
@@ -787,6 +750,8 @@ EOS;
    			$totalretur = $salesreturs->queryScalar();
    			$sd['amount'] -= $totalretur;
    		};
+   		
+   		return $salesdata;
     }
     
     private function getUnSeenDisc($regnum)
@@ -801,10 +766,10 @@ EOS;
     	return $disc;
     }
     
-    private function getVRDisc($regnum, $id)
+    private function getVRDisc($regnum, $id, $salesdata)
     {
     	$disc = 0;
-    	foreach($this->salesdata as $sd) {
+    	foreach($salesdata as $sd) {
     		if ($sd['invoicenum'] == $regnum) {
     	// Because voucher or/and retur deduction take place after total
     			$disc = $this->getVoucherNRetur($id) / $sd['amount'];
@@ -814,23 +779,10 @@ EOS;
     	return $disc;
     }
     
-    private function getSalesDetail($id, $idpartner, $idcomp, $idsticker, $ddatetime)
+    private function getSalesDetail($id, array $guide, $idsticker, $ddatetime)
     {
-    	if ($idcomp == '-') {
-    		$tip = Yii::app()->db->createCommand()->select('a.defaulttip')->from('partners a')
-	    		->where("a.id = :p_id ",
-	    			array(':p_id'=>$idpartner))
-	    		->queryScalar();
-    		$tip2 = 1;
-    	} else {
-    		$tiptemp = Yii::app()->db->createCommand()->select('a.tip, b.defaulttip')->from('detailpartners a')
-    			->join('partners b', 'b.id = a.id')
-	    		->where("a.id = :p_id and a.iddetail = :p_iddetail",
-	    			array(':p_id'=>$idpartner, ':p_iddetail'=>$idcomp))
-	    		->queryRow();
-    		$tip = $tiptemp['tip'];
-    		$tip2 = $tiptemp['tip'] / $tiptemp['defaulttip'];
-    	}
+    	$tip = $guide['commission'];
+    	$tip2 = 1;
     	$sql1 = <<<EOS
     	SELECT a.id, b.iddetail, a.regnum, b.iditem, b.qty, b.price, b.discount, c.pct, c.id as idtipgroup
 		FROM detailsalespos b
@@ -915,25 +867,13 @@ EOS;
     	return $detailcommission;
     }
     
-    private function getSalesDetail2($id, $idpartner, $idcomp, $idsticker, $ddatetime)
+    private function getSalesDetail2($id, $guide, $idsticker, $ddatetime)
     {
-    	if ($idcomp == '-') {
-    		$tip = Yii::app()->db->createCommand()->select('a.defaulttip')->from('partners a')
-    		->where("a.id = :p_id ",
-    				array(':p_id'=>$idpartner))
-    				->queryScalar();
-    		$tip2 = 1;
-    	} else {
-    		$tiptemp = Yii::app()->db->createCommand()->select('a.tip, b.defaulttip')->from('detailpartners a')
-    		->join('partners b', 'b.id = a.id')
-    		->where("a.id = :p_id and a.iddetail = :p_iddetail",
-    				array(':p_id'=>$idpartner, ':p_iddetail'=>$idcomp))
-    				->queryRow();
-    		$tip = $tiptemp['tip'];
-    		$tip2 = $tiptemp['tip'] / $tiptemp['defaulttip'];
-    	}
+    	$tip = $guide['commission'];
+    	$tip2 = 1;
     	$sql1 = <<<EOS
-    	SELECT a.id, b.iddetail, a.regnum, b.iditem, b.qty, b.price, b.discount, c.pct, c.id as idtipgroup
+    	SELECT b.iddetail, a.regnum, a.idsticker, a.idatetime, a.userlog as idcashier,
+    	b.iditem, b.qty, b.price, b.discount, c.pct, c.id as idtipgroup
 		FROM detailsalespos b
 		JOIN salespos a ON a.id = b.id
 		LEFT JOIN (
@@ -944,7 +884,7 @@ EOS;
     	order by a.regnum
 EOS;
     	$detailsales = Yii::app()->db->createCommand($sql1)
-    	->queryAll();
+    		->queryAll();
     	
     	$sql2 = <<<EOS
     	select sum(b.qty) as totalretur, b.iditem
@@ -981,6 +921,7 @@ EOS;
     		} else
     	 		$ds['pct'] = $ds['pct'] * $tip2;
 			$ds['amount'] = ($ds['price'] - $ds['discount']) * $ds['qty'] * $ds['pct'] / 100;
+			$ds['id'] = $id;    	
     	}
         unset($ds);
         
@@ -998,8 +939,8 @@ EOS;
     		$detailmodel2=$this->loadDetails2($id);
 			Yii::import('application.vendors.tcpdf.*');
 			require_once ('tcpdf.php');
-			Yii::import('application.modules.tippayment.components.*');
-    		require_once('print_tippayment.php');
+			Yii::import('application.modules.guidepayment.components.*');
+    		require_once('print_guidepayment.php');
 			ob_clean();
     
     		execute($model, $detailmodel, $detailmodel2);
@@ -1019,12 +960,70 @@ EOS;
     		$detailmodel=$this->loadDetails($id);
 			$detailmodel2=$this->loadDetails2($id);
 			
-			Yii::import('application.modules.tippayment.components.*');
+			Yii::import('application.modules.guidepayment.components.*');
 			require_once('printtext.php');
 			execute($model, $detailmodel, $detailmodel2);
     	
     	} else {
 			throw new CHttpException(404,'You have no authorization for this operation.');
+    	}
+    }
+    
+    private function calculateGuide(& $model, & $details)
+    {
+    	$idguide = $model->idguide;
+    	$guide = Yii::app()->db->createCommand()
+    		->select()->from('guides')->where('id = :p_id', [':p_id'=>$idguide])
+    		->queryRow();
+    	
+    	$stickers = Yii::app()->db->createCommand()
+    		->select()->from('stickertoguides')
+    		->where('idguide = :p_idguide and paid = :p_paid',
+    			[':p_idguide'=>$idguide, ':p_paid'=>0])
+    		->queryAll();
+    	
+    	$guideSalesSummary = array();
+    	foreach($stickers as $stk) {
+    		$sales = $this->getSalesData($id, $stk['stickernum'], $stk['stickerdate']);
+    		$guideSalesSummary = array_merge($guideSalesSummary, $sales);
+    		unset($sales);
+    	}
+    	
+    	$guideDetailCommission = array();
+    	foreach($stickers as $stk) {
+    		$commission = $this->getSalesDetail($id, $guide, $stk['stickernum'], $stk['stickerdate']);
+    		$guideDetailCommission = array_merge($guideDetailCommission, $commission);
+    		unset($commission);
+    	}
+    	
+    	$totalcommission = 0;
+    	foreach($guideDetailCommission as $cms) {
+    		$totalcommission =+ $cms['amount'];
+    	}
+    	$model->commission = $totalcommission;
+    	
+    	foreach($stickers as $stk) {
+    		Yii::app()->db->createCommand()
+    			->update('stickertoguides',['paid'=>'1'],
+    				'stickernum = :p_stickernum and stickerdate like :p_stickerdate',
+    				[':p_stickerdate'=>$stk['stickerdate'].'%',':p_stickernum'=>$stk['stickernum']]);
+    	}
+    	
+    	$totaldeposit = Yii::app()->db->createCommand()
+    			->select('(deposit+commission-amount) as totaldeposit')
+    			->from('guidepayments')
+    			->where('idguide = :p_idguide', [':p_idguide'=>$guide['id']])
+    			->order('id')
+    			->queryScalar();
+    	if (!$totaldeposit)
+    		$model->deposit = 0;
+    	else 	
+    		$model->deposit = $totaldeposit;
+    	
+    	$stickerdetail = array();
+    	foreach($stickers as $stk) {
+    		$stickerdetail = $this->getSalesDetail2($id, $guide, $stk['stickernum'], $stk['stickerdate']);
+    		$details = array_merge($details, $stickerdetail);
     	}
     }
 }

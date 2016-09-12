@@ -26,6 +26,7 @@ $this->pageTitle=Yii::app()->name;
 <h3><?php echo CHtml::link('Laporan Penjualan Global Berdasar Pemasok', Yii::app()->createUrl('salespos/salesposreport/create3'))?></h3>
 <h3><?php echo CHtml::link('Laporan Penjualan Tiap Pemasok', Yii::app()->createUrl('salespos/salesposreport/create4'))?></h3>
 <h3><?php echo CHtml::link('Laporan Penjualan Periodik', Yii::app()->createUrl('salespos/salesposreport/create5'))?></h3>
+<h3><?php echo CHtml::link('Cetak Kartu Guide', Yii::app()->createUrl('idguideprint'))?></h3>
 
 <h2>Bagian Keuangan</h2>
 <h3><?php echo CHtml::link('Penentuan Nilai Tukar Mata Uang Asing', Yii::app()->createUrl('currencyrates'))?></h3>
@@ -36,6 +37,8 @@ $this->pageTitle=Yii::app()->name;
 <h3><?php echo CHtml::link('Pencatatan Kas Masuk', Yii::app()->createUrl('cashins'))?></h3>
 <h3><?php echo CHtml::link('Pembayaran Pada Pemasok', Yii::app()->createUrl('purchasespayment'))?></h3>
 <h3><?php echo CHtml::link('Pembayaran Konsinyasi', Yii::app()->createUrl('consignpayment'))?></h3>
+<h3><?php echo CHtml::link('Pencatatan Sticker ke Guide', Yii::app()->createUrl('stickertoguides'))?></h3>
+<h3><?php echo CHtml::link('Pembayaran Komisi Guide', Yii::app()->createUrl('guidepayment'))?></h3>
 
 <h2>Bagian Personalia</h2>
 <h3><?php echo CHtml::link('Pembayaran Gaji Karyawan', Yii::app()->createUrl('paysalaries'))?></h3>

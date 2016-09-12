@@ -322,6 +322,11 @@ class lookup extends CComponent {
 	   	return Yii::app()->db->createCommand($sql)->queryScalar();
    }
     
+   public static function GuideNameFromID($id)
+   {
+   	$sql="select concat(firstname, ' ', lastname) as name from guides where id='$id'";
+   	return Yii::app()->db->createCommand($sql)->queryScalar();
+   }
    
    public static function SupplierCodeFromID($id)
    {
@@ -785,8 +790,19 @@ class lookup extends CComponent {
 			case 'P': return 'Penyesuaian';
 		}
 	}
+
+	public static function getGuide($idguide)
+	{
+		$guide = Yii::app()->db->createCommand()
+			->select()->from('guides')
+			->where('id = :p_id', [':p_id'=>$idguide])
+			->queryRow();
+		
+		return $guide;
+	}
 	
 }
+
 
 
 ?>
