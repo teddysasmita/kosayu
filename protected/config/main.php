@@ -22,13 +22,13 @@ return array(
 	'modules'=>array(
 		// uncomment the following to enable the Gii tool
 	
-		'gii'=>array(
+		/*'gii'=>array(
 			'class'=>'system.gii.GiiModule',
 			'password'=>'test',
                         
 			// If removed, Gii defaults to localhost only. Edit carefully to taste.
 			'ipFilters'=>array('127.0.0.1','::1'),
-		),
+		),*/
             'user',
             'auth',
             'item',
@@ -126,7 +126,7 @@ return array(
                'connectionString' => 'mysql:host=localhost;dbname=kosayu',
                'emulatePrepare' => true,
                'username' => 'root',
-               'password' => 'test',
+               'password' => 'master',
                'charset' => 'utf8',
 
              ),
@@ -136,7 +136,7 @@ return array(
                'connectionString' => 'mysql:host=localhost;dbname=kosayu-track',
                'emulatePrepare' => true,
                'username' => 'root',
-               'password' => 'test',
+               'password' => 'master',
                'charset' => 'utf8',
 
              ),
@@ -146,7 +146,7 @@ return array(
                'connectionString' => 'mysql:host=localhost;dbname=kosayu-auth',
                'emulatePrepare' => true,
                'username' => 'root',
-               'password' => 'test',
+               'password' => 'master',
                'charset' => 'utf8',
 
              ),
