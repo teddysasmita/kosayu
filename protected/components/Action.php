@@ -30,7 +30,7 @@ class Action extends CComponent {
 					'idwarehouse'=>$data['idwarehouse']));
 	}
 	
-    public static function decodeDeleteDetailSalesOrderUrl($data)
+   public static function decodeDeleteDetailSalesOrderUrl($data)
    {
       //return print_r($data);
       return Yii::app()->createUrl('salesorder/detailsalesorders/delete', array('iddetail'=>$data['iddetail']));
@@ -46,6 +46,24 @@ class Action extends CComponent {
    {
       //return print_r($data);
       return Yii::app()->createUrl('salesorder/detailsalesorders/view', array('iddetail'=>$data['iddetail']));
+   }
+   
+   public static function decodeDeleteDetailIdguidePrintUrl($data)
+   {
+   	//return print_r($data);
+   	return Yii::app()->createUrl('idguideprint/detailidguideprints/delete', array('iddetail'=>$data['iddetail']));
+   }
+    
+   public static function decodeUpdateDetailIdguidePrintUrl($data)
+   {
+   	//return print_r($data);
+   	return Yii::app()->createUrl('idguideprint/detailidguideprints/update', array('iddetail'=>$data['iddetail']))  ;
+   }
+    
+   public static function decodeViewDetailIdguidePrintUrl($data)
+   {
+   	//return print_r($data);
+   	return Yii::app()->createUrl('idguideprint/detailidguideprints/view', array('iddetail'=>$data['iddetail']));
    }
    
    public static function decodeDeleteDetailAcquisitionsUrl($data)
