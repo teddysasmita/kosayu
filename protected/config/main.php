@@ -146,7 +146,7 @@ return array(
                'connectionString' => 'mysql:host=localhost;dbname=kosayu-auth',
                'emulatePrepare' => true,
                'username' => 'root',
-               'password' => 'test',
+               'password'=>'master'
                'charset' => 'utf8',
 
              ),
