@@ -10,9 +10,27 @@
 
 
 $supplierScript=<<<EOS
-      $('#prepare').click(function() {
+	$('#prepare').click(function() {
 		$('#command').val('batchcode');
     	$('#idguideprints-form').submit();  
+	});
+
+	$('#Idguideprints_papersize').change(function() {
+		var ps = $('#Idguideprints_papersize').val();
+		if (ps == 'A4') {
+			$('#Idguideprints_paperwidth').val('215');
+			$('#Idguideprints_paperheight').val('297');
+			$('#Idguideprints_paperwidth').prop('readonly', true);
+			$('#Idguideprints_paperheight').prop('readonly', true);
+		} else if (ps == 'A5') {
+			$('#Idguideprints_paperwidth').val('148');
+			$('#Idguideprints_paperheight').val('210');
+			$('#Idguideprints_paperwidth').prop('readonly', true);
+			$('#Idguideprints_paperheight').prop('readonly', true);
+		} else if (ps == 'custom') {
+			$('#Idguideprints_paperwidth').prop('readonly', false);
+			$('#Idguideprints_paperheight').prop('readonly', false);
+		}
 	});
 EOS;
 Yii::app()->clientScript->registerScript("supplierScript", $supplierScript, CClientscript::POS_READY);
@@ -66,7 +84,7 @@ Yii::app()->clientScript->registerScript("supplierScript", $supplierScript, CCli
 	<div class="row">
 		<?php echo $form->labelEx($model,'papersize'); ?>
         <?php 
-           echo $form->dropDownList($model, 'papersize', array('A4'=>'A4', 'A5'=>'A5'), 
+           echo $form->dropDownList($model, 'papersize', array('A4'=>'A4', 'A5'=>'A5', 'custom'=>'Lainnya'), 
 			array('empty'=>'Harap Pilih')); 
         ?>
         <?php echo $form->error($model,'papersize');?> 

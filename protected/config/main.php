@@ -126,7 +126,7 @@ return array(
                'connectionString' => 'mysql:host=localhost;dbname=kosayu',
                'emulatePrepare' => true,
                'username' => 'root',
-               'password' => 'master',
+               'password' => 'test',
                'charset' => 'utf8',
 
              ),
@@ -136,7 +136,7 @@ return array(
                'connectionString' => 'mysql:host=localhost;dbname=kosayu-track',
                'emulatePrepare' => true,
                'username' => 'root',
-               'password' => 'master',
+               'password' => 'test',
                'charset' => 'utf8',
 
              ),
@@ -146,7 +146,7 @@ return array(
                'connectionString' => 'mysql:host=localhost;dbname=kosayu-auth',
                'emulatePrepare' => true,
                'username' => 'root',
-               'password' => 'master',
+               'password' => 'test',
                'charset' => 'utf8',
 
              ),
