@@ -8088,3 +8088,50 @@ Stack trace:
 REQUEST_URI=/~teddys/kosayu/index.php?r=idguideprint/default/printBacks&id=16903110433344293
 HTTP_REFERER=http://localhost/~teddys/kosayu/index.php?r=idguideprint/default/view&id=16903110433344293
 ---
+2016/09/16 10:00:20 [error] [exception.ParseError] ParseError: syntax error, unexpected ']' in /home/teddys/public_html/kosayu/protected/modules/idguideprint/views/default/printcard.php:145
+Stack trace:
+#0 /home/teddys/public_html/yii/framework/web/CBaseController.php(95): CBaseController->renderInternal('/home/teddys/pu...', Array, true)
+#1 /home/teddys/public_html/yii/framework/web/CController.php(869): CBaseController->renderFile('/home/teddys/pu...', Array, true)
+#2 /home/teddys/public_html/kosayu/protected/modules/idguideprint/controllers/DefaultController.php(446): CController->renderPartial('printcard', Array)
+#3 [internal function]: DefaultController->actionPrintCards('169031104333442...')
+#4 /home/teddys/public_html/yii/framework/web/actions/CAction.php(109): ReflectionMethod->invokeArgs(Object(DefaultController), Array)
+#5 /home/teddys/public_html/yii/framework/web/actions/CInlineAction.php(47): CAction->runWithParamsInternal(Object(DefaultController), Object(ReflectionMethod), Array)
+#6 /home/teddys/public_html/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#7 /home/teddys/public_html/yii/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#8 /home/teddys/public_html/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#9 /home/teddys/public_html/yii/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#10 /home/teddys/public_html/yii/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#11 /home/teddys/public_html/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#12 /home/teddys/public_html/yii/framework/web/CController.php(291): CFilterChain->run()
+#13 /home/teddys/public_html/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#14 /home/teddys/public_html/yii/framework/web/CWebApplication.php(282): CController->run('printCards')
+#15 /home/teddys/public_html/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('idguideprint/de...')
+#16 /home/teddys/public_html/yii/framework/base/CApplication.php(185): CWebApplication->processRequest()
+#17 /home/teddys/public_html/kosayu/index.php(13): CApplication->run()
+#18 {main}
+REQUEST_URI=/~teddys/kosayu/index.php?r=idguideprint/default/printCards&id=16903110433344293
+HTTP_REFERER=http://localhost/~teddys/kosayu/index.php?r=idguideprint/default/view&id=16903110433344293
+---
+2016/09/16 10:00:39 [error] [php] Undefined variable: cardcount (/home/teddys/public_html/kosayu/protected/modules/idguideprint/views/default/printcard.php:144)
+Stack trace:
+#0 /home/teddys/public_html/yii/framework/web/CController.php(869): DefaultController->renderFile()
+#1 /home/teddys/public_html/kosayu/protected/modules/idguideprint/controllers/DefaultController.php(446): DefaultController->renderPartial()
+#2 unknown(0): DefaultController->actionPrintCards()
+#3 /home/teddys/public_html/yii/framework/web/actions/CAction.php(109): ReflectionMethod->invokeArgs()
+#4 /home/teddys/public_html/yii/framework/web/actions/CInlineAction.php(47): CInlineAction->runWithParamsInternal()
+#5 /home/teddys/public_html/yii/framework/web/CController.php(308): CInlineAction->runWithParams()
+#6 /home/teddys/public_html/yii/framework/web/filters/CFilterChain.php(133): DefaultController->runAction()
+#7 /home/teddys/public_html/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#8 /home/teddys/public_html/yii/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#9 /home/teddys/public_html/yii/framework/web/filters/CInlineFilter.php(58): DefaultController->filterAccessControl()
+#10 /home/teddys/public_html/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#11 /home/teddys/public_html/yii/framework/web/CController.php(291): CFilterChain->run()
+#12 /home/teddys/public_html/yii/framework/web/CController.php(265): DefaultController->runActionWithFilters()
+#13 /home/teddys/public_html/yii/framework/web/CWebApplication.php(282): DefaultController->run()
+#14 /home/teddys/public_html/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#15 /home/teddys/public_html/yii/framework/base/CApplication.php(185): CWebApplication->processRequest()
+#16 /home/teddys/public_html/kosayu/index.php(13): CWebApplication->run()
+REQUEST_URI=/~teddys/kosayu/index.php?r=idguideprint/default/printCards&id=16903110433344293
+in /home/teddys/public_html/kosayu/protected/modules/idguideprint/views/default/printcard.php (144)
+in /home/teddys/public_html/kosayu/protected/modules/idguideprint/controllers/DefaultController.php (446)
+in /home/teddys/public_html/kosayu/index.php (13)

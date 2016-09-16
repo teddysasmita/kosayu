@@ -31,6 +31,7 @@
 		-webkit-print-color-adjust: exact;
 	 }
 	 .cardcontent {
+	 	position: fixed;
 	 	background-color: yellow;
 	 	height: <?php echo $model->labelheight-4; ?>mm;
 	 	width: <?php echo $model->labelwidth-4; ?>mm;
@@ -107,12 +108,12 @@ EOS;
     		}
     	}
     
-    	if ($paperinfo['rownum'] > 0) 
-    		echo "<TABLE class=\"guidetable\">";
+    	/*if ($paperinfo['rownum'] > 0) 
+    		echo "<TABLE class=\"guidetable\">";*/
     	/*if ($paperinfo['colnum'] > 0)
     		echo "<COLGROUP>";
     	*/
-    	for ($j=0; $j<$paperinfo['colnum']; $j++) {
+    	/*for ($j=0; $j<$paperinfo['colnum']; $j++) {
     		$y = str_pad($j, 2, '0', STR_PAD_LEFT);	
     		echo "<COL id=\"COL$y\" class=\"guidetablecol\">";
 		}
@@ -130,6 +131,21 @@ EOS;
 						echo "<TD class=\"guidetablecell\"><div class=\"emptycontent\">EmptyCell$x$y";
 					$cardcount += 1;
 					//echo "<div class='guidetablecell' id='cell$x$y'>boom</div>";
+				}
+			}
+		}*/
+		$cardcount = 0;
+		for ($k=0; $k < $paperinfo['pagenum']; $k ++) {
+			for ($i=0; $i < $paperinfo['rownum']; $i++) {
+				$posy = ($i * $model->labelheight) + $model->paperbotm;
+				$y = str_pad($i, 2, '0', STR_PAD_LEFT);
+				for ($j=0; $j < $paperinfo['colnum']; $j++) {
+					$x = str_pad($j, 2, '0', STR_PAD_LEFT);
+					$posx = ($j * $model->labelwidth) + $model->papersidem; 
+					if ($cardcount < count($details))
+						echo "<div class=\"cardcontent\" id=\"card$x$y\" style=\"top= ${posy}mm; left ${posx}mm;\">".
+						printGuideCard($details[$cardcount])."</div>";
+					
 				}
 			}
 		}
