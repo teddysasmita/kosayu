@@ -31,7 +31,6 @@
 		-webkit-print-color-adjust: exact;
 	 }
 	 .cardcontent {
-	 	position: fixed;
 	 	background-color: yellow;
 	 	height: <?php echo $model->labelheight-4; ?>mm;
 	 	width: <?php echo $model->labelwidth-4; ?>mm;
