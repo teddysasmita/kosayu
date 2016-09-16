@@ -39,6 +39,7 @@
 	 	margin-bottom: <?php echo $model->labelbotm; ?>mm;
 	 	margin-right: <?php echo $model->labelsidem; ?>mm;
 	 	margin-left: <?php echo $model->labelsidem; ?>mm;
+	 	float: left;
 	 	padding: 2mm;
 	 	border: solid thin;
 	 }
