@@ -99,7 +99,7 @@
 			<tr><td class="infofield">Alamat<td class="infocolon">:<td class="infovalue">${guide['address']}
 			<tr><td class="infofield">No Telp<td class="infocolon">:<td class="infovalue">${guide['phone']}
 			<tr><td colspan="3" class="barcodeinfo"><img src="$barcodepath">
-			<tr><td colspan="3" class="addressinfo">KOSAYU Pusat Oleh-oleh.	
+			<tr><td colspan="3" class="addressinfo">KOSAYU BALI Pusat Oleh-oleh.	
 			<tr><td colspan="3" class="addressinfo">Jl. Sunset Road No. 88XX, Kuta Bali. 
 			<tr><td colspan="3" class="addressinfo">Telp 0361-764696; 0821-46512134.	
 			</table>
