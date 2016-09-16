@@ -72,8 +72,8 @@
 	 	text-align: center;
 	 }
 	 .bgimg {
-	 	margin-left: 15mm;
-	 	margin-top: 2mm;
+	 	margin-left: 13mm;
+	 	margin-top: 3mm;
 	 }
 	 .backimage {
 	 	align-text: center;
