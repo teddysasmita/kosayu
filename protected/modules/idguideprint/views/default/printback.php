@@ -75,6 +75,9 @@
 	 	margin-left: 2mm;
 	 	margin-top: 0.5mm;
 	 }
+	 .backimage {
+	 	align-text: center;
+	 }
 	 
 </style>
 </head>
