@@ -89,7 +89,7 @@
     		if (!$guide)
     			return 'Data Invalid';
     		else {
-    			Barcode::GetBarcode($guide['id'], 'assets/asset'.$guide['id'].'.png',50);
+    			Barcode::GetBarcode($guide['id'], 'assets/asset'.$guide['id'].'.png',40);
     			$barcodepath=Yii::app()->getAssetManager()->publish('assets/asset'.$guide['id'].'.png');
     			unlink('assets/asset'.$guide['id'].'.png');
     			$data = <<<EOS
