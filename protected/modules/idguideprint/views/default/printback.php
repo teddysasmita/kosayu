@@ -71,10 +71,6 @@
 	 	font-size: 8pt;
 	 	text-align: center;
 	 }
-	 img {
-	 	padding-left: 15mm;
-	 	padding-top: 1mm;
-	 }
 	 
 </style>
 </head>
