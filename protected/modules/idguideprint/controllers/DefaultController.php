@@ -544,9 +544,9 @@ class DefaultController extends Controller
          $model->regnum=$idmaker->getRegNum($this->formid);
          $model->userlog=Yii::app()->user->id;
          $model->datetimelog=$idmaker->getDateTime();
-         $model->papersize = 'A4';
-         $model->paperwidth = 29.7;
-         $model->paperheight = 21;
+         $model->papersize = 'custom';
+         $model->paperwidth = 0;
+         $model->paperheight = 0;
          $model->papersidem = 5;
          $model->paperbotm = 5;
      }
