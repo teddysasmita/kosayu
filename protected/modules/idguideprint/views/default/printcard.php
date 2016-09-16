@@ -56,7 +56,7 @@
 	 	margin: 10mm; width: 75mm;
 	 	font-family: serif;
 	 	font-size: 11pt;
-	 	background-color: white;
+	 	background-color: yellow;
 	 }
 	 .infocolon {
 	 	background-color: yellow;
