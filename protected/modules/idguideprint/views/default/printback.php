@@ -71,6 +71,10 @@
 	 	font-size: 8pt;
 	 	text-align: center;
 	 }
+	 .bgimg {
+	 	margin-left: 2mm;
+	 	margin-top: 0.5mm;
+	 }
 	 
 </style>
 </head>
@@ -85,7 +89,7 @@
     			$imagepath=Yii::app()->getAssetManager()->publish('protected/modules/idguideprint/components/background.jpg'); 
     			$data = <<<EOS
     		<table>
-    		<tr><td class="backimage"><img src="$imagepath" height=150 width=200>
+    		<tr><td class="backimage"><img class="bgimg" src="$imagepath" height=150 width=200>
 			</table>
 EOS;
     			return $data;	
