@@ -8,7 +8,7 @@
 		margin-bottom: <?php echo $model->paperbotm; ?>mm;
 		margin-top: <?php echo $model->paperbotm; ?>mm; 
 		margin-right: <?php echo $model->papersidem; ?>mm;
-		margin-left: <?php echo $model->papersidem - 6; ?>mm;
+		margin-left: <?php echo $model->papersidem; ?>mm;
 		page-break-before: 5mm;
 	}
 	
