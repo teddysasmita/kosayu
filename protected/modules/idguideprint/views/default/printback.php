@@ -28,6 +28,7 @@
 	.guidetablecell {  
 		border: solid thin;
 		-webkit-print-color-adjust: exact;
+		page-break-inside: avoid;
 	 }
 	 .cardcontent {
 	 	background-color: white;
