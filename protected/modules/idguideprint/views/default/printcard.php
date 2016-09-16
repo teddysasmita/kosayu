@@ -41,6 +41,7 @@
 	 	float: left;
 	 	padding: 2mm;
 	 	border: solid thin;
+	 	page-break-inside: avoid;
 	 }
 	 .emptycontent {
 	 	height: <?php echo $model->labelheight-2; ?>mm;

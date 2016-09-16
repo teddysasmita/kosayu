@@ -28,7 +28,6 @@
 	.guidetablecell {  
 		border: solid thin;
 		-webkit-print-color-adjust: exact;
-		page-break-inside: avoid;
 	 }
 	 .cardcontent {
 	 	background-color: red;
@@ -41,6 +40,7 @@
 	 	padding: 2mm;
 	 	border: solid thin;
 	 	float: right;
+	 	page-break-inside: avoid;
 	 }
 	 .emptycontent {
 	 	height: <?php echo $model->labelheight-2; ?>mm;
