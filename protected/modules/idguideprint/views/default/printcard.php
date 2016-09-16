@@ -143,7 +143,7 @@ EOS;
 					$x = str_pad($j, 2, '0', STR_PAD_LEFT);
 					$posx = ($j * $model->labelwidth) + $model->papersidem; 
 					if ($cardcount < count($details)) {
-						echo "<div class=\"cardcontent\" id=\"card$x$y\" style=\"top= ${posy}mm; left ${posx}mm;\">".
+						echo "<div class=\"cardcontent\" id=\"card$x$y\" style=\"top= ${posy}px; left ${posx}px;\">".
 						printGuideCard($details[$cardcount])."</div>";
 						$cardcount ++;
 					}
