@@ -85,7 +85,7 @@
     			$imagepath=Yii::app()->getAssetManager()->publish('protected/modules/idguideprint/components/background.jpg'); 
     			$data = <<<EOS
     		<table>
-    		<tr><td class="backimage"><img src="$imagepath" height=200 width=240>
+    		<tr><td class="backimage"><img src="$imagepath" height=150 width=200>
 			</table>
 EOS;
     			return $data;	
