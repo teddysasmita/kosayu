@@ -101,7 +101,7 @@
 			<tr><td colspan="3" class="barcodeinfo"><img src="$barcodepath">
 			<tr><td colspan="3" class="addressinfo">KOSAYU Pusat Oleh-oleh.	
 			<tr><td colspan="3" class="addressinfo">Jl. Sunset Road No. 88XX, Kuta Bali. 
-			<tr><td colspan="3" class="addressinfo">Telp 0361-764696	
+			<tr><td colspan="3" class="addressinfo">Telp 0361-764696; 0821-46512134.	
 			</table>
 EOS;
     			return $data;	
