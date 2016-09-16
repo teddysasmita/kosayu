@@ -58,6 +58,7 @@
 	 	font-family: serif;
 	 	font-size: 11pt;
 	 	background-color: yellow;
+	 	font-weight: bold;
 	 }
 	 .infocolon {
 	 	background-color: yellow;
