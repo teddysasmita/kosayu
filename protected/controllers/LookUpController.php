@@ -1238,7 +1238,7 @@ EOS;
 			->queryAll();
 			if ($comp == false) {
 				$data = <<<EOS
-				<input id="TIppayments_idcomp" type="hidden" name="Tippayments[idcomp]" value="-">
+				<input id="Tippayments_idcomp" type="hidden" name="Tippayments[idcomp]" value="-">
 EOS;
 				echo json_encode($data);
 			} else {

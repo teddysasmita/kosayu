@@ -80,7 +80,7 @@ class DefaultController extends Controller
 				
 				if (isset($_POST)){
 					
-					if(isset($_POST['yt0'])) {
+					if(isset($_POST['yt1'])) {
 						$model->attributes=$_POST['Tippayments'];
                       //The user pressed the button;
 						$this->beforePost($model);
