@@ -1023,7 +1023,7 @@ EOS;
     	
     	$stickerdetail = array();
     	foreach($stickers as $stk) {
-    		$stickerdetail = $this->getSalesDetail2($id, $guide, $stk['stickernum'], $stk['stickerdate']);
+    		$stickerdetail = $this->getSalesDetail2($model->id, $guide, $stk['stickernum'], $stk['stickerdate']);
     		$details = array_merge($details, $stickerdetail);
     	}
     }
