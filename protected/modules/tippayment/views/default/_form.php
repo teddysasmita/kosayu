@@ -23,7 +23,9 @@
 		function(evt) {
 			$.getJSON('index.php?r=LookUp/checkStickerInfo2', 
 				{ stickernum: $("#Tippayments_idsticker").val(),
-				stickerdate: $("#Tippayments_ddatetime").val() },
+				stickerdate: $("#Tippayments_ddatetime").val(),
+				idpartner: $("#Tippayments_idpartner").val(),
+				idcomp: $("#Tippayments_idcomp").val()},
 				function(data) {
 					switch (data) {
 						case 0:	
