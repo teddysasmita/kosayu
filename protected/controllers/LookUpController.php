@@ -1241,4 +1241,23 @@ EOS;
 			throw new CHttpException(404,'You have no authorization for this operation.');
 		};
 	}
+	
+	public function actionGetPartnerName($id)
+	{
+		$name=rawurldecode($id);
+	
+		if (!Yii::app()->user->isGuest) {
+			$data=Yii::app()->db->createCommand()
+			->select("concat(firstname, ' ', lastname)")
+			->from('partners')
+			->where('id = :p_id', array(':p_id'=>$id))
+			->queryScalar();
+			if ($data == FALSE)
+				echo json_encode(0);
+			else
+				echo json_encode($data);
+		} else {
+			throw new CHttpException(404,'You have no authorization for this operation.');
+		};
+	}
 }

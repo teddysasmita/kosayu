@@ -8,6 +8,24 @@
 
 <?php
    $transScript=<<<EOS
+   		$("#Tippayments_idpartner").focusout(
+			function(event) {
+				$.getJSON("index.php?r=LookUp/getPartnerName",
+					{ id: $("#Tippayments_idpartner").val() },
+						function(data) {
+							if (data == 0) {
+								$("#partnername").removeClass('money');
+								$("#partnername").addClass('errorMessage');
+								$("#partnername").html('Data Partner tidak ditemukan');
+								$("#Tippayments_idguide").val('');
+							} else {
+								$("#partnername").addClass('money');
+								$("#partnername").removeClass('errorMessage');
+								$("#partnername").html(data);
+							}
+				});
+				
+		});
 		$('#Tippayments_idpartner').change(
 		function() {
 			$('#command').val('getComp');
@@ -152,9 +170,14 @@ EOS;
 				'value'=>$model->idpartner
 			));
          ?>
+		<?php echo $form->error($model,'idpartner'); ?>
 	</div>
-	<?php echo $form->error($model,'idpartner'); ?>
 	
+	<div class="row">
+		<?php echo CHtml::label('', false);
+			echo CHtml::tag('span', array('id'=>'partnername', 'class'=>'money'), ''); 
+		?>
+	</div>
 	
 		<?php 
 			if ($model->idcomp !== '-' ) {
