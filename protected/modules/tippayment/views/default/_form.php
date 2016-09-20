@@ -29,14 +29,14 @@
 						case 0:	
 							$("#stickeravail").removeClass('money');
 							$("#stickeravail").addClass('errorMessage');
-							$("#stickeravail").html('Data tidak ditemukan');
+							$("#stickeravail").html('Data sticker tidak ditemukan');
 							$("#Tippayments_idsticker").val('');
 							$("#Tippayments_ddatetime").val('');
 							break;
 						case 1:
 							$("#stickeravail").removeClass('money');
 							$("#stickeravail").addClass('errorMessage');
-							$("#stickeravail").html('Data sudah didaftarkan');
+							$("#stickeravail").html('Data sudah didaftarkan / dibayarkan');
 							$("#Tippayments_idsticker").val('');
 							$("#Tippayments_ddatetime").val('');
 							break;
@@ -50,38 +50,6 @@
 					}
 				});
 			
-		});
-   
-		$("#checksticker").click(
-			function(event) {
-				$.getJSON('index.php?r=LookUp/checkStickerInfo', 
-					{ stickernum: $("#Tippayments_idsticker").val(),
-					stickerdate: $("#Tippayments_ddatetime").val() },
-						function(data) {
-							switch (data) {
-								case 0:	
-									$("#stickeravail").removeClass('money');
-									$("#stickeravail").addClass('errorMessage');
-									$("#stickeravail").html('Data sticker tidak ditemukan');
-									$("#Tippayments_idsticker").val('');
-									$("#Tippayments_ddatetime").val('');
-									event.preventDefault();
-									break;
-								case 1:
-									$("#stickeravail").removeClass('money');
-									$("#stickeravail").addClass('errorMessage');
-									$("#stickeravail").html('Data sticker sudah didaftarkan');
-									$("#Tippayments_idsticker").val('');
-									$("#Tippayments_ddatetime").val('');
-									event.preventDefault();
-									break;
-								case 2:
-									$("#stickeravail").removeClass('errorMessage');
-									$("#stickeravail").addClass('money');
-									$("#stickeravail").html('Data valid');
-									break;
-							}
-				});
 		});
 EOS;
    Yii::app()->clientScript->registerScript("transScript", $transScript, CClientscript::POS_READY);
