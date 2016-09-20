@@ -1168,6 +1168,46 @@ EOS;
 		} 
 	}
 	
+	
+	public function actionCheckStickerInfo2($stickerdate, $stickernum, $idpartner, $idcomp)
+	{
+		if (!Yii::app()->user->isGuest) {
+			$data = Yii::app()->db->createCommand()
+			->select('count(*) as availnum')
+			->from('salespos')->where('idsticker = :p_stickernum and idatetime like :p_stickerdate',
+					[':p_stickernum'=>$stickernum, ':p_stickerdate'=>$stickerdate.'%'])
+					->queryScalar();
+				
+			if ($data == 0) {
+				echo json_encode(0);
+				return;
+			} else if ($data > 0) {
+				$data = Yii::app()->db->createCommand()
+				->select('count(*) as listednum')
+				->from('stickertoguides')->where('stickernum = :p_stickernum',
+						[':p_stickernum'=>$stickernum ])
+						->queryScalar();
+				if ($data == 0) {
+					$data = Yii::app()->db->createCommand()
+					->select('count(*) as listednum')
+					->from('tippayments')->where('idsticker = :p_idsticker and idpartner = :p_idpartner and idcomp = :p_idcomp and ddatetime like :p_ddatetime',
+							[':p_idsticker'=>$stickernum, ':p_ddatetime'=>$stickerdate.'%',
+							':p_idpartner'=>$idpartner, ':p_idcomp'=>$idcomp])
+							->queryScalar();
+					if ($data == 0)
+						echo json_encode(2);
+					else
+						echo json_encode(1);
+					return;
+				} else {
+					echo json_encode(1);
+					return;
+				}
+			}
+		} else {
+			throw new CHttpException(404,'You have no authorization for this operation.');
+		}
+	}
 	public function actionGetGuideName($id)
 	{
 		$name=rawurldecode($id);
