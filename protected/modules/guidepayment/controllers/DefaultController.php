@@ -798,6 +798,13 @@ EOS;
 		$detailsales = Yii::app()->db->createCommand($sql1)
 			->queryAll();
     
+		$salesdata = Yii::app()->db->createCommand()
+		->select($select1)->from('salespos a')
+		->where("a.idsticker = :p_idsticker and a.idatetime like :p_datetime",
+				array(':p_idsticker'=>$idsticker, ':p_datetime'=>$ddatetime.'%'))
+				->order('a.regnum')
+				->queryAll();
+		
     	$sql2 = <<<EOS
     	select sum(b.qty) as totalretur, b.iditem
     	from detailsalesposreturs b 
@@ -827,7 +834,7 @@ EOS;
     			}
     		}
     		
-    		$ds['discount'] += $this->getVRDisc($ds['regnum'], $ds['id']) * ($ds['price'] - $ds['discount']);
+    		$ds['discount'] += $this->getVRDisc($ds['regnum'], $ds['id']) * ($ds['price'] - $ds['discount'], $salesdata);
     		if ( is_null($ds['pct']) ) {
     			$ds['pct'] = $tip;
     			$ds['idtipgroup'] = '0';
