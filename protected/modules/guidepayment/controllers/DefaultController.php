@@ -834,7 +834,7 @@ EOS;
     			}
     		}
     		
-    		$ds['discount'] += $this->getVRDisc($ds['regnum'], $ds['id']) * ($ds['price'] - $ds['discount'], $salesdata);
+    		$ds['discount'] += $this->getVRDisc($ds['regnum'], $ds['id'], $salesdata) * ($ds['price'] - $ds['discount']);
     		if ( is_null($ds['pct']) ) {
     			$ds['pct'] = $tip;
     			$ds['idtipgroup'] = '0';
