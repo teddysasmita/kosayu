@@ -1237,7 +1237,10 @@ EOS;
 			->where('id = :p_id', array(':p_id'=>$idpartner))
 			->queryAll();
 			if ($comp == false) {
-				echo json_encode('');
+				$data = <<<EOS
+				<input id="TIppayments_idcomp" type="hidden" name="Tippayments[idcomp]" value="-">
+EOS;
+				echo json_encode($data);
 			} else {
 				$begin = <<<EOS
 				<label for="Tippayments_idcomp">Komposisi</label>
