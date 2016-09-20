@@ -299,7 +299,8 @@ class DefaultController extends Controller
             $model->id=$idmaker->getcurrentID2();  
             $model->idatetime= $idmaker->getDateTime();
             $model->userlog=Yii::app()->user->id;
-            $model->datetimelog=$idmaker->getDateTime();    
+            $model->datetimelog=$idmaker->getDateTime();   
+           	$model->regnum = $idmaker->getRegNum($this->formid); 
         }
         
         protected function afterPost(& $model)
@@ -313,6 +314,11 @@ class DefaultController extends Controller
             
             $model->userlog=Yii::app()->user->id;
             $model->datetimelog=$idmaker->getDateTime();
+            if ($this->state == 'c') {
+            	$model->regnum = $idmaker->getRegNum($this->formid);
+            	$regnum = $model->regnum + 1;
+            	$idmaker->saveRegNum($this->formid, $regnum);
+            };
         }
         
         protected function beforeDelete(& $model)
