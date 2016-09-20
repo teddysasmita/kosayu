@@ -35,7 +35,7 @@
 	 	width: <?php echo $model->labelwidth-4; ?>mm;
 	 	margin-top: <?php echo $model->labelbotm; ?>mm;
 	 	margin-bottom: <?php echo $model->labelbotm; ?>mm;
-	 	margin-right: <?php echo $model->labelside; ?>mm;
+	 	margin-right: <?php echo $model->labelsidem; ?>mm;
 	 	margin-left: <?php echo $model->labelsidem; ?>mm;
 	 	padding: 2mm;
 	 	border: solid thin;
