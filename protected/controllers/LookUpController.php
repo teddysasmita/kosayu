@@ -1239,13 +1239,12 @@ EOS;
 			if ($comp == false) {
 				echo json_encode('');
 			} else {
-				$datalist = CHtml::listData($comp, 'iddetail', 'comname');
 				$begin = <<<EOS
 				<label for="Tippayments_idcomp">Komposisi</label>
 				<select id="Tippayments_idcomp" name="Tippayments[idcomp]">
 EOS;
 				$select = '';
-				foreach($datalist as $dl) {
+				foreach($comp as $dl) {
 					$select .= "<option value=\"${dl['iddetail']}\">${dl['comname']}\"</option>";
 				};
 				$end = <<<EOS
