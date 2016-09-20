@@ -21,8 +21,35 @@
 		});  
 		$('#process').click(
 		function(evt) {
-			$('#command').val('countTip');
-			$('#tippayments-form').submit();
+			$.getJSON('index.php?r=LookUp/checkStickerInfo', 
+				{ stickernum: $("#Tippayments_idsticker").val(),
+				stickerdate: $("#Tippayments_ddatetime").val() },
+				function(data) {
+					switch (data) {
+						case 0:	
+							$("#stickeravail").removeClass('money');
+							$("#stickeravail").addClass('errorMessage');
+							$("#stickeravail").html('Data tidak ditemukan');
+							$("#Tippayments_idsticker").val('');
+							$("#Tippayments_ddatetime").val('');
+							break;
+						case 1:
+							$("#stickeravail").removeClass('money');
+							$("#stickeravail").addClass('errorMessage');
+							$("#stickeravail").html('Data sudah didaftarkan');
+							$("#Tippayments_idsticker").val('');
+							$("#Tippayments_ddatetime").val('');
+							break;
+						case 2:
+							$("#stickeravail").removeClass('errorMessage');
+							$("#stickeravail").addClass('money');
+							$("#stickeravail").html('Data valid');
+							$('#command').val('countTip');
+							$('#tippayments-form').submit();
+							break;
+					}
+				});
+			
 		});
    
 		$("#checksticker").click(
@@ -38,6 +65,7 @@
 									$("#stickeravail").html('Data tidak ditemukan');
 									$("#Tippayments_idsticker").val('');
 									$("#Tippayments_ddatetime").val('');
+									event.preventDefault();
 									break;
 								case 1:
 									$("#stickeravail").removeClass('money');
@@ -45,6 +73,7 @@
 									$("#stickeravail").html('Data sudah didaftarkan');
 									$("#Tippayments_idsticker").val('');
 									$("#Tippayments_ddatetime").val('');
+									event.preventDefault();
 									break;
 								case 2:
 									$("#stickeravail").removeClass('errorMessage');
@@ -137,7 +166,7 @@ EOS;
 	<div class="row">
 		<?php 
 			echo CHtml::label('', FALSE, ['id'=>'stickeravail']);
-			echo CHtml::button('Periksa',['id'=>'checksticker']); 
+			//echo CHtml::button('Periksa',['id'=>'checksticker']); 
 		?>
 	</div>
 	
