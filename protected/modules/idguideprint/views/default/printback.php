@@ -7,7 +7,7 @@
 	@page { size: <?php echo $model->paperwidth; ?>mm <?php echo $model->paperheight; ?>mm;
 		margin-bottom: <?php echo $model->paperbotm; ?>mm;
 		margin-top: <?php echo $model->paperbotm; ?>mm; 
-		margin-right: <?php echo $model->papersidem; ?>mm;
+		margin-right: <?php echo $model->papersidem-6; ?>mm;
 		margin-left: <?php echo $model->papersidem; ?>mm;
 		page-break-before: 5mm;
 	}
@@ -35,7 +35,7 @@
 	 	width: <?php echo $model->labelwidth-4; ?>mm;
 	 	margin-top: <?php echo $model->labelbotm; ?>mm;
 	 	margin-bottom: <?php echo $model->labelbotm; ?>mm;
-	 	margin-right: <?php echo $model->labelsidem - 6; ?>mm;
+	 	margin-right: <?php echo $model->labelside; ?>mm;
 	 	margin-left: <?php echo $model->labelsidem; ?>mm;
 	 	padding: 2mm;
 	 	border: solid thin;
