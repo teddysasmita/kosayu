@@ -17,7 +17,7 @@
 			function(event) {
 				$.getJSON('index.php?r=LookUp/checkStickerInfo', 
 					{ stickernum: $("#Stickertoguides_stickernum").val(),
-					stickerdate: $("#Stickertoguides_stickernum").val() },
+					stickerdate: $("#Stickertoguides_stickerdate").val() },
 						function(data) {
 							switch (data) {
 								case 0:	
