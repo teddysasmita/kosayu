@@ -301,6 +301,7 @@ class DefaultController extends Controller
             $model->userlog=Yii::app()->user->id;
             $model->datetimelog=$idmaker->getDateTime();   
            	$model->regnum = $idmaker->getRegNum($this->formid); 
+           	$model->paid = '0';
         }
         
         protected function afterPost(& $model)

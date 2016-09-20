@@ -10,6 +10,7 @@
  * @property string $stickerdate
  * @property string $stickernum
  * @property string $idguide
+ * @property string $paid
  * @property string $remark
  * @property string $userlog
  * @property string $datetimelog
@@ -32,15 +33,16 @@ class Stickertoguides extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id, idatetime, regnum, stickerdate, stickernum, idguide, userlog, datetimelog', 'required'),
+			array('id, idatetime, regnum, stickerdate, stickernum, idguide, paid, userlog, datetimelog', 'required'),
 			array('id, idguide, userlog', 'length', 'max'=>21),
 			array('idatetime, stickerdate, datetimelog', 'length', 'max'=>19),
 			array('regnum', 'length', 'max'=>12),
 			array('stickernum', 'length', 'max'=>10),
+			array('paid', 'length', 'max'=>1),
 			array('remark', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, idatetime, regnum, stickerdate, stickernum, idguide, remark, userlog, datetimelog', 'safe', 'on'=>'search'),
+			array('id, idatetime, regnum, stickerdate, stickernum, paid, idguide, remark, userlog, datetimelog', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -67,6 +69,7 @@ class Stickertoguides extends CActiveRecord
 			'stickerdate' => 'Tgl Sticker',
 			'stickernum' => 'Nomor Sticker',
 			'idguide' => 'Guide',
+			'paid'=> 'Terbayar',
 			'remark' => 'Catatan',
 			'userlog' => 'Userlog',
 			'datetimelog' => 'Datetimelog',
@@ -98,6 +101,7 @@ class Stickertoguides extends CActiveRecord
 		$criteria->compare('stickernum',$this->stickernum,true);
 		$criteria->compare('idguide',$this->idguide,true);
 		$criteria->compare('remark',$this->remark,true);
+		$criteria->compare('paid',$this->paid,true);
 		$criteria->compare('userlog',$this->userlog,true);
 		$criteria->compare('datetimelog',$this->datetimelog,true);
 
