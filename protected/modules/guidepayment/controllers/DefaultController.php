@@ -16,7 +16,6 @@ class DefaultController extends Controller
 	public $tracker;
 	public $state;
 	
-	private $salesdata = array();
 	private $grosssales = array();
 	private $totaldiscount;
 
@@ -754,10 +753,10 @@ EOS;
    		return $salesdata;
     }
     
-    private function getUnSeenDisc($regnum)
+    private function getUnSeenDisc($regnum, $salesdata)
     {
  		$disc = 0;
-    	foreach($this->salesdata as $sd) {
+    	foreach($salesdata as $sd) {
     		if ($sd['invoicenum'] == $regnum) {
     			$disc = $sd['discount'] / $sd['totalnondisc'];
     			break;
@@ -798,6 +797,11 @@ EOS;
 		$detailsales = Yii::app()->db->createCommand($sql1)
 			->queryAll();
     
+		$select1 = <<<EOS
+ 		a.id as iddetail, a.regnum as invoicenum, (a.total - a.tax) as amount, a.totaldiscount,
+    	a.idatetime, a.userlog as idcashier, a.datetimelog as cashierlog,
+    	a.discount
+EOS;
 		$salesdata = Yii::app()->db->createCommand()
 		->select($select1)->from('salespos a')
 		->where("a.idsticker = :p_idsticker and a.idatetime like :p_datetime",
@@ -819,7 +823,7 @@ EOS;
     	
     	foreach($detailsales as & $ds) {
     		if ($ds['discount'] == 0) {
-    			$ds['discount'] = $this->getUnSeenDisc($ds['regnum']) * $ds['price'];
+    			$ds['discount'] = $this->getUnSeenDisc($ds['regnum'], $salesdata) * $ds['price'];
     		}
     		
     		if ($invoicenum !== $ds['regnum']) {
