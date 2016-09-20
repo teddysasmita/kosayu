@@ -980,7 +980,7 @@ EOS;
     	$stickers = Yii::app()->db->createCommand()
     		->select()->from('stickertoguides')
     		->where('idguide = :p_idguide and paid = :p_paid',
-    			[':p_idguide'=>$idguide, ':p_paid'=>0])
+    			[':p_idguide'=>$idguide, ':p_paid'=>'0'])
     		->queryAll();
     	
     	print_r($stickers);
