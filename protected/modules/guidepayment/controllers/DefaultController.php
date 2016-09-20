@@ -984,14 +984,14 @@ EOS;
     	
     	$guideSalesSummary = array();
     	foreach($stickers as $stk) {
-    		$sales = $this->getSalesData($id, $stk['stickernum'], $stk['stickerdate']);
+    		$sales = $this->getSalesDetail2($model->id, $stk['stickernum'], $stk['stickerdate']);
     		$guideSalesSummary = array_merge($guideSalesSummary, $sales);
     		unset($sales);
     	}
     	
     	$guideDetailCommission = array();
     	foreach($stickers as $stk) {
-    		$commission = $this->getSalesDetail($id, $guide, $stk['stickernum'], $stk['stickerdate']);
+    		$commission = $this->getSalesDetail($model->id, $guide, $stk['stickernum'], $stk['stickerdate']);
     		$guideDetailCommission = array_merge($guideDetailCommission, $commission);
     		unset($commission);
     	}
