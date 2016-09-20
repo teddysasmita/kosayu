@@ -898,9 +898,10 @@ EOS;
     	$invoicenum = '';
     	$salesreturs->bindParam(":p_invoicenum", $invoicenum);
     
+    	$salesdata = $this->getSales($id, $idsticker, $ddatetime);
     	foreach($detailsales as & $ds) {
     		if ($ds['discount'] == 0) {
-    			$ds['discount'] = $this->getUnSeenDisc($ds['regnum']) * $ds['price'];
+    			$ds['discount'] = $this->getUnSeenDisc($ds['regnum'], $salesdata) * $ds['price'];
     		}
     		
     		if ($invoicenum !== $ds['regnum']) {
