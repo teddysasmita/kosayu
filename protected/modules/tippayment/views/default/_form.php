@@ -62,7 +62,7 @@
 								case 0:	
 									$("#stickeravail").removeClass('money');
 									$("#stickeravail").addClass('errorMessage');
-									$("#stickeravail").html('Data tidak ditemukan');
+									$("#stickeravail").html('Data sticker tidak ditemukan');
 									$("#Tippayments_idsticker").val('');
 									$("#Tippayments_ddatetime").val('');
 									event.preventDefault();
@@ -70,7 +70,7 @@
 								case 1:
 									$("#stickeravail").removeClass('money');
 									$("#stickeravail").addClass('errorMessage');
-									$("#stickeravail").html('Data sudah didaftarkan');
+									$("#stickeravail").html('Data sticker sudah didaftarkan');
 									$("#Tippayments_idsticker").val('');
 									$("#Tippayments_ddatetime").val('');
 									event.preventDefault();
