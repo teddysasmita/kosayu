@@ -1281,7 +1281,7 @@ EOS;
 	
 		if (!Yii::app()->user->isGuest) {
 			$data=Yii::app()->db->createCommand()
-			->select("concat(firstname, ' ', lastname)")
+			->select("name")
 			->from('partners')
 			->where('id = :p_id', array(':p_id'=>$id))
 			->queryScalar();
