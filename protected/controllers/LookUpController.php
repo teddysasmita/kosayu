@@ -1227,6 +1227,39 @@ EOS;
 		};
 	}
 	
+	public function actionGetPartnerComp($idpartner)
+	{
+		$name=rawurldecode($id);
+	
+		if (!Yii::app()->user->isGuest) {
+			$comp = Yii::app()->db->createCommand()
+			->select('comname, iddetail')->from('detailpartners')
+			->where('id = :p_id', array(':p_id'=>$model->idpartner))
+			->queryAll();
+			if ($comp == false) {
+				echo json_encode('');
+			} else {
+				$datalist = CHtml::listData($comp, 'iddetail', 'comname');
+				$begin = <<<EOS
+				<label for="Tippayments_idcomp">Komposisi</label>
+				<select id="Tippayments_idcomp" name="Tippayments[idcomp]">
+EOS;
+				$select = '';
+				foreach($datalist as $dl) {
+					$select .= "<option value=\"${dl['iddetail']}\">${dl['comname']}\"</option>";
+				};
+				$end = <<<EOS
+				</select>
+				<div id="Tippayments_idcomp_em_" class="errorMessage" style="display:none"></div
+EOS;
+				$data = $begin.$select.$end;
+				echo json_encode($data); 
+			}
+		} else {
+			throw new CHttpException(404,'You have no authorization for this operation.');
+		};
+	}
+	
 	public function actionCompleteGuide($term)
 	{
 		if (!Yii::app()->user->isGuest) {

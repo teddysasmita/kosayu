@@ -17,19 +17,19 @@
 								$("#partnername").removeClass('money');
 								$("#partnername").addClass('errorMessage');
 								$("#partnername").html('Data Partner tidak ditemukan');
-								$("#Tippayments_idguide").val('');
+								$("#Tippayments_idpartner").val('');
 							} else {
 								$("#partnername").addClass('money');
 								$("#partnername").removeClass('errorMessage');
 								$("#partnername").html(data);
+								$.getJSON("index.php?r=LookUp/getPartnerComp",
+								{ idpartner: $("#Tippayments_idpartner").val()},
+								function (data) {
+									$("#idcomp").html(data);
+								});
 							}
 				});
 				
-		});
-		$('#Tippayments_idpartner').change(
-		function() {
-			$('#command').val('getComp');
-			$('#tippayments-form').submit();
 		});
 		$('.updateButton').click(
 		function(evt) {
@@ -179,6 +179,9 @@ EOS;
 		?>
 	</div>
 	
+	<div class="row" id="idcomp">
+	
+	</div>
 		<?php 
 			if ($model->idcomp !== '-' ) {
 				echo "<div class=\"row\" id=\"comp\">";
