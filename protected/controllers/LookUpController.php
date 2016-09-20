@@ -1229,12 +1229,12 @@ EOS;
 	
 	public function actionGetPartnerComp($idpartner)
 	{
-		$name=rawurldecode($id);
+		$name=rawurldecode($idpartner);
 	
 		if (!Yii::app()->user->isGuest) {
 			$comp = Yii::app()->db->createCommand()
 			->select('comname, iddetail')->from('detailpartners')
-			->where('id = :p_id', array(':p_id'=>$model->idpartner))
+			->where('id = :p_id', array(':p_id'=>$idpartner))
 			->queryAll();
 			if ($comp == false) {
 				echo json_encode('');
