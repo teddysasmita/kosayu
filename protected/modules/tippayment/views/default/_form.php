@@ -21,7 +21,7 @@
 		});  
 		$('#process').click(
 		function(evt) {
-			$.getJSON('index.php?r=LookUp/checkStickerInfo', 
+			$.getJSON('index.php?r=LookUp/checkStickerInfo2', 
 				{ stickernum: $("#Tippayments_idsticker").val(),
 				stickerdate: $("#Tippayments_ddatetime").val() },
 				function(data) {
