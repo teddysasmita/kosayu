@@ -984,7 +984,7 @@ EOS;
     	
     	$guideSalesSummary = array();
     	foreach($stickers as $stk) {
-    		$sales = $this->getSalesDetail2($model->id, $stk['stickernum'], $stk['stickerdate']);
+    		$sales = $this->getSales($model->id, $stk['stickernum'], $stk['stickerdate']);
     		$guideSalesSummary = array_merge($guideSalesSummary, $sales);
     		unset($sales);
     	}
