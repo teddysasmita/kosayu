@@ -24,6 +24,36 @@
 			$('#command').val('countTip');
 			$('#tippayments-form').submit();
 		});
+   
+		$("#checksticker").click(
+			function(event) {
+				$.getJSON('index.php?r=LookUp/checkStickerInfo', 
+					{ stickernum: $("#Tippayments_idsticker").val(),
+					stickerdate: $("#Tippayments_ddatetime").val() },
+						function(data) {
+							switch (data) {
+								case 0:	
+									$("#stickeravail").removeClass('money');
+									$("#stickeravail").addClass('errorMessage');
+									$("#stickeravail").html('Data tidak ditemukan');
+									$("#Tippayments_idsticker").val('');
+									$("#Tippayments_ddatetime").val('');
+									break;
+								case 1:
+									$("#stickeravail").removeClass('money');
+									$("#stickeravail").addClass('errorMessage');
+									$("#stickeravail").html('Data sudah didaftarkan');
+									$("#Tippayments_idsticker").val('');
+									$("#Tippayments_ddatetime").val('');
+									break;
+								case 2:
+									$("#stickeravail").removeClass('errorMessage');
+									$("#stickeravail").addClass('money');
+									$("#stickeravail").html('Data valid');
+									break;
+							}
+				});
+		});
 EOS;
    Yii::app()->clientScript->registerScript("transScript", $transScript, CClientscript::POS_READY);
 
@@ -102,6 +132,13 @@ EOS;
 			));
 		?>
 		<?php echo $form->error($model,'ddatetime'); ?>
+	</div>
+		
+	<div class="row">
+		<?php 
+			echo CHtml::label('', FALSE, ['id'=>'stickeravail']);
+			echo CHtml::button('Periksa',['id'=>'checksticker']); 
+		?>
 	</div>
 	
 	<div class="row">

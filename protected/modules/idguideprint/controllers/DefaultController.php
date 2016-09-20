@@ -554,7 +554,8 @@ class DefaultController extends Controller
      protected function afterPost(& $model)
      {
          $idmaker=new idmaker();
-         $idmaker->saveRegNum($this->formid, $model->regnum);
+         if ($this->state == 'c') 
+         	$idmaker->saveRegNum($this->formid, $model->regnum);
          
      }
 
