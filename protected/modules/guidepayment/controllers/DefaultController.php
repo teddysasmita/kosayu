@@ -797,17 +797,7 @@ EOS;
 		$detailsales = Yii::app()->db->createCommand($sql1)
 			->queryAll();
     
-		$select1 = <<<EOS
- 		a.id as iddetail, a.regnum as invoicenum, (a.total - a.tax) as amount, a.totaldiscount,
-    	a.idatetime, a.userlog as idcashier, a.datetimelog as cashierlog,
-    	a.discount
-EOS;
-		$salesdata = Yii::app()->db->createCommand()
-		->select($select1)->from('salespos a')
-		->where("a.idsticker = :p_idsticker and a.idatetime like :p_datetime",
-				array(':p_idsticker'=>$idsticker, ':p_datetime'=>$ddatetime.'%'))
-				->order('a.regnum')
-				->queryAll();
+		$salesdata = $this->getSales($id, $idsticker, $ddatetime);
 		
     	$sql2 = <<<EOS
     	select sum(b.qty) as totalretur, b.iditem
