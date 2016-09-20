@@ -1042,9 +1042,7 @@ EOS;
     	Yii::app()->db->createCommand()
     	->update('stickertoguides',['paid'=>'1'],
     			'stickernum = :p_stickernum and stickerdate like :p_stickerdate',
-    			[':p_stickerdate'=>$stk['stickerdate'].'%',':p_stickernum'=>$stk['stickernum']]);
-    	}	
+    			[':p_stickerdate'=>$stk['stickerdate'].'%',':p_stickernum'=>$stk['stickernum']]);	
     	
-    }
     }
 }
