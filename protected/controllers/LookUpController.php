@@ -1151,7 +1151,7 @@ EOS;
 					$data = Yii::app()->db->createCommand()
 						->select('count(*) as listednum')
 						->from('tippayments')->where('idsticker = :p_idsticker and ddatetime like :p_ddatetime',
-							[':p_idsticker'=>$stickernum, ':p_ddatetime'=>$stockerdate.'%' ])
+							[':p_idsticker'=>$stickernum, ':p_ddatetime'=>$stickerdate.'%' ])
 							->queryScalar();
 					if ($data == 0)
 						echo json_encode(2);
