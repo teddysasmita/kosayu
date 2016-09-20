@@ -317,8 +317,7 @@ class DefaultController extends Controller
             $model->datetimelog=$idmaker->getDateTime();
             if ($this->state == 'c') {
             	$model->regnum = $idmaker->getRegNum($this->formid);
-            	$regnum = $model->regnum + 1;
-            	$idmaker->saveRegNum($this->formid, $regnum);
+            	$idmaker->saveRegNum($this->formid, $modei->regnum);
             };
         }
         

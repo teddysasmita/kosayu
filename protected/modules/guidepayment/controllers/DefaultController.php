@@ -622,6 +622,7 @@ class DefaultController extends Controller
          $idmaker=new idmaker();
          if ($this->state == 'create') {
          	$idmaker->saveRegNum($this->formid, $model->regnum);
+         	$this->updatestickers($model);
          } 
      }
 
@@ -984,7 +985,7 @@ EOS;
     			[':p_idguide'=>$idguide, ':p_paid'=>'0'])
     		->queryAll();
     	
-    	print_r($stickers);
+    	//print_r($stickers);
     	$guideSalesSummary = array();
     	foreach($stickers as $stk) {
     		$sales = $this->getSales($model->id, $stk['stickernum'], $stk['stickerdate']);
@@ -1005,12 +1006,12 @@ EOS;
     	}
     	$model->commission = $totalcommission;
     	
-    	foreach($stickers as $stk) {
-    		Yii::app()->db->createCommand()
+    	/*
+    	Yii::app()->db->createCommand()
     			->update('stickertoguides',['paid'=>'1'],
     				'stickernum = :p_stickernum and stickerdate like :p_stickerdate',
     				[':p_stickerdate'=>$stk['stickerdate'].'%',':p_stickernum'=>$stk['stickernum']]);
-    	}
+    	}*/
     	
     	$totaldeposit = Yii::app()->db->createCommand()
     			->select('(deposit+commission-amount) as totaldeposit')
@@ -1028,5 +1029,22 @@ EOS;
     		$stickerdetail = $this->getSalesDetail2($model->id, $guide, $stk['stickernum'], $stk['stickerdate']);
     		$details = array_merge($details, $stickerdetail);
     	}
+    }
+    
+    private function updatestickers(& $model)
+    {
+    	$stickers = Yii::app()->db->createCommand()
+    	->select()->from('stickertoguides')
+    	->where('idguide = :p_idguide and paid = :p_paid',
+    			[':p_idguide'=>$model->idguide, ':p_paid'=>'0'])
+    			->queryAll();
+    	 
+    	Yii::app()->db->createCommand()
+    	->update('stickertoguides',['paid'=>'1'],
+    			'stickernum = :p_stickernum and stickerdate like :p_stickerdate',
+    			[':p_stickerdate'=>$stk['stickerdate'].'%',':p_stickernum'=>$stk['stickernum']]);
+    	}	
+    	
+    }
     }
 }
