@@ -1017,7 +1017,7 @@ EOS;
     			->select('(deposit+commission-amount) as totaldeposit')
     			->from('guidepayments')
     			->where('idguide = :p_idguide', [':p_idguide'=>$guide['id']])
-    			->order('id')
+    			->order('id desc')
     			->queryScalar();
     	if (!$totaldeposit)
     		$model->deposit = 0;
