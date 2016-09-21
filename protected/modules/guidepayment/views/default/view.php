@@ -69,11 +69,12 @@ $this->menu=array(
             ),
             array(
 				'header'=>'Tanggal',
-              	'name'=>'idatetime',
+              	'name'=>'stickerdate',
             ),
          	array(
          		'header'=>'Barang',
          		'name'=>'iditem',
+         		'value'=>"lookup::ItemNamefromItemID(\$data['iditem'])",
          	),
          	array(
          		'header'=>'Qty',
