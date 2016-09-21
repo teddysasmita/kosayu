@@ -874,7 +874,8 @@ EOS;
     	$tip = $guide['commission'];
     	$tip2 = 1;
     	$sql1 = <<<EOS
-    	SELECT a.id, b.iddetail, a.regnum, a.idsticker as stickernum, a.idatetime as stickerdate, a.userlog as idcashier,
+    	SELECT a.id, b.iddetail, a.regnum, a.idsticker as stickernum, a.idatetime as stickerdate, 
+    	a.userlog as idcashier, a.datetimelog as cashierlog,
     	b.iditem, b.qty, b.price, b.discount, c.pct, c.id as idtipgroup
 		FROM detailsalespos b
 		JOIN salespos a ON a.id = b.id
