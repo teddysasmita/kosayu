@@ -37,7 +37,6 @@ class Guides extends CActiveRecord
 			array('id, firstname, lastname, address, idnum, idpartner, idcomp, userlog, datetimelog', 'required'),
 			array('id, idcomp, idpartner, userlog', 'length', 'max'=>21),
 			array('idnum', 'length', 'max'=>50),
-			array('commission', 'numerical', 'max'=>100),
 			array('firstname, lastname, phone, email', 'length', 'max'=>100),
 			array('address', 'length', 'max'=>255),
 			array('datetimelog', 'length', 'max'=>19),
