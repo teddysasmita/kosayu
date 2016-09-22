@@ -7,7 +7,7 @@
 <div class="form">
 
 <?php 
-	$transscript = <<<EOS
+	$transScript = <<<EOS
 	$("#Guides_idpartner").focusout(
 			function(event) {
 				$.getJSON("index.php?r=LookUp/getPartnerName2",
@@ -32,7 +32,8 @@
 				
 		});
 EOS;
-
+	Yii::app()->clientScript->registerScript("transScript", $transScript, CClientscript::POS_READY);
+	
 ?>
 
 <?php $form=$this->beginWidget('CActiveForm', array(
