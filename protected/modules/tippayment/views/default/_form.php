@@ -23,8 +23,8 @@
 								$("#partnername").removeClass('errorMessage');
 								$("#partnername").html(data);
 								$.getJSON("index.php?r=LookUp/getPartnerComp",
-								{ idpartner: $("#Tippayments_idpartner", 
-								formname: "Tippayments").val()},
+								{ idpartner: $("#Tippayments_idpartner").val(), 
+								formname: "Tippayments"},
 								function (data) {
 									$("#idcomp").html(data);
 								});
