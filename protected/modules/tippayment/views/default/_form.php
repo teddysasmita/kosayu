@@ -11,7 +11,8 @@
    		$("#Tippayments_idpartner").focusout(
 			function(event) {
 				$.getJSON("index.php?r=LookUp/getPartnerName",
-					{ id: $("#Tippayments_idpartner").val() },
+					{ id: $("#Tippayments_idpartner").val(),
+						formname: "TIppayments" },
 						function(data) {
 							if (data == 0) {
 								$("#partnername").removeClass('money');

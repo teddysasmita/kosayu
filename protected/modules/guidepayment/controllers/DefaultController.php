@@ -781,8 +781,9 @@ EOS;
     
     private function getSalesDetail($id, array $guide, $idsticker, $ddatetime)
     {
-    	$tip = $guide['commission'];
-    	$tip2 = 1;
+    	$tip = Lookup::getCommissionfromComp($guide['idcomp']);
+    	$tip2 = Lookup::getCommissionfromPartner($guide['idpartner']);
+    	
     	$sql1 = <<<EOS
     	SELECT a.id, b.iddetail, a.regnum, b.iditem, b.qty, b.price, b.discount, c.pct, c.id as idtipgroup
 		FROM detailsalespos b
@@ -871,8 +872,8 @@ EOS;
     
     private function getSalesDetail2($id, $guide, $idsticker, $ddatetime)
     {
-    	$tip = $guide['commission'];
-    	$tip2 = 1;
+    	$tip = Lookup::getCommissionfromComp($guide['idcomp']);
+    	$tip2 = Lookup::getCommissionfromPartner($guide['idpartner']);
     	$sql1 = <<<EOS
     	SELECT a.id, b.iddetail, a.regnum, a.idsticker as stickernum, a.idatetime as stickerdate, 
     	a.userlog as idcashier, a.datetimelog as cashierlog,

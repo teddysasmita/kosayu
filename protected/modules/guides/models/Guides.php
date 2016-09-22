@@ -11,7 +11,8 @@
  * @property string $phone
  * @property string $email
  * @property string $idnum
- * @property double $commission
+ * @property string $idcomp
+ * @property string $idpartner
  * @property string $userlog
  * @property string $datetimelog
  */
@@ -33,8 +34,8 @@ class Guides extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id, firstname, lastname, address, idnum, commission, userlog, datetimelog', 'required'),
-			array('id, userlog', 'length', 'max'=>21),
+			array('id, firstname, lastname, address, idnum, idpartner, idcomp, userlog, datetimelog', 'required'),
+			array('id, idcomp, idpartner, userlog', 'length', 'max'=>21),
 			array('idnum', 'length', 'max'=>50),
 			array('commission', 'numerical', 'max'=>100),
 			array('firstname, lastname, phone, email', 'length', 'max'=>100),
@@ -70,7 +71,8 @@ class Guides extends CActiveRecord
 			'phone' => 'Telp',
 			'email' => 'Email',
 			'idnum' => 'No KTP',
-			'commission' => 'Komisi(%)',
+			'idpartner' => 'Kelompok Rekanan',
+			'idcomp' => 'Komposisi',
 			'userlog' => 'Userlog',
 			'datetimelog' => 'Datetimelog',
 		);
@@ -101,7 +103,8 @@ class Guides extends CActiveRecord
 		$criteria->compare('phone',$this->phone,true);
 		$criteria->compare('email',$this->email,true);
 		$criteria->compare('idnum',$this->idnum,true);
-		$criteria->compare('commission',$this->commission,true);
+		$criteria->compare('idpartner',$this->idpartner,true);
+		$criteria->compare('idcomp',$this->idcomp,true);
 		$criteria->compare('userlog',$this->userlog,true);
 		$criteria->compare('datetimelog',$this->datetimelog,true);
 
@@ -121,3 +124,4 @@ class Guides extends CActiveRecord
 		return parent::model($className);
 	}
 }
+s

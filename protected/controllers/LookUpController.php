@@ -1227,7 +1227,7 @@ EOS;
 		};
 	}
 	
-	public function actionGetPartnerComp($idpartner)
+	public function actionGetPartnerComp($idpartner, $formname)
 	{
 		$name=rawurldecode($idpartner);
 	
@@ -1238,13 +1238,13 @@ EOS;
 			->queryAll();
 			if ($comp == false) {
 				$data = <<<EOS
-				<input id="Tippayments_idcomp" type="hidden" name="Tippayments[idcomp]" value="-">
+				<input id="${formname}_idcomp" type="hidden" name="T${formname}[idcomp]" value="-">
 EOS;
 				echo json_encode($data);
 			} else {
 				$begin = <<<EOS
-				<label for="Tippayments_idcomp">Komposisi</label>
-				<select id="Tippayments_idcomp" name="Tippayments[idcomp]">
+				<label for="${formname}_idcomp">Komposisi</label>
+				<select id="${formname}_idcomp" name="${formname}[idcomp]">
 EOS;
 				$select = '';
 				foreach($comp as $dl) {
@@ -1252,7 +1252,7 @@ EOS;
 				};
 				$end = <<<EOS
 				</select>
-				<div id="Tippayments_idcomp_em_" class="errorMessage" style="display:none"></div
+				<div id="${formname}_idcomp_em_" class="errorMessage" style="display:none"></div
 EOS;
 				$data = $begin.$select.$end;
 				echo json_encode($data); 
