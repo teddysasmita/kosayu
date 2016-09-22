@@ -10,8 +10,8 @@
 	$transScript = <<<EOS
 	$("#Guides_idpartner").focusout(
 			function(event) {
-				$.getJSON("index.php?r=LookUp/getPartnerName2",
-					{ id: $("#Guides_idpartner").val(), formname: "Guides" },
+				$.getJSON("index.php?r=LookUp/getPartnerName",
+					{ id: $("#Guides_idpartner").val() },
 						function(data) {
 							if (data == 0) {
 								$("#partnername").removeClass('money');
@@ -23,7 +23,8 @@
 								$("#partnername").removeClass('errorMessage');
 								$("#partnername").html(data);
 								$.getJSON("index.php?r=LookUp/getPartnerComp",
-								{ idpartner: $("#Guides_idpartner").val()},
+								{ idpartner: $("#Guides_idpartner").val(), 
+									formname: "Guides"},
 								function (data) {
 									$("#idcomp").html(data);
 								});
