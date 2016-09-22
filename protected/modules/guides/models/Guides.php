@@ -123,4 +123,3 @@ class Guides extends CActiveRecord
 		return parent::model($className);
 	}
 }
-s
