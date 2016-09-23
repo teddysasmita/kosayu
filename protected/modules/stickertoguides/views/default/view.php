@@ -26,7 +26,6 @@ $this->menu=array(
 		'regnum',
 		'stickerdate',
 		'stickernum',
-		'userlog',
-		//'datetimelog',
+		'datetimelog',
 	),
 )); ?>
