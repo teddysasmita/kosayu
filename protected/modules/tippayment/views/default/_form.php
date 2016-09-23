@@ -254,7 +254,7 @@ EOS;
     } else {
        $count=Yii::app()->db->createCommand("select count(*) from detailtippayments2 where id='$model->id'")->queryScalar();
        $sql="select * from detailtippayments2 where id='$model->id'";
-       $rawdata=Yii::app()->db->createCommand($sql)->queryAll ();
+       $rawdata=Yii::app()->db->createCommand($sql)->queryAll();
     }
     $dataProvider=new CArrayDataProvider($rawdata, array(
     		'totalItemCount'=>$count,
