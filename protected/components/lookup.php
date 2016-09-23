@@ -825,6 +825,18 @@ class lookup extends CComponent {
 	
 	}
 	
+	public static function getNamefromComp($idcomp)
+	{
+		$rate = Yii::app()->db->createCommand()
+		->select('comname')->from('detailpartners')
+		->where('iddetail = :p_iddetail',
+				[':p_iddetail'=>$idcomp])
+				->queryScalar();
+	
+		return $rate;
+	
+	}
+	
 }
 
 
