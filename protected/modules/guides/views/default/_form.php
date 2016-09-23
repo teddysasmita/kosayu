@@ -113,8 +113,8 @@ EOS;
 		<?php 
 		if ($model->idcomp !== '-') {
 			echo CHtml::label('Komposisi', false);
-			echo Chtml::tag('span', array('id'=>'compname', 'class'=>'money', 
-				lookup::getNamefromComp($model->idcomp)));
+			echo Chtml::tag('span', array('id'=>'compname', 'class'=>'money'), 
+				lookup::getNamefromComp($model->idcomp));
 		};
 		echo CHtml::hiddenField('Guides_idcomp', $model->idcomp);
 		?>
