@@ -110,6 +110,14 @@ EOS;
 	</div>
 	
 	<div class="row" id="idcomp">
+		<?php 
+		if ($model->idcomp !== '-') {
+			echo CHtml::label('Komposisi', false);
+			echo Chtml::tag('span', array('id'=>'compname', 'class'=>'money', 
+				lookup::getComponentName($model->idcomp)));
+		}
+		
+		?>
 	</div>
 	
 	
