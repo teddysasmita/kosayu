@@ -932,47 +932,6 @@ EOS;
         
     	return $detailsales;
     }
-
-    public function actionPrint($id)
-    {
-    	if(Yii::app()->authManager->checkAccess($this->formid.'-Append',
-    			Yii::app()->user->id)) {
-    				$this->trackActivity('p');
-    
-    		$model=$this->loadModel($id);
-    		$detailmodel=$this->loadDetails($id);
-    		$detailmodel2=$this->loadDetails2($id);
-			Yii::import('application.vendors.tcpdf.*');
-			require_once ('tcpdf.php');
-			Yii::import('application.modules.guidepayment.components.*');
-    		require_once('print_guidepayment.php');
-			ob_clean();
-    
-    		execute($model, $detailmodel, $detailmodel2);
-    	} else {
-    		throw new CHttpException(404,'You have no authorization for this operation.');
-    	}
-    }
-
-    
-    public function actionPrintastext($id)
-    {
-    	if(Yii::app()->authManager->checkAccess($this->formid.'-Append',
-    			Yii::app()->user->id)) {
-			$this->trackActivity('p');
-    
-    		$model=$this->loadModel($id);
-    		$detailmodel=$this->loadDetails($id);
-			$detailmodel2=$this->loadDetails2($id);
-			
-			Yii::import('application.modules.guidepayment.components.*');
-			require_once('printtext.php');
-			execute($model, $detailmodel, $detailmodel2);
-    	
-    	} else {
-			throw new CHttpException(404,'You have no authorization for this operation.');
-    	}
-    }
     
     private function calculateGuide(& $model, & $details)
     {

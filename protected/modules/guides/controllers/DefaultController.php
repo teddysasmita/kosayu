@@ -334,4 +334,20 @@ class DefaultController extends Controller
             $this->tracker->init();
             $this->tracker->logActivity($this->formid, $action);
         }
+        
+        public function actionPrintActivity($id)
+        {
+        	if(Yii::app()->authManager->checkAccess($this->formid.'-Update',
+        			Yii::app()->user->id)) {
+        				$this->trackActivity('r');
+        				$this->tracker->restore('customers', $idtrack);
+        				$dataProvider=new CActiveDataProvider('Guides');
+        				$this->render('index',array(
+        						'dataProvider'=>$dataProvider,
+        				));
+        			} else {
+        				throw new CHttpException(404,'You have no authorization for this operation.');
+        			}
+        	
+        }
 }

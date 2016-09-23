@@ -95,31 +95,15 @@ class DefaultController extends Controller
                       } else {
                         throw new CHttpException(404,'Nomor Serial telah terdaftar.');
                      }     
-                   } else if (isset($_POST['command'])){
+                   } else if (isset($_POST['command'])) {	
                       // save the current master data before going to the detail page
                       if($_POST['command']=='adddetail') {
                          $model->attributes=$_POST['Idguideprints'];
                          Yii::app()->session['Idguideprints']=$_POST['Idguideprints'];
                          $this->redirect(array('detailidguideprints/create',
                             'id'=>$model->id));
-                      } else if ($_POST['command']=='getPO') {
-                         $model->attributes=$_POST['Idguideprints'];
-                         Yii::app()->session['Idguideprints']=$_POST['Idguideprints'];
-                         $this->loadPO($model->transid, $model->id);
-                      } else if ($_POST['command'] == 'batchcode') {
-                      	 $model->attributes = $_POST['Idguideprints'];
-                      	 Yii::app()->session['Idguideprints']=$model->attributes;
-                      	 $newidguides = $this->prepareIdguide($_POST['batchcode'], $_POST['batchrep'],
-                      	 	$model->id);
-                      	
-                      	 if (isset(Yii::app()->session['Detailidguideprints'])) {
-						 	$idguides = Yii::app()->session['Detailidguideprints'];
-						 	$idguides = array_merge($idguides, $newidguides);
-                      	 } else 
-                      	 	$idguides = $newidguides;
-                      	 Yii::app()->session['Detailidguideprints'] = $idguides;
-                   	  }
-                   } 
+                      }
+                   	}
                 }
 
                 $this->render('create',array(
@@ -645,18 +629,4 @@ class DefaultController extends Controller
 		}	
 	}
 	
-	private function prepareIdguide($code, $rep, $id) 
-	{
-		for ($i = 0; $i < $rep; $i++) {
-			$temp['iddetail'] = idmaker::getCurrentID2();
-			$temp['id'] = $id;
-			$temp['num'] = $code;
-			$temp['userlog'] = Yii::app()->user->id;
-			$temp['datetimelog'] = idmaker::getDateTime();
-
-			$newdata[] = $temp;				
-		}
-		
-		return $newdata;
-	}
 }
