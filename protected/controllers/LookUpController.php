@@ -1129,7 +1129,7 @@ EOS;
 		};
 	}
 	
-	public function actionCheckStickerInfo($stickerdate, $stickernum) 
+	public function actionCheckStickerInfo($stickerdate = '-', $stickernum = '-') 
 	{
 		if (!Yii::app()->user->isGuest) {
 			$data = Yii::app()->db->createCommand()
