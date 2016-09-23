@@ -1132,7 +1132,7 @@ EOS;
 	public function actionCheckStickerInfo($stickerdate = '-', $stickernum = '-') 
 	{
 		if (!Yii::app()->user->isGuest) {
-			if (($ssickerdate !== '-') && ($stickernum !== '-') ) {
+			if (($stickerdate !== '-') && ($stickernum !== '-') ) {
 				$data = Yii::app()->db->createCommand()
 					->select('count(*) as availnum')
 					->from('salespos')->where('idsticker = :p_stickernum and idatetime like :p_stickerdate',
