@@ -1132,36 +1132,41 @@ EOS;
 	public function actionCheckStickerInfo($stickerdate = '-', $stickernum = '-') 
 	{
 		if (!Yii::app()->user->isGuest) {
-			$data = Yii::app()->db->createCommand()
-				->select('count(*) as availnum')
-				->from('salespos')->where('idsticker = :p_stickernum and idatetime like :p_stickerdate',
-					[':p_stickernum'=>$stickernum, ':p_stickerdate'=>$stickerdate.'%'])
-				->queryScalar();	
-			
-			if ($data == 0) { 
-				echo json_encode(0);
-				return;
-			} else if ($data > 0) {
+			if (($ssickerdate !== '-') && ($stickernum !== '-') ) {
 				$data = Yii::app()->db->createCommand()
-					->select('count(*) as listednum')
-					->from('stickertoguides')->where('stickernum = :p_stickernum',
-						[':p_stickernum'=>$stickernum ])
-					->queryScalar();
-				if ($data == 0) {
+					->select('count(*) as availnum')
+					->from('salespos')->where('idsticker = :p_stickernum and idatetime like :p_stickerdate',
+						[':p_stickernum'=>$stickernum, ':p_stickerdate'=>$stickerdate.'%'])
+					->queryScalar();	
+				
+				if ($data == 0) { 
+					echo json_encode(0);
+					return;
+				} else if ($data > 0) {
 					$data = Yii::app()->db->createCommand()
 						->select('count(*) as listednum')
-						->from('tippayments')->where('idsticker = :p_idsticker and ddatetime like :p_ddatetime',
-							[':p_idsticker'=>$stickernum, ':p_ddatetime'=>$stickerdate.'%' ])
-							->queryScalar();
-					if ($data == 0)
-						echo json_encode(2);
-					else
+						->from('stickertoguides')->where('stickernum = :p_stickernum',
+							[':p_stickernum'=>$stickernum ])
+						->queryScalar();
+					if ($data == 0) {
+						$data = Yii::app()->db->createCommand()
+							->select('count(*) as listednum')
+							->from('tippayments')->where('idsticker = :p_idsticker and ddatetime like :p_ddatetime',
+								[':p_idsticker'=>$stickernum, ':p_ddatetime'=>$stickerdate.'%' ])
+								->queryScalar();
+						if ($data == 0)
+							echo json_encode(2);
+						else
+							echo json_encode(1);
+						return;
+					} else {
 						echo json_encode(1);
-					return;
-				} else {
-					echo json_encode(1);
-					return;
+						return;
+					}
 				}
+			} else {
+				echo json_encode(0);
+				return;
 			}
 		} else {
 			throw new CHttpException(404,'You have no authorization for this operation.');
