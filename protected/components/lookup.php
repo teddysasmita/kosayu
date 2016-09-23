@@ -803,14 +803,17 @@ class lookup extends CComponent {
 	
 	public static function getCommissionfromComp($idcomp)
 	{
-		$rate = Yii::app()->db->createCommand()
+		if ($idcomp == '-') {
+			return false;
+		} else {
+			$rate = Yii::app()->db->createCommand()
 			->select('tip')->from('detailpartners')
 			->where('iddetail = :p_iddetail',
 				[':p_iddetail'=>$idcomp])
 			->queryScalar();
 		
-		return $rate;
-		
+			return $rate;
+		}
 	}
 	
 	public static function getCommissionfromPartner($idpartner)

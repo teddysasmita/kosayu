@@ -782,7 +782,12 @@ EOS;
     private function getSalesDetail($id, array $guide, $idsticker, $ddatetime)
     {
     	$tip = lookup::getCommissionfromComp($guide['idcomp']);
-    	$tip2 = lookup::getCommissionfromPartner($guide['idpartner']);
+    	if ($tip == false) {
+    		$tip = lookup::getCommissionfromPartner($guide['idpartner']);
+    		$tip2 = 1;
+    	} else {
+    		$tip2 = $tip / lookup::getCommissionfromPartner($guide['idpartner']);
+    	}
     	
     	$sql1 = <<<EOS
     	SELECT a.id, b.iddetail, a.regnum, b.iditem, b.qty, b.price, b.discount, c.pct, c.id as idtipgroup
@@ -873,7 +878,13 @@ EOS;
     private function getSalesDetail2($id, $guide, $idsticker, $ddatetime)
     {
     	$tip = lookup::getCommissionfromComp($guide['idcomp']);
-    	$tip2 = lookup::getCommissionfromPartner($guide['idpartner']);
+    	if ($tip == false) {
+    		$tip = lookup::getCommissionfromPartner($guide['idpartner']);
+    		$tip2 = 1;
+    	} else {
+    		$tip2 = $tip / lookup::getCommissionfromPartner($guide['idpartner']);
+    	}
+    	
     	$sql1 = <<<EOS
     	SELECT a.id, b.iddetail, a.regnum, a.idsticker as stickernum, a.idatetime as stickerdate, 
     	a.userlog as idcashier, a.datetimelog as cashierlog,
