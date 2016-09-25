@@ -344,7 +344,7 @@ class DefaultController extends Controller
         		$data = Yii::app()->db->createCommand()
         			->select()
         			->from('stickertoguides')
-        			->where('idguide = :p_idguide and (idatetime >= :p_startdate and idatetime <= :p_enddate',
+        			->where('idguide = :p_idguide and (idatetime >= :p_startdate and idatetime <= :p_enddate)',
         				[':p_idguide'=>$id, ':p_startdate'=>$startdate, ':p_enddate'=>$enddate])
         			->queryAll();
         		
