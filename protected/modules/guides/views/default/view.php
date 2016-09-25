@@ -14,6 +14,8 @@ $this->menu=array(
 	array('label'=>'Hapus Data', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'Are you sure you want to delete this item?')),
 	array('label'=>'Cari Data', 'url'=>array('admin')),
         array('label'=>'History', 'url'=>array('history', 'id'=>$model->id)),
+	array('label'=>'Aktivitas', 'url'=>array('printActivity', 'id'=>$model->id, 'startdate'=>idmaker::getDateTime(),
+		'enddate'=>idmaker::getDateTime())),
 );
 ?>
 
