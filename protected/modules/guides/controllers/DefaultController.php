@@ -352,7 +352,7 @@ class DefaultController extends Controller
         			$data = [];
         		
         		$this->renderPartial('printreport1',
-        			['data'=>$data]       		
+        			['data'=>$data, 'startdate'=>$startdate, 'enddate'=>$enddate]       		
         		);
         	} else {
         		throw new CHttpException(404,'You have no authorization for this operation.');
