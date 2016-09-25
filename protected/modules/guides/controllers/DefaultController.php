@@ -335,19 +335,27 @@ class DefaultController extends Controller
             $this->tracker->logActivity($this->formid, $action);
         }
         
-        public function actionPrintActivity($id)
+        public function actionPrintActivity($id, $startdate, $enddate)
         {
-        	if(Yii::app()->authManager->checkAccess($this->formid.'-Update',
+        	if(Yii::app()->authManager->checkAccess($this->formid.'-Append',
         			Yii::app()->user->id)) {
-        				$this->trackActivity('r');
-        				$this->tracker->restore('customers', $idtrack);
-        				$dataProvider=new CActiveDataProvider('Guides');
-        				$this->render('index',array(
-        						'dataProvider'=>$dataProvider,
-        				));
-        			} else {
-        				throw new CHttpException(404,'You have no authorization for this operation.');
-        			}
-        	
+        		$this->trackActivity('r');
+        		
+        		$data = Yii::app()->db->createCommand()
+        			->select()
+        			->from('stickertoguides')
+        			->where('idguide = :p_idguide and (idatetime >= :p_startdate and idatetime <= :p_enddate',
+        				[':p_idguide'=>$id, ':p_startdate'=>$startdate, ':p_enddate'=>$enddate])
+        			->queryAll();
+        		
+        		if ($data == false) 
+        			$data = [];
+        		
+        		$this->renderPartial('printreport1',
+        			['data'=>$data]       		
+        		);
+        	} else {
+        		throw new CHttpException(404,'You have no authorization for this operation.');
+        	}
         }
 }
