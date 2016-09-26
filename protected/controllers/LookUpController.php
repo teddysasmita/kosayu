@@ -1182,8 +1182,8 @@ EOS;
 			$data = Yii::app()->db->createCommand()
 			->select('count(*) as availnum')
 			->from('salespos')->where('idsticker = :p_stickernum and idatetime like :p_stickerdate',
-					[':p_stickernum'=>$stickernum, ':p_stickerdate'=>$stickerdate.'%'])
-					->queryScalar();
+				[':p_stickernum'=>$stickernum, ':p_stickerdate'=>$stickerdate.'%'])
+			->queryScalar();
 				
 			if ($data == 0) {
 				echo json_encode(0);

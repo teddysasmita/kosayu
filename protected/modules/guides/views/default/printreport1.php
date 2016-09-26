@@ -1,6 +1,10 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN">
 <html>
 <head>
+<?php 
+	Yii::app()->clientScript->registerCoreScript('jquery'); 
+	Yii::app()->clientScript->registerCoreScript('jquery.ui');
+?>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Aktivitas Guide</title>
 <style>
@@ -11,6 +15,8 @@
 </style>
 </head>
 <body>
+
+
 <?php echo CHtml::beginForm(Yii::app()->createUrl('printActivity')); ?>
 <div id="toolbar">
 <?php
