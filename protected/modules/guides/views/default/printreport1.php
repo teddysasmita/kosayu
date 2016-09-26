@@ -1,10 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN">
 <html>
 <head>
-<?php 
-	Yii::app()->clientScript->registerCoreScript('jquery'); 
-	Yii::app()->clientScript->registerCoreScript('jquery.ui');
-?>
+
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Aktivitas Guide</title>
 <style>
@@ -20,6 +17,9 @@
 <?php echo CHtml::beginForm(Yii::app()->createUrl('printActivity')); ?>
 <div id="toolbar">
 <?php
+	Yii::app()->clientScript->registerCoreScript('jquery');
+	Yii::app()->clientScript->registerCoreScript('jquery.ui');
+	
 	echo CHtml::label('Tanggal Awal', 'startdate');
 	$this->widget('zii.widgets.jui.CJuiDatePicker',array(
 			'name'=>'startdate',
@@ -38,6 +38,9 @@
 
 <div id="toolbar">
 <?php 
+	Yii::app()->clientScript->registerCoreScript('jquery');
+	Yii::app()->clientScript->registerCoreScript('jquery.ui');
+
 	echo CHtml::label('Tanggal Akhir', 'startdate');
 	$this->widget('zii.widgets.jui.CJuiDatePicker',array(
 			'name'=>'enddate',
