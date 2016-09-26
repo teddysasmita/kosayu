@@ -27,7 +27,11 @@
 			),
 			'value'=>$startdate,
 	));
-	
+?>
+</div>
+
+<div id="toolbar">
+<?php 
 	echo CHtml::label('Tanggal Akhir', 'startdate');
 	$this->widget('zii.widgets.jui.CJuiDatePicker',array(
 			'name'=>'enddate',
