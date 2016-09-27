@@ -14,26 +14,6 @@
 <body>
 
 
-<?php echo CHtml::beginForm(Yii::app()->createUrl('printActivity')); ?>
-<div id="toolbar">
-<?php
-	Yii::app()->clientScript->registerCoreScript('jquery');
-	Yii::app()->clientScript->registerCoreScript('jquery.ui');
-	
-	echo CHtml::label('Tanggal Awal', 'startdate');
-	$this->widget('zii.widgets.jui.CJuiDatePicker',array(
-			'name'=>'startdate',
-			// additional javascript options for the date picker plugin
-			'options'=>array(
-				'showAnim'=>'fold',
-			),
-			'htmlOptions'=>array(
-					'id'=>'startdate',
-					'style'=>'height:20px;'
-			),
-			'value'=>$startdate,
-	));
-?>
 </div>
 
 <div id="toolbar">
@@ -41,19 +21,7 @@
 	Yii::app()->clientScript->registerCoreScript('jquery');
 	Yii::app()->clientScript->registerCoreScript('jquery.ui');
 
-	echo CHtml::label('Tanggal Akhir', 'startdate');
-	$this->widget('zii.widgets.jui.CJuiDatePicker',array(
-			'name'=>'enddate',
-			// additional javascript options for the date picker plugin
-			'options'=>array(
-					'showAnim'=>'fold',
-			),
-			'htmlOptions'=>array(
-					'id'=>'enddate',
-					'style'=>'height:20px;'
-			),
-			'value'=>$enddate,
-	));
+	
 ?>
 </div>
 <div id="datalist">

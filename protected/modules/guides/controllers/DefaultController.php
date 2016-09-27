@@ -335,7 +335,7 @@ class DefaultController extends Controller
             $this->tracker->logActivity($this->formid, $action);
         }
         
-        public function actionPrintActivity($id, $startdate, $enddate)
+        public function actionViewActivity($id, $startdate, $enddate)
         {
         	if(Yii::app()->authManager->checkAccess($this->formid.'-Append',
         			Yii::app()->user->id)) {
@@ -351,7 +351,7 @@ class DefaultController extends Controller
         		if ($data == false) 
         			$data = [];
         		
-        		$this->renderPartial('printreport1',
+        		$this->render('activity',
         			['data'=>$data, 'startdate'=>$startdate, 'enddate'=>$enddate]       		
         		);
         	} else {

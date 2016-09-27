@@ -836,7 +836,7 @@ EOS;
     	SELECT a.id, b.iddetail, a.regnum, b.iditem, b.qty, b.price, b.discount, c.pct, c.id as idtipgroup
 		FROM detailsalespos b
 		JOIN ( salespos a 
-		LEFT JOIN detailtippayments e ON e.invoicenum = b.regnum 
+		LEFT JOIN detailtippayments e ON e.invoicenum = a.regnum 
 		) ON a.id = b.id
 		LEFT JOIN (
 		detailitemtipgroups d 
@@ -940,7 +940,7 @@ EOS;
     	SELECT a.id, b.iddetail, a.regnum, b.iditem, b.qty, b.price, b.discount, c.pct, c.id as idtipgroup
 		FROM detailsalespos b
 		JOIN (salespos a 
-		LEFT JOIN detailtippayments e ON e.invoicenum = b.regnum
+		LEFT JOIN detailtippayments e ON e.invoicenum = a.regnum
 		) ON a.id = b.id
 		LEFT JOIN (
 		detailitemtipgroups d
