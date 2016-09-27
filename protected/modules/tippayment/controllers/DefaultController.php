@@ -835,15 +835,12 @@ EOS;
     	$sql1 = <<<EOS
     	SELECT a.id, b.iddetail, a.regnum, b.iditem, b.qty, b.price, b.discount, c.pct, c.id as idtipgroup
 		FROM detailsalespos b
-		JOIN ( salespos a 
-		LEFT JOIN detailtippayments e ON e.invoicenum = a.regnum 
-		) ON a.id = b.id
+		JOIN salespos a  ON a.id = b.id
 		LEFT JOIN (
 		detailitemtipgroups d 
 		JOIN itemtipgroups c ON c.id = d.id
 		) ON d.iditem = b.iditem
     	where a.idsticker = '$idsticker' and a.idatetime like '$ddatetime%' 
-    	and a.regnum is null
     	order by a.regnum
 EOS;
     	$detailsales = array();
@@ -939,15 +936,12 @@ EOS;
     	$sql1 = <<<EOS
     	SELECT a.id, b.iddetail, a.regnum, b.iditem, b.qty, b.price, b.discount, c.pct, c.id as idtipgroup
 		FROM detailsalespos b
-		JOIN (salespos a 
-		LEFT JOIN detailtippayments e ON e.invoicenum = a.regnum
-		) ON a.id = b.id
+		JOIN salespos a ON a.id = b.id
 		LEFT JOIN (
 		detailitemtipgroups d
 		JOIN itemtipgroups c ON c.id = d.id
 		) ON d.iditem = b.iditem
     	where a.idsticker = '$idsticker' and a.idatetime like '$ddatetime%'
-    	and a.regnum is null
     	order by a.regnum
 EOS;
     	$detailsales = Yii::app()->db->createCommand($sql1)
