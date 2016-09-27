@@ -1132,10 +1132,8 @@ EOS;
 	public function actionCheckStickerInfo($stickerdate = '-', $stickernum = '-') 
 	{
 		if (!Yii::app()->user->isGuest) {
-			$stickerdate = rawurlencode($stickerdate);
-			$stickernum = rawurlencode($stickernum);
-			print_r($stickerdate);
-			print_r($stickernum);
+			$stickerdate = rawurldecode($stickerdate);
+			$stickernum = rawurldecode($stickernum);
 				
 			if (($stickerdate !== '') && ($stickernum !== '') ) {
 				$data = Yii::app()->db->createCommand()
