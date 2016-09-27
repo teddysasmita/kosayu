@@ -744,8 +744,7 @@ class DefaultController extends Controller
 EOS;
    		$this->salesdata = Yii::app()->db->createCommand()
    			->select($select1)->from('salespos a')
-   			->leftJoin('detailtippayments b', 'b.invoicenum = a.regnum')
-   			->where("a.idsticker = :p_idsticker and a.idatetime like :p_datetime and b.invoicenum is null",
+   			->where("a.idsticker = :p_idsticker and a.idatetime like :p_datetime",
    				array(':p_idsticker'=>$idsticker, ':p_datetime'=>$ddatetime.'%'))
    			->order('a.regnum')
    			->queryAll(); 	
