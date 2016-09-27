@@ -786,6 +786,7 @@ EOS;
     		$tip = lookup::getCommissionfromPartner($guide['idpartner']);
     		$tip2 = 1;
     	} else {
+    		$tip = lookup::getCommissionfromPartner($guide['idpartner']);
     		$tip2 = $tip / lookup::getCommissionfromPartner($guide['idpartner']);
     	}
     	
@@ -882,6 +883,7 @@ EOS;
     		$tip = lookup::getCommissionfromPartner($guide['idpartner']);
     		$tip2 = 1;
     	} else {
+    		$tip = lookup::getCommissionfromPartner($guide['idpartner']);
     		$tip2 = $tip / lookup::getCommissionfromPartner($guide['idpartner']);
     	}
     	
