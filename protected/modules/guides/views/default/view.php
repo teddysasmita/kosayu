@@ -35,7 +35,10 @@ $this->menu=array(
 			'label'=>'Besar Komisi',
 			'value'=>lookup::getCommission($model->idpartner, $model->idcomp),	
 		],
-		'userlog',
-		//'datetimelog',
+		[
+			'name'=>'userlog',
+			'value'=>lookup::UserNameFromUserID($model->userlog),
+		]
+		'datetimelog'
 	),
 )); ?>
