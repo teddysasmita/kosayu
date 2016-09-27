@@ -33,7 +33,7 @@ $this->menu=array(
 		'idnum',
 		[
 			'label'=>'Besar Komisi',
-			'value'=>"lookup::getCommission(\$data['idpartner'], \$data['idcomp'])",	
+			'value'=>lookup::getCommission($model->idpartner, $model->idcomp),	
 		],
 		'userlog',
 		//'datetimelog',
