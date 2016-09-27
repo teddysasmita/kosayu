@@ -828,6 +828,25 @@ class lookup extends CComponent {
 	
 	}
 	
+	public static function getCommission($idpartner, $idcomp = '-')
+	{
+		if ($idcomp == '-') {
+			$rate = Yii::app()->db->createCommand()
+				->select('defaulttip')->from('partners')
+				->where('id = :p_id',
+				[':p_id'=>$idpartner])
+				->queryScalar();
+		} else {
+			$rate = Yii::app()->db->createCommand()
+			->select('tip')->from('detailpartners')
+			->where('iddetail = :p_iddetail',
+					[':p_iddetail'=>$idcomp])
+			->queryScalar();
+		}
+		return $rate;
+	
+	}
+	
 	public static function getNamefromComp($idcomp)
 	{
 		$rate = Yii::app()->db->createCommand()
