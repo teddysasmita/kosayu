@@ -1134,6 +1134,9 @@ EOS;
 		if (!Yii::app()->user->isGuest) {
 			$stickerdate = rawurlencode($stickerdate);
 			$stickernum = rawurlencode($stickernum);
+			print_r($stickerdate);
+			print_r($stickernum);
+				
 			if (($stickerdate !== '') && ($stickernum !== '') ) {
 				$data = Yii::app()->db->createCommand()
 					->select('count(*) as availnum')
