@@ -66,7 +66,7 @@ $this->menu=array(
 $provider1 = new CArrayDataProvider($data);
 
 $this->widget('zii.widgets.grid.CGridView',[ 
-		'dataprovier'=>$provider1,
+		'dataprovider'=>$provider1,
 			'columns'=>[
 				[
 					'header'=>'Nomor Stiker',
