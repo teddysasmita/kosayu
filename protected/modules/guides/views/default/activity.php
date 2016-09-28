@@ -20,7 +20,7 @@ $this->menu=array(
 <div class='form'>
 
 <?php 
-	echo CHtml::beginForm(Yii::app()->createUrl('activity'), 'get');
+	echo CHtml::beginForm(Yii::app()->createUrl('guides/activity'), 'get');
 ?>
 
 <div class="row">
