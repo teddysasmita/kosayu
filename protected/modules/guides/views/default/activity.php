@@ -61,5 +61,24 @@ $this->menu=array(
 		
 <?php CHtml::endForm() ?>
 
+<?php 
+
+$provider1 = new CArrayDataProvider($data);
+
+$this->widget('zii.widgets.grid.CGridView',[ 
+		'dataprovier'=>$provider1,
+			'columns'=>[
+				[
+					'header'=>'Nomor Stiker',
+					'name'=>'stickernum',
+				],
+				[
+					'header'=>'Tanggal',
+					'name'=>'stickerdata',		
+				],
+			],			
+ 		l]);
+?>
+
 </div>
 
