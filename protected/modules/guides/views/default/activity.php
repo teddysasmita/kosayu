@@ -77,7 +77,7 @@ $this->widget('zii.widgets.grid.CGridView',[
 					'name'=>'stickerdata',		
 				],
 			],			
- 		l]);
+ 		]);
 ?>
 
 </div>
