@@ -21,6 +21,7 @@ $this->menu=array(
 
 <?php 
 	echo CHtml::beginForm(Yii::app()->createUrl('guides/default/viewActivity'), 'get');
+	echo CHtml::hiddenField('id',$model->id);
 ?>
 
 <div class="row">
