@@ -58,6 +58,12 @@ $this->menu=array(
 	));
 	?>
 </div>
+
+<div class='row'>
+	<?php 
+		echo CHtml::submitButton('Cari');
+	?>
+</div>
 		
 <?php CHtml::endForm() ?>
 
