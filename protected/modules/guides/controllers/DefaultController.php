@@ -341,6 +341,9 @@ class DefaultController extends Controller
         			Yii::app()->user->id)) {
         		$this->trackActivity('r');
         		
+        		
+        		$model = $this->loadModel($id);
+        		
         		$data = Yii::app()->db->createCommand()
         			->select()
         			->from('stickertoguides')
@@ -352,7 +355,7 @@ class DefaultController extends Controller
         			$data = [];
         		
         		$this->render('activity',
-        			['data'=>$data, 'startdate'=>$startdate, 'enddate'=>$enddate]       		
+        			['model'=>$model, data'=>$data, 'startdate'=>$startdate, 'enddate'=>$enddate]       		
         		);
         	} else {
         		throw new CHttpException(404,'You have no authorization for this operation.');
