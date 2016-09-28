@@ -20,7 +20,7 @@ $this->menu=array(
 <div class='form'>
 
 <?php 
-	CHtml::beginForm('activity', 'get');
+	echo CHtml::beginForm('activity', 'get');
 ?>
 
 <div class="row">
@@ -65,7 +65,7 @@ $this->menu=array(
 	?>
 </div>
 		
-<?php CHtml::endForm() ?>
+<?php echo CHtml::endForm() ?>
 
 <?php 
 
