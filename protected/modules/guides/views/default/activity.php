@@ -5,7 +5,7 @@
 $this->breadcrumbs=array(
    'Master Data'=>array('/site/masterdata'),
 	'Daftar'=>array('index'),
-	'Lihat Data'=>array('view', ['id'=>$model->id]),
+	'Lihat Data'=>array('view', 'id'=>$model->id),
 	'Aktifitas'
 );
 
@@ -32,6 +32,7 @@ $this->menu=array(
 			// additional javascript options for the date picker plugin
 			'options'=>array(
 				'showAnim'=>'fold',
+				'dateFormat'=>'yy/mm/dd',
 			),
 			'htmlOptions'=>array(
 					'id'=>'startdate',
@@ -49,7 +50,8 @@ $this->menu=array(
 			'name'=>'enddate',
 			// additional javascript options for the date picker plugin
 			'options'=>array(
-					'showAnim'=>'fold',
+				'showAnim'=>'fold',
+				'dateFormat'=>'yy/mm/dd',
 			),
 			'htmlOptions'=>array(
 					'id'=>'enddate',
