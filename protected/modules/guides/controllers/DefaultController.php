@@ -355,7 +355,7 @@ class DefaultController extends Controller
         			$data = [];
         		
         		$this->render('activity',
-        			['model'=>$model, data'=>$data, 'startdate'=>$startdate, 'enddate'=>$enddate]       		
+        			['model'=>$model, 'data'=>$data, 'startdate'=>$startdate, 'enddate'=>$enddate]       		
         		);
         	} else {
         		throw new CHttpException(404,'You have no authorization for this operation.');
