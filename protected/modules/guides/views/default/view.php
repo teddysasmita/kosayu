@@ -16,6 +16,8 @@ $this->menu=array(
         array('label'=>'History', 'url'=>array('history', 'id'=>$model->id)),
 	array('label'=>'Aktivitas', 'url'=>array('viewActivity', 'id'=>$model->id, 'startdate'=>idmaker::getDateTime(),
 		'enddate'=>idmaker::getDateTime())),
+		array('label'=>'Pembayaran', 'url'=>array('viewPayment', 'id'=>$model->id, 'startdate'=>idmaker::getDateTime(),
+				'enddate'=>idmaker::getDateTime())),
 );
 ?>
 

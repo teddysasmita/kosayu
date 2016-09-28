@@ -361,4 +361,31 @@ class DefaultController extends Controller
         		throw new CHttpException(404,'You have no authorization for this operation.');
         	}
         }
+        
+        public function actionViewPayment($id, $startdate, $enddate)
+        {
+        	if(Yii::app()->authManager->checkAccess($this->formid.'-Append',
+        			Yii::app()->user->id)) {
+        				$this->trackActivity('r');
+        
+        
+        				$model = $this->loadModel($id);
+        
+        				$data = Yii::app()->db->createCommand()
+        				->select()
+        				->from('guidepayments')
+        				->where('idguide = :p_idguide and (idatetime >= :p_startdate and idatetime <= :p_enddate)',
+        						[':p_idguide'=>$id, ':p_startdate'=>$startdate, ':p_enddate'=>$enddate])
+        						->queryAll();
+        
+        				if ($data == false)
+        					$data = [];
+        
+        				$this->render('payment',
+        						['model'=>$model, 'data'=>$data, 'startdate'=>$startdate, 'enddate'=>$enddate]
+        				);
+        			} else {
+        				throw new CHttpException(404,'You have no authorization for this operation.');
+        			}
+        }
 }
