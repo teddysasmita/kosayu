@@ -974,6 +974,7 @@ EOS;
     		unset($commission);
     	}
     	
+    	echo "COMMISSION -> ";
     	print_r($guideDetailCommission);
     	$totalcommission = 0;
     	foreach($guideDetailCommission as $cms) {
@@ -1004,6 +1005,7 @@ EOS;
     		$stickerdetail = $this->getSalesDetail2($model->id, $guide, $stk['stickernum'], $stk['stickerdate']);
     		$details = array_merge($details, $stickerdetail);
     	}
+    	echo "DETAILS -> ";
     	print_r($details);
     }
     
