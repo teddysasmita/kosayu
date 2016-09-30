@@ -974,6 +974,7 @@ EOS;
     		unset($commission);
     	}
     	
+    	print_r($guideDetailCommission);
     	$totalcommission = 0;
     	foreach($guideDetailCommission as $cms) {
     		$totalcommission =+ $cms['amount'];
@@ -1003,6 +1004,7 @@ EOS;
     		$stickerdetail = $this->getSalesDetail2($model->id, $guide, $stk['stickernum'], $stk['stickerdate']);
     		$details = array_merge($details, $stickerdetail);
     	}
+    	print_r($details);
     }
     
     private function updatestickers(& $model)
