@@ -960,12 +960,13 @@ EOS;
     		->queryAll();
     	
     	//print_r($stickers);
-    	$guideSalesSummary = array();
+    	/*$guideSalesSummary = array();
     	foreach($stickers as $stk) {
     		$sales = $this->getSales($model->id, $stk['stickernum'], $stk['stickerdate']);
     		$guideSalesSummary = array_merge($guideSalesSummary, $sales);
     		unset($sales);
     	}
+    	*/
     	
     	$guideDetailCommission = array();
     	foreach($stickers as $stk) {
@@ -974,11 +975,11 @@ EOS;
     		unset($commission);
     	}
     	
-    	echo "COMMISSION -> ";
-    	print_r($guideDetailCommission);
+    	//echo "COMMISSION -> ";
+    	//print_r($guideDetailCommission);
     	$totalcommission = 0;
     	foreach($guideDetailCommission as $cms) {
-    		$totalcommission =+ $cms['amount'];
+    		$totalcommission += $cms['amount'];
     	}
     	$model->commission = $totalcommission;
     	
@@ -1005,8 +1006,8 @@ EOS;
     		$stickerdetail = $this->getSalesDetail2($model->id, $guide, $stk['stickernum'], $stk['stickerdate']);
     		$details = array_merge($details, $stickerdetail);
     	}
-    	echo "DETAILS -> ";
-    	print_r($details);
+    	//echo "DETAILS -> ";
+    	//print_r($details);
     }
     
     private function updatestickers(& $model)
