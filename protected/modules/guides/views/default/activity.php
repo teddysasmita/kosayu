@@ -85,6 +85,11 @@ $this->widget('zii.widgets.grid.CGridView',[
 					'header'=>'Tanggal',
 					'name'=>'stickerdate',		
 				],
+				[
+					'header'=>'Total Jual',
+					'name'=>'totalsales',
+					'type'=>'number',
+				],
 			],			
  		]);
 ?>
