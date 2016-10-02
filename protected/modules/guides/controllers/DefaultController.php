@@ -359,7 +359,6 @@ class DefaultController extends Controller
         		if (($data == false) || (count($data) == 0))
         			$data = [];
         		else {
-        			print_r($data);
         			foreach($data as & $dt) {
          				$activity->bindValue(':p_idguide', $id, PDO::PARAM_STR);
         				$activity->bindValue(':p_stickernum', $dt['stickernum'], PDO::PARAM_STR);
@@ -367,7 +366,7 @@ class DefaultController extends Controller
         				$dt['totalsales'] = $activity->queryScalar();
         			}
         		}
-        		
+        		print_r($data);
         		$this->render('activity',
         			['model'=>$model, 'data'=>$data, 'startdate'=>$startdate, 'enddate'=>$enddate]       		
         		);
