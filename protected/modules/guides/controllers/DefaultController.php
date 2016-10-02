@@ -360,7 +360,7 @@ class DefaultController extends Controller
         			$data = [];
         		else {
         			print_r($data);
-        			foreach($data as $dt) {
+        			foreach($data as & $dt) {
          				$activity->bindValue(':p_idguide', $id, PDO::PARAM_STR);
         				$activity->bindValue(':p_stickernum', $dt['stickernum'], PDO::PARAM_STR);
         				$activity->bindValue(':p_stickerdate', $dt['stickerdate'], PDO::PARAM_STR);
