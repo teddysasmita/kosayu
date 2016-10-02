@@ -86,17 +86,17 @@ $this->widget('zii.widgets.grid.CGridView',[
 					'name'=>'idatetime',		
 				],
 				[
-					'header'=>'commission',
+					'header'=>'Total Komisi',
 					'name'=>'commission',
 					'type'=>'number',
 				],
 				[
-					'header'=>'deposit',
+					'header'=>'Titip',
 					'name'=>'deposit',
 					'type'=>'number',
 				],
 				[
-					'header'=>'amount',
+					'header'=>'Jumlah',
 					'name'=>'amount',
 					'type'=>'number',
 				],
