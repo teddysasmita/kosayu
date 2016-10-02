@@ -364,7 +364,7 @@ class DefaultController extends Controller
          				$activity->bindValue(':p_idguide', $id, PDO::PARAM_STR);
         				$activity->bindValue(':p_stickernum', $dt['stickernum'], PDO::PARAM_STR);
         				$activity->bindValue(':p_stickerdate', $dt['stickerdate'], PDO::PARAM_STR);
-        				$data['totalsales'] = $activity->queryScalarl();
+        				$data['totalsales'] = $activity->queryScalar();
         			}
         		}
         		
