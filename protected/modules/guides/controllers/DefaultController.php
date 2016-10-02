@@ -356,7 +356,7 @@ class DefaultController extends Controller
         			->join('guidepayments a', 'a.id = b.id')
         			->where('where a.idguide = :p_idguide and b.stickernum = :p_stickernum and b.stickerdate = :p_stickerdate');
         
-        		if ($data == false) 
+        		if (($data == false) || (count($data) == 0))
         			$data = [];
         		else {
         			print_r($data);
