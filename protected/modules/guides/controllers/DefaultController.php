@@ -354,7 +354,7 @@ class DefaultController extends Controller
         			->select('sum((b.price-b.discount) * b.qty) as totalsales')
         			->from('detailguidepayments b')
         			->join('guidepayments a', 'a.id = b.id')
-        			->where('where a.idguide = :p_idguide and b.stickernum = :p_stickernum and b.stickerdate = :p_stickerdate');
+        			->where('a.idguide = :p_idguide and b.stickernum = :p_stickernum and b.stickerdate = :p_stickerdate');
         
         		if (($data == false) || (count($data) == 0))
         			$data = [];
