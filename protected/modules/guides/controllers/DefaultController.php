@@ -366,7 +366,8 @@ class DefaultController extends Controller
         				$dt['totalsales'] = $activity->queryScalar();
         			}
         		}
-        		print_r($activity->sql);
+        		$boom = $activity->getText();
+        		print_r($boom);
         		$this->render('activity',
         			['model'=>$model, 'data'=>$data, 'startdate'=>$startdate, 'enddate'=>$enddate]       		
         		);
