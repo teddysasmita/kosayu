@@ -8135,3 +8135,27 @@ REQUEST_URI=/~teddys/kosayu/index.php?r=idguideprint/default/printCards&id=16903
 in /home/teddys/public_html/kosayu/protected/modules/idguideprint/views/default/printcard.php (144)
 in /home/teddys/public_html/kosayu/protected/modules/idguideprint/controllers/DefaultController.php (446)
 in /home/teddys/public_html/kosayu/index.php (13)
+2016/10/01 13:46:59 [error] [exception.CHttpException.404] CHttpException: Unable to resolve the request "gii". in /home/teddys/public_html/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /home/teddys/public_html/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('gii')
+#1 /home/teddys/public_html/yii/framework/base/CApplication.php(185): CWebApplication->processRequest()
+#2 /home/teddys/public_html/kosayu/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/~teddys/kosayu/index.php?r=gii
+---
+2016/10/01 13:47:02 [error] [exception.CHttpException.404] CHttpException: Unable to resolve the request "gii". in /home/teddys/public_html/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /home/teddys/public_html/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('gii')
+#1 /home/teddys/public_html/yii/framework/base/CApplication.php(185): CWebApplication->processRequest()
+#2 /home/teddys/public_html/kosayu/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/~teddys/kosayu/index.php?r=gii
+---
+2016/10/01 13:47:04 [error] [exception.CHttpException.404] CHttpException: Unable to resolve the request "gii". in /home/teddys/public_html/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /home/teddys/public_html/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('gii')
+#1 /home/teddys/public_html/yii/framework/base/CApplication.php(185): CWebApplication->processRequest()
+#2 /home/teddys/public_html/kosayu/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/~teddys/kosayu/index.php?r=gii
+---

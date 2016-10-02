@@ -73,34 +73,34 @@ class DefaultController extends Controller
 	 */
 	public function actionCreate()
 	{
-            if(Yii::app()->authManager->checkAccess($this->formid.'-Append', 
+		if(Yii::app()->authManager->checkAccess($this->formid.'-Append', 
                     Yii::app()->user->id))  {            
 
-                $this->state='c';
-                $this->trackActivity('c');
+			$this->state='c';
+			$this->trackActivity('c');
                 
-                $model=new Guides;
-                $this->afterInsert($model);
+			$model=new Guides;
+			$this->afterInsert($model);
                 
 		// Uncomment the following line if AJAX validation is needed
-		$this->performAjaxValidation($model);
+			$this->performAjaxValidation($model);
                         
-		if(isset($_POST['Guides'])) {
-                    $model->attributes=$_POST['Guides'];
-                    $this->beforePost($model);
-                    if($model->save()) {
-                        $this->afterPost($model);
-                        $this->redirect(array('view','id'=>$model->id));
-                    }    
-                }
+			if(isset($_POST['Guides'])) {
+				$model->attributes=$_POST['Guides'];
+				$this->beforePost($model);
+				if($model->save()) {
+					$this->afterPost($model);
+					$this->redirect(array('view','id'=>$model->id));
+				}    
+			}
                   
 
-		$this->render('create',array(
-			'model'=>$model,
-		));
-            } else {
-                throw new CHttpException(404,'You have no authorization for this operation.');
-            }
+			$this->render('create',array(
+				'model'=>$model,
+			));
+		} else {
+			throw new CHttpException(404,'You have no authorization for this operation.');
+		}
 	}
 
 	/**
@@ -110,36 +110,35 @@ class DefaultController extends Controller
 	 */
 	public function actionUpdate($id)
 	{
-            if(Yii::app()->authManager->checkAccess($this->formid.'-Update', 
-                    Yii::app()->user->id))  {
+		if(Yii::app()->authManager->checkAccess($this->formid.'-Update', 
+			Yii::app()->user->id))  {
                 
-                $this->state='u';
-                $this->trackActivity('u');
+			$this->state='u';
+			$this->trackActivity('u');
                 
-                $model=$this->loadModel($id);
-                $this->afterEdit($model);
+			$model=$this->loadModel($id);
+			$this->afterEdit($model);
 
-		// Uncomment the following line if AJAX validation is needed
-		$this->performAjaxValidation($model);
+			// Uncomment the following line if AJAX validation is needed
+			$this->performAjaxValidation($model);
 
-		if(isset($_POST['Guides']))
-		{
-                    $model->attributes=$_POST['Guides'];
+			if (isset($_POST['Guides'])) {
+				$model->attributes=$_POST['Guides'];
                     
-                    $this->beforePost($model);    
-                    $this->tracker->modify('customers', $id);
-                    if($model->save()) {
-                        $this->afterPost($model);                    
-                        $this->redirect(array('view','id'=>$model->id));
-                    }
-		}
+				$this->beforePost($model);    
+				$this->tracker->modify('customers', $id);
+				if ($model->save()) {
+					$this->afterPost($model);                    
+					$this->redirect(array('view','id'=>$model->id));
+				}
+			}
 
-		$this->render('update',array(
-                    'model'=>$model,
-		));
-            } else {
-                throw new CHttpException(404,'You have no authorization for this operation.');
-            }
+			$this->render('update',array(
+				'model'=>$model,
+			));
+		} else {
+			throw new CHttpException(404,'You have no authorization for this operation.');
+		}
 	}
 
 	/**
@@ -351,8 +350,22 @@ class DefaultController extends Controller
         				[':p_idguide'=>$id, ':p_startdate'=>$startdate, ':p_enddate'=>$enddate])
         			->queryAll();
         		
+        		$activity = Yii::app()->db->createCommand()
+        			->select('sum((b.price-b.discount) * b.qty) as totalsales')
+        			->from('detailguidepayments b')
+        			->join('guidepayments a', 'a.id = b.id')
+        			->where('where a.idguide = :p_idguide and b.stickernum = :p_stickernum and b.stickerdate = :p_stickerdate');
+        
         		if ($data == false) 
         			$data = [];
+        		else {
+        			foreach($data as $dt) {
+         				$activity->bindValue(':p_idguide', $id, PDO::PARAM_STR);
+        				$activity->bindValue(':p_stickernum', $data['stickernum'], PDO::PARAM_STR);
+        				$activity->bindValue(':p_stickerdate', $data['stickerdate'], PDO::PARAM_STR);
+        				$data['totalsales'] = $activity->queryScalarl();
+        			}
+        		}
         		
         		$this->render('activity',
         			['model'=>$model, 'data'=>$data, 'startdate'=>$startdate, 'enddate'=>$enddate]       		

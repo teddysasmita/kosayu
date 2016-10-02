@@ -73,34 +73,50 @@ class DefaultController extends Controller
 	 */
 	public function actionCreate()
 	{
-            if(Yii::app()->authManager->checkAccess($this->formid.'-Append', 
+		if(Yii::app()->authManager->checkAccess($this->formid.'-Append', 
                     Yii::app()->user->id))  {            
 
-                $this->state='c';
-                $this->trackActivity('c');
+			$this->state='c';
+			$this->trackActivity('c');
                 
-                $model=new Stickertoguides;
-                $this->afterInsert($model);
+			$model=new Stickertoguides;
+			$this->afterInsert($model);
                 
 		// Uncomment the following line if AJAX validation is needed
-		$this->performAjaxValidation($model);
+			$this->performAjaxValidation($model);
                         
-		if(isset($_POST['Stickertoguides'])) {
-                    $model->attributes=$_POST['Stickertoguides'];
-                    $this->beforePost($model);
-                    if($model->save()) {
-                        $this->afterPost($model);
-                        $this->redirect(array('view','id'=>$model->id));
-                    }    
-                }
-                  
+			if(isset($_POST['Stickertoguides'])) {
+            	if (isset($_POSt['yt0'])) {        
+					$model->attributes=$_POST['Stickertoguides'];
+					$this->beforePost($model);
+                    
+					$respond = $model->save();
+					if(!$respond) {
+						throw new CHttpException(5002,'There is an error in master posting: '.serialize($model->errors));
+					}
+                    
+					/*if(isset(Yii::app()->session['Detailstickertoguides']) ) {
+                    	$details=Yii::app()->session['Detailstickertoguides'];
+                    	$respond=$this->saveDetails($details);
+                    	if (!$respond)
+                    		throw new CHttpException(5002,'There is an error in detail posting');
+					}*/
+                    
+					$this->afterPost($model);
+					/*
+					Yii::app()->session->remove('Stickertoguides');
+					Yii::app()->session->remove('Detailstickertoguides');  
+					*/
+					$this->redirect(array('view','id'=>$model->id));
+            	} 
+			}      
 
-		$this->render('create',array(
-			'model'=>$model,
-		));
-            } else {
-                throw new CHttpException(404,'You have no authorization for this operation.');
-            }
+			$this->render('create',array(
+				'model'=>$model,
+			));
+		} else {
+			throw new CHttpException(404,'You have no authorization for this operation.');
+		}
 	}
 
 	/**
@@ -110,36 +126,51 @@ class DefaultController extends Controller
 	 */
 	public function actionUpdate($id)
 	{
-            if(Yii::app()->authManager->checkAccess($this->formid.'-Update', 
+		if(Yii::app()->authManager->checkAccess($this->formid.'-Update', 
                     Yii::app()->user->id))  {
                 
-                $this->state='u';
-                $this->trackActivity('u');
+			$this->state='u';
+			$this->trackActivity('u');
                 
-                $model=$this->loadModel($id);
-                $this->afterEdit($model);
+			$model=$this->loadModel($id);
+			$this->afterEdit($model);
 
 		// Uncomment the following line if AJAX validation is needed
-		$this->performAjaxValidation($model);
+			$this->performAjaxValidation($model);
 
-		if(isset($_POST['Stickertoguides']))
-		{
-                    $model->attributes=$_POST['Stickertoguides'];
-                    
-                    $this->beforePost($model);    
-                    $this->tracker->modify('customers', $id);
-                    if($model->save()) {
-                        $this->afterPost($model);                    
-                        $this->redirect(array('view','id'=>$model->id));
-                    }
-		}
+			if(isset($_POST['Stickertoguides'])) {	
+				$model->attributes=$_POST['Stickertoguides'];
+				$this->beforePost($model);    
+				$this->tracker->modify('stickertoguides', $id);
+				
+				$respond = $model->save();
+				if(!$respond) {
+					throw new CHttpException(5002,'There is an error in master posting: '.serialize($model->errors));
+				}
+				
+				/*
+				if(isset(Yii::app()->session['Detailstickertoguides']) ) {
+					$details=Yii::app()->session['Detailstickertoguides'];
+					$respond=$this->saveDetails($details);
+					if (!$respond)
+						throw new CHttpException(5002,'There is an error in detail posting');
+				}
+				*/
+					
+				$this->afterPost($model);
+				/*
+				Yii::app()->session->remove('Stickertoguides');
+				Yii::app()->session->remove('Detailstickertoguides');
+				*/	
+				$this->redirect(array('view','id'=>$model->id));
+			}
 
-		$this->render('update',array(
+			$this->render('update',array(
                     'model'=>$model,
-		));
-            } else {
-                throw new CHttpException(404,'You have no authorization for this operation.');
-            }
+			));
+		} else {
+			throw new CHttpException(404,'You have no authorization for this operation.');
+		}
 	}
 
 	/**
@@ -342,4 +373,31 @@ class DefaultController extends Controller
             $this->tracker->init();
             $this->tracker->logActivity($this->formid, $action);
         }
+        
+	protected function saveDetails(array $details)
+	{
+		$idmaker=new idmaker();
+        
+		$respond=true;
+		foreach ($details as $row) {
+        	$detailmodel=Detailstickertoguides::model()->findByPk($row['iddetail']);
+        	if($detailmodel==NULL) {
+        		$detailmodel=new Detailstickertoguides;
+        	} else {
+        		if(count(array_diff($detailmodel->attributes,$row))) {
+        			$this->tracker->init();
+        			$this->tracker->modify('detailstickertoguides', array('iddetail'=>$detailmodel->iddetail));
+        		}
+        	}
+        	$detailmodel->attributes=$row;
+        	$detailmodel->userlog=Yii::app()->user->id;
+        	$detailmodel->datetimelog=$idmaker->getDateTime();
+        	$respond=$detailmodel->save();
+        	if (!$respond) {
+        		break;
+        	}
+        }
+        return $respond;
+	}
+	
 }

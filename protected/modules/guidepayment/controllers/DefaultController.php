@@ -99,6 +99,7 @@ class DefaultController extends Controller
 	                    
 						$this->afterPost($model);
 						Yii::app()->session->remove('Guidepayments');
+						Yii::app()->session->remove('Detailguidepayments');
 						$this->redirect(array('view','id'=>$model->id));
 
 					} else if (isset($_POST['command'])){
