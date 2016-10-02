@@ -371,7 +371,6 @@ class DefaultController extends Controller
         				
         			}
         		}
-        		print_r($data);
         		$this->render('activity',
         			['model'=>$model, 'data'=>$data, 'startdate'=>$startdate, 'enddate'=>$enddate]       		
         		);
