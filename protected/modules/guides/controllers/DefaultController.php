@@ -360,14 +360,13 @@ class DefaultController extends Controller
         			$data = [];
         		else {
         			foreach($data as & $dt) {
-         				$activity->bindValue(':p_idguide', $id, PDO::PARAM_STR);
-        				$activity->bindValue(':p_stickernum', $dt['stickernum'], PDO::PARAM_STR);
-        				$activity->bindValue(':p_stickerdate', $dt['stickerdate'], PDO::PARAM_STR);
+         				$activity->bindParam(':p_idguide', $id, PDO::PARAM_STR);
+        				$activity->bindParam(':p_stickernum', $dt['stickernum'], PDO::PARAM_STR);
+        				$activity->bindParam(':p_stickerdate', $dt['stickerdate'], PDO::PARAM_STR);
         				$dt['totalsales'] = $activity->queryScalar();
         			}
         		}
-        		$boom = $activity->getText();
-        		print_r($boom);
+        		print_r($data);
         		$this->render('activity',
         			['model'=>$model, 'data'=>$data, 'startdate'=>$startdate, 'enddate'=>$enddate]       		
         		);
