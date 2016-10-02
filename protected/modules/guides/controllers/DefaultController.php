@@ -359,6 +359,7 @@ class DefaultController extends Controller
         		if ($data == false) 
         			$data = [];
         		else {
+        			print_r($data);
         			foreach($data as $dt) {
          				$activity->bindValue(':p_idguide', $id, PDO::PARAM_STR);
         				$activity->bindValue(':p_stickernum', $data['stickernum'], PDO::PARAM_STR);
