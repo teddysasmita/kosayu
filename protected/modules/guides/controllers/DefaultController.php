@@ -388,7 +388,7 @@ class DefaultController extends Controller
         	}
         }
         
-        public function actionViewPayment($id, $startdate, $enddate)
+        public function actionViewPayment($id, $startdate, $enddate, $print = '0')
         {
         	if(Yii::app()->authManager->checkAccess($this->formid.'-Append',
         		Yii::app()->user->id)) {
@@ -406,9 +406,14 @@ class DefaultController extends Controller
 				if ($data == false)
         			$data = [];
         
-				$this->render('payment',
-        			['model'=>$model, 'data'=>$data, 'startdate'=>$startdate, 'enddate'=>$enddate]
-        		);
+				if ($print == '0')
+					$this->render('payment',
+        				['model'=>$model, 'data'=>$data, 'startdate'=>$startdate, 'enddate'=>$enddate]
+        			);
+				else if ($print == '1')
+					$this->renderPartial('printReport2',
+        				['model'=>$model, 'data'=>$data, 'startdate'=>$startdate, 'enddate'=>$enddate]
+        			);
         	} else {
         		throw new CHttpException(404,'You have no authorization for this operation.');
         	}
