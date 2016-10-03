@@ -4,9 +4,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Print Out Pembayaran Guide</title>
 <style>
-	@media print {
 	@page { 
-		size: <?php echo '200'; ?>mm <?php echo '250'; ?>mm;
+		size: <?php echo '100'; ?>mm <?php echo '140'; ?>mm portrait;
 		margin-bottom: <?php echo '10'; ?>mm;
 		margin-top: <?php echo '10'; ?>mm; 
 		margin-right: <?php echo '10'; ?>mm;
@@ -15,10 +14,12 @@
 	}
 	
 	#maintable { 
+		width: 80mm;
 		border: solid thin;
 		border-collapse: collapse;
 	}
 	#detailtable { 
+		width: 80mm;
 		border: solid thin;
 		border-collapse: collapse;
 	}	 
@@ -43,10 +44,10 @@
 		padding: 1mm;
 		border: solid thin;
 		margin: 0;
+		font-size: small;
 	}
 	.numbercol {
 		text-align: right;
-	}
 	}
 </style>
 </head>
