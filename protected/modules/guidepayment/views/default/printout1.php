@@ -58,6 +58,9 @@
 	#signature {
 		height: 20mm;
 	}
+	h1 {
+		font-family: monospace;
+	}
 </style>
 </head>
 <body>
