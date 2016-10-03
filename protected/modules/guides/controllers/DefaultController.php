@@ -354,7 +354,7 @@ class DefaultController extends Controller
         			->select('sum((b.price-b.discount) * b.qty) as totalsales')
         			->from('detailguidepayments b')
         			->join('guidepayments a', 'a.id = b.id')
-        			->where('a.idguide = :p_idguide and b.stickernum = :p_stickernum and b.stickerdate = :p_stickerdate');
+        			->where('a.idguide = :p_idguide and b.stickernum = :p_stickernum and b.stickerdate like :p_stickerdate');
         
         		if (($data == false) || (count($data) == 0))
         			$data = [];
@@ -362,7 +362,7 @@ class DefaultController extends Controller
         			foreach($data as & $dt) {
          				$activity->bindParam(':p_idguide', $id, PDO::PARAM_STR);
         				$activity->bindParam(':p_stickernum', $dt['stickernum'], PDO::PARAM_STR);
-        				$activity->bindParam(':p_stickerdate', $dt['stickerdate'], PDO::PARAM_STR);
+        				$activity->bindParam(':p_stickerdate', $dt['stickerdate'].'%', PDO::PARAM_STR);
         				$totalsales = $activity->queryScalar();
         				if ($totalsales == FALSE)
         					$dt['totalsales'] = 0;
