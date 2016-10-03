@@ -1026,4 +1026,20 @@ EOS;
     			[':p_stickerdate'=>$stk['stickerdate'].'%',':p_stickernum'=>$stk['stickernum']]);	
     	}
     }
+    
+    public function actionPrintOut1($id)
+    {
+    	if(Yii::app()->authManager->checkAccess($this->formid.'-Append',
+    			Yii::app()->user->id)) {
+    		$this->trackActivity('r');
+    	
+    		$model = $this->loadModel($id);
+    		$details = $this->loadDetails($id);
+    		$this->renderPartial('printout1',
+				['model'=>$model, 'details'=>$details] );
+   
+    	} else {
+    		throw new CHttpException(404,'You have no authorization for this operation.');
+    	}
+    }
 }
