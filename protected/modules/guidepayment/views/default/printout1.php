@@ -49,10 +49,10 @@
 	.numbercol {
 		text-align: right;
 	}
-	.space {
+	#space {
 		height: 3mm;
 	}
-	.signature {
+	#signature {
 		height: 20mm;
 	}
 </style>
