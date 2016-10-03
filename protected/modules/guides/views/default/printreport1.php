@@ -31,7 +31,7 @@
 	</thead>
 	<?php 
 	foreach ($data as $row) {
-		echo "<tr><td>${row['stickernum']}</td><td>${row['stickerdate']}</td><td>".number_format($row['stickertotalsales'])."</td></tr>";	
+		echo "<tr><td>${row['stickernum']}</td><td>${row['stickerdate']}</td><td>".number_format($row['totalsales'])."</td></tr>";	
 	};
 	?>
 	</table>
