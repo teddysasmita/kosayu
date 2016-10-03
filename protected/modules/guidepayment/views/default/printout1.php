@@ -46,7 +46,7 @@
 		padding: 1mm;
 		border: solid thin;
 		margin: 0;
-		font-size: smaller;
+		font-size: small;
 		font-family: monospace; 
 	}
 	.numbercol {
@@ -92,9 +92,9 @@
 	</table>
 	<div id='space'></div>
 	<table id="signaturetable">
-	<tr><td>Tanda Tangan
+	<tr><td class="infofield">Tanda Tangan
 	<tr><td id="signature">
-	<tr><td><?php echo lookup::GuideNameFromID($model->idguide);?>
+	<tr><td class="infovalue"><?php echo lookup::GuideNameFromID($model->idguide);?>
 	</table>
 </body>
 </html>
