@@ -335,7 +335,7 @@ class DefaultController extends Controller
             $this->tracker->logActivity($this->formid, $action);
         }
         
-        public function actionViewActivity($id, $startdate, $enddate, $print = 0)
+        public function actionViewActivity($id, $startdate, $enddate, $print = '0')
         {
         	if(Yii::app()->authManager->checkAccess($this->formid.'-Append',
         			Yii::app()->user->id)) {
@@ -374,9 +374,15 @@ class DefaultController extends Controller
         				Yii::app()->session->remove('guideactivity');
         			Yii::app()->session['guideactivity'] = $data;
         		}
-        		$this->render('activity',
-        			['model'=>$model, 'data'=>$data, 'startdate'=>$startdate, 'enddate'=>$enddate]       		
-        		);
+        		if ($print == '0')
+        			$this->render('activity',
+        				['model'=>$model, 'data'=>$data, 'startdate'=>$startdate, 'enddate'=>$enddate]       		
+	        		);
+        		else if ($print == '1')
+        			$this->renderPartial('printreport1',
+        				['model'=>$model, 'data'=>$data, 'startdate'=>$startdate, 'enddate'=>$enddate]       		
+	        		);
+        		
         	} else {
         		throw new CHttpException(404,'You have no authorization for this operation.');
         	}
