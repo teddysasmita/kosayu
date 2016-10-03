@@ -21,12 +21,14 @@
 	.maincol {
 		padding: 2mm;
 		border: solid thin;
+		margin: 0;
 	}
 	#col3 {
 		text-align: right;
 	}
 	th {
 		padding: 2mm;
+		border: solid thin;
 	}
 </style>
 </head>
