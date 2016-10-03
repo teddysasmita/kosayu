@@ -26,7 +26,7 @@
 	}
 	.infovalue {
 		padding: 2mm;
-		border: solid thin;
+		border: none;
 		margin: 0;
 	}
 	.infofield {
