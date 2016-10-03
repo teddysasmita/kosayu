@@ -86,7 +86,7 @@ class DefaultController extends Controller
 			$this->performAjaxValidation($model);
                         
 			if(isset($_POST['Stickertoguides'])) {
-            	if (isset($_POSt['yt1'])) {        
+            	if (isset($_POST['yt1'])) {        
 					$model->attributes=$_POST['Stickertoguides'];
 					$this->beforePost($model);
                     
