@@ -4,6 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Print Out Pembayaran Guide</title>
 <style>
+	@media print {
 	@page { 
 		size: <?php echo '200'; ?>mm <?php echo '250'; ?>mm;
 		margin-bottom: <?php echo '10'; ?>mm;
@@ -45,6 +46,7 @@
 	}
 	.numbercol {
 		text-align: right;
+	}
 	}
 </style>
 </head>
