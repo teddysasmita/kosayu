@@ -411,7 +411,7 @@ class DefaultController extends Controller
         				['model'=>$model, 'data'=>$data, 'startdate'=>$startdate, 'enddate'=>$enddate]
         			);
 				else if ($print == '1')
-					$this->renderPartial('printReport2',
+					$this->renderPartial('printreport2',
         				['model'=>$model, 'data'=>$data, 'startdate'=>$startdate, 'enddate'=>$enddate]
         			);
         	} else {
