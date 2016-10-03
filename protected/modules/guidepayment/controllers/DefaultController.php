@@ -1041,7 +1041,7 @@ EOS;
     			->from('detailguidepayments')
     			->where('id = :p_id', [':p_id'=>$id])
     			->group('regnum')
-    			->queryRow();
+    			->queryAll();
     		$this->renderPartial('printout1',
 				['model'=>$model, 'details'=>$details] );
    
