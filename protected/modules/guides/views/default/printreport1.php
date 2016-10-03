@@ -13,13 +13,13 @@
 	}
 	
 	.maintable { 
-		border: none;
+		border: thin;
 	}	 
 	.mainrow {
 		padding: 2mm;
 	}
 	.maincol {
-	
+		padding: 2mm;
 	}
 	#col3 {
 		text-align: right;
