@@ -23,7 +23,12 @@
 	.mainrow {
 		padding: 2mm;
 	}
-	.maincol {
+	.infovalue {
+		padding: 2mm;
+		border: solid thin;
+		margin: 0;
+	}
+	.infofield {
 		padding: 2mm;
 		border: solid thin;
 		margin: 0;
@@ -47,7 +52,7 @@
 	<?php 
 	echo "<tr class=\"mainrow\"><td class=\"infofield\">Nomor Urut<td>:<td class=\"infovalue\">".$model->regnum;
 	echo "<tr class=\"mainrow\"><td class=\"infofield\">Tanggal<td>:<td class=\"infovalue\">".$model->idatetime;
-	echo "<tr class=\"mainrow\"><td class=\"infofield\">Total Komisi<td class=\"infovalue numbercol\">:<td>".number_format($model->commission);
+	echo "<tr class=\"mainrow\"><td class=\"infofield\">Total Komisi<td>:<td class=\"infovalue numbercol\">".number_format($model->commission);
 	echo "<tr class=\"mainrow\"><td class=\"infofield\">Deposit<td>:<td class=\"infovalue numbercol\">".number_format($model->deposit);
 	echo "<tr class=\"mainrow\"><td class=\"infofield\">Jumlah Diambil<td>:<td class=\"infovalue numbercol\">".number_format($model->amount);
 	?>
