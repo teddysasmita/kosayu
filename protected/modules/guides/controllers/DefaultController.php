@@ -335,7 +335,7 @@ class DefaultController extends Controller
             $this->tracker->logActivity($this->formid, $action);
         }
         
-        public function actionViewActivity($id, $startdate, $enddate)
+        public function actionViewActivity($id, $startdate, $enddate, $print = 0)
         {
         	if(Yii::app()->authManager->checkAccess($this->formid.'-Append',
         			Yii::app()->user->id)) {

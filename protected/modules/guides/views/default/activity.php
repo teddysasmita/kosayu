@@ -11,7 +11,8 @@ $this->breadcrumbs=array(
 
 $this->menu=array(
 	//array('label'=>'Daftar Pelanggan', 'url'=>array('index')),
-	array('label'=>'Cetak', 'url'=>array('printActivity')),
+	array('label'=>'Cetak', 'url'=>array('viewActivity', 'id'=>$model->id, 'startdate'=>$startdate, 
+		'enddate'=>$enddate, ['target'=>'_blank'])),
 );
 ?>
 
