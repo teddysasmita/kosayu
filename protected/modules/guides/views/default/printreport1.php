@@ -30,8 +30,6 @@
 	<h1>Laporan Aktivitas Guide</h1>
 	<h2><?php echo $model->firstname.' '.$model->lastname; ?></h2>
 	<table id="maintable">
-	<colgroup>
-	<col class="maincol" id="col1"><col class="maincol" id="col2"><col class="maincol" id="col3">
 	<thead id="mainhtableead">
 	<tr>
 	<th>Nomor Sticker</th>
@@ -41,7 +39,10 @@
 	</thead>
 	<?php 
 	foreach ($data as $row) {
-		echo "<tr class=\"mainrow\"><td>${row['stickernum']}</td><td>${row['stickerdate']}</td><td>".number_format($row['totalsales'])."</td></tr>";	
+		echo "<tr class=\"mainrow\">";
+		echo "<td class=\"maincol\">${row['stickernum']}</td>";
+		echo "<td class=\"maincol\">${row['stickerdate']}</td>";
+		echo "<td class=\"maincol\" id=\"col3\">".number_format($row['totalsales'])."</td></tr>";	
 	};
 	?>
 	</table>
