@@ -13,7 +13,7 @@
 	}
 	
 	.maintable { 
-		border: thin;
+		border: solid medium;
 	}	 
 	.mainrow {
 		padding: 2mm;
