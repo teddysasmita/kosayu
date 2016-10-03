@@ -13,16 +13,20 @@
 	}
 	
 	#maintable { 
-		border: solid medium;
+		border: solid thin;
 	}	 
 	.mainrow {
 		padding: 2mm;
 	}
 	.maincol {
 		padding: 2mm;
+		border: solid thin;
 	}
 	#col3 {
 		text-align: right;
+	}
+	th {
+		padding: 2mm;
 	}
 </style>
 </head>
