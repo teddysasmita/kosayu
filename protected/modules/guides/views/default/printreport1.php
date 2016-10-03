@@ -15,13 +15,22 @@
 	.maintable { 
 		border: none;
 	}	 
+	.mainrow {
+		margin: 2mm;
+	}
+	.maincol {
+	
+	}
+	#col3 {
+		text-align: right;
+	}
 </style>
 </head>
 <body>
 	<h1>Laporan Aktivitas Guide</h1>
 	<h2><?php echo $model->firstname.' '.$model->lastname; ?></h2>
 	<table id="maintable">
-	<col id="col1"><col id="col2"><col id="col3">
+	<col class="maincol" id="col1"><col class="maincol" id="col2"><col class="maincol" id="col3">
 	<thead id="mainhtableead">
 	<tr>
 	<th>Nomor Sticker</th>
@@ -31,7 +40,7 @@
 	</thead>
 	<?php 
 	foreach ($data as $row) {
-		echo "<tr><td>${row['stickernum']}</td><td>${row['stickerdate']}</td><td>".number_format($row['totalsales'])."</td></tr>";	
+		echo "<tr class=\"mainrow\"><td>${row['stickernum']}</td><td>${row['stickerdate']}</td><td>".number_format($row['totalsales'])."</td></tr>";	
 	};
 	?>
 	</table>
