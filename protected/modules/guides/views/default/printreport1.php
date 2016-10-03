@@ -12,7 +12,7 @@
 		page-break-before: 5mm;
 	}
 	
-	.maintable { 
+	#maintable { 
 		border: solid medium;
 	}	 
 	.mainrow {
