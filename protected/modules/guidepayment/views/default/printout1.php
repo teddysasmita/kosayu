@@ -49,6 +49,12 @@
 	.numbercol {
 		text-align: right;
 	}
+	.space {
+		height: 3mm;
+	}
+	.signature {
+		height: 20mm;
+	}
 </style>
 </head>
 <body>
@@ -62,6 +68,7 @@
 	echo "<tr class=\"mainrow\"><td class=\"infofield\">Jumlah Diambil<td>:<td class=\"infovalue numbercol\">".number_format($model->amount);
 	?>
 	</table>
+	<div id='space'></div>
 	<table id="detailtable">
 	<tr>
 	<th class="detailcol">No Sticker
@@ -80,6 +87,7 @@
 	}
 	?>
 	</table>
+	<div id='space'></div>
 	<table id="signaturetable">
 	<tr><td>Tanda Tangan
 	<tr><td id="signature">
