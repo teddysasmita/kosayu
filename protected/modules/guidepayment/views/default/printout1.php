@@ -45,6 +45,7 @@
 		border: solid thin;
 		margin: 0;
 		font-size: smaller;
+		font-family: sans-serif; 
 	}
 	.numbercol {
 		text-align: right;
