@@ -52,8 +52,8 @@
 		echo "<tr class=\"mainrow\">";
 		echo "<td class=\"maincol\">${row['regnum']}</td>";
 		echo "<td class=\"maincol\">${row['idatetime']}</td>";
-		echo "<td class=\"maincol colnum\">".number_format($row['commission'])."</td></tr>";
-		echo "<td class=\"maincol colnum\">".number_format($row['deposit'])."</td></tr>";
+		echo "<td class=\"maincol colnum\">".number_format($row['commission'])."</td>";
+		echo "<td class=\"maincol colnum\">".number_format($row['deposit'])."</td>";
 		echo "<td class=\"maincol colnum\">".number_format($row['amount'])."</td></tr>";
 	};
 	?>
