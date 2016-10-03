@@ -14,12 +14,12 @@
 	}
 	
 	#maintable { 
-		width: 80mm;
+		width: 120mm;
 		border: solid thin;
 		border-collapse: collapse;
 	}
 	#detailtable { 
-		width: 80mm;
+		width: 120mm;
 		border: solid thin;
 		border-collapse: collapse;
 	}	 
@@ -31,11 +31,13 @@
 		padding: 2mm;
 		border: none;
 		margin: 0;
+		font-family: monospace;
 	}
 	.infofield {
 		padding: 2mm;
 		border: none;
 		margin: 0;
+		font-family: monospace;
 	}
 	.detailrow {
 		padding: 1mm;
@@ -45,7 +47,7 @@
 		border: solid thin;
 		margin: 0;
 		font-size: smaller;
-		font-family: sans-serif; 
+		font-family: monospace; 
 	}
 	.numbercol {
 		text-align: right;
@@ -74,17 +76,17 @@
 	<tr>
 	<th class="detailcol">No Sticker
 	<th class="detailcol">No Nota
-	<th class="detailcol">Barang
-	<th class="detailcol">Qty
+	<th class="detailcol">Total
+	<th class="detailcol">Disc
 	<th class="detailcol">Komisi
 	<?php 
 	foreach ($details as $dt) {
 		echo "<tr class=\"detailrow\">";
 		echo "<td class=\"detailcol\">${dt['stickernum']}";
 		echo "<td class=\"detailcol\">${dt['regnum']}";
-		echo "<td class=\"detailcol\">".lookup::ItemNameFromItemID($dt['iditem']);
-		echo "<td class=\"detailcol numbercol\">".number_format($dt['qty']);
-		echo "<td class=\"detailcol numbercol\">".number_format($dt['amount']);
+		echo "<td class=\"detailcol numbercol\">".number_format($dt['totalsales']);
+		echo "<td class=\"detailcol numbercol\">".number_format($dt['totaldisc']);
+		echo "<td class=\"detailcol numbercol\">".number_format($dt['commission']);
 	}
 	?>
 	</table>

@@ -1034,7 +1034,14 @@ EOS;
     		$this->trackActivity('r');
     	
     		$model = $this->loadModel($id);
-    		$details = $this->loadDetails($id);
+    		$details = Yii::app()->db->createCommand()
+    			->select('sum(price * qty) as totalsales,'.
+    				'sum(discount * qty) as totaldisc,'.
+    				'sum(amount) as commission, regnum, stickernum')
+    			->from('detailguidepayments')
+    			->where('id = :p_id', [':p_id'=>$id])
+    			->group('regnum')
+    			->queryRow();
     		$this->renderPartial('printout1',
 				['model'=>$model, 'details'=>$details] );
    
