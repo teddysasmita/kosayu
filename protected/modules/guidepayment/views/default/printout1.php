@@ -44,7 +44,7 @@
 		padding: 1mm;
 		border: solid thin;
 		margin: 0;
-		font-size: small;
+		font-size: smaller;
 	}
 	.numbercol {
 		text-align: right;
@@ -63,6 +63,12 @@
 	?>
 	</table>
 	<table id="detailtable">
+	<tr>
+	<th>No Sticker
+	<th>No Nota
+	<th>Barang
+	<th>Qty
+	<th>Komisi
 	<?php 
 	foreach ($details as $dt) {
 		echo "<tr class=\"detailrow\">";
