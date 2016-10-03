@@ -14,6 +14,7 @@
 	
 	#maintable { 
 		border: solid thin;
+		border-collapse: collapse;
 		padding: 0mm
 	}	 
 	.mainrow {
