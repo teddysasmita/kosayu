@@ -75,8 +75,8 @@
 		echo "<td class=\"detailcol\">${dt['stickernum']}";
 		echo "<td class=\"detailcol\">${dt['regnum']}";
 		echo "<td class=\"detailcol\">".lookup::ItemNameFromItemID($dt['iditem']);
-		echo "<td class=\"detailcol numbercol\">${dt['qty']}";
-		echo "<td class=\"detailcol numbercol\">${dt['amount']}";
+		echo "<td class=\"detailcol numbercol\">".number_format($dt['qty']);
+		echo "<td class=\"detailcol numbercol\">".number_format($dt['amount']);
 	}
 	?>
 	</table>
