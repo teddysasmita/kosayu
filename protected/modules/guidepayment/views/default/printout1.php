@@ -22,6 +22,7 @@
 	}	 
 	.mainrow {
 		padding: 2mm;
+		border: solid thin;
 	}
 	.infovalue {
 		padding: 2mm;
@@ -30,7 +31,7 @@
 	}
 	.infofield {
 		padding: 2mm;
-		border: solid thin;
+		border: none;
 		margin: 0;
 	}
 	.detailrow {
@@ -63,7 +64,7 @@
 		echo "<tr class=\"detailrow\">";
 		echo "<td class=\"detailcol\">${dt['stickernum']}";
 		echo "<td class=\"detailcol\">${dt['regnum']}";
-		echo "<td class=\"detailcol\">".lookup::ItemNameFromItemID($dt['stickernum']);
+		echo "<td class=\"detailcol\">".lookup::ItemNameFromItemID($dt['iditem']);
 		echo "<td class=\"detailcol numbercol\">${dt['qty']}";
 		echo "<td class=\"detailcol numbercol\">${dt['amount']}";
 	}
