@@ -86,7 +86,7 @@ class DefaultController extends Controller
 			$this->performAjaxValidation($model);
                         
 			if(isset($_POST['Stickertoguides'])) {
-            	if (isset($_POSt['yt0'])) {        
+            	if (isset($_POSt['yt1'])) {        
 					$model->attributes=$_POST['Stickertoguides'];
 					$this->beforePost($model);
                     
@@ -139,14 +139,15 @@ class DefaultController extends Controller
 			$this->performAjaxValidation($model);
 
 			if(isset($_POST['Stickertoguides'])) {	
-				$model->attributes=$_POST['Stickertoguides'];
-				$this->beforePost($model);    
-				$this->tracker->modify('stickertoguides', $id);
+				if (isset($_POSt['yt1'])) {
+					$model->attributes=$_POST['Stickertoguides'];
+					$this->beforePost($model);    
+					$this->tracker->modify('stickertoguides', $id);
 				
-				$respond = $model->save();
-				if(!$respond) {
-					throw new CHttpException(5002,'There is an error in master posting: '.serialize($model->errors));
-				}
+					$respond = $model->save();
+					if(!$respond) {
+						throw new CHttpException(5002,'There is an error in master posting: '.serialize($model->errors));
+					}
 				
 				/*
 				if(isset(Yii::app()->session['Detailstickertoguides']) ) {
@@ -157,12 +158,13 @@ class DefaultController extends Controller
 				}
 				*/
 					
-				$this->afterPost($model);
+					$this->afterPost($model);
 				/*
 				Yii::app()->session->remove('Stickertoguides');
 				Yii::app()->session->remove('Detailstickertoguides');
 				*/	
-				$this->redirect(array('view','id'=>$model->id));
+					$this->redirect(array('view','id'=>$model->id));
+				}
 			}
 
 			$this->render('update',array(

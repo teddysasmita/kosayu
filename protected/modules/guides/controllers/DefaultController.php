@@ -174,6 +174,7 @@ class DefaultController extends Controller
                 Yii::app()->user->id)) {
                 $this->trackActivity('l');
                 
+                Yii::app()->session->remove('guideactivity');
                 $dataProvider=new CActiveDataProvider('Guides');
                 $this->render('index',array(
                     'dataProvider'=>$dataProvider,
@@ -368,8 +369,10 @@ class DefaultController extends Controller
         					$dt['totalsales'] = 0;
         				else
         					$dt['totalsales'] = $totalsales;
-        				
         			}
+        			if (isset(Yii::app()->session['guideactivity']))
+        				Yii::app()->session->remove('guideactivity');
+        			Yii::app()->session['guideactivity'] = $data;
         		}
         		$this->render('activity',
         			['model'=>$model, 'data'=>$data, 'startdate'=>$startdate, 'enddate'=>$enddate]       		
@@ -382,27 +385,26 @@ class DefaultController extends Controller
         public function actionViewPayment($id, $startdate, $enddate)
         {
         	if(Yii::app()->authManager->checkAccess($this->formid.'-Append',
-        			Yii::app()->user->id)) {
-        				$this->trackActivity('r');
+        		Yii::app()->user->id)) {
+				$this->trackActivity('r');
+     			
+				$model = $this->loadModel($id);
         
+				$data = Yii::app()->db->createCommand()
+					->select()
+        			->from('guidepayments')
+        			->where('idguide = :p_idguide and (idatetime >= :p_startdate and idatetime <= :p_enddate)',
+        				[':p_idguide'=>$id, ':p_startdate'=>$startdate, ':p_enddate'=>$enddate])
+					->queryAll();
         
-        				$model = $this->loadModel($id);
+				if ($data == false)
+        			$data = [];
         
-        				$data = Yii::app()->db->createCommand()
-        				->select()
-        				->from('guidepayments')
-        				->where('idguide = :p_idguide and (idatetime >= :p_startdate and idatetime <= :p_enddate)',
-        						[':p_idguide'=>$id, ':p_startdate'=>$startdate, ':p_enddate'=>$enddate])
-        						->queryAll();
-        
-        				if ($data == false)
-        					$data = [];
-        
-        				$this->render('payment',
-        						['model'=>$model, 'data'=>$data, 'startdate'=>$startdate, 'enddate'=>$enddate]
-        				);
-        			} else {
-        				throw new CHttpException(404,'You have no authorization for this operation.');
-        			}
+				$this->render('payment',
+        			['model'=>$model, 'data'=>$data, 'startdate'=>$startdate, 'enddate'=>$enddate]
+        		);
+        	} else {
+        		throw new CHttpException(404,'You have no authorization for this operation.');
+        	}
         }
 }
