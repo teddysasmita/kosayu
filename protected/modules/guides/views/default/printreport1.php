@@ -13,7 +13,6 @@
 	}
 	
 	.maintable { 
-		/*margin-left: <?php echo $model->paperwidth - ( 3 * $model->papersidem) - $model->labelwidth - (2 * $model->labelsidem); ?>mm;*/ 	
 		border: none;
 	}	 
 </style>
