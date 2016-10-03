@@ -16,7 +16,7 @@
 		border: none;
 	}	 
 	.mainrow {
-		margin: 2mm;
+		padding: 2mm;
 	}
 	.maincol {
 	
@@ -30,6 +30,7 @@
 	<h1>Laporan Aktivitas Guide</h1>
 	<h2><?php echo $model->firstname.' '.$model->lastname; ?></h2>
 	<table id="maintable">
+	<colgroup>
 	<col class="maincol" id="col1"><col class="maincol" id="col2"><col class="maincol" id="col3">
 	<thead id="mainhtableead">
 	<tr>
