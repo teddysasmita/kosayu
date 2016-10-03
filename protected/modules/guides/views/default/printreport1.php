@@ -19,7 +19,7 @@
 </head>
 <body>
 	<h1>Laporan Aktivitas Guide</h1>
-	<h2><?php echo $model->name; ?></h2>
+	<h2><?php echo $model->firstname.' '.$model->lastname; ?></h2>
 	<table id="maintable">
 	<col id="col1"><col id="col2"><col id="col3">
 	<thead id="mainhtableead">
