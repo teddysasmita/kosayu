@@ -64,11 +64,11 @@
 	</table>
 	<table id="detailtable">
 	<tr>
-	<th>No Sticker
-	<th>No Nota
-	<th>Barang
-	<th>Qty
-	<th>Komisi
+	<th class="detailcol">No Sticker
+	<th class="detailcol">No Nota
+	<th class="detailcol">Barang
+	<th class="detailcol">Qty
+	<th class="detailcol">Komisi
 	<?php 
 	foreach ($details as $dt) {
 		echo "<tr class=\"detailrow\">";
