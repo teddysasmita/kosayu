@@ -4,7 +4,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Print Out Pembayaran Guide</title>
 <style>
-	@page { size: <?php echo '100'; ?>mm <?php echo '140'; ?>mm;
+	@page { 
+		size: <?php echo '200'; ?>mm <?php echo '250'; ?>mm;
 		margin-bottom: <?php echo '10'; ?>mm;
 		margin-top: <?php echo '10'; ?>mm; 
 		margin-right: <?php echo '10'; ?>mm;
