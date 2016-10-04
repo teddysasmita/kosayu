@@ -1129,7 +1129,7 @@ EOS;
 		};
 	}
 	
-	public function actionCheckStickerInfo($stickerdate = '-', $stickernum = '-') 
+	public function actionCheckStickerInfo($idguide, $stickerdate = '-', $stickernum = '-') 
 	{
 		if (!Yii::app()->user->isGuest) {
 			$stickerdate = rawurldecode($stickerdate);
@@ -1146,28 +1146,74 @@ EOS;
 					echo json_encode(0);
 					return;
 				} else if ($data > 0) {
-					$data = Yii::app()->db->createCommand()
-						->select('count(*) as listednum')
-						->from('stickertoguides')->where('stickernum = :p_stickernum',
-							[':p_stickernum'=>$stickernum ])
-						->queryScalar();
-					if ($data == 0) {
-						$data = Yii::app()->db->createCommand()
-							->select('count(*) as listednum')
-							->from('tippayments')->where('idsticker = :p_idsticker and ddatetime like :p_ddatetime',
-								[':p_idsticker'=>$stickernum, ':p_ddatetime'=>$stickerdate.'%' ])
-								->queryScalar();
-						if ($data == 0)
-							echo json_encode(2);
-						else
-							echo json_encode(1);
+					$datastickertoguide = Yii::app()->db->createCommand()
+						->select('b.idpartner, b.idcomp')
+						->from('stickertoguides a')
+						->join('guides b', 'b.id = a.idguide')
+						->where('a.stickernum = :p_stickernum and a.stickerdate like = :p_stickerdate',
+							[':p_stickernum'=>$stickernum, ':p_stickerdate'=>$stickerdate.'%'])
+						->queryRow();
+					$dataguide = Yii::app()->db->createCommand()
+						->select()
+						->from('guides')
+						->where('id = :p_id',[':p_id'=>$idguide])
+						->queryRow();
+					if ($datastickertoguide !== FALSE) {
+					// there was assignments for the stickernum and stickerdate combo
+						if ($datastickertoguide['idpartner'] == $dataguide['idpartner']) {
+							if (!is_null($datastickertoguide['idcomp'])) {
+								$assignedtip = Yii::app()->db->createCommand()
+									->select('sum(d.tip) as totaltip')
+									->from('stickertoguides a')
+									->join('guides b', 'b.id = a.idguide')
+									->join('detailpartners c', 'c.id = b.idcomp')
+									->where('a.stickernum = :p_stickernum and a.stickerdate like = :p_stickerdate',
+										[':p_stickernum'=>$stickernum, ':p_stickerdate'=>$stickerdate.'%'])
+									->queryScalar();
+								$guidetip = Yii::app()->db->createCommand()
+									->select('b.tip')
+									->from('guides a')
+									->join ('detailpartners b', 'b.iddetail = a.idcomp')
+									->where('a.id = :p_id',[':p_id'=>$idguide])
+									->queryScalar();	
+								if ($totaltip + $guidetip > $datastickertoguide['defaulttip']) {
+									// total tip will exceeed the default tip
+									echo json_encode(-2);
+									return;
+								} else {
+									// acceptable
+									echo json_encode(1);
+									return;	
+								}
+							} else {
+								// stickernum and stickerdate cannot be assigned
+								echo json_encode(-3);
+								return;
+							}
+						} else {
+							// stickernum and stickerdate were assigned to a different partner
+							echo json_encode(-1);
+							return;
+						}
+					} 
+					$datatippayment = Yii::app()->db->createCommand()
+						->select('a.idpartner, a.idcomp')
+						->from('tippayments a')
+						->where('a.idsticker = :p_idsticker and a.ddatetime like :p_ddatetime',
+							[':p_idsticker'=>$stickernum, ':p_ddatetime'=>$stickerdate.'%' ])
+						->queryRow();
+					if ($datatippayment !== FALSE) {
+						// stickertoguide cannot be mixed with tippayment
+						echo json_encode(-4);
 						return;
 					} else {
+						// valid
 						echo json_encode(1);
-						return;
+						return;	
 					}
 				}
 			} else {
+				// data of stickernum and stickerdate is not available
 				echo json_encode(0);
 				return;
 			}

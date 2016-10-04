@@ -27,14 +27,35 @@
 									$("#Stickertoguides_stickernum").val('');
 									$("#Stickertoguides_stickerdate").val('');
 									break;
-								case 1:
+								case -1:
+									$("#stickeravail").removeClass('money');
+									$("#stickeravail").addClass('errorMessage');
+									$("#stickeravail").html('Data sudah didaftarkan ke kelompok rekanan lain');
+									$("#Stickertoguides_stickernum").val('');
+									$("#Stickertoguides_stickerdate").val('');
+									break;
+								case -2:
+									$("#stickeravail").removeClass('money');
+									$("#stickeravail").addClass('errorMessage');
+									$("#stickeravail").html('Total Komisi sudah tercapai');
+									$("#Stickertoguides_stickernum").val('');
+									$("#Stickertoguides_stickerdate").val('');
+									break;
+								case -3:
 									$("#stickeravail").removeClass('money');
 									$("#stickeravail").addClass('errorMessage');
 									$("#stickeravail").html('Data sudah didaftarkan');
 									$("#Stickertoguides_stickernum").val('');
 									$("#Stickertoguides_stickerdate").val('');
 									break;
-								case 2:
+								case -4:
+									$("#stickeravail").removeClass('money');
+									$("#stickeravail").addClass('errorMessage');
+									$("#stickeravail").html('Komisi sudah dibayarkan dengan cara lain');
+									$("#Stickertoguides_stickernum").val('');
+									$("#Stickertoguides_stickerdate").val('');
+									break;
+								case 1:
 									$("#stickeravail").removeClass('errorMessage');
 									$("#stickeravail").addClass('money');
 									$("#stickeravail").html('Data valid');
@@ -127,13 +148,6 @@ EOS;
 	</div>
 	
 	<div class="row">
-		<?php 
-			echo CHtml::label('', FALSE, ['id'=>'stickeravail']);
-			echo CHtml::button('Periksa',['id'=>'checksticker']); 
-		?>
-	</div>
-
-	<div class="row">
 		<?php echo CHtml::label('', false);
 			//echo CHtml::tag('span', array('id'=>'stickeravail', 'class'=>'money'), ''); 
 		?>
@@ -159,6 +173,13 @@ EOS;
 	<div class="row">
 		<?php echo CHtml::label('', false);
 			echo CHtml::tag('span', array('id'=>'guidename', 'class'=>'money'), ''); 
+		?>
+	</div>
+	
+	<div class="row">
+		<?php 
+			echo CHtml::label('', FALSE, ['id'=>'stickeravail']);
+			echo CHtml::button('Periksa',['id'=>'checksticker']); 
 		?>
 	</div>
 	
