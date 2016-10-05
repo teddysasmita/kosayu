@@ -1288,7 +1288,7 @@ EOS;
 						return;
 					}
 				}
-				$datastickerguide = Yii::app()->db->createCommand()
+				$datastickertoguide = Yii::app()->db->createCommand()
 					->select('a.idguide')->from('stickertoguides a')
 					->where('a.stickernum = :p_stickernum and a.stickerdate like :p_stickerdate',
 						[':p_stickernum'=>$stickernum, ':p_stickerdate'=>$stickerdate])
