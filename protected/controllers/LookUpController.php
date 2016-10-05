@@ -1147,9 +1147,10 @@ EOS;
 					return;
 				} else if ($data > 0) {
 					$datastickertoguide = Yii::app()->db->createCommand()
-						->select('b.idpartner, b.idcomp')
+						->select('b.idpartner, b.idcomp, c.defaulttip')
 						->from('stickertoguides a')
 						->join('guides b', 'b.id = a.idguide')
+						->join('partners c', 'c.id = b.idpartner')
 						->where('a.stickernum = :p_stickernum and a.stickerdate like = :p_stickerdate',
 							[':p_stickernum'=>$stickernum, ':p_stickerdate'=>$stickerdate.'%'])
 						->queryRow();
@@ -1163,7 +1164,7 @@ EOS;
 						if ($datastickertoguide['idpartner'] == $dataguide['idpartner']) {
 							if (!is_null($datastickertoguide['idcomp'])) {
 								$assignedtip = Yii::app()->db->createCommand()
-									->select('sum(d.tip) as totaltip')
+									->select('sum(c.tip) as totaltip')
 									->from('stickertoguides a')
 									->join('guides b', 'b.id = a.idguide')
 									->join('detailpartners c', 'c.id = b.idcomp')
@@ -1176,7 +1177,7 @@ EOS;
 									->join ('detailpartners b', 'b.iddetail = a.idcomp')
 									->where('a.id = :p_id',[':p_id'=>$idguide])
 									->queryScalar();	
-								if ($totaltip + $guidetip > $datastickertoguide['defaulttip']) {
+								if ($assignedtip + $guidetip > $datastickertoguide['defaulttip']) {
 									// total tip will exceeed the default tip
 									echo json_encode(-2);
 									return;
@@ -1233,27 +1234,66 @@ EOS;
 			->queryScalar();
 				
 			if ($data == 0) {
+				// Cannot find transaction data
 				echo json_encode(0);
 				return;
 			} else if ($data > 0) {
-				$data = Yii::app()->db->createCommand()
-				->select('count(*) as listednum')
-				->from('stickertoguides')->where('stickernum = :p_stickernum',
-						[':p_stickernum'=>$stickernum ])
-						->queryScalar();
-				if ($data == 0) {
-					$data = Yii::app()->db->createCommand()
-					->select('count(*) as listednum')
-					->from('tippayments')->where('idsticker = :p_idsticker and idpartner = :p_idpartner and idcomp = :p_idcomp and ddatetime like :p_ddatetime',
-							[':p_idsticker'=>$stickernum, ':p_ddatetime'=>$stickerdate.'%',
-							':p_idpartner'=>$idpartner, ':p_idcomp'=>$idcomp])
-							->queryScalar();
-					if ($data == 0)
-						echo json_encode(2);
-					else
-						echo json_encode(1);
+				$datatippayment = Yii::app()->db->createCommand()
+					->select('a.idpartner, a.idcomp, b.defaulttip')->from('tippayments a')
+					->join('partners b', 'b.id = a.id')
+					->where('a.idsticker = :p_idsticker and a.ddatetime like :p_ddatetime',
+						[':p_idsticker'=>$stickernum, ':p_stickerdate'=>$stickerdate.'%'])
+					->queryRow();
+				if ($idcomp !== '-')
+					$datapartner = Yii::app()->db->createCommand()
+						->select()->from('partners')->where('id = :p_id', [':p_id'=>$idpartner])
+						->queryRow();
+				else 
+					$datapartner = Yii::app()->db->createCommand()
+						->select()->from('detailpartners')->where('iddetail = :p_iddetail', 
+							[':p_iddetail'=>$idcomp])
+						->queryRow();
+				if ($datatippayment !== FALSE) {
+					if ($datatippayment['idpartner'] == $datapartner['id']) {
+						if (!is_null($datatippayment['idcomp'])) {
+							$assignedtip = Yii::app()->db->createCommand()
+								->select('sum(b.tip) as totaltip')
+								->from('tippayments a')
+								->join('detailpartners b', 'b.id = a.idcomp')
+								->where('a.stickernum = :p_stickernum and a.stickerdate like = :p_stickerdate',
+									[':p_stickernum'=>$stickernum, ':p_stickerdate'=>$stickerdate.'%'])
+								->queryScalar();
+							$partnertip = Yii::app()->db->createCommand()
+								->select('a.tip')
+								->from('detailpartners a')
+								->where('a.id = :p_id',[':p_id'=>$idcomp])
+								->queryScalar();
+							if ($assignedtip + $partnertip > $datatippayment['defaulttip']) {
+								// total tip will exceeed the default tip
+								echo json_encode(-2);
+								return;
+							} else {
+								// acceptable
+								echo json_encode(1);
+								return;
+							}
+					} else {
+						// stickernum and stickerdate were assigned to a different partner
+						echo json_encode(-1);
+						return;
+					}
+				}
+				$datastickerguide = Yii::app()->db->createCommand()
+					->select('a.idguide')->from('stickertoguides a')
+					->where('a.stickernum = :p_stickernum and a.stickerdate like :p_stickerdate',
+						[':p_stickernum'=>$stickernum, ':p_stickerdate'=>$stickerdate])
+					->queryAll();
+				if ($datastickertoguide !== FALSE) {
+					// stickertoguide cannot be mixed with tippayment
+					echo json_encode(-4);
 					return;
 				} else {
+					// valid
 					echo json_encode(1);
 					return;
 				}

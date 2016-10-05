@@ -50,18 +50,39 @@
 						case 0:	
 							$("#stickeravail").removeClass('money');
 							$("#stickeravail").addClass('errorMessage');
-							$("#stickeravail").html('Data sticker tidak ditemukan');
+							$("#stickeravail").html('Data tidak ditemukan');
+							$("#Tippayments_idsticker").val('');
+							$("#Tippayments_ddatetime").val('');
+							break;
+						case -1:
+							$("#stickeravail").removeClass('money');
+							$("#stickeravail").addClass('errorMessage');
+							$("#stickeravail").html('Data sudah didaftarkan ke kelompok rekanan lain');
+							$("#Tippayments_idsticker").val('');
+							$("#Tippayments_ddatetime").val('');
+							break;
+						case -2:
+							$("#stickeravail").removeClass('money');
+							$("#stickeravail").addClass('errorMessage');
+							$("#stickeravail").html('Total Komisi sudah tercapai');
+							$("#Tippayments_idsticker").val('');
+							$("#Tippayments_ddatetime").val('');
+							break;
+						case -3:
+							$("#stickeravail").removeClass('money');
+							$("#stickeravail").addClass('errorMessage');
+							$("#stickeravail").html('Data sudah didaftarkan');
+							$("#Tippayments_idsticker").val('');
+							$("#Tippayments_ddatetime").val('');
+							break;
+						case -4:
+							$("#stickeravail").removeClass('money');
+							$("#stickeravail").addClass('errorMessage');
+							$("#stickeravail").html('Komisi sudah dibayarkan dengan cara lain');
 							$("#Tippayments_idsticker").val('');
 							$("#Tippayments_ddatetime").val('');
 							break;
 						case 1:
-							$("#stickeravail").removeClass('money');
-							$("#stickeravail").addClass('errorMessage');
-							$("#stickeravail").html('Data sudah didaftarkan / dibayarkan');
-							$("#Tippayments_idsticker").val('');
-							$("#Tippayments_ddatetime").val('');
-							break;
-						case 2:
 							$("#stickeravail").removeClass('errorMessage');
 							$("#stickeravail").addClass('money');
 							$("#stickeravail").html('Data valid');
