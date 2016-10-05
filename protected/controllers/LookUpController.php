@@ -1277,7 +1277,11 @@ EOS;
 								echo json_encode(1);
 								return;
 							}
-						} 
+						} else {
+							// stickernum and stickerdate cannot be assigned
+							echo json_encode(-3);
+							return;
+						}
 					} else {
 					// stickernum and stickerdate were assigned to a different partner
 						echo json_encode(-1);
