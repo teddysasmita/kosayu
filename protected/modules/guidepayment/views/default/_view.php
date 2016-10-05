@@ -14,7 +14,7 @@
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('idguide')); ?>:</b>
-	<?php echo CHtml::encode($data->idguide); ?>
+	<?php echo CHtml::encode(lookup::GuideNameFromID($data->idguide)); ?>
 	<br />
 
      <b><?php echo CHtml::encode($data->getAttributeLabel('userlog')); ?>:</b>
