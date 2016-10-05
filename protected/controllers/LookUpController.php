@@ -1277,8 +1277,9 @@ EOS;
 								echo json_encode(1);
 								return;
 							}
+						} 
 					} else {
-						// stickernum and stickerdate were assigned to a different partner
+					// stickernum and stickerdate were assigned to a different partner
 						echo json_encode(-1);
 						return;
 					}
@@ -1302,6 +1303,7 @@ EOS;
 			throw new CHttpException(404,'You have no authorization for this operation.');
 		}
 	}
+	
 	public function actionGetGuideName($id)
 	{
 		$name=rawurldecode($id);
