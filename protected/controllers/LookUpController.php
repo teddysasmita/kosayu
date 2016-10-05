@@ -1253,7 +1253,7 @@ EOS;
 						->select()->from('detailpartners')->where('iddetail = :p_iddetail', 
 							[':p_iddetail'=>$idcomp])
 						->queryRow();
-				if $datatippayment !== FALSE) {
+				if ($datatippayment !== FALSE) {
 					if ($datatippayment['idpartner'] == $datapartner['id']) {
 						if (!is_null($datatippayment['idcomp'])) {
 							$assignedtip = Yii::app()->db->createCommand()
