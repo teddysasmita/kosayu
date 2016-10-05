@@ -1293,6 +1293,7 @@ EOS;
 					->where('a.stickernum = :p_stickernum and a.stickerdate like :p_stickerdate',
 						[':p_stickernum'=>$stickernum, ':p_stickerdate'=>$stickerdate])
 					->queryAll();
+				print_r($datastickertoguide);
 				if (count($datastickertoguide) == 0) {
 					// stickertoguide cannot be mixed with tippayment
 					echo json_encode(-4);
