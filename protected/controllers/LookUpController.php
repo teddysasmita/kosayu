@@ -1203,7 +1203,7 @@ EOS;
 						->where('a.idsticker = :p_idsticker and a.ddatetime like :p_ddatetime',
 							[':p_idsticker'=>$stickernum, ':p_ddatetime'=>$stickerdate.'%' ])
 						->queryRow();
-					if ($datatippayment !== FALSE) {
+					if (count($datatippayment) > 0) {
 						// stickertoguide cannot be mixed with tippayment
 						echo json_encode(-4);
 						return;
