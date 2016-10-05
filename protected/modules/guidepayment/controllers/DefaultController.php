@@ -816,7 +816,7 @@ EOS;
 EOS;
     	$salesreturs = Yii::app()->db->createCommand($sql2);
     	$invoicenum = '';
-    	$salesreturs->bindParam(":p_invoicenum", $invoicenum);
+    	$salesreturs->bindParam(":p_invoicenum", $invoicenum, PDO::PARAM_STMT);
     	
     	
     	foreach($detailsales as & $ds) {
@@ -958,7 +958,7 @@ EOS;
     			[':p_idguide'=>$idguide, ':p_paid'=>'0'])
     		->queryAll();
     	
-    	//print_r($stickers);
+    	print_r($stickers);
     	/*$guideSalesSummary = array();
     	foreach($stickers as $stk) {
     		$sales = $this->getSales($model->id, $stk['stickernum'], $stk['stickerdate']);
@@ -975,7 +975,7 @@ EOS;
     	}
     	
     	//echo "COMMISSION -> ";
-    	print_r($guideDetailCommission);
+    	//print_r($guideDetailCommission);
     	$totalcommission = 0;
     	foreach($guideDetailCommission as $cms) {
     		$totalcommission += $cms['amount'];
