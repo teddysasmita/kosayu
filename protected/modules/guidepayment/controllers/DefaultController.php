@@ -623,7 +623,7 @@ class DefaultController extends Controller
          $idmaker=new idmaker();
          if ($this->state == 'create') {
          	$idmaker->saveRegNum($this->formid, $model->regnum);
-         	$this->updatestickers($model);
+         	//$this->updatestickers($model);
          } 
      }
 
