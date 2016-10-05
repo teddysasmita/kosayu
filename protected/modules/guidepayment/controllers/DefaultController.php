@@ -958,7 +958,7 @@ EOS;
     			[':p_idguide'=>$idguide, ':p_paid'=>'0'])
     		->queryAll();
     	
-    	//print_r($stickers);
+    	print_r($stickers);
     	/*$guideSalesSummary = array();
     	foreach($stickers as $stk) {
     		$sales = $this->getSales($model->id, $stk['stickernum'], $stk['stickerdate']);
