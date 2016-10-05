@@ -26,6 +26,10 @@ $this->menu=array(
 		'regnum',
 		'stickerdate',
 		'stickernum',
+		[
+			'name'=>'idguide',
+			'value'=>lookup::GuideNameFromID($model->idguide),
+		],
 		'datetimelog',
 	),
 )); ?>
