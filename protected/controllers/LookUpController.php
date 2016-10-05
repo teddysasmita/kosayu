@@ -1242,7 +1242,7 @@ EOS;
 					->select('a.idpartner, a.idcomp, b.defaulttip')->from('tippayments a')
 					->join('partners b', 'b.id = a.id')
 					->where('a.idsticker = :p_idsticker and a.ddatetime like :p_ddatetime',
-						[':p_idsticker'=>$stickernum, ':p_stickerdate'=>$stickerdate.'%'])
+						[':p_idsticker'=>$stickernum, ':p_ddatetime'=>$stickerdate.'%'])
 					->queryRow();
 				if ($idcomp !== '-')
 					$datapartner = Yii::app()->db->createCommand()
