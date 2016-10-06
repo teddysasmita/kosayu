@@ -1035,8 +1035,9 @@ EOS;
     	$totalPaidCommisssion = Yii::app()->db->createCommand()
     		->select('sum(b.amount) as totalpaid')->from('guidepayments a')
     		->join('detailguidepayments b', 'b.id = a.id')
-    		->where('a.idguide = :p_idguide and b.stickernum = :p_stickernum and b.stickerdate = :p_stickerdate',
-    			[':p_idguide'=>$idguide, ':p_stickernun'=>$stickernum, ':p_stickerdate'=>$stickerdate])
+    		->where('a.idguide = :p_idguide and b.stickernum = :p_stickernum '.
+    				' and b.stickerdate = :p_stickerdate',
+    			[':p_idguide'=>$idguide, ':p_stickernum'=>$stickernum, ':p_stickerdate'=>$stickerdate])
     		->queryScalar();
     	
     	return $totalPaidCommisssion;
