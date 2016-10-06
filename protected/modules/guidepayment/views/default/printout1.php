@@ -46,7 +46,7 @@
 		padding: 1mm;
 		border: solid thin;
 		margin: 0;
-		font-size: small;
+		font-size: 10pt;
 		font-family: monospace; 
 	}
 	.numbercol {
