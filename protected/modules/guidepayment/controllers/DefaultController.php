@@ -623,7 +623,7 @@ class DefaultController extends Controller
          $idmaker=new idmaker();
          if ($this->state == 'create') {
          	$idmaker->saveRegNum($this->formid, $model->regnum);
-         	//$this->updatestickers($model);
+         	$this->updatestickers($model);
          } 
      }
 
@@ -958,7 +958,7 @@ EOS;
     			[':p_idguide'=>$idguide, ':p_paid'=>'0'])
     		->queryAll();
     	
-    	print_r($stickers);
+    	//print_r($stickers);
     	/*$guideSalesSummary = array();
     	foreach($stickers as $stk) {
     		$sales = $this->getSales($model->id, $stk['stickernum'], $stk['stickerdate']);
