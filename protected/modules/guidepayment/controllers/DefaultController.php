@@ -968,8 +968,11 @@ EOS;
     	*/
     	
     	$guideDetailCommission = array();
+    	$paidCommission = 0;
     	foreach($stickers as $stk) {
     		$commission = $this->getSalesDetail($model->id, $guide, $stk['stickernum'], $stk['stickerdate']);
+    		$paidCommission += $this->getPaidCommission($model->idguide, 
+    			$stk['stickernum'], $stk['stickerdate']);
     		$guideDetailCommission = array_merge($guideDetailCommission, $commission);
     		unset($commission);
     	}
@@ -980,7 +983,7 @@ EOS;
     	foreach($guideDetailCommission as $cms) {
     		$totalcommission += $cms['amount'];
     	}
-    	$model->commission = $totalcommission;
+    	$model->commission = $totalcommission - $paidCommission;
     	
     	/*
     	Yii::app()->db->createCommand()
@@ -1025,6 +1028,18 @@ EOS;
     				':p_idguide'=>$stk['idguide']
     			]);	
     	}
+    }
+    
+    private function getPaidCommission($idguide, $stickernum, $stickerdate)
+    {
+    	$totalPaidCommisssion = Yii::app()->db->createCommand()
+    		->select('sum(b.amount) as totalpaid')->from('guidepayments a')
+    		->join('detailguidepayments b', 'b.id = a.id')
+    		->where('a.idguide = :p_idguide and b.stickernum = :p_stickernum and b.stickerdate = :p_stickerdate',
+    			[':p_idguide'=>$idguide, ':p_stickernun'=>$stickernum, ':p_stickerdate'=>$stickerdate])
+    		->queryScalar();
+    	
+    	return $totalPaidCommisssion;
     }
     
     public function actionPrintOut1($id)
