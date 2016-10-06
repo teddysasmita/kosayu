@@ -31,13 +31,13 @@
 		padding: 2mm;
 		border: none;
 		margin: 0;
-		font-family: courier sans-serif;
+		font-family: "Courier New", sans-serif;
 	}
 	.infofield {
 		padding: 2mm;
 		border: none;
 		margin: 0;
-		font-family: courier sans-serif;
+		font-family: "Courier New", sans-serif;
 	}
 	.detailrow {
 		padding: 1mm;
@@ -46,8 +46,8 @@
 		padding: 1mm;
 		border: solid thin;
 		margin: 0;
-		font-size: 10pt;
-		font-family: courier sans-serif; 
+		font-size: 11pt;
+		font-family: "Courier New", sans-serif; 
 	}
 	.numbercol {
 		text-align: right;
@@ -59,7 +59,7 @@
 		height: 20mm;
 	}
 	h1 {
-		font-family: courier sans-serif;
+		font-family: "Courier New", sans-serif;
 	}
 </style>
 </head>
