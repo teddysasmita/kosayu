@@ -623,7 +623,7 @@ class DefaultController extends Controller
          $idmaker=new idmaker();
          if ($this->state == 'create') {
          	$idmaker->saveRegNum($this->formid, $model->regnum);
-         	$this->updatestickers($model);
+         	//$this->updatestickers($model);
          } 
      }
 
@@ -968,22 +968,27 @@ EOS;
     	*/
     	
     	$guideDetailCommission = array();
-    	$paidCommission = 0;
+    	$paidCommission = array();
     	foreach($stickers as $stk) {
     		$commission = $this->getSalesDetail($model->id, $guide, $stk['stickernum'], $stk['stickerdate']);
-    		$paidCommission += $this->getPaidCommission($model->idguide, 
+    		$pc = $this->getPaidCommission($model->idguide, 
     			$stk['stickernum'], $stk['stickerdate']);
+    		$paidCommission = array_merge($paidCommission, $pc);
     		$guideDetailCommission = array_merge($guideDetailCommission, $commission);
     		unset($commission);
     	}
     	
+    	$totalPaidCommission = 0;
+    	foreach($paidCommission as $pc) {
+    		$totalPaidCommission += $pc['amount'];	
+    	}
     	//echo "COMMISSION -> ";
     	//print_r($guideDetailCommission);
     	$totalcommission = 0;
     	foreach($guideDetailCommission as $cms) {
     		$totalcommission += $cms['amount'];
     	}
-    	$model->commission = $totalcommission - $paidCommission;
+    	$model->commission = $totalcommission - $totalPaidCommission;
     	
     	/*
     	Yii::app()->db->createCommand()
@@ -1004,9 +1009,21 @@ EOS;
     		$model->deposit = $totaldeposit;
     	
     	$stickerdetail = array();
+    	$availstickerdetail = array();
     	foreach($stickers as $stk) {
     		$stickerdetail = $this->getSalesDetail2($model->id, $guide, $stk['stickernum'], $stk['stickerdate']);
-    		$details = array_merge($details, $stickerdetail);
+    		foreach($stickerdetail as $dt) {
+    			$found = FALSE;
+    			foreach($paidCommission as $pc) {
+    				if ($pc['regnum'] == $stk['regnum']) {
+    					$found == true;
+    					break;
+    				}
+    			}
+    			if ($found == FALSE)
+    				$availstickerdetail[] = $dt;
+    		}
+    		$details = array_merge($details, $availstickerdetail);
     	}
     	//echo "DETAILS -> ";
     	//print_r($details);
@@ -1033,12 +1050,12 @@ EOS;
     private function getPaidCommission($idguide, $stickernum, $stickerdate)
     {
     	$totalPaidCommisssion = Yii::app()->db->createCommand()
-    		->select('sum(b.amount) as totalpaid')->from('guidepayments a')
+    		->select()->from('guidepayments a')
     		->join('detailguidepayments b', 'b.id = a.id')
     		->where('a.idguide = :p_idguide and b.stickernum = :p_stickernum '.
     				' and b.stickerdate = :p_stickerdate',
     			[':p_idguide'=>$idguide, ':p_stickernum'=>$stickernum, ':p_stickerdate'=>$stickerdate])
-    		->queryScalar();
+    		->queryAll();
     	
     	return $totalPaidCommisssion;
     }
