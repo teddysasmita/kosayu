@@ -1011,6 +1011,7 @@ EOS;
     	$stickerdetail = array();
     	$availstickerdetail = array();
     	foreach($stickers as $stk) {
+    		$availstickerdetail = array();
     		$stickerdetail = $this->getSalesDetail2($model->id, $guide, $stk['stickernum'], $stk['stickerdate']);
     		foreach($stickerdetail as $dt) {
     			$found = FALSE;
@@ -1024,6 +1025,7 @@ EOS;
     				$availstickerdetail[] = $dt;
     		}
     		$details = array_merge($details, $availstickerdetail);
+    		unset($availstickerdetail);
     	}
     	//echo "DETAILS -> ";
     	//print_r($details);
