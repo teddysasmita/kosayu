@@ -990,7 +990,7 @@ EOS;
     	foreach($guideDetailCommission as $cms) {
     		$totalcommission += $cms['amount'];
     	}
-    	echo 'Komisi Terbayar = '.$paidCommission;
+    	echo 'Komisi Terbayar = '.$totalPaidCommission;
     	$model->commission = $totalcommission - $totalPaidCommission;
     	
     	/*
