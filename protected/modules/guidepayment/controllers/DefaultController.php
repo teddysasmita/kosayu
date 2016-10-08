@@ -979,20 +979,17 @@ EOS;
     		$guideDetailCommission = array_merge($guideDetailCommission, $commission);
     		unset($commission);
     	}
-    	print_r($paidCommission);
     	$totalPaidCommission = 0;
     	foreach($paidCommission as $pc) {
     		$totalPaidCommission += $pc['amount'];	
     	}
-    	//echo "COMMISSION -> ";
-    	//print_r($guideDetailCommission);
     	$totalcommission = 0;
     	foreach($guideDetailCommission as $cms) {
     		$totalcommission += $cms['amount'];
     	}
-    	echo 'Komisi Terbayar = '.$totalPaidCommission;
     	$model->commission = $totalcommission - $totalPaidCommission;
-    	
+    	if ($model->commission < 0) 
+    		$model->commission = 0;
     	/*
     	Yii::app()->db->createCommand()
     			->update('stickertoguides',['paid'=>'1'],
