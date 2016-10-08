@@ -1019,7 +1019,7 @@ EOS;
     		foreach($stickerdetail as $dt) {
     			$found = FALSE;
     			foreach($paidCommission as $pc) {
-    				if ($pc['regnum'] == $stk['regnum']) {
+    				if ($pc['regnum'] == $dt['regnum']) {
     					$found = true;
     					break;
     				}
