@@ -111,6 +111,7 @@ class DefaultController extends Controller
 							$this->calculateGuide($model, $details);
                          	Yii::app()->session['Guidepayments']=$model->attributes;
                          	Yii::app()->session['Detailguidepayments']=$details;
+                         	unset($details);
                       	} 
 					}
 				}
@@ -938,7 +939,8 @@ EOS;
     		} else
     	 		$ds['pct'] = $ds['pct'] * $tip2;
 			$ds['amount'] = ($ds['price'] - $ds['discount']) * $ds['qty'] * $ds['pct'] / 100;
-			$ds['id'] = $id;    	
+			$ds['id'] = $id;    
+			$ds['iddetail'] = idmaker::getCurrentID2();	
     	}
         unset($ds);
         
@@ -988,6 +990,7 @@ EOS;
     	foreach($guideDetailCommission as $cms) {
     		$totalcommission += $cms['amount'];
     	}
+    	echo 'Komisi Terbayar = '.$paidCommission;
     	$model->commission = $totalcommission - $totalPaidCommission;
     	
     	/*
