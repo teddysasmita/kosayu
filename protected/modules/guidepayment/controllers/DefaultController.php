@@ -1003,7 +1003,7 @@ EOS;
     			->where('idguide = :p_idguide', [':p_idguide'=>$guide['id']])
     			->order('id desc')
     			->queryScalar();
-    	print_r($totaldeposit);
+    	echo "deposit = ".print_r($totaldeposit);
     	/*if (!$totaldeposit)
     		$model->deposit = 0;
     	else*/ 	
