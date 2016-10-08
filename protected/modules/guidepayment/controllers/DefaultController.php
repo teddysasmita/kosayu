@@ -1020,7 +1020,7 @@ EOS;
     			$found = FALSE;
     			foreach($paidCommission as $pc) {
     				if ($pc['regnum'] == $stk['regnum']) {
-    					$found == true;
+    					$found = true;
     					break;
     				}
     			}
