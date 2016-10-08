@@ -1003,9 +1003,10 @@ EOS;
     			->where('idguide = :p_idguide', [':p_idguide'=>$guide['id']])
     			->order('id desc')
     			->queryScalar();
-    	if (!$totaldeposit)
+    	print_r($totaldeposit);
+    	/*if (!$totaldeposit)
     		$model->deposit = 0;
-    	else 	
+    	else*/ 	
     		$model->deposit = $totaldeposit;
     	
     	$stickerdetail = array();
