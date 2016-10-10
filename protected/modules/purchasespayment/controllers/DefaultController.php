@@ -1078,13 +1078,13 @@ class DefaultController extends Controller
     			->select('b.regnum, a.total')
     			->from('detailpurchasespayments2 a')
     			->join('purchasesreturs b', 'b.id = a.idpurchaseretur')
-    			->where('id = :p_id', [':p_id'=>$id])
+    			->where('a.id = :p_id', [':p_id'=>$id])
     			->queryAll();
     		$details2 = Yii::app()->db->createCommand()
     			->select('b.regnum, a.total, a.labelcost, a.discount, a.amount')
     			->from('detailpurchasespayments a')
     			->join('purchases b', 'b.id = a.idpurchase')
-    			->where('id = :p_id', [':p_id'=>$id])
+    			->where('a.id = :p_id', [':p_id'=>$id])
     		->queryAll();
     		
     		$this->renderPartial('printout1',
