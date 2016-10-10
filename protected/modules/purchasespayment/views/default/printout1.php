@@ -92,6 +92,7 @@
 		echo "<td class=\"detailcol numbercol\">".number_format($dt['total']);
 	}
 	?>
+	</table>
 	<div id='space'></div>
 	<h2>Daftar Nota Beli</h2>
 	<table id="detailtable">
