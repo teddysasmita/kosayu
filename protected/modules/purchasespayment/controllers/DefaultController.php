@@ -1076,7 +1076,7 @@ class DefaultController extends Controller
     		$model = $this->loadModel($id);
     		$details = Yii::app()->db->createCommand()
     			->select('b.regnum, a.total')
-    			->from('detailpurchasespayments2')
+    			->from('detailpurchasespayments2 a')
     			->join('purchasesreturs b', 'b.id = a.idpurchaseretur')
     			->where('id = :p_id', [':p_id'=>$id])
     			->queryAll();
