@@ -58,7 +58,7 @@
 	#signature {
 		height: 20mm;
 	}
-	h1 {
+	h1, h2 {
 		font-family: "Courier New", sans-serif;
 	}
 </style>
