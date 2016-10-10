@@ -86,7 +86,7 @@
 	<th class="detailcol">No Retur Beli
 	<th class="detailcol">Total
 	<?php 
-	foreach ($details2 as $dt) {
+	foreach ($details as $dt) {
 		echo "<tr class=\"detailrow\">";
 		echo "<td class=\"detailcol\">${dt['regnum']}";
 		echo "<td class=\"detailcol numbercol\">".number_format($dt['total']);
