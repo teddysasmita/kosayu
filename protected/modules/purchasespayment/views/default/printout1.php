@@ -116,7 +116,7 @@
 	<table id="signaturetable">
 	<tr><td class="infofield">Tanda Tangan
 	<tr><td id="signature">
-	<tr><td class="infovalue"><?php echo lookup::GuideNameFromID($model->idguide);?>
+	<tr><td class="infovalue"><?php echo lookup::SupplierNameFromSupplierID($model->idsupplier);?>
 	</table>
 </body>
 </html>
