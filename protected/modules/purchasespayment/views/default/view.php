@@ -9,6 +9,8 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
+	array('label'=>'Cetak', 'url'=>array('printout1', 'id'=>$model->id), 
+	'linkOptions'=>['target'=>'_blank']),
 	array('label'=>'Tambah Data', 'url'=>array('create')),
 	array('label'=>'Ubah Data', 'url'=>array('update', 'id'=>$model->id)),
 	array('label'=>'Hapus Data', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'Are you sure you want to delete this item?')),

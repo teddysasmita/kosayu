@@ -1067,24 +1067,31 @@ class DefaultController extends Controller
  		}
  	}
  	
- 	public function actionPrint($id)
- 	{
- 		if(Yii::app()->authManager->checkAccess($this->formid.'-List',
- 				Yii::app()->user->id))  {
- 						
- 			$masterdata = $this->loadModel($id);
- 			if ($masterdata) {
- 				$detaildata = $this->loadDetails($id);
- 			};
- 			Yii::import('application.vendors.tcpdf.*');
- 			require_once ('tcpdf.php');
- 			Yii::import('application.modules.purchasespayment.components.*');
- 			require_once('printpurchasepayment.php');
- 			ob_clean();
- 						
- 			execute($masterdata, $detaildata);
- 		} else {
- 			throw new CHttpException(404,'You have no authorization for this operation.');
- 		}
- 	}
+	public function actionPrintOut1($id)
+    {
+    	if(Yii::app()->authManager->checkAccess($this->formid.'-Append',
+    			Yii::app()->user->id)) {
+    		$this->trackActivity('r');
+    	
+    		$model = $this->loadModel($id);
+    		$details = Yii::app()->db->createCommand()
+    			->select('b.regnum, a.total')
+    			->from('detailpurchasepayments2')
+    			->join('purchasesreturs b', 'b.id = a.idpurchaseretur')
+    			->where('id = :p_id', [':p_id'=>$id])
+    			->queryAll();
+    		$details2 = Yii::app()->db->createCommand()
+    			->select('b.regnum, a.total, a.labelcost, a.discount, a.amount')
+    			->from('detailpurchasepayments a')
+    			->join('purchases b', 'b.id = a.idpurchase')
+    			->where('id = :p_id', [':p_id'=>$id])
+    		->queryAll();
+    		
+    		$this->renderPartial('printout1',
+				['model'=>$model, 'details'=>$details, 'details2'=>$details2] );
+   
+    	} else {
+    		throw new CHttpException(404,'You have no authorization for this operation.');
+    	}
+    }
 }
