@@ -1085,10 +1085,15 @@ class DefaultController extends Controller
     			->from('detailpurchasespayments a')
     			->join('purchases b', 'b.id = a.idpurchase')
     			->where('a.id = :p_id', [':p_id'=>$id])
-    		->queryAll();
-    		
+    			->queryAll();
+    		$details3 = Yii::app()->db->createCommand()
+    			->select()->from('payments')
+    			->where('idtransaction = :p_idtransaction', [':p_idtransaction'=>$id])
+    			->queryAll();
+    			   		
     		$this->renderPartial('printout1',
-				['model'=>$model, 'details'=>$details, 'details2'=>$details2] );
+				['model'=>$model, 'details'=>$details, 'details2'=>$details2,
+					'details3'=>$details3 ] );
    
     	} else {
     		throw new CHttpException(404,'You have no authorization for this operation.');

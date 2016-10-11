@@ -52,10 +52,10 @@
 	.numbercol {
 		text-align: right;
 	}
-	#space {
+	.space {
 		height: 3mm;
 	}
-	#signature {
+	.signature {
 		height: 20mm;
 	}
 	h1, h2 {
@@ -79,7 +79,7 @@
 		number_format($model->labelcost);
 	?>
 	</table>
-	<div id='space'></div>
+	<div class="space"></div>
 	<h2>Daftar Retur</h2>
 	<table id="detailtable">
 	<tr>
@@ -93,7 +93,7 @@
 	}
 	?>
 	</table>
-	<div id='space'></div>
+	<div class="space"></div>
 	<h2>Daftar Nota Beli</h2>
 	<table id="detailtable">
 	<tr>
@@ -113,11 +113,26 @@
 	}
 	?>
 	</table>
-	<div id='space'></div>
+	<div class="space"></div>
+	<h2>Cara Bayar</h2>
+	<table id="detailtable">
+	<tr>
+	<th class="detailcol">Metode
+	<th class="detailcol">Jumlah
+	<?php 
+	foreach ($details3 as $dt) {
+		echo "<tr class=\"detailrow\">";
+		echo "<td class=\"detailcol\">".lookup::getMethod($dt['method']);
+		echo "<td class=\"detailcol numbercol\">".number_format($dt['amount']);
+	}
+	?>
+	</table>
+	<div class="space"></div>
 	<table id="signaturetable">
-	<tr><td class="infofield">Tanda Tangan
-	<tr><td id="signature">
+	<tr><td class="infofield">Tanda Tangan Pembayar<td class="space"><td class="infofield">Mengetahui
+	<tr><td class="signature"><td class="space"><td class="signature">
 	<tr><td class="infovalue"><?php echo lookup::SupplierNameFromSupplierID($model->idsupplier);?>
+	<td class="space"><td class="infovalue"><?php echo lookup::UserNameFromUserID($model->userlog);?>
 	</table>
 </body>
 </html>
