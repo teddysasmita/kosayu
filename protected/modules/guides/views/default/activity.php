@@ -68,6 +68,8 @@ $this->menu=array(
 		echo CHtml::submitButton('Cari');
 	?>
 </div>
+
+</div>
 		
 <?php echo CHtml::endForm() ?>
 
