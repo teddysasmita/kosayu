@@ -101,6 +101,6 @@ $this->widget('zii.widgets.grid.CGridView',[
 	foreach($data as $dt)
 		$total += $dt['totalsales'];
 	echo CHtml::Label('Total','totalsales');
-	echo CHtml::tag('span',['id'=>'totalsales', class'=>'money'], number_format($total));
+	echo CHtml::tag('div',['id'=>'totalsales', class'=>'money'], number_format($total));
 ?>
 </div>
