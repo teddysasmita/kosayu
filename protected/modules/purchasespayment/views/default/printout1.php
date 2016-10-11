@@ -62,6 +62,7 @@
 	
 	.signature {
 		height: 20mm;
+		width: 30mm;
 	}
 	h1, h2 {
 		font-family: "Courier New", sans-serif;
@@ -134,10 +135,10 @@
 	</table>
 	<div class="vspace"></div>
 	<table id="signaturetable">
-	<tr><td class="infofield">Tanda Tangan Pembayar<td class="hspace"><td class="infofield">Mengetahui
+	<tr><td class="infofield signature">Tanda Tangan Pembayar<td class="hspace"><td class="infofield signature">Mengetahui
 	<tr><td class="signature"><td class="hspace"><td class="signature">
-	<tr><td class="infovalue"><?php echo lookup::SupplierNameFromSupplierID($model->idsupplier);?>
-	<td class="hspace"><td class="infovalue"><?php echo lookup::UserNameFromUserID($model->userlog);?>
+	<tr><td class="infovalue signature"><?php echo lookup::SupplierNameFromSupplierID($model->idsupplier);?>
+	<td class="hspace"><td class="infovalue signature"><?php echo lookup::UserNameFromUserID($model->userlog);?>
 	</table>
 </body>
 </html>
