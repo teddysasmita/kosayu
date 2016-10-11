@@ -116,7 +116,7 @@ $this->widget('zii.widgets.grid.CGridView',[
 		$total[0]['commission'] += $dt['commission'];
 		$total[0]['amount'] += $dt['amount'];
 	};
-	$total[0]['deposit'] = end($data)['deposit'];
+	$total[0]['deposit'] = $total[0]['commission'] - $total[0]['amount'];
 	$provider2 = new CArrayDataProvider($total);
 	$this->widget('zii.widgets.grid.CGridView',[
 			'dataProvider'=>$provider2,
