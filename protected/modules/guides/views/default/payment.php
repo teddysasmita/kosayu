@@ -108,8 +108,9 @@ $this->widget('zii.widgets.grid.CGridView',[
 
 <?php 
 	$total=array();
-	print_r($data);
-	/*
+	$total['commission'] = 0;
+	$total['amount'] = 0;
+	$total['deposit'] = 0;
 	foreach($data as $dt) {
 		$total['commission'] += $dt['commission'];
 		$total['amount'] += $dt['amount'];
@@ -136,6 +137,5 @@ $this->widget('zii.widgets.grid.CGridView',[
 				],
 			],
 	]);
-	*/
 ?>
 
