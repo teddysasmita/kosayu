@@ -57,12 +57,13 @@
 	}
 	
 	.hspace {
-		height: 3mm;
+		height: 10mm;
 	}
 	
 	.signature {
 		height: 20mm;
-		width: 30mm;
+		width: 50mm;
+		text-align: center;
 	}
 	h1, h2 {
 		font-family: "Courier New", sans-serif;
