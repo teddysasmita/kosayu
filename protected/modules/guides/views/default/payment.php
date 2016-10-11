@@ -108,14 +108,14 @@ $this->widget('zii.widgets.grid.CGridView',[
 
 <?php 
 	$total=array();
-	$total['commission'] = 0;
-	$total['amount'] = 0;
-	$total['deposit'] = 0;
+	$total[0]['commission'] = 0;
+	$total[0]['amount'] = 0;
+	$total[0]['deposit'] = 0;
 	foreach($data as $dt) {
-		$total['commission'] += $dt['commission'];
-		$total['amount'] += $dt['amount'];
+		$total[0]['commission'] += $dt['commission'];
+		$total[0]['amount'] += $dt['amount'];
 	};
-	$total['deposit'] = 0;
+	$total[0]['deposit'] = end($data)['deposit'];
 	$provider2 = new CArrayDataProvider($total);
 	$this->widget('zii.widgets.grid.CGridView',[
 			'dataProvider'=>$provider2,
