@@ -72,9 +72,7 @@ $this->menu=array(
 <?php echo CHtml::endForm() ?>
 
 <?php 
-
 $provider1 = new CArrayDataProvider($data);
-
 $this->widget('zii.widgets.grid.CGridView',[ 
 		'dataProvider'=>$provider1,
 			'columns'=>[
@@ -95,5 +93,12 @@ $this->widget('zii.widgets.grid.CGridView',[
  		]);
 ?>
 
+<div class="row">
+<?php 
+	$total=0;
+	foreach($data as $dt)
+		$total += $data['totalsales'];
+	echo CHtml::Label('Total',false);
+	echo CHtml::tag('span',['class'=>'money'], number_format($total));
+?>
 </div>
-

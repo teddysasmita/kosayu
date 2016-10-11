@@ -104,6 +104,54 @@ $this->widget('zii.widgets.grid.CGridView',[
 			],			
  		]);
 ?>
-
 </div>
 
+<div class="row">
+<?php 
+	$total=array();
+	foreach($data as $dt) {
+		$total['commission'] += $data['commission'];
+		$total['amount'] += $data['amount'];
+	}
+	$total['deposit'] = $data[0]['deposit'];
+	$provider2 = new CArrayDataProvider($data);
+	$this->widget('zii.widgets.grid.CGridView',[
+			'dataProvider'=>$provider2,
+			'columns'=>[
+				[
+					'header'=>'Total Komisi',
+					'name'=>'commission',
+					'type'=>'number',
+				],
+				[
+					'header'=>'Dibayarkan',
+					'name'=>'amount',
+					'type'=>'number',
+				],
+				[
+					'header'=>'Titipan',
+					'name'=>'deposit',
+					'type'=>'number',
+				],
+			],
+	]);
+?>
+</div>
+<div class="row">
+<?php 
+	$total=0;
+	foreach($data as $dt)
+		$total += $data['totalsales'];
+	echo CHtml::Label('Total',false);
+	echo CHtml::tag('span',['class'=>'money'], number_format($total));
+?>
+</div>
+<div class="row">
+<?php 
+	$total=0;
+	foreach($data as $dt)
+		$total += $data['totalsales'];
+	echo CHtml::Label('Total',false);
+	echo CHtml::tag('span',['class'=>'money'], number_format($total));
+?>
+</div>
