@@ -69,6 +69,16 @@ $this->menu=array(
 	?>
 </div>
 
+<div class="row">
+<?php 
+	$total=0;
+	foreach($data as $dt)
+		$total += $dt['totalsales'];
+	echo CHtml::Label('Total: ','totalsales');
+	echo CHtml::tag('span',['id'=>'totalsales', 'class'=>'money'], number_format($total));
+?>
+</div>
+
 </div>
 		
 <?php echo CHtml::endForm() ?>
@@ -95,12 +105,4 @@ $this->widget('zii.widgets.grid.CGridView',[
  		]);
 ?>
 
-<div class="row">
-<?php 
-	$total=0;
-	foreach($data as $dt)
-		$total += $dt['totalsales'];
-	echo CHtml::Label('Total: ','totalsales');
-	echo CHtml::tag('span',['id'=>'totalsales', 'class'=>'money'], number_format($total));
-?>
-</div>
+
