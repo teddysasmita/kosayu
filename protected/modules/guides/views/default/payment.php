@@ -108,6 +108,7 @@ $this->widget('zii.widgets.grid.CGridView',[
 
 <?php 
 	$total=array();
+	$total[0]['id'] = 'boom';
 	$total[0]['commission'] = 0;
 	$total[0]['amount'] = 0;
 	$total[0]['deposit'] = 0;
