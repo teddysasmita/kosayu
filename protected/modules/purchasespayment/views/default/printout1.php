@@ -52,9 +52,14 @@
 	.numbercol {
 		text-align: right;
 	}
-	.space {
+	.vspace {
 		height: 3mm;
 	}
+	
+	.hspace {
+		height: 3mm;
+	}
+	
 	.signature {
 		height: 20mm;
 	}
@@ -79,7 +84,7 @@
 		number_format($model->labelcost);
 	?>
 	</table>
-	<div class="space"></div>
+	<div class="vspace"></div>
 	<h2>Daftar Retur</h2>
 	<table id="detailtable">
 	<tr>
@@ -93,7 +98,7 @@
 	}
 	?>
 	</table>
-	<div class="space"></div>
+	<div class="vspace"></div>
 	<h2>Daftar Nota Beli</h2>
 	<table id="detailtable">
 	<tr>
@@ -113,7 +118,7 @@
 	}
 	?>
 	</table>
-	<div class="space"></div>
+	<div class="vspace"></div>
 	<h2>Cara Bayar</h2>
 	<table id="detailtable">
 	<tr>
@@ -127,12 +132,12 @@
 	}
 	?>
 	</table>
-	<div class="space"></div>
+	<div class="vspace"></div>
 	<table id="signaturetable">
-	<tr><td class="infofield">Tanda Tangan Pembayar<td class="space"><td class="infofield">Mengetahui
-	<tr><td class="signature"><td class="space"><td class="signature">
+	<tr><td class="infofield">Tanda Tangan Pembayar<td class="hspace"><td class="infofield">Mengetahui
+	<tr><td class="signature"><td class="hspace"><td class="signature">
 	<tr><td class="infovalue"><?php echo lookup::SupplierNameFromSupplierID($model->idsupplier);?>
-	<td class="space"><td class="infovalue"><?php echo lookup::UserNameFromUserID($model->userlog);?>
+	<td class="hspace"><td class="infovalue"><?php echo lookup::UserNameFromUserID($model->userlog);?>
 	</table>
 </body>
 </html>
