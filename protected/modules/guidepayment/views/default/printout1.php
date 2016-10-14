@@ -6,20 +6,20 @@
 <style>
 	@page { 
 		size: <?php echo '100'; ?>mm <?php echo '140'; ?>mm portrait;
-		margin-bottom: <?php echo '10'; ?>mm;
-		margin-top: <?php echo '10'; ?>mm; 
-		margin-right: <?php echo '10'; ?>mm;
-		margin-left: <?php echo '10'; ?>mm;
+		margin-bottom: <?php echo '5'; ?>mm;
+		margin-top: <?php echo '5'; ?>mm; 
+		margin-right: <?php echo '5'; ?>mm;
+		margin-left: <?php echo '5'; ?>mm;
 		page-break-before: 5mm;
 	}
 	
 	#maintable { 
-		width: 120mm;
+		width: 100mm;
 		border: solid thin;
 		border-collapse: collapse;
 	}
 	#detailtable { 
-		width: 120mm;
+		width: 100mm;
 		border: solid thin;
 		border-collapse: collapse;
 	}	 
