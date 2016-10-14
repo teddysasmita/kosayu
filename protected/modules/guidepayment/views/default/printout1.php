@@ -31,13 +31,13 @@
 		padding: 2mm;
 		border: none;
 		margin: 0;
-		font-family: "Courier New", sans-serif;
+		font-family: "WST_Eng", sans-serif;
 	}
 	.infofield {
 		padding: 2mm;
 		border: none;
 		margin: 0;
-		font-family: "Courier New", sans-serif;
+		font-family: "WST_Eng", sans-serif;
 	}
 	.detailrow {
 		padding: 1mm;
@@ -47,7 +47,7 @@
 		border: solid thin;
 		margin: 0;
 		font-size: 11pt;
-		font-family: "Courier New", sans-serif; 
+		font-family: "WST_Eng", sans-serif; 
 	}
 	.numbercol {
 		text-align: right;
@@ -59,7 +59,7 @@
 		height: 20mm;
 	}
 	h1 {
-		font-family: "Courier New", sans-serif;
+		font-family: "WST_Eng", sans-serif;
 	}
 </style>
 </head>
@@ -78,6 +78,7 @@
 	<table id="detailtable">
 	<tr>
 	<th class="detailcol">No Sticker
+	<th class="detailcol">Tg; Nota
 	<th class="detailcol">No Nota
 	<th class="detailcol">Total
 	<th class="detailcol">Disc
@@ -85,6 +86,7 @@
 	<?php 
 	foreach ($details as $dt) {
 		echo "<tr class=\"detailrow\">";
+		echo "<td class=\"detailcol\">${dt['stickerdate']}";
 		echo "<td class=\"detailcol\">${dt['stickernum']}";
 		echo "<td class=\"detailcol\">${dt['regnum']}";
 		echo "<td class=\"detailcol numbercol\">".number_format($dt['totalsales']);
