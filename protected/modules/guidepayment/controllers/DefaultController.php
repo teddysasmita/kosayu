@@ -1072,7 +1072,7 @@ EOS;
     		$details = Yii::app()->db->createCommand()
     			->select('sum(price * qty) as totalsales,'.
     				'sum(discount * qty) as totaldisc,'.
-    				'sum(amount) as commission, regnum, stickernum')
+    				'sum(amount) as commission, regnum, stickernum, stickerdate')
     			->from('detailguidepayments')
     			->where('id = :p_id', [':p_id'=>$id])
     			->group('regnum')
