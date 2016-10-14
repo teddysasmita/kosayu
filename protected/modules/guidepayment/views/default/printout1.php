@@ -78,7 +78,7 @@
 	<table id="detailtable">
 	<tr>
 	<th class="detailcol">No Sticker
-	<th class="detailcol">Tg; Nota
+	<th class="detailcol">Tgl Nota
 	<th class="detailcol">No Nota
 	<th class="detailcol">Total
 	<th class="detailcol">Disc
@@ -86,8 +86,8 @@
 	<?php 
 	foreach ($details as $dt) {
 		echo "<tr class=\"detailrow\">";
-		echo "<td class=\"detailcol\">${dt['stickerdate']}";
 		echo "<td class=\"detailcol\">${dt['stickernum']}";
+		echo "<td class=\"detailcol\">${dt['stickerdate']}";
 		echo "<td class=\"detailcol\">${dt['regnum']}";
 		echo "<td class=\"detailcol numbercol\">".number_format($dt['totalsales']);
 		echo "<td class=\"detailcol numbercol\">".number_format($dt['totaldisc']);
