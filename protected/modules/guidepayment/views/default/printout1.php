@@ -14,12 +14,12 @@
 	}
 	
 	#maintable { 
-		width: 100mm;
+		width: 80mm;
 		border: solid thin;
 		border-collapse: collapse;
 	}
 	#detailtable { 
-		width: 100mm;
+		width: 80mm;
 		border: solid thin;
 		border-collapse: collapse;
 	}	 
