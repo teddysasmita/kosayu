@@ -31,13 +31,13 @@
 		padding: 2mm;
 		border: none;
 		margin: 0;
-		font-family: "WST_Eng", sans-serif;
+		font-family: "WST_Engl", sans-serif;
 	}
 	.infofield {
 		padding: 2mm;
 		border: none;
 		margin: 0;
-		font-family: "WST_Eng", sans-serif;
+		font-family: "WST_Engl", sans-serif;
 	}
 	.detailrow {
 		padding: 1mm;
@@ -47,7 +47,7 @@
 		border: solid thin;
 		margin: 0;
 		font-size: 8pt;
-		font-family: "WST_Eng", sans-serif; 
+		font-family: "WST_Engl", sans-serif; 
 	}
 	.numbercol {
 		text-align: right;
@@ -66,7 +66,7 @@
 		text-align: center;
 	}
 	h1, h2 {
-		font-family: "WST_Eng", sans-serif;
+		font-family: "WST_Engl", sans-serif;
 	}
 </style>
 </head>
