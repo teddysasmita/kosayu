@@ -3,7 +3,7 @@
 /* @var $model Currencies */
 
 $this->breadcrumbs=array(
-   ''Master Data'=>array('/site/masterdata'),
+   'Master Data'=>array('/site/masterdata'),
 	'Daftar'=>array('index'),
 	'Pencarian Data',
 );
