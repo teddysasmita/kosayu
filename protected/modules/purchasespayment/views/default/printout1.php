@@ -14,12 +14,12 @@
 	}
 	
 	#maintable { 
-		width: 120mm;
+		width: 170mm;
 		border: solid thin;
 		border-collapse: collapse;
 	}
 	#detailtable { 
-		width: 120mm;
+		width: 170mm;
 		border: solid thin;
 		border-collapse: collapse;
 	}	 
@@ -31,13 +31,13 @@
 		padding: 2mm;
 		border: none;
 		margin: 0;
-		font-family: "Courier New", sans-serif;
+		font-family: "WST_Eng", sans-serif;
 	}
 	.infofield {
 		padding: 2mm;
 		border: none;
 		margin: 0;
-		font-family: "Courier New", sans-serif;
+		font-family: "WST_Eng", sans-serif;
 	}
 	.detailrow {
 		padding: 1mm;
@@ -46,8 +46,8 @@
 		padding: 1mm;
 		border: solid thin;
 		margin: 0;
-		font-size: 11pt;
-		font-family: "Courier New", sans-serif; 
+		font-size: 8pt;
+		font-family: "WST_Eng", sans-serif; 
 	}
 	.numbercol {
 		text-align: right;
@@ -57,7 +57,7 @@
 	}
 	
 	.hspace {
-		height: 10mm;
+		height: 40mm;
 	}
 	
 	.signature {
@@ -66,7 +66,7 @@
 		text-align: center;
 	}
 	h1, h2 {
-		font-family: "Courier New", sans-serif;
+		font-family: "WST_Eng", sans-serif;
 	}
 </style>
 </head>
