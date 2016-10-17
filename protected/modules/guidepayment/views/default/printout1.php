@@ -46,7 +46,7 @@
 		padding: 1mm;
 		border: solid thin;
 		margin: 0;
-		font-size: 8pt;
+		font-size: 7pt;
 		font-family: "WST_Eng", sans-serif; 
 	}
 	.numbercol {
