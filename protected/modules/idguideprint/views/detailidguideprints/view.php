@@ -32,7 +32,7 @@ $this->menu=array(
 		//'id',
 		array(
          'label'=>'Nama Guide',
-         'value'=>lookup::GuideNameFromID($model->idguide``)
+         'value'=>lookup::GuideNameFromID($model->idguide)
       ),
 		//'idunit',
 		array(
