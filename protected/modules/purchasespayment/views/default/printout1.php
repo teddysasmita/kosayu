@@ -57,7 +57,7 @@
 	}
 	
 	.hspace {
-		height: 40mm;
+		width: 40mm;
 	}
 	
 	.signature {
