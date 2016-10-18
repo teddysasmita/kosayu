@@ -71,7 +71,7 @@
 </style>
 </head>
 <body>
-	<h1>Tanda Terima</h1>
+	<h1>Tanda Terima Pembayaran Pemasok</h1>
 	<table id="maintable">
 	<?php 
 	echo "<tr class=\"mainrow\"><td class=\"infofield\">Nomor Urut<td>:<td class=\"infovalue\">".$model->regnum;
