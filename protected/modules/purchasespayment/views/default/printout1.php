@@ -131,10 +131,12 @@
 	foreach ($details3 as $dt) {
 		echo "<tr class=\"detailrow\">";
 		echo "<td class=\"detailcol\">".lookup::getMethod($dt['method']);
-		if ($dt['method'] == 'BG') {
+		if ($dt['method'] == 'BG') 
 			echo "<td class=\"detailcol\">".$dt['bg_num'].' - '.$dt['bg_duedate'];
-		} else if ($dt['method'] == 'T')
+		else if ($dt['method'] == 'T')
 			echo "<td class=\"detailcol\">".$dt['tr_bank']." - ".$dt['tr_receiver'];
+		else
+			echo "<td class=\"detailcol\">No Info";
 		echo "<td class=\"detailcol numbercol\">".number_format($dt['amount']);
 	}
 	?>
