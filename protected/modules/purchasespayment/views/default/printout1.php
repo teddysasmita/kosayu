@@ -14,12 +14,12 @@
 	}
 	
 	#maintable { 
-		width: 170mm;
+		width: 150mm;
 		border: solid thin;
 		border-collapse: collapse;
 	}
 	#detailtable { 
-		width: 170mm;
+		width: 150mm;
 		border: solid thin;
 		border-collapse: collapse;
 	}	 
