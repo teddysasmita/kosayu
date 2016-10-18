@@ -125,11 +125,16 @@
 	<table id="detailtable">
 	<tr>
 	<th class="detailcol">Metode
+	<th class="detailcol">Info
 	<th class="detailcol">Jumlah
 	<?php 
 	foreach ($details3 as $dt) {
 		echo "<tr class=\"detailrow\">";
 		echo "<td class=\"detailcol\">".lookup::getMethod($dt['method']);
+		if ($dt['method'] == 'BG') {
+			echo "<td class=\"detailcol\">".$dt['bg_num'].' - '.$dt['bg_duedate'];
+		} else if ($dt['method'] == 'T')
+			echo "<td class=\"detailcol\">".$dt['tr_bank']." - ".$dt['tr_receiver'];
 		echo "<td class=\"detailcol numbercol\">".number_format($dt['amount']);
 	}
 	?>
