@@ -143,7 +143,7 @@
 	</table>
 	<div class="vspace"></div>
 	<table id="signaturetable">
-	<tr><td class="infofield signature">Tanda Tangan Pembayar<td class="hspace"><td class="infofield signature">Mengetahui
+	<tr><td class="infofield signature">Tanda Tangan Penerima<td class="hspace"><td class="infofield signature">Mengetahui
 	<tr><td class="signature"><td class="hspace"><td class="signature">
 	<tr><td class="infovalue signature"><?php echo lookup::SupplierNameFromSupplierID($model->idsupplier);?>
 	<td class="hspace"><td class="infovalue signature"><?php echo lookup::UserNameFromUserID($model->userlog);?>
