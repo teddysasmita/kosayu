@@ -70,7 +70,8 @@ EOS;
                       'buttons'=>array(
                           array('text'=>'Ok', 'click'=>'js:function(){
                              $(\'#Detailitemtipgroups_itemname\').val($(\'#dialog-item-name\').val());
-                             $.get(\'index.php?r=LookUp/getItemID2\',{ name: encodeURI($(\'#dialog-item-name\').val()) },
+                             $.get(\'index.php?r=LookUp/getItemID2\',
+                             	{ name: encodeURI($(\'#dialog-item-name\').val()) },
                                  function(data) {
                                     $(\'#Detailitemtipgroups_iditem\').val(data);
                                  })

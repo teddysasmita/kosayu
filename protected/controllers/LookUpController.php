@@ -392,17 +392,25 @@ EOS;
    public function actionGetItemAll($name)
    {
    	if (!Yii::app()->user->isGuest) {
-   		$data=Yii::app()->db->createCommand()->selectDistinct('concat(code, \'-\', name)')->from('items')
-   			->where('code like :p_code',
+   		$data=Yii::app()->db->createCommand()->selectDistinct('concat(a.batchcode, \'-\', b.name)')
+   			->from('itembatch a')
+   			->join('items b', 'b.id = a.iditem')
+   			/*->where('code like :p_code',
    				array(':p_code'=>$name.'%'))
-   			->order('code, name')
+   			->order('code, name')*/
+   			->where('a.batchcode like :p_code',
+   				array(':p_code'=>$name.'%'))
+   				->order('batchcode, name')
+   		
    			->queryColumn();
    		
    		if (!$data)
-   			$data=Yii::app()->db->createCommand()->selectDistinct('concat(code, \'-\', name)')->from('items')
-   				->where('name like :itemname',
+   			$data=Yii::app()->db->createCommand()->selectDistinct('concat(a.batchcode, \'-\', b.name)')
+   				->from('itembatch a')
+   				->join('items b', 'b.id = a.iditem')
+   				->where('b.name like :itemname',
    					array(':itemname'=>'%'.$name.'%'))
-   				->order('code, name')
+   				->order('a.batchcode, b.name')
    				->queryColumn();
    		 
    		if(count($data)) {
@@ -472,12 +480,12 @@ EOS;
    {
    	if (!Yii::app()->user->isGuest) {
    		$data=Yii::app()->db->createCommand()
-   		->select('name as label, id as value')
-   		->from('items')
-   		->where('name like :p_name',
+   			->select('name as label, id as value')
+   			->from('items')
+   			->where('name like :p_name',
    				array(':p_name'=>"%$term%"))
-   		->limit(10)
-   				->queryAll();
+   			->limit(10)
+   			->queryAll();
    		/*echo Yii::app()->db->createCommand()->select('a.donum, b.id')->from('stockentries a')
    		 ->leftJoin('purchasesreceipts b','b.donum = a.donum' )
    		->where("a.idsupplier = :idsupplier and b.id = NULL", array(':idsupplier'=>$idsupplier))->text;
