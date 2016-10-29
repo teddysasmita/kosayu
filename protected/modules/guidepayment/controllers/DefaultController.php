@@ -979,7 +979,6 @@ EOS;
     		$guideDetailCommission = array_merge($guideDetailCommission, $commission);
     		unset($commission);
     	}
-    	print_r($guideDetailCommission);
     	$totalPaidCommission = 0;
     	foreach($paidCommission as $pc) {
     		$totalPaidCommission += $pc['amount'];	
