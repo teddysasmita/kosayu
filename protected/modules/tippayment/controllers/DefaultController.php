@@ -134,11 +134,13 @@ class DefaultController extends Controller
                          	foreach($this->salesdata as $sd) {
                          		$model->totalsales = $model->totalsales + $sd['amount'];
                          	}
+                         	print_r($this->salesdata);
                          	Yii::app()->session['Detailtippayments'] = $this->salesdata;
                          	$temp = $this->getSalesDetail($model->id, $model->idpartner, $model->idcomp, 
                          		$model->idsticker, $model->ddatetime);
                          	 Yii::app()->session['Detailtippayments2'] = $temp;
                          	$total = 0;
+                         	echo "OK";
                          	foreach($temp as $t) {
                          		$total = $total + $t['amount'];
                          	}
