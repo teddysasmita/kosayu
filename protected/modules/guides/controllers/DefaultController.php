@@ -350,7 +350,9 @@ class DefaultController extends Controller
         			->where('idguide = :p_idguide and (idatetime >= :p_startdate and idatetime <= :p_enddate)',
         				[':p_idguide'=>$id, ':p_startdate'=>$startdate, ':p_enddate'=>$enddate])
         			->queryAll();
-        		
+
+        		print($data);
+        	
         		$activity = Yii::app()->db->createCommand()
         			->select('sum((b.price-b.discount) * b.qty) as totalsales')
         			->from('detailguidepayments b')
@@ -372,7 +374,7 @@ class DefaultController extends Controller
         			}
         			if (isset(Yii::app()->session['guideactivity']))
         				Yii::app()->session->remove('guideactivity');
-        			print_r($data);
+        			//print_r($data);
         			Yii::app()->session['guideactivity'] = $data;
         		}
         		if ($print == '0')
