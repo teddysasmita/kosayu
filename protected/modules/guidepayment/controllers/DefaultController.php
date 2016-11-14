@@ -774,7 +774,10 @@ EOS;
     	foreach($salesdata as $sd) {
     		if ($sd['invoicenum'] == $regnum) {
     	// Because voucher or/and retur deduction take place after total
-    			$disc = $this->getVoucherNRetur($id) / $sd['amount'];
+    			if ($sd['amount'] == 0)
+    				$disc = 0;
+    			else
+    				$disc = $this->getVoucherNRetur($id) / $sd['amount'];
     			break;
     		}
     	}
