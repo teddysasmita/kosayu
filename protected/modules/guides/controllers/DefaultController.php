@@ -372,6 +372,7 @@ class DefaultController extends Controller
         			}
         			if (isset(Yii::app()->session['guideactivity']))
         				Yii::app()->session->remove('guideactivity');
+        			print_r($data);
         			Yii::app()->session['guideactivity'] = $data;
         		}
         		if ($print == '0')
