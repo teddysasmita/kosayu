@@ -351,7 +351,7 @@ class DefaultController extends Controller
         				[':p_idguide'=>$id, ':p_startdate'=>$startdate, ':p_enddate'=>$enddate])
         			->queryAll();
 
-        		print($data);
+        		print_r($data);
         	
         		$activity = Yii::app()->db->createCommand()
         			->select('sum((b.price-b.discount) * b.qty) as totalsales')
