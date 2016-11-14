@@ -1158,7 +1158,7 @@ EOS;
 					return;
 				} else if ($data > 0) {
 					$datastickertoguide = Yii::app()->db->createCommand()
-						->select('b.idpartner, b.idcomp, c.defaulttip')
+						->select('b.idpartner, b.idcomp, c.defaulttip, b.id')
 						->from('stickertoguides a')
 						->join('guides b', 'b.id = a.idguide')
 						->join('partners c', 'c.id = b.idpartner')
@@ -1173,7 +1173,8 @@ EOS;
 					if ($datastickertoguide !== FALSE) {
 					// there was assignments for the stickernum and stickerdate combo
 						if ($datastickertoguide['idpartner'] == $dataguide['idpartner']) {
-							if (!is_null($datastickertoguide['idcomp'])) {
+							if (!is_null($datastickertoguide['idcomp']) and 
+								($datastickertoguide['id'] !== $idguide)) {
 								$assignedtip = Yii::app()->db->createCommand()
 									->select('sum(c.tip) as totaltip')
 									->from('stickertoguides a')
